@@ -9,6 +9,9 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -25,4 +28,28 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
+}
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'vontools'
+
+    publishedGroupId = 'com.vondear.vontools'
+    libraryName = 'VonTools'
+    artifact = 'vontools'
+
+    libraryDescription = 'A Tools on Android'
+
+    siteUrl = 'https://github.com/vondear/VonTools'
+    gitUrl = 'https://github.com/vondear/VonTools.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'vondear'
+    developerName = 'vondear'
+    developerEmail = 'vondear@163.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
 }
