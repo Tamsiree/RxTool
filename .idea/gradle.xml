@@ -8,8 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/VonTools" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/vontools" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
