@@ -4,7 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
     defaultConfig {
-        applicationId "com.vondear.vontools"
+        applicationId "com.vondear.tools"
         minSdkVersion 9
         targetSdkVersion 24
         versionCode 1

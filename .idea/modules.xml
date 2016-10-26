@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/VonTools.iml" filepath="$PROJECT_DIR$/VonTools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tools.iml" filepath="$PROJECT_DIR$/Tools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VonTools/VonTools.iml" filepath="$PROJECT_DIR$/VonTools/VonTools.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/vontools/vontools.iml" filepath="$PROJECT_DIR$/vontools/vontools.iml" />
     </modules>
   </component>
 </project>

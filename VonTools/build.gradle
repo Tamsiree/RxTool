@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 24
@@ -30,26 +32,70 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'vontools'
+def siteUrl = 'https://github.com/vondear/VonTools'
+def gitUrl = 'https://github.com/vondear/VonTools.git'
+group = "com.vondear.vontools"            // Maven Group ID for the artifact，一般填你唯一的包名
+install{
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                // Add your description here
+                name 'Android Tools'     //项目的描述 你可以多写一点
+                url siteUrl
+                // Set your license
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'von'        //填写的一些基本信息
+                        name 'vondear'
+                        email 'vondear@163.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
 
-    publishedGroupId = 'com.vondear.vontools'
-    libraryName = 'VonTools'
-    artifact = 'vontools'
-
-    libraryDescription = 'A Tools on Android'
-
-    siteUrl = 'https://github.com/vondear/VonTools'
-    gitUrl = 'https://github.com/vondear/VonTools.git'
-
-    libraryVersion = '1.0.0'
-
-    developerId = 'vondear'
-    developerName = 'vondear'
-    developerEmail = 'vondear@163.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+/*task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}*/
+artifacts {
+    //archives javadocJar
+    archives sourcesJar
+}
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "VonTool"    //发布到JCenter上的项目名字
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
 }
