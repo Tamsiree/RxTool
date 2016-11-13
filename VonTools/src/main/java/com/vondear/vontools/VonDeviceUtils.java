@@ -97,24 +97,7 @@ public class VonDeviceUtils {
     }
 
 
-    /**
-     * 拨打电话
-     *
-     * @param context
-     * @param str
-     */
-    public static void callPhone(Context context, String str) {
-        str = str.trim();// 删除字符串首部和尾部的空格
-        if (str != null && !str.equals("")) {
-            // 调用系统的拨号服务实现电话拨打功能
-            // 封装一个拨打电话的intent，并且将电话号码包装成一个Uri对象传入
-            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + str));
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-            context.startActivity(intent);// 内部类
-        }
-    }
+
 
     /**
      * 获取手机唯一标识序列号
@@ -129,98 +112,196 @@ public class VonDeviceUtils {
     }
 
     /**
-     * 获取手机唯一标识序列号
+     * 获取手机的IMIE （唯一标识序列号）
+     * <p>需与{@link #isPhone(Context)}一起使用</p>
+     * <p>需添加权限 {@code <uses-permission android:name="android.permission.READ_PHONE_STATE"/>}</p>
      *
+     * @param context 上下文
+     * @return IMIE码
+     */
+    public static String getIMEI(Context context) {
+        String deviceId;
+        if (isPhone(context)) {
+            deviceId = getDeviceId_IMEI_(context);
+        } else {
+            deviceId = getAndroid_id(context);
+        }
+        return deviceId;
+    }
+
+    /**
+     * 获取设备的IMSI
      * @param context
      * @return
      */
-    public static String getIMEI(Context context) {
-        return getDeviceId_IMEI_(context);
-    }
-
     public static String getIMSI(Context context) {
         return getSubscriberId(context);
     }
 
+    /**
+     * 获取设备的IMEI
+     * @param context
+     * @return
+     */
     public static String getDeviceId_IMEI_(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getDeviceId();
     }
 
+    /**
+     * 获取设备的软件版本号
+     * @param context
+     * @return
+     */
     public static String getDeviceSoftwareVersion(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getDeviceSoftwareVersion();
     }
 
+    /**
+     * 获取手机号
+     * @param context
+     * @return
+     */
     public static String getLine1Number(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getLine1Number();
     }
 
+    /**
+     * 获取ISO标准的国家码，即国际长途区号
+     * @param context
+     * @return
+     */
     public static String getNetworkCountryIso(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getNetworkCountryIso();
     }
 
+    /**
+     * 获取设备的 MCC + MNC
+     * @param context
+     * @return
+     */
     public static String getNetworkOperator(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getNetworkOperator();
     }
 
+    /**
+     * 获取(当前已注册的用户)的名字
+     * @param context
+     * @return
+     */
     public static String getNetworkOperatorName(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getNetworkOperatorName();
     }
 
+    /**
+     * 获取当前使用的网络类型
+     * @param context
+     * @return
+     */
     public static int getNetworkType(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getNetworkType();
     }
 
+    /**
+     * 获取手机类型
+     * @param context
+     * @return
+     */
     public static int getPhoneType(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getPhoneType();
     }
 
+    /**
+     * 获取SIM卡的国家码
+     * @param context
+     * @return
+     */
     public static String getSimCountryIso(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getSimCountryIso();
     }
 
+    /**
+     * 获取SIM卡提供的移动国家码和移动网络码.5或6位的十进制数字
+     * @param context
+     * @return
+     */
     public static String getSimOperator(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getSimOperator();
     }
 
+    /**
+     * 获取服务商名称
+     * @param context
+     * @return
+     */
     public static String getSimOperatorName(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getSimOperatorName();
     }
 
+    /**
+     * 获取SIM卡的序列号
+     * @param context
+     * @return
+     */
     public static String getSimSerialNumber(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getSimSerialNumber();
     }
 
+    /**
+     * 获取SIM的状态信息
+     * @param context
+     * @return
+     */
     public static int getSimState(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getSimState();
     }
 
+    /**
+     * 获取唯一的用户ID
+     * @param context
+     * @return
+     */
     public static String getSubscriberId(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getSubscriberId();
     }
 
+    /**
+     * 获取语音邮件号码
+     * @param context
+     * @return
+     */
     public static String getVoiceMailNumber(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getVoiceMailNumber();
     }
 
+    /**
+     * 获取ANDROID ID
+     * @param context
+     * @return
+     */
     public static String getAndroid_id(Context context) {
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
+    /**
+     * 获取设备型号，如MI2SC
+     *
+     * @return 设备型号
+     */
     public static String getBuildBrandModel() {
         return Build.MODEL;// Galaxy nexus 品牌类型
     }
@@ -229,6 +310,11 @@ public class VonDeviceUtils {
         return Build.BRAND;//google
     }
 
+    /**
+     * 获取设备厂商，如Xiaomi
+     *
+     * @return 设备厂商
+     */
     public static String getBuildMANUFACTURER() {
         return Build.MANUFACTURER;//// samsung 品牌
     }
@@ -250,7 +336,11 @@ public class VonDeviceUtils {
         return serial;
     }
 
-
+    /**
+     * 获取App版本号
+     * @param context
+     * @return
+     */
     public static String getAppVersionNo(Context context) {
         // 获取packagemanager的实例
         PackageManager packageManager = context.getPackageManager();
@@ -265,6 +355,12 @@ public class VonDeviceUtils {
         return version;
     }
 
+    /**
+     * 检查权限
+     * @param context
+     * @param permission 例如 Manifest.permission.READ_PHONE_STATE
+     * @return
+     */
     public static boolean checkPermission(Context context, String permission) {
         boolean result = false;
         if (Build.VERSION.SDK_INT >= 23) {
@@ -289,6 +385,11 @@ public class VonDeviceUtils {
         return result;
     }
 
+    /**
+     * 获取设备信息
+     * @param context
+     * @return
+     */
     public static String getDeviceInfo(Context context) {
         try {
             org.json.JSONObject json = new org.json.JSONObject();
@@ -344,14 +445,12 @@ public class VonDeviceUtils {
         return null;
     }
 
-    public static void InstallAPK(Context context, String APK_PATH) {
-        //提示安装APK
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        i.setDataAndType(Uri.parse("file://" + APK_PATH), "application/vnd.android.package-archive");
-        context.startActivity(i);
-    }
 
+
+    /**
+     * 遍历LOG输出HashMap
+     * @param res
+     */
     public static void ThroughArray(HashMap res) {
         Iterator ite = res.entrySet().iterator();
         while (ite.hasNext()) {
@@ -361,8 +460,6 @@ public class VonDeviceUtils {
             Log.d("MSG_AUTH_COMPLETE", (key + "： " + value));
         }
     }
-
-
 
 
     /**
@@ -408,29 +505,6 @@ public class VonDeviceUtils {
         return macAddress == null ? "" : macAddress;
     }
 
-    /**
-     * 获取设备厂商，如Xiaomi
-     *
-     * @return 设备厂商
-     */
-    public static String getManufacturer() {
-        return Build.MANUFACTURER;
-    }
-
-    /**
-     * 获取设备型号，如MI2SC
-     *
-     * @return 设备型号
-     */
-    public static String getModel() {
-        String model = Build.MODEL;
-        if (model != null) {
-            model = model.trim().replaceAll("\\s*", "");
-        } else {
-            model = "";
-        }
-        return model;
-    }
 
     /**
      * 判断设备是否是手机
@@ -443,24 +517,6 @@ public class VonDeviceUtils {
         return tm.getPhoneType() != TelephonyManager.PHONE_TYPE_NONE;
     }
 
-    /**
-     * 获取手机的IMIE
-     * <p>需与{@link #isPhone(Context)}一起使用</p>
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.READ_PHONE_STATE"/>}</p>
-     *
-     * @param context 上下文
-     * @return IMIE码
-     */
-    public static String getPhoneIMEI(Context context) {
-        String deviceId;
-        if (isPhone(context)) {
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            deviceId = tm.getDeviceId();
-        } else {
-            deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-        }
-        return deviceId;
-    }
 
     /**
      * 获取手机状态信息
@@ -516,14 +572,23 @@ public class VonDeviceUtils {
     }
 
     /**
-     * 拨打phoneNumber
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.CALL_PHONE"/>}</p>
+     * 拨打电话
+     * 需添加权限 {@code <uses-permission android:name="android.permission.CALL_PHONE"/>}
      *
      * @param context     上下文
      * @param phoneNumber 电话号码
      */
-    public static void call(Context context, String phoneNumber) {
-        context.startActivity(new Intent("android.intent.action.CALL", Uri.parse("tel:" + phoneNumber)));
+    public static void callPhone(Context context, String phoneNumber) {
+        phoneNumber = phoneNumber.trim();// 删除字符串首部和尾部的空格
+        if (phoneNumber != null && !phoneNumber.equals("")) {
+            // 调用系统的拨号服务实现电话拨打功能
+            // 封装一个拨打电话的intent，并且将电话号码包装成一个Uri对象传入
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            context.startActivity(intent);// 内部类
+        }
     }
 
     /**

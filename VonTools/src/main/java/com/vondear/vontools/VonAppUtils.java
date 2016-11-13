@@ -49,6 +49,19 @@ public class VonAppUtils {
     }
 
     /**
+     * 安装APK
+     * @param context
+     * @param APK_PATH
+     */
+    public static void InstallAPK(Context context, String APK_PATH) {
+        //提示安装APK
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.setDataAndType(Uri.parse("file://" + APK_PATH), "application/vnd.android.package-archive");
+        context.startActivity(i);
+    }
+
+    /**
      * 获取卸载App的意图
      *
      * @param packageName 包名
