@@ -35,7 +35,8 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".scaner.ActivityScanerCode"></activity>
+        <activity android:name=".scaner.ActivityScanerCode" />
+        <activity android:name=".ActivityCreateQRCode"></activity>
     </application>
 
 </manifest>

@@ -30,7 +30,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.vondear.tools.ActivityCreateQRCode;
 import com.vondear.tools.R;
+import com.vondear.vontools.VonActivityUtils;
 import com.vondear.vontools.VonUtils;
 import com.vondear.vontools.view.TransparentDialog;
 import com.zbar.lib.CameraManager;
@@ -114,6 +116,12 @@ public class ActivityScanerCode extends Activity  implements SurfaceHolder.Callb
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
         ll_scan_help = (LinearLayout) findViewById(R.id.ll_scan_help);
+        ll_scan_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                VonActivityUtils.skipActivity(ActivityScanerCode.this, ActivityCreateQRCode.class);
+            }
+        });
         mContainer = (RelativeLayout) findViewById(R.id.capture_containter);
         mCropLayout = (RelativeLayout) findViewById(R.id.capture_crop_layout);
 
