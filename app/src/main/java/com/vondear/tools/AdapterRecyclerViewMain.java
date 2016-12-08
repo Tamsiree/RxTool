@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.vondear.tools.scaner.ActivityScanerCode;
 import com.vondear.vontools.VonActivityUtils;
 import com.vondear.vontools.VonDeviceUtils;
 
@@ -47,7 +48,7 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         holder.mItem = mValues.get(position);
 
@@ -66,7 +67,15 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                VonActivityUtils.skipActivity(context,ActivityVonPhoto.class);
+                switch (position) {
+                    case 0:
+                        VonActivityUtils.skipActivity(context,ActivityVonPhoto.class);
+                        break;
+                    case 1:
+                        VonActivityUtils.skipActivity(context,ActivityScanerCode.class);
+                        break;
+
+                }
             }
         });
     }

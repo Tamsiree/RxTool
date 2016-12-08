@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         mData = new ArrayList<>();
         MainItem mainItem = new MainItem("VonPhotoUtils操作UZrop裁剪图片",0);
         mData.add(mainItem);
+        MainItem mainItem1 = new MainItem("二维码的扫描与生成",0);
+        mData.add(mainItem1);
     }
 
     private void initView() {
