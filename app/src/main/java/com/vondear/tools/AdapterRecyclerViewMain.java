@@ -41,14 +41,14 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
         context = view.getContext();
         mScreenWidth = VonDeviceUtils.getScreenWidth(context) > VonDeviceUtils.getScreenHeight(context) ? VonDeviceUtils.getScreenHeight(context) : VonDeviceUtils.getScreenWidth(context);
         mItemWidth = (mScreenWidth - 20) / 3;
-        mItemHeight = mItemWidth;
+        mItemHeight = mItemWidth * 6 / 4;
         GridLayoutManager.LayoutParams layoutParams = new GridLayoutManager.LayoutParams(mItemWidth, mItemHeight);
         view.setLayoutParams(layoutParams);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         holder.mItem = mValues.get(position);
 
@@ -67,15 +67,7 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (position) {
-                    case 0:
-                        VonActivityUtils.skipActivity(context,ActivityVonPhoto.class);
-                        break;
-                    case 1:
-                        VonActivityUtils.skipActivity(context,ActivityScanerCode.class);
-                        break;
-
-                }
+                VonActivityUtils.skipActivity(context, holder.mItem.getActivity());
             }
         });
     }

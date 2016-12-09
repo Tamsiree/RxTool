@@ -17,6 +17,20 @@ public class MainItem {
         this.image = image;
     }
 
+    public MainItem(String name, int image, Class activity) {
+        this.name = name;
+        this.image = image;
+        this.activity = activity;
+    }
+
+    public Class getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Class activity) {
+        this.activity = activity;
+    }
+
     public String getName() {
         return name;
     }

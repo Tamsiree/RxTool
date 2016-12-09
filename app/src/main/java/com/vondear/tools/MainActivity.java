@@ -7,6 +7,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.vondear.tools.scaner.ActivityScanerCode;
+import com.vondear.vontools.VonImageUtils;
 import com.vondear.vontools.VonRecyclerViewUtils;
 
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<MainItem> mData;
 
-    private int mColumnCount;
+    private int mColumnCount = 3;
 
     private Context context;
 
@@ -37,12 +39,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        mColumnCount = 3;
         mData = new ArrayList<>();
-        MainItem mainItem = new MainItem("VonPhotoUtils操作UZrop裁剪图片",0);
-        mData.add(mainItem);
-        MainItem mainItem1 = new MainItem("二维码的扫描与生成",0);
-        mData.add(mainItem1);
+        mData.add(new MainItem("VonPhotoUtils操作UZrop裁剪图片",R.drawable.elves_ball,ActivityVonPhoto.class));
+        mData.add(new MainItem("二维码的扫描与生成",R.drawable.scan_barcode,ActivityScanerCode.class));
     }
 
     private void initView() {
@@ -52,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
             recyclerview.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
 
-
-        recyclerview.addItemDecoration(new VonRecyclerViewUtils.SpaceItemDecoration(5));
+        recyclerview.addItemDecoration(new VonRecyclerViewUtils.SpaceItemDecoration(VonImageUtils.dp2px(context,5f)));
         AdapterRecyclerViewMain recyclerViewMain = new AdapterRecyclerViewMain(mData);
 
         recyclerview.setAdapter(recyclerViewMain);

@@ -8,7 +8,7 @@ import com.zbar.lib.CameraManager;
 
 
 /**
- *
+ * Author: Vondear
  * 描述: 扫描消息转发
  */
 public final class CaptureActivityHandler extends Handler {
