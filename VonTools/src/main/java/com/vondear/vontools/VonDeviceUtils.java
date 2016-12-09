@@ -21,6 +21,7 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Xml;
 import android.view.Surface;
@@ -872,6 +873,18 @@ public class VonDeviceUtils {
         Bitmap ret = Bitmap.createBitmap(bmp, 0, statusBarHeight, width, height - statusBarHeight);
         view.destroyDrawingCache();
         return ret;
+    }
+
+    /**
+     * 获取DisplayMetrics对象
+     * @param context	应用程序上下文
+     * @return
+     */
+    public static DisplayMetrics getDisplayMetrics(Context context){
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics;
     }
 
     /**
