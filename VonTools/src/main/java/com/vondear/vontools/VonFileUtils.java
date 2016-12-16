@@ -17,12 +17,15 @@ package com.vondear.vontools;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -79,6 +82,7 @@ public class VonFileUtils {
     /**
      * 获取的目录默认没有最后的”/”,需要自己加上
      * 获取本应用图片缓存目录
+     *
      * @return
      */
     public static File getCecheFolder(Context context) {
@@ -477,6 +481,7 @@ public class VonFileUtils {
 
     /**
      * 多个文件合并
+     *
      * @param outFile
      * @param files
      */
@@ -509,6 +514,7 @@ public class VonFileUtils {
 
     /**
      * 将在线的m3u8替换成本地的m3u8
+     *
      * @param context  实体
      * @param file     在线的m3u8
      * @param pathList 本地的ts文件
@@ -548,6 +554,7 @@ public class VonFileUtils {
 
     /**
      * 将字符串 保存成 文件
+     *
      * @param filePath
      * @param content
      */
@@ -575,6 +582,7 @@ public class VonFileUtils {
 
     /**
      * 传入文件名以及字符串, 将字符串信息保存到文件中
+     *
      * @param strFilePath
      * @param strBuffer
      */
@@ -602,13 +610,15 @@ public class VonFileUtils {
 
 
     //----------------------------------------------------------------------------------------------
+
     /**
      * 获取 搜索的路径 下的 所有 后缀 的文件
+     *
      * @param fileAbsolutePath 搜索的路径
-     * @param suffix 文件后缀
+     * @param suffix           文件后缀
      * @return
      */
-    public static Vector<String> GetAllFileName(String fileAbsolutePath,String suffix) {
+    public static Vector<String> GetAllFileName(String fileAbsolutePath, String suffix) {
         Vector<String> vecFile = new Vector<String>();
         File file = new File(fileAbsolutePath);
         File[] subFile = file.listFiles();
@@ -625,7 +635,6 @@ public class VonFileUtils {
         return vecFile;
     }
     //==============================================================================================
-
 
 
     /**
@@ -659,8 +668,6 @@ public class VonFileUtils {
             }
         }
     }
-
-
 
 
     /**
@@ -927,7 +934,7 @@ public class VonFileUtils {
      * @return {@code true}: 复制成功<br>{@code false}: 复制失败
      */
     public static boolean copyFile(String srcFilePath, String destFilePath) {
-        return copyFile(getFileByPath(srcFilePath), getFileByPath(destFilePath),false);
+        return copyFile(getFileByPath(srcFilePath), getFileByPath(destFilePath), false);
     }
 
     /**
@@ -937,7 +944,7 @@ public class VonFileUtils {
      * @param destFile 目标文件
      * @return {@code true}: 复制成功<br>{@code false}: 复制失败
      */
-    public static boolean copyFile(File srcFile, File destFile,boolean isCopy) {
+    public static boolean copyFile(File srcFile, File destFile, boolean isCopy) {
         return copyOrMoveFile(srcFile, destFile, false);
     }
 
@@ -1715,6 +1722,44 @@ public class VonFileUtils {
         int lastSep = filePath.lastIndexOf(File.separator);
         if (lastPoi == -1 || lastSep >= lastPoi) return "";
         return filePath.substring(lastPoi);
+    }
+
+    /**
+     * 将文件转换成uri
+     *
+     * @param context
+     * @param imageFile
+     * @return
+     */
+    public static Uri getImageContentUri(Context context, java.io.File imageFile) {
+        String filePath = imageFile.getAbsolutePath();
+        Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                new String[]{MediaStore.Images.Media._ID}, MediaStore.Images.Media.DATA + "=? ",
+                new String[]{filePath}, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int id = cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns._ID));
+            Uri baseUri = Uri.parse("content://media/external/images/media");
+            return Uri.withAppendedPath(baseUri, "" + id);
+        } else {
+            if (imageFile.exists()) {
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.DATA, filePath);
+                return context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+            } else {
+                return null;
+            }
+        }
+    }
+
+    /**
+     * 将Uri转换成File
+     *
+     * @param context
+     * @param uri
+     * @return
+     */
+    public static File getFileUri(Context context, Uri uri) {
+        return new File(VonPhotoUtils.getRealFilePath(context, uri));
     }
 }
 

@@ -53,8 +53,18 @@ public class ActivityVonPhoto extends AppCompatActivity {
                 initDialogOpenAvatar();
             }
         });
+        ivAvatar.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                showBigImageView(resultUri);
+                return false;
+            }
+        });
     }
 
+    /**
+     * 选择头像 弹窗
+     */
     private void initDialogOpenAvatar() {
         final TransparentDialog dialog1 = new TransparentDialog(this);
         dialog1.getAttr().gravity = Gravity.BOTTOM;
@@ -93,17 +103,41 @@ public class ActivityVonPhoto extends AppCompatActivity {
         dialog1.show();
     }
 
+    /**
+     * 显示大图
+     * @param uri
+     */
+    private void showBigImageView(Uri uri) {
+        TransparentDialog transparentDialog = new TransparentDialog(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.image, null);
+        ImageView imageView = (ImageView) view.findViewById(R.id.page_item);
+        Glide.with(context).
+                load(uri).
+                diskCacheStrategy(DiskCacheStrategy.RESULT).
+                thumbnail(0.5f).
+                placeholder(R.drawable.elves_ball).
+                priority(Priority.LOW).
+                error(R.drawable.elves_ball).
+                fallback(R.drawable.elves_ball).
+                dontAnimate().
+                into(imageView);
+        transparentDialog.setContentView(view);
+        transparentDialog.show();
+    }
+
+    private Uri resultUri;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case VonPhotoUtils.GET_IMAGE_FROM_PHONE:
+            case VonPhotoUtils.GET_IMAGE_FROM_PHONE://选择相册之后的处理
                 if (resultCode == RESULT_OK) {
 //                    VonPhotoUtils.cropImage(ActivityUser.this, );// 裁剪图片
                     initUCrop(data.getData());
                 }
 
                 break;
-            case VonPhotoUtils.GET_IMAGE_BY_CAMERA:
+            case VonPhotoUtils.GET_IMAGE_BY_CAMERA://选择照相机之后的处理
                 if (resultCode == RESULT_OK) {
                    /* data.getExtras().get("data");*/
 //                    VonPhotoUtils.cropImage(ActivityUser.this, VonPhotoUtils.imageUriFromCamera);// 裁剪图片
@@ -111,7 +145,7 @@ public class ActivityVonPhoto extends AppCompatActivity {
                 }
 
                 break;
-            case VonPhotoUtils.CROP_IMAGE:
+            case VonPhotoUtils.CROP_IMAGE://普通裁剪后的处理
                 Glide.with(context).
                         load(VonPhotoUtils.cropImageUri).
                         diskCacheStrategy(DiskCacheStrategy.RESULT).
@@ -124,67 +158,41 @@ public class ActivityVonPhoto extends AppCompatActivity {
                         dontAnimate().
                         into(ivAvatar);
 //                RequestUpdateAvatar(new File(VonPhotoUtils.getRealFilePath(context, VonPhotoUtils.cropImageUri)));
-              /*  if (data != null) {
-                    Bundle extras = data.getExtras();
-                    head = extras.getParcelable("data");
-                    //--------------------------------
-*//*                    if (extras != null) {
-                        Bitmap photo = extras.getParcelable("data");
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);// (0 -
-                        // 100)压缩文件
-                        // imageView.setImageBitmap(photo);
-                        ivAvatar.setImageBitmap(photo);
-                        File file = new File(Environment.getExternalStorageDirectory()
-                                + "/imgHead.jpg");// 将要保存图片的路径
-                        OutputStream stream11 = null;
-                        try {
-                            stream11 = new FileOutputStream(Environment.getExternalStorageDirectory() + "/imgHead.jpg");
-                        } catch (FileNotFoundException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream11);*//*
-                    //=================================
-
-                    if (head != null) {
-                        *//**
-             * 上传服务器代码
-             *//*
-                        // setPicToView(head);// 保存在SD卡中
-                        ivAvatar.setImageBitmap(head);// 用ImageView显示出来
-                    }
-                }*/
                 break;
 
-            case UCrop.REQUEST_CROP:
+            case UCrop.REQUEST_CROP://UCrop裁剪之后的处理
                 if (resultCode == RESULT_OK) {
-                    final Uri resultUri = UCrop.getOutput(data);
-                    Glide.with(context).
-                            load(resultUri).
-                            diskCacheStrategy(DiskCacheStrategy.RESULT).
-                            bitmapTransform(new CropCircleTransformation(context)).
-                            thumbnail(0.5f).
-                            placeholder(R.drawable.elves_ball).
-                            priority(Priority.LOW).
-                            error(R.drawable.elves_ball).
-                            fallback(R.drawable.elves_ball).
-                            dontAnimate().
-                            into(ivAvatar);
-//                    RequestUpdateAvatar(new File(VonPhotoUtils.getRealFilePath(context, resultUri)));
+                    resultUri = UCrop.getOutput(data);
+                    roadImageView(resultUri,ivAvatar);
 
                     VonSPUtils.putContent(context, "AVATAR", resultUri.toString());
                 } else if (resultCode == UCrop.RESULT_ERROR) {
                     final Throwable cropError = UCrop.getError(data);
                 }
                 break;
-            case UCrop.RESULT_ERROR:
+            case UCrop.RESULT_ERROR://UCrop裁剪错误之后的处理
                 final Throwable cropError = UCrop.getError(data);
                 break;
             default:
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    //从Uri中加载图片 并将其转化成File文件返回
+    private File roadImageView(Uri uri, ImageView imageView) {
+        Glide.with(context).
+                load(uri).
+                diskCacheStrategy(DiskCacheStrategy.RESULT).
+                thumbnail(0.5f).
+                placeholder(R.drawable.elves_ball).
+                priority(Priority.LOW).
+                error(R.drawable.elves_ball).
+                fallback(R.drawable.elves_ball).
+                dontAnimate().
+                into(imageView);
+
+        return (new File(VonPhotoUtils.getRealFilePath(context, uri)));
     }
 
     private void initUCrop(Uri uri) {

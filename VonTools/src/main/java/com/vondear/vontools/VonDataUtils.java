@@ -1091,6 +1091,17 @@ public class VonDataUtils {
     }
 
     /**
+     * 验证身份证号码15或18位 包含以x结尾
+     *
+     * @param string 待验证文本
+     * @return {@code true}: 匹配<br>{@code false}: 不匹配
+     */
+    public static boolean isIDCard(String string) {
+        return isMatch(REGEX_IDCARD, string);
+    }
+
+
+    /**
      * 验证邮箱
      *
      * @param string 待验证文本
