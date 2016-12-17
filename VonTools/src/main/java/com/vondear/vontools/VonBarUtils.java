@@ -48,8 +48,8 @@ public class VonBarUtils {
     }
 
     /**
-     * 隐藏title
-     * 也就是设置全屏，一定要在setContentView之前调用，否则报错
+     * 隐藏Title
+     * 一定要在setContentView之前调用，否则报错
      * @param activity
      */
     public static void noTitle(Activity activity){
