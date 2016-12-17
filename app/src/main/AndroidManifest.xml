@@ -47,9 +47,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ActivitySplash"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.ActivityDialog"></activity>
     </application>
 
 </manifest>

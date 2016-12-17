@@ -48,6 +48,7 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new MainItem("VonPhotoUtils操作UZrop裁剪图片",R.drawable.elves_ball,ActivityVonPhoto.class));
         mData.add(new MainItem("二维码与条形码的扫描与生成",R.drawable.scan_barcode,ActivityScanerCode.class));
         mData.add(new MainItem("app的检测更新与安装",R.mipmap.ic_launcher,ActivitySplash.class));
+        mData.add(new MainItem("常用的Dialog展示",R.drawable.dialog,ActivityDialog.class));
     }
 
     private void initView() {

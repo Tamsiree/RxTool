@@ -18,11 +18,12 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
+        android:gravity="center"
         android:text="是否退出登录？"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
