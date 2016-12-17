@@ -34,7 +34,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.vondear.tools.ActivityCreateQRCode;
+import com.vondear.tools.activity.ActivityCreateQRCode;
 import com.vondear.tools.R;
 import com.vondear.vontools.VonActivityUtils;
 import com.vondear.vontools.VonUtils;

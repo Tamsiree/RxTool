@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.ActivityMain"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityVonPhoto"
+            android:name=".activity.ActivityVonPhoto"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
@@ -43,10 +43,10 @@
             android:name=".scaner.ActivityScanerCode"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivityCreateQRCode"
+            android:name=".activity.ActivityCreateQRCode"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivitySplash"
+            android:name=".activity.ActivitySplash"
             android:screenOrientation="portrait">
 
         </activity>

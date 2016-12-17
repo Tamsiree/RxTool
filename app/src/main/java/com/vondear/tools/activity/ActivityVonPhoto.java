@@ -1,4 +1,4 @@
-package com.vondear.tools;
+package com.vondear.tools.activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.vondear.tools.R;
 import com.vondear.vontools.VonBarUtils;
 import com.vondear.vontools.VonPhotoUtils;
 import com.vondear.vontools.VonSPUtils;

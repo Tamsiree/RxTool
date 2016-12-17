@@ -1,4 +1,4 @@
-package com.vondear.tools;
+package com.vondear.tools.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.vondear.tools.R;
 import com.vondear.tools.bean.MainItem;
 import com.vondear.vontools.VonActivityUtils;
 import com.vondear.vontools.VonDeviceUtils;

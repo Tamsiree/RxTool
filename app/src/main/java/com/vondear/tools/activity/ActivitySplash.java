@@ -1,33 +1,20 @@
-package com.vondear.tools;
+package com.vondear.tools.activity;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.vondear.vontools.VonAppUtils;
+import com.vondear.tools.R;
 import com.vondear.vontools.VonBarUtils;
 import com.vondear.vontools.VonDeviceUtils;
-import com.vondear.vontools.VonFileUtils;
 import com.vondear.vontools.VonUtils;
 import com.vondear.vontools.view.DialogSureCancle;
-
-import org.json.JSONException;
-
-import java.io.File;
-
-import okhttp3.Call;
-import okhttp3.Response;
 
 
 public class ActivitySplash extends Activity {
@@ -65,7 +52,7 @@ public class ActivitySplash extends Activity {
 
     public void toMain() {
         Intent intent = new Intent();
-        intent.setClass(context, MainActivity.class);
+        intent.setClass(context, ActivityMain.class);
         startActivity(intent);
         finish();
     }

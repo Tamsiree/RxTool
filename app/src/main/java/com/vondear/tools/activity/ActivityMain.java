@@ -1,4 +1,4 @@
-package com.vondear.tools;
+package com.vondear.tools.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,6 +7,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.vondear.tools.R;
+import com.vondear.tools.activity.ActivitySplash;
+import com.vondear.tools.activity.ActivityVonPhoto;
+import com.vondear.tools.adapter.AdapterRecyclerViewMain;
 import com.vondear.tools.bean.MainItem;
 import com.vondear.tools.scaner.ActivityScanerCode;
 import com.vondear.vontools.VonImageUtils;
@@ -18,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class ActivityMain extends AppCompatActivity {
 
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;

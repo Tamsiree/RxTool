@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#F0F0F0"
     android:orientation="vertical"
-    tools:context=".ActivityVonPhoto">
+    tools:context=".activity.ActivityVonPhoto">
 
 
     <LinearLayout

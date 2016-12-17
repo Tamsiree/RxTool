@@ -1,4 +1,4 @@
-package com.vondear.tools;
+package com.vondear.tools.activity;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.vondear.tools.R;
 import com.vondear.vontools.VonUtils;
 
 public class ActivityCreateQRCode extends Activity implements View.OnClickListener {
