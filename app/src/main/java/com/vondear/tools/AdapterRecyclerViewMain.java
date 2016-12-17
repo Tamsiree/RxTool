@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.vondear.tools.scaner.ActivityScanerCode;
+import com.vondear.tools.bean.MainItem;
 import com.vondear.vontools.VonActivityUtils;
 import com.vondear.vontools.VonDeviceUtils;
 

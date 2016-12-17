@@ -43,7 +43,25 @@ public class VonBarUtils {
      * @param activity activity
      */
     public static void hideStatusBar(Activity activity) {
+        noTitle(activity);
+        FLAG_FULLSCREEN(activity);
+    }
+
+    /**
+     * 隐藏title
+     * 也就是设置全屏，一定要在setContentView之前调用，否则报错
+     * @param activity
+     */
+    public static void noTitle(Activity activity){
         activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
+    }
+
+    /**
+     * 全屏
+     * 也就是设置全屏，一定要在setContentView之前调用，否则报错
+     * @param activity
+     */
+    public static void FLAG_FULLSCREEN(Activity activity){
         activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 

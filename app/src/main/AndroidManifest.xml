@@ -23,20 +23,33 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityVonPhoto" />
+        <activity
+            android:name=".ActivityVonPhoto"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".scaner.ActivityScanerCode" />
-        <activity android:name=".ActivityCreateQRCode"></activity>
+        <activity
+            android:name=".scaner.ActivityScanerCode"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityCreateQRCode"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivitySplash"
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>

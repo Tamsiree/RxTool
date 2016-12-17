@@ -1163,7 +1163,7 @@ public class VonDataUtils {
     }
 
     /**
-     * string是否匹配regex
+     * string是否匹配regex正则表达式字符串
      *
      * @param regex  正则表达式字符串
      * @param string 要匹配的字符串
@@ -1171,5 +1171,39 @@ public class VonDataUtils {
      */
     public static boolean isMatch(String regex, String string) {
         return !isNullString(string) && Pattern.matches(regex, string);
+    }
+
+
+    /**
+     * string替换
+     * %n$ms：代表输出的是字符串，n代表是第几个参数，设置m的值可以在输出之前放置空格
+     * @param formatStr getResources().getString(R.string.newest_apk_down)
+     * @param str
+     * @return
+     */
+    public static String stringFormat(String formatStr,String str){
+        return String.format(formatStr,str);
+    }
+
+    /**
+     * string替换
+     * %n$md：代表输出的是整数，n代表是第几个参数，设置m的值可以在输出之前放置空格，也可以设为0m,在输出之前放置m个0
+     * @param formatStr getResources().getString(R.string.newest_apk_down_int)
+     * @param number
+     * @return
+     */
+    public static String stringFormat(String formatStr,int number){
+        return String.format(formatStr,number);
+    }
+
+    /**
+     * string替换
+     * %n$mf：代表输出的是浮点数，n代表是第几个参数，设置m的值可以控制小数位数，如m=2.2时，输出格式为00.00
+     * @param formatStr getResources().getString(R.string.newest_apk_down_int)
+     * @param number
+     * @return
+     */
+    public static String stringFormat(String formatStr,float number){
+        return String.format(formatStr,number);
     }
 }

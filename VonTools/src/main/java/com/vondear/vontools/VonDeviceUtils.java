@@ -338,11 +338,11 @@ public class VonDeviceUtils {
     }
 
     /**
-     * 获取App版本号
+     * 获取App版本名称
      * @param context
      * @return
      */
-    public static String getAppVersionNo(Context context) {
+    public static String getAppVersionName(Context context) {
         // 获取packagemanager的实例
         PackageManager packageManager = context.getPackageManager();
         // getPackageName()是你当前类的包名，0代表是获取版本信息
@@ -353,6 +353,25 @@ public class VonDeviceUtils {
             e.printStackTrace();
         }
         String version = packInfo.versionName;
+        return version;
+    }
+
+    /**
+     * 获取App版本号
+     * @param context
+     * @return
+     */
+    public static int getAppVersionNo(Context context) {
+        // 获取packagemanager的实例
+        PackageManager packageManager = context.getPackageManager();
+        // getPackageName()是你当前类的包名，0代表是获取版本信息
+        PackageInfo packInfo = null;
+        try {
+            packInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        int version = packInfo.versionCode;
         return version;
     }
 

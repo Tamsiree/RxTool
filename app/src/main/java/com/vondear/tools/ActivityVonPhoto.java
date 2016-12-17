@@ -1,5 +1,6 @@
 package com.vondear.tools;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.vondear.vontools.VonBarUtils;
 import com.vondear.vontools.VonPhotoUtils;
 import com.vondear.vontools.VonSPUtils;
 import com.vondear.vontools.view.TransparentDialog;
@@ -30,16 +32,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
-public class ActivityVonPhoto extends AppCompatActivity {
+public class ActivityVonPhoto extends Activity {
 
     @BindView(R.id.iv_avatar)
     ImageView ivAvatar;
 
-    Context context;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        VonBarUtils.noTitle(this);
         setContentView(R.layout.activity_von_photo);
         ButterKnife.bind(this);
         context = this;
@@ -104,7 +107,8 @@ public class ActivityVonPhoto extends AppCompatActivity {
     }
 
     /**
-     * 显示大图
+     * 查看原图
+     *
      * @param uri
      */
     private void showBigImageView(Uri uri) {
@@ -163,7 +167,7 @@ public class ActivityVonPhoto extends AppCompatActivity {
             case UCrop.REQUEST_CROP://UCrop裁剪之后的处理
                 if (resultCode == RESULT_OK) {
                     resultUri = UCrop.getOutput(data);
-                    roadImageView(resultUri,ivAvatar);
+                    roadImageView(resultUri, ivAvatar);
 
                     VonSPUtils.putContent(context, "AVATAR", resultUri.toString());
                 } else if (resultCode == UCrop.RESULT_ERROR) {
@@ -184,6 +188,7 @@ public class ActivityVonPhoto extends AppCompatActivity {
         Glide.with(context).
                 load(uri).
                 diskCacheStrategy(DiskCacheStrategy.RESULT).
+                bitmapTransform(new CropCircleTransformation(context)).
                 thumbnail(0.5f).
                 placeholder(R.drawable.elves_ball).
                 priority(Priority.LOW).

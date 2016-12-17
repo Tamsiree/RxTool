@@ -5,11 +5,14 @@
     <color name="orange">#f8b62d</color>
     <color name="yellow">#e6ff00</color>
     <color name="red">#ff0006</color>
+    <color name="hot_pink">#FD4C5B</color>
     <color name="baby_blue">#89CFF0</color>
+    <color name="blue">#3F51B5</color>
     <color name="dark_blue_03">#000333</color>
 
     <color name="f0">#f0f0f0</color>
     <color name="e">#EEEEEE</color>
+    <color name="_8c">#8c8c8c</color>
     <color name="a5">#A5A5A5</color>
 
     <color name="brown">#7a583e</color>

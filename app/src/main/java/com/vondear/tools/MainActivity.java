@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.vondear.tools.bean.MainItem;
 import com.vondear.tools.scaner.ActivityScanerCode;
 import com.vondear.vontools.VonImageUtils;
 import com.vondear.vontools.VonRecyclerViewUtils;
@@ -41,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private void initData() {
         mData = new ArrayList<>();
         mData.add(new MainItem("VonPhotoUtils操作UZrop裁剪图片",R.drawable.elves_ball,ActivityVonPhoto.class));
-        mData.add(new MainItem("二维码的扫描与生成",R.drawable.scan_barcode,ActivityScanerCode.class));
+        mData.add(new MainItem("二维码与条形码的扫描与生成",R.drawable.scan_barcode,ActivityScanerCode.class));
+        mData.add(new MainItem("app的检测更新与安装",R.mipmap.ic_launcher,ActivitySplash.class));
     }
 
     private void initView() {

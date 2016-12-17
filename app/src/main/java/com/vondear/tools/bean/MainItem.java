@@ -1,4 +1,4 @@
-package com.vondear.tools;
+package com.vondear.tools.bean;
 
 /**
  * Created by vonde on 2016/11/13.
