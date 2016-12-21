@@ -54,7 +54,7 @@ public class VonIntentUtils {
      * @param packageName 包名
      * @return 意图
      */
-    public Intent getUninstallAppIntent(String packageName) {
+    public static Intent getUninstallAppIntent(String packageName) {
         Intent intent = new Intent(Intent.ACTION_DELETE);
         intent.setData(Uri.parse("package:" + packageName));
         return intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -67,8 +67,19 @@ public class VonIntentUtils {
      * @param packageName 包名
      * @return 意图
      */
-    public static Intent getLaunchAppItent(Context context, String packageName) {
+    public static Intent getLaunchAppIntent(Context context, String packageName) {
         return getIntentByPackageName(context, packageName);
+    }
+
+    /**
+     * 根据包名获取意图
+     *
+     * @param context     上下文
+     * @param packageName 包名
+     * @return 意图
+     */
+    private static Intent getIntentByPackageName(Context context, String packageName) {
+        return context.getPackageManager().getLaunchIntentForPackage(packageName);
     }
 
     /**
@@ -95,17 +106,6 @@ public class VonIntentUtils {
     }
 
     /**
-     * 根据包名获取意图
-     *
-     * @param context     上下文
-     * @param packageName 包名
-     * @return 意图
-     */
-    private static Intent getIntentByPackageName(Context context, String packageName) {
-        return context.getPackageManager().getLaunchIntentForPackage(packageName);
-    }
-
-    /**
      * 获取其他应用的Intent
      *
      * @param packageName 包名
@@ -128,6 +128,18 @@ public class VonIntentUtils {
         if (bundle != null) intent.putExtras(bundle);
         ComponentName cn = new ComponentName(packageName, className);
         intent.setComponent(cn);
+        return intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    }
+
+    /**
+     * 获取App具体设置的意图
+     *
+     * @param packageName 包名
+     * @return intent
+     */
+    public static Intent getAppDetailsSettingsIntent(String packageName) {
+        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+        intent.setData(Uri.parse("package:" + packageName));
         return intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 }

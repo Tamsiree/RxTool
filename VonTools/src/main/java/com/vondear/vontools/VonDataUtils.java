@@ -1,21 +1,31 @@
 package com.vondear.vontools;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.Build;
 import android.util.Log;
+import android.util.SparseArray;
+import android.util.SparseBooleanArray;
+import android.util.SparseIntArray;
+import android.util.SparseLongArray;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,6 +52,56 @@ import static com.vondear.vontools.VonConstUtils.REGEX_USERNAME;
  */
 
 public class VonDataUtils {
+
+    /**
+     * 判断字符串是否为空 为空即true
+     *
+     * @param str 字符串
+     * @return
+     */
+    public static boolean isNullString(String str) {
+        return (("").equals(str) || str == null || ("null").equals(str));
+    }
+
+    /**
+     * 判断对象是否为空
+     *
+     * @param obj 对象
+     * @return {@code true}: 为空<br>{@code false}: 不为空
+     */
+    public static boolean isEmpty(Object obj) {
+        if (obj == null) {
+            return true;
+        }
+        if (obj instanceof String && obj.toString().length() == 0) {
+            return true;
+        }
+        if (obj.getClass().isArray() && Array.getLength(obj) == 0) {
+            return true;
+        }
+        if (obj instanceof Collection && ((Collection) obj).isEmpty()) {
+            return true;
+        }
+        if (obj instanceof Map && ((Map) obj).isEmpty()) {
+            return true;
+        }
+        if (obj instanceof SparseArray && ((SparseArray) obj).size() == 0) {
+            return true;
+        }
+        if (obj instanceof SparseBooleanArray && ((SparseBooleanArray) obj).size() == 0) {
+            return true;
+        }
+        if (obj instanceof SparseIntArray && ((SparseIntArray) obj).size() == 0) {
+            return true;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            if (obj instanceof SparseLongArray && ((SparseLongArray) obj).size() == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * 判断字符串是否是整数
      */
@@ -133,15 +193,7 @@ public class VonDataUtils {
         return card;
     }
 
-    /**
-     * 判断字符串是否为空 为空即true
-     *
-     * @param str 字符串
-     * @return
-     */
-    public static boolean isNullString(String str) {
-        return (("").equals(str) || str == null || ("null").equals(str));
-    }
+
 
     /**
      * 字符串转换成整数 ,转换失败将会 return 0;
@@ -251,7 +303,6 @@ public class VonDataUtils {
     public static boolean isBankCard(String cardNo) {
         Pattern p = Pattern.compile("^\\d{16,19}$|^\\d{6}[- ]\\d{10,13}$|^\\d{4}[- ]\\d{4}[- ]\\d{4}[- ]\\d{4,7}$");
         Matcher m = p.matcher(cardNo);
-
         return m.matches();
     }
 
@@ -272,6 +323,7 @@ public class VonDataUtils {
 
     /**
      * 将date转换成format格式的日期
+     *
      * @param format 格式
      * @param date   日期
      * @return
@@ -285,6 +337,7 @@ public class VonDataUtils {
     }
 
     //--------------------------------------------字符串转换成时间戳-----------------------------------
+
     /**
      * 将指定格式的日期转换成时间戳
      *
@@ -298,6 +351,7 @@ public class VonDataUtils {
     /**
      * 将日期字符串 按照 指定的格式 转换成 DATE
      * 转换失败时 return null;
+     *
      * @param format
      * @param datess
      * @return
@@ -312,14 +366,16 @@ public class VonDataUtils {
         }
         return date;
     }
+
     /**
      * 将 yyyy年MM月dd日 转换成 时间戳
+     *
      * @param format
      * @param datess
      * @return
      */
-    public static String string2Timestamp(String format,String datess) {
-        Date date = string2Date(format,datess);
+    public static String string2Timestamp(String format, String datess) {
+        Date date = string2Date(format, datess);
         return Date2Timestamp(date);
     }
     //===========================================字符串转换成时间戳====================================
@@ -357,11 +413,12 @@ public class VonDataUtils {
     public static String getYestoryDate(String format) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, -1);
-        return simpleDateFormat(format,calendar.getTime());
+        return simpleDateFormat(format, calendar.getTime());
     }
 
     /**
      * 视频时间 转换成 "mm:ss"
+     *
      * @param milliseconds
      * @return
      */
@@ -375,6 +432,7 @@ public class VonDataUtils {
 
     /**
      * "mm:ss" 转换成 视频时间
+     *
      * @param time
      * @return
      */
@@ -411,6 +469,7 @@ public class VonDataUtils {
 
     /**
      * 字符串转InputStream
+     *
      * @param str
      * @return
      */
@@ -419,7 +478,6 @@ public class VonDataUtils {
         //InputStream   in_withcode   =   new ByteArrayInputStream(str.getBytes("UTF-8"));
         return in_nocode;
     }
-
 
 
     /**
@@ -514,7 +572,8 @@ public class VonDataUtils {
         return new String(chars);
     }
 
-    private static int[] pyValue = new int[]{-20319, -20317, -20304, -20295, -20292, -20283, -20265, -20257, -20242,
+    private static int[] pyValue = new int[]{
+            -20319, -20317, -20304, -20295, -20292, -20283, -20265, -20257, -20242,
             -20230, -20051, -20036, -20032,
             -20026, -20002, -19990, -19986, -19982, -19976, -19805, -19784, -19775, -19774, -19763, -19756, -19751,
             -19746, -19741, -19739, -19728,
@@ -562,7 +621,8 @@ public class VonDataUtils {
             -10328, -10322, -10315, -10309,
             -10307, -10296, -10281, -10274, -10270, -10262, -10260, -10256, -10254};
 
-    private static String[] pyStr = new String[]{"a", "ai", "an", "ang", "ao", "ba", "bai", "ban", "bang", "bao",
+    private static String[] pyStr = new String[]{
+            "a", "ai", "an", "ang", "ao", "ba", "bai", "ban", "bang", "bao",
             "bei", "ben", "beng", "bi", "bian",
             "biao", "bie", "bin", "bing", "bo", "bu", "ca", "cai", "can", "cang", "cao", "ce", "ceng", "cha", "chai",
             "chan", "chang", "chao", "che",
@@ -689,7 +749,6 @@ public class VonDataUtils {
         }
         return sb.toString();
     }
-
 
 
     static final char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
@@ -1145,33 +1204,36 @@ public class VonDataUtils {
     /**
      * string替换
      * %n$ms：代表输出的是字符串，n代表是第几个参数，设置m的值可以在输出之前放置空格
+     *
      * @param formatStr getResources().getString(R.string.newest_apk_down)
      * @param str
      * @return
      */
-    public static String stringFormat(String formatStr,String str){
-        return String.format(formatStr,str);
+    public static String stringFormat(String formatStr, String str) {
+        return String.format(formatStr, str);
     }
 
     /**
      * string替换
      * %n$md：代表输出的是整数，n代表是第几个参数，设置m的值可以在输出之前放置空格，也可以设为0m,在输出之前放置m个0
+     *
      * @param formatStr getResources().getString(R.string.newest_apk_down_int)
      * @param number
      * @return
      */
-    public static String stringFormat(String formatStr,int number){
-        return String.format(formatStr,number);
+    public static String stringFormat(String formatStr, int number) {
+        return String.format(formatStr, number);
     }
 
     /**
      * string替换
      * %n$mf：代表输出的是浮点数，n代表是第几个参数，设置m的值可以控制小数位数，如m=2.2时，输出格式为00.00
+     *
      * @param formatStr getResources().getString(R.string.newest_apk_down_int)
      * @param number
      * @return
      */
-    public static String stringFormat(String formatStr,float number){
-        return String.format(formatStr,number);
+    public static String stringFormat(String formatStr, float number) {
+        return String.format(formatStr, number);
     }
 }
