@@ -11,6 +11,7 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.List;
@@ -212,13 +213,13 @@ public class VonLocationUtils {
             }
             switch (status) {
                 case LocationProvider.AVAILABLE:
-                    LogUtils.d("onStatusChanged", "当前GPS状态为可见状态");
+                    Log.d("onStatusChanged", "当前GPS状态为可见状态");
                     break;
                 case LocationProvider.OUT_OF_SERVICE:
-                    LogUtils.d("onStatusChanged", "当前GPS状态为服务区外状态");
+                    Log.d("onStatusChanged", "当前GPS状态为服务区外状态");
                     break;
                 case LocationProvider.TEMPORARILY_UNAVAILABLE:
-                    LogUtils.d("onStatusChanged", "当前GPS状态为暂停服务状态");
+                    Log.d("onStatusChanged", "当前GPS状态为暂停服务状态");
                     break;
             }
         }
