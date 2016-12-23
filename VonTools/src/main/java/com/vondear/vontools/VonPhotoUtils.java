@@ -162,6 +162,9 @@ public class VonPhotoUtils {
         return imageFilePath;
     }
 
+
+/*
+    //此方法已被遗弃 只能用于4.4以下的版本
     public static String getRealFilePath(final Context context, final Uri uri) {
         if (null == uri) return null;
         final String scheme = uri.getScheme();
@@ -186,7 +189,7 @@ public class VonPhotoUtils {
             }
         }
         return data;
-    }
+    }*/
 
 
     /**  * 根据Uri获取图片绝对路径，解决Android4.4以上版本Uri转换
@@ -196,7 +199,7 @@ public class VonPhotoUtils {
      * @date 2014-10-12
      */
     @TargetApi(19)
-    public static String getImageAbsolutePath(Activity context, Uri imageUri) {
+    public static String getImageAbsolutePath(Context context, Uri imageUri) {
         if (context == null || imageUri == null)
             return null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(context, imageUri)) {

@@ -211,7 +211,7 @@ public class ActivityVonPhoto extends Activity {
                 dontAnimate().
                 into(imageView);
 
-        return (new File(VonPhotoUtils.getRealFilePath(context, uri)));
+        return (new File(VonPhotoUtils.getImageAbsolutePath(this, uri)));
     }
 
     private void initUCrop(Uri uri) {

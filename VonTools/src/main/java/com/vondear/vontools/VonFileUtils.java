@@ -17,6 +17,7 @@ package com.vondear.vontools;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -1875,8 +1876,8 @@ public class VonFileUtils {
      * @param uri
      * @return
      */
-    public static File getFileUri(Context context, Uri uri) {
-        return new File(VonPhotoUtils.getRealFilePath(context, uri));
+    public static File getFileUri(Activity context, Uri uri) {
+        return new File(VonPhotoUtils.getImageAbsolutePath(context, uri));
     }
 
     /**
