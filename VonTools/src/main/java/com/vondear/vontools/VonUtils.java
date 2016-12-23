@@ -28,6 +28,27 @@ import java.util.Hashtable;
  */
 public class VonUtils {
 
+    private static Context context;
+
+    /**
+     * 初始化工具类
+     *
+     * @param context 上下文
+     */
+    public static void init(Context context) {
+        VonUtils.context = context.getApplicationContext();
+    }
+
+    /**
+     * 获取ApplicationContext
+     *
+     * @return ApplicationContext
+     */
+    public static Context getContext() {
+        if (context != null) return context;
+        throw new NullPointerException("请先调用init()方法");
+    }
+
     /**
      * 点击隐藏软键盘
      *
@@ -79,6 +100,41 @@ public class VonUtils {
         } else {
             Toast.makeText(cxt, str, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public static void showToastShort(String str) {
+        Toast.makeText(getContext(), str, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showToastShort(int resId) {
+        Toast.makeText(getContext(), context.getString(resId), Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showToastLong(String str) {
+        Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
+    }
+
+    public static void showToastLong(int resId) {
+        Toast.makeText(getContext(), context.getString(resId), Toast.LENGTH_LONG).show();
+    }
+
+    public static void showToast(String msg) {
+        if (mToast == null) {
+            mToast = Toast.makeText(getContext(), msg, Toast.LENGTH_LONG);
+        } else {
+            mToast.setText(msg);
+        }
+        mToast.show();
+    }
+
+    public static void showToast(int resId) {
+        context = getContext();
+        if (mToast == null) {
+            mToast = Toast.makeText(getContext(), context.getString(resId), Toast.LENGTH_LONG);
+        } else {
+            mToast.setText(context.getString(resId));
+        }
+        mToast.show();
     }
 
     /**
@@ -141,15 +197,10 @@ public class VonUtils {
     }
 
     /**
-     *
-     * @param url
-     *            需要转换的字符串
-     * @param QR_WIDTH
-     *            二维码的宽度
-     * @param QR_HEIGHT
-     *            二维码的高度
-     * @param iv_code
-     *            图片空间
+     * @param url       需要转换的字符串
+     * @param QR_WIDTH  二维码的宽度
+     * @param QR_HEIGHT 二维码的高度
+     * @param iv_code   图片空间
      */
     public static void createQRImage(String url, int QR_WIDTH, int QR_HEIGHT,
                                      ImageView iv_code) {
@@ -190,12 +241,9 @@ public class VonUtils {
      * 生成条形码
      *
      * @param context
-     * @param contents
-     *            需要生成的内容
-     * @param desiredWidth
-     *            生成条形码的宽带
-     * @param desiredHeight
-     *            生成条形码的高度
+     * @param contents      需要生成的内容
+     * @param desiredWidth  生成条形码的宽带
+     * @param desiredHeight 生成条形码的高度
      * @return
      */
     public static Bitmap drawLinecode(Context context, String contents,
@@ -235,6 +283,7 @@ public class VonUtils {
     }
 
     //---------------------------------------------MD5加密-------------------------------------------
+
     /**
      * 生成MD5加密32位字符串
      *

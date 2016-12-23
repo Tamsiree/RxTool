@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -36,6 +37,12 @@ public class ActivityVonPhoto extends Activity {
 
     @BindView(R.id.iv_avatar)
     ImageView ivAvatar;
+    @BindView(R.id.iv_finish)
+    ImageView ivFinish;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.ll_include_title)
+    LinearLayout llIncludeTitle;
 
     private Context context;
 
@@ -50,6 +57,13 @@ public class ActivityVonPhoto extends Activity {
     }
 
     private void initView() {
+        ivFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        llIncludeTitle.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         ivAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

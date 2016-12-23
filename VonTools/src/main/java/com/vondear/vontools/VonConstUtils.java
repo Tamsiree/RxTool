@@ -133,4 +133,21 @@ public class VonConstUtils {
      * 正则：IP地址
      */
     public static final String REGEX_IP = "((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)";
+
+    //----------------------------------------------------常用链接-------------------------------------------------------------
+
+    /**
+     * VonTools的Github地址
+     */
+    public static final String URL_VONTOOLS = "https://github.com/vondear/VonTools";
+
+    /**
+     * 百度文字搜索
+     */
+    public static final String URL_BAIDU_SEARCH = "http://www.baidu.com/s?wd=";
+
+    /**
+     * 百度文字搜索
+     */
+    public static final String URL_ACFUN = "http://www.acfun.tv/";
 }

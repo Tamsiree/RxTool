@@ -18,6 +18,7 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
+        android:name=".ApplicationVon"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -47,8 +48,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ActivitySplash"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".activity.ActivityDialog"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.ActivityDialog" />
+        <activity android:name=".activity.ActivityTextUtils" />
+        <activity android:name="com.vondear.vontools.activity.ActivityWebView"></activity>
     </application>
 
 </manifest>

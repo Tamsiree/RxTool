@@ -40,11 +40,11 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
     public AdapterRecyclerViewMain.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview_main, parent, false);
         context = view.getContext();
-        mScreenWidth = VonDeviceUtils.getScreenWidth(context) > VonDeviceUtils.getScreenHeight(context) ? VonDeviceUtils.getScreenHeight(context) : VonDeviceUtils.getScreenWidth(context);
-        mItemWidth = (mScreenWidth - 20) / 3;
+      /*  mScreenWidth = VonDeviceUtils.getScreenWidth(context) > VonDeviceUtils.getScreenHeight(context) ? VonDeviceUtils.getScreenHeight(context) : VonDeviceUtils.getScreenWidth(context);
+        mItemWidth = (mScreenWidth - 50) / 3;
         mItemHeight = mItemWidth * 6 / 4;
         GridLayoutManager.LayoutParams layoutParams = new GridLayoutManager.LayoutParams(mItemWidth, mItemHeight);
-        view.setLayoutParams(layoutParams);
+        view.setLayoutParams(layoutParams);*/
         return new ViewHolder(view);
     }
 

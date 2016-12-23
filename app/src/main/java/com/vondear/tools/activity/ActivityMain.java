@@ -6,15 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.vondear.tools.R;
-import com.vondear.tools.activity.ActivitySplash;
-import com.vondear.tools.activity.ActivityVonPhoto;
 import com.vondear.tools.adapter.AdapterRecyclerViewMain;
 import com.vondear.tools.bean.MainItem;
 import com.vondear.tools.scaner.ActivityScanerCode;
 import com.vondear.vontools.VonImageUtils;
 import com.vondear.vontools.VonRecyclerViewUtils;
+import com.vondear.vontools.activity.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,10 +45,12 @@ public class ActivityMain extends AppCompatActivity {
 
     private void initData() {
         mData = new ArrayList<>();
-        mData.add(new MainItem("VonPhotoUtils操作UZrop裁剪图片",R.drawable.elves_ball,ActivityVonPhoto.class));
-        mData.add(new MainItem("二维码与条形码的扫描与生成",R.drawable.scan_barcode,ActivityScanerCode.class));
-        mData.add(new MainItem("常用的Dialog展示",R.drawable.dialog,ActivityDialog.class));
-        mData.add(new MainItem("app的检测更新与安装",R.mipmap.ic_launcher,ActivitySplash.class));
+        mData.add(new MainItem("VonPhotoUtils操作UZrop裁剪图片", R.drawable.elves_ball, ActivityVonPhoto.class));
+        mData.add(new MainItem("二维码与条形码的扫描与生成", R.drawable.scan_barcode, ActivityScanerCode.class));
+        mData.add(new MainItem("WebView的封装可播放视频", R.drawable.webpage, com.vondear.vontools.activity.ActivityWebView.class));
+        mData.add(new MainItem("常用的Dialog展示", R.drawable.dialog, ActivityDialog.class));
+        mData.add(new MainItem("VonTextUtils操作Demo", R.drawable.text_editor, ActivityTextUtils.class));
+        mData.add(new MainItem("app的检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
     }
 
     private void initView() {
@@ -58,11 +60,25 @@ public class ActivityMain extends AppCompatActivity {
             recyclerview.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
 
-        recyclerview.addItemDecoration(new VonRecyclerViewUtils.SpaceItemDecoration(VonImageUtils.dp2px(context,5f)));
+        recyclerview.addItemDecoration(new VonRecyclerViewUtils.SpaceItemDecoration(VonImageUtils.dp2px(context, 5f)));
         AdapterRecyclerViewMain recyclerViewMain = new AdapterRecyclerViewMain(mData);
 
         recyclerview.setAdapter(recyclerViewMain);
     }
 
 
+    //----------------------------------------------------------------------------------------------
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
+    @Override
+    public void onBackPressed() {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            super.onBackPressed();
+            return;
+        } else {
+            Toast.makeText(getBaseContext(), "再次点击返回键退出", Toast.LENGTH_SHORT).show();
+        }
+        mBackPressed = System.currentTimeMillis();
+    }
+    //==============================================================================================
 }
