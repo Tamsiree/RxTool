@@ -65,41 +65,41 @@ public class VonTextUtils {
         private int quoteColor;
 
         private boolean isLeadingMargin;
-        private int     first;
-        private int     rest;
+        private int first;
+        private int rest;
 
         private boolean isBullet;
-        private int     gapWidth;
-        private int     bulletColor;
+        private int gapWidth;
+        private int bulletColor;
 
-        private float     proportion;
-        private float     xProportion;
-        private boolean   isStrikethrough;
-        private boolean   isUnderline;
-        private boolean   isSuperscript;
-        private boolean   isSubscript;
-        private boolean   isBold;
-        private boolean   isItalic;
-        private boolean   isBoldItalic;
-        private String    fontFamily;
+        private float proportion;
+        private float xProportion;
+        private boolean isStrikethrough;
+        private boolean isUnderline;
+        private boolean isSuperscript;
+        private boolean isSubscript;
+        private boolean isBold;
+        private boolean isItalic;
+        private boolean isBoldItalic;
+        private String fontFamily;
         private Alignment align;
 
-        private boolean  imageIsBitmap;
-        private Bitmap   bitmap;
-        private boolean  imageIsDrawable;
+        private boolean imageIsBitmap;
+        private Bitmap bitmap;
+        private boolean imageIsDrawable;
         private Drawable drawable;
-        private boolean  imageIsUri;
-        private Uri      uri;
-        private boolean  imageIsResourceId;
+        private boolean imageIsUri;
+        private Uri uri;
+        private boolean imageIsResourceId;
         @DrawableRes
-        private int      resourceId;
+        private int resourceId;
 
         private ClickableSpan clickSpan;
-        private String        url;
+        private String url;
 
         private boolean isBlur;
-        private float   radius;
-        private Blur    style;
+        private float radius;
+        private Blur style;
 
         private SpannableStringBuilder mBuilder;
 
