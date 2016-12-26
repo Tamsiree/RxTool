@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_round_progress_bar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/brown1"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.vondear.tools.activity.ActivityProgressBar">
+
+    <include layout="@layout/include_title" />
+
+    <com.vondear.vontools.view.RoundProgressBar
+        android:id="@+id/roundProgressBar1"
+        android:layout_width="270dp"
+        android:layout_height="270dp" />
+
+
+    <TextView
+        android:text="弧形进度条"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5" />
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:text="渐变进度条"
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
+
+    <ProgressBar
+        android:id="@+id/pb_line_of_credit"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+
+        android:progress="40"
+        android:progressDrawable="@drawable/progressbar_horizontal_white" />
+</LinearLayout>

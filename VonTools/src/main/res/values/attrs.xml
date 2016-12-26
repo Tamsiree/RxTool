@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="DialogShapeLoadingView">
+
+        <attr name="loadingText" format="string"/>
+        <attr name="loadingTextAppearance" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundProgressBar">
+        <attr name="roundColor" format="color" />
+        <attr name="roundProgressColor" format="color" />
+        <attr name="roundWidth" format="dimension"></attr>
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="max" format="integer"></attr>
+        <attr name="textIsDisplayable" format="boolean"></attr>
+        <attr name="style">
+            <enum name="STROKE" value="0"></enum>
+            <enum name="FILL" value="1"></enum>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="AbstractWheelView">
+        <attr name="visibleItems" format="integer"/>
+        <attr name="isAllVisible" format="boolean"/>
+        <attr name="itemOffsetPercent" format="integer"/>
+        <attr name="itemsPadding" format="dimension"/>
+        <attr name="selectionDividerDimmedAlpha" format="integer"/>
+        <attr name="selectionDividerActiveAlpha" format="integer"/>
+        <attr name="selectionDivider" format="reference"/>
+        <attr name="itemsDimmedAlpha" format="integer"/>
+        <attr name="isCyclic" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="WheelHorizontalView">
+        <attr name="selectionDividerWidth" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="WheelVerticalView">
+        <attr name="selectionDividerHeight" format="dimension"/>
+    </declare-styleable>
+
+    <attr name="abstractWheelViewStyle" format="reference" />
+</resources>

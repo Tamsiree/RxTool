@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -25,6 +26,7 @@ import com.vondear.vontools.R;
 import com.vondear.vontools.VonBarUtils;
 import com.vondear.vontools.VonConstUtils;
 import com.vondear.vontools.VonImageUtils;
+import com.vondear.vontools.VonKeyboardUtils;
 import com.vondear.vontools.view.AutoFitEditText;
 import com.vondear.vontools.view.AutoFitEditTextUtil;
 
@@ -41,11 +43,13 @@ public class ActivityWebView extends Activity {
 
     private String webPath = "";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         VonBarUtils.setTransparentStatusBar(this);
         setContentView(R.layout.activity_webview);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         initView();// 初始化控件 - FindViewById之类的操作
         initData();// 初始化控件的数据及监听事件
     }
@@ -74,9 +78,10 @@ public class ActivityWebView extends Activity {
 
     public void initAutoFitEditText() {
 
-        mAutoFitEditText.setEnabled(true);
-        mAutoFitEditText.setFocusableInTouchMode(true);
-        mAutoFitEditText.setFocusable(true);
+        mAutoFitEditText.clearFocus();
+        mAutoFitEditText.setEnabled(false);
+        mAutoFitEditText.setFocusableInTouchMode(false);
+        mAutoFitEditText.setFocusable(false);
         mAutoFitEditText.setEnableSizeCache(false);
         //might cause crash on some devices
         mAutoFitEditText.setMovementMethod(null);
@@ -86,6 +91,8 @@ public class ActivityWebView extends Activity {
         mAutoFitEditText.setMinTextSize(37f);
 
         AutoFitEditTextUtil.setNormalization(this, llIncludeTitle, mAutoFitEditText);
+
+        VonKeyboardUtils.hideSoftInput(this);
     }
 
     private void initData() {

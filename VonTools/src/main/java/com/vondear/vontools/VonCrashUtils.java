@@ -35,7 +35,7 @@ public class VonCrashUtils implements Thread.UncaughtExceptionHandler {
 
     /**
      * 获取单例
-     * <p>在Application中初始化{@code CrashUtils.getInstance().init(this);}</p>
+     * <p>在Application中初始化{@code VonCrashUtils.getInstance().init(this);}</p>
      *
      * @return 单例
      */

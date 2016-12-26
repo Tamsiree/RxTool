@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/baby_blue"
+    android:background="@color/blue"
     android:clipToPadding="true"
     android:fitsSystemWindows="true"
     tools:context=".activity.ActivityCreateQRCode" >
@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#AFDEF5"
+        android:background="@color/brown1"
         android:orientation="vertical" >
 
         <include
@@ -31,13 +31,14 @@
             android:orientation="vertical" >
 
             <TextView
-                android:textColor="@color/black"
+                android:textColor="@color/brown1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="30dp"
-                android:text="会员码安全支付" />
+                android:gravity="center"
+                android:text="定时更新\n二维码与条形码" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -98,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="60"
-                        android:textColor="@color/yellow" />
+                        android:textColor="@color/brown" />
 
                     <TextView
                         android:layout_width="wrap_content"

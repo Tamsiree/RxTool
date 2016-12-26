@@ -33,12 +33,14 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.0.0'
     compile files('src/main/libs/zbardecoder.jar')
     compile files('src/main/libs/zxing.jar')
+
+    compile 'com.nineoldandroids:library:2.4.0'
 }
 
 def siteUrl = 'https://github.com/vondear/VonTools'
 def gitUrl = 'https://github.com/vondear/VonTools.git'
 group = "com.vondear.vontools"            // Maven Group ID for the artifact，一般填你唯一的包名
-install{
+install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters
         pom {

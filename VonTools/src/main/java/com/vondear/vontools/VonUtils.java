@@ -37,6 +37,7 @@ public class VonUtils {
      */
     public static void init(Context context) {
         VonUtils.context = context.getApplicationContext();
+        VonCrashUtils.getInstance(context).init();
     }
 
     /**

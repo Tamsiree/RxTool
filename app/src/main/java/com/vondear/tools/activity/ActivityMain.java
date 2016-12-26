@@ -14,7 +14,6 @@ import com.vondear.tools.bean.MainItem;
 import com.vondear.tools.scaner.ActivityScanerCode;
 import com.vondear.vontools.VonImageUtils;
 import com.vondear.vontools.VonRecyclerViewUtils;
-import com.vondear.vontools.activity.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +49,9 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new MainItem("WebView的封装可播放视频", R.drawable.webpage, com.vondear.vontools.activity.ActivityWebView.class));
         mData.add(new MainItem("常用的Dialog展示", R.drawable.dialog, ActivityDialog.class));
         mData.add(new MainItem("VonTextUtils操作Demo", R.drawable.text_editor, ActivityTextUtils.class));
+        mData.add(new MainItem("进度条的艺术", R.drawable.signal_wifi, ActivityProgressBar.class));
+        mData.add(new MainItem("横向滑动选择日期", R.drawable.bookshelf, ActivityWheelHorizontal.class));
+        mData.add(new MainItem("SlidingDrawerSingle使用", R.drawable.sliding_drawer, ActivitySlidingDrawerSingle.class));
         mData.add(new MainItem("app的检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
     }
 

@@ -16,20 +16,41 @@
         android:id="@+id/button_DialogSure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DialogSure"
+        android:text="确定的弹窗"
         android:textAllCaps="false" />
 
     <Button
         android:id="@+id/button_DialogSureCancle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DialogSureCancle"
+        android:text="确认取消的弹窗"
         android:textAllCaps="false" />
 
     <Button
         android:id="@+id/button_DialogEditTextSureCancle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DialogEditTextSureCancle"
+        android:text="输入框的弹窗"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/button_DialogWheelYearMonthDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="可选择年月(日)"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/button_DialogShapeLoading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="三种形状的跳跃变换"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/button_DialogLoadingProgressAcfunVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="一只可爱的A站舰娘在拼命的奔跑"
         android:textAllCaps="false" />
 </LinearLayout>

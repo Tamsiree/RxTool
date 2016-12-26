@@ -1,6 +1,5 @@
 package com.vondear.tools.activity;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +8,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.vondear.tools.R;
-import com.vondear.vontools.VonUtils;
 import com.vondear.vontools.view.DialogEditTextSureCancle;
+import com.vondear.vontools.view.DialogLoadingProgressAcfunVideo;
 import com.vondear.vontools.view.DialogSure;
 import com.vondear.vontools.view.DialogSureCancle;
+import com.vondear.vontools.view.dialogShapeLoadingView.ShapeLoadingDialog;
+import com.vondear.vontools.view.dialogWheel.DialogWheelYearMonthDay;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,8 +27,17 @@ public class ActivityDialog extends AppCompatActivity {
     Button buttonDialogSureCancle;
     @BindView(R.id.button_DialogEditTextSureCancle)
     Button buttonDialogEditTextSureCancle;
+    @BindView(R.id.button_DialogWheelYearMonthDay)
+    Button mButtonDialogWheelYearMonthDay;
+    @BindView(R.id.button_DialogShapeLoading)
+    Button mButtonDialogShapeLoading;
+    @BindView(R.id.button_DialogLoadingProgressAcfunVideo)
+    Button mButtonDialogLoadingProgressAcfunVideo;
+
 
     private Context context;
+
+    private DialogWheelYearMonthDay mDialogWheelYearMonthDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +47,37 @@ public class ActivityDialog extends AppCompatActivity {
         context = this;
     }
 
-    @OnClick({R.id.button_DialogSure, R.id.button_DialogSureCancle, R.id.button_DialogEditTextSureCancle})
+    private void initWheelYearMonthDayDialog() {
+        // ------------------------------------------------------------------选择日期开始
+        mDialogWheelYearMonthDay = new DialogWheelYearMonthDay(this);
+        mDialogWheelYearMonthDay.getTv_sure().setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View arg0) {
+                        if (mDialogWheelYearMonthDay.getCheckBox_day().isChecked()) {
+                            mButtonDialogWheelYearMonthDay.setText((mDialogWheelYearMonthDay.getCurYear() - 5) + mDialogWheelYearMonthDay.getYear().getCurrentItem() + "年"
+                                    + mDialogWheelYearMonthDay.getMonths()[mDialogWheelYearMonthDay.getMonth().getCurrentItem()] + "月"
+                                    + (mDialogWheelYearMonthDay.getDay().getCurrentItem() + 1) + "日");
+                        } else {
+                            mButtonDialogWheelYearMonthDay.setText((mDialogWheelYearMonthDay.getCurYear() - 5) + mDialogWheelYearMonthDay.getYear().getCurrentItem() + "年"
+                                    + mDialogWheelYearMonthDay.getMonths()[mDialogWheelYearMonthDay.getMonth().getCurrentItem()] + "月");
+                        }
+                        mDialogWheelYearMonthDay.cancel();
+                    }
+                });
+        mDialogWheelYearMonthDay.getTv_cancle().setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View arg0) {
+                        mDialogWheelYearMonthDay.cancel();
+                    }
+                });
+        // ------------------------------------------------------------------选择日期结束
+    }
+
+    @OnClick({R.id.button_DialogSure, R.id.button_DialogSureCancle, R.id.button_DialogEditTextSureCancle, R.id.button_DialogWheelYearMonthDay, R.id.button_DialogShapeLoading, R.id.button_DialogLoadingProgressAcfunVideo})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_DialogSure:
@@ -82,6 +122,17 @@ public class ActivityDialog extends AppCompatActivity {
                     }
                 });
                 dialogEditTextSureCancle.show();
+                break;
+            case R.id.button_DialogWheelYearMonthDay:
+                initWheelYearMonthDayDialog();
+                mDialogWheelYearMonthDay.show();
+                break;
+            case R.id.button_DialogShapeLoading:
+                ShapeLoadingDialog shapeLoadingDialog = new ShapeLoadingDialog(this);
+                shapeLoadingDialog.show();
+                break;
+            case R.id.button_DialogLoadingProgressAcfunVideo:
+                new DialogLoadingProgressAcfunVideo(this).show();
                 break;
         }
     }

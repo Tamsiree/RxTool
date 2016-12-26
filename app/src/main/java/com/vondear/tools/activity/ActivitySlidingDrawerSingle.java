@@ -2,11 +2,11 @@ package com.vondear.tools.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.webkit.DownloadListener;
@@ -17,77 +17,107 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.SlidingDrawer;
+import android.widget.TextView;
 
 import com.vondear.tools.R;
 import com.vondear.vontools.VonBarUtils;
 import com.vondear.vontools.VonConstUtils;
-import com.vondear.vontools.VonImageUtils;
-import com.vondear.vontools.view.AutoFitEditText;
-import com.vondear.vontools.view.AutoFitEditTextUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ActivityWebView extends Activity {
+public class ActivitySlidingDrawerSingle extends Activity {
 
-    @BindView(R.id.iv_finish)
-    ImageView ivFinish;
-    @BindView(R.id.ll_include_title)
-    LinearLayout llIncludeTitle;
+    @BindView(R.id.iv_back)
+    ImageView mIvBack;
+    @BindView(R.id.ll_back)
+    LinearLayout mLlBack;
+    @BindView(R.id.tv_title)
+    TextView mTvTitle;
+    @BindView(R.id.iv_menu)
+    ImageView mIvMenu;
+    @BindView(R.id.ll_menu)
+    LinearLayout mLlMenu;
+    @BindView(R.id.textView1)
+    TextView mTextView1;
+    @BindView(R.id.textView2)
+    TextView mTextView2;
+    @BindView(R.id.textView3)
+    TextView mTextView3;
+    @BindView(R.id.textView4)
+    TextView mTextView4;
+    @BindView(R.id.iv_slide)
+    ImageView mIvSlide;
+    @BindView(R.id.textView8)
+    TextView mTextView8;
+    @BindView(R.id.handle)
+    LinearLayout mHandle;
+    @BindView(R.id.textView14)
+    TextView mTextView14;
     @BindView(R.id.pb_web_base)
-    ProgressBar pbWebBase;
+    ProgressBar mPbWebBase;
     @BindView(R.id.web_base)
-    WebView webBase;
+    WebView mWebBase;
     @BindView(R.id.LinearLayout2)
-    LinearLayout LinearLayout2;
-    @BindView(R.id.activity_web_view)
-    LinearLayout activityWebView;
-    @BindView(R.id.afet_tv_title)
-    AutoFitEditText mAutoFitEditText;
+    LinearLayout mLinearLayout2;
+    @BindView(R.id.content)
+    LinearLayout mContent;
+    @BindView(R.id.slidingdrawer)
+    SlidingDrawer mSlidingdrawer;
 
-    private String webPath = "";
+    String webPath = "";
+
+    private Boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        VonBarUtils.noTitle(this);
+        setContentView(R.layout.activity_sliding_drawer_single);
         VonBarUtils.setTransparentStatusBar(this);
-        setContentView(R.layout.activity_web_view);
         ButterKnife.bind(this);
-        initView();// 初始化控件 - FindViewById之类的操作
-        initData();// 初始化控件的数据及监听事件
+
+        mLlBack.setVisibility(View.VISIBLE);
+        mTvTitle.setText("滑动式抽屉");
+
+        initData();
     }
-
-    private void initView() {
-        // TODO Auto-generated method stub
-        initAutoFitEditText();
-    }
-
-    public void initAutoFitEditText() {
-
-        mAutoFitEditText.setEnabled(true);
-        mAutoFitEditText.setFocusableInTouchMode(true);
-        mAutoFitEditText.setFocusable(true);
-        mAutoFitEditText.setEnableSizeCache(false);
-        //might cause crash on some devices
-        mAutoFitEditText.setMovementMethod(null);
-        // can be added after layout inflation;
-        mAutoFitEditText.setMaxHeight(VonImageUtils.dip2px(this,55f));
-        //don't forget to add min text size programmatically
-        mAutoFitEditText.setMinTextSize(37f);
-
-        AutoFitEditTextUtil.setNormalization(this, llIncludeTitle, mAutoFitEditText);
-    }
-
+    
+    @SuppressWarnings("deprecation")
     private void initData() {
-        pbWebBase.setMax(100);
+        mSlidingdrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
+            @Override
+            public void onDrawerOpened() {
+                flag = true;
+                mIvSlide.setImageResource(R.drawable.slibe_down);
+            }
+        });
+        mSlidingdrawer.setOnDrawerCloseListener(new SlidingDrawer.OnDrawerCloseListener() {
+            @Override
+            public void onDrawerClosed() {
+                flag = false;
+                mIvSlide.setImageResource(R.drawable.slibe_up);
+            }
+        });
+        mSlidingdrawer.setOnDrawerScrollListener(new SlidingDrawer.OnDrawerScrollListener() {
+            @Override
+            public void onScrollEnded() {
+            }
+
+            @Override
+            public void onScrollStarted() {
+            }
+        });
+
+        mPbWebBase.setMax(100);
 //        webPath = getIntent().getStringExtra("URL");
-        webPath = VonConstUtils.URL_ACFUN;
+        webPath = VonConstUtils.URL_VONTOOLS;
         if (webPath.equals("")) {
             webPath = "http://www.baidu.com";
         }
-        WebSettings webSettings = webBase.getSettings();
+        WebSettings webSettings = mWebBase.getSettings();
         if (Build.VERSION.SDK_INT >= 19) {
             webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         }
@@ -99,10 +129,10 @@ public class ActivityWebView extends Activity {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            webBase.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            mWebBase.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
-        webBase.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-//        webBase.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        mWebBase.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+//        mWebBase.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
 //        webSettings.setAllowContentAccess(true);
 //        webSettings.setAllowFileAccessFromFileURLs(true);
@@ -124,38 +154,38 @@ public class ActivityWebView extends Activity {
         webSettings.setDatabaseEnabled(true);
         webSettings.setSavePassword(true);
         webSettings.setDomStorageEnabled(true);
-        webBase.setSaveEnabled(true);
-        webBase.setKeepScreenOn(true);
+        mWebBase.setSaveEnabled(true);
+        mWebBase.setKeepScreenOn(true);
+
 
         // 设置setWebChromeClient对象
-        webBase.setWebChromeClient(new WebChromeClient() {
+        mWebBase.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-                mAutoFitEditText.setText(title);
             }
 
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 // TODO Auto-generated method stub
-                pbWebBase.setProgress(newProgress);
+                mPbWebBase.setProgress(newProgress);
                 super.onProgressChanged(view, newProgress);
             }
         });
-        webBase.setWebViewClient(new WebViewClient() {
+        mWebBase.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if (!webBase.getSettings().getLoadsImagesAutomatically()) {
-                    webBase.getSettings().setLoadsImagesAutomatically(true);
+                if (!mWebBase.getSettings().getLoadsImagesAutomatically()) {
+                    mWebBase.getSettings().setLoadsImagesAutomatically(true);
                 }
-                pbWebBase.setVisibility(View.GONE);
+                mPbWebBase.setVisibility(View.GONE);
             }
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 // TODO Auto-generated method stub
-                pbWebBase.setVisibility(View.VISIBLE);
+                mPbWebBase.setVisibility(View.VISIBLE);
                 super.onPageStarted(view, url, favicon);
             }
 
@@ -173,7 +203,7 @@ public class ActivityWebView extends Activity {
                 return true;
             }
         });
-        webBase.setDownloadListener(new DownloadListener() {
+        mWebBase.setDownloadListener(new DownloadListener() {
             public void onDownloadStart(String paramAnonymousString1, String paramAnonymousString2, String paramAnonymousString3, String paramAnonymousString4, long paramAnonymousLong) {
                 Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
@@ -182,52 +212,12 @@ public class ActivityWebView extends Activity {
             }
         });
 
-        webBase.loadUrl(webPath);
+        mWebBase.loadUrl(webPath);
         Log.v("帮助类完整连接", webPath);
     }
 
-    protected void onSaveInstanceState(Bundle paramBundle) {
-        super.onSaveInstanceState(paramBundle);
-        paramBundle.putString("url", webBase.getUrl());
-    }
-
-    public void onConfigurationChanged(Configuration newConfig) {
-        try {
-            super.onConfigurationChanged(newConfig);
-            if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                Log.v("Himi", "onConfigurationChanged_ORIENTATION_LANDSCAPE");
-            } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                Log.v("Himi", "onConfigurationChanged_ORIENTATION_PORTRAIT");
-            }
-        } catch (Exception ex) {
-        }
-    }
-
-    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
-    private long mBackPressed;
-
-    @Override
-    public void onBackPressed() {
-
-        if (webBase.canGoBack()) {
-            webBase.goBack();
-        } else {
-            if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
-                super.onBackPressed();
-                return;
-            } else {
-                Toast.makeText(getBaseContext(), "再次点击返回键退出", Toast.LENGTH_SHORT).show();
-            }
-            mBackPressed = System.currentTimeMillis();
-        }
-    }
-
-    @OnClick(R.id.iv_finish)
+    @OnClick(R.id.ll_back)
     public void onClick() {
-        if (webBase.canGoBack()) {
-            webBase.goBack();
-        } else {
-            finish();
-        }
+        finish();
     }
 }

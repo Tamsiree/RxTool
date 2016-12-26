@@ -19,8 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:gravity="center"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:orientation="horizontal">
 
             <ImageView
@@ -35,16 +33,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="40dp"
-                android:padding="5dp"
                 android:layout_weight="1"
                 android:background="@color/blue"
-                android:focusable="false"
-                android:focusableInTouchMode="true"
                 android:gravity="center_vertical|center_horizontal"
                 android:hint="WebView"
                 android:inputType="textMultiLine|textNoSuggestions"
                 android:isScrollContainer="false"
                 android:maxLength="240"
+                android:padding="5dp"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 android:textSize="22sp" />
@@ -53,26 +49,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/LinearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ProgressBar
-            android:id="@+id/pb_web_base"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="3dp" />
-
-        <WebView
-            android:id="@+id/web_base"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="true"
-            android:fitsSystemWindows="true" />
-    </LinearLayout>
+    <include layout="@layout/include_webview" />
 
 </LinearLayout>

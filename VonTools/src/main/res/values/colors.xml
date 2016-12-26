@@ -17,7 +17,15 @@
 
     <color name="brown">#7a583e</color>
     <color name="brown1">#766156</color>
+    <color name="brown2">#b19282</color>
+    <color name="brown3">#eac1ac</color>
 
     <color name="transparent">#00000000</color>
     <color name="transparentBlank_5">#55000000</color>
+
+    <color name="shadow">#25808080</color>
+
+    <color name="triangle">#aa72d572</color>
+    <color name="circle">#aa738ffe</color>
+    <color name="rect">#aae84e40</color>
 </resources>

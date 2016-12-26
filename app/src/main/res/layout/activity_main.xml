@@ -4,7 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/e"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="com.vondear.tools.activity.ActivityMain">
