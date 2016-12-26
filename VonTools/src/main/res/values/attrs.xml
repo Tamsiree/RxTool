@@ -12,7 +12,7 @@
         <attr name="roundProgressColor" format="color" />
         <attr name="roundWidth" format="dimension"></attr>
         <attr name="textColor" format="color" />
-        <attr name="textSize" format="dimension" />
+        <attr name="textSize1" format="dimension" />
         <attr name="max" format="integer"></attr>
         <attr name="textIsDisplayable" format="boolean"></attr>
         <attr name="style">
