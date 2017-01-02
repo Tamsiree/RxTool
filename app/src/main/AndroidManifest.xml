@@ -58,6 +58,8 @@
         <activity android:name=".activity.ActivitySlidingDrawerSingle"/>
         <activity android:name=".activity.ActivityProgressBar"/>
         <activity android:name=".activity.ActivityWheelHorizontal"/>
+        <activity android:name=".activity.ActivityAutoImageView">
+        </activity>
     </application>
 
 </manifest>

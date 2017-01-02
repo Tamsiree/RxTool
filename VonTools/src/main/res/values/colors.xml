@@ -24,6 +24,7 @@
     <color name="transparentBlank_5">#55000000</color>
 
     <color name="shadow">#25808080</color>
+    <color name="shadow1">#80808080</color>
 
     <color name="triangle">#aa72d572</color>
     <color name="circle">#aa738ffe</color>

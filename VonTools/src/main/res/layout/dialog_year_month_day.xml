@@ -36,6 +36,7 @@
                 android:button="@drawable/selector_checkbox_sure_cancle" />
             
             <TextView
+                android:textColor="@color/_8c"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="8dp"

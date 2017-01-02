@@ -92,7 +92,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="  将在 "
-                        android:textColor="@color/orange" />
+                        android:textColor="@color/hot_pink" />
 
                     <TextView
                         android:id="@+id/tv_time_second"
@@ -105,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" s后更新"
-                        android:textColor="@color/orange" />
+                        android:textColor="@color/hot_pink" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

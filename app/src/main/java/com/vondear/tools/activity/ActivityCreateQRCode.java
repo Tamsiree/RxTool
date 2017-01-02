@@ -73,7 +73,7 @@ public class ActivityCreateQRCode extends Activity implements View.OnClickListen
         ll_back.setVisibility(View.VISIBLE);
         ll_back.setOnClickListener(this);
         tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_title.setText("会员码");
+        tv_title.setText("动态生成码");
         ll_menu = (LinearLayout) findViewById(R.id.ll_menu);
         ll_menu.setVisibility(View.VISIBLE);
         iv_code = (ImageView) findViewById(R.id.iv_code);

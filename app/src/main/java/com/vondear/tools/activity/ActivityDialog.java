@@ -1,13 +1,18 @@
 package com.vondear.tools.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.vondear.tools.R;
+import com.vondear.vontools.VonBarUtils;
 import com.vondear.vontools.view.DialogEditTextSureCancle;
 import com.vondear.vontools.view.DialogLoadingProgressAcfunVideo;
 import com.vondear.vontools.view.DialogSure;
@@ -19,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ActivityDialog extends AppCompatActivity {
+public class ActivityDialog extends Activity {
 
     @BindView(R.id.button_DialogSure)
     Button buttonDialogSure;
@@ -33,6 +38,12 @@ public class ActivityDialog extends AppCompatActivity {
     Button mButtonDialogShapeLoading;
     @BindView(R.id.button_DialogLoadingProgressAcfunVideo)
     Button mButtonDialogLoadingProgressAcfunVideo;
+    @BindView(R.id.iv_finish)
+    ImageView mIvFinish;
+    @BindView(R.id.tv_title)
+    TextView mTvTitle;
+    @BindView(R.id.activity_dialog)
+    LinearLayout mActivityDialog;
 
 
     private Context context;
@@ -42,9 +53,16 @@ public class ActivityDialog extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        VonBarUtils.noTitle(this);
         setContentView(R.layout.activity_dialog);
+        VonBarUtils.setTransparentStatusBar(this);
         ButterKnife.bind(this);
         context = this;
+        initView();
+    }
+
+    private void initView() {
+        mTvTitle.setText("常用Dialog展示");
     }
 
     private void initWheelYearMonthDayDialog() {
@@ -135,5 +153,10 @@ public class ActivityDialog extends AppCompatActivity {
                 new DialogLoadingProgressAcfunVideo(this).show();
                 break;
         }
+    }
+
+    @OnClick(R.id.iv_finish)
+    public void onClick() {
+        finish();
     }
 }

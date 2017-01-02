@@ -51,8 +51,9 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new MainItem("VonTextUtils操作Demo", R.drawable.text_editor, ActivityTextUtils.class));
         mData.add(new MainItem("进度条的艺术", R.drawable.signal_wifi, ActivityProgressBar.class));
         mData.add(new MainItem("横向滑动选择日期", R.drawable.bookshelf, ActivityWheelHorizontal.class));
+        mData.add(new MainItem("横向左右自动滚动的ImageView", R.drawable.picture, ActivityAutoImageView.class));
         mData.add(new MainItem("SlidingDrawerSingle使用", R.drawable.sliding_drawer, ActivitySlidingDrawerSingle.class));
-        mData.add(new MainItem("app的检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
+        mData.add(new MainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
     }
 
     private void initView() {
@@ -72,6 +73,7 @@ public class ActivityMain extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
+
     @Override
     public void onBackPressed() {
         if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {

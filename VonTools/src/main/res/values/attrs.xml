@@ -41,4 +41,8 @@
     </declare-styleable>
 
     <attr name="abstractWheelViewStyle" format="reference" />
+
+    <declare-styleable name="AutoImageView">
+        <attr name="ImageSrc" format="reference"/>
+    </declare-styleable>
 </resources>
