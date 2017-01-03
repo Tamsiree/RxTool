@@ -3,6 +3,7 @@ package com.vondear.vontools;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -39,6 +40,21 @@ public class VonUtils {
         VonUtils.context = context.getApplicationContext();
         VonCrashUtils.getInstance(context).init();
     }
+
+    //----------------------------------------------------------------------------------------------延时任务封装 start
+    public interface DelayListener {
+        void doSomething();
+    }
+
+    public static void delayToDo(final DelayListener delayListener,long delayTime) {
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                //execute the task
+                delayListener.doSomething();
+            }
+        }, delayTime);
+    }
+    //==============================================================================================延时任务封装 end
 
     /**
      * 获取ApplicationContext
