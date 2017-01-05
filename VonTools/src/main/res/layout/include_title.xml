@@ -30,6 +30,6 @@
         android:id="@+id/iv_menu"
         android:layout_width="40dp"
         android:layout_height="match_parent"
-        android:padding="15dp"
+        android:padding="10dp"
         android:src="@drawable/set" />
 </LinearLayout>
