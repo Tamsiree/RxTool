@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="55dp"
-    android:gravity="center"
-    android:id="@+id/ll_include_title"
-    android:orientation="horizontal">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/ll_include_title"
+              android:layout_width="match_parent"
+              android:layout_height="55dp"
+              android:gravity="center"
+              android:orientation="horizontal">
 
 
     <ImageView
@@ -13,7 +13,7 @@
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:padding="15dp"
-        android:src="@drawable/back" />
+        android:src="@drawable/back"/>
 
     <TextView
         android:id="@+id/tv_title"
@@ -23,13 +23,13 @@
         android:gravity="center"
         android:text="个人资料"
         android:textColor="@color/white"
-        android:textSize="18dp" />
+        android:textSize="18dp"/>
 
     <ImageView
-        android:visibility="visible"
         android:id="@+id/iv_menu"
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:padding="10dp"
-        android:src="@drawable/set" />
+        android:src="@drawable/set"
+        android:visibility="invisible"/>
 </LinearLayout>
