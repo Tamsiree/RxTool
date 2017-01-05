@@ -67,19 +67,21 @@ public class ActivityDialog extends Activity {
 
     private void initWheelYearMonthDayDialog() {
         // ------------------------------------------------------------------选择日期开始
-        mDialogWheelYearMonthDay = new DialogWheelYearMonthDay(this);
+        mDialogWheelYearMonthDay = new DialogWheelYearMonthDay(this, 2000,200);
         mDialogWheelYearMonthDay.getTv_sure().setOnClickListener(
                 new View.OnClickListener() {
 
                     @Override
                     public void onClick(View arg0) {
                         if (mDialogWheelYearMonthDay.getCheckBox_day().isChecked()) {
-                            mButtonDialogWheelYearMonthDay.setText((mDialogWheelYearMonthDay.getCurYear() - 5) + mDialogWheelYearMonthDay.getYear().getCurrentItem() + "年"
-                                    + mDialogWheelYearMonthDay.getMonths()[mDialogWheelYearMonthDay.getMonth().getCurrentItem()] + "月"
-                                    + (mDialogWheelYearMonthDay.getDay().getCurrentItem() + 1) + "日");
+                            mButtonDialogWheelYearMonthDay.setText(
+                                    mDialogWheelYearMonthDay.getSelectorYear() + "年"
+                                            + mDialogWheelYearMonthDay.getSelectorMonth() + "月"
+                                            + mDialogWheelYearMonthDay.getSelectorDay() + "日");
                         } else {
-                            mButtonDialogWheelYearMonthDay.setText((mDialogWheelYearMonthDay.getCurYear() - 5) + mDialogWheelYearMonthDay.getYear().getCurrentItem() + "年"
-                                    + mDialogWheelYearMonthDay.getMonths()[mDialogWheelYearMonthDay.getMonth().getCurrentItem()] + "月");
+                            mButtonDialogWheelYearMonthDay.setText(
+                                    mDialogWheelYearMonthDay.getSelectorYear() + "年"
+                                            + mDialogWheelYearMonthDay.getSelectorMonth() + "月");
                         }
                         mDialogWheelYearMonthDay.cancel();
                     }
@@ -142,7 +144,9 @@ public class ActivityDialog extends Activity {
                 dialogEditTextSureCancle.show();
                 break;
             case R.id.button_DialogWheelYearMonthDay:
-                initWheelYearMonthDayDialog();
+                if (mDialogWheelYearMonthDay == null) {
+                    initWheelYearMonthDayDialog();
+                }
                 mDialogWheelYearMonthDay.show();
                 break;
             case R.id.button_DialogShapeLoading:
