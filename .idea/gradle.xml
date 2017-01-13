@@ -8,7 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/RxTools" />
+            <option value="$PROJECT_DIR$/RxTools-library" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
