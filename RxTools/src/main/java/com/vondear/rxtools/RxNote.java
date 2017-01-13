@@ -6,6 +6,8 @@ package com.vondear.rxtools;
 
 public class RxNote {
 
+    //暂无实际作用
+
     /**　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
      *　　　　　　　　　瓦瓦　　　　　　　　　　　　十　　　　　　　　　　　　　
      *　　　　　　　　十齱龠己　　　　　　　　　亅瓦車己　　　　　　　　　　　　
