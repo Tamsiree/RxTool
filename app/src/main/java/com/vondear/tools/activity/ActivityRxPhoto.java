@@ -33,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
-public class ActivityVonPhoto extends Activity {
+public class ActivityRxPhoto extends Activity {
 
     @BindView(R.id.iv_avatar)
     ImageView ivAvatar;
@@ -103,7 +103,7 @@ public class ActivityVonPhoto extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                RxPhotoUtils.openCameraImage(ActivityVonPhoto.this);
+                RxPhotoUtils.openCameraImage(ActivityRxPhoto.this);
                 dialog1.cancel();
 
             }
@@ -112,7 +112,7 @@ public class ActivityVonPhoto extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                RxPhotoUtils.openLocalImage(ActivityVonPhoto.this);
+                RxPhotoUtils.openLocalImage(ActivityRxPhoto.this);
                 dialog1.cancel();
             }
         });

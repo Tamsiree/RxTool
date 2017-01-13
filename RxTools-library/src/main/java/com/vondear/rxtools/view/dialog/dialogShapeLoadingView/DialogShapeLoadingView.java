@@ -101,7 +101,7 @@ public class DialogShapeLoadingView extends FrameLayout {
         addView(view, layoutParams);
 
 
-        startLoading(900);
+        startLoading(200);
     }
 
 

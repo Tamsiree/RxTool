@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ActivityVonPhoto"
+            android:name=".activity.ActivityRxPhoto"
             android:screenOrientation="portrait"/>
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
@@ -61,6 +61,8 @@
         <activity android:name=".activity.ActivityAutoImageView">
         </activity>
         <activity android:name=".activity.ActivityPopupView">
+        </activity>
+        <activity android:name=".activity.ActivityRunTextView">
         </activity>
     </application>
 

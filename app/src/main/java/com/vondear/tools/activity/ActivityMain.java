@@ -43,7 +43,7 @@ public class ActivityMain extends AppCompatActivity {
 
     private void initData() {
         mData = new ArrayList<>();
-        mData.add(new MainItem("RxPhotoUtils操作UZrop裁剪图片", R.drawable.elves_ball, ActivityVonPhoto.class));
+        mData.add(new MainItem("RxPhotoUtils操作UZrop裁剪图片", R.drawable.elves_ball, ActivityRxPhoto.class));
         mData.add(new MainItem("二维码与条形码的扫描与生成", R.drawable.scan_barcode, ActivityScanerCode.class));
         mData.add(new MainItem("WebView的封装可播放视频", R.drawable.webpage, com.vondear.rxtools.activity.ActivityWebView.class));
         mData.add(new MainItem("常用的Dialog展示", R.drawable.dialog, ActivityDialog.class));
@@ -53,6 +53,7 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new MainItem("横向左右自动滚动的ImageView", R.drawable.picture, ActivityAutoImageView.class));
         mData.add(new MainItem("SlidingDrawerSingle使用", R.drawable.sliding_drawer, ActivitySlidingDrawerSingle.class));
         mData.add(new MainItem("PopupView的使用", R.drawable.bullet, ActivityPopupView.class));
+        mData.add(new MainItem("RunTextView的使用", R.drawable.wrap_text, ActivityRunTextView.class));
         mData.add(new MainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
     }
 

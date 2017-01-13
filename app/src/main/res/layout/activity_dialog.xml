@@ -16,6 +16,15 @@
 
     <Button
         android:layout_margin="5dp"
+        android:id="@+id/button_tran"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/shadow1"
+        android:text="透明的弹窗"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_margin="5dp"
         android:id="@+id/button_DialogSure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

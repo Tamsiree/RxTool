@@ -88,8 +88,4 @@ public class RxDialogSure extends RxDialog {
         initView();
     }
 
-    public RxDialogSure(Context context, float alpha, int gravity, boolean isOnScreen) {
-        super(context, alpha, gravity, isOnScreen);
-        initView();
-    }
 }

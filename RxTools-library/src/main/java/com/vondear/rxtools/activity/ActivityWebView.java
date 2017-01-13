@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxConstUtils;
+import com.vondear.rxtools.RxConstants;
 import com.vondear.rxtools.RxImageUtils;
 import com.vondear.rxtools.RxKeyboardUtils;
 import com.vondear.rxtools.view.RxAutoFitEditText;
@@ -98,7 +99,7 @@ public class ActivityWebView extends Activity {
     private void initData() {
         pbWebBase.setMax(100);
 //        webPath = getIntent().getStringExtra("URL");
-        webPath = RxConstUtils.URL_BAIDU_SEARCH;
+        webPath = RxConstants.URL_BAIDU_SEARCH;
         if (webPath.equals("")) {
             webPath = "http://www.baidu.com";
         }

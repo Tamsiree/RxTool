@@ -19,9 +19,9 @@ import android.widget.ProgressBar;
 import android.widget.SlidingDrawer;
 import android.widget.TextView;
 
+import com.vondear.rxtools.RxConstants;
 import com.vondear.tools.R;
 import com.vondear.rxtools.RxBarUtils;
-import com.vondear.rxtools.RxConstUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -112,7 +112,7 @@ public class ActivitySlidingDrawerSingle extends Activity {
 
         mPbWebBase.setMax(100);
 //        webPath = getIntent().getStringExtra("URL");
-        webPath = RxConstUtils.URL_VONTOOLS;
+        webPath = RxConstants.URL_VONTOOLS;
         if (webPath.equals("")) {
             webPath = "http://www.baidu.com";
         }

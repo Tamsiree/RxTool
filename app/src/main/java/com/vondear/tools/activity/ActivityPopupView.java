@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.vondear.rxtools.RxUtils;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.bean.ActionItem;
+import com.vondear.rxtools.view.RxPopupImply;
 import com.vondear.rxtools.view.RxPopupView;
 import com.vondear.tools.R;
 
@@ -31,6 +32,8 @@ public class ActivityPopupView extends ActivityBase {
     TextView mTvDefinition;
     @BindView(R.id.activity_popup_view)
     LinearLayout mActivityPopupView;
+    @BindView(R.id.tv_imply)
+    TextView mTvImply;
     private RxPopupView titlePopup;
 
     @Override
@@ -38,7 +41,11 @@ public class ActivityPopupView extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup_view);
         ButterKnife.bind(this);
+        initView();
+    }
 
+    private void initView() {
+        mTvTitle.setText("PopupView的使用");
     }
 
     private void initPopupView() {
@@ -73,5 +80,15 @@ public class ActivityPopupView extends ActivityBase {
                 titlePopup.show(mTvDefinition, 0);
                 break;
         }
+    }
+
+    private RxPopupImply popupImply;//提示  一小时后有惊喜
+
+    @OnClick(R.id.tv_imply)
+    public void onClick() {
+        if (popupImply == null) {
+            popupImply = new RxPopupImply(mContext);
+        }
+        popupImply.show(mTvImply);
     }
 }

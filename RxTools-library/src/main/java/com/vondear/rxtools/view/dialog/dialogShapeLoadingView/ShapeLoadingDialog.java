@@ -10,7 +10,8 @@ import com.vondear.rxtools.R;
 
 
 /**
- * Created by vodnear on 15/6/15.
+ * Created by vondear on 15/6/15.
+ *
  */
 public class ShapeLoadingDialog {
 

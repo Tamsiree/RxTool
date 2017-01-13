@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#F0F0F0"
     android:orientation="vertical"
-    tools:context=".activity.ActivityVonPhoto">
+    tools:context=".activity.ActivityRxPhoto">
 
     <include layout="@layout/include_title" />
 

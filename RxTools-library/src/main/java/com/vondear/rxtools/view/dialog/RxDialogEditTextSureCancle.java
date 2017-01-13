@@ -81,9 +81,4 @@ public class RxDialogEditTextSureCancle extends RxDialog {
         super(context, alpha, gravity);
         initView();
     }
-
-    public RxDialogEditTextSureCancle(Context context, float alpha, int gravity, boolean isOnScreen) {
-        super(context, alpha, gravity, isOnScreen);
-        initView();
-    }
 }

@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.vondear.rxtools.RxBarUtils.setTransparentStatusBar;
-import static com.vondear.rxtools.RxConstUtils.URL_VONTOOLS;
+import static com.vondear.rxtools.RxConstants.URL_VONTOOLS;
 
 public class ActivityTextUtils extends Activity {
 
