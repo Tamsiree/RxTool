@@ -39,7 +39,7 @@ dependencies {
 
 def siteUrl = 'https://github.com/vondear/VonTools'
 def gitUrl = 'https://github.com/vondear/VonTools.git'
-group = "com.vondear.vontools"            // Maven Group ID for the artifact，一般填你唯一的包名
+group = "com.vondear.rxtools"            // Maven Group ID for the artifact，一般填你唯一的包名
 install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters

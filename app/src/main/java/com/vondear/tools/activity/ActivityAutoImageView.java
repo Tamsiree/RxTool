@@ -4,15 +4,15 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.vondear.tools.R;
-import com.vondear.vontools.VonBarUtils;
+import com.vondear.rxtools.RxBarUtils;
 
 public class ActivityAutoImageView extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VonBarUtils.noTitle(this);
-        VonBarUtils.setTransparentStatusBar(this);
+        RxBarUtils.noTitle(this);
+        RxBarUtils.setTransparentStatusBar(this);
         setContentView(R.layout.activity_auto_image_view);
     }
 }

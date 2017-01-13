@@ -11,7 +11,7 @@
 
     <include layout="@layout/include_title" />
 
-    <com.vondear.vontools.view.RoundProgressBar
+    <com.vondear.rxtools.view.RoundProgressBar
         android:id="@+id/roundProgressBar1"
         android:layout_width="270dp"
         android:layout_height="270dp" />

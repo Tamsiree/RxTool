@@ -3,7 +3,6 @@ package com.vondear.tools.activity;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.vondear.rxtools.RxUtils;
 import com.vondear.tools.R;
-import com.vondear.vontools.VonUtils;
 
 public class ActivityCreateQRCode extends Activity implements View.OnClickListener {
     private LinearLayout ll_back, ll_menu;
@@ -84,8 +83,8 @@ public class ActivityCreateQRCode extends Activity implements View.OnClickListen
 
     private void initData() {
         // TODO Auto-generated method stub
-        VonUtils.createQRImage("时间戳:" + System.currentTimeMillis(), 800, 800, iv_code);
-        iv_linecode.setImageBitmap(VonUtils.drawLinecode(this, "" + System.currentTimeMillis(), 1000, 300));
+        RxUtils.createQRImage("时间戳:" + System.currentTimeMillis(), 800, 800, iv_code);
+        iv_linecode.setImageBitmap(RxUtils.drawLinecode(this, "" + System.currentTimeMillis(), 1000, 300));
     }
 
     @Override

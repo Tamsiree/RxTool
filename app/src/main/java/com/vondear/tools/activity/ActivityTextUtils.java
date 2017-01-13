@@ -14,16 +14,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.vondear.rxtools.RxUtils;
 import com.vondear.tools.R;
-import com.vondear.vontools.VonTextUtils;
-import com.vondear.vontools.VonUtils;
+import com.vondear.rxtools.RxTextUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.vondear.vontools.VonBarUtils.setTransparentStatusBar;
-import static com.vondear.vontools.VonConstUtils.URL_VONTOOLS;
+import static com.vondear.rxtools.RxBarUtils.setTransparentStatusBar;
+import static com.vondear.rxtools.RxConstUtils.URL_VONTOOLS;
 
 public class ActivityTextUtils extends Activity {
 
@@ -55,7 +55,7 @@ public class ActivityTextUtils extends Activity {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(View widget) {
-                VonUtils.showToast(mContext, "事件触发了", 500);
+                RxUtils.showToast(mContext, "事件触发了", 500);
             }
 
             @Override
@@ -68,7 +68,7 @@ public class ActivityTextUtils extends Activity {
         TextView tvAboutSpannable = (TextView) findViewById(R.id.tv_about_spannable);
         // 响应点击事件的话必须设置以下属性
         tvAboutSpannable.setMovementMethod(LinkMovementMethod.getInstance());
-        tvAboutSpannable.setText(VonTextUtils
+        tvAboutSpannable.setText(RxTextUtils
                 .getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
 
                 .append("测试").append("Url\n").setUrl(URL_VONTOOLS)

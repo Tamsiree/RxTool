@@ -8,9 +8,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.vondear.tools.R;
-import com.vondear.vontools.VonBarUtils;
-import com.vondear.vontools.VonDataUtils;
-import com.vondear.vontools.view.RoundProgressBar;
+import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.RxDataUtils;
+import com.vondear.rxtools.view.RoundProgressBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +40,7 @@ public class ActivityProgressBar extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VonBarUtils.noTitle(this);
+        RxBarUtils.noTitle(this);
         setContentView(R.layout.activity_progress_bar);
         ButterKnife.bind(this);
         initView();
@@ -69,7 +69,7 @@ public class ActivityProgressBar extends Activity {
             } else if (money >= 20000 && money < 100000) {
                 mRoundProgressBar1.setMax(100000);
             } else if (money >= 100000) {
-                mRoundProgressBar1.setMax(VonDataUtils.stringToInt(money * 1.1 + ""));
+                mRoundProgressBar1.setMax(RxDataUtils.stringToInt(money * 1.1 + ""));
             }
         } else {
             mRoundProgressBar1.setMax(max_money);
@@ -135,7 +135,7 @@ public class ActivityProgressBar extends Activity {
         } else if (money1 > 20000 && money1 < 100000) {
             mPbLineOfCredit.setMax(100000);
         } else if (money1 > 100000) {
-            mPbLineOfCredit.setMax(VonDataUtils.stringToInt(money1 * 2 + ""));
+            mPbLineOfCredit.setMax(RxDataUtils.stringToInt(money1 * 2 + ""));
         }
         /*int i =  (new Double(SysCtlUtil.StringToDouble(quota))).intValue();
         final int current = (new Double(SysCtlUtil.StringToDouble(quota_surplus))).intValue() ;

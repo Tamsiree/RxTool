@@ -11,8 +11,8 @@ import android.widget.Toast;
 import com.vondear.tools.R;
 import com.vondear.tools.adapter.AdapterRecyclerViewMain;
 import com.vondear.tools.bean.MainItem;
-import com.vondear.vontools.VonImageUtils;
-import com.vondear.vontools.VonRecyclerViewUtils;
+import com.vondear.rxtools.RxImageUtils;
+import com.vondear.rxtools.RxRecyclerViewUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class ActivityMain extends AppCompatActivity {
         mData = new ArrayList<>();
         mData.add(new MainItem("VonPhotoUtils操作UZrop裁剪图片", R.drawable.elves_ball, ActivityVonPhoto.class));
         mData.add(new MainItem("二维码与条形码的扫描与生成", R.drawable.scan_barcode, ActivityScanerCode.class));
-        mData.add(new MainItem("WebView的封装可播放视频", R.drawable.webpage, com.vondear.vontools.activity.ActivityWebView.class));
+        mData.add(new MainItem("WebView的封装可播放视频", R.drawable.webpage, com.vondear.rxtools.activity.ActivityWebView.class));
         mData.add(new MainItem("常用的Dialog展示", R.drawable.dialog, ActivityDialog.class));
         mData.add(new MainItem("VonTextUtils操作Demo", R.drawable.text_editor, ActivityTextUtils.class));
         mData.add(new MainItem("进度条的艺术", R.drawable.signal_wifi, ActivityProgressBar.class));
@@ -62,7 +62,7 @@ public class ActivityMain extends AppCompatActivity {
             recyclerview.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
 
-        recyclerview.addItemDecoration(new VonRecyclerViewUtils.SpaceItemDecoration(VonImageUtils.dp2px(context, 5f)));
+        recyclerview.addItemDecoration(new RxRecyclerViewUtils.SpaceItemDecoration(RxImageUtils.dp2px(context, 5f)));
         AdapterRecyclerViewMain recyclerViewMain = new AdapterRecyclerViewMain(mData);
 
         recyclerview.setAdapter(recyclerViewMain);

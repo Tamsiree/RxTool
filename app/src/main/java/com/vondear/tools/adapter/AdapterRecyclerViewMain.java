@@ -1,7 +1,6 @@
 package com.vondear.tools.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +13,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.vondear.tools.R;
 import com.vondear.tools.bean.MainItem;
-import com.vondear.vontools.VonActivityUtils;
-import com.vondear.vontools.VonDeviceUtils;
+import com.vondear.rxtools.RxActivityUtils;
 
 import java.util.List;
 
@@ -40,7 +38,7 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
     public AdapterRecyclerViewMain.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview_main, parent, false);
         context = view.getContext();
-      /*  mScreenWidth = VonDeviceUtils.getScreenWidth(context) > VonDeviceUtils.getScreenHeight(context) ? VonDeviceUtils.getScreenHeight(context) : VonDeviceUtils.getScreenWidth(context);
+      /*  mScreenWidth = RxDeviceUtils.getScreenWidth(context) > RxDeviceUtils.getScreenHeight(context) ? RxDeviceUtils.getScreenHeight(context) : RxDeviceUtils.getScreenWidth(context);
         mItemWidth = (mScreenWidth - 50) / 3;
         mItemHeight = mItemWidth * 6 / 4;
         GridLayoutManager.LayoutParams layoutParams = new GridLayoutManager.LayoutParams(mItemWidth, mItemHeight);
@@ -68,7 +66,7 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                VonActivityUtils.skipActivity(context, holder.mItem.getActivity());
+                RxActivityUtils.skipActivity(context, holder.mItem.getActivity());
             }
         });
     }

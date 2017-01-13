@@ -10,11 +10,11 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.vondear.rxtools.RxDeviceUtils;
+import com.vondear.rxtools.RxUtils;
 import com.vondear.tools.R;
-import com.vondear.vontools.VonBarUtils;
-import com.vondear.vontools.VonDeviceUtils;
-import com.vondear.vontools.VonUtils;
-import com.vondear.vontools.view.DialogSureCancle;
+import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.view.DialogSureCancle;
 
 
 public class ActivitySplash extends Activity {
@@ -29,7 +29,7 @@ public class ActivitySplash extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VonBarUtils.hideStatusBar(this);//隐藏状态栏 并 全屏
+        RxBarUtils.hideStatusBar(this);//隐藏状态栏 并 全屏
         setContentView(R.layout.activity_splash);
         context = this;
         initView();
@@ -41,12 +41,12 @@ public class ActivitySplash extends Activity {
         pg = (ProgressBar) findViewById(R.id.pg);
         tv_update_info = (TextView) findViewById(R.id.tv_update_info);
         tv_splash_version = (TextView) findViewById(R.id.tv_splash_version);
-        appVersionName = VonDeviceUtils.getAppVersionName(context);
+        appVersionName = RxDeviceUtils.getAppVersionName(context);
         tv_splash_version.setText("版本号 "+appVersionName);
     }
 
     public void buttonClick(View v) {
-        VonUtils.showToast(context, "正在进入主界面", 500);
+        RxUtils.showToast(context, "正在进入主界面", 500);
         toMain();
     }
 
@@ -82,16 +82,16 @@ public class ActivitySplash extends Activity {
         dialogSureCancle.getTv_sure().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getFile(apk_down_url, VonFileUtils.getDiskFileDir(context) + File.separator + "update", str + ".apk");
+                //getFile(apk_down_url, RxFileUtils.getDiskFileDir(context) + File.separator + "update", str + ".apk");
                 // TODO: 第一步 在此处 使用 你的网络框架下载 新的Apk文件 可参照下面的例子 使用的是 okGo网络框架
-                // TODO: 第二步 可使用 VonAppUtils.InstallAPK(context,file.getAbsolutePath()); 方法进行 最新版本Apk文件的安装
+                // TODO: 第二步 可使用 RxAppUtils.InstallAPK(context,file.getAbsolutePath()); 方法进行 最新版本Apk文件的安装
                 dialogSureCancle.cancel();
             }
         });
         dialogSureCancle.getTv_cancle().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VonUtils.showToast(context,"已取消最新版本的下载",500);
+                RxUtils.showToast(context,"已取消最新版本的下载",500);
                 dialogSureCancle.cancel();
             }
         });
@@ -125,14 +125,14 @@ public class ActivitySplash extends Activity {
         @Override
         public void handleMessage(Message msg) {
             if (!update) {
-                VonUtils.showToast(context, "正在检查版本更新...", 500);
-                // TODO: 使用 VonDeviceUtils.getAppVersionNo(context); 方法 获取当前app版本号 与 提交给服务器 做对比
+                RxUtils.showToast(context, "正在检查版本更新...", 500);
+                // TODO: 使用 RxDeviceUtils.getAppVersionNo(context); 方法 获取当前app版本号 与 提交给服务器 做对比
                 String temp = getResources().getString(R.string.newest_apk_down);
-                String timeTip = String.format(temp,VonDeviceUtils.getAppVersionName(context));
-                //  或简化成 String.format(getResources().getString(R.string.newest_apk_down),VonDeviceUtils.getAppVersionName(context))
+                String timeTip = String.format(temp, RxDeviceUtils.getAppVersionName(context));
+                //  或简化成 String.format(getResources().getString(R.string.newest_apk_down),RxDeviceUtils.getAppVersionName(context))
                 ShowDialog(timeTip,"your_apk_down_url");
             } else {
-                VonUtils.showToast(context, "当前为最新版本，无需更新!", 500);
+                RxUtils.showToast(context, "当前为最新版本，无需更新!", 500);
                 pg.setVisibility(View.GONE);
             }
         }

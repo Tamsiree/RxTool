@@ -34,10 +34,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.vondear.rxtools.RxUtils;
 import com.vondear.tools.R;
 import com.vondear.tools.scaner.CaptureActivityHandler;
-import com.vondear.vontools.VonActivityUtils;
-import com.vondear.vontools.VonUtils;
+import com.vondear.rxtools.RxActivityUtils;
 import com.zbar.lib.CameraManager;
 import com.zbar.lib.DecoderLocalFile;
 import com.zbar.lib.InactivityTimer;
@@ -105,7 +105,7 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         ll_scan_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                VonActivityUtils.skipActivity(ActivityScanerCode.this, ActivityCreateQRCode.class);
+                RxActivityUtils.skipActivity(ActivityScanerCode.this, ActivityCreateQRCode.class);
             }
         });
         //请求Camera权限
@@ -307,9 +307,9 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
                     DecoderLocalFile decoder = new DecoderLocalFile(bitmappath);
                     String phone = decoder.handleQRCodeFormPhoto(ActivityScanerCode.this, DecoderLocalFile.loadBitmap(bitmappath));
                     if ("-1".equals(phone)) {
-                        VonUtils.showToast(ActivityScanerCode.this, "图片中无二维码信息", false);
+                        RxUtils.showToast(ActivityScanerCode.this, "图片中无二维码信息", false);
                     } else {
-                        VonUtils.showToast(ActivityScanerCode.this, "" + phone, false);
+                        RxUtils.showToast(ActivityScanerCode.this, "" + phone, false);
                     }
                 }
             } catch (FileNotFoundException e) {
@@ -404,11 +404,11 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         String resstart = result.substring(0, 4);
         String resend = result.substring(4, result.length());
         if ("二维码:".equals(resstart)) {
-            VonUtils.showToast(this, result, false);
+            RxUtils.showToast(this, result, false);
             // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
             handler.sendEmptyMessage(R.id.restart_preview);
         } else if ("条形码:".equals(resstart)) {
-            VonUtils.showToast(this, result, false);
+            RxUtils.showToast(this, result, false);
             // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
             handler.sendEmptyMessage(R.id.restart_preview);
         }

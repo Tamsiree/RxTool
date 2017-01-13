@@ -16,11 +16,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.vondear.rxtools.RxPhotoUtils;
 import com.vondear.tools.R;
-import com.vondear.vontools.VonBarUtils;
-import com.vondear.vontools.VonPhotoUtils;
-import com.vondear.vontools.VonSPUtils;
-import com.vondear.vontools.view.TransparentDialog;
+import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.RxSPUtils;
+import com.vondear.rxtools.view.TransparentDialog;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
@@ -49,7 +49,7 @@ public class ActivityVonPhoto extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VonBarUtils.noTitle(this);
+        RxBarUtils.noTitle(this);
         setContentView(R.layout.activity_von_photo);
         ButterKnife.bind(this);
         context = this;
@@ -103,7 +103,7 @@ public class ActivityVonPhoto extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                VonPhotoUtils.openCameraImage(ActivityVonPhoto.this);
+                RxPhotoUtils.openCameraImage(ActivityVonPhoto.this);
                 dialog1.cancel();
 
             }
@@ -112,7 +112,7 @@ public class ActivityVonPhoto extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                VonPhotoUtils.openLocalImage(ActivityVonPhoto.this);
+                RxPhotoUtils.openLocalImage(ActivityVonPhoto.this);
                 dialog1.cancel();
             }
         });
@@ -148,24 +148,24 @@ public class ActivityVonPhoto extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case VonPhotoUtils.GET_IMAGE_FROM_PHONE://选择相册之后的处理
+            case RxPhotoUtils.GET_IMAGE_FROM_PHONE://选择相册之后的处理
                 if (resultCode == RESULT_OK) {
-//                    VonPhotoUtils.cropImage(ActivityUser.this, );// 裁剪图片
+//                    RxPhotoUtils.cropImage(ActivityUser.this, );// 裁剪图片
                     initUCrop(data.getData());
                 }
 
                 break;
-            case VonPhotoUtils.GET_IMAGE_BY_CAMERA://选择照相机之后的处理
+            case RxPhotoUtils.GET_IMAGE_BY_CAMERA://选择照相机之后的处理
                 if (resultCode == RESULT_OK) {
                    /* data.getExtras().get("data");*/
-//                    VonPhotoUtils.cropImage(ActivityUser.this, VonPhotoUtils.imageUriFromCamera);// 裁剪图片
-                    initUCrop(VonPhotoUtils.imageUriFromCamera);
+//                    RxPhotoUtils.cropImage(ActivityUser.this, RxPhotoUtils.imageUriFromCamera);// 裁剪图片
+                    initUCrop(RxPhotoUtils.imageUriFromCamera);
                 }
 
                 break;
-            case VonPhotoUtils.CROP_IMAGE://普通裁剪后的处理
+            case RxPhotoUtils.CROP_IMAGE://普通裁剪后的处理
                 Glide.with(context).
-                        load(VonPhotoUtils.cropImageUri).
+                        load(RxPhotoUtils.cropImageUri).
                         diskCacheStrategy(DiskCacheStrategy.RESULT).
                         bitmapTransform(new CropCircleTransformation(context)).
                         thumbnail(0.5f).
@@ -175,7 +175,7 @@ public class ActivityVonPhoto extends Activity {
                         fallback(R.drawable.elves_ball).
                         dontAnimate().
                         into(ivAvatar);
-//                RequestUpdateAvatar(new File(VonPhotoUtils.getRealFilePath(context, VonPhotoUtils.cropImageUri)));
+//                RequestUpdateAvatar(new File(RxPhotoUtils.getRealFilePath(context, RxPhotoUtils.cropImageUri)));
                 break;
 
             case UCrop.REQUEST_CROP://UCrop裁剪之后的处理
@@ -183,7 +183,7 @@ public class ActivityVonPhoto extends Activity {
                     resultUri = UCrop.getOutput(data);
                     roadImageView(resultUri, ivAvatar);
 
-                    VonSPUtils.putContent(context, "AVATAR", resultUri.toString());
+                    RxSPUtils.putContent(context, "AVATAR", resultUri.toString());
                 } else if (resultCode == UCrop.RESULT_ERROR) {
                     final Throwable cropError = UCrop.getError(data);
                 }
@@ -211,12 +211,12 @@ public class ActivityVonPhoto extends Activity {
                 dontAnimate().
                 into(imageView);
 
-        return (new File(VonPhotoUtils.getImageAbsolutePath(this, uri)));
+        return (new File(RxPhotoUtils.getImageAbsolutePath(this, uri)));
     }
 
     private void initUCrop(Uri uri) {
 
-//        Uri destinationUri = VonPhotoUtils.createImagePathUri(this);
+//        Uri destinationUri = RxPhotoUtils.createImagePathUri(this);
 
         SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA);
         long time = System.currentTimeMillis();

@@ -53,7 +53,7 @@
         <activity android:name=".activity.ActivityDialog"/>
         <activity android:name=".activity.ActivityTextUtils"/>
         <activity
-            android:name="com.vondear.vontools.activity.ActivityWebView"
+            android:name="com.vondear.rxtools.activity.ActivityWebView"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity android:name=".activity.ActivitySlidingDrawerSingle"/>
         <activity android:name=".activity.ActivityProgressBar"/>

@@ -3,7 +3,6 @@ package com.vondear.tools.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
@@ -12,13 +11,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vondear.tools.R;
-import com.vondear.vontools.VonBarUtils;
-import com.vondear.vontools.view.DialogEditTextSureCancle;
-import com.vondear.vontools.view.DialogLoadingProgressAcfunVideo;
-import com.vondear.vontools.view.DialogSure;
-import com.vondear.vontools.view.DialogSureCancle;
-import com.vondear.vontools.view.dialogShapeLoadingView.ShapeLoadingDialog;
-import com.vondear.vontools.view.dialogWheel.DialogWheelYearMonthDay;
+import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.view.DialogEditTextSureCancle;
+import com.vondear.rxtools.view.DialogLoadingProgressAcfunVideo;
+import com.vondear.rxtools.view.DialogSure;
+import com.vondear.rxtools.view.DialogSureCancle;
+import com.vondear.rxtools.view.dialogShapeLoadingView.ShapeLoadingDialog;
+import com.vondear.rxtools.view.dialogWheel.DialogWheelYearMonthDay;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,9 +52,9 @@ public class ActivityDialog extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VonBarUtils.noTitle(this);
+        RxBarUtils.noTitle(this);
         setContentView(R.layout.activity_dialog);
-        VonBarUtils.setTransparentStatusBar(this);
+        RxBarUtils.setTransparentStatusBar(this);
         ButterKnife.bind(this);
         context = this;
         initView();

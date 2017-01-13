@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.webkit.DownloadListener;
@@ -21,8 +20,8 @@ import android.widget.SlidingDrawer;
 import android.widget.TextView;
 
 import com.vondear.tools.R;
-import com.vondear.vontools.VonBarUtils;
-import com.vondear.vontools.VonConstUtils;
+import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.RxConstUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,9 +73,9 @@ public class ActivitySlidingDrawerSingle extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VonBarUtils.noTitle(this);
+        RxBarUtils.noTitle(this);
         setContentView(R.layout.activity_sliding_drawer_single);
-        VonBarUtils.setTransparentStatusBar(this);
+        RxBarUtils.setTransparentStatusBar(this);
         ButterKnife.bind(this);
 
         mLlBack.setVisibility(View.VISIBLE);
@@ -113,7 +112,7 @@ public class ActivitySlidingDrawerSingle extends Activity {
 
         mPbWebBase.setMax(100);
 //        webPath = getIntent().getStringExtra("URL");
-        webPath = VonConstUtils.URL_VONTOOLS;
+        webPath = RxConstUtils.URL_VONTOOLS;
         if (webPath.equals("")) {
             webPath = "http://www.baidu.com";
         }
