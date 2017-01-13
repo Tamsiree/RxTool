@@ -67,7 +67,7 @@ public class ActivityDialog extends Activity {
 
     private void initWheelYearMonthDayDialog() {
         // ------------------------------------------------------------------选择日期开始
-        mDialogWheelYearMonthDay = new DialogWheelYearMonthDay(this, 2000,200);
+        mDialogWheelYearMonthDay = new DialogWheelYearMonthDay(this, 1994,2017);
         mDialogWheelYearMonthDay.getTv_sure().setOnClickListener(
                 new View.OnClickListener() {
 

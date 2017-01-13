@@ -11,7 +11,6 @@ import android.widget.Toast;
 import com.vondear.tools.R;
 import com.vondear.tools.adapter.AdapterRecyclerViewMain;
 import com.vondear.tools.bean.MainItem;
-import com.vondear.tools.scaner.ActivityScanerCode;
 import com.vondear.vontools.VonImageUtils;
 import com.vondear.vontools.VonRecyclerViewUtils;
 

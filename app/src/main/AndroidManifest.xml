@@ -42,7 +42,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
-            android:name=".scaner.ActivityScanerCode"
+            android:name=".activity.ActivityScanerCode"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.ActivityCreateQRCode"

@@ -3,6 +3,8 @@ package com.vondear.tools.scaner;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.vondear.tools.activity.ActivityScanerCode;
+
 import java.util.concurrent.CountDownLatch;
 
 /**

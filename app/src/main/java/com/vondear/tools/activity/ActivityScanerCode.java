@@ -1,4 +1,4 @@
-package com.vondear.tools.scaner;
+package com.vondear.tools.activity;
 
 import android.Manifest;
 import android.app.Activity;
@@ -34,8 +34,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.vondear.tools.activity.ActivityCreateQRCode;
 import com.vondear.tools.R;
+import com.vondear.tools.scaner.CaptureActivityHandler;
 import com.vondear.vontools.VonActivityUtils;
 import com.vondear.vontools.VonUtils;
 import com.zbar.lib.CameraManager;

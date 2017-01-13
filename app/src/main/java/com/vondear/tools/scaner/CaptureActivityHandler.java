@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.vondear.tools.R;
+import com.vondear.tools.activity.ActivityScanerCode;
 import com.zbar.lib.CameraManager;
 
 
