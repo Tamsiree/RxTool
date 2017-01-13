@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.vondear.tools.R;
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxDataUtils;
-import com.vondear.rxtools.view.RoundProgressBar;
+import com.vondear.rxtools.view.RxRoundProgress;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,7 +25,7 @@ public class ActivityProgressBar extends Activity {
     @BindView(R.id.ll_include_title)
     LinearLayout mLlIncludeTitle;
     @BindView(R.id.roundProgressBar1)
-    RoundProgressBar mRoundProgressBar1;
+    RxRoundProgress mRxRoundProgress1;
     @BindView(R.id.activity_round_progress_bar)
     LinearLayout mActivityRoundProgressBar;
     @BindView(R.id.pb_line_of_credit)
@@ -59,20 +59,20 @@ public class ActivityProgressBar extends Activity {
 
         if (max_money <= 0) {
             if (money < 100 && money > 0) {
-                mRoundProgressBar1.setMax(100);
+                mRxRoundProgress1.setMax(100);
             } else if (money >= 100 && money < 1000) {
-                mRoundProgressBar1.setMax(1000);
+                mRxRoundProgress1.setMax(1000);
             } else if (money >= 1000 && money < 5000) {
-                mRoundProgressBar1.setMax(5000);
+                mRxRoundProgress1.setMax(5000);
             } else if (money >= 5000 && money < 20000) {
-                mRoundProgressBar1.setMax(20000);
+                mRxRoundProgress1.setMax(20000);
             } else if (money >= 20000 && money < 100000) {
-                mRoundProgressBar1.setMax(100000);
+                mRxRoundProgress1.setMax(100000);
             } else if (money >= 100000) {
-                mRoundProgressBar1.setMax(RxDataUtils.stringToInt(money * 1.1 + ""));
+                mRxRoundProgress1.setMax(RxDataUtils.stringToInt(money * 1.1 + ""));
             }
         } else {
-            mRoundProgressBar1.setMax(max_money);
+            mRxRoundProgress1.setMax(max_money);
         }
         /**/
         /*
@@ -86,17 +86,17 @@ public class ActivityProgressBar extends Activity {
             public void run() {
 
                 try {
-                    while (progress < mRoundProgressBar1.getMax()) {
-                        progress += mRoundProgressBar1.getMax() * 0.01;
-                        if (progress < mRoundProgressBar1.getMax()) {
-                            mRoundProgressBar1.setProgress(progress);
+                    while (progress < mRxRoundProgress1.getMax()) {
+                        progress += mRxRoundProgress1.getMax() * 0.01;
+                        if (progress < mRxRoundProgress1.getMax()) {
+                            mRxRoundProgress1.setProgress(progress);
                         }
                         Thread.sleep(8);
                     }
                     while (progress > 0) {
-                        progress -= mRoundProgressBar1.getMax() * 0.01;
+                        progress -= mRxRoundProgress1.getMax() * 0.01;
                         if (progress > 0) {
-                            mRoundProgressBar1.setProgress(progress);
+                            mRxRoundProgress1.setProgress(progress);
                         }
                         Thread.sleep(8);
                     }
@@ -104,12 +104,12 @@ public class ActivityProgressBar extends Activity {
                     if (money != 0) {
                         while (progress < money) {
                             progress += money * 0.01;
-                            mRoundProgressBar1.setProgress(progress);
+                            mRxRoundProgress1.setProgress(progress);
                             Thread.sleep(10);
                         }
                     }
 
-                    mRoundProgressBar1.setProgress(money);
+                    mRxRoundProgress1.setProgress(money);
                 } catch (InterruptedException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

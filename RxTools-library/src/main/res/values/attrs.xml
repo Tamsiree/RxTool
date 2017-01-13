@@ -7,7 +7,7 @@
         <attr name="loadingTextAppearance" format="reference"/>
     </declare-styleable>
 
-    <declare-styleable name="RoundProgressBar">
+    <declare-styleable name="RxRoundProgress">
         <attr name="roundColor" format="color" />
         <attr name="roundProgressColor" format="color" />
         <attr name="roundWidth" format="dimension"></attr>
@@ -42,7 +42,7 @@
 
     <attr name="abstractWheelViewStyle" format="reference" />
 
-    <declare-styleable name="AutoImageView">
+    <declare-styleable name="RxAutoImageView">
         <attr name="ImageSrc" format="reference"/>
     </declare-styleable>
 </resources>

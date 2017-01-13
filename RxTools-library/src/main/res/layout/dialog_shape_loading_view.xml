@@ -10,7 +10,7 @@
     android:layout_height="match_parent">
 
 
-    <com.vondear.rxtools.view.dialogShapeLoadingView.DialogShapeLoadingView
+    <com.vondear.rxtools.view.dialog.dialogShapeLoadingView.DialogShapeLoadingView
         android:id="@+id/loadView"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"

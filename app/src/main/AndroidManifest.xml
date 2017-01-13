@@ -60,6 +60,8 @@
         <activity android:name=".activity.ActivityWheelHorizontal"/>
         <activity android:name=".activity.ActivityAutoImageView">
         </activity>
+        <activity android:name=".activity.ActivityPopupView">
+        </activity>
     </application>
 
 </manifest>

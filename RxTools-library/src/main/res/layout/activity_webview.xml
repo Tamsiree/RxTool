@@ -28,7 +28,7 @@
                 android:padding="15dp"
                 android:src="@drawable/back" />
 
-            <com.vondear.rxtools.view.AutoFitEditText
+            <com.vondear.rxtools.view.RxAutoFitEditText
                 android:id="@+id/afet_tv_title"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

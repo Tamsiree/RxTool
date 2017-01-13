@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">VonTools</string>
-    <string name="enter_app">进入VonTools</string>
+    <string name="app_name">RxTools</string>
+    <string name="enter_app">进入RxTools</string>
+    <string name="title_activity_base">ActivityBase</string>
 </resources>

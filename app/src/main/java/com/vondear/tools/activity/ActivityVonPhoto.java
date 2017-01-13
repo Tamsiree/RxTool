@@ -20,7 +20,7 @@ import com.vondear.rxtools.RxPhotoUtils;
 import com.vondear.tools.R;
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxSPUtils;
-import com.vondear.rxtools.view.TransparentDialog;
+import com.vondear.rxtools.view.dialog.RxDialog;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
@@ -83,7 +83,7 @@ public class ActivityVonPhoto extends Activity {
      * 选择头像 弹窗
      */
     private void initDialogOpenAvatar() {
-        final TransparentDialog dialog1 = new TransparentDialog(this);
+        final RxDialog dialog1 = new RxDialog(this);
         dialog1.getAttr().gravity = Gravity.BOTTOM;
         View dialogView1 = LayoutInflater.from(this).inflate(
                 R.layout.dialog_picker_pictrue, null);
@@ -126,7 +126,7 @@ public class ActivityVonPhoto extends Activity {
      * @param uri
      */
     private void showBigImageView(Uri uri) {
-        TransparentDialog transparentDialog = new TransparentDialog(context);
+        RxDialog rxDialog = new RxDialog(context);
         View view = LayoutInflater.from(context).inflate(R.layout.image, null);
         ImageView imageView = (ImageView) view.findViewById(R.id.page_item);
         Glide.with(context).
@@ -139,8 +139,8 @@ public class ActivityVonPhoto extends Activity {
                 fallback(R.drawable.elves_ball).
                 dontAnimate().
                 into(imageView);
-        transparentDialog.setContentView(view);
-        transparentDialog.show();
+        rxDialog.setContentView(view);
+        rxDialog.show();
     }
 
     private Uri resultUri;

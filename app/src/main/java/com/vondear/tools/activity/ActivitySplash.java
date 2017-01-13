@@ -14,7 +14,7 @@ import com.vondear.rxtools.RxDeviceUtils;
 import com.vondear.rxtools.RxUtils;
 import com.vondear.tools.R;
 import com.vondear.rxtools.RxBarUtils;
-import com.vondear.rxtools.view.DialogSureCancle;
+import com.vondear.rxtools.view.dialog.RxDialogSureCancle;
 
 
 public class ActivitySplash extends Activity {
@@ -77,25 +77,25 @@ public class ActivitySplash extends Activity {
     }
 
     private void ShowDialog(String strAppVersionName, String apk_down_url) {
-        final DialogSureCancle dialogSureCancle = new DialogSureCancle(context);//提示弹窗
-        dialogSureCancle.getTv_title().setText(strAppVersionName);
-        dialogSureCancle.getTv_sure().setOnClickListener(new View.OnClickListener() {
+        final RxDialogSureCancle rxDialogSureCancle = new RxDialogSureCancle(context);//提示弹窗
+        rxDialogSureCancle.getTv_title().setText(strAppVersionName);
+        rxDialogSureCancle.getTv_sure().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //getFile(apk_down_url, RxFileUtils.getDiskFileDir(context) + File.separator + "update", str + ".apk");
                 // TODO: 第一步 在此处 使用 你的网络框架下载 新的Apk文件 可参照下面的例子 使用的是 okGo网络框架
                 // TODO: 第二步 可使用 RxAppUtils.InstallAPK(context,file.getAbsolutePath()); 方法进行 最新版本Apk文件的安装
-                dialogSureCancle.cancel();
+                rxDialogSureCancle.cancel();
             }
         });
-        dialogSureCancle.getTv_cancle().setOnClickListener(new View.OnClickListener() {
+        rxDialogSureCancle.getTv_cancle().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RxUtils.showToast(context,"已取消最新版本的下载",500);
-                dialogSureCancle.cancel();
+                rxDialogSureCancle.cancel();
             }
         });
-        dialogSureCancle.show();
+        rxDialogSureCancle.show();
     }
 
     /** 例子

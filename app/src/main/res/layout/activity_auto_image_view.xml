@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context="com.vondear.tools.activity.ActivityAutoImageView">
 
-    <com.vondear.rxtools.view.AutoImageView
+    <com.vondear.rxtools.view.RxAutoImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:ImageSrc="@drawable/ova"/>
