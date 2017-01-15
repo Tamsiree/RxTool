@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -15,10 +15,14 @@ import android.widget.TextView;
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxDataUtils;
 import com.vondear.rxtools.view.dialog.RxDialog;
+import com.vondear.rxtools.view.dialog.dialogWheel.DateArrayAdapter;
+import com.vondear.rxtools.view.dialog.dialogWheel.NumericWheelAdapter;
+import com.vondear.rxtools.view.dialog.dialogWheel.OnWheelChangedListener;
+import com.vondear.rxtools.view.dialog.dialogWheel.WheelView;
 
 import java.util.Calendar;
 
-public class DialogWheelYearMonthDay extends RxDialog {
+public class RxDialogWheelYearMonthDay extends RxDialog {
     private Context context;
     private WheelView year;
     private WheelView month;
@@ -52,14 +56,14 @@ public class DialogWheelYearMonthDay extends RxDialog {
         return divideYear;
     }
 
-    public DialogWheelYearMonthDay(Context context) {
+    public RxDialogWheelYearMonthDay(Context context) {
         super(context);
         // TODO Auto-generated constructor stub
         this.context = context;
         build();
     }
 
-    public DialogWheelYearMonthDay(Context context, int beginYear) {
+    public RxDialogWheelYearMonthDay(Context context, int beginYear) {
         super(context);
         // TODO Auto-generated constructor stub
         this.context = context;
@@ -67,7 +71,7 @@ public class DialogWheelYearMonthDay extends RxDialog {
         build();
     }
 
-    public DialogWheelYearMonthDay(Context context, int beginYear, int endYear) {
+    public RxDialogWheelYearMonthDay(Context context, int beginYear, int endYear) {
         super(context);
         // TODO Auto-generated constructor stub
         this.context = context;
@@ -76,7 +80,7 @@ public class DialogWheelYearMonthDay extends RxDialog {
         build();
     }
 
-    public DialogWheelYearMonthDay(Context context, TextView tv_time) {
+    public RxDialogWheelYearMonthDay(Context context, TextView tv_time) {
         super(context);
         // TODO Auto-generated constructor stub
         this.context = context;

@@ -23,13 +23,13 @@ import com.vondear.rxtools.R;
 /**
  * Created by zzz40500 on 15/4/6.
  */
-public class DialogShapeLoadingView extends FrameLayout {
+public class RxShapeLoadingView extends FrameLayout {
 
     private static final int ANIMATION_DURATION = 500;
 
     private static float mDistance = 200;
 
-    private ShapeLoadingView mShapeLoadingView;
+    private RxShapeView mRxShapeView;
 
     private ImageView mIndicationIm;
 
@@ -39,11 +39,11 @@ public class DialogShapeLoadingView extends FrameLayout {
     private String mLoadText;
 
 
-    public DialogShapeLoadingView(Context context) {
+    public RxShapeLoadingView(Context context) {
         super(context);
     }
 
-    public DialogShapeLoadingView(Context context, AttributeSet attrs) {
+    public RxShapeLoadingView(Context context, AttributeSet attrs) {
         super(context, attrs, 0);
         init(context, attrs);
 
@@ -51,15 +51,15 @@ public class DialogShapeLoadingView extends FrameLayout {
 
     private void init(Context context, AttributeSet attrs) {
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DialogShapeLoadingView);
-        mLoadText = typedArray.getString(R.styleable.DialogShapeLoadingView_loadingText);
-        mTextAppearance = typedArray.getResourceId(R.styleable.DialogShapeLoadingView_loadingTextAppearance, -1);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RxShapeLoadingView);
+        mLoadText = typedArray.getString(R.styleable.RxShapeLoadingView_loadingText);
+        mTextAppearance = typedArray.getResourceId(R.styleable.RxShapeLoadingView_loadingTextAppearance, -1);
 
         typedArray.recycle();
     }
 
 
-    public DialogShapeLoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxShapeLoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
@@ -88,7 +88,7 @@ public class DialogShapeLoadingView extends FrameLayout {
 
         layoutParams.gravity = Gravity.CENTER;
 
-        mShapeLoadingView = (ShapeLoadingView) view.findViewById(R.id.shapeLoadingView);
+        mRxShapeView = (RxShapeView) view.findViewById(R.id.shapeLoadingView);
 
         mIndicationIm = (ImageView) view.findViewById(R.id.indication);
         mLoadTextView = (TextView) view.findViewById(R.id.promptTV);
@@ -163,25 +163,25 @@ public class DialogShapeLoadingView extends FrameLayout {
      */
     public void upThrow() {
 
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mShapeLoadingView, "translationY", mDistance, 0);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mRxShapeView, "translationY", mDistance, 0);
         ObjectAnimator scaleIndication = ObjectAnimator.ofFloat(mIndicationIm, "scaleX", 0.2f, 1);
 
 
         ObjectAnimator objectAnimator1 = null;
-        switch (mShapeLoadingView.getShape()) {
+        switch (mRxShapeView.getShape()) {
             case SHAPE_RECT:
 
 
-                objectAnimator1 = ObjectAnimator.ofFloat(mShapeLoadingView, "rotation", 0, -120);
+                objectAnimator1 = ObjectAnimator.ofFloat(mRxShapeView, "rotation", 0, -120);
 
                 break;
             case SHAPE_CIRCLE:
-                objectAnimator1 = ObjectAnimator.ofFloat(mShapeLoadingView, "rotation", 0, 180);
+                objectAnimator1 = ObjectAnimator.ofFloat(mRxShapeView, "rotation", 0, 180);
 
                 break;
             case SHAPE_TRIANGLE:
 
-                objectAnimator1 = ObjectAnimator.ofFloat(mShapeLoadingView, "rotation", 0, 180);
+                objectAnimator1 = ObjectAnimator.ofFloat(mRxShapeView, "rotation", 0, 180);
 
                 break;
         }
@@ -231,7 +231,7 @@ public class DialogShapeLoadingView extends FrameLayout {
      */
     public void freeFall() {
 
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mShapeLoadingView, "translationY", 0, mDistance);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mRxShapeView, "translationY", 0, mDistance);
         ObjectAnimator scaleIndication = ObjectAnimator.ofFloat(mIndicationIm, "scaleX", 1, 0.2f);
 
 
@@ -250,7 +250,7 @@ public class DialogShapeLoadingView extends FrameLayout {
             public void onAnimationEnd(Animator animation) {
 
 
-                mShapeLoadingView.changeShape();
+                mRxShapeView.changeShape();
                 upThrow();
             }
 

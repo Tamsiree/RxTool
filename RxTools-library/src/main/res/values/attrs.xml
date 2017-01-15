@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="DialogShapeLoadingView">
+    <declare-styleable name="RxShapeLoadingView">
 
         <attr name="loadingText" format="string"/>
         <attr name="loadingTextAppearance" format="reference"/>

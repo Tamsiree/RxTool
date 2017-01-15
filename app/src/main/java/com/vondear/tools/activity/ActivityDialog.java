@@ -17,8 +17,8 @@ import com.vondear.rxtools.view.dialog.RxDialogEditTextSureCancle;
 import com.vondear.rxtools.view.dialog.RxDialogLoadingProgressAcfunVideo;
 import com.vondear.rxtools.view.dialog.RxDialogSure;
 import com.vondear.rxtools.view.dialog.RxDialogSureCancle;
-import com.vondear.rxtools.view.dialog.dialogShapeLoadingView.ShapeLoadingDialog;
-import com.vondear.rxtools.view.dialog.dialogWheel.DialogWheelYearMonthDay;
+import com.vondear.rxtools.view.dialog.RxDialogShapeLoading;
+import com.vondear.rxtools.view.dialog.RxDialogWheelYearMonthDay;
 import com.vondear.tools.R;
 
 import butterknife.BindView;
@@ -51,7 +51,7 @@ public class ActivityDialog extends Activity {
 
     private Context context;
 
-    private DialogWheelYearMonthDay mDialogWheelYearMonthDay;
+    private RxDialogWheelYearMonthDay mRxDialogWheelYearMonthDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,31 +70,31 @@ public class ActivityDialog extends Activity {
 
     private void initWheelYearMonthDayDialog() {
         // ------------------------------------------------------------------选择日期开始
-        mDialogWheelYearMonthDay = new DialogWheelYearMonthDay(this, 1994, 2017);
-        mDialogWheelYearMonthDay.getTv_sure().setOnClickListener(
+        mRxDialogWheelYearMonthDay = new RxDialogWheelYearMonthDay(this, 1994, 2017);
+        mRxDialogWheelYearMonthDay.getTv_sure().setOnClickListener(
                 new View.OnClickListener() {
 
                     @Override
                     public void onClick(View arg0) {
-                        if (mDialogWheelYearMonthDay.getCheckBox_day().isChecked()) {
+                        if (mRxDialogWheelYearMonthDay.getCheckBox_day().isChecked()) {
                             mButtonDialogWheelYearMonthDay.setText(
-                                    mDialogWheelYearMonthDay.getSelectorYear() + "年"
-                                            + mDialogWheelYearMonthDay.getSelectorMonth() + "月"
-                                            + mDialogWheelYearMonthDay.getSelectorDay() + "日");
+                                    mRxDialogWheelYearMonthDay.getSelectorYear() + "年"
+                                            + mRxDialogWheelYearMonthDay.getSelectorMonth() + "月"
+                                            + mRxDialogWheelYearMonthDay.getSelectorDay() + "日");
                         } else {
                             mButtonDialogWheelYearMonthDay.setText(
-                                    mDialogWheelYearMonthDay.getSelectorYear() + "年"
-                                            + mDialogWheelYearMonthDay.getSelectorMonth() + "月");
+                                    mRxDialogWheelYearMonthDay.getSelectorYear() + "年"
+                                            + mRxDialogWheelYearMonthDay.getSelectorMonth() + "月");
                         }
-                        mDialogWheelYearMonthDay.cancel();
+                        mRxDialogWheelYearMonthDay.cancel();
                     }
                 });
-        mDialogWheelYearMonthDay.getTv_cancle().setOnClickListener(
+        mRxDialogWheelYearMonthDay.getTv_cancle().setOnClickListener(
                 new View.OnClickListener() {
 
                     @Override
                     public void onClick(View arg0) {
-                        mDialogWheelYearMonthDay.cancel();
+                        mRxDialogWheelYearMonthDay.cancel();
                     }
                 });
         // ------------------------------------------------------------------选择日期结束
@@ -155,14 +155,14 @@ public class ActivityDialog extends Activity {
                 rxDialogEditTextSureCancle.show();
                 break;
             case R.id.button_DialogWheelYearMonthDay:
-                if (mDialogWheelYearMonthDay == null) {
+                if (mRxDialogWheelYearMonthDay == null) {
                     initWheelYearMonthDayDialog();
                 }
-                mDialogWheelYearMonthDay.show();
+                mRxDialogWheelYearMonthDay.show();
                 break;
             case R.id.button_DialogShapeLoading:
-                ShapeLoadingDialog shapeLoadingDialog = new ShapeLoadingDialog(this);
-                shapeLoadingDialog.show();
+                RxDialogShapeLoading rxDialogShapeLoading = new RxDialogShapeLoading(this);
+                rxDialogShapeLoading.show();
                 break;
             case R.id.button_DialogLoadingProgressAcfunVideo:
                 new RxDialogLoadingProgressAcfunVideo(this).show();

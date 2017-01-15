@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.dialog.dialogShapeLoadingView;
+package com.vondear.rxtools.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -7,23 +7,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.vondear.rxtools.R;
+import com.vondear.rxtools.view.dialog.dialogShapeLoadingView.RxShapeLoadingView;
 
 
 /**
  * Created by vondear on 15/6/15.
  *
  */
-public class ShapeLoadingDialog {
+public class RxDialogShapeLoading {
 
 
 
     private Context mContext;
     private Dialog mDialog;
-    private DialogShapeLoadingView mLoadingView;
+    private RxShapeLoadingView mLoadingView;
     private View mDialogContentView;
 
 
-    public ShapeLoadingDialog(Context context) {
+    public RxDialogShapeLoading(Context context) {
         this.mContext=context;
         init();
     }
@@ -31,7 +32,7 @@ public class ShapeLoadingDialog {
     private void init() {
         mDialog = new Dialog(mContext, R.style.custom_dialog);
         mDialogContentView= LayoutInflater.from(mContext).inflate(R.layout.dialog_shape_loading_view,null);
-        mLoadingView= (DialogShapeLoadingView) mDialogContentView.findViewById(R.id.loadView);
+        mLoadingView= (RxShapeLoadingView) mDialogContentView.findViewById(R.id.loadView);
         mDialog.setContentView(mDialogContentView);
     }
 
