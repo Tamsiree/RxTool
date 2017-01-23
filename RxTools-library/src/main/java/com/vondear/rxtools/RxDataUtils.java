@@ -210,6 +210,38 @@ public class RxDataUtils {
     }
 
     /**
+     * 字符串转换成整型数组
+     * @param s
+     * @return
+     */
+    public static int[] stringToInts(String s) {
+        int[] n = new int[s.length()];
+        if (RxDataUtils.isNullString(s)) {
+
+        } else {
+            for (int i = 0; i < s.length(); i++) {
+                n[i] = Integer.parseInt(s.substring(i, i + 1));
+            }
+        }
+        return n;
+    }
+
+    /**
+     * 整型数组求和
+     * @param ints
+     * @return
+     */
+    public static int intsGetSum(int[] ints) {
+        int sum = 0;
+
+        for (int i = 0, len = ints.length; i < len; i++) {
+            sum += ints[i];
+        }
+
+        return sum;
+    }
+
+    /**
      * 字符串转换成long ,转换失败将会 return 0;
      *
      * @param str 字符串
