@@ -64,6 +64,8 @@
         </activity>
         <activity android:name=".activity.ActivityRunTextView">
         </activity>
+        <activity android:name=".activity.ActivityRxToast">
+        </activity>
     </application>
 
 </manifest>

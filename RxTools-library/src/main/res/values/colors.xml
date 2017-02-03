@@ -5,10 +5,17 @@
     <color name="orange">#f8b62d</color>
     <color name="yellow">#e6ff00</color>
     <color name="red">#ff0006</color>
-    <color name="hot_pink">#FD4C5B</color>
+    <color name="hot_pink">#FD4C5B</color><!-- Acfun主题色 -->
     <color name="baby_blue">#89CFF0</color>
-    <color name="blue1">#3F51B5</color>
+    <color name="blue">#3F51B5</color>
     <color name="dark_blue_03">#000333</color>
+
+    <color name="ERROR_COLOR">#FD4C5B</color>
+    <color name="SUCCESS_COLOR">#388E3C</color>
+    <color name="INFO_COLOR">#3F51B5</color>
+    <color name="WARNING_COLOR">#FFA900</color>
+
+
 
     <color name="f0">#f0f0f0</color>
     <color name="e">#EEEEEE</color>
@@ -173,7 +180,7 @@
     <color name="darkcyan">#008B8B</color><!--暗青色 -->
     <color name="teal">#008080</color><!--水鸭色 -->
     <color name="darkgreen">#006400</color><!--暗绿色 -->
-    <color name="blue">#0000FF</color><!--蓝色 -->
+    <color name="blue1">#0000FF</color><!--蓝色 -->
     <color name="mediumblue">#0000CD</color><!--中兰色 -->
     <color name="darkblue">#00008B</color><!--暗蓝色 -->
     <color name="navy">#000080</color><!--海军色 -->

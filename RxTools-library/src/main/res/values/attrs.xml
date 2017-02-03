@@ -45,4 +45,15 @@
     <declare-styleable name="RxAutoImageView">
         <attr name="ImageSrc" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="RxTitle">
+        <attr name="background" format="reference"/>
+        <attr name="title" format="string"/>
+        <attr name="titleColor" format="color"/>
+        <attr name="titleSize" format="dimension"/>
+        <attr name="leftIcon" format="reference"/>
+        <attr name="RightIcon" format="reference"/>
+        <attr name="leftIconVisibility" format="boolean"/>
+        <attr name="RightIconVisibility" format="boolean"/>
+    </declare-styleable>
 </resources>
