@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/capture_containter"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+                android:id="@+id/capture_containter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
     <SurfaceView
         android:id="@+id/capture_preview"

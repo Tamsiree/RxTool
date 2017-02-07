@@ -16,27 +16,10 @@ import com.vondear.rxtools.R;
  */
 public class RxDialogSure extends RxDialog {
 
-    private TextView tv_sure;
-    private TextView tv_content;
-    private TextView tv_title;
-
-    public void setTv_sure(TextView tv_sure) {
-        this.tv_sure = tv_sure;
-    }
-
-    public void setTv_content(TextView tv_content) {
-        this.tv_content = tv_content;
-    }
-
-    public void setTv_title(TextView tv_title) {
-        this.tv_title = tv_title;
-    }
-
     private ImageView iv_logo;
-
-    public void setIv_logo(ImageView iv_logo) {
-        this.iv_logo = iv_logo;
-    }
+    private TextView tv_title;
+    private TextView tv_content;
+    private TextView tv_sure;
 
     public ImageView getIv_logo() {
         return iv_logo;

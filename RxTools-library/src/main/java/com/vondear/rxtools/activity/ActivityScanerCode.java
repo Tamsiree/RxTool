@@ -1,4 +1,4 @@
-package com.vondear.tools.activity;
+package com.vondear.rxtools.activity;
 
 import android.Manifest;
 import android.app.Activity;
@@ -21,6 +21,7 @@ import android.provider.MediaStore;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -33,11 +34,14 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxUtils;
-import com.vondear.tools.R;
-import com.vondear.tools.scaner.CaptureActivityHandler;
+import com.vondear.rxtools.model.scaner.CaptureActivityHandler;
 import com.vondear.rxtools.RxActivityUtils;
+import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtools.view.dialog.RxDialogSure;
 import com.zbar.lib.CameraManager;
 import com.zbar.lib.DecoderLocalFile;
 import com.zbar.lib.InactivityTimer;
@@ -105,13 +109,17 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         ll_scan_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RxActivityUtils.skipActivity(ActivityScanerCode.this, ActivityCreateQRCode.class);
+                // RxActivityUtils.skipActivity(ActivityScanerCode.this, ActivityCreateQRCode.class);
             }
         });
         //请求Camera权限
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA}, 1);
         }
+
+        rxDialogSure = new RxDialogSure(context);//提示弹窗
+        rxDialogSure.getTv_content().setMovementMethod(ScrollingMovementMethod.getInstance());
+        rxDialogSure.getTv_title().setText("扫描结果");
     }
 
     private void initScanerAnimation() {
@@ -173,18 +181,17 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
     }
 
     public void btn(View view) {
-        switch (view.getId()) {
-            case R.id.top_mask:
-                light();
-                break;
-            case R.id.top_back:
-                finish();
-                break;
-            case R.id.top_openpicture:
-                getPicture();
-                break;
-            default:
-                break;
+        int i = view.getId();
+        if (i == R.id.top_mask) {
+            light();
+
+        } else if (i == R.id.top_back) {
+            finish();
+
+        } else if (i == R.id.top_openpicture) {
+            getPicture();
+
+        } else {
         }
     }
 
@@ -277,6 +284,7 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         super.onDestroy();
     }
 
+    private RxDialogSure rxDialogSure;
 
     //----------------------------------------------------------------------------------------------打开本地图片识别二维码 start
 
@@ -307,9 +315,20 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
                     DecoderLocalFile decoder = new DecoderLocalFile(bitmappath);
                     String phone = decoder.handleQRCodeFormPhoto(ActivityScanerCode.this, DecoderLocalFile.loadBitmap(bitmappath));
                     if ("-1".equals(phone)) {
-                        RxUtils.showToast(ActivityScanerCode.this, "图片中无二维码信息", false);
+//                        RxUtils.showToast(ActivityScanerCode.this, "图片中无二维码信息", false);
+                        RxToast.error(context, "图片中无二维码信息.", Toast.LENGTH_SHORT, true).show();
                     } else {
-                        RxUtils.showToast(ActivityScanerCode.this, "" + phone, false);
+//                        RxUtils.showToast(ActivityScanerCode.this, "" + phone, false);
+                        rxDialogSure.getTv_content().setText(phone);
+                        rxDialogSure.getTv_sure().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                rxDialogSure.cancel();
+                                // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
+                                handler.sendEmptyMessage(R.id.restart_preview);
+                            }
+                        });
+                        rxDialogSure.show();
                     }
                 }
             } catch (FileNotFoundException e) {
@@ -404,13 +423,32 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         String resstart = result.substring(0, 4);
         String resend = result.substring(4, result.length());
         if ("二维码:".equals(resstart)) {
-            RxUtils.showToast(this, result, false);
-            // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
-            handler.sendEmptyMessage(R.id.restart_preview);
+//            RxUtils.showToast(this, result, false);
+
+            rxDialogSure.getTv_content().setText(result);
+            rxDialogSure.getTv_sure().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    rxDialogSure.cancel();
+                    // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
+                    handler.sendEmptyMessage(R.id.restart_preview);
+                }
+            });
+            rxDialogSure.show();
+
         } else if ("条形码:".equals(resstart)) {
-            RxUtils.showToast(this, result, false);
-            // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
-            handler.sendEmptyMessage(R.id.restart_preview);
+//            RxUtils.showToast(this, result, false);
+
+            rxDialogSure.getTv_content().setText(result);
+            rxDialogSure.getTv_sure().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    rxDialogSure.cancel();
+                    // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
+                    handler.sendEmptyMessage(R.id.restart_preview);
+                }
+            });
+            rxDialogSure.show();
         }
 
     }

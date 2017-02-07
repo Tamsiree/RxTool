@@ -1,9 +1,10 @@
-package com.vondear.tools.scaner;
+package com.vondear.rxtools.model.scaner;
 
 import android.os.Handler;
 import android.os.Looper;
 
-import com.vondear.tools.activity.ActivityScanerCode;
+
+import com.vondear.rxtools.activity.ActivityScanerCode;
 
 import java.util.concurrent.CountDownLatch;
 

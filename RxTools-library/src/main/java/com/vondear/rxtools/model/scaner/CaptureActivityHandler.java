@@ -1,10 +1,10 @@
-package com.vondear.tools.scaner;
+package com.vondear.rxtools.model.scaner;
 
 import android.os.Handler;
 import android.os.Message;
 
-import com.vondear.tools.R;
-import com.vondear.tools.activity.ActivityScanerCode;
+import com.vondear.rxtools.R;
+import com.vondear.rxtools.activity.ActivityScanerCode;
 import com.zbar.lib.CameraManager;
 
 
@@ -34,25 +34,23 @@ public final class CaptureActivityHandler extends Handler {
 	@Override
 	public void handleMessage(Message message) {
 
-		switch (message.what) {
-		case R.id.auto_focus:
+		if (message.what == R.id.auto_focus) {
 			if (state == State.PREVIEW) {
 				CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
 			}
-			break;
-		case R.id.restart_preview:
+
+		} else if (message.what == R.id.restart_preview) {
 			restartPreviewAndDecode();
-			break;
-		case R.id.decode_succeeded:
+
+		} else if (message.what == R.id.decode_succeeded) {
 			state = State.SUCCESS;
 			activity.handleDecode((String) message.obj);// 解析成功，回调
-			break;
 
-		case R.id.decode_failed:
+		} else if (message.what == R.id.decode_failed) {
 			state = State.PREVIEW;
 			CameraManager.get().requestPreviewFrame(decodeThread.getHandler(),
 					R.id.decode);
-			break;
+
 		}
 
 	}

@@ -16,6 +16,8 @@
         <activity android:name=".activity.ActivityWebView"/>
         <activity android:name=".activity.ActivityBase">
         </activity>
+        <activity android:name=".activity.ActivityScanerCode">
+        </activity>
     </application>
 
 </manifest>

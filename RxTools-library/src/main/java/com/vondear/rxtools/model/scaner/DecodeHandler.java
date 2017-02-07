@@ -1,11 +1,11 @@
-package com.vondear.tools.scaner;
+package com.vondear.rxtools.model.scaner;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
 import com.dtr.zbar.build.ZBarDecoder;
-import com.vondear.tools.activity.ActivityScanerCode;
 import com.vondear.rxtools.R;
+import com.vondear.rxtools.activity.ActivityScanerCode;
 import com.zbar.lib.ZbarManager;
 
 
