@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.vondear.rxtools.activity.ActivityCodeTool;
 import com.vondear.rxtools.activity.ActivityScanerCode;
 import com.vondear.tools.R;
 import com.vondear.tools.adapter.AdapterRecyclerViewMain;
@@ -45,7 +46,7 @@ public class ActivityMain extends AppCompatActivity {
     private void initData() {
         mData = new ArrayList<>();
         mData.add(new MainItem("RxPhotoUtils操作UZrop裁剪图片", R.drawable.elves_ball, ActivityRxPhoto.class));
-        mData.add(new MainItem("二维码与条形码的扫描与生成", R.drawable.scan_barcode, ActivityScanerCode.class));
+        mData.add(new MainItem("二维码与条形码的扫描与生成", R.drawable.scan_barcode, ActivityCodeTool.class));
         mData.add(new MainItem("WebView的封装可播放视频", R.drawable.webpage, com.vondear.rxtools.activity.ActivityWebView.class));
         mData.add(new MainItem("常用的Dialog展示", R.drawable.dialog, ActivityDialog.class));
         mData.add(new MainItem("RxTextUtils操作Demo", R.drawable.text_editor, ActivityTextUtils.class));

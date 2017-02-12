@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".activity.ActivityScanerCode">
         </activity>
+        <activity android:name=".activity.ActivityCodeTool">
+        </activity>
     </application>
 
 </manifest>

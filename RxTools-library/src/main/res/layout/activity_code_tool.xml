@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_code_tool"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    android:orientation="vertical"
+    tools:context=".activity.ActivityCodeTool">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@color/mi_green"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <com.vondear.rxtools.view.RxTitle
+            android:id="@+id/rx_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:RightIcon="@drawable/set"
+            app:RightIconVisibility="false"
+            app:background="@color/mi_green"
+            app:leftIcon="@drawable/back"
+            app:leftIconVisibility="true"
+            app:title="扫码工具"
+            app:titleColor="@color/white"
+            app:titleSize="6sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="#33f8f8f8"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="扫码次数"
+                    android:textColor="#aaf8f8f8"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/f0"
+                    android:textSize="40sp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:background="#33f8f8f8"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="生成码次数"
+                    android:textColor="#aaf8f8f8"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/f0"
+                    android:textSize="40sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E1E1E1"
+        android:orientation="horizontal"
+        android:padding="0.1dp">
+
+        <LinearLayout
+            android:id="@+id/ll_scaner"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_margin="0.1dp"
+            android:layout_weight="1"
+            android:background="#f8f8f8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/circle_capture"/>
+
+            <TextView
+                android:textColor="@color/brown2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="扫描\n二维码与条形码"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_qr"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_margin="0.1dp"
+            android:layout_weight="1"
+            android:background="#f8f8f8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/circle_qr_code"/>
+
+            <TextView
+                android:textColor="@color/brown2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="生成\n二维码"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bar"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_margin="0.1dp"
+            android:layout_weight="1"
+            android:background="#f8f8f8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/circle_bar_code"/>
+
+            <TextView
+                android:textColor="@color/brown2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="生成\n条形码"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#e0e0e0"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_qr_root"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/shape_small_round_blue"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_qr_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:hint="请输入二维码的文字内容"
+                        android:padding="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:textColor="@color/f0"
+                        android:textColorHint="#aaf8f8f8"
+                        android:textSize="16dp"/>
+
+
+                    <ImageView
+                        android:id="@+id/iv_create_qr_code"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/next"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/iv_qr_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/transparent_bg"/>
+
+                    <TextView
+                        android:textColor="@color/brown2"
+                        android:layout_marginBottom="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="二维码已生成！"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/ll_bar_root"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/shape_small_round_blue"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:inputType="phone"
+                        android:id="@+id/et_bar_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:hint="请输入条形码文字内容"
+                        android:padding="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:textColor="@color/f0"
+                        android:textColorHint="#aaf8f8f8"
+                        android:textSize="16dp"/>
+
+
+                    <ImageView
+                        android:id="@+id/iv_create_bar_code"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/next"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_bar_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:id="@+id/iv_bar_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/transparent_bg"/>
+
+                    <TextView
+                        android:textColor="@color/brown2"
+                        android:layout_marginBottom="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="条形码码已生成！"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

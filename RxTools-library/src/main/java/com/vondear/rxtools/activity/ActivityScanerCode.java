@@ -92,13 +92,50 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         context = this;
         initView();//界面控件初始化
         initScanerAnimation();//扫描动画初始化
-
-
         CameraManager.init(getApplication());//初始化 CameraManager
+
+
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
 
 
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SurfaceView surfaceView = (SurfaceView) findViewById(R.id.capture_preview);
+        SurfaceHolder surfaceHolder = surfaceView.getHolder();
+        if (hasSurface) {
+            initCamera(surfaceHolder);//Camera初始化
+        } else {
+            surfaceHolder.addCallback(this);
+            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        }
+        playBeep = true;
+        AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);
+        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
+            playBeep = false;
+        }
+        initBeepSound();
+        vibrate = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (handler != null) {
+            handler.quitSynchronously();
+            handler = null;
+        }
+        CameraManager.get().closeDriver();
+    }
+
+    @Override
+    protected void onDestroy() {
+        inactivityTimer.shutdown();
+        super.onDestroy();
     }
 
     private void initView() {
@@ -246,43 +283,6 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         return handler;
     }
 
-
-    @SuppressWarnings("deprecation")
-    @Override
-    protected void onResume() {
-        super.onResume();
-        SurfaceView surfaceView = (SurfaceView) findViewById(R.id.capture_preview);
-        SurfaceHolder surfaceHolder = surfaceView.getHolder();
-        if (hasSurface) {
-            initCamera(surfaceHolder);//Camera初始化
-        } else {
-            surfaceHolder.addCallback(this);
-            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        }
-        playBeep = true;
-        AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);
-        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-            playBeep = false;
-        }
-        initBeepSound();
-        vibrate = true;
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (handler != null) {
-            handler.quitSynchronously();
-            handler = null;
-        }
-        CameraManager.get().closeDriver();
-    }
-
-    @Override
-    protected void onDestroy() {
-        inactivityTimer.shutdown();
-        super.onDestroy();
-    }
 
     private RxDialogSure rxDialogSure;
 
