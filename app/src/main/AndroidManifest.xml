@@ -63,6 +63,8 @@
         </activity>
         <activity android:name=".activity.ActivityRxToast">
         </activity>
+        <activity android:name=".activity.ActivityNetSpeed">
+        </activity>
     </application>
 
 </manifest>

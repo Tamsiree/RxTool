@@ -46,14 +46,15 @@ public class ActivityMain extends AppCompatActivity {
     private void initData() {
         mData = new ArrayList<>();
         mData.add(new MainItem("RxPhotoUtils操作UZrop裁剪图片", R.drawable.elves_ball, ActivityRxPhoto.class));
-        mData.add(new MainItem("二维码与条形码的扫描与生成", R.drawable.scan_barcode, ActivityCodeTool.class));
+        mData.add(new MainItem("二维码与条形码的扫描与生成", R.drawable.circle_qr_code, ActivityCodeTool.class));
         mData.add(new MainItem("WebView的封装可播放视频", R.drawable.webpage, com.vondear.rxtools.activity.ActivityWebView.class));
-        mData.add(new MainItem("常用的Dialog展示", R.drawable.dialog, ActivityDialog.class));
-        mData.add(new MainItem("RxTextUtils操作Demo", R.drawable.text_editor, ActivityTextUtils.class));
-        mData.add(new MainItem("进度条的艺术", R.drawable.signal_wifi, ActivityProgressBar.class));
+        mData.add(new MainItem("常用的Dialog展示", R.drawable.icon_dialog, ActivityDialog.class));
+        mData.add(new MainItem("RxTextUtils操作Demo", R.drawable.icon_text, ActivityTextUtils.class));
+        mData.add(new MainItem("进度条的艺术", R.drawable.circle_bar, ActivityProgressBar.class));
+        mData.add(new MainItem("网速控件", R.drawable.net_speed, ActivityNetSpeed.class));
         mData.add(new MainItem("横向滑动选择日期", R.drawable.bookshelf, ActivityWheelHorizontal.class));
-        mData.add(new MainItem("横向左右自动滚动的ImageView", R.drawable.picture, ActivityAutoImageView.class));
-        mData.add(new MainItem("SlidingDrawerSingle使用", R.drawable.sliding_drawer, ActivitySlidingDrawerSingle.class));
+        mData.add(new MainItem("横向左右自动滚动的ImageView", R.drawable.two_way, ActivityAutoImageView.class));
+        mData.add(new MainItem("SlidingDrawerSingle使用", R.drawable.up_down, ActivitySlidingDrawerSingle.class));
         mData.add(new MainItem("PopupView的使用", R.drawable.bullet, ActivityPopupView.class));
         mData.add(new MainItem("RxToast的使用", R.drawable.rx_toast, ActivityRxToast.class));
         mData.add(new MainItem("RunTextView的使用", R.drawable.wrap_text, ActivityRunTextView.class));

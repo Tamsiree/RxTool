@@ -81,6 +81,7 @@ public class ActivityCodeTool extends ActivityBase {
                 } else {
                     mLlCode.setVisibility(View.VISIBLE);
                     RxUtils.createQRImage(str, 800, 800, mIvQrCode);
+                    RxToast.success(mContext, "二维码已生成!", Toast.LENGTH_SHORT, true).show();
                 }
             }
         });
@@ -94,6 +95,7 @@ public class ActivityCodeTool extends ActivityBase {
                 } else {
                     mLlBarCode.setVisibility(View.VISIBLE);
                     mIvBarCode.setImageBitmap(RxUtils.drawLinecode(mContext, str1, 1000, 300));
+                    RxToast.success(mContext, "条形码已生成!", Toast.LENGTH_SHORT, true).show();
                 }
             }
         });

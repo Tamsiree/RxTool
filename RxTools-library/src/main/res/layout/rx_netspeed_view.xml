@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/linLayoutSmall"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="#00000000"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:paddingLeft="2dp"
+              android:paddingRight="2dp">
+
+    <TextView
+        android:id="@+id/tvSum"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="实时网速"
+        android:textColor="#ffffff"
+        android:textSize="13sp"/>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/rlLayoutBig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#00000000"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:visibility="gone">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M↑:"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/tvMobileTx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/textView1"
+            android:layout_toRightOf="@+id/textView1"
+            android:text="0KB/s"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
+            android:text="M↓:"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/tvMobileRx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMobileTx"
+            android:layout_toEndOf="@+id/textView2"
+            android:layout_toRightOf="@+id/textView2"
+            android:text="0KB/s"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:text="W↑:"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/tvWlanTx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMobileRx"
+            android:layout_toEndOf="@+id/textView3"
+            android:layout_toRightOf="@+id/textView3"
+            android:text="0KB/s"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:text="W↓:"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/tvWlanRx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvWlanTx"
+            android:layout_toEndOf="@+id/textView4"
+            android:layout_toRightOf="@+id/textView4"
+            android:text="0KB/s"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
