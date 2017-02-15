@@ -56,4 +56,10 @@
         <attr name="leftIconVisibility" format="boolean"/>
         <attr name="RightIconVisibility" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="RxNetSpeedView">
+        <attr name="RxTextColor" format="color"/>
+        <attr name="RxTextSize" format="dimension"/>
+        <attr name="isMulti" format="boolean"/>
+    </declare-styleable>
 </resources>

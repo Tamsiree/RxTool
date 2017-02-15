@@ -3,6 +3,7 @@ package com.vondear.rxtools.view;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.net.TrafficStats;
 import android.os.Handler;
 import android.os.IBinder;
@@ -31,6 +32,11 @@ public class RxNetSpeedView extends FrameLayout {
     private TextView tvWlanRx;
     private TextView tvSum;
 
+    private TextView MobileTx;
+    private TextView MobileRx;
+    private TextView WlanTx;
+    private TextView WlanRx;
+
     double TIME_SPAN = 2000d;
     private long rxtxTotal = 0;
     private long mobileRecvSum = 0;
@@ -39,20 +45,9 @@ public class RxNetSpeedView extends FrameLayout {
     private long wlanSendSum = 0;
     private long exitTime = 0;
 
-    public boolean isMulti() {
-        return isMulti;
-    }
+    private int mTextColor;
 
-    public void setMulti(boolean multi) {
-        isMulti = multi;
-        if (isMulti) {
-            tvSum.setVisibility(GONE);
-            rlLayoutBig.setVisibility(VISIBLE);
-        } else {
-            tvSum.setVisibility(VISIBLE);
-            rlLayoutBig.setVisibility(GONE);
-        }
-    }
+    private int mTextSize;
 
     private boolean isMulti = false;
 
@@ -78,7 +73,62 @@ public class RxNetSpeedView extends FrameLayout {
         tvWlanRx = (TextView) findViewById(R.id.tvWlanRx);
         tvSum = (TextView) findViewById(R.id.tvSum);
 
+        MobileTx = (TextView) findViewById(R.id.MobileTx);
+        MobileRx = (TextView) findViewById(R.id.MobileRx);
+        WlanTx = (TextView) findViewById(R.id.WlanTx);
+        WlanRx = (TextView) findViewById(R.id.WlanRx);
+
+        //获得这个控件对应的属性。
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.RxNetSpeedView);
+
+        try {
+            //获得属性值
+            mTextColor = a.getColor(R.styleable.RxNetSpeedView_RxTextColor, getResources().getColor(R.color.white));
+            mTextSize = a.getDimensionPixelSize(R.styleable.RxNetSpeedView_RxTextSize, 12);//TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
+            isMulti = a.getBoolean(R.styleable.RxNetSpeedView_isMulti, false);
+        } finally {
+            //回收这个对象
+            a.recycle();
+        }
+
+        setTextColor(mTextColor);
+
+        setTextSize(mTextSize);
+
+        setMulti(isMulti);
+
         handler.postDelayed(task, timeInterval);//延迟调用
+    }
+
+    public void setTextSize(int textSize) {
+        if (textSize != 0) {
+            tvMobileTx.setTextSize(textSize);
+            tvMobileRx.setTextSize(textSize);
+            tvWlanTx.setTextSize(textSize);
+            tvWlanRx.setTextSize(textSize);
+            tvSum.setTextSize(textSize);
+
+            MobileTx.setTextSize(textSize);
+            MobileRx.setTextSize(textSize);
+            WlanTx.setTextSize(textSize);
+            WlanRx.setTextSize(textSize);
+
+        }
+    }
+
+    public void setTextColor(int textColor) {
+        if (textColor != 0) {
+            tvMobileTx.setTextColor(textColor);
+            tvMobileRx.setTextColor(textColor);
+            tvWlanTx.setTextColor(textColor);
+            tvWlanRx.setTextColor(textColor);
+            tvSum.setTextColor(textColor);
+
+            MobileTx.setTextColor(textColor);
+            MobileRx.setTextColor(textColor);
+            WlanTx.setTextColor(textColor);
+            WlanRx.setTextColor(textColor);
+        }
     }
 
     public RxNetSpeedView(Context context) {
@@ -154,6 +204,21 @@ public class RxNetSpeedView extends FrameLayout {
             //需要执行的代码
         }
     };
+
+    public boolean isMulti() {
+        return isMulti;
+    }
+
+    public void setMulti(boolean multi) {
+        isMulti = multi;
+        if (isMulti) {
+            tvSum.setVisibility(GONE);
+            rlLayoutBig.setVisibility(VISIBLE);
+        } else {
+            tvSum.setVisibility(VISIBLE);
+            rlLayoutBig.setVisibility(GONE);
+        }
+    }
 
     @Override
     protected void onDetachedFromWindow() {

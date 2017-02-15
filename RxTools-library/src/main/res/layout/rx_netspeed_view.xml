@@ -32,7 +32,7 @@
                     android:visibility="gone">
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/MobileTx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="M↑:"
@@ -43,17 +43,17 @@
             android:id="@+id/tvMobileTx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/textView1"
-            android:layout_toRightOf="@+id/textView1"
+            android:layout_toEndOf="@+id/MobileTx"
+            android:layout_toRightOf="@+id/MobileTx"
             android:text="0KB/s"
             android:textColor="#ffffff"
             android:textSize="9sp"/>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/MobileRx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView1"
+            android:layout_below="@+id/MobileTx"
             android:text="M↓:"
             android:textColor="#ffffff"
             android:textSize="9sp"/>
@@ -63,17 +63,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvMobileTx"
-            android:layout_toEndOf="@+id/textView2"
-            android:layout_toRightOf="@+id/textView2"
+            android:layout_toEndOf="@+id/MobileRx"
+            android:layout_toRightOf="@+id/MobileRx"
             android:text="0KB/s"
             android:textColor="#ffffff"
             android:textSize="9sp"/>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/WlanTx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView2"
+            android:layout_below="@+id/MobileRx"
             android:text="W↑:"
             android:textColor="#ffffff"
             android:textSize="9sp"/>
@@ -83,17 +83,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvMobileRx"
-            android:layout_toEndOf="@+id/textView3"
-            android:layout_toRightOf="@+id/textView3"
+            android:layout_toEndOf="@+id/WlanTx"
+            android:layout_toRightOf="@+id/WlanTx"
             android:text="0KB/s"
             android:textColor="#ffffff"
             android:textSize="9sp"/>
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/WlanRx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView3"
+            android:layout_below="@+id/WlanTx"
             android:text="W↓:"
             android:textColor="#ffffff"
             android:textSize="9sp"/>
@@ -103,8 +103,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvWlanTx"
-            android:layout_toEndOf="@+id/textView4"
-            android:layout_toRightOf="@+id/textView4"
+            android:layout_toEndOf="@+id/WlanRx"
+            android:layout_toRightOf="@+id/WlanRx"
             android:text="0KB/s"
             android:textColor="#ffffff"
             android:textSize="9sp"/>
