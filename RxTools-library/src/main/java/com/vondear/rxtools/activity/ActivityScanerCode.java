@@ -37,9 +37,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.vondear.rxtools.R;
-import com.vondear.rxtools.RxUtils;
 import com.vondear.rxtools.model.scaner.CaptureActivityHandler;
-import com.vondear.rxtools.RxActivityUtils;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogSure;
 import com.zbar.lib.CameraManager;

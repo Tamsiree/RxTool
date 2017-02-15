@@ -6,11 +6,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import static com.vondear.rxtools.RxConstUtils.*;
-import static com.vondear.rxtools.RxConstUtils.DAY;
-import static com.vondear.rxtools.RxConstUtils.HOUR;
-import static com.vondear.rxtools.RxConstUtils.MIN;
-import static com.vondear.rxtools.RxConstUtils.MSEC;
-import static com.vondear.rxtools.RxConstUtils.SEC;
 
 /**
  * Created by vondear on 2016/1/24.

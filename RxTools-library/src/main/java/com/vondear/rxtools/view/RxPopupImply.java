@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxDeviceUtils;
-import com.vondear.rxtools.RxUtils;
 import com.vondear.rxtools.bean.ActionItem;
 
 import java.util.ArrayList;

@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxBarUtils;
-import com.vondear.rxtools.RxConstUtils;
 import com.vondear.rxtools.RxConstants;
 import com.vondear.rxtools.RxImageUtils;
 import com.vondear.rxtools.RxKeyboardUtils;

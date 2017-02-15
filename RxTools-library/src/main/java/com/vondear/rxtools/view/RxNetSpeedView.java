@@ -1,23 +1,16 @@
 package com.vondear.rxtools.view;
 
-import android.app.Service;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.net.TrafficStats;
 import android.os.Handler;
-import android.os.IBinder;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.vondear.rxtools.R;
-
 import java.text.DecimalFormat;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by vonde on 2017/2/15.
@@ -160,8 +153,6 @@ public class RxNetSpeedView extends FrameLayout {
         wlanSendSum = tempWlanTx;
         //==========================================================
         if (isMulti) {
-
-
             if (mobileRecvSpeed >= 0d) {
                 tvMobileRx.setText(showSpeed(mobileRecvSpeed));
             }
@@ -177,7 +168,6 @@ public class RxNetSpeedView extends FrameLayout {
         } else {
             //==============================================================
             if (totalSpeed >= 0d) {
-
                 tvSum.setText(showSpeed(totalSpeed));
             }
         }
@@ -218,6 +208,14 @@ public class RxNetSpeedView extends FrameLayout {
             tvSum.setVisibility(VISIBLE);
             rlLayoutBig.setVisibility(GONE);
         }
+    }
+
+    public long getTimeInterval() {
+        return timeInterval;
+    }
+
+    public void setTimeInterval(long timeInterval) {
+        this.timeInterval = timeInterval;
     }
 
     @Override

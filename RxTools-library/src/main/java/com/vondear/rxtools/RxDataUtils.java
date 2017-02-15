@@ -27,21 +27,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.vondear.rxtools.RxConstUtils.*;
-import static com.vondear.rxtools.RxConstUtils.BYTE;
-import static com.vondear.rxtools.RxConstUtils.GB;
-import static com.vondear.rxtools.RxConstUtils.KB;
-import static com.vondear.rxtools.RxConstUtils.MB;
-import static com.vondear.rxtools.RxConstUtils.REGEX_CHZ;
-import static com.vondear.rxtools.RxConstUtils.REGEX_DATE;
-import static com.vondear.rxtools.RxConstUtils.REGEX_EMAIL;
-import static com.vondear.rxtools.RxConstUtils.REGEX_IDCARD15;
-import static com.vondear.rxtools.RxConstUtils.REGEX_IDCARD18;
-import static com.vondear.rxtools.RxConstUtils.REGEX_IP;
-import static com.vondear.rxtools.RxConstUtils.REGEX_MOBILE_EXACT;
-import static com.vondear.rxtools.RxConstUtils.REGEX_MOBILE_SIMPLE;
-import static com.vondear.rxtools.RxConstUtils.REGEX_TEL;
-import static com.vondear.rxtools.RxConstUtils.REGEX_URL;
-import static com.vondear.rxtools.RxConstUtils.REGEX_USERNAME;
 
 /**
  * Created by vonde on 2016/1/24.
@@ -139,8 +124,7 @@ public class RxDataUtils {
      * @return
      */
     public static String getAstro(int month, int day) {
-        String[] starArr = {"魔羯座", "水瓶座", "双鱼座", "牡羊座",
-                "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座"};
+        String[] starArr = {"魔羯座", "水瓶座", "双鱼座", "牡羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座"};
         int[] DayArr = {22, 20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22};  // 两个星座分割日
         int index = month;
         // 所查询日期在分割日之前，索引-1，否则不变
@@ -190,7 +174,6 @@ public class RxDataUtils {
     }
 
 
-
     /**
      * 字符串转换成整数 ,转换失败将会 return 0;
      *
@@ -211,6 +194,7 @@ public class RxDataUtils {
 
     /**
      * 字符串转换成整型数组
+     *
      * @param s
      * @return
      */
@@ -228,6 +212,7 @@ public class RxDataUtils {
 
     /**
      * 整型数组求和
+     *
      * @param ints
      * @return
      */
