@@ -40,7 +40,7 @@ public class RxDialogLoadingProgressAcfunVideo extends RxDialog {
                 .findViewById(R.id.tv_reminder);
         tv_reminder.setText(loadingText[n2]);
         setContentView(dialogView1);
-        getAttr().gravity = Gravity.CENTER;
+        getLayoutParams().gravity = Gravity.CENTER;
     }
 
 }

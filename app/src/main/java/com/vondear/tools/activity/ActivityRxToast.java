@@ -56,23 +56,23 @@ public class ActivityRxToast extends ActivityBase {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_error_toast:
-                RxToast.error(mContext, "This is an error toast.", Toast.LENGTH_SHORT, true).show();
+                RxToast.error(mContext, "这是一个提示错误的Toast！", Toast.LENGTH_SHORT, true).show();
                 break;
             case R.id.button_success_toast:
-                RxToast.success(mContext, "Success!", Toast.LENGTH_SHORT, true).show();
+                RxToast.success(mContext, "这是一个提示成功的Toast!", Toast.LENGTH_SHORT, true).show();
                 break;
             case R.id.button_info_toast:
-                RxToast.info(mContext, "Here is some info for you.", Toast.LENGTH_SHORT, true).show();
+                RxToast.info(mContext, "这是一个提示信息的Toast.", Toast.LENGTH_SHORT, true).show();
                 break;
             case R.id.button_warning_toast:
-                RxToast.warning(mContext, "Beware of the dog.", Toast.LENGTH_SHORT, true).show();
+                RxToast.warning(mContext, "这是一个提示警告的Toast.", Toast.LENGTH_SHORT, true).show();
                 break;
             case R.id.button_normal_toast_wo_icon:
-                RxToast.normal(mContext, "Normal toast w/o icon").show();
+                RxToast.normal(mContext, "这是一个普通的没有ICON的Toast").show();
                 break;
             case R.id.button_normal_toast_w_icon:
-                Drawable icon = getResources().getDrawable(R.mipmap.ic_launcher);
-                RxToast.normal(mContext, "Normal toast w/ icon", icon).show();
+                Drawable icon = getResources().getDrawable(R.drawable.set);
+                RxToast.normal(mContext, "这是一个普通的包含ICON的Toast", icon).show();
                 break;
         }
     }

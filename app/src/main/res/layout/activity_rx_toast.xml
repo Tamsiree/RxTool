@@ -42,7 +42,7 @@
             android:layout_alignParentTop="true"
             android:layout_margin="5dp"
             android:background="@color/hot_pink"
-            android:text="ERROR TOAST"/>
+            android:text="错误的提示"/>
 
         <Button
             android:id="@+id/button_success_toast"
@@ -55,7 +55,7 @@
             android:layout_below="@+id/button_error_toast"
             android:layout_margin="5dp"
             android:background="@color/SUCCESS_COLOR"
-            android:text="SUCCESS TOAST"/>
+            android:text="成功的提示"/>
 
         <Button
             android:id="@+id/button_info_toast"
@@ -68,7 +68,7 @@
             android:layout_below="@+id/button_success_toast"
             android:layout_margin="5dp"
             android:background="@color/INFO_COLOR"
-            android:text="INFO TOAST"/>
+            android:text="信息的提示"/>
 
         <Button
             android:id="@+id/button_warning_toast"
@@ -81,7 +81,7 @@
             android:layout_below="@+id/button_info_toast"
             android:layout_margin="5dp"
             android:background="@color/WARNING_COLOR"
-            android:text="WARNING TOAST"/>
+            android:text="警告的提示"/>
 
         <Button
             android:id="@+id/button_normal_toast_wo_icon"
@@ -94,7 +94,7 @@
             android:layout_below="@+id/button_warning_toast"
             android:layout_margin="5dp"
             android:background="#666666"
-            android:text="NORMAL TOAST (WITHOUT ICON)"/>
+            android:text="普通的提示（没有ICON）"/>
 
         <Button
             android:id="@+id/button_normal_toast_w_icon"
@@ -107,7 +107,7 @@
             android:layout_below="@+id/button_normal_toast_wo_icon"
             android:layout_margin="5dp"
             android:background="#666666"
-            android:text="NORMAL TOAST (WITH ICON)"/>
+            android:text="普通的提示（有ICON）"/>
 
     </RelativeLayout>
 </LinearLayout>

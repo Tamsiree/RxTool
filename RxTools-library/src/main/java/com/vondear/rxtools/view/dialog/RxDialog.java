@@ -5,81 +5,57 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 
 import com.vondear.rxtools.R;
+import com.vondear.rxtools.RxDeviceUtils;
 
 
 public class RxDialog extends Dialog {
-    private LayoutParams attr;
 
-    public LayoutParams getAttr() {
-        return attr;
+    public LayoutParams getLayoutParams() {
+        return mLayoutParams;
     }
+
+    private LayoutParams mLayoutParams;
+
+    private Context mContext;
 
     public RxDialog(Context context, int themeResId) {
         super(context, themeResId);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setBackgroundDrawableResource(R.drawable.transparent_bg);
-        Window window = this.getWindow();
-        LayoutParams lp = window.getAttributes();
-        lp.alpha = 1f;
-        window.setAttributes(lp);
-        attr = window.getAttributes();
-        if (attr != null) {
-            attr.height = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-            attr.gravity = Gravity.CENTER;
-        }
+        initView(context);
     }
 
     public RxDialog(Context context, boolean cancelable, OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setBackgroundDrawableResource(R.drawable.transparent_bg);
-        Window window = this.getWindow();
-        LayoutParams lp = window.getAttributes();
-        lp.alpha = 1f;
-        window.setAttributes(lp);
-        attr = window.getAttributes();
-        if (attr != null) {
-            attr.height = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-            attr.gravity = Gravity.CENTER;
-        }
+        initView(context);
     }
 
     public RxDialog(Context context) {
         super(context);
-        // TODO Auto-generated constructor stub
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setBackgroundDrawableResource(
-                R.drawable.transparent_bg);
-        Window window = this.getWindow();
-        LayoutParams lp = window.getAttributes();
-        lp.alpha = 1f;
-        window.setAttributes(lp);
-        attr = window.getAttributes();
-        if (attr != null) {
-            attr.height = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-            attr.gravity = Gravity.CENTER;
-        }
+        initView(context);
     }
 
     public RxDialog(Activity activity) {
         super(activity);
-        // TODO Auto-generated constructor stub
+        initView(activity);
+    }
+
+    private void initView(Context context) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setBackgroundDrawableResource(
-                R.drawable.transparent_bg);
+        this.getWindow().setBackgroundDrawableResource(R.drawable.transparent_bg);
+        mContext = context;
         Window window = this.getWindow();
-        LayoutParams lp = window.getAttributes();
-        lp.alpha = 1f;
-        window.setAttributes(lp);
-        attr = window.getAttributes();
-        if (attr != null) {
-            attr.height = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-            attr.gravity = Gravity.CENTER;
+        mLayoutParams = window.getAttributes();
+        mLayoutParams.alpha = 1f;
+        window.setAttributes(mLayoutParams);
+        if (mLayoutParams != null) {
+            mLayoutParams.height = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+            mLayoutParams.gravity = Gravity.CENTER;
         }
     }
 
@@ -92,16 +68,15 @@ public class RxDialog extends Dialog {
         super(context);
         // TODO Auto-generated constructor stub
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setBackgroundDrawableResource(
-                R.drawable.transparent_bg);
+        this.getWindow().setBackgroundDrawableResource(R.drawable.transparent_bg);
+        mContext = context;
         Window window = this.getWindow();
-        LayoutParams lp = window.getAttributes();
-        lp.alpha = alpha;
-        window.setAttributes(lp);
-        attr = window.getAttributes();
-        if (attr != null) {
-            attr.height = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-            attr.gravity = gravity;
+        mLayoutParams = window.getAttributes();
+        mLayoutParams.alpha = 1f;
+        window.setAttributes(mLayoutParams);
+        if (mLayoutParams != null) {
+            mLayoutParams.height = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+            mLayoutParams.gravity = gravity;
         }
     }
 
@@ -113,5 +88,13 @@ public class RxDialog extends Dialog {
             return;
         }
         getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    public void setFullScreen() {
+        Window window = getWindow();
+        LayoutParams lp = window.getAttributes();
+        lp.width = RxDeviceUtils.getScreenWidth(mContext);
+        lp.height = RxDeviceUtils.getScreenHeight(mContext);
+        window.setAttributes(lp);
     }
 }

@@ -162,7 +162,7 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
             }
         });
 
-        getAttr().gravity = Gravity.CENTER;
+        getLayoutParams().gravity = Gravity.CENTER;
         setContentView(dialogView1);
     }
 

@@ -84,7 +84,7 @@ public class ActivityRxPhoto extends Activity {
      */
     private void initDialogOpenAvatar() {
         final RxDialog dialog1 = new RxDialog(this);
-        dialog1.getAttr().gravity = Gravity.BOTTOM;
+        dialog1.getLayoutParams().gravity = Gravity.BOTTOM;
         View dialogView1 = LayoutInflater.from(this).inflate(
                 R.layout.dialog_picker_pictrue, null);
         TextView tv_camera = (TextView) dialogView1
@@ -126,21 +126,28 @@ public class ActivityRxPhoto extends Activity {
      * @param uri
      */
     private void showBigImageView(Uri uri) {
-        RxDialog rxDialog = new RxDialog(context);
+        final RxDialog rxDialog = new RxDialog(context);
         View view = LayoutInflater.from(context).inflate(R.layout.image, null);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rxDialog.cancel();
+            }
+        });
         ImageView imageView = (ImageView) view.findViewById(R.id.page_item);
         Glide.with(context).
                 load(uri).
                 diskCacheStrategy(DiskCacheStrategy.RESULT).
                 thumbnail(0.5f).
-                placeholder(R.drawable.elves_ball).
+                placeholder(R.drawable.transparent_bg).
                 priority(Priority.LOW).
-                error(R.drawable.elves_ball).
-                fallback(R.drawable.elves_ball).
+                error(R.drawable.transparent_bg).
+                fallback(R.drawable.transparent_bg).
                 dontAnimate().
                 into(imageView);
         rxDialog.setContentView(view);
         rxDialog.show();
+        rxDialog.setFullScreen();
     }
 
     private Uri resultUri;
