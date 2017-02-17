@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.vondear.rxtools.RxImageUtils;
 import com.vondear.rxtools.RxPhotoUtils;
 import com.vondear.tools.R;
 import com.vondear.rxtools.RxBarUtils;
@@ -73,7 +74,7 @@ public class ActivityRxPhoto extends Activity {
         ivAvatar.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                showBigImageView(resultUri);
+                RxImageUtils.showBigImageView(context,resultUri);
                 return false;
             }
         });
@@ -120,36 +121,6 @@ public class ActivityRxPhoto extends Activity {
         dialog1.show();
     }
 
-    /**
-     * 查看原图
-     *
-     * @param uri
-     */
-    private void showBigImageView(Uri uri) {
-        final RxDialog rxDialog = new RxDialog(context);
-        View view = LayoutInflater.from(context).inflate(R.layout.image, null);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rxDialog.cancel();
-            }
-        });
-        ImageView imageView = (ImageView) view.findViewById(R.id.page_item);
-        Glide.with(context).
-                load(uri).
-                diskCacheStrategy(DiskCacheStrategy.RESULT).
-                thumbnail(0.5f).
-                placeholder(R.drawable.transparent_bg).
-                priority(Priority.LOW).
-                error(R.drawable.transparent_bg).
-                fallback(R.drawable.transparent_bg).
-                dontAnimate().
-                into(imageView);
-        rxDialog.setContentView(view);
-        rxDialog.show();
-        rxDialog.setFullScreen();
-    }
-
     private Uri resultUri;
 
     @Override
@@ -189,7 +160,6 @@ public class ActivityRxPhoto extends Activity {
                 if (resultCode == RESULT_OK) {
                     resultUri = UCrop.getOutput(data);
                     roadImageView(resultUri, ivAvatar);
-
                     RxSPUtils.putContent(context, "AVATAR", resultUri.toString());
                 } else if (resultCode == UCrop.RESULT_ERROR) {
                     final Throwable cropError = UCrop.getError(data);

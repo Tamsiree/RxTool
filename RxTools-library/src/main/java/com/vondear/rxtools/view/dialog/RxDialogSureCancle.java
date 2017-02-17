@@ -58,6 +58,7 @@ public class RxDialogSureCancle extends RxDialog {
         tv_sure = (TextView) dialog_view.findViewById(R.id.tv_sure);
         tv_cancle = (TextView) dialog_view.findViewById(R.id.tv_cancle);
         tv_title = (TextView) dialog_view.findViewById(R.id.tv_title);
+        tv_title.setTextIsSelectable(true);
         iv_logo = (ImageView) dialog_view.findViewById(R.id.iv_logo);
         setContentView(dialog_view);
     }

@@ -24,15 +24,20 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Build;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.ImageView;
+
+import com.vondear.rxtools.view.dialog.RxDialog;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -52,6 +57,25 @@ import java.net.URL;
  */
 
 public class RxImageUtils {
+
+    public static void showBigImageView(Context context,Uri uri) {
+        final RxDialog rxDialog = new RxDialog(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.image, null);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rxDialog.cancel();
+            }
+        });
+        ImageView imageView = (ImageView) view.findViewById(R.id.page_item);
+
+        imageView.setImageURI(uri);
+
+        rxDialog.setContentView(view);
+        rxDialog.show();
+        rxDialog.setFullScreen();
+    }
+
 
     /**
      * dip转px

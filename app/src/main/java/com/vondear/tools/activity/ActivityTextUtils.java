@@ -68,8 +68,7 @@ public class ActivityTextUtils extends Activity {
         TextView tvAboutSpannable = (TextView) findViewById(R.id.tv_about_spannable);
         // 响应点击事件的话必须设置以下属性
         tvAboutSpannable.setMovementMethod(LinkMovementMethod.getInstance());
-        tvAboutSpannable.setText(RxTextUtils
-                .getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+        tvAboutSpannable.setText(RxTextUtils.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
 
                 .append("测试").append("Url\n").setUrl(URL_VONTOOLS)
                 .append("列表项\n").setBullet(60, getResources().getColor(R.color.baby_blue))

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <declare-styleable name="RxShapeLoadingView">
 
@@ -61,5 +61,16 @@
         <attr name="RxTextColor" format="color"/>
         <attr name="RxTextSize" format="dimension"/>
         <attr name="isMulti" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="ticker_TickerView">
+        <attr name="ticker_animationDuration" format="reference|integer" />
+        <attr name="ticker_animateMeasurementChange" format="reference|boolean" />
+
+        <!-- Custom implementations of common android text attributes -->
+        <attr name="android:gravity" tools:ignore="ResourceName" />
+        <attr name="android:textAppearance" tools:ignore="ResourceName" />
+        <attr name="android:textColor" tools:ignore="ResourceName" />
+        <attr name="android:textSize" tools:ignore="ResourceName" />
     </declare-styleable>
 </resources>

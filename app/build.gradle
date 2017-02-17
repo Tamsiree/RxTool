@@ -5,7 +5,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "24.0.3"
     defaultConfig {
-        applicationId "com.vondear.tools"
+        applicationId "com.vondear.rxtools"
         minSdkVersion 14
         targetSdkVersion 24
         versionCode 1

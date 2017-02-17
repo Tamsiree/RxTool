@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
@@ -21,6 +22,8 @@ import android.provider.MediaStore;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.Layout;
+import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -37,6 +40,9 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.vondear.rxtools.R;
+import com.vondear.rxtools.RxDataUtils;
+import com.vondear.rxtools.RxSPUtils;
+import com.vondear.rxtools.RxTextUtils;
 import com.vondear.rxtools.model.scaner.CaptureActivityHandler;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogSure;
@@ -53,6 +59,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static com.vondear.rxtools.RxConstants.URL_VONTOOLS;
 
 public class ActivityScanerCode extends Activity implements SurfaceHolder.Callback {
     public static final int CHOOSE_PICTURE = 1003;
@@ -153,7 +161,6 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         }
 
         rxDialogSure = new RxDialogSure(context);//提示弹窗
-        rxDialogSure.getTv_content().setMovementMethod(ScrollingMovementMethod.getInstance());
         rxDialogSure.getTv_title().setText("扫描结果");
     }
 
@@ -317,16 +324,7 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
                         RxToast.error(context, "图片中无二维码信息.", Toast.LENGTH_SHORT, true).show();
                     } else {
 //                        RxUtils.showToast(ActivityScanerCode.this, "" + phone, false);
-                        rxDialogSure.getTv_content().setText(phone);
-                        rxDialogSure.getTv_sure().setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                rxDialogSure.cancel();
-                                // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
-                                handler.sendEmptyMessage(R.id.restart_preview);
-                            }
-                        });
-                        rxDialogSure.show();
+                        dialogShow(phone);
                     }
                 }
             } catch (FileNotFoundException e) {
@@ -335,6 +333,37 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
                 e.printStackTrace();
             }
         }
+    }
+
+    private void dialogShow(String phone) {
+        String type = phone.substring(0, 4);
+        String realContent = phone;
+        if ("二维码:".equals(type)) {
+            rxDialogSure.getTv_title().setText("二维码扫描结果");
+            realContent = phone.substring(4, phone.length());
+        } else if ("条形码:".equals(type)) {
+            rxDialogSure.getTv_title().setText("条形码扫描结果");
+            realContent = phone.substring(4, phone.length());
+        }
+
+
+        rxDialogSure.setContent(realContent);
+        rxDialogSure.getTv_sure().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rxDialogSure.cancel();
+            }
+        });
+        rxDialogSure.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
+                handler.sendEmptyMessage(R.id.restart_preview);
+            }
+        });
+        rxDialogSure.show();
+
+        RxSPUtils.putContent(context,"SCAN_CODE",RxDataUtils.stringToInt(RxSPUtils.getContent(context,"SCAN_CODE"))+1+"");
     }
 
     private final static String ALBUM_PATH = Environment.getExternalStorageDirectory() + File.separator + "fengci/";
@@ -418,36 +447,8 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
 
         this.result = result;
         Log.v("二维码/条形码 扫描结果", result);
-        String resstart = result.substring(0, 4);
-        String resend = result.substring(4, result.length());
-        if ("二维码:".equals(resstart)) {
-//            RxUtils.showToast(this, result, false);
 
-            rxDialogSure.getTv_content().setText(result);
-            rxDialogSure.getTv_sure().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    rxDialogSure.cancel();
-                    // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
-                    handler.sendEmptyMessage(R.id.restart_preview);
-                }
-            });
-            rxDialogSure.show();
-
-        } else if ("条形码:".equals(resstart)) {
-//            RxUtils.showToast(this, result, false);
-
-            rxDialogSure.getTv_content().setText(result);
-            rxDialogSure.getTv_sure().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    rxDialogSure.cancel();
-                    // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
-                    handler.sendEmptyMessage(R.id.restart_preview);
-                }
-            });
-            rxDialogSure.show();
-        }
+        dialogShow(result);
 
     }
     //==============================================================================================解析结果 及 后续处理 end

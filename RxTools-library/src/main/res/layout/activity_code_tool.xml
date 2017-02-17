@@ -56,13 +56,22 @@
                     android:layout_height="wrap_content"
                     android:text="扫码次数"
                     android:textColor="#aaf8f8f8"/>
-
+<!--
                 <TextView
+                    android:id="@+id/tv_scan_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:textColor="@color/f0"
-                    android:textSize="40sp"/>
+                    android:textSize="40sp"/>-->
+
+                <com.vondear.rxtools.view.ticker.RxTickerView
+                    android:id="@+id/ticker_scan_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textAppearance="@style/TickerTextAppearance"
+                    app:ticker_animationDuration="500" />
             </LinearLayout>
 
             <View
@@ -82,13 +91,23 @@
                     android:layout_height="wrap_content"
                     android:text="生成码次数"
                     android:textColor="#aaf8f8f8"/>
-
+<!--
                 <TextView
+                    android:id="@+id/tv_made_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:textColor="@color/f0"
-                    android:textSize="40sp"/>
+                    android:textSize="40sp"/>-->
+
+                <com.vondear.rxtools.view.ticker.RxTickerView
+                    android:id="@+id/ticker_made_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textAppearance="@style/TickerTextAppearance"
+                    app:ticker_animationDuration="500" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -268,7 +287,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="@drawable/shape_small_round_blue"
+                    android:background="@drawable/shape_small_round_blue1"
                     android:gravity="center"
                     android:orientation="vertical">
 

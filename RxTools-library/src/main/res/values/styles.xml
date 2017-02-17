@@ -27,8 +27,11 @@
         <item name="android:windowTitleStyle">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
 
-
+    <style name="TickerTextAppearance">
+        <item name="android:textColor">@color/f0</item>
+        <item name="android:textSize">50sp</item>
     </style>
 
 </resources>

@@ -113,7 +113,6 @@ public class ActivityDialog extends Activity {
                 break;
             case R.id.button_DialogSure:
                 final RxDialogSure rxDialogSure = new RxDialogSure(context);//提示弹窗
-                rxDialogSure.getTv_content().setMovementMethod(ScrollingMovementMethod.getInstance());
                 rxDialogSure.getTv_sure().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
