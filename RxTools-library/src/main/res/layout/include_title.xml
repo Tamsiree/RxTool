@@ -29,6 +29,7 @@
         android:layout_height="match_parent"
         android:padding="10dp"
         android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
         android:src="@drawable/set"
         android:visibility="invisible"/>
 </LinearLayout>

@@ -244,7 +244,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="新手上路，请保护好自己。"
+            android:text="长按头像显示大图。"
             android:textColor="#939393"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"

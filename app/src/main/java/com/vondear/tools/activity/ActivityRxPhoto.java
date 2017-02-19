@@ -1,14 +1,17 @@
 package com.vondear.tools.activity;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,12 +19,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxImageUtils;
 import com.vondear.rxtools.RxPhotoUtils;
-import com.vondear.tools.R;
-import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxSPUtils;
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.dialog.RxDialog;
+import com.vondear.rxtools.view.dialog.RxDialogSureCancle;
+import com.vondear.tools.R;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
@@ -32,9 +37,10 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
-public class ActivityRxPhoto extends Activity {
+public class ActivityRxPhoto extends ActivityBase {
 
     @BindView(R.id.iv_avatar)
     ImageView ivAvatar;
@@ -44,6 +50,8 @@ public class ActivityRxPhoto extends Activity {
     TextView tvTitle;
     @BindView(R.id.ll_include_title)
     LinearLayout llIncludeTitle;
+    @BindView(R.id.btn_exit)
+    Button mBtnExit;
 
     private Context context;
 
@@ -58,6 +66,12 @@ public class ActivityRxPhoto extends Activity {
     }
 
     private void initView() {
+        Resources r = mContext.getResources();
+        resultUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
+                + r.getResourcePackageName(R.drawable.elves_ball) + "/"
+                + r.getResourceTypeName(R.drawable.elves_ball) + "/"
+                + r.getResourceEntryName(R.drawable.elves_ball));
+
         ivFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +88,7 @@ public class ActivityRxPhoto extends Activity {
         ivAvatar.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                RxImageUtils.showBigImageView(context,resultUri);
+                RxImageUtils.showBigImageView(context, resultUri);
                 return false;
             }
         });
@@ -234,5 +248,23 @@ public class ActivityRxPhoto extends Activity {
                 .withMaxResultSize(1000, 1000)
                 .withOptions(options)
                 .start(this);
+    }
+
+    @OnClick(R.id.btn_exit)
+    public void onClick() {
+        final RxDialogSureCancle rxDialogSureCancle = new RxDialogSureCancle(this);
+        rxDialogSureCancle.getTv_cancle().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rxDialogSureCancle.cancel();
+            }
+        });
+        rxDialogSureCancle.getTv_sure().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        rxDialogSureCancle.show();
     }
 }
