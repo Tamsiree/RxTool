@@ -17,7 +17,7 @@
  *  limitations under the License.
  */
 
-package com.vondear.rxtools.view.wheelHorizontal;
+package com.vondear.rxtools.view.wheelhorizontal;
 
 /**
  * Range for visible items.

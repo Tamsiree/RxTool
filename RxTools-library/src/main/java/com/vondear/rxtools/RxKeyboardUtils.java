@@ -12,7 +12,6 @@ import android.widget.EditText;
  */
 public class RxKeyboardUtils {
 
-
     /**
      * 避免输入法面板遮挡
      * <p>在manifest.xml中activity中设置</p>

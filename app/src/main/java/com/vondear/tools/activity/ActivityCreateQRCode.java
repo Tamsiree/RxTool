@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vondear.rxtools.RxUtils;
+import com.vondear.rxtools.view.RxBarCode;
+import com.vondear.rxtools.view.RxQRCode;
 import com.vondear.tools.R;
 
 public class ActivityCreateQRCode extends Activity implements View.OnClickListener {
@@ -83,8 +85,8 @@ public class ActivityCreateQRCode extends Activity implements View.OnClickListen
 
     private void initData() {
         // TODO Auto-generated method stub
-        RxUtils.createQRImage("时间戳:" + System.currentTimeMillis(), 800, 800, iv_code);
-        iv_linecode.setImageBitmap(RxUtils.drawLinecode(this, "" + System.currentTimeMillis(), 1000, 300));
+        RxQRCode.createQRCode("时间戳:" + System.currentTimeMillis(), 800, 800, iv_code);
+        iv_linecode.setImageBitmap(RxBarCode.createBarCode("" + System.currentTimeMillis(), 1000, 300));
     }
 
     @Override

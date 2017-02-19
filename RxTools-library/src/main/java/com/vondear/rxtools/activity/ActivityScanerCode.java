@@ -60,6 +60,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static com.vondear.rxtools.RxConstants.SP_SCAN_CODE;
 import static com.vondear.rxtools.RxConstants.URL_VONTOOLS;
 
 public class ActivityScanerCode extends Activity implements SurfaceHolder.Callback {
@@ -363,7 +364,7 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         });
         rxDialogSure.show();
 
-        RxSPUtils.putContent(context,"SCAN_CODE",RxDataUtils.stringToInt(RxSPUtils.getContent(context,"SCAN_CODE"))+1+"");
+        RxSPUtils.putContent(context,SP_SCAN_CODE,RxDataUtils.stringToInt(RxSPUtils.getContent(context,SP_SCAN_CODE))+1+"");
     }
 
     private final static String ALBUM_PATH = Environment.getExternalStorageDirectory() + File.separator + "fengci/";

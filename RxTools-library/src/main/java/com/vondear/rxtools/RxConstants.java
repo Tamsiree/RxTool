@@ -18,7 +18,7 @@ public class RxConstants {
     public static final String URL_BAIDU_SEARCH = "http://www.baidu.com/s?wd=";
 
     /**
-     * 百度文字搜索
+     * ACFUN
      */
     public static final String URL_ACFUN = "http://www.acfun.tv/";
 
@@ -61,4 +61,8 @@ public class RxConstants {
 
     public static final String URL_JOKE_MUSIC = "http://route.showapi.com/255-1?type=31&showapi_appid=20569&showapi_sign=0707a6bfb3e842fb8c8aa450012d9756&page=";
     //==========================================煎蛋 API end=========================================
+
+    public static final String SP_MADE_CODE = "MADE_CODE";
+    public static final String SP_SCAN_CODE = "SCAN_CODE";
+
 }

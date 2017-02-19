@@ -19,7 +19,7 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <com.vondear.rxtools.view.wheelHorizontal.WheelHorizontalView
+        <com.vondear.rxtools.view.wheelhorizontal.WheelHorizontalView
             android:id="@+id/wheelView_year_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

@@ -15,10 +15,6 @@ import java.io.File;
  */
 public class RxIntentUtils {
 
-    private RxIntentUtils() {
-        throw new UnsupportedOperationException("u can't fuck me...");
-    }
-
     /**
      * 获取安装App(支持6.0)的意图
      *

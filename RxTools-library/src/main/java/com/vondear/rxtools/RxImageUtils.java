@@ -58,7 +58,13 @@ import java.net.URL;
 
 public class RxImageUtils {
 
-    public static void showBigImageView(Context context,Uri uri) {
+    /**
+     * 显示大图
+     *
+     * @param context
+     * @param uri 图片的Uri
+     */
+    public static void showBigImageView(Context context, Uri uri) {
         final RxDialog rxDialog = new RxDialog(context);
         View view = LayoutInflater.from(context).inflate(R.layout.image, null);
         view.setOnClickListener(new View.OnClickListener() {
@@ -85,8 +91,9 @@ public class RxImageUtils {
      * @return px值
      */
     public static int dip2px(Context context, float dpValue) {
-        return dp2px(context,dpValue);
+        return dp2px(context, dpValue);
     }
+
     /**
      * dp转px
      *
@@ -145,7 +152,7 @@ public class RxImageUtils {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
-    
+
     /**
      * 得到本地或者网络上的bitmap url - 网络或者本地图片的绝对路径,比如:
      * <p/>
@@ -178,8 +185,7 @@ public class RxImageUtils {
         }
     }
 
-    private static void copy(InputStream in, OutputStream out)
-            throws IOException {
+    private static void copy(InputStream in, OutputStream out) throws IOException {
         byte[] b = new byte[1024];
         int read;
         while ((read = in.read(b)) != -1) {
@@ -255,7 +261,7 @@ public class RxImageUtils {
      * @param format 格式
      * @return 字节数组
      */
-    public static byte[] bitmap2Bytes(Bitmap bitmap,CompressFormat format) {
+    public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
         return bitmap2Bytes(bitmap, format);
     }
 
@@ -297,7 +303,7 @@ public class RxImageUtils {
      * @param format   格式
      * @return 字节数组
      */
-    public static byte[] drawable2Bytes(Drawable drawable, CompressFormat  format) {
+    public static byte[] drawable2Bytes(Drawable drawable, CompressFormat format) {
         return drawable2Bytes(drawable, format);
     }
 
@@ -1698,7 +1704,6 @@ public class RxImageUtils {
         if (recycle && !src.isRecycled()) src.recycle();
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
     }
-
 
 
 }

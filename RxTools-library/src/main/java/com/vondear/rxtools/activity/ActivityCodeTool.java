@@ -1,11 +1,11 @@
 package com.vondear.rxtools.activity;
 
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vondear.rxtools.R;
@@ -14,10 +14,15 @@ import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxDataUtils;
 import com.vondear.rxtools.RxSPUtils;
 import com.vondear.rxtools.RxUtils;
+import com.vondear.rxtools.view.RxBarCode;
+import com.vondear.rxtools.view.RxQRCode;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.ticker.RxTickerUtils;
 import com.vondear.rxtools.view.ticker.RxTickerView;
+
+import static com.vondear.rxtools.RxConstants.SP_MADE_CODE;
+import static com.vondear.rxtools.RxConstants.SP_SCAN_CODE;
 
 public class ActivityCodeTool extends ActivityBase {
 
@@ -40,6 +45,7 @@ public class ActivityCodeTool extends ActivityBase {
 
     private RxTickerView mRxTickerViewMade;
     private RxTickerView mRxTickerViewScan;
+    private NestedScrollView nestedScrollView;
 
     private static final char[] NUMBER_LIST = RxTickerUtils.getDefaultNumberList();
 
@@ -68,6 +74,8 @@ public class ActivityCodeTool extends ActivityBase {
         mLlCode = (LinearLayout) findViewById(R.id.ll_code);
         mLlQrRoot = (LinearLayout) findViewById(R.id.ll_qr_root);
 
+        nestedScrollView = (NestedScrollView) findViewById(R.id.nestedScrollView);
+
         mEtBarCode = (EditText) findViewById(R.id.et_bar_code);
         mIvCreateBarCode = (ImageView) findViewById(R.id.iv_create_bar_code);
         mIvBarCode = (ImageView) findViewById(R.id.iv_bar_code);
@@ -86,12 +94,11 @@ public class ActivityCodeTool extends ActivityBase {
     }
 
     private void updateScanCodeCount() {
-        mRxTickerViewScan.setText(RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, "SCAN_CODE")) + "", true);
-
+        mRxTickerViewScan.setText(RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, SP_SCAN_CODE)) + "", true);
     }
 
     private void updateMadeCodeCount() {
-        mRxTickerViewMade.setText(RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, "MADE_CODE")) + "", true);
+        mRxTickerViewMade.setText(RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, SP_MADE_CODE)) + "", true);
     }
 
     private void initEvent() {
@@ -110,12 +117,24 @@ public class ActivityCodeTool extends ActivityBase {
                     RxToast.error(mContext, "二维码文字内容不能为空！", Toast.LENGTH_SHORT, true).show();
                 } else {
                     mLlCode.setVisibility(View.VISIBLE);
-                    RxUtils.createQRImage(str, 800, 800, mIvQrCode);
+
+                    //二维码生成方式一  推荐此方法
+                    RxQRCode.builder(str).
+                            backColor(getResources().getColor(R.color.white)).
+                            codeColor(getResources().getColor(R.color.baby_blue)).
+                            codeSide(800).
+                            into(mIvQrCode);
+
+                    //二维码生成方式二 默认宽和高都为800 背景为白色 二维码为黑色
+                    // RxQRCode.createQRCode(str,mIvQrCode);
+
                     RxToast.success(mContext, "二维码已生成!", Toast.LENGTH_SHORT, true).show();
 
-                    RxSPUtils.putContent(mContext, "MADE_CODE", RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, "MADE_CODE")) + 1 + "");
+                    RxSPUtils.putContent(mContext, SP_MADE_CODE, RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, SP_MADE_CODE)) + 1 + "");
 
                     updateMadeCodeCount();
+
+                    nestedScrollView.computeScroll();
                 }
             }
         });
@@ -128,10 +147,22 @@ public class ActivityCodeTool extends ActivityBase {
                     RxToast.error(mContext, "条形码文字内容不能为空！", Toast.LENGTH_SHORT, true).show();
                 } else {
                     mLlBarCode.setVisibility(View.VISIBLE);
-                    mIvBarCode.setImageBitmap(RxUtils.drawLinecode(mContext, str1, 1000, 300));
+
+                    //条形码生成方式一  推荐此方法
+                    RxBarCode.builder(str1).
+                            backColor(getResources().getColor(R.color.transparent)).
+                            codeColor(getResources().getColor(R.color.baby_blue)).
+                            codeWidth(1000).
+                            codeHeight(300).
+                            into(mIvBarCode);
+
+                    //条形码生成方式二  默认宽为1000 高为300 背景为白色 二维码为黑色
+                    //mIvBarCode.setImageBitmap(RxBarCode.createBarCode(str1, 1000, 300));
+
+
                     RxToast.success(mContext, "条形码已生成!", Toast.LENGTH_SHORT, true).show();
 
-                    RxSPUtils.putContent(mContext, "MADE_CODE", RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, "MADE_CODE")) + 1 + "");
+                    RxSPUtils.putContent(mContext, SP_MADE_CODE, RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, SP_MADE_CODE)) + 1 + "");
 
                     updateMadeCodeCount();
                 }

@@ -22,7 +22,7 @@
  * limitations under the License.
  */
 
-package com.vondear.rxtools.view.wheelHorizontal;
+package com.vondear.rxtools.view.wheelhorizontal;
 
 
 import android.content.Context;

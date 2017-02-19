@@ -46,7 +46,7 @@ public class RxUtils {
         void doSomething();
     }
 
-    public static void delayToDo(final DelayListener delayListener,long delayTime) {
+    public static void delayToDo(final DelayListener delayListener, long delayTime) {
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 //execute the task
@@ -211,92 +211,6 @@ public class RxUtils {
         // params.height设置ListView完全显示需要的高度
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
-    }
-
-    /**
-     * @param url       需要转换的字符串
-     * @param QR_WIDTH  二维码的宽度
-     * @param QR_HEIGHT 二维码的高度
-     * @param iv_code   图片空间
-     */
-    public static void createQRImage(String url, int QR_WIDTH, int QR_HEIGHT,
-                                     ImageView iv_code) {
-        try {
-            // 判断URL合法性
-            if (url == null || "".equals(url) || url.length() < 1) {
-                return;
-            }
-            Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
-            hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-            // 图像数据转换，使用了矩阵转换
-            BitMatrix bitMatrix = new QRCodeWriter().encode(url,
-                    BarcodeFormat.QR_CODE, QR_WIDTH, QR_HEIGHT, hints);
-            int[] pixels = new int[QR_WIDTH * QR_HEIGHT];
-            // 下面这里按照二维码的算法，逐个生成二维码的图片，
-            // 两个for循环是图片横列扫描的结果
-            for (int y = 0; y < QR_HEIGHT; y++) {
-                for (int x = 0; x < QR_WIDTH; x++) {
-                    if (bitMatrix.get(x, y)) {
-                        pixels[y * QR_WIDTH + x] = 0xff000000;
-                    } else {
-                        pixels[y * QR_WIDTH + x] = 0xffffffff;
-                    }
-                }
-            }
-            // 生成二维码图片的格式，使用ARGB_8888
-            Bitmap bitmap = Bitmap.createBitmap(QR_WIDTH, QR_HEIGHT,
-                    Bitmap.Config.ARGB_8888);
-            bitmap.setPixels(pixels, 0, QR_WIDTH, 0, 0, QR_WIDTH, QR_HEIGHT);
-            // 显示到一个ImageView上面
-            iv_code.setImageBitmap(bitmap);
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 生成条形码
-     *
-     * @param context
-     * @param contents      需要生成的内容
-     * @param desiredWidth  生成条形码的宽带
-     * @param desiredHeight 生成条形码的高度
-     * @return
-     */
-    public static Bitmap drawLinecode(Context context, String contents,
-                                      int desiredWidth, int desiredHeight) {
-        Bitmap ruseltBitmap = null;
-        /**
-         * 条形码的编码类型
-         */
-        BarcodeFormat barcodeFormat = BarcodeFormat.CODE_128;
-        final int WHITE = 0xFFFFFFFF;
-        final int BLACK = 0xFF000000;
-
-        MultiFormatWriter writer = new MultiFormatWriter();
-        BitMatrix result = null;
-        try {
-            result = writer.encode(contents, barcodeFormat, desiredWidth,
-                    desiredHeight, null);
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }
-
-        int width = result.getWidth();
-        int height = result.getHeight();
-        int[] pixels = new int[width * height];
-        // All are 0, or black, by default
-        for (int y = 0; y < height; y++) {
-            int offset = y * width;
-            for (int x = 0; x < width; x++) {
-                pixels[offset + x] = result.get(x, y) ? BLACK : WHITE;
-            }
-        }
-        Bitmap bitmap = Bitmap.createBitmap(width, height,
-                Bitmap.Config.ARGB_8888);
-        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
-        ruseltBitmap = bitmap;
-        return ruseltBitmap;
     }
 
     //---------------------------------------------MD5加密-------------------------------------------
