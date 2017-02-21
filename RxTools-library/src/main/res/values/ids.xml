@@ -15,7 +15,6 @@
  limitations under the License.
 -->
 <resources>
-
     <!-- Messages IDs -->
     <item name="auto_focus" type="id"/>
     <item name="decode" type="id"/>
@@ -29,13 +28,13 @@
     <item name="return_scan_result" type="id"/>
     <item name="search_book_contents_failed" type="id"/>
     <item name="search_book_contents_succeeded" type="id"/>
-    
+
     <item name="register_phone_edittext" type="id"/>
     <item name="complete_password" type="id"/>
     <item name="complete_qrpaword" type="id"/>
-     <item name="complete_zhuce" type="id"/>
-       <item name="zhuce_title" type="id"/>
-    
+    <item name="complete_zhuce" type="id"/>
+    <item name="zhuce_title" type="id"/>
+
     <item name="gridview" type="id"/>
     <item name="webview" type="id"/>
     <item name="about_version_code" type="id">false</item>

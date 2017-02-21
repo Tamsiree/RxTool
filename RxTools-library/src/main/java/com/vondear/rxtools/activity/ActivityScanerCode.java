@@ -22,9 +22,6 @@ import android.provider.MediaStore;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.text.Layout;
-import android.text.method.LinkMovementMethod;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -42,7 +39,6 @@ import android.widget.Toast;
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxDataUtils;
 import com.vondear.rxtools.RxSPUtils;
-import com.vondear.rxtools.RxTextUtils;
 import com.vondear.rxtools.model.scaner.CaptureActivityHandler;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogSure;
@@ -61,7 +57,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static com.vondear.rxtools.RxConstants.SP_SCAN_CODE;
-import static com.vondear.rxtools.RxConstants.URL_VONTOOLS;
 
 public class ActivityScanerCode extends Activity implements SurfaceHolder.Callback {
     public static final int CHOOSE_PICTURE = 1003;
@@ -211,7 +206,7 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
     boolean flag = true;
 
     private void light() {
-        if (flag == true) {
+        if (flag) {
             flag = false;
             // 开闪光灯
             CameraManager.get().openLight();
@@ -364,7 +359,7 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         });
         rxDialogSure.show();
 
-        RxSPUtils.putContent(context,SP_SCAN_CODE,RxDataUtils.stringToInt(RxSPUtils.getContent(context,SP_SCAN_CODE))+1+"");
+        RxSPUtils.putContent(context, SP_SCAN_CODE, RxDataUtils.stringToInt(RxSPUtils.getContent(context, SP_SCAN_CODE)) + 1 + "");
     }
 
     private final static String ALBUM_PATH = Environment.getExternalStorageDirectory() + File.separator + "fengci/";
