@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxDataUtils;
+import com.vondear.rxtools.RxImageUtils;
 
 /**
  * Created by vonde on 2017/1/2.
@@ -71,7 +72,7 @@ public class RxTitle extends FrameLayout {
             mBackground = a.getResourceId(R.styleable.RxTitle_background, R.color.blue1);
             mTitle = a.getString(R.styleable.RxTitle_title);
             mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, getResources().getColor(R.color.white));
-            mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, 12);//TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
+            mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, 20);//TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
             mLeftIcon = a.getResourceId(R.styleable.RxTitle_leftIcon, R.drawable.back);
             mRightIcon = a.getResourceId(R.styleable.RxTitle_RightIcon, R.drawable.set);
             mLeftIconVisibility = a.getBoolean(R.styleable.RxTitle_leftIconVisibility, true);

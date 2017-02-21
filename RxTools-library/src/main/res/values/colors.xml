@@ -136,7 +136,6 @@
     <color name="lightskyblue">#87CEFA</color><!--亮天蓝色 -->
     <color name="skyblue">#87CEEB</color><!--天蓝色 -->
     <color name="gray">#808080</color><!--灰色 -->
-    <color name="grey">#808080</color><!--灰色 -->
     <color name="olive">#808000</color><!--橄榄色 -->
     <color name="purple">#800080</color><!--紫色 -->
     <color name="maroon">#800000</color><!--粟色 -->
@@ -216,4 +215,13 @@
     <color name="custom_progress_red_header">#ffcc0000</color>
     <color name="custom_progress_red_progress">#ffff4444</color>
     <color name="custom_progress_red_progress_half">#7fff4444</color>
+
+    <color name="deep_gray">#afaeae</color>
+    <color name="deep_gray_2">#636262</color>
+    <color name="light_black">#fd383838</color>
+    <color name="light_gray">#efefef</color>
+    <color name="f6">#f6f6f6</color>
+    <color name="_6">#666666</color>
+    <color name="_9">#999999</color>
+    <color name="gray1">#e7e4e4</color>
 </resources>

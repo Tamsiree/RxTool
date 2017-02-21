@@ -5,18 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
-    <!-- 外部存储 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!-- 许可振动 -->
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <!-- 打开闪光灯 -->
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
-    <!-- 许可使用照相机 -->
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <!-- 许可调用相机硬件 -->
-    <uses-feature android:name="android.hardware.camera"/>
-    <!-- 许可调用相机自动对焦 -->
-    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
 
     <application
         android:name=".ApplicationVon"
@@ -64,6 +53,12 @@
         <activity android:name=".activity.ActivityRxToast">
         </activity>
         <activity android:name=".activity.ActivityNetSpeed">
+        </activity>
+        <activity android:name=".activity.ActivityShoppingView">
+        </activity>
+        <activity android:name=".activity.ActivityELMe">
+        </activity>
+        <activity android:name=".activity.ActivityLike">
         </activity>
     </application>
 

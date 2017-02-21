@@ -7,14 +7,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.vondear.tools.R;
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxDataUtils;
+import com.vondear.rxtools.view.RxRulerWheelView;
 import com.vondear.rxtools.view.wheelhorizontal.AbstractWheel;
 import com.vondear.rxtools.view.wheelhorizontal.ArrayWheelAdapter;
 import com.vondear.rxtools.view.wheelhorizontal.OnWheelClickedListener;
 import com.vondear.rxtools.view.wheelhorizontal.OnWheelScrollListener;
 import com.vondear.rxtools.view.wheelhorizontal.WheelHorizontalView;
+import com.vondear.tools.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,6 +42,22 @@ public class ActivityWheelHorizontal extends Activity {
     LinearLayout mLinearLayout1;
     @BindView(R.id.wheelView_year_month)
     WheelHorizontalView mWheelViewYearMonth;
+    @BindView(R.id.iv_menu)
+    ImageView mIvMenu;
+    @BindView(R.id.wheelview)
+    RxRulerWheelView mWheelview;
+    @BindView(R.id.wheelview2)
+    RxRulerWheelView mWheelview2;
+    @BindView(R.id.wheelview3)
+    RxRulerWheelView mWheelview3;
+    @BindView(R.id.wheelview4)
+    RxRulerWheelView mWheelview4;
+    @BindView(R.id.wheelview5)
+    RxRulerWheelView mWheelview5;
+    @BindView(R.id.changed_tv)
+    TextView mChangedTv;
+    @BindView(R.id.selected_tv)
+    TextView mSelectedTv;
 
     private List<String> listYearMonth = new ArrayList<String>();
 
@@ -52,11 +69,100 @@ public class ActivityWheelHorizontal extends Activity {
         ButterKnife.bind(this);
         initView();
         initData();
+        
+        initRulerView();
+    }
+
+    private void initRulerView() {
+
+        mWheelview = (RxRulerWheelView) findViewById(R.id.wheelview);
+        mWheelview2 = (RxRulerWheelView) findViewById(R.id.wheelview2);
+        mWheelview3 = (RxRulerWheelView) findViewById(R.id.wheelview3);
+        mWheelview4 = (RxRulerWheelView) findViewById(R.id.wheelview4);
+        mWheelview5 = (RxRulerWheelView) findViewById(R.id.wheelview5);
+        mSelectedTv = (TextView) findViewById(R.id.selected_tv);
+        mChangedTv = (TextView) findViewById(R.id.changed_tv);
+
+        final List<String> items = new ArrayList<>();
+        for (int i = 1; i <= 40; i++) {
+            items.add(String.valueOf(i * 1000));
+        }
+
+        mWheelview.setItems(items);
+        mWheelview.selectIndex(8);
+        mWheelview.setAdditionCenterMark("元");
+
+        List<String> items2 = new ArrayList<>();
+        items2.add("一月");
+        items2.add("二月");
+        items2.add("三月");
+        items2.add("四月");
+        items2.add("五月");
+        items2.add("六月");
+        items2.add("七月");
+        items2.add("八月");
+        items2.add("九月");
+        items2.add("十月");
+        items2.add("十一月");
+        items2.add("十二月");
+
+        mWheelview2.setItems(items2);
+
+        List<String> items3 = new ArrayList<>();
+        items3.add("1");
+        items3.add("2");
+        items3.add("3");
+        items3.add("5");
+        items3.add("7");
+        items3.add("11");
+        items3.add("13");
+        items3.add("17");
+        items3.add("19");
+        items3.add("23");
+        items3.add("29");
+        items3.add("31");
+
+        mWheelview3.setItems(items3);
+        mWheelview3.setAdditionCenterMark("m");
+
+//		mWheelview4.setItems(items);
+//		mWheelview4.setEnabled(false);
+
+        mWheelview5.setItems(items);
+        mWheelview5.setMinSelectableIndex(3);
+        mWheelview5.setMaxSelectableIndex(items.size() - 3);
+
+        items.remove(items.size() - 1);
+        items.remove(items.size() - 2);
+        items.remove(items.size() - 3);
+        items.remove(items.size() - 4);
+
+        mSelectedTv.setText(String.format("onWheelItemSelected：%1$s", ""));
+        mChangedTv.setText(String.format("onWheelItemChanged：%1$s", ""));
+
+        mWheelview5.setOnWheelItemSelectedListener(new RxRulerWheelView.OnWheelItemSelectedListener() {
+            @Override
+            public void onWheelItemSelected(RxRulerWheelView wheelView, int position) {
+                mSelectedTv.setText(String.format("onWheelItemSelected：%1$s", wheelView.getItems().get(position)));
+            }
+
+            @Override
+            public void onWheelItemChanged(RxRulerWheelView wheelView, int position) {
+                mChangedTv.setText(String.format("onWheelItemChanged：%1$s", wheelView.getItems().get(position)));
+            }
+        });
+
+        mWheelview4.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mWheelview4.setItems(items);
+            }
+        }, 3000);
     }
 
     private void initView() {
         mLlIncludeTitle.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        mTvTitle.setText("横向滑动选择日期");
+        mTvTitle.setText("横向滑动选择控件");
     }
 
     private void initData() {
@@ -114,7 +220,7 @@ public class ActivityWheelHorizontal extends Activity {
                 Log.v("addScrollingListener", "listYearMonth:" + listYearMonth.get(itemIndex));
                 mWheelViewYearMonth.setCurrentItem(itemIndex, true);
                 /*
-				 * int year =
+                 * int year =
 				 * VonUtil.StringToInt(listYearMonth.get(itemIndex)
 				 * .substring(0, 4)); int month =
 				 * VonUtil.StringToInt(listYearMonth

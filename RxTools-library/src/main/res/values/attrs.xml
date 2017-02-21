@@ -8,11 +8,11 @@
     </declare-styleable>
 
     <declare-styleable name="RxRoundProgress">
-        <attr name="roundColor" format="color" />
-        <attr name="roundProgressColor" format="color" />
+        <attr name="roundColor" format="color"/>
+        <attr name="roundProgressColor" format="color"/>
         <attr name="roundWidth" format="dimension"></attr>
-        <attr name="textColor" format="color" />
-        <attr name="textSize1" format="dimension" />
+        <attr name="textColor" format="color"/>
+        <attr name="textSize1" format="dimension"/>
         <attr name="max" format="integer"></attr>
         <attr name="textIsDisplayable" format="boolean"></attr>
         <attr name="style">
@@ -40,7 +40,7 @@
         <attr name="selectionDividerHeight" format="dimension"/>
     </declare-styleable>
 
-    <attr name="abstractWheelViewStyle" format="reference" />
+    <attr name="abstractWheelViewStyle" format="reference"/>
 
     <declare-styleable name="RxAutoImageView">
         <attr name="ImageSrc" format="reference"/>
@@ -64,14 +64,14 @@
     </declare-styleable>
 
     <declare-styleable name="ticker_TickerView">
-        <attr name="ticker_animationDuration" format="reference|integer" />
-        <attr name="ticker_animateMeasurementChange" format="reference|boolean" />
+        <attr name="ticker_animationDuration" format="reference|integer"/>
+        <attr name="ticker_animateMeasurementChange" format="reference|boolean"/>
 
         <!-- Custom implementations of common android text attributes -->
-        <attr name="android:gravity" tools:ignore="ResourceName" />
-        <attr name="android:textAppearance" tools:ignore="ResourceName" />
-        <attr name="android:textColor" tools:ignore="ResourceName" />
-        <attr name="android:textSize" tools:ignore="ResourceName" />
+        <attr name="android:gravity" tools:ignore="ResourceName"/>
+        <attr name="android:textAppearance" tools:ignore="ResourceName"/>
+        <attr name="android:textColor" tools:ignore="ResourceName"/>
+        <attr name="android:textSize" tools:ignore="ResourceName"/>
     </declare-styleable>
 
     <declare-styleable name="FlikerProgressBar">
@@ -90,34 +90,73 @@
     </declare-styleable>
 
     <declare-styleable name="RoundCornerProgress">
-        <attr name="rcReverse" format="boolean" />
-        <attr name="rcProgress" format="float" />
-        <attr name="rcMax" format="float" />
-        <attr name="rcSecondaryProgress" format="float" />
-        <attr name="rcBackgroundPadding" format="dimension" />
-        <attr name="rcRadius" format="dimension" />
-        <attr name="rcProgressColor" format="color" />
-        <attr name="rcSecondaryProgressColor" format="color" />
-        <attr name="rcBackgroundColor" format="color" />
+        <attr name="rcReverse" format="boolean"/>
+        <attr name="rcProgress" format="float"/>
+        <attr name="rcMax" format="float"/>
+        <attr name="rcSecondaryProgress" format="float"/>
+        <attr name="rcBackgroundPadding" format="dimension"/>
+        <attr name="rcRadius" format="dimension"/>
+        <attr name="rcProgressColor" format="color"/>
+        <attr name="rcSecondaryProgressColor" format="color"/>
+        <attr name="rcBackgroundColor" format="color"/>
     </declare-styleable>
 
     <declare-styleable name="IconRoundCornerProgress">
-        <attr name="rcIconSrc" format="integer" />
-        <attr name="rcIconSize" format="dimension" />
-        <attr name="rcIconWidth" format="dimension" />
-        <attr name="rcIconHeight" format="dimension" />
-        <attr name="rcIconPadding" format="dimension" />
-        <attr name="rcIconPaddingLeft" format="dimension" />
-        <attr name="rcIconPaddingRight" format="dimension" />
-        <attr name="rcIconPaddingTop" format="dimension" />
-        <attr name="rcIconPaddingBottom" format="dimension" />
-        <attr name="rcIconBackgroundColor" format="color" />
+        <attr name="rcIconSrc" format="integer"/>
+        <attr name="rcIconSize" format="dimension"/>
+        <attr name="rcIconWidth" format="dimension"/>
+        <attr name="rcIconHeight" format="dimension"/>
+        <attr name="rcIconPadding" format="dimension"/>
+        <attr name="rcIconPaddingLeft" format="dimension"/>
+        <attr name="rcIconPaddingRight" format="dimension"/>
+        <attr name="rcIconPaddingTop" format="dimension"/>
+        <attr name="rcIconPaddingBottom" format="dimension"/>
+        <attr name="rcIconBackgroundColor" format="color"/>
     </declare-styleable>
 
     <declare-styleable name="TextRoundCornerProgress">
-        <attr name="rcTextProgressColor" format="color" />
-        <attr name="rcTextProgressSize" format="dimension" />
-        <attr name="rcTextProgressMargin" format="dimension" />
-        <attr name="rcTextProgress" format="string" />
+        <attr name="rcTextProgressColor" format="color"/>
+        <attr name="rcTextProgressSize" format="dimension"/>
+        <attr name="rcTextProgressMargin" format="dimension"/>
+        <attr name="rcTextProgress" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShoppingView">
+        <attr name="sv_bg_color" format="color"/>
+        <attr name="sv_text" format="string"/>
+        <attr name="sv_text_size" format="dimension"/>
+        <attr name="sv_duration" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="lwvWheelView">
+        <attr name="lwvHighlightColor" format="color|reference"/>
+        <attr name="lwvMarkColor" format="color|reference"/>
+        <attr name="lwvMarkTextColor" format="color|reference"/>
+        <attr name="lwvIntervalFactor" format="float"/>
+        <attr name="lwvMarkRatio" format="float"/>
+        <attr name="lwvCursorSize" format="dimension"/>
+        <attr name="lwvMarkTextSize" format="dimension"/>
+        <attr name="lwvCenterMarkTextSize" format="dimension"/>
+        <attr name="lwvAdditionalCenterMark" format="string|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShineButton">
+        <attr name="btn_color" format="color"/>
+        <attr name="btn_fill_color" format="color"/>
+        <attr name="shine_count" format="integer"/>
+        <attr name="shine_turn_angle" format="float"/>
+        <attr name="small_shine_offset_angle" format="float"/>
+        <attr name="enable_flashing" format="boolean"/>
+        <attr name="allow_random_color" format="boolean"/>
+        <attr name="small_shine_color" format="color"/>
+        <attr name="big_shine_color" format="color"/>
+        <attr name="shine_animation_duration" format="integer"/>
+        <attr name="click_animation_duration" format="integer"/>
+        <attr name="shine_distance_multiple" format="float"/>
+        <attr name="shine_size" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="PorterImageView">
+        <attr name="siShape" format="integer|reference"/>
     </declare-styleable>
 </resources>
