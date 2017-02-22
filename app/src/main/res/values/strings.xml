@@ -23,4 +23,8 @@
         <item>@color/google_blue</item>
         <item>@color/google_green</item>
     </integer-array>
+
+    <string name="menu_action_all_down">All down</string>
+    <string name="menu_action_up_down">Up down</string>
+    <string name="menu_action_up_down_stack">Up down stack</string>
 </resources>

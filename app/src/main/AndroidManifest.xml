@@ -68,6 +68,8 @@
         </activity>
         <activity android:name=".activity.ActivitySeat">
         </activity>
+        <activity android:name=".activity.ActivityCardStack">
+        </activity>
     </application>
 
 </manifest>
