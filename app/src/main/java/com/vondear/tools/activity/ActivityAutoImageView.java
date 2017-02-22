@@ -3,10 +3,11 @@ package com.vondear.tools.activity;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.tools.R;
 import com.vondear.rxtools.RxBarUtils;
 
-public class ActivityAutoImageView extends Activity {
+public class ActivityAutoImageView extends ActivityBase {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
