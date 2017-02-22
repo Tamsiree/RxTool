@@ -15,11 +15,6 @@
         <activity
             android:name=".activity.ActivityMain"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".activity.ActivityRxPhoto"
@@ -57,6 +52,21 @@
         <activity android:name=".activity.ActivityELMe">
         </activity>
         <activity android:name=".activity.ActivityLike">
+        </activity>
+        <activity
+            android:name=".activity.ActivitySVG"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.ActivityMovieSeat">
+        </activity>
+        <activity android:name=".activity.ActivityFlightSeat">
+        </activity>
+        <activity android:name=".activity.ActivitySeat">
         </activity>
     </application>
 

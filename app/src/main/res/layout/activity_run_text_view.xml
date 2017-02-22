@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_run_text_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context="com.vondear.tools.activity.ActivityRunTextView">
 
     <LinearLayout
@@ -22,15 +26,24 @@
         android:id="@+id/tv_runtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/iv_back"
-        android:layout_toRightOf="@+id/iv_back"
+        android:layout_margin="10dp"
         android:ellipsize="marquee"
         android:focusable="true"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"
         android:text="邻家小萝莉干了什么坏事，妈妈生气不理她了。爸爸温柔地告诉萝莉：妈妈在等你认错呢，快去吧。萝莉就泪汪汪地过去对妈妈说：你……你是不是范冰冰？“啥？！”妈妈莫名其妙。萝莉继续泪汪汪：我认错了…"
-        android:textColor="#FFFFFF"/>
+        android:textColor="@color/brown"/>
 
-</RelativeLayout>
+    <com.vondear.rxtools.view.RxVerticalTextview
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.vondear.rxtools.view.RxVerticalMoreTextView
+        android:id="@+id/upview1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"/>
+
+</LinearLayout>

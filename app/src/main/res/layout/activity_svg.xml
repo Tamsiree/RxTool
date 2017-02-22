@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_svg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.vondear.tools.activity.ActivitySVG">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        android:src="#FFFFFF"/>
+
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.jrummyapps.android.widget.AnimatedSvgView
+            android:id="@+id/animated_svg_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            app:animatedSvgFillColors="@array/google_glyph_colors"
+            app:animatedSvgFillStart="1200"
+            app:animatedSvgFillTime="1000"
+            app:animatedSvgGlyphStrings="@array/google_glyph_strings"
+            app:animatedSvgImageSizeX="400"
+            app:animatedSvgImageSizeY="400"
+            app:animatedSvgTraceTime="2000"
+            app:animatedSvgTraceTimePerGlyph="1000"/>
+
+        <ImageView
+            android:id="@+id/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/logo"
+            android:visibility="gone"/>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

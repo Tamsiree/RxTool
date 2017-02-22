@@ -59,6 +59,7 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new MainItem("PopupView的使用", R.drawable.bullet, ActivityPopupView.class));
         mData.add(new MainItem("RxToast的使用", R.drawable.rx_toast, ActivityRxToast.class));
         mData.add(new MainItem("RunTextView的使用", R.drawable.wrap_text, ActivityRunTextView.class));
+        mData.add(new MainItem("选座控件", R.drawable.seat, ActivitySeat.class));
         mData.add(new MainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
     }
 

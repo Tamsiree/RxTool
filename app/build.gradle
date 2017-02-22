@@ -39,4 +39,6 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.1'
 
     compile 'com.yalantis:ucrop:2.2.0'
+
+    compile 'com.jrummyapps:animated-svg-view:1.0.1'
 }

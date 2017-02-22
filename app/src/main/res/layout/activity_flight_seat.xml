@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_flight_seat"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.vondear.tools.activity.ActivityFlightSeat">
+
+    <com.vondear.rxtools.view.RxTitle
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/google_green"
+        app:title="上海 - 长沙 飞机票选座"
+        app:titleColor="@color/black"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.vondear.rxtools.view.RxFlightSeatView
+            android:id="@+id/fsv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"/>
+
+
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@android:color/transparent"
+            android:onClick="clear"
+            android:text="clear"
+            android:textColor="@android:color/white"/>
+
+
+        <Button
+            android:id="@+id/btn_zoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:onClick="zoom"
+            android:text="ok"
+            android:textColor="@android:color/white"/>
+
+
+        <Button
+            android:id="@+id/btn_goto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:onClick="gotoposition"
+            android:text="goto"
+            android:textColor="@android:color/white"/>
+
+
+    </RelativeLayout>
+</LinearLayout>

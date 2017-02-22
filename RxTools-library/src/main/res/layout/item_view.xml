@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="热议"
+            android:textSize="9sp"
+            android:padding="3dp"
+            android:background="@drawable/textview_border"
+            android:layout_marginRight="6dp"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/title_tv1"
+            android:ellipsize="end"
+            android:textSize="14sp"
+            android:maxLines="1" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl2"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title_tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="热评"
+            android:padding="3dp"
+            android:textSize="9sp"
+            android:background="@drawable/textview_border"
+            android:layout_marginRight="6dp"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/title_tv2"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:textSize="14sp"
+            android:maxLines="1" />
+    </RelativeLayout>
+
+</LinearLayout>

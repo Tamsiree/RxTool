@@ -69,7 +69,7 @@ public class RxTitle extends FrameLayout {
 
         try {
             //获得属性值
-            mBackground = a.getResourceId(R.styleable.RxTitle_background, R.color.blue1);
+            mBackground = a.getResourceId(R.styleable.RxTitle_background, R.color.blue);
             mTitle = a.getString(R.styleable.RxTitle_title);
             mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, getResources().getColor(R.color.white));
             mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, 20);//TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
