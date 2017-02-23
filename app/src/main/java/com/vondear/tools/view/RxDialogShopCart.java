@@ -22,7 +22,7 @@ import com.vondear.tools.interfaces.ShopCartInterface;
 /**
  * Created by cheng on 16-12-22.
  */
-public class ShopCartDialog extends Dialog implements View.OnClickListener,ShopCartInterface {
+public class RxDialogShopCart extends Dialog implements View.OnClickListener,ShopCartInterface {
 
     private LinearLayout linearLayout,bottomLayout,clearLayout;
     private FrameLayout shopingcartLayout;
@@ -33,7 +33,7 @@ public class ShopCartDialog extends Dialog implements View.OnClickListener,ShopC
     private AdapterPopupDish dishAdapter;
     private ShopCartDialogImp shopCartDialogImp;
 
-    public ShopCartDialog(Context context, ShopCart shopCart, int themeResId) {
+    public RxDialogShopCart(Context context, ShopCart shopCart, int themeResId) {
         super(context,themeResId);
         this.shopCart = shopCart;
     }
@@ -109,7 +109,7 @@ public class ShopCartDialog extends Dialog implements View.OnClickListener,ShopC
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                ShopCartDialog.super.dismiss();
+                RxDialogShopCart.super.dismiss();
             }
 
             @Override

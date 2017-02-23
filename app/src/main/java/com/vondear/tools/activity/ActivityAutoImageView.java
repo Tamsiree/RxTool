@@ -14,6 +14,5 @@ public class ActivityAutoImageView extends ActivityBase {
         RxBarUtils.noTitle(this);
         RxBarUtils.setTransparentStatusBar(this);
         setContentView(R.layout.activity_auto_image_view);
-
     }
 }

@@ -10,7 +10,7 @@ import android.graphics.PointF;
 /**
  * 自定义估值器
  */
-public class PointFTypeEvaluator implements TypeEvaluator<PointF> {
+public class RxPointFTypeEvaluator implements TypeEvaluator<PointF> {
     /**
      * 每个估值器对应一个属性动画，每个属性动画仅对应唯一一个控制点
      */
@@ -20,7 +20,7 @@ public class PointFTypeEvaluator implements TypeEvaluator<PointF> {
      */
     PointF mPointF = new PointF();
 
-    public PointFTypeEvaluator(PointF control) {
+    public RxPointFTypeEvaluator(PointF control) {
         this.control = control;
     }
 

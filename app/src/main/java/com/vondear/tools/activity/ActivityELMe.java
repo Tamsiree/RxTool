@@ -22,8 +22,8 @@ import android.widget.TextView;
 
 import com.vondear.tools.R;
 import com.vondear.tools.view.RxFakeAddImageView;
-import com.vondear.tools.view.PointFTypeEvaluator;
-import com.vondear.tools.view.ShopCartDialog;
+import com.vondear.tools.view.RxPointFTypeEvaluator;
+import com.vondear.tools.view.RxDialogShopCart;
 import com.vondear.tools.adapter.AdapterLeftMenu;
 import com.vondear.tools.adapter.AdapterRightDish;
 import com.vondear.tools.bean.Dish;
@@ -33,7 +33,7 @@ import com.vondear.tools.interfaces.ShopCartInterface;
 
 import java.util.ArrayList;
 
-public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.onItemSelectedListener,ShopCartInterface,ShopCartDialog.ShopCartDialogImp{
+public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.onItemSelectedListener,ShopCartInterface,RxDialogShopCart.ShopCartDialogImp{
     private final static String TAG = "MainActivity";
     private RecyclerView leftMenu;//左侧菜单栏
     private RecyclerView rightMenu;//右侧菜单栏
@@ -270,7 +270,7 @@ public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.o
         rxFakeAddImageView.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.item_dish_circle_size);
         rxFakeAddImageView.setVisibility(View.VISIBLE);
         ObjectAnimator addAnimator = ObjectAnimator.ofObject(rxFakeAddImageView, "mPointF",
-                new PointFTypeEvaluator(controlP), startP, endP);
+                new RxPointFTypeEvaluator(controlP), startP, endP);
         addAnimator.setInterpolator(new AccelerateInterpolator());
         addAnimator.addListener(new Animator.AnimatorListener() {
             @Override
@@ -326,7 +326,7 @@ public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.o
 
     private void showCart(View view) {
         if(shopCart!=null && shopCart.getShoppingAccount()>0){
-            ShopCartDialog dialog = new ShopCartDialog(this,shopCart,R.style.cartdialog);
+            RxDialogShopCart dialog = new RxDialogShopCart(this,shopCart,R.style.cartdialog);
             Window window = dialog.getWindow();
             dialog.setShopCartDialogImp(this);
             dialog.setCanceledOnTouchOutside(true);
