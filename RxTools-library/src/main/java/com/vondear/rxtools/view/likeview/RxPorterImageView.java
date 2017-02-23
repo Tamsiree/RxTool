@@ -14,8 +14,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageView;
 
-public abstract class PorterImageView extends ImageView {
-    private static final String TAG = PorterImageView.class.getSimpleName();
+public abstract class RxPorterImageView extends ImageView {
+    private static final String TAG = RxPorterImageView.class.getSimpleName();
 
     private static final PorterDuffXfermode PORTER_DUFF_XFERMODE = new PorterDuffXfermode(PorterDuff.Mode.DST_IN);
 
@@ -31,17 +31,17 @@ public abstract class PorterImageView extends ImageView {
 
     private boolean invalidated = true;
 
-    public PorterImageView(Context context) {
+    public RxPorterImageView(Context context) {
         super(context);
         setup(context, null, 0);
     }
 
-    public PorterImageView(Context context, AttributeSet attrs) {
+    public RxPorterImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setup(context, attrs, 0);
     }
 
-    public PorterImageView(Context context, AttributeSet attrs, int defStyle) {
+    public RxPorterImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setup(context, attrs, defStyle);
     }

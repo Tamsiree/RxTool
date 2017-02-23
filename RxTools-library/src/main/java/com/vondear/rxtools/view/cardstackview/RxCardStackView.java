@@ -20,7 +20,7 @@ import com.vondear.rxtools.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardStackView extends ViewGroup implements ScrollDelegate {
+public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
 
     private static final int INVALID_POINTER = -1;
     public static final int INVALID_TYPE = -1;
@@ -40,13 +40,13 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
     private int mOverlapGaps;
     private int mOverlapGapsCollapse;
     private int mNumBottomShow;
-    private StackAdapter mStackAdapter;
+    private AdapterRxStack mAdapterRxStack;
     private final ViewDataObserver mObserver = new ViewDataObserver();
     private int mSelectPosition = DEFAULT_SELECT_POSITION;
     private int mShowHeight;
     private List<ViewHolder> mViewHolders;
 
-    private AnimatorAdapter mAnimatorAdapter;
+    private AdapterRxAnimator mAdapterRxAnimator;
     private int mDuration;
 
     private OverScroller mScroller;
@@ -61,35 +61,35 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
     private int mNestedYOffset;
     private boolean mScrollEnable = true;
 
-    private ScrollDelegate mScrollDelegate;
+    private RxScrollDelegate mRxScrollDelegate;
     private ItemExpendListener mItemExpendListener;
 
-    public CardStackView(Context context) {
+    public RxCardStackView(Context context) {
         this(context, null);
     }
 
-    public CardStackView(Context context, AttributeSet attrs) {
+    public RxCardStackView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CardStackView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxCardStackView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr, 0);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public CardStackView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public RxCardStackView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs, defStyleAttr, defStyleRes);
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CardStackView, defStyleAttr, defStyleRes);
-        setOverlapGaps(array.getDimensionPixelSize(R.styleable.CardStackView_stackOverlapGaps, dp2px(20)));
-        setOverlapGapsCollapse(array.getDimensionPixelSize(R.styleable.CardStackView_stackOverlapGapsCollapse, dp2px(20)));
-        setDuration(array.getInt(R.styleable.CardStackView_stackDuration, AnimatorAdapter.ANIMATION_DURATION));
-        setAnimationType(array.getInt(R.styleable.CardStackView_stackAnimationType, UP_DOWN_STACK));
-        setNumBottomShow(array.getInt(R.styleable.CardStackView_stackNumBottomShow, 3));
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.RxCardStackView, defStyleAttr, defStyleRes);
+        setOverlapGaps(array.getDimensionPixelSize(R.styleable.RxCardStackView_stackOverlapGaps, dp2px(20)));
+        setOverlapGapsCollapse(array.getDimensionPixelSize(R.styleable.RxCardStackView_stackOverlapGapsCollapse, dp2px(20)));
+        setDuration(array.getInt(R.styleable.RxCardStackView_stackDuration, AdapterRxAnimator.ANIMATION_DURATION));
+        setAnimationType(array.getInt(R.styleable.RxCardStackView_stackAnimationType, UP_DOWN_STACK));
+        setNumBottomShow(array.getInt(R.styleable.RxCardStackView_stackNumBottomShow, 3));
         array.recycle();
 
         mViewHolders = new ArrayList<>();
@@ -195,52 +195,52 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
         if (mSelectPosition != DEFAULT_SELECT_POSITION) {
             clearSelectPosition();
         }
-        if (mScrollDelegate != null) mScrollDelegate.setViewScrollY(0);
+        if (mRxScrollDelegate != null) mRxScrollDelegate.setViewScrollY(0);
         requestLayout();
     }
 
-    public void setAdapter(StackAdapter stackAdapter) {
-        mStackAdapter = stackAdapter;
-        mStackAdapter.registerObserver(mObserver);
+    public void setAdapter(AdapterRxStack adapterRxStack) {
+        mAdapterRxStack = adapterRxStack;
+        mAdapterRxStack.registerObserver(mObserver);
         refreshView();
     }
 
     public void setAnimationType(int type) {
-        AnimatorAdapter animatorAdapter;
+        AdapterRxAnimator adapterRxAnimator;
         switch (type) {
             case ALL_DOWN:
-                animatorAdapter = new AllMoveDownAnimatorAdapter(this);
+                adapterRxAnimator = new AdapterRxAllMoveDownAnimator(this);
                 break;
             case UP_DOWN:
-                animatorAdapter = new UpDownAnimatorAdapter(this);
+                adapterRxAnimator = new AdapterUpDownRxAnimator(this);
                 break;
             default:
-                animatorAdapter = new UpDownStackAnimatorAdapter(this);
+                adapterRxAnimator = new AdapterUpDownStackRxAnimator(this);
                 break;
         }
-        setAnimatorAdapter(animatorAdapter);
+        setAdapterRxAnimator(adapterRxAnimator);
     }
 
-    public void setAnimatorAdapter(AnimatorAdapter animatorAdapter) {
+    public void setAdapterRxAnimator(AdapterRxAnimator adapterRxAnimator) {
         clearScrollYAndTranslation();
-        mAnimatorAdapter = animatorAdapter;
-        if (mAnimatorAdapter instanceof UpDownStackAnimatorAdapter) {
-            mScrollDelegate = new StackScrollDelegateImpl(this);
+        mAdapterRxAnimator = adapterRxAnimator;
+        if (mAdapterRxAnimator instanceof AdapterUpDownStackRxAnimator) {
+            mRxScrollDelegate = new RxStackScrollDelegateImpl(this);
         } else {
-            mScrollDelegate = this;
+            mRxScrollDelegate = this;
         }
     }
 
     private void refreshView() {
         removeAllViews();
         mViewHolders.clear();
-        for (int i = 0; i < mStackAdapter.getItemCount(); i++) {
+        for (int i = 0; i < mAdapterRxStack.getItemCount(); i++) {
             ViewHolder holder = getViewHolder(i);
             holder.position = i;
             holder.onItemExpand(i == mSelectPosition);
             addView(holder.itemView);
             setClickAnimator(holder, i);
-            mStackAdapter.bindViewHolder(holder, i);
+            mAdapterRxStack.bindViewHolder(holder, i);
         }
         requestLayout();
     }
@@ -248,8 +248,8 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
     ViewHolder getViewHolder(int i) {
         if (i == DEFAULT_SELECT_POSITION) return null;
         ViewHolder viewHolder;
-        if (mViewHolders.size() <= i || mViewHolders.get(i).mItemViewType != mStackAdapter.getItemViewType(i)) {
-            viewHolder = mStackAdapter.createView(this, mStackAdapter.getItemViewType(i));
+        if (mViewHolders.size() <= i || mViewHolders.get(i).mItemViewType != mAdapterRxStack.getItemViewType(i)) {
+            viewHolder = mAdapterRxStack.createView(this, mAdapterRxStack.getItemViewType(i));
             mViewHolders.add(viewHolder);
         } else {
             viewHolder = mViewHolders.get(i);
@@ -293,7 +293,7 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
 
     private void doCardClickAnimation(final ViewHolder viewHolder, int position) {
         checkContentHeightByParent();
-        mAnimatorAdapter.itemClick(viewHolder, position);
+        mAdapterRxAnimator.itemClick(viewHolder, position);
     }
 
     private void initOrResetVelocityTracker() {
@@ -447,8 +447,8 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
                 if (mIsBeingDragged) {
                     mLastMotionY = y - mScrollOffset[1];
                     final int range = getScrollRange();
-                    if (mScrollDelegate instanceof StackScrollDelegateImpl) {
-                        mScrollDelegate.scrollViewTo(0, deltaY + mScrollDelegate.getViewScrollY());
+                    if (mRxScrollDelegate instanceof RxStackScrollDelegateImpl) {
+                        mRxScrollDelegate.scrollViewTo(0, deltaY + mRxScrollDelegate.getViewScrollY());
                     } else {
                         if (overScrollBy(0, deltaY, 0, getViewScrollY(),
                                 0, range, 0, 0, true)) {
@@ -466,7 +466,7 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
                         if ((Math.abs(initialVelocity) > mMinimumVelocity)) {
                             fling(-initialVelocity);
                         } else {
-                            if (mScroller.springBack(getViewScrollX(), mScrollDelegate.getViewScrollY(), 0, 0, 0,
+                            if (mScroller.springBack(getViewScrollX(), mRxScrollDelegate.getViewScrollY(), 0, 0, 0,
                                     getScrollRange())) {
                                 postInvalidate();
                             }
@@ -478,7 +478,7 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
                 break;
             case MotionEvent.ACTION_CANCEL:
                 if (mIsBeingDragged && getChildCount() > 0) {
-                    if (mScroller.springBack(getViewScrollX(), mScrollDelegate.getViewScrollY(), 0, 0, 0, getScrollRange())) {
+                    if (mScroller.springBack(getViewScrollX(), mRxScrollDelegate.getViewScrollY(), 0, 0, 0, getScrollRange())) {
                         postInvalidate();
                     }
                     mActivePointerId = INVALID_POINTER;
@@ -536,7 +536,7 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
         }
 
         int scrollRange = mTotalLength;
-        final int scrollY = mScrollDelegate.getViewScrollY();
+        final int scrollY = mRxScrollDelegate.getViewScrollY();
         final int overscrollBottom = Math.max(0, scrollRange - contentHeight);
         if (scrollY < 0) {
             scrollRange -= scrollY;
@@ -551,13 +551,13 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
     protected void onOverScrolled(int scrollX, int scrollY,
                                   boolean clampedX, boolean clampedY) {
         if (!mScroller.isFinished()) {
-            final int oldX = mScrollDelegate.getViewScrollX();
-            final int oldY = mScrollDelegate.getViewScrollY();
-            mScrollDelegate.setViewScrollX(scrollX);
-            mScrollDelegate.setViewScrollY(scrollY);
-            onScrollChanged(mScrollDelegate.getViewScrollX(), mScrollDelegate.getViewScrollY(), oldX, oldY);
+            final int oldX = mRxScrollDelegate.getViewScrollX();
+            final int oldY = mRxScrollDelegate.getViewScrollY();
+            mRxScrollDelegate.setViewScrollX(scrollX);
+            mRxScrollDelegate.setViewScrollY(scrollY);
+            onScrollChanged(mRxScrollDelegate.getViewScrollX(), mRxScrollDelegate.getViewScrollY(), oldX, oldY);
             if (clampedY) {
-                mScroller.springBack(mScrollDelegate.getViewScrollX(), mScrollDelegate.getViewScrollY(), 0, 0, 0, getScrollRange());
+                mScroller.springBack(mRxScrollDelegate.getViewScrollX(), mRxScrollDelegate.getViewScrollY(), 0, 0, 0, getScrollRange());
             }
         } else {
             super.scrollTo(scrollX, scrollY);
@@ -572,7 +572,7 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
     @Override
     public void computeScroll() {
         if (mScroller.computeScrollOffset()) {
-            mScrollDelegate.scrollViewTo(0, mScroller.getCurrY());
+            mRxScrollDelegate.scrollViewTo(0, mScroller.getCurrY());
             postInvalidate();
         }
     }
@@ -581,7 +581,7 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
         if (getChildCount() > 0) {
             int height = mShowHeight;
             int bottom = mTotalLength;
-            mScroller.fling(mScrollDelegate.getViewScrollX(), mScrollDelegate.getViewScrollY(), 0, velocityY, 0, 0, 0,
+            mScroller.fling(mRxScrollDelegate.getViewScrollX(), mRxScrollDelegate.getViewScrollY(), 0, velocityY, 0, 0, 0,
                     Math.max(0, bottom - height), 0, 0);
             postInvalidate();
         }
@@ -592,7 +592,7 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
         if (getChildCount() > 0) {
             x = clamp(x, getWidth() - getPaddingRight() - getPaddingLeft(), getWidth());
             y = clamp(y, mShowHeight, mTotalLength);
-            if (x != mScrollDelegate.getViewScrollX() || y != mScrollDelegate.getViewScrollY()) {
+            if (x != mRxScrollDelegate.getViewScrollX() || y != mRxScrollDelegate.getViewScrollY()) {
                 super.scrollTo(x, y);
             }
         }
@@ -665,8 +665,8 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
 
-            TypedArray array = c.obtainStyledAttributes(attrs, R.styleable.CardStackView);
-            mHeaderHeight = array.getDimensionPixelSize(R.styleable.CardStackView_stackHeaderHeight, -1);
+            TypedArray array = c.obtainStyledAttributes(attrs, R.styleable.RxCardStackView);
+            mHeaderHeight = array.getDimensionPixelSize(R.styleable.RxCardStackView_stackHeaderHeight, -1);
         }
 
         public LayoutParams(int width, int height) {
@@ -797,7 +797,7 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
     }
 
     public int getDuration() {
-        if (mAnimatorAdapter != null) return mDuration;
+        if (mAdapterRxAnimator != null) return mDuration;
         return 0;
     }
 
@@ -809,8 +809,8 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
         return mNumBottomShow;
     }
 
-    public ScrollDelegate getScrollDelegate() {
-        return mScrollDelegate;
+    public RxScrollDelegate getRxScrollDelegate() {
+        return mRxScrollDelegate;
     }
 
     public ItemExpendListener getItemExpendListener() {

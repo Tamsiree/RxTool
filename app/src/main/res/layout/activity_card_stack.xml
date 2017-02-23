@@ -30,7 +30,7 @@
             android:text="下一张"/>
     </LinearLayout>
 
-    <com.vondear.rxtools.view.cardstackview.CardStackView
+    <com.vondear.rxtools.view.cardstackview.RxCardStackView
         android:id="@+id/stackview_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"

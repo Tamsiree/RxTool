@@ -7,18 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.vondear.rxtools.view.cardstackview.CardStackView;
-import com.vondear.rxtools.view.cardstackview.StackAdapter;
+import com.vondear.rxtools.view.cardstackview.RxCardStackView;
+import com.vondear.rxtools.view.cardstackview.AdapterRxStack;
 import com.vondear.tools.R;
 
-public class AdapterTestStack extends StackAdapter<Integer> {
+public class AdapterTestRxStack extends AdapterRxStack<Integer> {
 
-    public AdapterTestStack(Context context) {
+    public AdapterTestRxStack(Context context) {
         super(context);
     }
 
     @Override
-    public void bindView(Integer data, int position, CardStackView.ViewHolder holder) {
+    public void bindView(Integer data, int position, RxCardStackView.ViewHolder holder) {
         if (holder instanceof ColorItemLargeHeaderViewHolder) {
             ColorItemLargeHeaderViewHolder h = (ColorItemLargeHeaderViewHolder) holder;
             h.onBind(data, position);
@@ -34,7 +34,7 @@ public class AdapterTestStack extends StackAdapter<Integer> {
     }
 
     @Override
-    protected CardStackView.ViewHolder onCreateView(ViewGroup parent, int viewType) {
+    protected RxCardStackView.ViewHolder onCreateView(ViewGroup parent, int viewType) {
         View view;
         switch (viewType) {
             case R.layout.list_card_item_larger_header:
@@ -60,7 +60,7 @@ public class AdapterTestStack extends StackAdapter<Integer> {
         }
     }
 
-    static class ColorItemViewHolder extends CardStackView.ViewHolder {
+    static class ColorItemViewHolder extends RxCardStackView.ViewHolder {
         View mLayout;
         View mContainerContent;
         TextView mTextTitle;
@@ -84,7 +84,7 @@ public class AdapterTestStack extends StackAdapter<Integer> {
 
     }
 
-    static class ColorItemWithNoHeaderViewHolder extends CardStackView.ViewHolder {
+    static class ColorItemWithNoHeaderViewHolder extends RxCardStackView.ViewHolder {
         View mLayout;
         TextView mTextTitle;
 
@@ -105,7 +105,7 @@ public class AdapterTestStack extends StackAdapter<Integer> {
 
     }
 
-    static class ColorItemLargeHeaderViewHolder extends CardStackView.ViewHolder {
+    static class ColorItemLargeHeaderViewHolder extends RxCardStackView.ViewHolder {
         View mLayout;
         View mContainerContent;
         TextView mTextTitle;
@@ -125,10 +125,10 @@ public class AdapterTestStack extends StackAdapter<Integer> {
         @Override
         protected void onAnimationStateChange(int state, boolean willBeSelect) {
             super.onAnimationStateChange(state, willBeSelect);
-            if (state == CardStackView.ANIMATION_STATE_START && willBeSelect) {
+            if (state == RxCardStackView.ANIMATION_STATE_START && willBeSelect) {
                 onItemExpand(true);
             }
-            if (state == CardStackView.ANIMATION_STATE_END && !willBeSelect) {
+            if (state == RxCardStackView.ANIMATION_STATE_END && !willBeSelect) {
                 onItemExpand(false);
             }
         }
@@ -140,7 +140,7 @@ public class AdapterTestStack extends StackAdapter<Integer> {
             itemView.findViewById(R.id.text_view).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((CardStackView)itemView.getParent()).performItemClick(ColorItemLargeHeaderViewHolder.this);
+                    ((RxCardStackView)itemView.getParent()).performItemClick(ColorItemLargeHeaderViewHolder.this);
                 }
             });
         }

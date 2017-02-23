@@ -24,7 +24,7 @@ import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.view.animation.OvershootInterpolator;
 
-class AnimationUtils {
+class RxAnimationUtils {
 
     static ObjectAnimator popup(final View view, final long duration) {
         view.setAlpha(0);

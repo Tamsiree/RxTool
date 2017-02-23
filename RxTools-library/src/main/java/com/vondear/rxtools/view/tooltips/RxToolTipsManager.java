@@ -31,9 +31,9 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ToolTipsManager {
+public class RxToolTipsManager {
 
-    private static final String TAG = ToolTipsManager.class.getSimpleName();
+    private static final String TAG = RxToolTipsManager.class.getSimpleName();
 
     private static final int DEFAULT_ANIM_DURATION = 400;
 
@@ -47,61 +47,61 @@ public class ToolTipsManager {
         void onTipDismissed(View view, int anchorViewId, boolean byUser);
     }
 
-    public ToolTipsManager() {
+    public RxToolTipsManager() {
         mAnimationDuration = DEFAULT_ANIM_DURATION;
     }
 
-    public ToolTipsManager(TipListener listener) {
+    public RxToolTipsManager(TipListener listener) {
         mAnimationDuration = DEFAULT_ANIM_DURATION;
         mListener = listener;
     }
 
-    public View show(ToolTip toolTip) {
-        View tipView = create(toolTip);
+    public View show(RxToolTip rxToolTip) {
+        View tipView = create(rxToolTip);
         if (tipView == null) {
             return null;
         }
 
         // animate tip visibility
-        AnimationUtils.popup(tipView, mAnimationDuration).start();
+        RxAnimationUtils.popup(tipView, mAnimationDuration).start();
 
         return tipView;
     }
 
-    private View create(ToolTip toolTip) {
+    private View create(RxToolTip rxToolTip) {
 
-        if (toolTip.getAnchorView() == null) {
+        if (rxToolTip.getAnchorView() == null) {
             Log.e(TAG, "Unable to create a tip, anchor view is null");
             return null;
         }
 
-        if (toolTip.getRootView() == null) {
+        if (rxToolTip.getRootView() == null) {
             Log.e(TAG, "Unable to create a tip, root layout is null");
             return null;
         }
 
         // only one tip is allowed near an anchor view at the same time, thus
         // reuse tip if already exist
-        if (mTipsMap.containsKey(toolTip.getAnchorView().getId())) {
-            return mTipsMap.get(toolTip.getAnchorView().getId());
+        if (mTipsMap.containsKey(rxToolTip.getAnchorView().getId())) {
+            return mTipsMap.get(rxToolTip.getAnchorView().getId());
         }
 
         // init tip view parameters
-        TextView tipView = createTipView(toolTip);
+        TextView tipView = createTipView(rxToolTip);
 
         // on RTL languages replace sides
-        if (UiUtils.isRtl()) {
-            switchToolTipSidePosition(toolTip);
+        if (RxToolTipUtils.isRtl()) {
+            switchToolTipSidePosition(rxToolTip);
         }
 
         // set tool tip background / shape
-        ToolTipBackgroundConstructor.setBackground(tipView, toolTip);
+        RxToolTipBackgroundConstructor.setBackground(tipView, rxToolTip);
 
         // add tip to root layout
-        toolTip.getRootView().addView(tipView);
+        rxToolTip.getRootView().addView(tipView);
 
         // find where to position the tool tip
-        Point p = ToolTipCoordinatesFinder.getCoordinates(tipView, toolTip);
+        Point p = RxToolTipCoordinatesFinder.getCoordinates(tipView, rxToolTip);
 
         // move tip view to correct position
         moveTipToCorrectPosition(tipView, p);
@@ -115,7 +115,7 @@ public class ToolTipsManager {
         });
 
         // bind tipView with anchorView id
-        int anchorViewId = toolTip.getAnchorView().getId();
+        int anchorViewId = rxToolTip.getAnchorView().getId();
         tipView.setTag(anchorViewId);
 
         // enter tip to map by 'anchorView' id
@@ -126,29 +126,29 @@ public class ToolTipsManager {
     }
 
     private void moveTipToCorrectPosition(TextView tipView, Point p) {
-        Coordinates tipViewCoordinates = new Coordinates(tipView);
-        int translationX = p.x - tipViewCoordinates.left;
-        int translationY = p.y - tipViewCoordinates.top;
-        if (!UiUtils.isRtl()) tipView.setTranslationX(translationX);
+        RxCoordinates tipViewRxCoordinates = new RxCoordinates(tipView);
+        int translationX = p.x - tipViewRxCoordinates.left;
+        int translationY = p.y - tipViewRxCoordinates.top;
+        if (!RxToolTipUtils.isRtl()) tipView.setTranslationX(translationX);
         else tipView.setTranslationX(-translationX);
         tipView.setTranslationY(translationY);
     }
 
     @NonNull
-    private TextView createTipView(ToolTip toolTip) {
-        TextView tipView = new TextView(toolTip.getContext());
-        tipView.setTextColor(toolTip.getTextColor());
-        tipView.setTextSize(toolTip.getTextSize());
-        tipView.setText(toolTip.getMessage() != null ? toolTip.getMessage() : toolTip.getSpannableMessage());
+    private TextView createTipView(RxToolTip rxToolTip) {
+        TextView tipView = new TextView(rxToolTip.getContext());
+        tipView.setTextColor(rxToolTip.getTextColor());
+        tipView.setTextSize(rxToolTip.getTextSize());
+        tipView.setText(rxToolTip.getMessage() != null ? rxToolTip.getMessage() : rxToolTip.getSpannableMessage());
         tipView.setVisibility(View.INVISIBLE);
-        tipView.setGravity(toolTip.getTextGravity());
-        setTipViewElevation(tipView, toolTip);
+        tipView.setGravity(rxToolTip.getTextGravity());
+        setTipViewElevation(tipView, rxToolTip);
         return tipView;
     }
 
-    private void setTipViewElevation(TextView tipView, ToolTip toolTip) {
+    private void setTipViewElevation(TextView tipView, RxToolTip rxToolTip) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (toolTip.getElevation() > 0) {
+            if (rxToolTip.getElevation() > 0) {
                 ViewOutlineProvider viewOutlineProvider = new ViewOutlineProvider() {
                     @SuppressLint("NewApi")
                     @Override
@@ -157,16 +157,16 @@ public class ToolTipsManager {
                     }
                 };
                 tipView.setOutlineProvider(viewOutlineProvider);
-                tipView.setElevation(toolTip.getElevation());
+                tipView.setElevation(rxToolTip.getElevation());
             }
         }
     }
 
-    private void switchToolTipSidePosition(ToolTip toolTip) {
-        if (toolTip.positionedLeftTo()) {
-            toolTip.setPosition(ToolTip.POSITION_RIGHT_TO);
-        } else if (toolTip.positionedRightTo()) {
-            toolTip.setPosition(ToolTip.POSITION_LEFT_TO);
+    private void switchToolTipSidePosition(RxToolTip rxToolTip) {
+        if (rxToolTip.positionedLeftTo()) {
+            rxToolTip.setPosition(RxToolTip.POSITION_RIGHT_TO);
+        } else if (rxToolTip.positionedRightTo()) {
+            rxToolTip.setPosition(RxToolTip.POSITION_LEFT_TO);
         }
     }
 
@@ -210,7 +210,7 @@ public class ToolTipsManager {
     }
 
     private void animateDismiss(final View view, final boolean byUser) {
-        AnimationUtils.popout(view, mAnimationDuration, new AnimatorListenerAdapter() {
+        RxAnimationUtils.popout(view, mAnimationDuration, new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);

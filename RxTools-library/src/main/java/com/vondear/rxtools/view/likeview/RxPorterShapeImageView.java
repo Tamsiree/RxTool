@@ -11,30 +11,30 @@ import android.util.AttributeSet;
 
 import com.vondear.rxtools.R;
 
-public class PorterShapeImageView extends PorterImageView {
+public class RxPorterShapeImageView extends RxPorterImageView {
     private Drawable shape;
     private Matrix matrix;
     private Matrix drawMatrix;
 
-    public PorterShapeImageView(Context context) {
+    public RxPorterShapeImageView(Context context) {
         super(context);
         setup(context, null, 0);
     }
 
-    public PorterShapeImageView(Context context, AttributeSet attrs) {
+    public RxPorterShapeImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setup(context, attrs, 0);
     }
 
-    public PorterShapeImageView(Context context, AttributeSet attrs, int defStyle) {
+    public RxPorterShapeImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setup(context, attrs, defStyle);
     }
 
     private void setup(Context context, AttributeSet attrs, int defStyle) {
         if(attrs != null){
-            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PorterImageView, defStyle, 0);
-            shape = typedArray.getDrawable(R.styleable.PorterImageView_siShape);
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RxPorterImageView, defStyle, 0);
+            shape = typedArray.getDrawable(R.styleable.RxPorterImageView_siShape);
             typedArray.recycle();
         }
         matrix = new Matrix();

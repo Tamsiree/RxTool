@@ -3,62 +3,60 @@ package com.vondear.tools.activity;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
-import com.vondear.rxtools.view.likeview.ShineButton;
+import com.vondear.rxtools.view.likeview.RxShineButton;
 import com.vondear.tools.R;
 
 public class ActivityLike extends AppCompatActivity {
 
-    ShineButton shineButton;
-    ShineButton porterShapeImageView1;
-    ShineButton porterShapeImageView2;
-    ShineButton porterShapeImageView3;
+    RxShineButton mRxShineButton;
+    RxShineButton porterShapeImageView1;
+    RxShineButton porterShapeImageView2;
+    RxShineButton porterShapeImageView3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like);
 
-        shineButton = (ShineButton) findViewById(R.id.po_image0);
+        mRxShineButton = (RxShineButton) findViewById(R.id.po_image0);
 
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.wrapper);
 
-        if (shineButton != null)
-            shineButton.init(this);
-        porterShapeImageView1 = (ShineButton) findViewById(R.id.po_image1);
+        if (mRxShineButton != null)
+            mRxShineButton.init(this);
+        porterShapeImageView1 = (RxShineButton) findViewById(R.id.po_image1);
         if (porterShapeImageView1 != null)
             porterShapeImageView1.init(this);
-        porterShapeImageView2 = (ShineButton) findViewById(R.id.po_image2);
+        porterShapeImageView2 = (RxShineButton) findViewById(R.id.po_image2);
         if (porterShapeImageView2 != null)
             porterShapeImageView2.init(this);
-        porterShapeImageView3 = (ShineButton) findViewById(R.id.po_image3);
+        porterShapeImageView3 = (RxShineButton) findViewById(R.id.po_image3);
         if (porterShapeImageView3 != null)
             porterShapeImageView3.init(this);
 
-        ShineButton shineButtonJava = new ShineButton(this);
+        RxShineButton rxShineButtonJava = new RxShineButton(this);
 
-        shineButtonJava.setBtnColor(Color.GRAY);
-        shineButtonJava.setBtnFillColor(Color.RED);
-        shineButtonJava.setShapeResource(R.raw.heart);
-        shineButtonJava.setAllowRandomColor(true);
-        shineButtonJava.setShineSize(100);
+        rxShineButtonJava.setBtnColor(Color.GRAY);
+        rxShineButtonJava.setBtnFillColor(Color.RED);
+        rxShineButtonJava.setShapeResource(R.raw.heart);
+        rxShineButtonJava.setAllowRandomColor(true);
+        rxShineButtonJava.setShineSize(100);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(100, 100);
-        shineButtonJava.setLayoutParams(layoutParams);
+        rxShineButtonJava.setLayoutParams(layoutParams);
         if (linearLayout != null) {
-            linearLayout.addView(shineButtonJava);
+            linearLayout.addView(rxShineButtonJava);
         }
 
 
-        shineButton.setOnClickListener(new View.OnClickListener() {
+        mRxShineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             }
         });
-        shineButton.setOnCheckStateChangeListener(new ShineButton.OnCheckedChangeListener() {
+        mRxShineButton.setOnCheckStateChangeListener(new RxShineButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(View view, boolean checked) {
             }

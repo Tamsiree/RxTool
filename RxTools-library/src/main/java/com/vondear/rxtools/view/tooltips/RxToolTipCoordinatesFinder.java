@@ -22,7 +22,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-class ToolTipCoordinatesFinder {
+class RxToolTipCoordinatesFinder {
 
     /**
      * return the top left coordinates for positioning the tip
@@ -31,34 +31,34 @@ class ToolTipCoordinatesFinder {
      * @param tooltip - tool tip object
      * @return point
      */
-    static Point getCoordinates(final TextView tipView, ToolTip tooltip) {
+    static Point getCoordinates(final TextView tipView, RxToolTip tooltip) {
         Point point = new Point();
-        final Coordinates anchorViewCoordinates = new Coordinates(tooltip.getAnchorView());
-        final Coordinates rootCoordinates = new Coordinates(tooltip.getRootView());
+        final RxCoordinates anchorViewRxCoordinates = new RxCoordinates(tooltip.getAnchorView());
+        final RxCoordinates rootRxCoordinates = new RxCoordinates(tooltip.getRootView());
 
         tipView.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         switch (tooltip.getPosition()) {
-            case ToolTip.POSITION_ABOVE:
+            case RxToolTip.POSITION_ABOVE:
                 point = getPositionAbove(tipView, tooltip,
-                        anchorViewCoordinates, rootCoordinates);
+                        anchorViewRxCoordinates, rootRxCoordinates);
                 break;
-            case ToolTip.POSITION_BELOW:
+            case RxToolTip.POSITION_BELOW:
                 point = getPositionBelow(tipView, tooltip,
-                        anchorViewCoordinates, rootCoordinates);
+                        anchorViewRxCoordinates, rootRxCoordinates);
                 break;
-            case ToolTip.POSITION_LEFT_TO:
+            case RxToolTip.POSITION_LEFT_TO:
                 point = getPositionLeftTo(tipView, tooltip,
-                        anchorViewCoordinates, rootCoordinates);
+                        anchorViewRxCoordinates, rootRxCoordinates);
                 break;
-            case ToolTip.POSITION_RIGHT_TO:
+            case RxToolTip.POSITION_RIGHT_TO:
                 point = getPositionRightTo(tipView, tooltip,
-                        anchorViewCoordinates, rootCoordinates);
+                        anchorViewRxCoordinates, rootRxCoordinates);
                 break;
         }
 
         // add user defined offset values
-        point.x += UiUtils.isRtl() ? -tooltip.getOffsetX() : tooltip.getOffsetX();
+        point.x += RxToolTipUtils.isRtl() ? -tooltip.getOffsetX() : tooltip.getOffsetX();
         point.y += tooltip.getOffsetY();
 
         // coordinates retrieved are relative to 0,0 of the root layout
@@ -72,54 +72,54 @@ class ToolTipCoordinatesFinder {
 
     }
 
-    private static Point getPositionRightTo(TextView tipView, ToolTip toolTip, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
+    private static Point getPositionRightTo(TextView tipView, RxToolTip rxToolTip, RxCoordinates anchorViewRxCoordinates, RxCoordinates rootLocation) {
         Point point = new Point();
-        point.x = anchorViewCoordinates.right;
-        AdjustRightToOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
-        point.y = anchorViewCoordinates.top + getYCenteringOffset(tipView, toolTip);
+        point.x = anchorViewRxCoordinates.right;
+        AdjustRightToOutOfBounds(tipView, rxToolTip.getRootView(), point, anchorViewRxCoordinates, rootLocation);
+        point.y = anchorViewRxCoordinates.top + getYCenteringOffset(tipView, rxToolTip);
         return point;
     }
 
-    private static Point getPositionLeftTo(TextView tipView, ToolTip toolTip, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
+    private static Point getPositionLeftTo(TextView tipView, RxToolTip rxToolTip, RxCoordinates anchorViewRxCoordinates, RxCoordinates rootLocation) {
         Point point = new Point();
-        point.x = anchorViewCoordinates.left - tipView.getMeasuredWidth();
-        AdjustLeftToOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
-        point.y = anchorViewCoordinates.top + getYCenteringOffset(tipView, toolTip);
+        point.x = anchorViewRxCoordinates.left - tipView.getMeasuredWidth();
+        AdjustLeftToOutOfBounds(tipView, rxToolTip.getRootView(), point, anchorViewRxCoordinates, rootLocation);
+        point.y = anchorViewRxCoordinates.top + getYCenteringOffset(tipView, rxToolTip);
         return point;
     }
 
-    private static Point getPositionBelow(TextView tipView, ToolTip toolTip, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
+    private static Point getPositionBelow(TextView tipView, RxToolTip rxToolTip, RxCoordinates anchorViewRxCoordinates, RxCoordinates rootLocation) {
         Point point = new Point();
-        point.x = anchorViewCoordinates.left + getXOffset(tipView, toolTip);
-        if (toolTip.alignedCenter()) {
-            AdjustHorizontalCenteredOutOfBounds(tipView, toolTip.getRootView(), point, rootLocation);
-        } else if (toolTip.alignedLeft()){
-            AdjustHorizontalLeftAlignmentOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
-        } else if (toolTip.alignedRight()){
-            AdjustHorizotalRightAlignmentOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
+        point.x = anchorViewRxCoordinates.left + getXOffset(tipView, rxToolTip);
+        if (rxToolTip.alignedCenter()) {
+            AdjustHorizontalCenteredOutOfBounds(tipView, rxToolTip.getRootView(), point, rootLocation);
+        } else if (rxToolTip.alignedLeft()){
+            AdjustHorizontalLeftAlignmentOutOfBounds(tipView, rxToolTip.getRootView(), point, anchorViewRxCoordinates, rootLocation);
+        } else if (rxToolTip.alignedRight()){
+            AdjustHorizotalRightAlignmentOutOfBounds(tipView, rxToolTip.getRootView(), point, anchorViewRxCoordinates, rootLocation);
         }
-        point.y = anchorViewCoordinates.bottom;
+        point.y = anchorViewRxCoordinates.bottom;
         return point;
     }
 
-    private static Point getPositionAbove(TextView tipView, ToolTip toolTip,
-                                          Coordinates anchorViewCoordinates, Coordinates rootLocation) {
+    private static Point getPositionAbove(TextView tipView, RxToolTip rxToolTip,
+                                          RxCoordinates anchorViewRxCoordinates, RxCoordinates rootLocation) {
         Point point = new Point();
-        point.x = anchorViewCoordinates.left + getXOffset(tipView, toolTip);
-        if (toolTip.alignedCenter()) {
-            AdjustHorizontalCenteredOutOfBounds(tipView, toolTip.getRootView(), point, rootLocation);
-        } else if (toolTip.alignedLeft()){
-            AdjustHorizontalLeftAlignmentOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
-        } else if (toolTip.alignedRight()){
-            AdjustHorizotalRightAlignmentOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
+        point.x = anchorViewRxCoordinates.left + getXOffset(tipView, rxToolTip);
+        if (rxToolTip.alignedCenter()) {
+            AdjustHorizontalCenteredOutOfBounds(tipView, rxToolTip.getRootView(), point, rootLocation);
+        } else if (rxToolTip.alignedLeft()){
+            AdjustHorizontalLeftAlignmentOutOfBounds(tipView, rxToolTip.getRootView(), point, anchorViewRxCoordinates, rootLocation);
+        } else if (rxToolTip.alignedRight()){
+            AdjustHorizotalRightAlignmentOutOfBounds(tipView, rxToolTip.getRootView(), point, anchorViewRxCoordinates, rootLocation);
         }
-        point.y = anchorViewCoordinates.top - tipView.getMeasuredHeight();
+        point.y = anchorViewRxCoordinates.top - tipView.getMeasuredHeight();
         return point;
     }
 
-    private static void AdjustRightToOutOfBounds(TextView tipView, ViewGroup root, Point point, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
+    private static void AdjustRightToOutOfBounds(TextView tipView, ViewGroup root, Point point, RxCoordinates anchorViewRxCoordinates, RxCoordinates rootLocation) {
         ViewGroup.LayoutParams params = tipView.getLayoutParams();
-        int availableSpace = rootLocation.right - root.getPaddingRight() - anchorViewCoordinates.right;
+        int availableSpace = rootLocation.right - root.getPaddingRight() - anchorViewRxCoordinates.right;
         if (point.x + tipView.getMeasuredWidth() > rootLocation.right - root.getPaddingRight()){
             params.width = availableSpace;
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -128,11 +128,11 @@ class ToolTipCoordinatesFinder {
         }
     }
 
-    private static void AdjustLeftToOutOfBounds(TextView tipView, ViewGroup root, Point point, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
+    private static void AdjustLeftToOutOfBounds(TextView tipView, ViewGroup root, Point point, RxCoordinates anchorViewRxCoordinates, RxCoordinates rootLocation) {
         ViewGroup.LayoutParams params = tipView.getLayoutParams();
         int rootLeft = rootLocation.left + root.getPaddingLeft();
         if (point.x < rootLeft){
-            int availableSpace = anchorViewCoordinates.left - rootLeft;
+            int availableSpace = anchorViewRxCoordinates.left - rootLeft;
             point.x = rootLeft;
             params.width = availableSpace;
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -142,12 +142,12 @@ class ToolTipCoordinatesFinder {
     }
 
     private static void AdjustHorizotalRightAlignmentOutOfBounds(TextView tipView, ViewGroup root,
-                                                                 Point point, Coordinates anchorViewCoordinates,
-                                                                 Coordinates rootLocation) {
+                                                                 Point point, RxCoordinates anchorViewRxCoordinates,
+                                                                 RxCoordinates rootLocation) {
         ViewGroup.LayoutParams params = tipView.getLayoutParams();
         int rootLeft = rootLocation.left + root.getPaddingLeft();
         if (point.x < rootLeft){
-            int availableSpace = anchorViewCoordinates.right - rootLeft;
+            int availableSpace = anchorViewRxCoordinates.right - rootLeft;
             point.x = rootLeft;
             params.width = availableSpace;
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -157,12 +157,12 @@ class ToolTipCoordinatesFinder {
     }
 
     private static void AdjustHorizontalLeftAlignmentOutOfBounds(TextView tipView, ViewGroup root,
-                                                                 Point point, Coordinates anchorViewCoordinates,
-                                                                 Coordinates rootLocation) {
+                                                                 Point point, RxCoordinates anchorViewRxCoordinates,
+                                                                 RxCoordinates rootLocation) {
         ViewGroup.LayoutParams params = tipView.getLayoutParams();
         int rootRight = rootLocation.right - root.getPaddingRight();
         if (point.x + tipView.getMeasuredWidth() > rootRight){
-            params.width = rootRight - anchorViewCoordinates.left;
+            params.width = rootRight - anchorViewRxCoordinates.left;
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             tipView.setLayoutParams(params);
             measureViewWithFixedWidth(tipView, params.width);
@@ -170,7 +170,7 @@ class ToolTipCoordinatesFinder {
     }
 
     private static void AdjustHorizontalCenteredOutOfBounds(TextView tipView, ViewGroup root,
-                                                            Point point, Coordinates rootLocation) {
+                                                            Point point, RxCoordinates rootLocation) {
         ViewGroup.LayoutParams params = tipView.getLayoutParams();
         int rootWidth = root.getWidth() - root.getPaddingLeft() - root.getPaddingRight();
         if (tipView.getMeasuredWidth() > rootWidth) {
@@ -193,18 +193,18 @@ class ToolTipCoordinatesFinder {
      * on X axis according to "align" parameter
      * @return int
      */
-    private static int getXOffset(View tipView, ToolTip toolTip) {
+    private static int getXOffset(View tipView, RxToolTip rxToolTip) {
         int offset;
 
-        switch (toolTip.getAlign()) {
-            case ToolTip.ALIGN_CENTER:
-                offset = ((toolTip.getAnchorView().getWidth() - tipView.getMeasuredWidth()) / 2);
+        switch (rxToolTip.getAlign()) {
+            case RxToolTip.ALIGN_CENTER:
+                offset = ((rxToolTip.getAnchorView().getWidth() - tipView.getMeasuredWidth()) / 2);
                 break;
-            case ToolTip.ALIGN_LEFT:
+            case RxToolTip.ALIGN_LEFT:
                 offset = 0;
                 break;
-            case ToolTip.ALIGN_RIGHT:
-                offset = toolTip.getAnchorView().getWidth() - tipView.getMeasuredWidth();
+            case RxToolTip.ALIGN_RIGHT:
+                offset = rxToolTip.getAnchorView().getWidth() - tipView.getMeasuredWidth();
                 break;
             default:
                 offset = 0;
@@ -219,8 +219,8 @@ class ToolTipCoordinatesFinder {
      * on Y axis
      * @return int
      */
-    private static int getYCenteringOffset(View tipView, ToolTip toolTip) {
-        return (toolTip.getAnchorView().getHeight() - tipView.getMeasuredHeight()) / 2;
+    private static int getYCenteringOffset(View tipView, RxToolTip rxToolTip) {
+        return (rxToolTip.getAnchorView().getHeight() - tipView.getMeasuredHeight()) / 2;
     }
 
 }

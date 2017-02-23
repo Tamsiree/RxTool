@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <com.vondear.rxtools.view.likeview.ShineButton
+            <com.vondear.rxtools.view.likeview.RxShineButton
                 android:id="@+id/po_image0"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <com.vondear.rxtools.view.likeview.ShineButton
+            <com.vondear.rxtools.view.likeview.RxShineButton
                 android:id="@+id/po_image1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <com.vondear.rxtools.view.likeview.ShineButton
+            <com.vondear.rxtools.view.likeview.RxShineButton
                 android:id="@+id/po_image2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <com.vondear.rxtools.view.likeview.ShineButton
+            <com.vondear.rxtools.view.likeview.RxShineButton
                 android:id="@+id/po_image3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -105,7 +105,7 @@
 
     </LinearLayout>
 
-    <com.vondear.rxtools.view.likeview.ShineButton
+    <com.vondear.rxtools.view.likeview.RxShineButton
         android:id="@+id/po_image8"
         android:layout_width="50dp"
         android:layout_height="50dp"

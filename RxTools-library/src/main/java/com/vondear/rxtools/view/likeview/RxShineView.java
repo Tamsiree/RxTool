@@ -10,8 +10,8 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.vondear.rxtools.view.likeview.ei.Ease;
-import com.vondear.rxtools.view.likeview.ei.EasingInterpolator;
+import com.vondear.rxtools.view.likeview.ei.RxEase;
+import com.vondear.rxtools.view.likeview.ei.RxEasingInterpolator;
 
 import java.util.Random;
 
@@ -23,15 +23,15 @@ import java.util.Random;
  * @date
  * @since 16/7/5 下午3:57
  **/
-public class ShineView extends View {
+public class RxShineView extends View {
     private static final String TAG = "ShineView";
 
     private static long FRAME_REFRESH_DELAY = 25;//default 10ms ,change to 25ms for saving cpu.
 
-    ShineAnimator shineAnimator;
+    RxShineAnimator mRxShineAnimator;
     ValueAnimator clickAnimator;
 
-    ShineButton shineButton;
+    RxShineButton mRxShineButton;
     private Paint paint;
     private Paint paint2;
     private Paint paintSmall;
@@ -71,20 +71,20 @@ public class ShineView extends View {
     private float distanceOffset = 0.2f;
 
 
-    public ShineView(Context context) {
+    public RxShineView(Context context) {
         super(context);
     }
 
-    public ShineView(Context context, final ShineButton shineButton, ShineParams shineParams) {
+    public RxShineView(Context context, final RxShineButton rxShineButton, ShineParams shineParams) {
         super(context);
 
 
-        initShineParams(shineParams, shineButton);
+        initShineParams(shineParams, rxShineButton);
 
 
-        this.shineAnimator = new ShineAnimator(animDuration, shineDistanceMultiple, clickAnimDuration);
+        this.mRxShineAnimator = new RxShineAnimator(animDuration, shineDistanceMultiple, clickAnimDuration);
         ValueAnimator.setFrameDelay(FRAME_REFRESH_DELAY);
-        this.shineButton = shineButton;
+        this.mRxShineButton = rxShineButton;
 
 
         paint = new Paint();
@@ -107,7 +107,7 @@ public class ShineView extends View {
         clickAnimator = ValueAnimator.ofFloat(0f, 1.1f);
         ValueAnimator.setFrameDelay(FRAME_REFRESH_DELAY);
         clickAnimator.setDuration(clickAnimDuration);
-        clickAnimator.setInterpolator(new EasingInterpolator(Ease.QUART_OUT));
+        clickAnimator.setInterpolator(new RxEasingInterpolator(RxEase.QUART_OUT));
         clickAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -137,7 +137,7 @@ public class ShineView extends View {
 
             }
         });
-        shineAnimator.addListener(new Animator.AnimatorListener() {
+        mRxShineAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
 
@@ -145,7 +145,7 @@ public class ShineView extends View {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                shineButton.removeView(ShineView.this);
+                rxShineButton.removeView(RxShineView.this);
             }
 
             @Override
@@ -162,24 +162,24 @@ public class ShineView extends View {
     }
 
 
-    public ShineView(Context context, AttributeSet attrs) {
+    public RxShineView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ShineView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxShineView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
 
-    public void showAnimation(ShineButton shineButton) {
-        btnWidth = shineButton.getWidth();
-        btnHeight = shineButton.getHeight();
+    public void showAnimation(RxShineButton rxShineButton) {
+        btnWidth = rxShineButton.getWidth();
+        btnHeight = rxShineButton.getHeight();
         thirdLength = getThirdLength(btnHeight, btnWidth);
         int[] location = new int[2];
-        shineButton.getLocationInWindow(location);
+        rxShineButton.getLocationInWindow(location);
         centerAnimX = location[0] + btnWidth / 2;
-        centerAnimY = getMeasuredHeight() - shineButton.getBottomHeight() + btnHeight / 2;
-        shineAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        centerAnimY = getMeasuredHeight() - rxShineButton.getBottomHeight() + btnHeight / 2;
+        mRxShineAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 value = (float) valueAnimator.getAnimatedValue();
@@ -198,7 +198,7 @@ public class ShineView extends View {
                 invalidate();
             }
         });
-        shineAnimator.startAnim(this, centerAnimX, centerAnimY);
+        mRxShineAnimator.startAnim(this, centerAnimX, centerAnimY);
         clickAnimator.start();
     }
 
@@ -227,9 +227,9 @@ public class ShineView extends View {
         }
         canvas.drawPoint(centerAnimX, centerAnimY, paint);
         canvas.drawPoint(centerAnimX, centerAnimY, paint2);
-        if (shineAnimator != null && !isRun) {
+        if (mRxShineAnimator != null && !isRun) {
             isRun = true;
-            showAnimation(shineButton);
+            showAnimation(mRxShineButton);
         }
     }
 
@@ -272,7 +272,7 @@ public class ShineView extends View {
         public int shineSize = 0;
     }
 
-    private void initShineParams(ShineParams shineParams, ShineButton shineButton) {
+    private void initShineParams(ShineParams shineParams, RxShineButton rxShineButton) {
         shineCount = shineParams.shineCount;
         turnAngle = shineParams.shineTurnAngle;
         smallOffsetAngle = shineParams.smallShineOffsetAngle;
@@ -289,7 +289,7 @@ public class ShineView extends View {
         }
 
         if (bigShineColor == 0) {
-            bigShineColor = shineButton.getColor();
+            bigShineColor = rxShineButton.getColor();
         }
 
     }

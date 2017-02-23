@@ -7,24 +7,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
-import com.vondear.rxtools.view.cardstackview.AllMoveDownAnimatorAdapter;
-import com.vondear.rxtools.view.cardstackview.CardStackView;
-import com.vondear.rxtools.view.cardstackview.UpDownAnimatorAdapter;
-import com.vondear.rxtools.view.cardstackview.UpDownStackAnimatorAdapter;
+import com.vondear.rxtools.view.cardstackview.AdapterRxAllMoveDownAnimator;
+import com.vondear.rxtools.view.cardstackview.RxCardStackView;
+import com.vondear.rxtools.view.cardstackview.AdapterUpDownRxAnimator;
+import com.vondear.rxtools.view.cardstackview.AdapterUpDownStackRxAnimator;
 import com.vondear.tools.R;
-import com.vondear.tools.adapter.AdapterTestStack;
+import com.vondear.tools.adapter.AdapterTestRxStack;
 
 import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ActivityCardStack extends AppCompatActivity implements CardStackView.ItemExpendListener {
+public class ActivityCardStack extends AppCompatActivity implements RxCardStackView.ItemExpendListener {
 
     @BindView(R.id.stackview_main)
-    CardStackView mStackView;
+    RxCardStackView mStackView;
     @BindView(R.id.button_container)
     LinearLayout mButtonContainer;
 
@@ -57,7 +56,7 @@ public class ActivityCardStack extends AppCompatActivity implements CardStackVie
             R.color.baby_blue
     };
 
-    private AdapterTestStack mTestStackAdapter;
+    private AdapterTestRxStack mTestStackAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +65,7 @@ public class ActivityCardStack extends AppCompatActivity implements CardStackVie
         ButterKnife.bind(this);
 
         mStackView.setItemExpendListener(this);
-        mTestStackAdapter = new AdapterTestStack(this);
+        mTestStackAdapter = new AdapterTestRxStack(this);
         mStackView.setAdapter(mTestStackAdapter);
 
 
@@ -91,13 +90,13 @@ public class ActivityCardStack extends AppCompatActivity implements CardStackVie
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_all_down:
-                mStackView.setAnimatorAdapter(new AllMoveDownAnimatorAdapter(mStackView));
+                mStackView.setAdapterRxAnimator(new AdapterRxAllMoveDownAnimator(mStackView));
                 break;
             case R.id.menu_up_down:
-                mStackView.setAnimatorAdapter(new UpDownAnimatorAdapter(mStackView));
+                mStackView.setAdapterRxAnimator(new AdapterUpDownRxAnimator(mStackView));
                 break;
             case R.id.menu_up_down_stack:
-                mStackView.setAnimatorAdapter(new UpDownStackAnimatorAdapter(mStackView));
+                mStackView.setAdapterRxAnimator(new AdapterUpDownStackRxAnimator(mStackView));
                 break;
         }
         return super.onOptionsItemSelected(item);

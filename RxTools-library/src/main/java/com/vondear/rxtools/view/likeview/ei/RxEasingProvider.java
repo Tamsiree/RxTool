@@ -6,14 +6,14 @@ import android.support.annotation.NonNull;
  * The Easing class provides a collection of ease functions. It does not use the standard 4 param
  * ease signature. Instead it uses a single param which indicates the current linear ratio (0 to 1) of the tween.
  */
-class EasingProvider {
+class RxEasingProvider {
     /**
-     * @param ease            Easing type
+     * @param rxEase            Easing type
      * @param elapsedTimeRate Elapsed time / Total time
      * @return easedValue
      */
-    public static float get(@NonNull Ease ease, float elapsedTimeRate) {
-        switch (ease) {
+    public static float get(@NonNull RxEase rxEase, float elapsedTimeRate) {
+        switch (rxEase) {
             case LINEAR:
                 return elapsedTimeRate;
             case QUAD_IN:

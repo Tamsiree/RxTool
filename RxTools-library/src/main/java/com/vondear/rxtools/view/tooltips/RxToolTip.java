@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 
 import com.vondear.rxtools.R;
 
-public class ToolTip {
+public class RxToolTip {
 
     @IntDef({POSITION_ABOVE, POSITION_BELOW, POSITION_LEFT_TO, POSITION_RIGHT_TO})
     public @interface Position {}
@@ -61,7 +61,7 @@ public class ToolTip {
     private Spannable mSpannableMessage;
     private int mTextSize;
 
-    public ToolTip(Builder builder){
+    public RxToolTip(Builder builder){
         mContext = builder.mContext;
         mAnchorView = builder.mAnchorView;
         mRootViewGroup = builder.mRootViewGroup;
@@ -311,8 +311,8 @@ public class ToolTip {
             return this;
         }
 
-        public ToolTip build(){
-            return new ToolTip(this);
+        public RxToolTip build(){
+            return new RxToolTip(this);
         }
 
     }

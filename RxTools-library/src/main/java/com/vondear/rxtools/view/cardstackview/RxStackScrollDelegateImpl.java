@@ -2,21 +2,21 @@ package com.vondear.rxtools.view.cardstackview;
 
 import android.view.View;
 
-public class StackScrollDelegateImpl implements ScrollDelegate{
+public class RxStackScrollDelegateImpl implements RxScrollDelegate {
 
-    private CardStackView mCardStackView;
+    private RxCardStackView mRxCardStackView;
     private int mScrollY;
     private int mScrollX;
 
-    public StackScrollDelegateImpl(CardStackView cardStackView) {
-        mCardStackView = cardStackView;
+    public RxStackScrollDelegateImpl(RxCardStackView rxCardStackView) {
+        mRxCardStackView = rxCardStackView;
     }
 
     private void updateChildPos() {
-        for (int i = 0; i < mCardStackView.getChildCount(); i++) {
-            View view = mCardStackView.getChildAt(i);
-            if (view.getTop() - mScrollY < mCardStackView.getChildAt(0).getY()) {
-                view.setTranslationY(mCardStackView.getChildAt(0).getY() - view.getTop());
+        for (int i = 0; i < mRxCardStackView.getChildCount(); i++) {
+            View view = mRxCardStackView.getChildAt(i);
+            if (view.getTop() - mScrollY < mRxCardStackView.getChildAt(0).getY()) {
+                view.setTranslationY(mRxCardStackView.getChildAt(0).getY() - view.getTop());
             } else if (view.getTop() - mScrollY > view.getTop()) {
                 view.setTranslationY(0);
             } else {
@@ -27,8 +27,8 @@ public class StackScrollDelegateImpl implements ScrollDelegate{
 
     @Override
     public void scrollViewTo(int x, int y) {
-        x = clamp(x, mCardStackView.getWidth() - mCardStackView.getPaddingRight() - mCardStackView.getPaddingLeft(), mCardStackView.getWidth());
-        y = clamp(y, mCardStackView.getShowHeight(), mCardStackView.getTotalLength());
+        x = clamp(x, mRxCardStackView.getWidth() - mRxCardStackView.getPaddingRight() - mRxCardStackView.getPaddingLeft(), mRxCardStackView.getWidth());
+        y = clamp(y, mRxCardStackView.getShowHeight(), mRxCardStackView.getTotalLength());
         mScrollY = y;
         mScrollX = x;
         updateChildPos();

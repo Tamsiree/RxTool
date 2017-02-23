@@ -18,7 +18,7 @@ package com.vondear.rxtools.view.tooltips;
 
 import java.util.Locale;
 
-class UiUtils {
+class RxToolTipUtils {
 
     static boolean isRtl() {
         Locale defLocal = Locale.getDefault();

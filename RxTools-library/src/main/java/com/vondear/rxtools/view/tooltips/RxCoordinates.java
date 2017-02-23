@@ -18,14 +18,14 @@ package com.vondear.rxtools.view.tooltips;
 
 import android.view.View;
 
-public class Coordinates {
+public class RxCoordinates {
 
     int left;
     int top;
     int right;
     int bottom;
 
-    public Coordinates(View view){
+    public RxCoordinates(View view){
         int[] location = new int[2];
         view.getLocationOnScreen(location);
         left = location[0];

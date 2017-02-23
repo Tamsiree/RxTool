@@ -140,7 +140,7 @@
         <attr name="lwvAdditionalCenterMark" format="string|reference"/>
     </declare-styleable>
 
-    <declare-styleable name="ShineButton">
+    <declare-styleable name="RxShineButton">
         <attr name="btn_color" format="color"/>
         <attr name="btn_fill_color" format="color"/>
         <attr name="shine_count" format="integer"/>
@@ -156,7 +156,7 @@
         <attr name="shine_size" format="dimension"/>
     </declare-styleable>
 
-    <declare-styleable name="PorterImageView">
+    <declare-styleable name="RxPorterImageView">
         <attr name="siShape" format="integer|reference"/>
     </declare-styleable>
 
@@ -170,7 +170,7 @@
     </declare-styleable>
 
 
-    <declare-styleable name="CardStackView">
+    <declare-styleable name="RxCardStackView">
         <attr name="stackOverlapGaps" format="dimension"/>
         <attr name="stackOverlapGapsCollapse" format="dimension"/>
         <attr name="stackHeaderHeight" format="dimension"/>

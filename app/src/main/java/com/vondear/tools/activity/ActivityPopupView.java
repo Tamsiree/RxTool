@@ -20,15 +20,15 @@ import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.bean.ActionItem;
 import com.vondear.rxtools.view.RxPopupImply;
 import com.vondear.rxtools.view.RxPopupView;
-import com.vondear.rxtools.view.tooltips.ToolTip;
-import com.vondear.rxtools.view.tooltips.ToolTipsManager;
+import com.vondear.rxtools.view.tooltips.RxToolTip;
+import com.vondear.rxtools.view.tooltips.RxToolTipsManager;
 import com.vondear.tools.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ActivityPopupView extends ActivityBase implements ToolTipsManager.TipListener {
+public class ActivityPopupView extends ActivityBase implements RxToolTipsManager.TipListener {
 
     @BindView(R.id.iv_finish)
     ImageView mIvFinish;
@@ -80,10 +80,10 @@ public class ActivityPopupView extends ActivityBase implements ToolTipsManager.T
     private static final String TAG = ActivityPopupView.class.getSimpleName();
     public static final String TIP_TEXT = "Tip";
 
-    ToolTipsManager mToolTipsManager;
+    RxToolTipsManager mRxToolTipsManager;
 
-    @ToolTip.Align
-    int mAlign = ToolTip.ALIGN_CENTER;
+    @RxToolTip.Align
+    int mAlign = RxToolTip.ALIGN_CENTER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +96,7 @@ public class ActivityPopupView extends ActivityBase implements ToolTipsManager.T
     private void initView() {
         mTvTitle.setText("PopupView的使用");
 
-        mToolTipsManager = new ToolTipsManager(this);
+        mRxToolTipsManager = new RxToolTipsManager(this);
 
         mAlignCenter.setChecked(true);
 
@@ -126,7 +126,7 @@ public class ActivityPopupView extends ActivityBase implements ToolTipsManager.T
     @OnClick({R.id.tv_imply, R.id.iv_finish, R.id.tv_definition, R.id.button_above, R.id.button_below, R.id.button_left_to, R.id.button_right_to, R.id.button_align_center, R.id.button_align_left, R.id.button_align_right})
     public void onClick(View view) {
         String text = TextUtils.isEmpty(mEditText.getText()) ? TIP_TEXT : mEditText.getText().toString();
-        ToolTip.Builder builder;
+        RxToolTip.Builder builder;
         switch (view.getId()) {
             case R.id.tv_imply:
                 if (popupImply == null) {
@@ -142,42 +142,42 @@ public class ActivityPopupView extends ActivityBase implements ToolTipsManager.T
                 titlePopup.show(mTvDefinition, 0);
                 break;
             case R.id.button_above:
-                mToolTipsManager.findAndDismiss(mTextView);
-                builder = new ToolTip.Builder(this, mTextView, mRootLayout, text, ToolTip.POSITION_ABOVE);
+                mRxToolTipsManager.findAndDismiss(mTextView);
+                builder = new RxToolTip.Builder(this, mTextView, mRootLayout, text, RxToolTip.POSITION_ABOVE);
                 builder.setAlign(mAlign);
-                mToolTipsManager.show(builder.build());
+                mRxToolTipsManager.show(builder.build());
                 break;
             case R.id.button_below:
-                mToolTipsManager.findAndDismiss(mTextView);
-                builder = new ToolTip.Builder(this, mTextView, mRootLayout, text, ToolTip.POSITION_BELOW);
+                mRxToolTipsManager.findAndDismiss(mTextView);
+                builder = new RxToolTip.Builder(this, mTextView, mRootLayout, text, RxToolTip.POSITION_BELOW);
                 builder.setAlign(mAlign);
                 builder.setBackgroundColor(getResources().getColor(R.color.orange));
-                mToolTipsManager.show(builder.build());
+                mRxToolTipsManager.show(builder.build());
                 break;
             case R.id.button_left_to:
-                mToolTipsManager.findAndDismiss(mTextView);
-                builder = new ToolTip.Builder(this, mTextView, mRootLayout, text, ToolTip.POSITION_LEFT_TO);
+                mRxToolTipsManager.findAndDismiss(mTextView);
+                builder = new RxToolTip.Builder(this, mTextView, mRootLayout, text, RxToolTip.POSITION_LEFT_TO);
                 builder.setBackgroundColor(getResources().getColor(R.color.greenyellow));
                 builder.setTextColor(getResources().getColor(R.color.black));
-                builder.setGravity(ToolTip.GRAVITY_CENTER);
+                builder.setGravity(RxToolTip.GRAVITY_CENTER);
                 builder.setTextSize(12);
-                mToolTipsManager.show(builder.build());
+                mRxToolTipsManager.show(builder.build());
                 break;
             case R.id.button_right_to:
-                mToolTipsManager.findAndDismiss(mTextView);
-                builder = new ToolTip.Builder(this, mTextView, mRootLayout, text, ToolTip.POSITION_RIGHT_TO);
+                mRxToolTipsManager.findAndDismiss(mTextView);
+                builder = new RxToolTip.Builder(this, mTextView, mRootLayout, text, RxToolTip.POSITION_RIGHT_TO);
                 builder.setBackgroundColor(getResources().getColor(R.color.paleturquoise));
                 builder.setTextColor(getResources().getColor(android.R.color.white));
-                mToolTipsManager.show(builder.build());
+                mRxToolTipsManager.show(builder.build());
                 break;
             case R.id.button_align_center:
-                mAlign = ToolTip.ALIGN_CENTER;
+                mAlign = RxToolTip.ALIGN_CENTER;
                 break;
             case R.id.button_align_left:
-                mAlign = ToolTip.ALIGN_LEFT;
+                mAlign = RxToolTip.ALIGN_LEFT;
                 break;
             case R.id.button_align_right:
-                mAlign = ToolTip.ALIGN_RIGHT;
+                mAlign = RxToolTip.ALIGN_RIGHT;
                 break;
         }
     }
@@ -188,9 +188,9 @@ public class ActivityPopupView extends ActivityBase implements ToolTipsManager.T
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        ToolTip.Builder builder = new ToolTip.Builder(this, mTextView, mRootLayout, TIP_TEXT, ToolTip.POSITION_ABOVE);
+        RxToolTip.Builder builder = new RxToolTip.Builder(this, mTextView, mRootLayout, TIP_TEXT, RxToolTip.POSITION_ABOVE);
         builder.setAlign(mAlign);
-        mToolTipsManager.show(builder.build());
+        mRxToolTipsManager.show(builder.build());
     }
 
 
