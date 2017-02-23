@@ -224,4 +224,7 @@
     <color name="_6">#666666</color>
     <color name="_9">#999999</color>
     <color name="gray1">#e7e4e4</color>
+
+    <color name="colorBackground">#FF4081</color>
+    <color name="colorText">#FFFFFF</color>
 </resources>

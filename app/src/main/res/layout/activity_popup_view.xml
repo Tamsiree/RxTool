@@ -22,15 +22,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tv_imply"
-            android:layout_margin="10dp"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:gravity="center"
             android:text="点我"/>
 
@@ -53,4 +53,144 @@
 
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/text_input_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tip message"
+                android:inputType="text"
+                tools:ignore="HardcodedText"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/text_view_buttons_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linear_layout_buttons_above_below"
+            android:text="Click to change tip position and alignment"
+            tools:ignore="HardcodedText"/>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_buttons_above_below"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linear_layout_buttons_align"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_above"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Above"
+                tools:ignore="HardcodedText"/>
+
+            <Button
+                android:id="@+id/button_below"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Below"
+                tools:ignore="HardcodedText"/>
+
+
+            <Button
+                android:id="@+id/button_left_to"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Left"
+                tools:ignore="HardcodedText"/>
+
+            <Button
+                android:id="@+id/button_right_to"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Right"
+                tools:ignore="HardcodedText"/>
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/linear_layout_buttons_align"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingEnd="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp">
+
+            <RadioButton
+                android:id="@+id/button_align_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Left"
+                tools:ignore="HardcodedText"/>
+
+            <RadioButton
+                android:id="@+id/button_align_center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Center"
+                tools:ignore="HardcodedText"/>
+
+            <RadioButton
+                android:id="@+id/button_align_right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Right"
+                tools:ignore="HardcodedText"/>
+
+        </RadioGroup>
+
+        <RelativeLayout
+            android:id="@+id/parent_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/text_view_buttons_label"
+            android:layout_below="@id/text_input_layout">
+
+            <TextView
+                android:id="@+id/text_view"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_centerInParent="true"
+                android:background="?attr/colorPrimary"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="View"
+                android:textColor="@android:color/white"
+                tools:ignore="HardcodedText"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
 </LinearLayout>
