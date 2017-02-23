@@ -21,7 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.vondear.tools.R;
-import com.vondear.tools.view.FakeAddImageView;
+import com.vondear.tools.view.RxFakeAddImageView;
 import com.vondear.tools.view.PointFTypeEvaluator;
 import com.vondear.tools.view.ShopCartDialog;
 import com.vondear.tools.adapter.AdapterLeftMenu;
@@ -46,7 +46,7 @@ public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.o
     private ArrayList<DishMenu> dishMenuList;//数据源
     private boolean leftClickType = false;//左侧菜单点击引发的右侧联动
     private ShopCart shopCart;
-    //    private FakeAddImageView fakeAddImageView;
+    //    private RxFakeAddImageView fakeAddImageView;
     private ImageView shoppingCartView;
     private FrameLayout shopingCartLayout;
     private TextView totalPriceTextView;
@@ -69,7 +69,7 @@ public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.o
         rightMenu = (RecyclerView)findViewById(R.id.right_menu);
         headerView = (TextView)findViewById(R.id.right_menu_tv);
         headerLayout = (LinearLayout)findViewById(R.id.right_menu_item);
-//        fakeAddImageView = (FakeAddImageView)findViewById(R.id.right_dish_fake_add);
+//        fakeAddImageView = (RxFakeAddImageView)findViewById(R.id.right_dish_fake_add);
         bottomLayout = (LinearLayout)findViewById(R.id.shopping_cart_bottom);
         shoppingCartView = (ImageView) findViewById(R.id.shopping_cart);
         shopingCartLayout = (FrameLayout) findViewById(R.id.shopping_cart_layout);
@@ -263,25 +263,25 @@ public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.o
         controlP.x = endP.x;
         controlP.y = startP.y;
 
-        final FakeAddImageView fakeAddImageView = new FakeAddImageView(this);
-        mainLayout.addView(fakeAddImageView);
-        fakeAddImageView.setImageResource(R.drawable.ic_add_circle_blue_700_36dp);
-        fakeAddImageView.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.item_dish_circle_size);
-        fakeAddImageView.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.item_dish_circle_size);
-        fakeAddImageView.setVisibility(View.VISIBLE);
-        ObjectAnimator addAnimator = ObjectAnimator.ofObject(fakeAddImageView, "mPointF",
+        final RxFakeAddImageView rxFakeAddImageView = new RxFakeAddImageView(this);
+        mainLayout.addView(rxFakeAddImageView);
+        rxFakeAddImageView.setImageResource(R.drawable.ic_add_circle_blue_700_36dp);
+        rxFakeAddImageView.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.item_dish_circle_size);
+        rxFakeAddImageView.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.item_dish_circle_size);
+        rxFakeAddImageView.setVisibility(View.VISIBLE);
+        ObjectAnimator addAnimator = ObjectAnimator.ofObject(rxFakeAddImageView, "mPointF",
                 new PointFTypeEvaluator(controlP), startP, endP);
         addAnimator.setInterpolator(new AccelerateInterpolator());
         addAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
-                fakeAddImageView.setVisibility(View.VISIBLE);
+                rxFakeAddImageView.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                fakeAddImageView.setVisibility(View.GONE);
-                mainLayout.removeView(fakeAddImageView);
+                rxFakeAddImageView.setVisibility(View.GONE);
+                mainLayout.removeView(rxFakeAddImageView);
             }
 
             @Override
