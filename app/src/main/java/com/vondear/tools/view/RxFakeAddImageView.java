@@ -10,23 +10,23 @@ import android.widget.ImageView;
 /**
  * Created by cheng on 16-11-13.
  */
-public class FakeAddImageView extends ImageView {
+public class RxFakeAddImageView extends ImageView {
     private PointF mPointF;
 
-    public FakeAddImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxFakeAddImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public FakeAddImageView(Context context) {
+    public RxFakeAddImageView(Context context) {
         super(context);
     }
 
-    public FakeAddImageView(Context context, AttributeSet attrs) {
+    public RxFakeAddImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public FakeAddImageView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public RxFakeAddImageView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
