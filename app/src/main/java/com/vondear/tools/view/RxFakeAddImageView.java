@@ -7,9 +7,6 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-/**
- * Created by cheng on 16-11-13.
- */
 public class RxFakeAddImageView extends ImageView {
     private PointF mPointF;
 
