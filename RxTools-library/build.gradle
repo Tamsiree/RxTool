@@ -35,4 +35,6 @@ dependencies {
     compile files('src/main/libs/zxing.jar')
 
     compile 'com.nineoldandroids:library:2.4.0'
+
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 }
