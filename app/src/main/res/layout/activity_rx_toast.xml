@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:RightIcon="@drawable/set"
         app:RightIconVisibility="false"
-        app:background="@color/blue"
+        app:RxBackground="@color/blue"
         app:leftIcon="@drawable/back"
         app:leftIconVisibility="true"
         app:title="RxToast的展示使用"

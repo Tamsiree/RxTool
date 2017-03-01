@@ -47,7 +47,7 @@
     </declare-styleable>
 
     <declare-styleable name="RxTitle">
-        <attr name="background" format="color"/>
+        <attr name="RxBackground" format="color"/>
         <attr name="title" format="string"/>
         <attr name="titleColor" format="color"/>
         <attr name="titleSize" format="dimension"/>

@@ -7,12 +7,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:background="@color/darkcyan"
     tools:context="com.vondear.tools.activity.ActivityFlightSeat">
 
     <com.vondear.rxtools.view.RxTitle
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/google_green"
+        app:RxBackground="@color/darkcyan"
         app:title="上海 - 长沙 飞机票选座"
         app:titleColor="@color/black"/>
 

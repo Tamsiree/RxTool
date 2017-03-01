@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_shopping_view"
@@ -14,14 +13,14 @@
     <com.vondear.rxtools.view.RxTitle
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:background="?colorPrimary"
-        app:title="添加购物控件"/>
+        app:RxBackground="?colorPrimary"
+        app:title="添加购物控件" />
 
     <com.vondear.rxtools.view.RxShoppingView
         android:id="@+id/sv_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp" />
 
     <com.vondear.rxtools.view.RxShoppingView
         android:id="@+id/sv_2"
@@ -30,7 +29,7 @@
         android:layout_margin="10dp"
         android:layout_marginTop="10dp"
         app:sv_bg_color="#CD5555"
-        app:sv_text="点击购买"/>
+        app:sv_text="点击购买" />
 
     <com.vondear.rxtools.view.RxShoppingView
         android:layout_width="wrap_content"
@@ -40,7 +39,7 @@
         app:sv_bg_color="@color/SUCCESS_COLOR"
         app:sv_duration="200"
         app:sv_text="SHOPPING"
-        app:sv_text_size="22sp"/>
+        app:sv_text_size="22sp" />
 
     <com.vondear.rxtools.view.RxShoppingView
         android:layout_width="wrap_content"
@@ -50,13 +49,13 @@
         app:sv_bg_color="#D8BFD8"
         app:sv_duration="100"
         app:sv_text="RxTools"
-        app:sv_text_size="18sp"/>
+        app:sv_text_size="18sp" />
 
     <Button
-        android:text="外卖点单界面"
+        android:id="@+id/btn_take_out"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_take_out"/>
+        android:text="外卖点单界面" />
 
 
 </LinearLayout>

@@ -21,6 +21,21 @@ import java.lang.reflect.Method;
 public class RxBarUtils {
 
     /**
+     * 隐藏状态栏
+     * <p>也就是设置全屏，一定要在setContentView之前调用，否则报错</p>
+     * <p>此方法Activity可以继承AppCompatActivity</p>
+     * <p>启动的时候状态栏会显示一下再隐藏，比如QQ的欢迎界面</p>
+     * <p>在配置文件中Activity加属性android:theme="@android:style/Theme.NoTitleBar.Fullscreen"</p>
+     * <p>如加了以上配置Activity不能继承AppCompatActivity，会报错</p>
+     *
+     * @param activity activity
+     */
+    public static void hideStatusBar(Activity activity) {
+        noTitle(activity);
+        FLAG_FULLSCREEN(activity);
+    }
+
+    /**
      * 设置透明状态栏(api大于19方可使用)
      * <p>可在Activity的onCreat()中调用</p>
      * <p>需在顶部控件布局中加入以下属性让内容出现在状态栏之下</p>

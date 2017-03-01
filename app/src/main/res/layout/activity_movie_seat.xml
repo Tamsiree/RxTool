@@ -6,14 +6,17 @@
     android:id="@+id/activity_movie_seat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/google_green"
     android:orientation="vertical"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
     tools:context="com.vondear.tools.activity.ActivityMovieSeat">
 
     <com.vondear.rxtools.view.RxTitle
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/google_green"
+        app:RxBackground="@color/google_green"
         app:title="仙剑奇侠传：电影版"
         app:titleColor="@color/black"/>
 

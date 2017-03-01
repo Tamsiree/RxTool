@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxMovieSeatTable;
 import com.vondear.tools.R;
@@ -21,6 +22,8 @@ public class ActivityMovieSeat extends ActivityBase {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        RxBarUtils.noTitle(this);
+        RxBarUtils.setTransparentStatusBar(this);
         setContentView(R.layout.activity_movie_seat);
         ButterKnife.bind(this);
         initView();
