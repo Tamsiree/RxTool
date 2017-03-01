@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_rx_captcha"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.vondear.tools.activity.ActivityRxCaptcha">
+
+    <com.vondear.rxtools.view.RxTitle
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:RxBackground="@color/blue"
+        app:title="验证码工具的使用"
+        app:titleColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="Hello World!"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_code"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:background="@color/_6"
+            android:src="@drawable/ic_check_white_48dp" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_get_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取验证码" />
+
+</LinearLayout>

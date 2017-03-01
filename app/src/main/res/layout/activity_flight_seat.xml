@@ -13,7 +13,6 @@
     tools:context="com.vondear.tools.activity.ActivityFlightSeat">
 
     <com.vondear.rxtools.view.RxTitle
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:RxBackground="@color/darkcyan"
