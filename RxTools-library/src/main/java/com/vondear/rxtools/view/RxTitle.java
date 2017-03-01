@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxDataUtils;
-import com.vondear.rxtools.RxImageUtils;
 
 /**
  * Created by vonde on 2017/1/2.
@@ -69,7 +68,7 @@ public class RxTitle extends FrameLayout {
 
         try {
             //获得属性值
-            mBackground = a.getResourceId(R.styleable.RxTitle_background, R.color.blue);
+            mBackground = a.getColor(R.styleable.RxTitle_background, getResources().getColor(R.color.transparent));
             mTitle = a.getString(R.styleable.RxTitle_title);
             mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, getResources().getColor(R.color.white));
             mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, 20);//TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
@@ -82,7 +81,7 @@ public class RxTitle extends FrameLayout {
             a.recycle();
         }
         if (mBackground != 0) {
-            mRootLayout.setBackgroundResource(mBackground);
+            mRootLayout.setBackgroundColor(mBackground);
         }
 
         if (!RxDataUtils.isNullString(mTitle)) {
