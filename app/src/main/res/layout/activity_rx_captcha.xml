@@ -17,8 +17,11 @@
         app:titleColor="@color/black" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:background="@drawable/shape_small_round_theme"
         android:gravity="center">
 
         <TextView
