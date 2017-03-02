@@ -2,6 +2,7 @@ package com.vondear.rxtools;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -162,8 +163,7 @@ public class RxPhotoUtils {
     }
 
 
-/*
-    //此方法已被遗弃 只能用于4.4以下的版本
+    //此方法 只能用于4.4以下的版本
     public static String getRealFilePath(final Context context, final Uri uri) {
         if (null == uri) return null;
         final String scheme = uri.getScheme();
@@ -188,7 +188,7 @@ public class RxPhotoUtils {
             }
         }
         return data;
-    }*/
+    }
 
 
     /**  * 根据Uri获取图片绝对路径，解决Android4.4以上版本Uri转换

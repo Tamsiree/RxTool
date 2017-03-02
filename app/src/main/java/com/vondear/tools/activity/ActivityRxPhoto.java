@@ -1,13 +1,16 @@
 package com.vondear.tools.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -118,9 +121,13 @@ public class ActivityRxPhoto extends ActivityBase {
 
             @Override
             public void onClick(View arg0) {
-                RxPhotoUtils.openCameraImage(ActivityRxPhoto.this);
-                dialog1.cancel();
-
+                //请求Camera权限
+                if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA}, 1);
+                }else{
+                    RxPhotoUtils.openCameraImage(ActivityRxPhoto.this);
+                    dialog1.cancel();
+                }
             }
         });
         tv_file.setOnClickListener(new View.OnClickListener() {

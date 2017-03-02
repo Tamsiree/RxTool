@@ -1,5 +1,6 @@
 package com.vondear.rxtools.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -28,10 +29,7 @@ import android.view.ViewGroup;
  * </pre>
  */
 public abstract class FragmentLazy extends Fragment {
-    /**
-     * Fragment title
-     */
-    public String fragmentTitle;
+
     /**
      * 是否可见状态
      */
@@ -49,6 +47,8 @@ public abstract class FragmentLazy extends Fragment {
      */
     private boolean isFirstLoad = true;
 
+    public Context mContext;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,6 +61,8 @@ public abstract class FragmentLazy extends Fragment {
         // 取消 isFirstLoad = true的注释 , 因为上述的initData本身就是应该执行的
         // onCreateView执行 证明被移出过FragmentManager initData确实要执行.
         // 如果这里有数据累加的Bug 请在initViews方法里初始化您的数据 比如 list.clear();
+        mContext = getContext();
+
         isFirstLoad = true;
         View view = initViews(inflater, container, savedInstanceState);
         isPrepared = true;
@@ -128,21 +130,4 @@ public abstract class FragmentLazy extends Fragment {
 
     protected abstract void initData();
 
-    public String getTitle() {
-        if (null == fragmentTitle) {
-            setDefaultFragmentTitle(null);
-        }
-        return TextUtils.isEmpty(fragmentTitle) ? "" : fragmentTitle;
-    }
-
-    public void setTitle(String title) {
-        fragmentTitle = title;
-    }
-
-    /**
-     * 设置fragment的Title直接调用 {@link FragmentLazy#setTitle(String)},若不显示该title 可以不做处理
-     *
-     * @param title 一般用于显示在TabLayout的标题
-     */
-    protected abstract void setDefaultFragmentTitle(String title);
 }
