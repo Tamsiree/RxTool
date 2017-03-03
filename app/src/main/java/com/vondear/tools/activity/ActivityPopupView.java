@@ -93,7 +93,7 @@ public class ActivityPopupView extends ActivityBase implements RxToolTipsManager
         initView();
     }
 
-    private void initView() {
+    protected void initView() {
         mTvTitle.setText("PopupView的使用");
 
         mRxToolTipsManager = new RxToolTipsManager(this);

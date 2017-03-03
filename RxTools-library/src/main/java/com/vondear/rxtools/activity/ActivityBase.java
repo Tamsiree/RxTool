@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
-public abstract class ActivityBase extends FragmentActivity {
+public class ActivityBase extends FragmentActivity {
 
     public Context mContext;
 
@@ -19,14 +19,4 @@ public abstract class ActivityBase extends FragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
-
-    /**
-     * 数据的初始化
-     */
-    protected abstract void initData();
-
-    /**
-     * 视图的初始化与数据的填充
-     */
-    protected abstract void initView();
 }

@@ -3,7 +3,6 @@ package com.vondear.tools.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -55,20 +54,17 @@ public class ActivityRxPhoto extends ActivityBase {
     LinearLayout llIncludeTitle;
     @BindView(R.id.btn_exit)
     Button mBtnExit;
-
-    private Context context;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         RxBarUtils.noTitle(this);
         setContentView(R.layout.activity_von_photo);
         ButterKnife.bind(this);
-        context = this;
         initView();
     }
 
-    private void initView() {
+    protected void initView() {
         Resources r = mContext.getResources();
         resultUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
                 + r.getResourcePackageName(R.drawable.elves_ball) + "/"
@@ -91,7 +87,7 @@ public class ActivityRxPhoto extends ActivityBase {
         ivAvatar.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                RxImageUtils.showBigImageView(context, resultUri);
+                RxImageUtils.showBigImageView(mContext, resultUri);
                 return false;
             }
         });
@@ -122,8 +118,8 @@ public class ActivityRxPhoto extends ActivityBase {
             @Override
             public void onClick(View arg0) {
                 //请求Camera权限
-                if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA}, 1);
+                if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.CAMERA}, 1);
                 }else{
                     RxPhotoUtils.openCameraImage(ActivityRxPhoto.this);
                     dialog1.cancel();
@@ -163,10 +159,10 @@ public class ActivityRxPhoto extends ActivityBase {
 
                 break;
             case RxPhotoUtils.CROP_IMAGE://普通裁剪后的处理
-                Glide.with(context).
+                Glide.with(mContext).
                         load(RxPhotoUtils.cropImageUri).
                         diskCacheStrategy(DiskCacheStrategy.RESULT).
-                        bitmapTransform(new CropCircleTransformation(context)).
+                        bitmapTransform(new CropCircleTransformation(mContext)).
                         thumbnail(0.5f).
                         placeholder(R.drawable.elves_ball).
                         priority(Priority.LOW).
@@ -174,14 +170,14 @@ public class ActivityRxPhoto extends ActivityBase {
                         fallback(R.drawable.elves_ball).
                         dontAnimate().
                         into(ivAvatar);
-//                RequestUpdateAvatar(new File(RxPhotoUtils.getRealFilePath(context, RxPhotoUtils.cropImageUri)));
+//                RequestUpdateAvatar(new File(RxPhotoUtils.getRealFilePath(mContext, RxPhotoUtils.cropImageUri)));
                 break;
 
             case UCrop.REQUEST_CROP://UCrop裁剪之后的处理
                 if (resultCode == RESULT_OK) {
                     resultUri = UCrop.getOutput(data);
                     roadImageView(resultUri, ivAvatar);
-                    RxSPUtils.putContent(context, "AVATAR", resultUri.toString());
+                    RxSPUtils.putContent(mContext, "AVATAR", resultUri.toString());
                 } else if (resultCode == UCrop.RESULT_ERROR) {
                     final Throwable cropError = UCrop.getError(data);
                 }
@@ -197,10 +193,10 @@ public class ActivityRxPhoto extends ActivityBase {
 
     //从Uri中加载图片 并将其转化成File文件返回
     private File roadImageView(Uri uri, ImageView imageView) {
-        Glide.with(context).
+        Glide.with(mContext).
                 load(uri).
                 diskCacheStrategy(DiskCacheStrategy.RESULT).
-                bitmapTransform(new CropCircleTransformation(context)).
+                bitmapTransform(new CropCircleTransformation(mContext)).
                 thumbnail(0.5f).
                 placeholder(R.drawable.elves_ball).
                 priority(Priority.LOW).

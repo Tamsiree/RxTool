@@ -13,7 +13,6 @@ import com.vondear.rxtools.RxActivityUtils;
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxDataUtils;
 import com.vondear.rxtools.RxSPUtils;
-import com.vondear.rxtools.RxUtils;
 import com.vondear.rxtools.view.RxBarCode;
 import com.vondear.rxtools.view.RxQRCode;
 import com.vondear.rxtools.view.RxTitle;
@@ -59,13 +58,15 @@ public class ActivityCodeTool extends ActivityBase {
         initEvent();
     }
 
+
+
     @Override
     protected void onResume() {
         super.onResume();
         updateScanCodeCount();
     }
 
-    private void initView() {
+    protected void initView() {
         mRxTitle = (RxTitle) findViewById(R.id.rx_title);
         mEtQrCode = (EditText) findViewById(R.id.et_qr_code);
         mIvCreateQrCode = (ImageView) findViewById(R.id.iv_create_qr_code);

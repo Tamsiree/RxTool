@@ -51,7 +51,7 @@ public class ActivityRunTextView extends ActivityBase {
         initView();
     }
 
-    private void initView() {
+    protected void initView() {
         mTvTitle.setText("RunTextView的使用");
 
         mRxVText = (RxVerticalTextview) findViewById(R.id.text);

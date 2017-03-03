@@ -43,7 +43,7 @@ public class ActivityRxToast extends ActivityBase {
         initView();
     }
 
-    private void initView() {
+    protected void initView() {
         mRxTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

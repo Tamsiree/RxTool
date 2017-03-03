@@ -2,7 +2,6 @@ package com.vondear.tools.activity;
 
 import android.os.Bundle;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.activity.ActivityBase;
@@ -29,7 +28,9 @@ public class ActivityMovieSeat extends ActivityBase {
         initView();
     }
 
-    private void initView() {
+
+
+    protected void initView() {
         mSeatView.setScreenName("3号厅荧幕");//设置屏幕名称
         mSeatView.setMaxSelected(8);//设置最多选中
 
