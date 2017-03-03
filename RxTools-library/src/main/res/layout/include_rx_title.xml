@@ -11,6 +11,7 @@
         android:id="@+id/ll_left"
         android:layout_width="50dp"
         android:layout_height="match_parent"
+        android:background="@drawable/selector_bg"
         android:gravity="center">
 
         <ImageView

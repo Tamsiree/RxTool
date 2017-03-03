@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFFFF</color>
+    <color name="whiteTrans66">#66FFFFFF</color>
     <color name="black">#FF000000</color>
     <color name="orange">#f8b62d</color>
     <color name="yellow">#e6ff00</color>
@@ -16,6 +17,7 @@
     <color name="WARNING_COLOR">#FFA900</color>
 
     <color name="mi_green">#52BA97</color>
+
 
 
     <color name="f0">#f0f0f0</color>
