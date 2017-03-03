@@ -3,6 +3,7 @@ package com.vondear.rxtools.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,8 +48,7 @@ public abstract class FragmentLazy extends Fragment {
      */
     private boolean isFirstLoad = true;
 
-    public Context mContext;
-
+    public FragmentActivity mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public abstract class FragmentLazy extends Fragment {
         // 取消 isFirstLoad = true的注释 , 因为上述的initData本身就是应该执行的
         // onCreateView执行 证明被移出过FragmentManager initData确实要执行.
         // 如果这里有数据累加的Bug 请在initViews方法里初始化您的数据 比如 list.clear();
-        mContext = getContext();
+        mContext = getActivity();
 
         isFirstLoad = true;
         View view = initViews(inflater, container, savedInstanceState);
