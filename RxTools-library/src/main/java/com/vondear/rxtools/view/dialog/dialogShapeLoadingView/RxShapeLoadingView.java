@@ -21,7 +21,7 @@ import com.vondear.rxtools.R;
 
 
 /**
- * Created by zzz40500 on 15/4/6.
+ * Created by Vondear on 15/4/6.
  */
 public class RxShapeLoadingView extends FrameLayout {
 

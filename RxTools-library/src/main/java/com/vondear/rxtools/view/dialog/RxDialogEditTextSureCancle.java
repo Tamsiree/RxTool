@@ -12,7 +12,7 @@ import com.vondear.rxtools.R;
 
 
 /**
- * Created by vonde on 2016/7/19.
+ * Created by vondear on 2016/7/19.
  * Mainly used for confirmation and cancel.
  */
 public class RxDialogEditTextSureCancle extends RxDialog {

@@ -122,7 +122,7 @@ public class ActivityCodeTool extends ActivityBase {
                     //二维码生成方式一  推荐此方法
                     RxQRCode.builder(str).
                             backColor(getResources().getColor(R.color.white)).
-                            codeColor(getResources().getColor(R.color.baby_blue)).
+                            codeColor(getResources().getColor(R.color.black)).
                             codeSide(800).
                             into(mIvQrCode);
 
@@ -152,14 +152,13 @@ public class ActivityCodeTool extends ActivityBase {
                     //条形码生成方式一  推荐此方法
                     RxBarCode.builder(str1).
                             backColor(getResources().getColor(R.color.transparent)).
-                            codeColor(getResources().getColor(R.color.baby_blue)).
+                            codeColor(getResources().getColor(R.color.black)).
                             codeWidth(1000).
                             codeHeight(300).
                             into(mIvBarCode);
 
                     //条形码生成方式二  默认宽为1000 高为300 背景为白色 二维码为黑色
                     //mIvBarCode.setImageBitmap(RxBarCode.createBarCode(str1, 1000, 300));
-
 
                     RxToast.success(mContext, "条形码已生成!", Toast.LENGTH_SHORT, true).show();
 

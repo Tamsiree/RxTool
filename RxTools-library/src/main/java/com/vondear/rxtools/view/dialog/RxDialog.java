@@ -1,19 +1,15 @@
 package com.vondear.rxtools.view.dialog;
 
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxDeviceUtils;
-
 
 public class RxDialog extends Dialog {
 

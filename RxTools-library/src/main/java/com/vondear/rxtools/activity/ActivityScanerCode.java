@@ -15,19 +15,17 @@ import android.graphics.Point;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.MediaStore;
-import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.ScaleAnimation;
@@ -37,6 +35,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.vondear.rxtools.R;
+import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxDataUtils;
 import com.vondear.rxtools.RxSPUtils;
 import com.vondear.rxtools.model.scaner.CaptureActivityHandler;
@@ -59,7 +58,7 @@ import java.util.Date;
 import static com.vondear.rxtools.RxConstants.SP_SCAN_CODE;
 
 public class ActivityScanerCode extends Activity implements SurfaceHolder.Callback {
-    public static final int CHOOSE_PICTURE = 1003;
+    private final int CHOOSE_PICTURE = 1003;
     private CaptureActivityHandler handler;
     private boolean hasSurface;
     private InactivityTimer inactivityTimer;
@@ -74,23 +73,18 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
     private RelativeLayout mContainer = null;
     private RelativeLayout mCropLayout = null;
 
-    private LinearLayout ll_scan_help;//生成二维码 & 条形码
+    private LinearLayout ll_scan_help;//生成二维码 & 条形码 布局
 
-    private ImageView light;//闪光灯 按钮
-
+    private ImageView mIvLight;//闪光灯 按钮
 
     private Context context;
 
-    /**
-     * Called when the activity is first created.
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);//设置无标题
+        RxBarUtils.setNoTitle(this);
         setContentView(R.layout.activity_scaner_code);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);//透明状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);//透明导航栏
+        RxBarUtils.setTransparentStatusBar(this);
         context = this;
         initView();//界面控件初始化
         initScanerAnimation();//扫描动画初始化
@@ -141,7 +135,7 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
     }
 
     private void initView() {
-        light = (ImageView) findViewById(R.id.top_mask);
+        mIvLight = (ImageView) findViewById(R.id.top_mask);
         mContainer = (RelativeLayout) findViewById(R.id.capture_containter);
         mCropLayout = (RelativeLayout) findViewById(R.id.capture_crop_layout);
         ll_scan_help = (LinearLayout) findViewById(R.id.ll_scan_help);
@@ -222,14 +216,12 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         int i = view.getId();
         if (i == R.id.top_mask) {
             light();
-
         } else if (i == R.id.top_back) {
             finish();
-
         } else if (i == R.id.top_openpicture) {
             getPicture();
-
         } else {
+
         }
     }
 
@@ -367,8 +359,7 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
     /*
      * 保存文件
      */
-    public static String saveFile(Bitmap bm, String fileName)
-            throws IOException {
+    public static String saveFile(Bitmap bm, String fileName) throws IOException {
         String path;
         File dirFile = new File(ALBUM_PATH);
         if (!dirFile.exists()) {
@@ -424,24 +415,19 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
      * @return
      */
     public static String setImageName() {
-        String fileName = "";
-        String str = null;
-        Date date = null;
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");// 获取当前时间，进一步转化为字符串
-        date = new Date();
-        str = format.format(date);
-        return fileName = str + ".jpg";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");// 获取当前时间，进一步转化为字符串
+        return simpleDateFormat.format(new Date()) + ".jpg";
     }
     //==============================================================================================打开本地图片识别二维码 end
 
     //----------------------------------------------------------------------------------------------解析结果 及 后续处理 start
-    private String result;
+    private String mResult;
 
     public void handleDecode(String result) {
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
 
-        this.result = result;
+        this.mResult = result;
         Log.v("二维码/条形码 扫描结果", result);
 
         dialogShow(result);
@@ -456,10 +442,13 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
             setVolumeControlStream(AudioManager.STREAM_MUSIC);
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mediaPlayer.setOnCompletionListener(beepListener);
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    mediaPlayer.seekTo(0);
+                }
+            });
 
-            AssetFileDescriptor file = getResources().openRawResourceFd(
-                    R.raw.beep);
+            AssetFileDescriptor file = getResources().openRawResourceFd(R.raw.beep);
             try {
                 mediaPlayer.setDataSource(file.getFileDescriptor(),
                         file.getStartOffset(), file.getLength());
@@ -483,11 +472,5 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
             vibrator.vibrate(VIBRATE_DURATION);
         }
     }
-
-    private final MediaPlayer.OnCompletionListener beepListener = new MediaPlayer.OnCompletionListener() {
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            mediaPlayer.seekTo(0);
-        }
-    };
     //==============================================================================================扫描成功之后的振动与声音提示 end
 }

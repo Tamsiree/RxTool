@@ -13,11 +13,9 @@ import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxDataUtils;
 import com.vondear.rxtools.RxTextUtils;
 
-import static com.vondear.rxtools.RxConstants.URL_VONTOOLS;
-
 
 /**
- * Created by vonde on 2016/7/19.
+ * Created by vondear on 2016/7/19.
  * Mainly used for confirmation and cancel.
  */
 public class RxDialogSure extends RxDialog {
