@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxDataUtils;
 
-/*
+/**
  * Created by vondear on 2017/1/2.
  */
 
