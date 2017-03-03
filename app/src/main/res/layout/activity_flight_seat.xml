@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_flight_seat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/darkcyan"
     android:clipToPadding="true"
     android:fitsSystemWindows="true"
-    android:background="@color/darkcyan"
+    android:orientation="vertical"
     tools:context="com.vondear.tools.activity.ActivityFlightSeat">
 
     <com.vondear.rxtools.view.RxTitle
@@ -17,7 +16,7 @@
         android:layout_height="wrap_content"
         app:RxBackground="@color/darkcyan"
         app:title="上海 - 长沙 飞机票选座"
-        app:titleColor="@color/black"/>
+        app:titleColor="@color/white" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,7 +27,7 @@
             android:id="@+id/fsv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp" />
 
 
         <Button
@@ -40,7 +39,7 @@
             android:background="@android:color/transparent"
             android:onClick="clear"
             android:text="clear"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
 
 
         <Button
@@ -53,7 +52,7 @@
             android:background="@android:color/transparent"
             android:onClick="zoom"
             android:text="ok"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
 
 
         <Button
@@ -65,7 +64,7 @@
             android:background="@android:color/transparent"
             android:onClick="gotoposition"
             android:text="goto"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
 
 
     </RelativeLayout>
