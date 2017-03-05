@@ -25,21 +25,6 @@
             android:layout_weight="1">
 
             <com.vondear.rxtools.view.likeview.RxShineButton
-                android:id="@+id/po_image0"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerInParent="true"
-                app:btn_color="@android:color/darker_gray"
-                app:btn_fill_color="#999933"
-                app:siShape="@raw/heart"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <com.vondear.rxtools.view.likeview.RxShineButton
                 android:id="@+id/po_image1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -96,23 +81,95 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/wrapper"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/ll_top"
         android:gravity="center"
         android:orientation="horizontal">
 
+        <LinearLayout
+            android:id="@+id/wrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <com.vondear.rxtools.view.likeview.RxShineButton
+                android:id="@+id/po_image0"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                app:btn_color="@android:color/darker_gray"
+                app:btn_fill_color="#999933"
+                app:siShape="@raw/heart"/>
+        </RelativeLayout>
+
+
+        <com.vondear.rxtools.view.likeview.RxShineButton
+            android:id="@+id/po_image8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/wrapper"
+            android:layout_centerHorizontal="true"
+            app:btn_color="#FF6666"
+            app:btn_fill_color="#999933"
+            app:siShape="@raw/heart"/>
+
+
     </LinearLayout>
 
-    <com.vondear.rxtools.view.likeview.RxShineButton
-        android:id="@+id/po_image8"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/wrapper"
-        android:layout_centerHorizontal="true"
-        app:btn_color="#FF6666"
-        app:btn_fill_color="#999933"
-        app:siShape="@raw/heart"/>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_control"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+
+            <ImageView
+                android:id="@+id/love"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/shape_round_transparent"
+                android:clickable="true"
+                android:padding="12dp"
+                android:src="@drawable/selector_love"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.vondear.rxtools.view.heart.RxHeartLayout
+        android:id="@+id/heart_layout"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_alignRight="@+id/tv_hv"
+        android:layout_marginBottom="58dp"/>
+
+    <TextView
+        android:id="@+id/tv_hv"
+        android:layout_width="68dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
