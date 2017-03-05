@@ -12,10 +12,6 @@ import android.widget.ImageView;
 
 import com.vondear.rxtools.R;
 
-/**
- * Created by vonde on 2017/1/2.
- */
-
 public class RxAutoImageView extends FrameLayout {
 
     private ImageView mImageView;

@@ -9,12 +9,11 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.vondear.rxtools.RxTextUtils;
 
 import java.util.Hashtable;
 
 /**
- * Created by vonde on 2017/2/17.
+ * @author  by vondear on 2017/2/17.
  */
 
 public class RxQRCode {

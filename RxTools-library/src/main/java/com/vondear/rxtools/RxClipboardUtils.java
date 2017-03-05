@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 /**
- * Created by vonde on 2016/12/21.
+ * Created by vondear on 2016/12/21.
  */
 
 public class RxClipboardUtils {

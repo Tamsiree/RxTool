@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by vonde on 2016/1/24.
+ * Created by vondear on 2016/1/24.
  */
 
 public class RxPhotoUtils {

@@ -17,7 +17,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.vondear.rxtools.RxCaptcha;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxToast;
-import com.vondear.rxtools.view.swipecaptcha.SwipeCaptchaView;
+import com.vondear.rxtools.view.swipecaptcha.RxSwipeCaptcha;
 import com.vondear.tools.R;
 
 import butterknife.BindView;
@@ -33,7 +33,7 @@ public class ActivityRxCaptcha extends ActivityBase {
     @BindView(R.id.btn_get_code)
     Button btnGetCode;
     @BindView(R.id.swipeCaptchaView)
-    SwipeCaptchaView mSwipeCaptchaView;
+    RxSwipeCaptcha mRxSwipeCaptcha;
     @BindView(R.id.dragBar)
     SeekBar mSeekBar;
     @BindView(R.id.btnChange)
@@ -50,19 +50,19 @@ public class ActivityRxCaptcha extends ActivityBase {
     }
 
     private void initView() {
-        mSwipeCaptchaView.setOnCaptchaMatchCallback(new SwipeCaptchaView.OnCaptchaMatchCallback() {
+        mRxSwipeCaptcha.setOnCaptchaMatchCallback(new RxSwipeCaptcha.OnCaptchaMatchCallback() {
             @Override
-            public void matchSuccess(SwipeCaptchaView swipeCaptchaView) {
+            public void matchSuccess(RxSwipeCaptcha rxSwipeCaptcha) {
                 RxToast.success(mContext, "验证通过！", Toast.LENGTH_SHORT).show();
                 //swipeCaptcha.createCaptcha();
                 mSeekBar.setEnabled(false);
             }
 
             @Override
-            public void matchFailed(SwipeCaptchaView swipeCaptchaView) {
-                Log.d("zxt", "matchFailed() called with: swipeCaptchaView = [" + swipeCaptchaView + "]");
+            public void matchFailed(RxSwipeCaptcha rxSwipeCaptcha) {
+                Log.d("zxt", "matchFailed() called with: rxSwipeCaptcha = [" + rxSwipeCaptcha + "]");
                 RxToast.error(mContext, "验证失败:拖动滑块将悬浮头像正确拼合", Toast.LENGTH_SHORT).show();
-                swipeCaptchaView.resetCaptcha();
+                rxSwipeCaptcha.resetCaptcha();
                 mSeekBar.setProgress(0);
             }
         });
@@ -70,19 +70,19 @@ public class ActivityRxCaptcha extends ActivityBase {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mSwipeCaptchaView.setCurrentSwipeValue(progress);
+                mRxSwipeCaptcha.setCurrentSwipeValue(progress);
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 //随便放这里是因为控件
-                mSeekBar.setMax(mSwipeCaptchaView.getMaxSwipeValue());
+                mSeekBar.setMax(mRxSwipeCaptcha.getMaxSwipeValue());
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 Log.d("zxt", "onStopTrackingTouch() called with: seekBar = [" + seekBar + "]");
-                mSwipeCaptchaView.matchCaptcha();
+                mRxSwipeCaptcha.matchCaptcha();
             }
         });
 
@@ -93,8 +93,8 @@ public class ActivityRxCaptcha extends ActivityBase {
                 .into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                        mSwipeCaptchaView.setImageBitmap(resource);
-                        mSwipeCaptchaView.createCaptcha();
+                        mRxSwipeCaptcha.setImageBitmap(resource);
+                        mRxSwipeCaptcha.createCaptcha();
                     }
                 });
     }
@@ -107,7 +107,7 @@ public class ActivityRxCaptcha extends ActivityBase {
                 tvCode.setText(RxCaptcha.getInstance().getCode());
                 break;
             case R.id.btnChange:
-                mSwipeCaptchaView.createCaptcha();
+                mRxSwipeCaptcha.createCaptcha();
                 mSeekBar.setEnabled(true);
                 mSeekBar.setProgress(0);
                 break;

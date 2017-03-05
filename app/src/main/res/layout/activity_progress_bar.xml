@@ -25,7 +25,7 @@
             android:orientation="vertical">
 
 
-            <com.vondear.rxtools.view.RxFlikerProgressBar
+            <com.vondear.rxtools.view.RxProgressBar
                 android:id="@+id/flikerbar"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -34,7 +34,7 @@
                 app:stopColor="#ff9800"
                 app:textSize="12sp"/>
 
-            <com.vondear.rxtools.view.RxFlikerProgressBar
+            <com.vondear.rxtools.view.RxProgressBar
                 android:id="@+id/round_flikerbar"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"

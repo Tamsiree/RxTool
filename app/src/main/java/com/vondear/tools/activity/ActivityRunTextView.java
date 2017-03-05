@@ -11,8 +11,8 @@ import android.widget.Toast;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxRunTextView;
 import com.vondear.rxtools.view.RxToast;
-import com.vondear.rxtools.view.RxVerticalMoreTextView;
-import com.vondear.rxtools.view.RxVerticalTextview;
+import com.vondear.rxtools.view.RxTextViewVerticalMore;
+import com.vondear.rxtools.view.RxTextviewVertical;
 import com.vondear.tools.R;
 
 import java.util.ArrayList;
@@ -37,9 +37,9 @@ public class ActivityRunTextView extends ActivityBase {
     @BindView(R.id.activity_run_text_view)
     LinearLayout mActivityRunTextView;
     @BindView(R.id.text)
-    RxVerticalTextview mRxVText;
+    RxTextviewVertical mRxVText;
     @BindView(R.id.upview1)
-    RxVerticalMoreTextView mUpview1;
+    RxTextViewVerticalMore mUpview1;
 
     private ArrayList<String> titleList = new ArrayList<String>();
 
@@ -54,7 +54,7 @@ public class ActivityRunTextView extends ActivityBase {
     protected void initView() {
         mTvTitle.setText("RunTextView的使用");
 
-        mRxVText = (RxVerticalTextview) findViewById(R.id.text);
+        mRxVText = (RxTextviewVertical) findViewById(R.id.text);
         titleList.add("你是天上最受宠的一架钢琴");
         titleList.add("我是丑人脸上的鼻涕");
         titleList.add("你发出完美的声音");
@@ -67,7 +67,7 @@ public class ActivityRunTextView extends ActivityBase {
         mRxVText.setText(26, 5, 0xff766156);//设置属性
         mRxVText.setTextStillTime(3000);//设置停留时长间隔
         mRxVText.setAnimTime(300);//设置进入和退出的时间间隔
-        mRxVText.setOnItemClickListener(new RxVerticalTextview.OnItemClickListener() {
+        mRxVText.setOnItemClickListener(new RxTextviewVertical.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 RxToast.success(mContext, "点击了 : " + titleList.get(position), Toast.LENGTH_SHORT, true).show();

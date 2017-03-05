@@ -17,7 +17,7 @@ import java.util.List;
  *
  * Created by vondear on 2016/7/20.
  */
-public class RxVerticalMoreTextView extends ViewFlipper {
+public class RxTextViewVerticalMore extends ViewFlipper {
 
     private Context mContext;
     private boolean isSetAnimDuration = false;
@@ -27,7 +27,7 @@ public class RxVerticalMoreTextView extends ViewFlipper {
      */
     private int animDuration = 500;
 
-    public RxVerticalMoreTextView(Context context, AttributeSet attrs) {
+    public RxTextViewVerticalMore(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs, 0);
     }

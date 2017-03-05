@@ -19,12 +19,7 @@ import android.view.animation.LinearInterpolator;
 import com.vondear.rxtools.R;
 
 /**
- * @author Chad
- * @title com.sackcentury.shinebuttonlib
- * @description
- * @modifier
- * @date
- * @since 16/7/5 下午2:27
+ * 16/7/5 下午2:27
  **/
 public class RxShineButton extends RxPorterShapeImageView {
     private static final String TAG = "RxShineButton";
@@ -186,6 +181,7 @@ public class RxShineButton extends RxPorterShapeImageView {
     public void setShineSize(int size) {
         shineParams.shineSize = size;
     }
+
     @Override
     public void setOnClickListener(View.OnClickListener l) {
         if (l instanceof OnButtonClickListener) {

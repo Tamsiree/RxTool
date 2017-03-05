@@ -20,9 +20,6 @@ import com.vondear.rxtools.R;
 import com.vondear.rxtools.view.roundprogressbar.common.RxBaseRoundProgressBar;
 
 
-/**
- * Created by Akexorcist on 9/16/15 AD.
- */
 public class RxTextRoundProgressBar extends RxBaseRoundProgressBar implements ViewTreeObserver.OnGlobalLayoutListener {
     protected final static int DEFAULT_TEXT_SIZE = 16;
     protected final static int DEFAULT_TEXT_MARGIN = 10;

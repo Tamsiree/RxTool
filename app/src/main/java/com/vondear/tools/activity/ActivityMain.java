@@ -13,7 +13,7 @@ import com.vondear.tools.R;
 import com.vondear.tools.adapter.AdapterRecyclerViewMain;
 import com.vondear.tools.bean.MainItem;
 import com.vondear.rxtools.RxImageUtils;
-import com.vondear.rxtools.RxRecyclerViewUtils;
+import com.vondear.rxtools.RxRecyclerViewDivider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +72,7 @@ public class ActivityMain extends AppCompatActivity {
             recyclerview.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
 
-        recyclerview.addItemDecoration(new RxRecyclerViewUtils.SpaceItemDecoration(RxImageUtils.dp2px(context, 5f)));
+        recyclerview.addItemDecoration(new RxRecyclerViewDivider(RxImageUtils.dp2px(context, 5f)));
         AdapterRecyclerViewMain recyclerViewMain = new AdapterRecyclerViewMain(mData);
 
         recyclerview.setAdapter(recyclerViewMain);

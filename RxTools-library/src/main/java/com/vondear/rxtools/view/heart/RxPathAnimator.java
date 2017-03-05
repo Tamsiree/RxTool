@@ -28,11 +28,11 @@ import android.view.animation.Transformation;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class PathAnimator extends AbstractPathAnimator {
+public class RxPathAnimator extends RxAbstractPathAnimator {
     private final AtomicInteger mCounter = new AtomicInteger(0);
     private Handler mHandler;
 
-    public PathAnimator(Config config) {
+    public RxPathAnimator(Config config) {
         super(config);
         mHandler = new Handler(Looper.getMainLooper());
     }

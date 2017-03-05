@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.vondear.rxtools.RxBarUtils;
-import com.vondear.rxtools.view.RxFlightSeatView;
+import com.vondear.rxtools.view.RxSeatAirplane;
 import com.vondear.tools.R;
 
 import butterknife.BindView;
@@ -17,7 +17,7 @@ import butterknife.OnClick;
 public class ActivityFlightSeat extends Activity {
 
     @BindView(R.id.fsv)
-    RxFlightSeatView mFlightSeatView;
+    RxSeatAirplane mFlightSeatView;
     @BindView(R.id.btn_clear)
     Button mBtnClear;
     @BindView(R.id.btn_zoom)
@@ -49,7 +49,7 @@ public class ActivityFlightSeat extends Activity {
 
 
     public void gotoposition(View v) {
-        mFlightSeatView.goCabinPosition(RxFlightSeatView.CabinPosition.Middle);
+        mFlightSeatView.goCabinPosition(RxSeatAirplane.CabinPosition.Middle);
     }
 
 

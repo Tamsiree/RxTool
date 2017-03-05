@@ -1,7 +1,6 @@
 package com.vondear.rxtools.view.ticker;
 
 /**
- * Helper class to compute the Levenshtein distance between two strings.
  * https://en.wikipedia.org/wiki/Levenshtein_distance
  */
 public class RxLevenshteinUtils {

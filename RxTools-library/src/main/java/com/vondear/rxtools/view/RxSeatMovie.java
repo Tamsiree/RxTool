@@ -34,7 +34,7 @@ import java.util.Collections;
 /**
  * Created by baoyunlong on 16/6/16.
  */
-public class RxMovieSeatTable extends View {
+public class RxSeatMovie extends View {
     private final boolean DBG = false;
 
     Paint paint = new Paint();
@@ -276,11 +276,11 @@ public class RxMovieSeatTable extends View {
      */
     private int seatHeight;
 
-    public RxMovieSeatTable(Context context) {
+    public RxSeatMovie(Context context) {
         super(context);
     }
 
-    public RxMovieSeatTable(Context context, AttributeSet attrs) {
+    public RxSeatMovie(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context,attrs);
     }
@@ -296,7 +296,7 @@ public class RxMovieSeatTable extends View {
         typedArray.recycle();
     }
 
-    public RxMovieSeatTable(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxSeatMovie(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context,attrs);
     }

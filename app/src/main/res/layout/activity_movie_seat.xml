@@ -52,7 +52,7 @@
         android:layout_marginLeft="50dp"
         android:background="@color/gray1" />
 
-    <com.vondear.rxtools.view.RxMovieSeatTable
+    <com.vondear.rxtools.view.RxSeatMovie
         android:id="@+id/seatView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

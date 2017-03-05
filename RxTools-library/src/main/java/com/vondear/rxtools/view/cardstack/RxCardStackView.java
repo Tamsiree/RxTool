@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.cardstackview;
+package com.vondear.rxtools.view.cardstack;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -40,13 +40,13 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
     private int mOverlapGaps;
     private int mOverlapGapsCollapse;
     private int mNumBottomShow;
-    private AdapterRxStack mAdapterRxStack;
+    private RxAdapterStack mRxAdapterStack;
     private final ViewDataObserver mObserver = new ViewDataObserver();
     private int mSelectPosition = DEFAULT_SELECT_POSITION;
     private int mShowHeight;
     private List<ViewHolder> mViewHolders;
 
-    private AdapterRxAnimator mAdapterRxAnimator;
+    private RxAdapterAnimator mRxAdapterAnimator;
     private int mDuration;
 
     private OverScroller mScroller;
@@ -87,7 +87,7 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.RxCardStackView, defStyleAttr, defStyleRes);
         setOverlapGaps(array.getDimensionPixelSize(R.styleable.RxCardStackView_stackOverlapGaps, dp2px(20)));
         setOverlapGapsCollapse(array.getDimensionPixelSize(R.styleable.RxCardStackView_stackOverlapGapsCollapse, dp2px(20)));
-        setDuration(array.getInt(R.styleable.RxCardStackView_stackDuration, AdapterRxAnimator.ANIMATION_DURATION));
+        setDuration(array.getInt(R.styleable.RxCardStackView_stackDuration, RxAdapterAnimator.ANIMATION_DURATION));
         setAnimationType(array.getInt(R.styleable.RxCardStackView_stackAnimationType, UP_DOWN_STACK));
         setNumBottomShow(array.getInt(R.styleable.RxCardStackView_stackNumBottomShow, 3));
         array.recycle();
@@ -199,32 +199,32 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
         requestLayout();
     }
 
-    public void setAdapter(AdapterRxStack adapterRxStack) {
-        mAdapterRxStack = adapterRxStack;
-        mAdapterRxStack.registerObserver(mObserver);
+    public void setAdapter(RxAdapterStack rxAdapterStack) {
+        mRxAdapterStack = rxAdapterStack;
+        mRxAdapterStack.registerObserver(mObserver);
         refreshView();
     }
 
     public void setAnimationType(int type) {
-        AdapterRxAnimator adapterRxAnimator;
+        RxAdapterAnimator rxAdapterAnimator;
         switch (type) {
             case ALL_DOWN:
-                adapterRxAnimator = new AdapterRxAllMoveDownAnimator(this);
+                rxAdapterAnimator = new RxAdapterAllMoveDownAnimator(this);
                 break;
             case UP_DOWN:
-                adapterRxAnimator = new AdapterUpDownRxAnimator(this);
+                rxAdapterAnimator = new RxAdapterUpDownAnimator(this);
                 break;
             default:
-                adapterRxAnimator = new AdapterUpDownStackRxAnimator(this);
+                rxAdapterAnimator = new RxAdapterUpDownStackAnimator(this);
                 break;
         }
-        setAdapterRxAnimator(adapterRxAnimator);
+        setRxAdapterAnimator(rxAdapterAnimator);
     }
 
-    public void setAdapterRxAnimator(AdapterRxAnimator adapterRxAnimator) {
+    public void setRxAdapterAnimator(RxAdapterAnimator rxAdapterAnimator) {
         clearScrollYAndTranslation();
-        mAdapterRxAnimator = adapterRxAnimator;
-        if (mAdapterRxAnimator instanceof AdapterUpDownStackRxAnimator) {
+        mRxAdapterAnimator = rxAdapterAnimator;
+        if (mRxAdapterAnimator instanceof RxAdapterUpDownStackAnimator) {
             mRxScrollDelegate = new RxStackScrollDelegateImpl(this);
         } else {
             mRxScrollDelegate = this;
@@ -234,13 +234,13 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
     private void refreshView() {
         removeAllViews();
         mViewHolders.clear();
-        for (int i = 0; i < mAdapterRxStack.getItemCount(); i++) {
+        for (int i = 0; i < mRxAdapterStack.getItemCount(); i++) {
             ViewHolder holder = getViewHolder(i);
             holder.position = i;
             holder.onItemExpand(i == mSelectPosition);
             addView(holder.itemView);
             setClickAnimator(holder, i);
-            mAdapterRxStack.bindViewHolder(holder, i);
+            mRxAdapterStack.bindViewHolder(holder, i);
         }
         requestLayout();
     }
@@ -248,8 +248,8 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
     ViewHolder getViewHolder(int i) {
         if (i == DEFAULT_SELECT_POSITION) return null;
         ViewHolder viewHolder;
-        if (mViewHolders.size() <= i || mViewHolders.get(i).mItemViewType != mAdapterRxStack.getItemViewType(i)) {
-            viewHolder = mAdapterRxStack.createView(this, mAdapterRxStack.getItemViewType(i));
+        if (mViewHolders.size() <= i || mViewHolders.get(i).mItemViewType != mRxAdapterStack.getItemViewType(i)) {
+            viewHolder = mRxAdapterStack.createView(this, mRxAdapterStack.getItemViewType(i));
             mViewHolders.add(viewHolder);
         } else {
             viewHolder = mViewHolders.get(i);
@@ -293,7 +293,7 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
 
     private void doCardClickAnimation(final ViewHolder viewHolder, int position) {
         checkContentHeightByParent();
-        mAdapterRxAnimator.itemClick(viewHolder, position);
+        mRxAdapterAnimator.itemClick(viewHolder, position);
     }
 
     private void initOrResetVelocityTracker() {
@@ -797,7 +797,7 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
     }
 
     public int getDuration() {
-        if (mAdapterRxAnimator != null) return mDuration;
+        if (mRxAdapterAnimator != null) return mDuration;
         return 0;
     }
 

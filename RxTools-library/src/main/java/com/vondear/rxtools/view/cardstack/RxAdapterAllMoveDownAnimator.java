@@ -1,11 +1,11 @@
-package com.vondear.rxtools.view.cardstackview;
+package com.vondear.rxtools.view.cardstack;
 
 import android.animation.ObjectAnimator;
 import android.view.View;
 
-public class AdapterUpDownRxAnimator extends AdapterRxAnimator {
+public class RxAdapterAllMoveDownAnimator extends RxAdapterAnimator {
 
-    public AdapterUpDownRxAnimator(RxCardStackView rxCardStackView) {
+    public RxAdapterAllMoveDownAnimator(RxCardStackView rxCardStackView) {
         super(rxCardStackView);
     }
 
@@ -25,9 +25,6 @@ public class AdapterUpDownRxAnimator extends AdapterRxAnimator {
                 ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), childTop);
                 mSet.play(oAnim);
                 collapseShowItemCount++;
-            } else if (i < mRxCardStackView.getSelectPosition()) {
-                ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), mRxCardStackView.getScrollY() - child.getHeight());
-                mSet.play(oAnim);
             } else {
                 ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), mRxCardStackView.getShowHeight() + mRxCardStackView.getScrollY());
                 mSet.play(oAnim);
@@ -53,7 +50,6 @@ public class AdapterUpDownRxAnimator extends AdapterRxAnimator {
                 mSet.play(oAnim);
             }
             childTop += lp.mHeaderHeight;
-
         }
     }
 

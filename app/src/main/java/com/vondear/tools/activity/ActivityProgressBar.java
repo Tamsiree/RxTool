@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxDataUtils;
-import com.vondear.rxtools.view.RxFlikerProgressBar;
+import com.vondear.rxtools.view.RxProgressBar;
 import com.vondear.rxtools.view.RxRoundProgress;
 import com.vondear.rxtools.view.roundprogressbar.RxIconRoundProgressBar;
 import com.vondear.rxtools.view.roundprogressbar.RxRoundProgressBar;
@@ -38,9 +38,9 @@ public class ActivityProgressBar extends Activity {
     @BindView(R.id.pb_line_of_credit)
     ProgressBar mPbLineOfCredit;
     @BindView(R.id.flikerbar)
-    RxFlikerProgressBar mFlikerbar;
+    RxProgressBar mFlikerbar;
     @BindView(R.id.round_flikerbar)
-    RxFlikerProgressBar mRoundFlikerbar;
+    RxProgressBar mRoundFlikerbar;
     @BindView(R.id.iv_menu)
     ImageView mIvMenu;
     @BindView(R.id.progress_one)

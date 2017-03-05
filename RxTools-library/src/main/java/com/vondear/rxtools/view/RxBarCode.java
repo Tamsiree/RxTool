@@ -5,16 +5,12 @@ import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
-
-import java.util.Hashtable;
 
 /**
- * Created by vonde on 2017/2/17.
+ * Created by vondear on 2017/2/17.
  */
 
 public class RxBarCode {

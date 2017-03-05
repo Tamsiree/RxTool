@@ -1,6 +1,7 @@
 package com.vondear.rxtools.view;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.RectF;
@@ -12,12 +13,12 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
 import android.util.TypedValue;
-import android.widget.EditText;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
-/**
- * Created by varsovski on 29-Oct-15.
- */
-public class RxAutoFitEditText extends EditText {
+public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText {
     private static final int NO_LINE_LIMIT = -1;
     private final RectF _availableSpaceRect = new RectF();
     private final SparseIntArray _textCachedSizes = new SparseIntArray();
@@ -45,16 +46,16 @@ public class RxAutoFitEditText extends EditText {
         public int onTestSize(int suggestedSize, RectF availableSpace);
     }
 
-    public RxAutoFitEditText(final Context context) {
+    public RxTextAutoZoom(final Context context) {
         this(context, null, 0);
     }
 
-    public RxAutoFitEditText(final Context context, final AttributeSet attrs) {
+    public RxTextAutoZoom(final Context context, final AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RxAutoFitEditText(final Context context, final AttributeSet attrs,
-                             final int defStyle) {
+    public RxTextAutoZoom(final Context context, final AttributeSet attrs,
+                          final int defStyle) {
         super(context, attrs, defStyle);
         // using the minimal recommended font size
         _minTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
@@ -195,7 +196,7 @@ public class RxAutoFitEditText extends EditText {
     private void adjustTextSize() {
         if (!_initiallized)
             return;
-        final int startSize =  Math.round(_minTextSize);
+        final int startSize = Math.round(_minTextSize);
         final int heightLimit = getMeasuredHeight()
                 - getCompoundPaddingBottom() - getCompoundPaddingTop();
         _widthLimit = getMeasuredWidth() - getCompoundPaddingLeft()
@@ -278,4 +279,44 @@ public class RxAutoFitEditText extends EditText {
     }
 
 
+    public static void setNormalization(final Activity a, View rootView, final RxTextAutoZoom aText) {
+
+        // if the view is not instance of AutoFitEditText
+        // i.e. if the user taps outside of the box
+        if (!(rootView instanceof RxTextAutoZoom)) {
+
+            rootView.setOnTouchListener(new View.OnTouchListener() {
+
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(a);
+                    if (aText.get_minTextSize() != null && aText.getTextSize() < aText.get_minTextSize()) {
+                        // you can define your minSize, in this case is 50f
+                        // trim all the new lines and set the text as it was
+                        // before
+                        aText.setText(aText.getText().toString().replace("\n", ""));
+
+
+                    }
+                    return false;
+                }
+            });
+        }
+
+        // If a layout container, iterate over children and seed recursion.
+        if (rootView instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) rootView).getChildCount(); i++) {
+                View innerView = ((ViewGroup) rootView).getChildAt(i);
+                setNormalization(a, innerView, aText);
+            }
+        }
+    }
+
+    public static void hideSoftKeyboard(Activity a) {
+        InputMethodManager inputMethodManager = (InputMethodManager) a
+                .getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (a.getCurrentFocus() != null
+                && a.getCurrentFocus().getWindowToken() != null)
+            inputMethodManager.hideSoftInputFromWindow(a.getCurrentFocus().getWindowToken(), 0);
+    }
 }

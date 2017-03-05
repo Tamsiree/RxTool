@@ -24,7 +24,7 @@ import com.vondear.rxtools.R;
 
 public class RxHeartLayout extends RelativeLayout {
 
-    private AbstractPathAnimator mAnimator;
+    private RxAbstractPathAnimator mAnimator;
 
     public RxHeartLayout(Context context) {
         super(context);
@@ -46,16 +46,16 @@ public class RxHeartLayout extends RelativeLayout {
         final TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.RxHeartLayout, defStyleAttr, 0);
 
-        mAnimator = new PathAnimator(AbstractPathAnimator.Config.fromTypeArray(a));
+        mAnimator = new RxPathAnimator(RxAbstractPathAnimator.Config.fromTypeArray(a));
 
         a.recycle();
     }
 
-    public AbstractPathAnimator getAnimator() {
+    public RxAbstractPathAnimator getAnimator() {
         return mAnimator;
     }
 
-    public void setAnimator(AbstractPathAnimator animator) {
+    public void setAnimator(RxAbstractPathAnimator animator) {
         clearAnimation();
         mAnimator = animator;
     }

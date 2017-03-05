@@ -15,8 +15,8 @@ import com.vondear.rxtools.RxDataUtils;
 
 
 /**
- * 仿iphone带进度的进度条，线程安全的View，可直接在线程中更新进度
- * @author xiaanming
+ * 弧形进度条
+ * @author Vondear
  *
  */
 public class RxRoundProgress extends View {

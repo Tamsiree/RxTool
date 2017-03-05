@@ -18,18 +18,15 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 16/11/13
- *     desc  : 定位相关工具类
- * </pre>
+ * @author ondear
+ * time  : 16/11/13
+ * desc  : 定位相关工具类
  */
 public class RxLocationUtils {
 
     private static OnLocationChangeListener mListener;
-    private static MyLocationListener       myLocationListener;
-    private static LocationManager          mLocationManager;
+    private static MyLocationListener myLocationListener;
+    private static LocationManager mLocationManager;
 
     /**
      * 判断Gps是否可用
@@ -80,7 +77,7 @@ public class RxLocationUtils {
         mLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         mListener = listener;
         if (!isLocationEnabled(context)) {
-            RxUtils.showToast(context,"无法定位，请打开定位服务",500);
+            RxUtils.showToast(context, "无法定位，请打开定位服务", 500);
             return false;
         }
         String provider = mLocationManager.getBestProvider(getCriteria(), true);

@@ -8,12 +8,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.vondear.rxtools.view.cardstackview.AdapterRxAllMoveDownAnimator;
-import com.vondear.rxtools.view.cardstackview.RxCardStackView;
-import com.vondear.rxtools.view.cardstackview.AdapterUpDownRxAnimator;
-import com.vondear.rxtools.view.cardstackview.AdapterUpDownStackRxAnimator;
+import com.vondear.rxtools.view.cardstack.RxAdapterAllMoveDownAnimator;
+import com.vondear.rxtools.view.cardstack.RxCardStackView;
+import com.vondear.rxtools.view.cardstack.RxAdapterUpDownAnimator;
+import com.vondear.rxtools.view.cardstack.RxAdapterUpDownStackAnimator;
 import com.vondear.tools.R;
-import com.vondear.tools.adapter.AdapterTestRxStack;
+import com.vondear.tools.adapter.TestRxAdapterStack;
 
 import java.util.Arrays;
 
@@ -56,7 +56,7 @@ public class ActivityCardStack extends AppCompatActivity implements RxCardStackV
             R.color.baby_blue
     };
 
-    private AdapterTestRxStack mTestStackAdapter;
+    private TestRxAdapterStack mTestStackAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class ActivityCardStack extends AppCompatActivity implements RxCardStackV
         ButterKnife.bind(this);
 
         mStackView.setItemExpendListener(this);
-        mTestStackAdapter = new AdapterTestRxStack(this);
+        mTestStackAdapter = new TestRxAdapterStack(this);
         mStackView.setAdapter(mTestStackAdapter);
 
 
@@ -90,13 +90,13 @@ public class ActivityCardStack extends AppCompatActivity implements RxCardStackV
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_all_down:
-                mStackView.setAdapterRxAnimator(new AdapterRxAllMoveDownAnimator(mStackView));
+                mStackView.setRxAdapterAnimator(new RxAdapterAllMoveDownAnimator(mStackView));
                 break;
             case R.id.menu_up_down:
-                mStackView.setAdapterRxAnimator(new AdapterUpDownRxAnimator(mStackView));
+                mStackView.setRxAdapterAnimator(new RxAdapterUpDownAnimator(mStackView));
                 break;
             case R.id.menu_up_down_stack:
-                mStackView.setAdapterRxAnimator(new AdapterUpDownStackRxAnimator(mStackView));
+                mStackView.setRxAdapterAnimator(new RxAdapterUpDownStackAnimator(mStackView));
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.cardstackview;
+package com.vondear.rxtools.view.cardstack;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,13 +6,13 @@ import android.view.LayoutInflater;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AdapterRxStack<T> extends RxCardStackView.Adapter<RxCardStackView.ViewHolder> {
+public abstract class RxAdapterStack<T> extends RxCardStackView.Adapter<RxCardStackView.ViewHolder> {
 
     private final Context mContext;
     private final LayoutInflater mInflater;
     private List<T> mData;
 
-    public AdapterRxStack(Context context) {
+    public RxAdapterStack(Context context) {
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
         this.mData = new ArrayList();

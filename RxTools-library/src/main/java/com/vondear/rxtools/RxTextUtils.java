@@ -35,7 +35,7 @@ import android.text.style.UnderlineSpan;
 import static android.graphics.BlurMaskFilter.Blur;
 
 /**
- * Created by vonde on 2016/12/23.
+ * @author  by vondear on 2016/12/23.
  */
 
 public class RxTextUtils {

@@ -15,9 +15,6 @@ import android.widget.LinearLayout;
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.view.roundprogressbar.common.RxBaseRoundProgressBar;
 
-/**
- * Created by Akexorcist on 9/14/15 AD.
- */
 public class RxIconRoundProgressBar extends RxBaseRoundProgressBar implements View.OnClickListener {
 
     protected final static int DEFAULT_ICON_SIZE = 20;

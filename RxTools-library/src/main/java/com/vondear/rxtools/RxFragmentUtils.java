@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 /**
- * Created by vonde on 2016/12/26.
+ * Created by vondear on 2016/12/26.
  */
 
 public class RxFragmentUtils {

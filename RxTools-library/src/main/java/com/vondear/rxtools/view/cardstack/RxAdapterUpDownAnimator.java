@@ -1,18 +1,18 @@
-package com.vondear.rxtools.view.cardstackview;
+package com.vondear.rxtools.view.cardstack;
 
 import android.animation.ObjectAnimator;
 import android.view.View;
 
-public class AdapterUpDownStackRxAnimator extends AdapterRxAnimator {
+public class RxAdapterUpDownAnimator extends RxAdapterAnimator {
 
-    public AdapterUpDownStackRxAnimator(RxCardStackView rxCardStackView) {
+    public RxAdapterUpDownAnimator(RxCardStackView rxCardStackView) {
         super(rxCardStackView);
     }
 
     protected void itemExpandAnimatorSet(final RxCardStackView.ViewHolder viewHolder, int position) {
         final View itemView = viewHolder.itemView;
         itemView.clearAnimation();
-        ObjectAnimator oa = ObjectAnimator.ofFloat(itemView, View.Y, itemView.getY(), mRxCardStackView.getChildAt(0).getY());
+        ObjectAnimator oa = ObjectAnimator.ofFloat(itemView, View.Y, itemView.getY(), mRxCardStackView.getScrollY() + mRxCardStackView.getPaddingTop());
         mSet.play(oa);
         int collapseShowItemCount = 0;
         for (int i = 0; i < mRxCardStackView.getChildCount(); i++) {
@@ -21,15 +21,15 @@ public class AdapterUpDownStackRxAnimator extends AdapterRxAnimator {
             final View child = mRxCardStackView.getChildAt(i);
             child.clearAnimation();
             if (i > mRxCardStackView.getSelectPosition() && collapseShowItemCount < mRxCardStackView.getNumBottomShow()) {
-                childTop = mRxCardStackView.getShowHeight() - getCollapseStartTop(collapseShowItemCount);
+                childTop = mRxCardStackView.getShowHeight() - getCollapseStartTop(collapseShowItemCount) + mRxCardStackView.getScrollY();
                 ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), childTop);
                 mSet.play(oAnim);
                 collapseShowItemCount++;
             } else if (i < mRxCardStackView.getSelectPosition()) {
-                ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), mRxCardStackView.getChildAt(0).getY());
+                ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), mRxCardStackView.getScrollY() - child.getHeight());
                 mSet.play(oAnim);
             } else {
-                ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), mRxCardStackView.getShowHeight());
+                ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), mRxCardStackView.getShowHeight() + mRxCardStackView.getScrollY());
                 mSet.play(oAnim);
             }
         }
@@ -46,12 +46,14 @@ public class AdapterUpDownStackRxAnimator extends AdapterRxAnimator {
             childTop += lp.topMargin;
             if (i != 0) {
                 childTop -= mRxCardStackView.getOverlapGaps() * 2;
+                ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), childTop);
+                mSet.play(oAnim);
+            } else {
+                ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), childTop);
+                mSet.play(oAnim);
             }
-            ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(),
-                    childTop - mRxCardStackView.getRxScrollDelegate().getViewScrollY() < mRxCardStackView.getChildAt(0).getY()
-                            ? mRxCardStackView.getChildAt(0).getY() : childTop - mRxCardStackView.getRxScrollDelegate().getViewScrollY());
-            mSet.play(oAnim);
             childTop += lp.mHeaderHeight;
+
         }
     }
 

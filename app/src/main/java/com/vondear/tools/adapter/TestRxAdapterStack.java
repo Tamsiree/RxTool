@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.vondear.rxtools.view.cardstackview.RxCardStackView;
-import com.vondear.rxtools.view.cardstackview.AdapterRxStack;
+import com.vondear.rxtools.view.cardstack.RxCardStackView;
+import com.vondear.rxtools.view.cardstack.RxAdapterStack;
 import com.vondear.tools.R;
 
-public class AdapterTestRxStack extends AdapterRxStack<Integer> {
+public class TestRxAdapterStack extends RxAdapterStack<Integer> {
 
-    public AdapterTestRxStack(Context context) {
+    public TestRxAdapterStack(Context context) {
         super(context);
     }
 

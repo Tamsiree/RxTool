@@ -34,11 +34,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by lumingmin on 16/7/22.
+ * Created by vondear on 16/7/22.
  */
 
 
-public class RxFlightSeatView extends View {
+public class RxSeatAirplane extends View {
 
 
     private Paint mPaint;
@@ -122,15 +122,15 @@ public class RxFlightSeatView extends View {
     }
 
 
-    public RxFlightSeatView(Context context) {
+    public RxSeatAirplane(Context context) {
         this(context, null);
     }
 
-    public RxFlightSeatView(Context context, AttributeSet attrs) {
+    public RxSeatAirplane(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RxFlightSeatView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxSeatAirplane(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initPaint();
     }

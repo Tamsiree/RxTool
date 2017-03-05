@@ -27,15 +27,15 @@ import com.vondear.rxtools.R;
 
 import java.util.Random;
 
-import static com.vondear.rxtools.view.swipecaptcha.DrawHelperUtils.drawPartCircle;
+import static com.vondear.rxtools.view.swipecaptcha.RxDrawHelperUtils.drawPartCircle;
 
 /**
  * 介绍：仿斗鱼滑动验证码View
  * 时间： 2016/11/14.
  */
 
-public class SwipeCaptchaView extends android.support.v7.widget.AppCompatImageView {
-    private static final String TAG = "zxt/" + SwipeCaptchaView.class.getName();
+public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView {
+    private static final String TAG = "zxt/" + RxSwipeCaptcha.class.getName();
     //控件的宽高
     protected int mWidth;
     protected int mHeight;
@@ -78,15 +78,15 @@ public class SwipeCaptchaView extends android.support.v7.widget.AppCompatImageVi
     private Path mSuccessPath;//成功动画 平行四边形Path
 
 
-    public SwipeCaptchaView(Context context) {
+    public RxSwipeCaptcha(Context context) {
         this(context, null);
     }
 
-    public SwipeCaptchaView(Context context, AttributeSet attrs) {
+    public RxSwipeCaptcha(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SwipeCaptchaView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxSwipeCaptcha(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
     }
@@ -96,15 +96,15 @@ public class SwipeCaptchaView extends android.support.v7.widget.AppCompatImageVi
         mCaptchaHeight = defaultSize;
         mCaptchaWidth = defaultSize;
         mMatchDeviation = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, getResources().getDisplayMetrics());
-        TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SwipeCaptchaView, defStyleAttr, 0);
+        TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.RxSwipeCaptcha, defStyleAttr, 0);
         int n = ta.getIndexCount();
         for (int i = 0; i < n; i++) {
             int attr = ta.getIndex(i);
-            if (attr == R.styleable.SwipeCaptchaView_captchaHeight) {
+            if (attr == R.styleable.RxSwipeCaptcha_captchaHeight) {
                 mCaptchaHeight = (int) ta.getDimension(attr, defaultSize);
-            } else if (attr == R.styleable.SwipeCaptchaView_captchaWidth) {
+            } else if (attr == R.styleable.RxSwipeCaptcha_captchaWidth) {
                 mCaptchaWidth = (int) ta.getDimension(attr, defaultSize);
-            } else if (attr == R.styleable.SwipeCaptchaView_matchDeviation) {
+            } else if (attr == R.styleable.RxSwipeCaptcha_matchDeviation) {
                 mMatchDeviation = ta.getDimension(attr, mMatchDeviation);
             }
         }
@@ -161,7 +161,7 @@ public class SwipeCaptchaView extends android.support.v7.widget.AppCompatImageVi
         mFailAnim.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                onCaptchaMatchCallback.matchFailed(SwipeCaptchaView.this);
+                onCaptchaMatchCallback.matchFailed(RxSwipeCaptcha.this);
             }
         });
         mFailAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -197,7 +197,7 @@ public class SwipeCaptchaView extends android.support.v7.widget.AppCompatImageVi
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                onCaptchaMatchCallback.matchSuccess(SwipeCaptchaView.this);
+                onCaptchaMatchCallback.matchSuccess(RxSwipeCaptcha.this);
                 isShowSuccessAnim = false;
                 isMatchMode = false;
             }
@@ -431,9 +431,9 @@ public class SwipeCaptchaView extends android.support.v7.widget.AppCompatImageVi
     }
 
     public interface OnCaptchaMatchCallback {
-        void matchSuccess(SwipeCaptchaView swipeCaptchaView);
+        void matchSuccess(RxSwipeCaptcha rxSwipeCaptcha);
 
-        void matchFailed(SwipeCaptchaView swipeCaptchaView);
+        void matchFailed(RxSwipeCaptcha rxSwipeCaptcha);
     }
 
     /**
@@ -451,7 +451,7 @@ public class SwipeCaptchaView extends android.support.v7.widget.AppCompatImageVi
      * @param onCaptchaMatchCallback
      * @return
      */
-    public SwipeCaptchaView setOnCaptchaMatchCallback(OnCaptchaMatchCallback onCaptchaMatchCallback) {
+    public RxSwipeCaptcha setOnCaptchaMatchCallback(OnCaptchaMatchCallback onCaptchaMatchCallback) {
         this.onCaptchaMatchCallback = onCaptchaMatchCallback;
         return this;
     }

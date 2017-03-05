@@ -2,30 +2,21 @@ package com.vondear.rxtools;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Hashtable;
 
 /**
  * Created by vondear on 2016/1/24.
+ * RxTools的常用工具类
  */
 public class RxUtils {
 
@@ -57,6 +48,8 @@ public class RxUtils {
     //==============================================================================================延时任务封装 end
 
     /**
+     * 在某种获取不到 Context 的情况下，即可以使用才方法获取 Context
+     *
      * 获取ApplicationContext
      *
      * @return ApplicationContext

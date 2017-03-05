@@ -7,12 +7,7 @@ import com.vondear.rxtools.view.likeview.ei.RxEase;
 import com.vondear.rxtools.view.likeview.ei.RxEasingInterpolator;
 
 /**
- * @author Chad
- * @title com.sackcentury.shinebuttonlib
- * @description
- * @modifier
- * @date
- * @since 16/7/5 下午5:09
+ * 16/7/5 下午5:09
  **/
 public class RxShineAnimator extends ValueAnimator {
 
@@ -26,6 +21,7 @@ public class RxShineAnimator extends ValueAnimator {
         setStartDelay(200);
         setInterpolator(new RxEasingInterpolator(RxEase.QUART_OUT));
     }
+
     RxShineAnimator(long duration, float max_value, long delay) {
         setFloatValues(1f, max_value);
         setDuration(duration);

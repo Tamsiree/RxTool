@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * 作者： 巴掌 on 16/7/10 17:59
+ * @author  Vondear on 16/7/10 17:59
  */
 public class RxShoppingView extends View {
 

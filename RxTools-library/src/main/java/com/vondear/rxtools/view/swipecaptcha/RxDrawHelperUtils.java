@@ -8,7 +8,7 @@ import android.graphics.PointF;
  * 时间： 2016/11/16.
  */
 
-public class DrawHelperUtils {
+public class RxDrawHelperUtils {
     /**
      * 传入起点、终点 坐标、凹凸和Path。
      * 会自动绘制凹凸的半圆弧

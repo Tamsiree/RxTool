@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.cardstackview;
+package com.vondear.rxtools.view.cardstack;
 
 public interface RxScrollDelegate {
 

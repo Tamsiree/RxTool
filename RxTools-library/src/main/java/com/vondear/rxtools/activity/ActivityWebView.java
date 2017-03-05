@@ -27,8 +27,7 @@ import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxConstants;
 import com.vondear.rxtools.RxImageUtils;
 import com.vondear.rxtools.RxKeyboardUtils;
-import com.vondear.rxtools.view.RxAutoFitEditText;
-import com.vondear.rxtools.view.RxAutoFitEditTextUtil;
+import com.vondear.rxtools.view.RxTextAutoZoom;
 
 public class ActivityWebView extends Activity {
 
@@ -37,7 +36,7 @@ public class ActivityWebView extends Activity {
     WebView webBase;
     ImageView ivFinish;
 
-    RxAutoFitEditText mRxAutoFitEditText;
+    RxTextAutoZoom mRxTextAutoZoom;
 
     LinearLayout llIncludeTitle;
 
@@ -56,7 +55,7 @@ public class ActivityWebView extends Activity {
 
     private void initView() {
         // TODO Auto-generated method stub
-        mRxAutoFitEditText = (RxAutoFitEditText) findViewById(R.id.afet_tv_title);
+        mRxTextAutoZoom = (RxTextAutoZoom) findViewById(R.id.afet_tv_title);
         llIncludeTitle = (LinearLayout) findViewById(R.id.ll_include_title);
         tvTitle = (TextView) findViewById(R.id.tv_title);
         pbWebBase = (ProgressBar) findViewById(R.id.pb_web_base);
@@ -78,19 +77,19 @@ public class ActivityWebView extends Activity {
 
     public void initAutoFitEditText() {
 
-        mRxAutoFitEditText.clearFocus();
-        mRxAutoFitEditText.setEnabled(false);
-        mRxAutoFitEditText.setFocusableInTouchMode(false);
-        mRxAutoFitEditText.setFocusable(false);
-        mRxAutoFitEditText.setEnableSizeCache(false);
+        mRxTextAutoZoom.clearFocus();
+        mRxTextAutoZoom.setEnabled(false);
+        mRxTextAutoZoom.setFocusableInTouchMode(false);
+        mRxTextAutoZoom.setFocusable(false);
+        mRxTextAutoZoom.setEnableSizeCache(false);
         //might cause crash on some devices
-        mRxAutoFitEditText.setMovementMethod(null);
+        mRxTextAutoZoom.setMovementMethod(null);
         // can be added after layout inflation;
-        mRxAutoFitEditText.setMaxHeight(RxImageUtils.dip2px(this,55f));
+        mRxTextAutoZoom.setMaxHeight(RxImageUtils.dip2px(this,55f));
         //don't forget to add min text size programmatically
-        mRxAutoFitEditText.setMinTextSize(37f);
+        mRxTextAutoZoom.setMinTextSize(37f);
 
-        RxAutoFitEditTextUtil.setNormalization(this, llIncludeTitle, mRxAutoFitEditText);
+        RxTextAutoZoom.setNormalization(this, llIncludeTitle, mRxTextAutoZoom);
 
         RxKeyboardUtils.hideSoftInput(this);
     }
@@ -148,7 +147,7 @@ public class ActivityWebView extends Activity {
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-                mRxAutoFitEditText.setText(title);
+                mRxTextAutoZoom.setText(title);
             }
 
             @Override

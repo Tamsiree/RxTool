@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.activity.ActivityBase;
-import com.vondear.rxtools.view.RxMovieSeatTable;
+import com.vondear.rxtools.view.RxSeatMovie;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.tools.R;
@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 public class ActivityMovieSeat extends ActivityBase {
 
     @BindView(R.id.seatView)
-    RxMovieSeatTable mSeatView;
+    RxSeatMovie mSeatView;
     @BindView(R.id.activity_movie_seat)
     LinearLayout mActivityMovieSeat;
     @BindView(R.id.rx_title)
@@ -45,7 +45,7 @@ public class ActivityMovieSeat extends ActivityBase {
         mSeatView.setScreenName("3号厅荧幕");//设置屏幕名称
         mSeatView.setMaxSelected(8);//设置最多选中
 
-        mSeatView.setSeatChecker(new RxMovieSeatTable.SeatChecker() {
+        mSeatView.setSeatChecker(new RxSeatMovie.SeatChecker() {
 
             @Override
             public boolean isValidSeat(int row, int column) {

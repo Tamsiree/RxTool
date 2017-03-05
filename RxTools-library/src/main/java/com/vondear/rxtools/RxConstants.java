@@ -1,7 +1,7 @@
 package com.vondear.rxtools;
 
 /**
- * Created by vonde on 2017/1/13.
+ * Created by vondear on 2017/1/13.
  */
 
 public class RxConstants {

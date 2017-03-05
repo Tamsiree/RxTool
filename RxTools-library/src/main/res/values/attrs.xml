@@ -183,7 +183,7 @@
         </attr>
     </declare-styleable>
 
-    <declare-styleable name="SwipeCaptchaView">
+    <declare-styleable name="RxSwipeCaptcha">
         <attr name="captchaWidth" format="dimension"/>
         <attr name="captchaHeight" format="dimension"/>
         <attr name="matchDeviation" format="dimension"/>

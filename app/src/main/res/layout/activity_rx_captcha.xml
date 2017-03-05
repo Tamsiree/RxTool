@@ -42,7 +42,7 @@
                 android:paddingBottom="10dp"
                 android:paddingTop="15dp">
 
-                <com.vondear.rxtools.view.swipecaptcha.SwipeCaptchaView
+                <com.vondear.rxtools.view.swipecaptcha.RxSwipeCaptcha
                     android:id="@+id/swipeCaptchaView"
                     android:layout_width="200dp"
                     android:layout_height="100dp"

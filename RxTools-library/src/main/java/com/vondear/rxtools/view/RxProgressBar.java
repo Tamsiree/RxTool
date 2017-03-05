@@ -19,11 +19,11 @@ import android.view.View;
 import com.vondear.rxtools.R;
 
 /**
- * Created by chenliu on 2016/8/26.<br/>
+ * Created by vondear on 2016/8/26.<br/>
  * 描述：添加圆角支持 on 2016/11/11
  * </br>
  */
-public class RxFlikerProgressBar extends View implements Runnable {
+public class RxProgressBar extends View implements Runnable {
     private PorterDuffXfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP);
 
     private int DEFAULT_HEIGHT_DP = 35;
@@ -103,15 +103,15 @@ public class RxFlikerProgressBar extends View implements Runnable {
 
     BitmapShader bitmapShader;
 
-    public RxFlikerProgressBar(Context context) {
+    public RxProgressBar(Context context) {
         this(context, null, 0);
     }
 
-    public RxFlikerProgressBar(Context context, AttributeSet attrs) {
+    public RxProgressBar(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RxFlikerProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initAttrs(attrs);
     }
