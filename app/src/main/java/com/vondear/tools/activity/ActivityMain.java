@@ -8,12 +8,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.vondear.rxtools.RxImageUtils;
+import com.vondear.rxtools.RxRecyclerViewDivider;
 import com.vondear.rxtools.activity.ActivityCodeTool;
 import com.vondear.tools.R;
 import com.vondear.tools.adapter.AdapterRecyclerViewMain;
 import com.vondear.tools.bean.MainItem;
-import com.vondear.rxtools.RxImageUtils;
-import com.vondear.rxtools.RxRecyclerViewDivider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +62,7 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new MainItem("RunTextView的使用", R.drawable.wrap_text, ActivityRunTextView.class));
         mData.add(new MainItem("选座控件", R.drawable.seat, ActivitySeat.class));
         mData.add(new MainItem("银行卡组堆叠控件", R.drawable.credit_card, ActivityCardStack.class));
+        mData.add(new MainItem("联系人侧边快速导航", R.drawable.circle_phone, ActivityContact.class));
         mData.add(new MainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
     }
 

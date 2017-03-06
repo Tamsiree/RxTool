@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.vondear.tools">
+          package="com.vondear.tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
     <application
         android:name=".ApplicationRxTools"
@@ -14,50 +14,52 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.ActivityMain"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.ActivityRxPhoto"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".activity.ActivityCreateQRCode"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.ActivitySplash"
-            android:screenOrientation="portrait" />
-        <activity android:name=".activity.ActivityDialog" />
-        <activity android:name=".activity.ActivityTextUtils" />
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ActivityDialog"/>
+        <activity android:name=".activity.ActivityTextUtils"/>
         <activity
             android:name="com.vondear.rxtools.activity.ActivityWebView"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".activity.ActivitySlidingDrawerSingle" />
-        <activity android:name=".activity.ActivityProgressBar" />
-        <activity android:name=".activity.ActivityWheelHorizontal" />
-        <activity android:name=".activity.ActivityAutoImageView"></activity>
-        <activity android:name=".activity.ActivityPopupView"></activity>
-        <activity android:name=".activity.ActivityRunTextView"></activity>
-        <activity android:name=".activity.ActivityRxToast"></activity>
-        <activity android:name=".activity.ActivityNetSpeed"></activity>
-        <activity android:name=".activity.ActivityShoppingView"></activity>
-        <activity android:name=".activity.ActivityELMe"></activity>
-        <activity android:name=".activity.ActivityLike"></activity>
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <activity android:name=".activity.ActivitySlidingDrawerSingle"/>
+        <activity android:name=".activity.ActivityProgressBar"/>
+        <activity android:name=".activity.ActivityWheelHorizontal"/>
+        <activity android:name=".activity.ActivityAutoImageView"/>
+        <activity android:name=".activity.ActivityPopupView"/>
+        <activity android:name=".activity.ActivityRunTextView"/>
+        <activity android:name=".activity.ActivityRxToast"/>
+        <activity android:name=".activity.ActivityNetSpeed"/>
+        <activity android:name=".activity.ActivityShoppingView"/>
+        <activity android:name=".activity.ActivityELMe"/>
+        <activity android:name=".activity.ActivityLike"/>
         <activity
             android:name=".activity.ActivitySVG"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ActivityMovieSeat"></activity>
-        <activity android:name=".activity.ActivityFlightSeat"></activity>
-        <activity android:name=".activity.ActivitySeat"></activity>
-        <activity android:name=".activity.ActivityCardStack"></activity>
-        <activity android:name=".activity.ActivityRxCaptcha"></activity>
+        <activity android:name=".activity.ActivityMovieSeat"/>
+        <activity android:name=".activity.ActivityFlightSeat"/>
+        <activity android:name=".activity.ActivitySeat"/>
+        <activity android:name=".activity.ActivityCardStack"/>
+        <activity android:name=".activity.ActivityRxCaptcha"/>
+        <activity android:name=".activity.ActivityContact">
+        </activity>
     </application>
 
 </manifest>

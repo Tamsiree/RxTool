@@ -10,14 +10,14 @@
     <declare-styleable name="RxRoundProgress">
         <attr name="roundColor" format="color"/>
         <attr name="roundProgressColor" format="color"/>
-        <attr name="roundWidth" format="dimension"></attr>
+        <attr name="roundWidth" format="dimension"/>
         <attr name="textColor" format="color"/>
         <attr name="textSize1" format="dimension"/>
-        <attr name="max" format="integer"></attr>
-        <attr name="textIsDisplayable" format="boolean"></attr>
+        <attr name="max" format="integer"/>
+        <attr name="textIsDisplayable" format="boolean"/>
         <attr name="style">
-            <enum name="STROKE" value="0"></enum>
-            <enum name="FILL" value="1"></enum>
+            <enum name="STROKE" value="0"/>
+            <enum name="FILL" value="1"/>
         </attr>
     </declare-styleable>
 
@@ -76,17 +76,11 @@
 
     <declare-styleable name="FlikerProgressBar">
         <attr name="textSize" format="dimension"/>
-
         <attr name="loadingColor" format="color"/>
-
         <attr name="stopColor" format="color"/>
-
         <attr name="finishColor" format="color"/>
-
         <attr name="radius" format="dimension"/>
-
         <attr name="borderWidth" format="dimension"/>
-
     </declare-styleable>
 
     <declare-styleable name="RoundCornerProgress">
@@ -161,11 +155,11 @@
     </declare-styleable>
 
     <declare-styleable name="SeatTableView">
-        <attr name="seat_checked" format="reference" />
-        <attr name="seat_sold" format="reference" />
-        <attr name="seat_available" format="reference" />
-        <attr name="overview_checked" format="color" />
-        <attr name="overview_sold" format="color" />
+        <attr name="seat_checked" format="reference"/>
+        <attr name="seat_sold" format="reference"/>
+        <attr name="seat_available" format="reference"/>
+        <attr name="overview_checked" format="color"/>
+        <attr name="overview_sold" format="color"/>
         <attr name="txt_color" format="color"/>
     </declare-styleable>
 
@@ -177,9 +171,9 @@
         <attr name="stackDuration" format="integer"/>
         <attr name="stackNumBottomShow" format="integer"/>
         <attr name="stackAnimationType">
-            <flag name="allDown" value="0" />
-            <flag name="upDown" value="1" />
-            <flag name="upDownStack" value="2" />
+            <flag name="allDown" value="0"/>
+            <flag name="upDown" value="1"/>
+            <flag name="upDownStack" value="2"/>
         </attr>
     </declare-styleable>
 
@@ -190,15 +184,25 @@
     </declare-styleable>
 
     <declare-styleable name="RxHeartLayout">
-        <attr name="initX" format="dimension" />
-        <attr name="initY" format="dimension" />
-        <attr name="xRand" format="dimension" />
-        <attr name="animLengthRand" format="dimension" />
-        <attr name="xPointFactor" format="dimension" />
-        <attr name="animLength" format="dimension" />
-        <attr name="heart_width" format="dimension" />
-        <attr name="heart_height" format="dimension" />
-        <attr name="bezierFactor" format="integer" />
-        <attr name="anim_duration" format="integer" />
+        <attr name="initX" format="dimension"/>
+        <attr name="initY" format="dimension"/>
+        <attr name="xRand" format="dimension"/>
+        <attr name="animLengthRand" format="dimension"/>
+        <attr name="xPointFactor" format="dimension"/>
+        <attr name="animLength" format="dimension"/>
+        <attr name="heart_width" format="dimension"/>
+        <attr name="heart_height" format="dimension"/>
+        <attr name="bezierFactor" format="integer"/>
+        <attr name="anim_duration" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="WaveSideBarView">
+        <attr name="sidebarTextColor" format="color|reference"/>
+        <attr name="sidebarBackgroundColor" format="color|reference"/>
+        <attr name="sidebarChooseTextColor" format="color|reference"/>
+        <attr name="sidebarTextSize" format="dimension"/>
+        <attr name="sidebarLargeTextSize" format="dimension"/>
+        <attr name="sidebarRadius" format="dimension"/>
+        <attr name="sidebarBallRadius" format="dimension"/>
     </declare-styleable>
 </resources>
