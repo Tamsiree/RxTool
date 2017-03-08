@@ -50,95 +50,87 @@ public class RxToast {
     private static Toast currentToast;
 
     //*******************************************普通 使用ApplicationContext 方法*********************
-    @CheckResult
+
     public static void normal(@NonNull String message) {
         normal(getContext(), message, Toast.LENGTH_SHORT, null, false).show();
     }
 
 
-    @CheckResult
     public static void normal(@NonNull String message, Drawable icon) {
         normal(getContext(), message, Toast.LENGTH_SHORT, icon, true).show();
     }
 
 
-    @CheckResult
     public static void normal(@NonNull String message, int duration) {
         normal(getContext(), message, duration, null, false).show();
     }
 
 
-    @CheckResult
     public static void normal(@NonNull String message, int duration, Drawable icon) {
         normal(getContext(), message, duration, icon, true).show();
     }
 
-    @CheckResult
+
     public static Toast normal(@NonNull String message, int duration, Drawable icon, boolean withIcon) {
         return custom(getContext(), message, icon, DEFAULT_TEXT_COLOR, duration, withIcon);
     }
 
-    @CheckResult
+
     public static void warning(@NonNull String message) {
         warning(getContext(), message, Toast.LENGTH_SHORT, true).show();
     }
 
 
-    @CheckResult
     public static void warning(@NonNull String message, int duration) {
         warning(getContext(), message, duration, true).show();
     }
 
-    @CheckResult
+
     public static Toast warning(@NonNull String message, int duration, boolean withIcon) {
         return custom(getContext(), message, getDrawable(getContext(), R.drawable.ic_error_outline_white_48dp), DEFAULT_TEXT_COLOR, WARNING_COLOR, duration, withIcon, true);
     }
 
-    @CheckResult
+
     public static void info(@NonNull String message) {
         info(getContext(), message, Toast.LENGTH_SHORT, true).show();
     }
 
 
-    @CheckResult
     public static void info(@NonNull String message, int duration) {
         info(getContext(), message, duration, true).show();
     }
 
-    @CheckResult
+
     public static Toast info(@NonNull String message, int duration, boolean withIcon) {
         return custom(getContext(), message, getDrawable(getContext(), R.drawable.ic_info_outline_white_48dp), DEFAULT_TEXT_COLOR, INFO_COLOR, duration, withIcon, true);
     }
 
-    @CheckResult
+
     public static void success(@NonNull String message) {
         success(getContext(), message, Toast.LENGTH_SHORT, true).show();
     }
 
 
-    @CheckResult
     public static void success(@NonNull String message, int duration) {
         success(getContext(), message, duration, true).show();
     }
 
-    @CheckResult
+
     public static Toast success(@NonNull String message, int duration, boolean withIcon) {
         return custom(getContext(), message, getDrawable(getContext(), R.drawable.ic_check_white_48dp), DEFAULT_TEXT_COLOR, SUCCESS_COLOR, duration, withIcon, true);
     }
 
-    @CheckResult
+
     public static void error(@NonNull String message) {
         error(getContext(), message, Toast.LENGTH_SHORT, true).show();
     }
 
 
-    @CheckResult
     public static void error(@NonNull String message, int duration) {
         error(getContext(), message, duration, true).show();
     }
 
 
-    @CheckResult
     public static Toast error(@NonNull String message, int duration, boolean withIcon) {
         return custom(getContext(), message, getDrawable(getContext(), R.drawable.ic_clear_white_48dp), DEFAULT_TEXT_COLOR, ERROR_COLOR, duration, withIcon, true);
     }

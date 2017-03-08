@@ -56,7 +56,9 @@ public class RxActivityUtils {
     }
 
     /**
+     * 要求最低API为11
      * Activity 跳转
+     *  跳转后Finish之前所有的Activity
      *
      * @param context
      * @param goal
@@ -70,8 +72,9 @@ public class RxActivityUtils {
     }
 
     /**
+     * 要求最低API为11
      * Activity 跳转
-     *
+     * 跳转后Finish之前所有的Activity
      * @param context
      * @param goal
      */

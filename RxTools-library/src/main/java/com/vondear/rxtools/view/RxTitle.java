@@ -14,7 +14,7 @@ import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxDataUtils;
 
 /**
- * @author  by vondear on 2017/1/2.
+ * @author by vondear on 2017/1/2.
  */
 
 public class RxTitle extends FrameLayout {
@@ -75,7 +75,8 @@ public class RxTitle extends FrameLayout {
 
         try {
             //获得属性值
-            mRxBackground = a.getColor(R.styleable.RxTitle_RxBackground, getResources().getColor(R.color.transparent));//背景颜色
+            //getColor(R.styleable.RxTitle_RxBackground, getResources().getColor(R.color.transparent))
+            mRxBackground = a.getColor(R.styleable.RxTitle_RxBackground, 0x01000000);//背景颜色
             mTitle = a.getString(R.styleable.RxTitle_title);//标题
             mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, getResources().getColor(R.color.white));//标题颜色
 
