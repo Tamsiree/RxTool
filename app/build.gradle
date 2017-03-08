@@ -31,7 +31,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:recyclerview-v7:25.2.0'
 
-
     compile 'com.jakewharton:butterknife:8.2.1'//butterknife框架
     apt 'com.jakewharton:butterknife-compiler:8.2.1'//butterknife相关
     compile 'com.github.bumptech.glide:glide:3.7.0'//glide图片加载

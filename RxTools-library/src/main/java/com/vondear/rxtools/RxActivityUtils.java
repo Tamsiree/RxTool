@@ -55,6 +55,33 @@ public class RxActivityUtils {
         context.startActivity(RxIntentUtils.getComponentNameIntent(packageName, className, bundle));
     }
 
+    /**
+     * Activity 跳转
+     *
+     * @param context
+     * @param goal
+     */
+    public static void skipActivityAndFinishAll(Context context, Class<?> goal, Bundle bundle) {
+        Intent intent = new Intent(context, goal);
+        intent.putExtras(bundle);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
+        ((Activity) context).finish();
+    }
+
+    /**
+     * Activity 跳转
+     *
+     * @param context
+     * @param goal
+     */
+    public static void skipActivityAndFinishAll(Context context, Class<?> goal) {
+        Intent intent = new Intent(context, goal);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
+        ((Activity) context).finish();
+    }
+
 
     /**
      * Activity 跳转
