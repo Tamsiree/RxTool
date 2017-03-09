@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:RightIconVisibility="false"
-        app:RxBackground="@color/blue"
+        android:background="@color/blue"
         app:title="验证码工具的使用"
         app:titleColor="@color/white"/>
 

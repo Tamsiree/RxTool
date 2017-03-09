@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             app:RightIcon="@drawable/set"
             app:RightIconVisibility="false"
-            app:RxBackground="@color/mi_green"
+            android:background="@color/mi_green"
             app:leftIcon="@drawable/back"
             app:leftIconVisibility="true"
             app:title="扫码工具"

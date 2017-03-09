@@ -10,7 +10,7 @@
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        app:RxBackground="@color/blue"
+        android:background="@color/blue"
         app:title="联系人侧边栏快速导航"
         app:titleColor="@color/white"/>
 

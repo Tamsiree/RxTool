@@ -3,7 +3,6 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="55dp"
-    android:background="@color/_8c"
     android:gravity="center"
     android:orientation="horizontal">
 

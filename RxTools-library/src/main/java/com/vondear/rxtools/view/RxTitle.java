@@ -33,8 +33,6 @@ public class RxTitle extends FrameLayout {
     //===========================================控件end=============================================
 
     //*******************************************属性start*******************************************
-    private int mRxBackground;
-
     private String mTitle;
 
     private int mTitleColor;
@@ -76,7 +74,6 @@ public class RxTitle extends FrameLayout {
         try {
             //获得属性值
             //getColor(R.styleable.RxTitle_RxBackground, getResources().getColor(R.color.transparent))
-            mRxBackground = a.getColor(R.styleable.RxTitle_RxBackground, 0x01000000);//背景颜色
             mTitle = a.getString(R.styleable.RxTitle_title);//标题
             mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, getResources().getColor(R.color.white));//标题颜色
 
@@ -93,9 +90,6 @@ public class RxTitle extends FrameLayout {
         }
 
         //******************************************************************************************以下属性初始化
-        if (mRxBackground != 0) {
-            setRxBackground(mRxBackground);
-        }
 
         if (!RxDataUtils.isNullString(mTitle)) {
             setTitle(mTitle);
@@ -153,10 +147,6 @@ public class RxTitle extends FrameLayout {
         return mTitle;
     }
 
-    public int getRxBackground() {
-        return mRxBackground;
-    }
-
     public int getTitleColor() {
         return mTitleColor;
     }
@@ -191,12 +181,6 @@ public class RxTitle extends FrameLayout {
 
     public void setRightOnClickListener(OnClickListener onClickListener) {
         mLlRight.setOnClickListener(onClickListener);
-    }
-
-    public void setRxBackground(int rxBackground) {
-        mRxBackground = rxBackground;
-        mRootLayout.setBackgroundColor(mRxBackground);
-
     }
 
     public void setTitle(String title) {

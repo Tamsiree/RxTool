@@ -14,7 +14,7 @@
     <com.vondear.rxtools.view.RxTitle
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:RxBackground="@color/darkcyan"
+        android:background="@color/darkcyan"
         app:title="上海 - 长沙 飞机票选座"
         app:titleColor="@color/white" />
 

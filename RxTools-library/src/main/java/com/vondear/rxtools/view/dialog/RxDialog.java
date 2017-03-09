@@ -6,10 +6,10 @@ import android.content.Context;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 
 import com.vondear.rxtools.R;
-import com.vondear.rxtools.RxDeviceUtils;
 
 public class RxDialog extends Dialog {
 
@@ -88,9 +88,28 @@ public class RxDialog extends Dialog {
 
     public void setFullScreen() {
         Window window = getWindow();
+        window.getDecorView().setPadding(0, 0, 0, 0);
         LayoutParams lp = window.getAttributes();
-        lp.width = RxDeviceUtils.getScreenWidth(mContext);
-        lp.height = RxDeviceUtils.getScreenHeight(mContext);
+        lp.width = WindowManager.LayoutParams.FILL_PARENT;
+        lp.height = WindowManager.LayoutParams.FILL_PARENT;
+        window.setAttributes(lp);
+    }
+
+    public void setFullScreenWidth(){
+        Window window = getWindow();
+        window.getDecorView().setPadding(0, 0, 0, 0);
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.width = WindowManager.LayoutParams.FILL_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+    }
+
+    public void setFullScreenHeight(){
+        Window window = getWindow();
+        window.getDecorView().setPadding(0, 0, 0, 0);
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.FILL_PARENT;
         window.setAttributes(lp);
     }
 }

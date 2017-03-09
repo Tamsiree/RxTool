@@ -13,7 +13,7 @@
     <com.vondear.rxtools.view.RxTitle
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:RxBackground="?colorPrimary"
+        android:background="?colorPrimary"
         app:title="添加购物控件" />
 
     <com.vondear.rxtools.view.RxShoppingView
