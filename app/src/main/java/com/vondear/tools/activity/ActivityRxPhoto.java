@@ -1,15 +1,11 @@
 package com.vondear.tools.activity;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +19,11 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxImageUtils;
+import com.vondear.rxtools.RxPermissionsUtils;
 import com.vondear.rxtools.RxPhotoUtils;
 import com.vondear.rxtools.RxSPUtils;
 import com.vondear.rxtools.activity.ActivityBase;
+import com.vondear.rxtools.interfaces.onRequestListener;
 import com.vondear.rxtools.view.dialog.RxDialog;
 import com.vondear.rxtools.view.dialog.RxDialogSureCancle;
 import com.vondear.tools.R;
@@ -118,12 +116,18 @@ public class ActivityRxPhoto extends ActivityBase {
             @Override
             public void onClick(View arg0) {
                 //请求Camera权限
-                if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.CAMERA}, 1);
-                }else{
-                    RxPhotoUtils.openCameraImage(ActivityRxPhoto.this);
-                    dialog1.cancel();
-                }
+                RxPermissionsUtils.requestCamera(mContext, new onRequestListener() {
+                    @Override
+                    public void onRequestBefore() {
+
+                    }
+
+                    @Override
+                    public void onRequestLater() {
+                        RxPhotoUtils.openCameraImage(ActivityRxPhoto.this);
+                        dialog1.cancel();
+                    }
+                });
             }
         });
         tv_file.setOnClickListener(new View.OnClickListener() {
@@ -209,8 +213,7 @@ public class ActivityRxPhoto extends ActivityBase {
     }
 
     private void initUCrop(Uri uri) {
-
-//        Uri destinationUri = RxPhotoUtils.createImagePathUri(this);
+        //Uri destinationUri = RxPhotoUtils.createImagePathUri(this);
 
         SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA);
         long time = System.currentTimeMillis();
