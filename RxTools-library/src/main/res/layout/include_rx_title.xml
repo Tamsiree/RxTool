@@ -19,8 +19,7 @@
             android:id="@+id/iv_left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/back"
-            />
+            android:src="@drawable/back"/>
 
 
         <TextView
@@ -29,8 +28,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="left"
-            android:textColor="@color/white"
-            />
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
@@ -67,8 +65,7 @@
             android:id="@+id/iv_right"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/set"
-            />
+            android:src="@drawable/set"/>
 
     </LinearLayout>
 </RelativeLayout>

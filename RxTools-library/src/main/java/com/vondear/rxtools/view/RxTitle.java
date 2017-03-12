@@ -279,6 +279,22 @@ public class RxTitle extends FrameLayout {
         mLlRight.setOnClickListener(onClickListener);
     }
 
+    public void setLeftTextOnClickListener(OnClickListener onClickListener) {
+        mTvLeft.setOnClickListener(onClickListener);
+    }
+
+    public void setRightTextOnClickListener(OnClickListener onClickListener) {
+        mTvRight.setOnClickListener(onClickListener);
+    }
+
+    public void setLeftIconOnClickListener(OnClickListener onClickListener) {
+        mIvLeft.setOnClickListener(onClickListener);
+    }
+
+    public void setRightIconOnClickListener(OnClickListener onClickListener) {
+        mIvRight.setOnClickListener(onClickListener);
+    }
+
     //**********************************************************************************************以下为Title相关方法
     public void setTitle(String title) {
         mTitle = title;
