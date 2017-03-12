@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root_layout"
-    android:layout_width="match_parent"
-    android:layout_height="55dp"
-    android:gravity="center"
-    android:orientation="horizontal">
+                android:id="@+id/root_layout"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
     <LinearLayout
         android:id="@+id/ll_left"
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
 
         <ImageView
             android:id="@+id/iv_left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/back" />
+            android:src="@drawable/back"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="left"
+            android:textColor="@color/white"
+            />
 
     </LinearLayout>
 
@@ -28,22 +42,33 @@
         android:gravity="center"
         android:text="个人资料"
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="18sp"/>
 
     <LinearLayout
         android:id="@+id/ll_right"
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:text="right"
+            android:textColor="@color/white"/>
 
         <ImageView
             android:id="@+id/iv_right"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/set" />
+            android:src="@drawable/set"
+            />
 
     </LinearLayout>
 </RelativeLayout>
