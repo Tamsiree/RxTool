@@ -50,10 +50,23 @@
         <attr name="title" format="string"/>
         <attr name="titleColor" format="color"/>
         <attr name="titleSize" format="dimension"/>
+        <attr name="titleVisibility" format="boolean"/>
+
+        <attr name="leftText" format="string"/>
+        <attr name="leftTextColor" format="color"/>
+        <attr name="leftTextSize" format="dimension"/>
+        <attr name="leftTextVisibility" format="boolean"/>
+
+        <attr name="rightText" format="string"/>
+        <attr name="rightTextColor" format="color"/>
+        <attr name="rightTextSize" format="dimension"/>
+        <attr name="rightTextVisibility" format="boolean"/>
+
         <attr name="leftIcon" format="reference"/>
-        <attr name="RightIcon" format="reference"/>
         <attr name="leftIconVisibility" format="boolean"/>
-        <attr name="RightIconVisibility" format="boolean"/>
+
+        <attr name="rightIcon" format="reference"/>
+        <attr name="rightIconVisibility" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="RxNetSpeedView">
