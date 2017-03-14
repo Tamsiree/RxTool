@@ -103,8 +103,8 @@ public class ActivityRxCaptcha extends ActivityBase {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_get_code:
-                ivCode.setImageBitmap(RxCaptcha.getInstance().getBitmap());
-                tvCode.setText(RxCaptcha.getInstance().getCode());
+                ivCode.setImageBitmap(RxCaptcha.getInstance(2).getBitmap());
+                tvCode.setText(RxCaptcha.getInstance(2).getCode());
                 break;
             case R.id.btnChange:
                 mRxSwipeCaptcha.createCaptcha();
