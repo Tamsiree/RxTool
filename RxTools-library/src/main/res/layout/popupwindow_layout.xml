@@ -7,7 +7,7 @@
     <!-- #aa005ea8  透明蓝 -->
     <ListView
         android:id="@+id/title_list"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:cacheColorHint="#00000000"
         android:divider="#aa000000"

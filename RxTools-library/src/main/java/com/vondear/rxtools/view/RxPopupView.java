@@ -11,6 +11,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -171,7 +172,7 @@ public class RxPopupView extends PopupWindow {
         }
 
         // 显示弹窗的位置
-        showAtLocation(view, popupGravity, mLocation[0], mRect.bottom +dex);
+        showAtLocation(view, popupGravity, mLocation[0], mRect.bottom + dex);
     }
 
     private int colorItemText = 0;
@@ -191,10 +192,12 @@ public class RxPopupView extends PopupWindow {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 TextView tv_itpop = null;
+                ImageView iv_itpop = null;
                 if (convertView == null) {
                     convertView = LayoutInflater.from(mContext).inflate(R.layout.item_listview_popup, null);
                 }
                 tv_itpop = (TextView) convertView.findViewById(R.id.tv_itpop);
+                iv_itpop = (ImageView) convertView.findViewById(R.id.iv_itpop);
                 if (colorItemText == 0) {
                     colorItemText = mContext.getResources().getColor(android.R.color.white);
                 }
@@ -211,6 +214,12 @@ public class RxPopupView extends PopupWindow {
 
                 // 设置文本文字
                 tv_itpop.setText(item.mTitle);
+                if (item.mResourcesId == 0) {
+                    iv_itpop.setVisibility(View.GONE);
+                } else {
+                    iv_itpop.setVisibility(View.VISIBLE);
+                    iv_itpop.setImageResource(item.mResourcesId);
+                }
 
                 return convertView;
             }

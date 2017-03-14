@@ -103,7 +103,8 @@ public class ActivityPopupView extends ActivityBase implements RxToolTipsManager
     }
 
     private void initPopupView() {
-        titlePopup = new RxPopupView(mContext, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, R.layout.popupwindow_definition_layout);
+        titlePopup = new RxPopupView(mContext, ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT, R.layout.popupwindow_definition_layout);
         titlePopup.addAction(new ActionItem("标清"));
         titlePopup.addAction(new ActionItem("高清"));
         titlePopup.addAction(new ActionItem("超清"));
