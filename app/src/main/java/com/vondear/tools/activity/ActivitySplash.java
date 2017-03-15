@@ -3,18 +3,18 @@ package com.vondear.tools.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxDeviceUtils;
-import com.vondear.rxtools.RxUtils;
-import com.vondear.tools.R;
 import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.RxDeviceUtils;
+import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogSureCancle;
+import com.vondear.tools.R;
 
 
 public class ActivitySplash extends Activity {
@@ -46,7 +46,7 @@ public class ActivitySplash extends Activity {
     }
 
     public void buttonClick(View v) {
-        RxUtils.showToast(context, "正在进入主界面", 500);
+        RxToast.showToast(context, "正在进入主界面", 500);
         toMain();
     }
 
@@ -91,7 +91,7 @@ public class ActivitySplash extends Activity {
         rxDialogSureCancle.getTv_cancle().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RxUtils.showToast(context,"已取消最新版本的下载",500);
+                RxToast.showToast(context,"已取消最新版本的下载",500);
                 rxDialogSureCancle.cancel();
             }
         });
@@ -125,14 +125,14 @@ public class ActivitySplash extends Activity {
         @Override
         public void handleMessage(Message msg) {
             if (!update) {
-                RxUtils.showToast(context, "正在检查版本更新...", 500);
+                RxToast.showToast(context, "正在检查版本更新...", 500);
                 // TODO: 使用 RxDeviceUtils.getAppVersionNo(context); 方法 获取当前app版本号 与 提交给服务器 做对比
                 String temp = getResources().getString(R.string.newest_apk_down);
                 String timeTip = String.format(temp, RxDeviceUtils.getAppVersionName(context));
                 //  或简化成 String.format(getResources().getString(R.string.newest_apk_down),RxDeviceUtils.getAppVersionName(context))
                 ShowDialog(timeTip,"your_apk_down_url");
             } else {
-                RxUtils.showToast(context, "当前为最新版本，无需更新!", 500);
+                RxToast.showToast(context, "当前为最新版本，无需更新!", 500);
                 pg.setVisibility(View.GONE);
             }
         }

@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxUtils;
-import com.vondear.tools.R;
 import com.vondear.rxtools.RxTextUtils;
+import com.vondear.rxtools.view.RxToast;
+import com.vondear.tools.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,7 +55,7 @@ public class ActivityTextUtils extends Activity {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(View widget) {
-                RxUtils.showToast(mContext, "事件触发了", 500);
+                RxToast.showToast(mContext, "事件触发了", 500);
             }
 
             @Override
@@ -68,8 +68,8 @@ public class ActivityTextUtils extends Activity {
         TextView tvAboutSpannable = (TextView) findViewById(R.id.tv_about_spannable);
         // 响应点击事件的话必须设置以下属性
         tvAboutSpannable.setMovementMethod(LinkMovementMethod.getInstance());
-        tvAboutSpannable.setText(RxTextUtils.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
 
+        RxTextUtils.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
                 .append("测试").append("Url\n").setUrl(URL_VONTOOLS)
                 .append("列表项\n").setBullet(60, getResources().getColor(R.color.baby_blue))
                 .append("  测试引用\n").setQuoteColor(getResources().getColor(R.color.baby_blue))
@@ -90,8 +90,7 @@ public class ActivityTextUtils extends Activity {
                 .append("\n测试正常对齐\n").setAlign(Layout.Alignment.ALIGN_NORMAL)
                 .append("测试居中对齐\n").setAlign(Layout.Alignment.ALIGN_CENTER)
                 .append("测试相反对齐\n").setAlign(Layout.Alignment.ALIGN_OPPOSITE)
-                .create()
-        );
+                .into(tvAboutSpannable);
     }
 
     @OnClick(R.id.iv_finish)

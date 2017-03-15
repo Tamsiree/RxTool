@@ -14,8 +14,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.vondear.rxtools.RxCaptcha;
 import com.vondear.rxtools.activity.ActivityBase;
+import com.vondear.rxtools.view.RxCaptcha;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.swipecaptcha.RxSwipeCaptcha;
 import com.vondear.tools.R;
@@ -103,8 +103,17 @@ public class ActivityRxCaptcha extends ActivityBase {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_get_code:
-                ivCode.setImageBitmap(RxCaptcha.getInstance(2).getBitmap());
-                tvCode.setText(RxCaptcha.getInstance(2).getCode());
+
+                RxCaptcha.getInstance()
+                        .backColor(0xffffff)
+                        .codeLength(6)
+                        .fontSize(60)
+                        .lineNumber(0)
+                        .size(200, 70)
+                        .type(3)
+                        .into(ivCode);
+
+                tvCode.setText(RxCaptcha.getInstance().getCode());
                 break;
             case R.id.btnChange:
                 mRxSwipeCaptcha.createCaptcha();

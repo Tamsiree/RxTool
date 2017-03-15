@@ -1,7 +1,9 @@
 package com.vondear.rxtools;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -11,7 +13,10 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+
+import com.vondear.rxtools.view.RxToast;
 
 import java.io.IOException;
 import java.util.List;
@@ -77,10 +82,13 @@ public class RxLocationUtils {
         mLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         mListener = listener;
         if (!isLocationEnabled(context)) {
-            RxUtils.showToast(context, "无法定位，请打开定位服务", 500);
+            RxToast.showToast(context, "无法定位，请打开定位服务", 500);
             return false;
         }
         String provider = mLocationManager.getBestProvider(getCriteria(), true);
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }
         Location location = mLocationManager.getLastKnownLocation(provider);
         if (location != null) listener.getLastKnownLocation(location);
         if (myLocationListener == null) myLocationListener = new MyLocationListener();

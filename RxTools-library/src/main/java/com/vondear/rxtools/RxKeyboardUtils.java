@@ -33,6 +33,17 @@ public class RxKeyboardUtils {
     }
 
     /**
+     * 点击隐藏软键盘
+     *
+     * @param activity
+     * @param view
+     */
+    public static void hideKeyboard(Activity activity, View view) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    /**
      * 动态隐藏软键盘
      *
      * @param context 上下文

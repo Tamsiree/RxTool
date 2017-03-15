@@ -58,7 +58,7 @@ public class RxActivityUtils {
     /**
      * 要求最低API为11
      * Activity 跳转
-     *  跳转后Finish之前所有的Activity
+     * 跳转后Finish之前所有的Activity
      *
      * @param context
      * @param goal
@@ -66,7 +66,7 @@ public class RxActivityUtils {
     public static void skipActivityAndFinishAll(Context context, Class<?> goal, Bundle bundle) {
         Intent intent = new Intent(context, goal);
         intent.putExtras(bundle);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
         ((Activity) context).finish();
     }
@@ -75,12 +75,13 @@ public class RxActivityUtils {
      * 要求最低API为11
      * Activity 跳转
      * 跳转后Finish之前所有的Activity
+     *
      * @param context
      * @param goal
      */
     public static void skipActivityAndFinishAll(Context context, Class<?> goal) {
         Intent intent = new Intent(context, goal);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
         ((Activity) context).finish();
     }
@@ -133,6 +134,17 @@ public class RxActivityUtils {
         Intent intent = new Intent(context, goal);
         intent.putExtras(bundle);
         context.startActivity(intent);
+    }
+
+    public static void skipActivityForResult(Activity context, Class<?> goal, int requestCode) {
+        Intent intent = new Intent(context, goal);
+        context.startActivityForResult(intent, requestCode);
+    }
+
+    public static void skipActivityForResult(Activity context, Class<?> goal, Bundle bundle, int requestCode) {
+        Intent intent = new Intent(context, goal);
+        intent.putExtras(bundle);
+        context.startActivityForResult(intent, requestCode);
     }
 
     /**

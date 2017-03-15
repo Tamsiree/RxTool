@@ -1,6 +1,5 @@
 package com.vondear.rxtools;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -9,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
@@ -24,6 +24,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.renderscript.Allocation;
@@ -32,9 +33,6 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
 import android.widget.ImageView;
 
 import com.vondear.rxtools.view.dialog.RxDialog;
@@ -62,7 +60,7 @@ public class RxImageUtils {
      * 显示大图
      *
      * @param context
-     * @param uri 图片的Uri
+     * @param uri     图片的Uri
      */
     public static void showBigImageView(Context context, Uri uri) {
         final RxDialog rxDialog = new RxDialog(context);
@@ -200,58 +198,6 @@ public class RxImageUtils {
     static ObjectAnimator invisToVis;
     static ObjectAnimator visToInvis;
 
-    public static void FilpAnimation(final View beforeView, final View AfterView) {
-        Interpolator accelerator = new AccelerateInterpolator();
-        Interpolator decelerator = new DecelerateInterpolator();
-        if (beforeView.getVisibility() == View.GONE) {
-            // 局部layout可达到字体翻转 背景不翻转
-            invisToVis = ObjectAnimator.ofFloat(beforeView,
-                    "rotationY", -90f, 0f);
-            visToInvis = ObjectAnimator.ofFloat(AfterView,
-                    "rotationY", 0f, 90f);
-        } else if (AfterView.getVisibility() == View.GONE) {
-            invisToVis = ObjectAnimator.ofFloat(AfterView,
-                    "rotationY", -90f, 0f);
-            visToInvis = ObjectAnimator.ofFloat(beforeView,
-                    "rotationY", 0f, 90f);
-        }
-
-        visToInvis.setDuration(250);// 翻转速度
-        visToInvis.setInterpolator(accelerator);// 在动画开始的地方速率改变比较慢，然后开始加速
-        invisToVis.setDuration(250);
-        invisToVis.setInterpolator(decelerator);
-        visToInvis.addListener(new Animator.AnimatorListener() {
-
-            @Override
-            public void onAnimationEnd(Animator arg0) {
-                if (beforeView.getVisibility() == View.GONE) {
-                    AfterView.setVisibility(View.GONE);
-                    invisToVis.start();
-                    beforeView.setVisibility(View.VISIBLE);
-                } else {
-                    AfterView.setVisibility(View.GONE);
-                    visToInvis.start();
-                    beforeView.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onAnimationCancel(Animator arg0) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator arg0) {
-
-            }
-
-            @Override
-            public void onAnimationStart(Animator arg0) {
-
-            }
-        });
-        visToInvis.start();
-    }
 
 
     /**
@@ -1348,6 +1294,36 @@ public class RxImageUtils {
     }
 
     /**
+     * 可以对该图的非透明区域着色
+     * <p>
+     * 有多种使用场景，常见如 Button 的 pressed 状态，View 的阴影状态等
+     *
+     * @param iv
+     * @param src
+     * @param radius
+     * @param color
+     * @return
+     */
+    private static Bitmap getDropShadow(ImageView iv, Bitmap src, float radius, int color) {
+
+        final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(color);
+
+        final int width = src.getWidth(), height = src.getHeight();
+        final Bitmap dest = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(dest);
+        final Bitmap alpha = src.extractAlpha();
+        canvas.drawBitmap(alpha, 0, 0, paint);
+
+        final BlurMaskFilter filter = new BlurMaskFilter(radius, BlurMaskFilter.Blur.OUTER);
+        paint.setMaskFilter(filter);
+        canvas.drawBitmap(alpha, 0, 0, paint);
+        iv.setImageBitmap(dest);
+
+        return dest;
+    }
+
+    /**
      * 转为灰度图片
      *
      * @param src 源图片
@@ -1704,6 +1680,25 @@ public class RxImageUtils {
         if (recycle && !src.isRecycled()) src.recycle();
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
     }
+
+
+    /**
+     * 缩略图工具类，
+     * 可以根据本地视频文件源、
+     * Bitmap 对象生成缩略图
+     *
+     * @param filePath
+     * @param kind
+     * @return
+     */
+    public static Bitmap getThumb(String filePath, int kind) {
+        return ThumbnailUtils.createVideoThumbnail(filePath, kind);
+    }
+
+    public static Bitmap getThumb(Bitmap source, int width, int height) {
+        return ThumbnailUtils.extractThumbnail(source, width, height);
+    }
+
 
 
 }

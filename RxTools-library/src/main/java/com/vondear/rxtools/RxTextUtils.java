@@ -31,11 +31,12 @@ import android.text.style.SuperscriptSpan;
 import android.text.style.TypefaceSpan;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
+import android.widget.TextView;
 
 import static android.graphics.BlurMaskFilter.Blur;
 
 /**
- * @author  by vondear on 2016/12/23.
+ * @author by vondear on 2016/12/23.
  */
 
 public class RxTextUtils {
@@ -428,6 +429,13 @@ public class RxTextUtils {
         public SpannableStringBuilder create() {
             setSpan();
             return mBuilder;
+        }
+
+        public void into(TextView textView) {
+            setSpan();
+            if (textView != null) {
+                textView.setText(mBuilder);
+            }
         }
 
         /**

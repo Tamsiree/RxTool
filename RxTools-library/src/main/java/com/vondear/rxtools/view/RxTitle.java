@@ -105,9 +105,9 @@ public class RxTitle extends FrameLayout {
             mTitleVisibility = a.getBoolean(R.styleable.RxTitle_titleVisibility, true);
 
             mLeftIcon = a.getResourceId(R.styleable.RxTitle_leftIcon, R.drawable.back);//左边图标
-            mRightIcon = a.getResourceId(R.styleable.RxTitle_RightIcon, R.drawable.set);//右边图标
+            mRightIcon = a.getResourceId(R.styleable.RxTitle_rightIcon, R.drawable.set);//右边图标
             mLeftIconVisibility = a.getBoolean(R.styleable.RxTitle_leftIconVisibility, true);//左边图标是否显示
-            mRightIconVisibility = a.getBoolean(R.styleable.RxTitle_RightIconVisibility, false);//右边图标是否显示
+            mRightIconVisibility = a.getBoolean(R.styleable.RxTitle_rightIconVisibility, false);//右边图标是否显示
 
             mLeftText = a.getString(R.styleable.RxTitle_leftText);
             mLeftTextColor = a.getColor(R.styleable.RxTitle_leftTextColor, getResources().getColor(R.color.white));//左边字体颜色

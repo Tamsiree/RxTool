@@ -15,11 +15,11 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxUtils;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.bean.ActionItem;
 import com.vondear.rxtools.view.RxPopupImply;
 import com.vondear.rxtools.view.RxPopupView;
+import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.tooltips.RxToolTip;
 import com.vondear.rxtools.view.tooltips.RxToolTipsManager;
 import com.vondear.tools.R;
@@ -114,7 +114,7 @@ public class ActivityPopupView extends ActivityBase implements RxToolTipsManager
             public void onItemClick(ActionItem item, int position) {
                 // TODO Auto-generated method stub
                 if (titlePopup.getAction(position).mTitle.equals(mTvDefinition.getText())) {
-                    RxUtils.showToast(mContext, "当前已经为" + mTvDefinition.getText(), 500);
+                    RxToast.showToast(mContext, "当前已经为" + mTvDefinition.getText(), 500);
                 } else {
                     if (position >= 0 && position < 3) {
                         mTvDefinition.setText(titlePopup.getAction(position).mTitle);

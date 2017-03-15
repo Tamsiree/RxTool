@@ -1,11 +1,23 @@
 package com.vondear.rxtools;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
-import static com.vondear.rxtools.RxConstUtils.*;
+import static com.vondear.rxtools.RxConstUtils.DAY;
+import static com.vondear.rxtools.RxConstUtils.HOUR;
+import static com.vondear.rxtools.RxConstUtils.MIN;
+import static com.vondear.rxtools.RxConstUtils.MSEC;
+import static com.vondear.rxtools.RxConstUtils.SEC;
+import static com.vondear.rxtools.RxConstUtils.TimeUnit;
+import static com.vondear.rxtools.RxDataUtils.isNullString;
+import static com.vondear.rxtools.RxDataUtils.stringToInt;
 
 /**
  * Created by vondear on 2016/1/24.
@@ -482,5 +494,150 @@ public class RxTimeUtils {
      */
     public static boolean isLeapYear(int year) {
         return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+    }
+
+    /**
+     * 将date转换成format格式的日期
+     *
+     * @param format 格式
+     * @param date   日期
+     * @return
+     */
+    public static String simpleDateFormat(String format, Date date) {
+        if (isNullString(format)) {
+            format = "yyyy-MM-dd HH:mm:ss";
+        }
+        String content = new SimpleDateFormat(format).format(date);
+        return content;
+    }
+
+    //--------------------------------------------字符串转换成时间戳-----------------------------------
+
+    /**
+     * 将指定格式的日期转换成时间戳
+     *
+     * @param mDate
+     * @return
+     */
+    public static String Date2Timestamp(Date mDate) {
+        return String.valueOf(mDate.getTime()).substring(0, 10);
+    }
+
+    /**
+     * 将日期字符串 按照 指定的格式 转换成 DATE
+     * 转换失败时 return null;
+     *
+     * @param format
+     * @param datess
+     * @return
+     */
+    public static Date string2Date(String format, String datess) {
+        SimpleDateFormat sdr = new SimpleDateFormat(format);
+        Date date = null;
+        try {
+            date = sdr.parse(datess);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    /**
+     * 将 yyyy年MM月dd日 转换成 时间戳
+     *
+     * @param format
+     * @param datess
+     * @return
+     */
+    public static String string2Timestamp(String format, String datess) {
+        Date date = string2Date(format, datess);
+        return Date2Timestamp(date);
+    }
+    //===========================================字符串转换成时间戳====================================
+
+    /**
+     * 获取当前日期时间 / 得到今天的日期
+     * str yyyyMMddhhMMss 之类的
+     *
+     * @return
+     */
+    @SuppressLint("SimpleDateFormat")
+    public static String getCurrentDateTime(String format) {
+        return simpleDateFormat(format, new Date());
+    }
+
+    /**
+     * 时间戳  转换成 指定格式的日期
+     * 如果format为空，则默认格式为
+     *
+     * @param times  时间戳
+     * @param format 日期格式 yyyy-MM-dd HH:mm:ss
+     * @return
+     */
+    @SuppressLint("SimpleDateFormat")
+    public static String getDate(String times, String format) {
+        return simpleDateFormat(format, new Date(stringToInt(times) * 1000L));
+    }
+
+    /**
+     * 得到昨天的日期
+     *
+     * @param format 日期格式 yyyy-MM-dd HH:mm:ss
+     * @return
+     */
+    public static String getYestoryDate(String format) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -1);
+        return simpleDateFormat(format, calendar.getTime());
+    }
+
+    /**
+     * 视频时间 转换成 "mm:ss"
+     *
+     * @param milliseconds
+     * @return
+     */
+    public static String formatTime(long milliseconds) {
+        String format = "mm:ss";
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+0"));
+        String video_time = sdf.format(milliseconds);
+        return video_time;
+    }
+
+    /**
+     * "mm:ss" 转换成 视频时间
+     *
+     * @param time
+     * @return
+     */
+    public static long formatSeconds(String time) {
+        String format = "mm:ss";
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+0"));
+        Date date;
+        long times = 0;
+        try {
+            date = sdf.parse(time);
+            long l = date.getTime();
+            times = l;
+            Log.d("时间戳", times + "");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return times;
+    }
+
+    /**
+     * 根据年 月 获取对应的月份 天数
+     */
+    public static int getDaysByYearMonth(int year, int month) {
+        Calendar a = Calendar.getInstance();
+        a.set(Calendar.YEAR, year);
+        a.set(Calendar.MONTH, month - 1);
+        a.set(Calendar.DATE, 1);
+        a.roll(Calendar.DATE, -1);
+        int maxDate = a.get(Calendar.DATE);
+        return maxDate;
     }
 }

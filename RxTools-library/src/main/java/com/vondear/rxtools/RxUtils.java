@@ -1,15 +1,12 @@
 package com.vondear.rxtools;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -32,6 +29,18 @@ public class RxUtils {
         RxCrashUtils.getInstance(context).init();
     }
 
+    /**
+     * 在某种获取不到 Context 的情况下，即可以使用才方法获取 Context
+     * <p>
+     * 获取ApplicationContext
+     *
+     * @return ApplicationContext
+     */
+    public static Context getContext() {
+        if (context != null) return context;
+        throw new NullPointerException("请先调用init()方法");
+    }
+
     //----------------------------------------------------------------------------------------------延时任务封装 start
     public interface DelayListener {
         void doSomething();
@@ -46,29 +55,6 @@ public class RxUtils {
         }, delayTime);
     }
     //==============================================================================================延时任务封装 end
-
-    /**
-     * 在某种获取不到 Context 的情况下，即可以使用才方法获取 Context
-     *
-     * 获取ApplicationContext
-     *
-     * @return ApplicationContext
-     */
-    public static Context getContext() {
-        if (context != null) return context;
-        throw new NullPointerException("请先调用init()方法");
-    }
-
-    /**
-     * 点击隐藏软键盘
-     *
-     * @param activity
-     * @param view
-     */
-    public static void hideKeyboard(Activity activity, View view) {
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
 
     /**
      * 倒计时
@@ -95,90 +81,6 @@ public class RxUtils {
         };
         timer.start();
     }
-    //-----------------------------------------Toast 替代方法----------------------------------------
-
-    /**
-     * 封装了Toast的方法 :需要等待
-     *
-     * @param cxt
-     * @param str
-     * @param isLong
-     */
-    public static void showToast(Context cxt, String str, boolean isLong) {
-        if (isLong) {
-            Toast.makeText(cxt, str, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(cxt, str, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public static void showToastShort(String str) {
-        Toast.makeText(getContext(), str, Toast.LENGTH_SHORT).show();
-    }
-
-    public static void showToastShort(int resId) {
-        Toast.makeText(getContext(), context.getString(resId), Toast.LENGTH_SHORT).show();
-    }
-
-    public static void showToastLong(String str) {
-        Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
-    }
-
-    public static void showToastLong(int resId) {
-        Toast.makeText(getContext(), context.getString(resId), Toast.LENGTH_LONG).show();
-    }
-
-    public static void showToast(String msg) {
-        if (mToast == null) {
-            mToast = Toast.makeText(getContext(), msg, Toast.LENGTH_LONG);
-        } else {
-            mToast.setText(msg);
-        }
-        mToast.show();
-    }
-
-    public static void showToast(int resId) {
-        context = getContext();
-        if (mToast == null) {
-            mToast = Toast.makeText(getContext(), context.getString(resId), Toast.LENGTH_LONG);
-        } else {
-            mToast.setText(context.getString(resId));
-        }
-        mToast.show();
-    }
-
-    /**
-     * Toast 替代方法 ：立即显示无需等待
-     */
-    private static Toast mToast;
-
-    /**
-     * Toast 替代方法 ：立即显示无需等待
-     *
-     * @param context  实体
-     * @param resId    资源ID
-     * @param duration 显示时长
-     */
-    public static void showToast(Context context, int resId, int duration) {
-        showToast(context, context.getString(resId), duration);
-    }
-
-    /**
-     * Toast 替代方法 ：立即显示无需等待
-     *
-     * @param context  实体
-     * @param msg      要显示的字符串
-     * @param duration 显示时长
-     */
-    public static void showToast(Context context, String msg, int duration) {
-        if (mToast == null) {
-            mToast = Toast.makeText(context, msg, duration);
-        } else {
-            mToast.setText(msg);
-        }
-        mToast.show();
-    }
-    //===========================================Toast 替代方法======================================
 
     /**
      * 手动计算出listView的高度，但是不再具有滚动效果
@@ -238,4 +140,21 @@ public class RxUtils {
         return sb.toString();
     }
     //============================================MD5加密============================================
+
+    /**
+     * 根据资源名称获取资源 id
+     *
+     *      不提倡使用这个方法获取资源,比其直接获取ID效率慢
+     *
+     * 例如
+     *      getResources().getIdentifier("ic_launcher", "drawable", getPackageName());
+     *
+     * @param context
+     * @param name
+     * @param defType
+     * @return
+     */
+    public static final int getResIdByName(Context context,String name,String defType) {
+        return context.getResources().getIdentifier("ic_launcher", "drawable", context.getPackageName());
+    }
 }

@@ -1,8 +1,7 @@
 package com.vondear.rxtools;
 
-import android.annotation.SuppressLint;
 import android.os.Build;
-import android.util.Log;
+import android.support.annotation.Nullable;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
@@ -15,18 +14,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import static com.vondear.rxtools.RxConstUtils.*;
+import static com.vondear.rxtools.RxConstUtils.BYTE;
+import static com.vondear.rxtools.RxConstUtils.GB;
+import static com.vondear.rxtools.RxConstUtils.KB;
+import static com.vondear.rxtools.RxConstUtils.MB;
 
 /**
  * Created by vondear on 2016/1/24.
@@ -40,8 +35,8 @@ public class RxDataUtils {
      * @param str 字符串
      * @return
      */
-    public static boolean isNullString(String str) {
-        return (("").equals(str) || str == null || ("null").equals(str));
+    public static boolean isNullString(@Nullable String str) {
+        return str.length() == 0 || "".equals(str) || "null".equals(str) || str == null;
     }
 
     /**
@@ -137,22 +132,20 @@ public class RxDataUtils {
 
     /**
      * 隐藏手机中间4位号码
-     *
-     * @param mobile_phone
-     * @return
+     *      130****0000
+     * @param mobile_phone 手机号码
+     * @return 130****0000
      */
-    public static String hideMobilePhone(String mobile_phone) {
-        return mobile_phone.substring(0, 3)
-                + "****"
-                + mobile_phone.substring(7, 11);
+    public static String hideMobilePhone4(String mobile_phone) {
+        return mobile_phone.substring(0, 3) + "****" + mobile_phone.substring(7, 11);
     }
 
     /**
      * 格式化银行卡 加*
      * 3749 **** **** 330
      *
-     * @param cardNo
-     * @return
+     * @param cardNo 银行卡
+     * @return 3749 **** **** 330
      */
     public static String formatCard(String cardNo) {
         String card = "";
@@ -167,7 +160,7 @@ public class RxDataUtils {
      * @param cardNo
      * @return
      */
-    public static String formatCardEndFour(String cardNo) {
+    public static String formatCardEnd4(String cardNo) {
         String card = "";
         card += cardNo.substring(cardNo.length() - 4);
         return card;
@@ -277,207 +270,8 @@ public class RxDataUtils {
         }
     }
 
-    //--------------------------------------------正则表达式-----------------------------------------
-    /**
-     * 原文链接：http://caibaojian.com/regexp-example.html
-     * 提取信息中的网络链接:(h|H)(r|R)(e|E)(f|F) *= *('|")?(\w|\\|\/|\.)+('|"| *|>)?
-     * 提取信息中的邮件地址:\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*
-     * 提取信息中的图片链接:(s|S)(r|R)(c|C) *= *('|")?(\w|\\|\/|\.)+('|"| *|>)?
-     * 提取信息中的IP地址:(\d+)\.(\d+)\.(\d+)\.(\d+)
-     * 提取信息中的中国电话号码（包括移动和固定电话）:(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}
-     * 提取信息中的中国邮政编码:[1-9]{1}(\d+){5}
-     * 提取信息中的中国身份证号码:\d{18}|\d{15}
-     * 提取信息中的整数：\d+
-     * 提取信息中的浮点数（即小数）：(-?\d*)\.?\d+
-     * 提取信息中的任何数字 ：(-?\d*)(\.\d+)?
-     * 提取信息中的中文字符串：[\u4e00-\u9fa5]*
-     * 提取信息中的双字节字符串 (汉字)：[^\x00-\xff]*
-     */
 
 
-    /**
-     * 判断是否为真实手机号
-     *
-     * @param mobiles
-     * @return
-     */
-    public static boolean isMobile(String mobiles) {
-        Pattern p = Pattern.compile("^1(3[0-9]|5[012356789]|8[0256789]|7[0678])\\d{8}$");
-        Matcher m = p.matcher(mobiles);
-        return m.matches();
-    }
-
-    /**
-     * 验证银卡卡号
-     *
-     * @param cardNo
-     * @return
-     */
-    public static boolean isBankCard(String cardNo) {
-        Pattern p = Pattern.compile("^\\d{16,19}$|^\\d{6}[- ]\\d{10,13}$|^\\d{4}[- ]\\d{4}[- ]\\d{4}[- ]\\d{4,7}$");
-        Matcher m = p.matcher(cardNo);
-        return m.matches();
-    }
-
-    /**
-     * 15位和18位身份证号码的正则表达式 身份证验证
-     *
-     * @param idCard
-     * @return
-     */
-    public static boolean validateIdCard(String idCard) {
-        // 15位和18位身份证号码的正则表达式
-        String regIdCard = "^(^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$)|(^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])((\\d{4})|\\d{3}[Xx])$)$";
-        Pattern p = Pattern.compile(regIdCard);
-        return p.matcher(idCard).matches();
-    }
-    //=========================================正则表达式=============================================
-
-
-    /**
-     * 将date转换成format格式的日期
-     *
-     * @param format 格式
-     * @param date   日期
-     * @return
-     */
-    public static String simpleDateFormat(String format, Date date) {
-        if (isNullString(format)) {
-            format = "yyyy-MM-dd HH:mm:ss";
-        }
-        String content = new SimpleDateFormat(format).format(date);
-        return content;
-    }
-
-    //--------------------------------------------字符串转换成时间戳-----------------------------------
-
-    /**
-     * 将指定格式的日期转换成时间戳
-     *
-     * @param mDate
-     * @return
-     */
-    public static String Date2Timestamp(Date mDate) {
-        return String.valueOf(mDate.getTime()).substring(0, 10);
-    }
-
-    /**
-     * 将日期字符串 按照 指定的格式 转换成 DATE
-     * 转换失败时 return null;
-     *
-     * @param format
-     * @param datess
-     * @return
-     */
-    public static Date string2Date(String format, String datess) {
-        SimpleDateFormat sdr = new SimpleDateFormat(format);
-        Date date = null;
-        try {
-            date = sdr.parse(datess);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
-    }
-
-    /**
-     * 将 yyyy年MM月dd日 转换成 时间戳
-     *
-     * @param format
-     * @param datess
-     * @return
-     */
-    public static String string2Timestamp(String format, String datess) {
-        Date date = string2Date(format, datess);
-        return Date2Timestamp(date);
-    }
-    //===========================================字符串转换成时间戳====================================
-
-    /**
-     * 获取当前日期时间 / 得到今天的日期
-     * str yyyyMMddhhMMss 之类的
-     *
-     * @return
-     */
-    @SuppressLint("SimpleDateFormat")
-    public static String getCurrentDateTime(String format) {
-        return simpleDateFormat(format, new Date());
-    }
-
-    /**
-     * 时间戳  转换成 指定格式的日期
-     * 如果format为空，则默认格式为
-     *
-     * @param times  时间戳
-     * @param format 日期格式 yyyy-MM-dd HH:mm:ss
-     * @return
-     */
-    @SuppressLint("SimpleDateFormat")
-    public static String getDate(String times, String format) {
-        return simpleDateFormat(format, new Date(stringToInt(times) * 1000L));
-    }
-
-    /**
-     * 得到昨天的日期
-     *
-     * @param format 日期格式 yyyy-MM-dd HH:mm:ss
-     * @return
-     */
-    public static String getYestoryDate(String format) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, -1);
-        return simpleDateFormat(format, calendar.getTime());
-    }
-
-    /**
-     * 视频时间 转换成 "mm:ss"
-     *
-     * @param milliseconds
-     * @return
-     */
-    public static String formatTime(long milliseconds) {
-        String format = "mm:ss";
-        SimpleDateFormat sdf = new SimpleDateFormat(format);
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT+0"));
-        String video_time = sdf.format(milliseconds);
-        return video_time;
-    }
-
-    /**
-     * "mm:ss" 转换成 视频时间
-     *
-     * @param time
-     * @return
-     */
-    public static long formatSeconds(String time) {
-        String format = "mm:ss";
-        SimpleDateFormat sdf = new SimpleDateFormat(format);
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT+0"));
-        Date date;
-        long times = 0;
-        try {
-            date = sdf.parse(time);
-            long l = date.getTime();
-            times = l;
-            Log.d("时间戳", times + "");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return times;
-    }
-
-    /**
-     * 根据年 月 获取对应的月份 天数
-     */
-    public static int getDaysByYearMonth(int year, int month) {
-        Calendar a = Calendar.getInstance();
-        a.set(Calendar.YEAR, year);
-        a.set(Calendar.MONTH, month - 1);
-        a.set(Calendar.DATE, 1);
-        a.roll(Calendar.DATE, -1);
-        int maxDate = a.get(Calendar.DATE);
-        return maxDate;
-    }
 
 
     /**
@@ -1080,138 +874,7 @@ public class RxDataUtils {
     }
 
 
-    /**
-     * 验证手机号（简单）
-     *
-     * @param string 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isMobileSimple(String string) {
-        return isMatch(REGEX_MOBILE_SIMPLE, string);
-    }
 
-    /**
-     * 验证手机号（精确）
-     *
-     * @param string 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isMobileExact(String string) {
-        return isMatch(REGEX_MOBILE_EXACT, string);
-    }
-
-    /**
-     * 验证电话号码
-     *
-     * @param string 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isTel(String string) {
-        return isMatch(REGEX_TEL, string);
-    }
-
-    /**
-     * 验证身份证号码15位
-     *
-     * @param string 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isIDCard15(String string) {
-        return isMatch(REGEX_IDCARD15, string);
-    }
-
-    /**
-     * 验证身份证号码18位
-     *
-     * @param string 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isIDCard18(String string) {
-        return isMatch(REGEX_IDCARD18, string);
-    }
-
-    /**
-     * 验证身份证号码15或18位 包含以x结尾
-     *
-     * @param string 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isIDCard(String string) {
-        return isMatch(REGEX_IDCARD, string);
-    }
-
-
-    /**
-     * 验证邮箱
-     *
-     * @param string 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isEmail(String string) {
-        return isMatch(REGEX_EMAIL, string);
-    }
-
-    /**
-     * 验证URL
-     *
-     * @param string 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isURL(String string) {
-        return isMatch(REGEX_URL, string);
-    }
-
-    /**
-     * 验证汉字
-     *
-     * @param string 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isChz(String string) {
-        return isMatch(REGEX_CHZ, string);
-    }
-
-    /**
-     * 验证用户名
-     * <p>取值范围为a-z,A-Z,0-9,"_",汉字，不能以"_"结尾,用户名必须是6-20位</p>
-     *
-     * @param string 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isUsername(String string) {
-        return isMatch(REGEX_USERNAME, string);
-    }
-
-    /**
-     * 验证yyyy-MM-dd格式的日期校验，已考虑平闰年
-     *
-     * @param string 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isDate(String string) {
-        return isMatch(REGEX_DATE, string);
-    }
-
-    /**
-     * 验证IP地址
-     *
-     * @param string 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isIP(String string) {
-        return isMatch(REGEX_IP, string);
-    }
-
-    /**
-     * string是否匹配regex正则表达式字符串
-     *
-     * @param regex  正则表达式字符串
-     * @param string 要匹配的字符串
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isMatch(String regex, String string) {
-        return !isNullString(string) && Pattern.matches(regex, string);
-    }
 
 
     /**
