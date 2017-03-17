@@ -95,7 +95,7 @@ public class RxDialog extends Dialog {
         window.setAttributes(lp);
     }
 
-    public void setFullScreenWidth(){
+    public void setFullScreenWidth() {
         Window window = getWindow();
         window.getDecorView().setPadding(0, 0, 0, 0);
         WindowManager.LayoutParams lp = window.getAttributes();
@@ -104,12 +104,16 @@ public class RxDialog extends Dialog {
         window.setAttributes(lp);
     }
 
-    public void setFullScreenHeight(){
+    public void setFullScreenHeight() {
         Window window = getWindow();
         window.getDecorView().setPadding(0, 0, 0, 0);
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.FILL_PARENT;
         window.setAttributes(lp);
+    }
+
+    public void setOnWhole() {
+        getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
     }
 }
