@@ -25,6 +25,7 @@ import com.vondear.rxtools.RxSPUtils;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.interfaces.onRequestListener;
 import com.vondear.rxtools.view.dialog.RxDialog;
+import com.vondear.rxtools.view.dialog.RxDialogChooseImage;
 import com.vondear.rxtools.view.dialog.RxDialogSureCancle;
 import com.vondear.tools.R;
 import com.yalantis.ucrop.UCrop;
@@ -39,6 +40,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
+
+import static com.vondear.rxtools.view.dialog.RxDialogChooseImage.LayoutType.NO_TITLE;
 
 public class ActivityRxPhoto extends ActivityBase {
 
@@ -79,7 +82,8 @@ public class ActivityRxPhoto extends ActivityBase {
         ivAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                initDialogOpenAvatar();
+//                initDialogOpenAvatar();
+                initDialogChooseImage();
             }
         });
         ivAvatar.setOnLongClickListener(new View.OnLongClickListener() {
@@ -104,7 +108,7 @@ public class ActivityRxPhoto extends ActivityBase {
         TextView tv_file = (TextView) dialogView1
                 .findViewById(R.id.tv_file);
         TextView tv_cancelid = (TextView) dialogView1
-                .findViewById(R.id.tv_cancelid);
+                .findViewById(R.id.tv_cancel);
         tv_cancelid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -140,6 +144,12 @@ public class ActivityRxPhoto extends ActivityBase {
         });
         dialog1.setContentView(dialogView1);
         dialog1.show();
+    }
+
+    private void initDialogChooseImage(){
+        RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(mContext, NO_TITLE);
+        dialogChooseImage.getLayoutParams().gravity = Gravity.BOTTOM;
+        dialogChooseImage.show();
     }
 
     private Uri resultUri;

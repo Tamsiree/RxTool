@@ -1,13 +1,12 @@
 package com.vondear.rxtools.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 public class ActivityBase extends FragmentActivity {
 
-    public Context mContext;
+    public ActivityBase mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
