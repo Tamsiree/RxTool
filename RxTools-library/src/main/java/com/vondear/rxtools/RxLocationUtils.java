@@ -1,6 +1,7 @@
 package com.vondear.rxtools;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,6 +15,7 @@ import android.location.LocationProvider;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.vondear.rxtools.view.RxToast;
@@ -24,8 +26,8 @@ import java.util.Locale;
 
 /**
  * @author ondear
- * time  : 16/11/13
- * desc  : 定位相关工具类
+ *         time  : 16/11/13
+ *         desc  : 定位相关工具类
  */
 public class RxLocationUtils {
 
@@ -79,6 +81,11 @@ public class RxLocationUtils {
      */
     public static boolean register(Context context, long minTime, long minDistance, OnLocationChangeListener listener) {
         if (listener == null) return false;
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            return false;
+        }
         mLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         mListener = listener;
         if (!isLocationEnabled(context)) {
@@ -86,9 +93,7 @@ public class RxLocationUtils {
             return false;
         }
         String provider = mLocationManager.getBestProvider(getCriteria(), true);
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return false;
-        }
+
         Location location = mLocationManager.getLastKnownLocation(provider);
         if (location != null) listener.getLastKnownLocation(location);
         if (myLocationListener == null) myLocationListener = new MyLocationListener();

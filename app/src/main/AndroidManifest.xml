@@ -60,6 +60,8 @@
         <activity android:name=".activity.ActivityRxCaptcha"/>
         <activity android:name=".activity.ActivityContact">
         </activity>
+        <activity android:name=".activity.ActivityLocation">
+        </activity>
     </application>
 
 </manifest>

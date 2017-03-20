@@ -57,6 +57,7 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new MainItem("横向滑动选择控件", R.drawable.bookshelf, ActivityWheelHorizontal.class));
         mData.add(new MainItem("横向左右自动滚动的ImageView", R.drawable.two_way, ActivityAutoImageView.class));
         mData.add(new MainItem("SlidingDrawerSingle使用", R.drawable.up_down, ActivitySlidingDrawerSingle.class));
+//        mData.add(new MainItem("定位Demo", R.drawable.up_down, ActivityLocation.class));//原生的定位 不好用 因为调用的是Google地图，然而Google被墙，所以你懂的！
         mData.add(new MainItem("PopupView的使用", R.drawable.bullet, ActivityPopupView.class));
         mData.add(new MainItem("RxToast的使用", R.drawable.rx_toast, ActivityRxToast.class));
         mData.add(new MainItem("RunTextView的使用", R.drawable.wrap_text, ActivityRunTextView.class));
