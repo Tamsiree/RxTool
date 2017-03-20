@@ -26,7 +26,7 @@ import java.util.Random;
  */
 public class RxCaptcha {
 
-    public static RxCaptcha getInstance() {
+    public static RxCaptcha build() {
         if (rxCaptcha == null) {
             rxCaptcha = new RxCaptcha();
         }
@@ -41,7 +41,7 @@ public class RxCaptcha {
             'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',
             'X', 'Y', 'Z'};
 
-    private static final char[] CHARS = {'0', '1', '2', '3', '4', '5', '6',
+    private static final char[] CHARS_ALL = {'0', '1', '2', '3', '4', '5', '6',
             '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
             'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w',
             'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
@@ -50,17 +50,21 @@ public class RxCaptcha {
 
     private static RxCaptcha rxCaptcha;
 
-    private int type = 2;
+    private TYPE type = TYPE.CHARS;
+
+    public enum TYPE{
+        NUMBER,LETTER,CHARS
+    }
 
     private RxCaptcha() {
 
     }
 
-    private RxCaptcha(int types) {
+    private RxCaptcha(TYPE types) {
         this.type = types;
     }
 
-    public static RxCaptcha getInstance(int types) {
+    public static RxCaptcha getInstance(TYPE types) {
         if (rxCaptcha == null) {
             rxCaptcha = new RxCaptcha(types);
         }
@@ -135,7 +139,7 @@ public class RxCaptcha {
         return rxCaptcha;
     }
 
-    public RxCaptcha type(int type) {
+    public RxCaptcha type(TYPE type) {
         this.type = type;
         return rxCaptcha;
     }
@@ -199,24 +203,24 @@ public class RxCaptcha {
     private String makeCode() {
         StringBuilder buffer = new StringBuilder();
         switch (type) {
-            case 0:
+            case NUMBER:
                 for (int i = 0; i < codeLength; i++) {
                     buffer.append(CHARS_NUMBER[random.nextInt(CHARS_NUMBER.length)]);
                 }
                 break;
-            case 1:
+            case LETTER:
                 for (int i = 0; i < codeLength; i++) {
                     buffer.append(CHARS_LETTER[random.nextInt(CHARS_LETTER.length)]);
                 }
                 break;
-            case 2:
+            case CHARS:
                 for (int i = 0; i < codeLength; i++) {
-                    buffer.append(CHARS[random.nextInt(CHARS.length)]);
+                    buffer.append(CHARS_ALL[random.nextInt(CHARS_ALL.length)]);
                 }
                 break;
             default:
                 for (int i = 0; i < codeLength; i++) {
-                    buffer.append(CHARS[random.nextInt(CHARS.length)]);
+                    buffer.append(CHARS_ALL[random.nextInt(CHARS_ALL.length)]);
                 }
                 break;
         }
