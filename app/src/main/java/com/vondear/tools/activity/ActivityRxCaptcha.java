@@ -24,6 +24,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.vondear.rxtools.view.RxCaptcha.TYPE.CHARS;
+
 public class ActivityRxCaptcha extends ActivityBase {
 
     @BindView(R.id.tv_code)
@@ -104,16 +106,16 @@ public class ActivityRxCaptcha extends ActivityBase {
         switch (view.getId()) {
             case R.id.btn_get_code:
 
-                RxCaptcha.getInstance()
+                RxCaptcha.build()
                         .backColor(0xffffff)
                         .codeLength(6)
                         .fontSize(60)
                         .lineNumber(0)
                         .size(200, 70)
-                        .type(3)
+                        .type(CHARS)
                         .into(ivCode);
 
-                tvCode.setText(RxCaptcha.getInstance().getCode());
+                tvCode.setText(RxCaptcha.build().getCode());
                 break;
             case R.id.btnChange:
                 mRxSwipeCaptcha.createCaptcha();
