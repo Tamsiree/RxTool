@@ -36,7 +36,7 @@ public class RxDataUtils {
      * @return
      */
     public static boolean isNullString(@Nullable String str) {
-        return str.length() == 0 || "".equals(str) || "null".equals(str) || str == null;
+        return str == null || str.length() == 0 || "".equals(str) || "null".equals(str);
     }
 
     /**
@@ -132,7 +132,8 @@ public class RxDataUtils {
 
     /**
      * 隐藏手机中间4位号码
-     *      130****0000
+     * 130****0000
+     *
      * @param mobile_phone 手机号码
      * @return 130****0000
      */
@@ -269,9 +270,6 @@ public class RxDataUtils {
             return df.format(stringToDouble(str));
         }
     }
-
-
-
 
 
     /**
