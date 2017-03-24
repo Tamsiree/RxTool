@@ -21,7 +21,7 @@ import static com.vondear.rxtools.RxDataUtils.stringToInt;
 
 /**
  * Created by vondear on 2016/1/24.
- *  时间相关工具类
+ * 时间相关工具类
  */
 public class RxTimeUtils {
 
@@ -639,5 +639,40 @@ public class RxTimeUtils {
         a.roll(Calendar.DATE, -1);
         int maxDate = a.get(Calendar.DATE);
         return maxDate;
+    }
+
+    /**
+     * 判断当前日期是星期几
+     *
+     * @param strDate 修要判断的时间
+     * @return dayForWeek 判断结果
+     * @Exception 发生异常<br>
+     */
+    public static int stringForWeek(String strDate) throws Exception {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        c.setTime(format.parse(strDate));
+        if (c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            return 7;
+        } else {
+            return c.get(Calendar.DAY_OF_WEEK) - 1;
+        }
+    }
+
+    /**
+     * 判断当前日期是星期几
+     *
+     * @param strDate 修要判断的时间
+     * @return dayForWeek 判断结果
+     * @Exception 发生异常<br>
+     */
+    public static int stringForWeek(String strDate, SimpleDateFormat simpleDateFormat) throws Exception {
+        Calendar c = Calendar.getInstance();
+        c.setTime(simpleDateFormat.parse(strDate));
+        if (c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            return 7;
+        } else {
+            return c.get(Calendar.DAY_OF_WEEK) - 1;
+        }
     }
 }
