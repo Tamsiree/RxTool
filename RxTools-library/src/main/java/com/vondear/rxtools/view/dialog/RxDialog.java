@@ -86,6 +86,9 @@ public class RxDialog extends Dialog {
         getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
     }
 
+    /**
+     * 设置全屏显示
+     */
     public void setFullScreen() {
         Window window = getWindow();
         window.getDecorView().setPadding(0, 0, 0, 0);
@@ -95,6 +98,9 @@ public class RxDialog extends Dialog {
         window.setAttributes(lp);
     }
 
+    /**
+     * 设置宽度match_parent
+     */
     public void setFullScreenWidth() {
         Window window = getWindow();
         window.getDecorView().setPadding(0, 0, 0, 0);
@@ -104,6 +110,9 @@ public class RxDialog extends Dialog {
         window.setAttributes(lp);
     }
 
+    /**
+     * 设置高度为match_parent
+     */
     public void setFullScreenHeight() {
         Window window = getWindow();
         window.getDecorView().setPadding(0, 0, 0, 0);
