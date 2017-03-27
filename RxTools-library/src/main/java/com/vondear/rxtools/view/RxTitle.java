@@ -371,6 +371,9 @@ public class RxTitle extends FrameLayout {
         mRightTextVisibility = rightTextVisibility;
         if (mRightTextVisibility) {
             mTvRight.setVisibility(VISIBLE);
+            if (isRightIconVisibility()) {
+                mTvRight.setPadding(0, 0, 0, 0);
+            }
         } else {
             mTvRight.setVisibility(GONE);
         }
