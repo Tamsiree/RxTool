@@ -16,7 +16,7 @@ public class RxBroadcastUtils {
     /**
      * 网络状态改变广播
      */
-    public class BroadcastReceiverNetWork extends BroadcastReceiver {
+    public static class BroadcastReceiverNetWork extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             RxNetUtils.getNetWorkType(context);
@@ -29,7 +29,7 @@ public class RxBroadcastUtils {
      * @param context
      * @return
      */
-    private BroadcastReceiverNetWork initRegisterReceiverNetWork(Context context) {
+    public static BroadcastReceiverNetWork initRegisterReceiverNetWork(Context context) {
         // 注册监听网络状态的服务
         BroadcastReceiverNetWork mReceiverNetWork = new BroadcastReceiverNetWork();
         IntentFilter mFilter = new IntentFilter();
