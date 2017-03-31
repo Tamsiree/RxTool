@@ -62,6 +62,8 @@
         </activity>
         <activity android:name=".activity.ActivityLocation">
         </activity>
+        <activity android:name=".activity.ActivitySeekBar">
+        </activity>
     </application>
 
 </manifest>

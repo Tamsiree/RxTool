@@ -27,4 +27,35 @@
     <string name="menu_action_all_down">All down</string>
     <string name="menu_action_up_down">Up down</string>
     <string name="menu_action_up_down_stack">Up down stack</string>
+
+    <string-array name="markArray">
+        <item>0</item>
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>100</item>
+    </string-array>
+
+    <string-array name="markArray2">
+        <item>-1</item>
+        <item>-0.5</item>
+        <item>0.1</item>
+        <item>0.5</item>
+        <item>0.9</item>
+    </string-array>
+    <string-array name="negativeMarkArray">
+        <item>-100</item>
+        <item>中间</item>
+        <item>0</item>
+        <item>中间</item>
+        <item>100</item>
+    </string-array>
+
+    <string-array name="wordsArray">
+        <item>初级码农</item>
+        <item>中级码农</item>
+        <item>高级码农</item>
+        <item>CTO</item>
+        <item>卒</item>
+    </string-array>
 </resources>

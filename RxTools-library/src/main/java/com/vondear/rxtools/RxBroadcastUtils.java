@@ -7,7 +7,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 
 /**
- * Created by Administrator on 2017/3/15.
+ * Created by Vondear on 2017/3/15.
  */
 
 public class RxBroadcastUtils {

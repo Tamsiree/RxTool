@@ -217,4 +217,37 @@
         <attr name="sidebarRadius" format="dimension"/>
         <attr name="sidebarBallRadius" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="RxSeekBar">
+        <attr name="maxProgress" format="float"/>
+        <attr name="minProgress" format="float"/>
+        <attr name="reserve" format="float"/>
+        <attr name="cells" format="integer"/>
+        <attr name="hideProgressHint" format="boolean"/>
+        <attr name="isHintHolder" format="boolean"/>
+        <attr name="lineColorSelected" format="color"/>
+        <attr name="lineColorEdge" format="color"/>
+        <attr name="thumbPrimaryColor" format="color"/>
+        <attr name="thumbSecondaryColor" format="color"/>
+        <attr name="markTextArray" format="reference"/>
+        <attr name="seekBarResId" format="reference"/>
+        <!-- must use 9 path ！！！-->
+        <attr name="progressHintResId" format="reference"/>
+        <attr name="textPadding" format="dimension" />
+        <attr name="textSize2" format="dimension" />
+        <attr name="hintBGHeight" format="dimension" />
+        <attr name="hintBGWith" format="dimension" />
+        <attr name="hintBGPadding" format="dimension" />
+        <attr name="seekBarHeight" format="dimension"/>
+        <attr name="thumbSize" format="dimension"/>
+        <attr name="cellMode" format="enum">
+            <enum name="number" value="0"/>
+            <enum name="other" value="1"/>
+        </attr>
+        <attr name="seekBarMode" format="enum">
+            <enum name="single" value="1"/>
+            <enum name="range" value="2"/>
+        </attr>
+
+    </declare-styleable>
 </resources>
