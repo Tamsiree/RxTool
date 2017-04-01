@@ -26,7 +26,7 @@ import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.interfaces.onRequestListener;
 import com.vondear.rxtools.view.dialog.RxDialog;
 import com.vondear.rxtools.view.dialog.RxDialogChooseImage;
-import com.vondear.rxtools.view.dialog.RxDialogSureCancle;
+import com.vondear.rxtools.view.dialog.RxDialogSureCancel;
 import com.vondear.tools.R;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
@@ -268,19 +268,19 @@ public class ActivityRxPhoto extends ActivityBase {
 
     @OnClick(R.id.btn_exit)
     public void onClick() {
-        final RxDialogSureCancle rxDialogSureCancle = new RxDialogSureCancle(this);
-        rxDialogSureCancle.getTv_cancle().setOnClickListener(new View.OnClickListener() {
+        final RxDialogSureCancel rxDialogSureCancel = new RxDialogSureCancel(this);
+        rxDialogSureCancel.getTvCancel().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rxDialogSureCancle.cancel();
+                rxDialogSureCancel.cancel();
             }
         });
-        rxDialogSureCancle.getTv_sure().setOnClickListener(new View.OnClickListener() {
+        rxDialogSureCancel.getTvSure().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        rxDialogSureCancle.show();
+        rxDialogSureCancel.show();
     }
 }

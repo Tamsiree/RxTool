@@ -20,7 +20,7 @@
             android:background="@drawable/back" />
 		</LinearLayout>
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tvContent"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:gravity="center"

@@ -3,7 +3,6 @@ package com.vondear.tools.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -13,10 +12,10 @@ import android.widget.TextView;
 
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.view.dialog.RxDialog;
-import com.vondear.rxtools.view.dialog.RxDialogEditTextSureCancle;
+import com.vondear.rxtools.view.dialog.RxDialogEditSureCancel;
 import com.vondear.rxtools.view.dialog.RxDialogLoadingProgressAcfunVideo;
 import com.vondear.rxtools.view.dialog.RxDialogSure;
-import com.vondear.rxtools.view.dialog.RxDialogSureCancle;
+import com.vondear.rxtools.view.dialog.RxDialogSureCancel;
 import com.vondear.rxtools.view.dialog.RxDialogShapeLoading;
 import com.vondear.rxtools.view.dialog.RxDialogWheelYearMonthDay;
 import com.vondear.tools.R;
@@ -122,36 +121,36 @@ public class ActivityDialog extends Activity {
                 rxDialogSure.show();
                 break;
             case R.id.button_DialogSureCancle:
-                final RxDialogSureCancle rxDialogSureCancle = new RxDialogSureCancle(context);//提示弹窗
-                rxDialogSureCancle.getTv_sure().setOnClickListener(new View.OnClickListener() {
+                final RxDialogSureCancel rxDialogSureCancel = new RxDialogSureCancel(context);//提示弹窗
+                rxDialogSureCancel.getTvSure().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        rxDialogSureCancle.cancel();
+                        rxDialogSureCancel.cancel();
                     }
                 });
-                rxDialogSureCancle.getTv_cancle().setOnClickListener(new View.OnClickListener() {
+                rxDialogSureCancel.getTvCancel().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        rxDialogSureCancle.cancel();
+                        rxDialogSureCancel.cancel();
                     }
                 });
-                rxDialogSureCancle.show();
+                rxDialogSureCancel.show();
                 break;
             case R.id.button_DialogEditTextSureCancle:
-                final RxDialogEditTextSureCancle rxDialogEditTextSureCancle = new RxDialogEditTextSureCancle(context);//提示弹窗
-                rxDialogEditTextSureCancle.getTv_sure().setOnClickListener(new View.OnClickListener() {
+                final RxDialogEditSureCancel rxDialogEditSureCancel = new RxDialogEditSureCancel(context);//提示弹窗
+                rxDialogEditSureCancel.getTvSure().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        rxDialogEditTextSureCancle.cancel();
+                        rxDialogEditSureCancel.cancel();
                     }
                 });
-                rxDialogEditTextSureCancle.getTv_cancle().setOnClickListener(new View.OnClickListener() {
+                rxDialogEditSureCancel.getTvCanCel().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        rxDialogEditTextSureCancle.cancel();
+                        rxDialogEditSureCancel.cancel();
                     }
                 });
-                rxDialogEditTextSureCancle.show();
+                rxDialogEditSureCancel.show();
                 break;
             case R.id.button_DialogWheelYearMonthDay:
                 if (mRxDialogWheelYearMonthDay == null) {

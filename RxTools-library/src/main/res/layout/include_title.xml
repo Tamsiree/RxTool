@@ -14,7 +14,7 @@
         android:src="@drawable/back"/>
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tvContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

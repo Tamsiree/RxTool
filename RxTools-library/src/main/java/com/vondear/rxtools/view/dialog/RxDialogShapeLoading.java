@@ -16,8 +16,6 @@ import com.vondear.rxtools.view.dialog.dialogShapeLoadingView.RxShapeLoadingView
  */
 public class RxDialogShapeLoading {
 
-
-
     private Context mContext;
     private Dialog mDialog;
     private RxShapeLoadingView mLoadingView;
