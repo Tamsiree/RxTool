@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.view.dialog.RxDialog;
 import com.vondear.rxtools.view.dialog.RxDialogEditSureCancel;
-import com.vondear.rxtools.view.dialog.RxDialogLoadingProgressAcfunVideo;
+import com.vondear.rxtools.view.dialog.RxDialogAcfunVideoLoading;
 import com.vondear.rxtools.view.dialog.RxDialogSure;
 import com.vondear.rxtools.view.dialog.RxDialogSureCancel;
 import com.vondear.rxtools.view.dialog.RxDialogShapeLoading;
@@ -163,7 +163,7 @@ public class ActivityDialog extends Activity {
                 rxDialogShapeLoading.show();
                 break;
             case R.id.button_DialogLoadingProgressAcfunVideo:
-                new RxDialogLoadingProgressAcfunVideo(this).show();
+                new RxDialogAcfunVideoLoading(this).show();
                 break;
         }
     }

@@ -12,7 +12,7 @@ import com.vondear.rxtools.R;
 
 import java.util.Random;
 
-public class RxDialogLoadingProgressAcfunVideo extends RxDialog {
+public class RxDialogAcfunVideoLoading extends RxDialog {
     private ProgressBar loading_progressBar;
     private TextView tv_reminder;
     private String[] loadingText = {"对的，坚持；错的，放弃！", "你若安好，便是晴天。", "走得太快，灵魂都跟不上了。", "生气是拿别人的错误惩罚自己。", "让未来到来，让过去过去。", "每一种创伤，都是一种成熟。"};
@@ -25,7 +25,7 @@ public class RxDialogLoadingProgressAcfunVideo extends RxDialog {
         return tv_reminder;
     }
 
-    public RxDialogLoadingProgressAcfunVideo(Context context) {
+    public RxDialogAcfunVideoLoading(Context context) {
         super(context);
         // TODO Auto-generated constructor stub
         View dialogView1 = LayoutInflater.from(context).inflate(
