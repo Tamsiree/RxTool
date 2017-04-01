@@ -43,7 +43,7 @@ public class RxAnimationUtils {
      * @param beforeView
      * @param AfterView
      */
-    public static void FilpAnimation(final View beforeView, final View AfterView) {
+    public static void cardFilpAnimation(final View beforeView, final View AfterView) {
         Interpolator accelerator = new AccelerateInterpolator();
         Interpolator decelerator = new DecelerateInterpolator();
         if (beforeView.getVisibility() == View.GONE) {
