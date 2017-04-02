@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:id="@+id/activity_dialog"
               android:layout_width="match_parent"
@@ -12,67 +13,72 @@
               android:paddingTop="@dimen/activity_vertical_margin"
               tools:context="com.vondear.tools.activity.ActivityDialog">
 
-    <include layout="@layout/include_title"/>
+    <com.vondear.rxtools.view.RxTitle
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:leftIcon="@drawable/back"
+        android:id="@+id/rx_title"
+        app:title="RxDialog"/>
 
     <Button
-        android:layout_margin="5dp"
         android:id="@+id/button_tran"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:background="@color/shadow1"
         android:text="透明的弹窗"
         android:textAllCaps="false"/>
 
     <Button
-        android:layout_margin="5dp"
         android:id="@+id/button_DialogSure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:background="@color/shadow1"
         android:text="确定的弹窗"
         android:textAllCaps="false"/>
 
     <Button
-        android:layout_margin="5dp"
         android:id="@+id/button_DialogSureCancle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:background="@color/shadow1"
         android:text="确认取消的弹窗"
         android:textAllCaps="false"/>
 
     <Button
-        android:layout_margin="5dp"
         android:id="@+id/button_DialogEditTextSureCancle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:background="@color/shadow1"
         android:text="输入框的弹窗"
         android:textAllCaps="false"/>
 
     <Button
-        android:layout_margin="5dp"
         android:id="@+id/button_DialogWheelYearMonthDay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:background="@color/shadow1"
         android:text="可选择年月(日)"
         android:textAllCaps="false"/>
 
     <Button
-        android:layout_margin="5dp"
         android:id="@+id/button_DialogShapeLoading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:background="@color/shadow1"
         android:text="三种形状的跳跃变换"
         android:textAllCaps="false"/>
 
     <Button
-        android:layout_margin="5dp"
         android:id="@+id/button_DialogLoadingProgressAcfunVideo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:background="@color/shadow1"
         android:text="一只可爱的A站舰娘在拼命的奔跑"
         android:textAllCaps="false"/>

@@ -143,7 +143,7 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
         day.setShadowColor(0xFFDADCDB, 0x88DADCDB, 0x00DADCDB);
 
         tv_sure = (TextView) dialogView1.findViewById(R.id.tv_sure);
-        tv_cancle = (TextView) dialogView1.findViewById(R.id.tv_cancle);
+        tv_cancle = (TextView) dialogView1.findViewById(R.id.tv_cancel);
 
         checkBox_day = (CheckBox) dialogView1.findViewById(R.id.checkBox_day);
         checkBox_day.setOnCheckedChangeListener(new OnCheckedChangeListener() {

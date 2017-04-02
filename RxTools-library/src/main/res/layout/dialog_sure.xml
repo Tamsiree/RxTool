@@ -14,7 +14,7 @@
         android:paddingTop="16.5dp">
 
         <ImageView
-            android:id="@+id/tvTitle"
+            android:id="@+id/iv_logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -22,7 +22,7 @@
 
 
         <TextView
-            android:id="@+id/tvContent"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -58,7 +58,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvSure"
+                android:id="@+id/tv_sure"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"

@@ -55,10 +55,10 @@ public class RxDialogSureCancel extends RxDialog {
     private void initView() {
         View dialog_view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_sure_false, null);
         mTvSure = (TextView) dialog_view.findViewById(R.id.tv_sure);
-        mTvCancel = (TextView) dialog_view.findViewById(R.id.tv_cancle);
-        mTvContent = (TextView) dialog_view.findViewById(R.id.tv_title);
+        mTvCancel = (TextView) dialog_view.findViewById(R.id.tv_cancel);
+        mTvContent = (TextView) dialog_view.findViewById(R.id.tv_content);
         mTvContent.setTextIsSelectable(true);
-        mTvTitle = (TextView) dialog_view.findViewById(R.id.tv_logo);
+        mTvTitle = (TextView) dialog_view.findViewById(R.id.tv_title);
         setContentView(dialog_view);
     }
 

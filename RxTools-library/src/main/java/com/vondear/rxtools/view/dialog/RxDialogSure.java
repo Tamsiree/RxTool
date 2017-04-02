@@ -29,24 +29,37 @@ public class RxDialogSure extends RxDialog {
         return iv_logo;
     }
 
-    public TextView getTv_title() {
+    public TextView getTvTitle() {
         return tv_title;
     }
 
-    public TextView getTv_sure() {
+    public TextView getTvSure() {
         return tv_sure;
     }
 
-    public TextView getTv_content() {
+    public TextView getTvContent() {
         return tv_content;
     }
+
+    public void setLogo(int resId) {
+        iv_logo.setImageResource(resId);
+    }
+
+    public void setTitle(String title) {
+        tv_title.setText(title);
+    }
+
+    public void setSure(String content) {
+        tv_sure.setText(content);
+    }
+
 
     public void setContent(String str) {
         if (RxRegUtils.isURL(str)) {
             // 响应点击事件的话必须设置以下属性
             tv_content.setMovementMethod(LinkMovementMethod.getInstance());
             tv_content.setText(RxTextUtils.getBuilder("").setBold().append(str).setUrl(str).create());//当内容为网址的时候，内容变为可点击
-        }else{
+        } else {
             tv_content.setText(str);
         }
 

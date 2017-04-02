@@ -151,7 +151,7 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         }
 
         rxDialogSure = new RxDialogSure(context);//提示弹窗
-        rxDialogSure.getTv_title().setText("扫描结果");
+        rxDialogSure.getTvTitle().setText("扫描结果");
     }
 
     private void initScanerAnimation() {
@@ -327,16 +327,16 @@ public class ActivityScanerCode extends Activity implements SurfaceHolder.Callba
         String type = phone.substring(0, 4);
         String realContent = phone;
         if ("二维码:".equals(type)) {
-            rxDialogSure.getTv_title().setText("二维码扫描结果");
+            rxDialogSure.getTvTitle().setText("二维码扫描结果");
             realContent = phone.substring(4, phone.length());
         } else if ("条形码:".equals(type)) {
-            rxDialogSure.getTv_title().setText("条形码扫描结果");
+            rxDialogSure.getTvTitle().setText("条形码扫描结果");
             realContent = phone.substring(4, phone.length());
         }
 
 
         rxDialogSure.setContent(realContent);
-        rxDialogSure.getTv_sure().setOnClickListener(new View.OnClickListener() {
+        rxDialogSure.getTvSure().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rxDialogSure.cancel();
