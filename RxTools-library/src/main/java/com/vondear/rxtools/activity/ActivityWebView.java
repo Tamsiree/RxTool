@@ -92,6 +92,7 @@ public class ActivityWebView extends Activity {
         RxTextAutoZoom.setNormalization(this, llIncludeTitle, mRxTextAutoZoom);
 
         RxKeyboardUtils.hideSoftInput(this);
+
     }
 
     private void initData() {
