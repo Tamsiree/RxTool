@@ -5,9 +5,15 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/activity_horizontal_margin"
+    android:background="@color/e"
     android:orientation="vertical">
 
+    <com.vondear.rxtools.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        app:title="RxSeekBar"/>
 
     <com.vondear.rxtools.view.RxSeekBar
         android:id="@+id/seekbar1"
@@ -16,6 +22,7 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/view1"
         app:cellMode="number"
+        app:isHintHolder="true"
         app:lineColorEdge="@color/colorSeekBarDefault"
         app:lineColorSelected="@color/colorAccent"
         app:markTextArray="@array/markArray"
@@ -24,6 +31,7 @@
 
 
     <TextView
+        android:textColor="@color/gray"
         android:id="@+id/progress2_tv"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -34,7 +42,6 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         app:cellMode="number"
-        app:isHintHolder="true"
         app:lineColorEdge="@color/colorSeekBarDefault"
         app:lineColorSelected="@color/colorAccent"
         app:markTextArray="@array/markArray2"

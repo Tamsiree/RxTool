@@ -2,4 +2,8 @@
     <string name="app_name">RxTools</string>
     <string name="newest_apk_down">发现最新版本%1$s，是否下载更新</string>
     <string name="newest_apk_down_int">发现最新版本%1$d，是否下载更新</string>
+
+    <string name="hint_login_password">输入密码</string>
+    <string name="login">登录</string>
+    <string name="login_forget_pwd">忘记密码</string>
 </resources>

@@ -64,6 +64,8 @@
         </activity>
         <activity android:name=".activity.ActivitySeekBar">
         </activity>
+        <activity android:name=".activity.ActivityLoginAct">
+        </activity>
     </application>
 
 </manifest>

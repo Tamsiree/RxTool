@@ -2,47 +2,70 @@ package com.vondear.tools.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.vondear.rxtools.view.RxSeekBar;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.tools.R;
 
 import java.text.DecimalFormat;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+import static com.vondear.tools.R.id.seekbar1;
+import static com.vondear.tools.R.id.seekbar2;
+
 public class ActivitySeekBar extends Activity {
 
-    private RxSeekBar seekbar1;
-    private RxSeekBar seekbar2;
-    private TextView tv2;
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
+    @BindView(seekbar1)
+    RxSeekBar mSeekbar1;
+    @BindView(R.id.progress2_tv)
+    TextView mProgress2Tv;
+    @BindView(seekbar2)
+    RxSeekBar mSeekbar2;
+    @BindView(R.id.seekbar3)
+    RxSeekBar mSeekbar3;
+    @BindView(R.id.seekbar4)
+    RxSeekBar mSeekbar4;
+    @BindView(R.id.activity_main)
+    LinearLayout mActivityMain;
+
     private DecimalFormat df = new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seek_bar);
+        ButterKnife.bind(this);
 
-        seekbar1 = (RxSeekBar)findViewById(R.id.seekbar1);
-        seekbar2 = (RxSeekBar)findViewById(R.id.seekbar2);
-        tv2 = (TextView)findViewById(R.id.progress2_tv);
+        mRxTitle.setLeftOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        mSeekbar1.setValue(10);
+        mSeekbar2.setValue(-0.5f, 0.8f);
 
-        seekbar1.setValue(10);
-        seekbar2.setValue(-0.5f,0.8f);
-
-        seekbar1.setOnRangeChangedListener(new RxSeekBar.OnRangeChangedListener() {
+        mSeekbar1.setOnRangeChangedListener(new RxSeekBar.OnRangeChangedListener() {
             @Override
             public void onRangeChanged(RxSeekBar view, float min, float max, boolean isFromUser) {
-                seekbar1.setProgressDescription((int)min+"%");
+                mSeekbar1.setProgressDescription((int) min + "%");
             }
         });
 
-        seekbar2.setOnRangeChangedListener(new RxSeekBar.OnRangeChangedListener() {
+        mSeekbar2.setOnRangeChangedListener(new RxSeekBar.OnRangeChangedListener() {
             @Override
             public void onRangeChanged(RxSeekBar view, float min, float max, boolean isFromUser) {
                 if (isFromUser) {
-                    tv2.setText(min + "-" + max);
-                    seekbar2.setLeftProgressDescription(df.format(min));
-                    seekbar2.setRightProgressDescription(df.format(max));
+                    mProgress2Tv.setText(min + "-" + max);
+                    mSeekbar2.setLeftProgressDescription(df.format(min));
+                    mSeekbar2.setRightProgressDescription(df.format(max));
                 }
             }
         });
