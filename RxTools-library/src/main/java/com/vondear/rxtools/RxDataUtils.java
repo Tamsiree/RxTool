@@ -14,6 +14,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.Map;
@@ -906,5 +908,94 @@ public class RxDataUtils {
      */
     public static String stringFormat(String formatStr, float number) {
         return String.format(formatStr, number);
+    }
+
+    private static final DecimalFormat amountFormat = new DecimalFormat("###,###,###,##0.00");
+    /**
+     * 金额格式化
+     *
+     * @param value 数值
+     * @return
+     */
+    public static String getAmountValue(double value) {
+        return amountFormat.format(value);
+    }
+    /**
+     * 金额格式化
+     *
+     * @param value 数值
+     * @return
+     */
+    public static String getAmountValue(String value) {
+        return amountFormat.format(Double.parseDouble(value));
+    }
+
+    /**
+     * 四舍五入
+     *
+     * @param value 数值
+     * @param digit 保留小数位
+     * @return
+     */
+    public static String getRoundUp(BigDecimal value, int digit) {
+        return value.setScale(digit, BigDecimal.ROUND_HALF_UP).toString();
+    }
+
+    /**
+     * 四舍五入
+     *
+     * @param value 数值
+     * @param digit 保留小数位
+     * @return
+     */
+    public static String getRoundUp(double value, int digit) {
+        BigDecimal result = new BigDecimal(value);
+        return result.setScale(digit, BigDecimal.ROUND_HALF_UP).toString();
+    }
+    /**
+     * 四舍五入
+     *
+     * @param value 数值
+     * @param digit 保留小数位
+     * @return
+     */
+    public static String getRoundUp(String value, int digit) {
+        BigDecimal result = new BigDecimal(Double.parseDouble(value));
+        return result.setScale(digit, BigDecimal.ROUND_HALF_UP).toString();
+    }
+
+    /**
+     * 获取百分比（乘100）
+     *
+     * @param value 数值
+     * @param digit 保留小数位
+     * @return
+     */
+    public static String getPercentValue(BigDecimal value, int digit) {
+        BigDecimal result = value.multiply(new BigDecimal(100));
+        return getRoundUp(result, digit);
+    }
+
+    /**
+     * 获取百分比（乘100）
+     *
+     * @param value 数值
+     * @param digit 保留小数位
+     * @return
+     */
+    public static String getPercentValue(double value, int digit) {
+        BigDecimal result = new BigDecimal(value);
+        return getPercentValue(result, digit);
+    }
+
+    /**
+     * 获取百分比（乘100,保留两位小数）
+     *
+     * @param value 数值
+     * @return
+     */
+    public static String getPercentValue(double value) {
+        BigDecimal result = new BigDecimal(value);
+        return getPercentValue(result, 2);
     }
 }
