@@ -17,7 +17,7 @@ import com.vondear.rxtools.R;
 public class RxDialogEditSureCancel extends RxDialog {
 
     private TextView mTvSure;
-    private TextView mTvCanCel;
+    private TextView mTvCancel;
     private TextView mTvContent;
     private EditText editText;
     private TextView mTvTitle;
@@ -51,19 +51,19 @@ public class RxDialogEditSureCancel extends RxDialog {
     }
 
 
-    public TextView getTvCanCel() {
-        return mTvCanCel;
+    public TextView getTvCancel() {
+        return mTvCancel;
     }
 
     public void setCancel(String strCancel) {
-        this.mTvCanCel.setText(strCancel);
+        this.mTvCancel.setText(strCancel);
     }
 
     private void initView() {
         View dialog_view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_edittext_sure_false, null);
         mTvTitle = (TextView) dialog_view.findViewById(R.id.tv_logo);
         mTvSure = (TextView) dialog_view.findViewById(R.id.tv_sure);
-        mTvCanCel = (TextView) dialog_view.findViewById(R.id.tv_cancle);
+        mTvCancel = (TextView) dialog_view.findViewById(R.id.tv_cancle);
         editText = (EditText) dialog_view.findViewById(R.id.editText);
         mTvContent = (TextView) dialog_view.findViewById(R.id.tv_title);
         setContentView(dialog_view);

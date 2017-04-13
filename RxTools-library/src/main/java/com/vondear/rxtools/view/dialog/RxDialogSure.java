@@ -20,60 +20,60 @@ import com.vondear.rxtools.RxTextUtils;
  */
 public class RxDialogSure extends RxDialog {
 
-    private ImageView iv_logo;
-    private TextView tv_title;
-    private TextView tv_content;
-    private TextView tv_sure;
+    private ImageView mIvLogo;
+    private TextView mTvTitle;
+    private TextView mTvContent;
+    private TextView mTvSure;
 
-    public ImageView getIv_logo() {
-        return iv_logo;
+    public ImageView getIvLogo() {
+        return mIvLogo;
     }
 
     public TextView getTvTitle() {
-        return tv_title;
+        return mTvTitle;
     }
 
     public TextView getTvSure() {
-        return tv_sure;
+        return mTvSure;
     }
 
     public TextView getTvContent() {
-        return tv_content;
+        return mTvContent;
     }
 
     public void setLogo(int resId) {
-        iv_logo.setImageResource(resId);
+        mIvLogo.setImageResource(resId);
     }
 
     public void setTitle(String title) {
-        tv_title.setText(title);
+        mTvTitle.setText(title);
     }
 
     public void setSure(String content) {
-        tv_sure.setText(content);
+        mTvSure.setText(content);
     }
 
 
     public void setContent(String str) {
         if (RxRegUtils.isURL(str)) {
             // 响应点击事件的话必须设置以下属性
-            tv_content.setMovementMethod(LinkMovementMethod.getInstance());
-            tv_content.setText(RxTextUtils.getBuilder("").setBold().append(str).setUrl(str).create());//当内容为网址的时候，内容变为可点击
+            mTvContent.setMovementMethod(LinkMovementMethod.getInstance());
+            mTvContent.setText(RxTextUtils.getBuilder("").setBold().append(str).setUrl(str).create());//当内容为网址的时候，内容变为可点击
         } else {
-            tv_content.setText(str);
+            mTvContent.setText(str);
         }
 
     }
 
     private void initView() {
         View dialog_view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_sure, null);
-        tv_sure = (TextView) dialog_view.findViewById(R.id.tv_sure);
-        tv_title = (TextView) dialog_view.findViewById(R.id.tv_title);
-        tv_title.setTextIsSelectable(true);
-        tv_content = (TextView) dialog_view.findViewById(R.id.tv_content);
-        tv_content.setMovementMethod(ScrollingMovementMethod.getInstance());
-        tv_content.setTextIsSelectable(true);
-        iv_logo = (ImageView) dialog_view.findViewById(R.id.iv_logo);
+        mTvSure = (TextView) dialog_view.findViewById(R.id.tv_sure);
+        mTvTitle = (TextView) dialog_view.findViewById(R.id.tv_title);
+        mTvTitle.setTextIsSelectable(true);
+        mTvContent = (TextView) dialog_view.findViewById(R.id.tv_content);
+        mTvContent.setMovementMethod(ScrollingMovementMethod.getInstance());
+        mTvContent.setTextIsSelectable(true);
+        mIvLogo = (ImageView) dialog_view.findViewById(R.id.iv_logo);
         setContentView(dialog_view);
     }
 

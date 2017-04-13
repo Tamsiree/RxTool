@@ -142,7 +142,7 @@ public class ActivityDialog extends ActivityBase {
                         rxDialogEditSureCancel.cancel();
                     }
                 });
-                rxDialogEditSureCancel.getTvCanCel().setOnClickListener(new View.OnClickListener() {
+                rxDialogEditSureCancel.getTvCancel().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         rxDialogEditSureCancel.cancel();
