@@ -25,5 +25,13 @@ public class RxPermissionsUtils {
         }
     }
 
+    public static void requestCall(Context mContext, onRequestListener onRequestListener){
+        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.CALL_PHONE}, 1);
+            onRequestListener.onRequestBefore();
+        }else{
+            onRequestListener.onRequestLater();
+        }
+    }
 
 }

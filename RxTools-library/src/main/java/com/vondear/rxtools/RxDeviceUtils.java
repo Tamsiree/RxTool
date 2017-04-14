@@ -28,6 +28,8 @@ import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.vondear.rxtools.interfaces.onRequestListener;
+
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.BufferedReader;
@@ -98,8 +100,6 @@ public class RxDeviceUtils {
     }
 
 
-
-
     /**
      * 获取手机唯一标识序列号
      *
@@ -132,6 +132,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取设备的IMSI
+     *
      * @param context
      * @return
      */
@@ -141,6 +142,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取设备的IMEI
+     *
      * @param context
      * @return
      */
@@ -151,6 +153,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取设备的软件版本号
+     *
      * @param context
      * @return
      */
@@ -161,6 +164,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取手机号
+     *
      * @param context
      * @return
      */
@@ -171,6 +175,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取ISO标准的国家码，即国际长途区号
+     *
      * @param context
      * @return
      */
@@ -181,6 +186,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取设备的 MCC + MNC
+     *
      * @param context
      * @return
      */
@@ -191,6 +197,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取(当前已注册的用户)的名字
+     *
      * @param context
      * @return
      */
@@ -201,6 +208,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取当前使用的网络类型
+     *
      * @param context
      * @return
      */
@@ -211,6 +219,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取手机类型
+     *
      * @param context
      * @return
      */
@@ -221,6 +230,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取SIM卡的国家码
+     *
      * @param context
      * @return
      */
@@ -231,6 +241,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取SIM卡提供的移动国家码和移动网络码.5或6位的十进制数字
+     *
      * @param context
      * @return
      */
@@ -241,6 +252,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取服务商名称
+     *
      * @param context
      * @return
      */
@@ -251,6 +263,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取SIM卡的序列号
+     *
      * @param context
      * @return
      */
@@ -261,6 +274,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取SIM的状态信息
+     *
      * @param context
      * @return
      */
@@ -271,6 +285,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取唯一的用户ID
+     *
      * @param context
      * @return
      */
@@ -281,6 +296,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取语音邮件号码
+     *
      * @param context
      * @return
      */
@@ -291,6 +307,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取ANDROID ID
+     *
      * @param context
      * @return
      */
@@ -339,6 +356,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取App版本名称
+     *
      * @param context
      * @return
      */
@@ -358,6 +376,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取App版本号
+     *
      * @param context
      * @return
      */
@@ -377,6 +396,7 @@ public class RxDeviceUtils {
 
     /**
      * 检查权限
+     *
      * @param context
      * @param permission 例如 Manifest.permission.READ_PHONE_STATE
      * @return
@@ -407,6 +427,7 @@ public class RxDeviceUtils {
 
     /**
      * 获取设备信息
+     *
      * @param context
      * @return
      */
@@ -466,9 +487,9 @@ public class RxDeviceUtils {
     }
 
 
-
     /**
      * 遍历LOG输出HashMap
+     *
      * @param res
      */
     public static void ThroughArray(HashMap res) {
@@ -598,16 +619,30 @@ public class RxDeviceUtils {
      * @param context     上下文
      * @param phoneNumber 电话号码
      */
-    public static void callPhone(Context context, String phoneNumber) {
-        phoneNumber = phoneNumber.trim();// 删除字符串首部和尾部的空格
+    public static void callPhone(final Context context, String phoneNumber) {
+        final String phoneNumber1 = phoneNumber.trim();// 删除字符串首部和尾部的空格
+
         if (phoneNumber != null && !phoneNumber.equals("")) {
             // 调用系统的拨号服务实现电话拨打功能
             // 封装一个拨打电话的intent，并且将电话号码包装成一个Uri对象传入
-            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-            context.startActivity(intent);// 内部类
+
+            RxPermissionsUtils.requestCall(context, new onRequestListener() {
+                @Override
+                public void onRequestBefore() {
+
+                }
+
+                @Override
+                public void onRequestLater() {
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber1));
+                    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    context.startActivity(intent);// 内部类
+                }
+            });
+
+
         }
     }
 
@@ -896,10 +931,11 @@ public class RxDeviceUtils {
 
     /**
      * 获取DisplayMetrics对象
-     * @param context	应用程序上下文
+     *
+     * @param context 应用程序上下文
      * @return
      */
-    public static DisplayMetrics getDisplayMetrics(Context context){
+    public static DisplayMetrics getDisplayMetrics(Context context) {
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         windowManager.getDefaultDisplay().getMetrics(displayMetrics);
@@ -922,9 +958,10 @@ public class RxDeviceUtils {
     /**
      * 设置安全窗口，禁用系统截屏。防止 App 中的一些界面被截屏，并显示在其他设备中造成信息泄漏。
      * （常见手机设备系统截屏操作方式为：同时按下电源键和音量键。）
+     *
      * @param activity
      */
-    public static void noScreenshots(Activity activity){
+    public static void noScreenshots(Activity activity) {
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
     }
 }
