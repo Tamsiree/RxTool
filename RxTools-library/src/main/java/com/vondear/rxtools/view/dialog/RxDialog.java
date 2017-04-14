@@ -1,6 +1,5 @@
 package com.vondear.rxtools.view.dialog;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
@@ -13,13 +12,13 @@ import com.vondear.rxtools.R;
 
 public class RxDialog extends Dialog {
 
+    protected Context mContext;
+
+    protected LayoutParams mLayoutParams;
+
     public LayoutParams getLayoutParams() {
         return mLayoutParams;
     }
-
-    private LayoutParams mLayoutParams;
-
-    private Context mContext;
 
     public RxDialog(Context context, int themeResId) {
         super(context, themeResId);
@@ -34,11 +33,6 @@ public class RxDialog extends Dialog {
     public RxDialog(Context context) {
         super(context);
         initView(context);
-    }
-
-    public RxDialog(Activity activity) {
-        super(activity);
-        initView(activity);
     }
 
     private void initView(Context context) {

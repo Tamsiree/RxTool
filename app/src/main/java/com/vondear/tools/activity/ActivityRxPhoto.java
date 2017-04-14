@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -24,6 +25,7 @@ import com.vondear.rxtools.RxPhotoUtils;
 import com.vondear.rxtools.RxSPUtils;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.interfaces.onRequestListener;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.dialog.RxDialog;
 import com.vondear.rxtools.view.dialog.RxDialogChooseImage;
 import com.vondear.rxtools.view.dialog.RxDialogSureCancel;
@@ -41,21 +43,40 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
-import static com.vondear.rxtools.view.dialog.RxDialogChooseImage.LayoutType.NO_TITLE;
+import static com.vondear.rxtools.view.dialog.RxDialogChooseImage.LayoutType.TITLE;
 
 public class ActivityRxPhoto extends ActivityBase {
 
+
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
+    @BindView(R.id.tv_bg)
+    TextView mTvBg;
     @BindView(R.id.iv_avatar)
-    ImageView ivAvatar;
-    @BindView(R.id.iv_finish)
-    ImageView ivFinish;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.ll_include_title)
-    LinearLayout llIncludeTitle;
+    ImageView mIvAvatar;
+    @BindView(R.id.ll_anchor_left)
+    LinearLayout mLlAnchorLeft;
+    @BindView(R.id.rl_avatar)
+    RelativeLayout mRlAvatar;
+    @BindView(R.id.tv_name)
+    TextView mTvName;
+    @BindView(R.id.tv_constellation)
+    TextView mTvConstellation;
+    @BindView(R.id.tv_birthday)
+    TextView mTvBirthday;
+    @BindView(R.id.tv_address)
+    TextView mTvAddress;
+    @BindView(R.id.tv_lables)
+    TextView mTvLables;
+    @BindView(R.id.textView2)
+    TextView mTextView2;
+    @BindView(R.id.editText2)
+    TextView mEditText2;
     @BindView(R.id.btn_exit)
     Button mBtnExit;
-    
+    @BindView(R.id.activity_user)
+    LinearLayout mActivityUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,21 +93,20 @@ public class ActivityRxPhoto extends ActivityBase {
                 + r.getResourceTypeName(R.drawable.elves_ball) + "/"
                 + r.getResourceEntryName(R.drawable.elves_ball));
 
-        ivFinish.setOnClickListener(new View.OnClickListener() {
+        mRxTitle.setLeftOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        llIncludeTitle.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        ivAvatar.setOnClickListener(new View.OnClickListener() {
+        mIvAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                initDialogOpenAvatar();
                 initDialogChooseImage();
             }
         });
-        ivAvatar.setOnLongClickListener(new View.OnLongClickListener() {
+        mIvAvatar.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 RxImageUtils.showBigImageView(mContext, resultUri);
@@ -146,9 +166,9 @@ public class ActivityRxPhoto extends ActivityBase {
         dialog1.show();
     }
 
-    private void initDialogChooseImage(){
-        RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(mContext, NO_TITLE);
-        dialogChooseImage.getLayoutParams().gravity = Gravity.BOTTOM;
+    private void initDialogChooseImage() {
+        RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(mContext, TITLE);
+
         dialogChooseImage.show();
     }
 
@@ -183,14 +203,14 @@ public class ActivityRxPhoto extends ActivityBase {
                         error(R.drawable.elves_ball).
                         fallback(R.drawable.elves_ball).
                         dontAnimate().
-                        into(ivAvatar);
+                        into(mIvAvatar);
 //                RequestUpdateAvatar(new File(RxPhotoUtils.getRealFilePath(mContext, RxPhotoUtils.cropImageUri)));
                 break;
 
             case UCrop.REQUEST_CROP://UCrop裁剪之后的处理
                 if (resultCode == RESULT_OK) {
                     resultUri = UCrop.getOutput(data);
-                    roadImageView(resultUri, ivAvatar);
+                    roadImageView(resultUri, mIvAvatar);
                     RxSPUtils.putContent(mContext, "AVATAR", resultUri.toString());
                 } else if (resultCode == UCrop.RESULT_ERROR) {
                     final Throwable cropError = UCrop.getError(data);

@@ -6,5 +6,6 @@ package com.vondear.rxtools.interfaces;
 
 public interface onRequestListener {
     void onRequestBefore();
+
     void onRequestLater();
 }

@@ -16,22 +16,40 @@ import com.vondear.rxtools.interfaces.onRequestListener;
 public class RxPermissionsUtils {
 
     //请求Camera权限
-    public static void requestCamera(Context mContext, onRequestListener onRequestListener){
+    public static void requestCamera(Context mContext, onRequestListener onRequestListener) {
         if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.CAMERA}, 1);
             onRequestListener.onRequestBefore();
-        }else{
+        } else {
             onRequestListener.onRequestLater();
         }
     }
 
-    public static void requestCall(Context mContext, onRequestListener onRequestListener){
+    public static void requestCall(Context mContext, onRequestListener onRequestListener) {
         if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.CALL_PHONE}, 1);
             onRequestListener.onRequestBefore();
-        }else{
+        } else {
             onRequestListener.onRequestLater();
         }
     }
 
+
+    public static void requestWriteExternalStorage(Context mContext, onRequestListener onRequestListener) {
+        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            onRequestListener.onRequestBefore();
+        } else {
+            onRequestListener.onRequestLater();
+        }
+    }
+
+    public static void requestReadExternalStorage(Context mContext, onRequestListener onRequestListener) {
+        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            onRequestListener.onRequestBefore();
+        } else {
+            onRequestListener.onRequestLater();
+        }
+    }
 }

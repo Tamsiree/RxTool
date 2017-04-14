@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_user"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F0F0F0"
-    android:orientation="vertical"
-    tools:context=".activity.ActivityRxPhoto">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/activity_user"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#F0F0F0"
+              android:orientation="vertical"
+              tools:context=".activity.ActivityRxPhoto">
 
-    <include layout="@layout/include_title" />
+    <!--<include layout="@layout/include_title"/>-->
+
+    <com.vondear.rxtools.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/blue"
+        app:title="个人资料"
+        app:titleColor="@color/white"/>
 
     <RelativeLayout
         android:id="@+id/rl_avatar"
@@ -22,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:layout_alignBottom="@+id/ll_anchor_left"
-            android:background="@color/white" />
+            android:background="@color/white"/>
 
         <LinearLayout
             android:id="@+id/ll_anchor_left"
@@ -40,7 +48,7 @@
                 android:layout_marginRight="5dp"
                 android:background="@drawable/shape_circle_blue"
                 android:padding="3dp"
-                android:src="@drawable/elves_ball" />
+                android:src="@drawable/elves_ball"/>
         </LinearLayout>
 
     </RelativeLayout>
@@ -103,7 +111,7 @@
                 android:paddingRight="40dp"
                 android:text="秋逸"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="20dp" />
+                android:textSize="20dp"/>
 
         </LinearLayout>
 
@@ -125,7 +133,7 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="星座"
-            android:textColor="@color/brown1" />
+            android:textColor="@color/brown1"/>
 
         <TextView
             android:id="@+id/tv_constellation"
@@ -133,7 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:text="精灵座"
-            android:textColor="@color/brown1" />
+            android:textColor="@color/brown1"/>
 
 
     </LinearLayout>
@@ -153,7 +161,7 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="生日"
-            android:textColor="@color/brown1" />
+            android:textColor="@color/brown1"/>
 
         <TextView
             android:id="@+id/tv_birthday"
@@ -161,7 +169,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:text="1994/01/12"
-            android:textColor="@color/brown1" />
+            android:textColor="@color/brown1"/>
 
 
     </LinearLayout>
@@ -182,7 +190,7 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="所在地"
-            android:textColor="@color/brown1" />
+            android:textColor="@color/brown1"/>
 
         <TextView
             android:id="@+id/tv_address"
@@ -190,7 +198,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:text="上海"
-            android:textColor="@color/brown1" />
+            android:textColor="@color/brown1"/>
 
 
     </LinearLayout>
@@ -211,7 +219,7 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="标签"
-            android:textColor="@color/brown1" />
+            android:textColor="@color/brown1"/>
 
         <TextView
             android:id="@+id/tv_lables"
@@ -219,7 +227,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:text="无厘头"
-            android:textColor="@color/brown1" />
+            android:textColor="@color/brown1"/>
 
 
     </LinearLayout>
@@ -227,31 +235,31 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="@color/white"
         android:layout_height="80dp"
         android:layout_marginTop="2dp"
-        android:padding="5dp"
-        android:orientation="vertical">
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:textColor="@color/brown1"
             android:text="个性签名"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2" />
+            android:textColor="@color/brown1"/>
 
         <TextView
+            android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="长按头像显示大图。"
-            android:textColor="#939393"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:paddingLeft="30dp"
             android:ems="10"
-            android:id="@+id/editText2" />
+            android:paddingLeft="30dp"
+            android:text="长按头像显示大图。"
+            android:textColor="#939393"/>
     </LinearLayout>
 
     <LinearLayout
@@ -266,7 +274,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/shape_round_hot_pink"
-            android:text="退出登录" />
+            android:text="退出登录"/>
     </LinearLayout>
 
 </LinearLayout>

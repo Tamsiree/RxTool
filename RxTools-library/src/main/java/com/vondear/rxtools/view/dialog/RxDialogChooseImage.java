@@ -2,6 +2,7 @@ package com.vondear.rxtools.view.dialog;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxPermissionsUtils;
 import com.vondear.rxtools.RxPhotoUtils;
 import com.vondear.rxtools.interfaces.onRequestListener;
+import com.vondear.rxtools.view.RxToast;
 
 
 /**
@@ -24,27 +26,27 @@ public class RxDialogChooseImage extends RxDialog {
 
     private LayoutType mLayoutType = LayoutType.TITLE;
 
-    private TextView tv_camera;
-    private TextView tv_file;
-    private TextView tv_cancel;
+    private TextView mTvCamera;
+    private TextView mTvFile;
+    private TextView mTvCancel;
 
-    public TextView getTv_camera() {
-        return tv_camera;
+    public TextView getTvCamera() {
+        return mTvCamera;
     }
 
-    public TextView getTv_file() {
-        return tv_file;
+    public TextView getTvFile() {
+        return mTvFile;
     }
 
-    public TextView getTv_cancel() {
-        return tv_cancel;
+    public TextView getTvCancel() {
+        return mTvCancel;
     }
 
     public LayoutType getLayoutType() {
         return mLayoutType;
     }
 
-    private void initView(final Activity context) {
+    private void initView(final Activity activity) {
         View dialog_view = null;
         switch (mLayoutType) {
             case TITLE:
@@ -56,43 +58,56 @@ public class RxDialogChooseImage extends RxDialog {
         }
 
 
-        tv_camera = (TextView) dialog_view.findViewById(R.id.tv_camera);
-        tv_file = (TextView) dialog_view.findViewById(R.id.tv_file);
-        tv_cancel = (TextView) dialog_view.findViewById(R.id.tv_cancel);
-        tv_cancel.setOnClickListener(new View.OnClickListener() {
+        mTvCamera = (TextView) dialog_view.findViewById(R.id.tv_camera);
+        mTvFile = (TextView) dialog_view.findViewById(R.id.tv_file);
+        mTvCancel = (TextView) dialog_view.findViewById(R.id.tv_cancel);
+        mTvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 cancel();
             }
         });
-        tv_camera.setOnClickListener(new View.OnClickListener() {
+        mTvCamera.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
                 //请求Camera权限
-                RxPermissionsUtils.requestCamera(context, new onRequestListener() {
+                RxPermissionsUtils.requestCamera(activity, new onRequestListener() {
                     @Override
                     public void onRequestBefore() {
-
+                        RxToast.error("请先获取相机权限");
                     }
 
                     @Override
                     public void onRequestLater() {
-                        RxPhotoUtils.openCameraImage(context);
+                        RxPhotoUtils.openCameraImage(activity);
                         cancel();
                     }
                 });
             }
         });
-        tv_file.setOnClickListener(new View.OnClickListener() {
+        mTvFile.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                RxPhotoUtils.openLocalImage(context);
-                cancel();
+                RxPermissionsUtils.requestReadExternalStorage(mContext, new onRequestListener() {
+                    @Override
+                    public void onRequestBefore() {
+                        cancel();
+                        RxToast.error("请先获取读取SDCard权限");
+                        return;
+                    }
+
+                    @Override
+                    public void onRequestLater() {
+                        RxPhotoUtils.openLocalImage(activity);
+                        cancel();
+                    }
+                });
             }
         });
         setContentView(dialog_view);
+        mLayoutParams.gravity = Gravity.BOTTOM;
     }
 
     private void initView(final Fragment fragment) {
@@ -106,16 +121,16 @@ public class RxDialogChooseImage extends RxDialog {
                 break;
         }
 
-        tv_camera = (TextView) dialog_view.findViewById(R.id.tv_camera);
-        tv_file = (TextView) dialog_view.findViewById(R.id.tv_file);
-        tv_cancel = (TextView) dialog_view.findViewById(R.id.tv_cancel);
-        tv_cancel.setOnClickListener(new View.OnClickListener() {
+        mTvCamera = (TextView) dialog_view.findViewById(R.id.tv_camera);
+        mTvFile = (TextView) dialog_view.findViewById(R.id.tv_file);
+        mTvCancel = (TextView) dialog_view.findViewById(R.id.tv_cancel);
+        mTvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 cancel();
             }
         });
-        tv_camera.setOnClickListener(new View.OnClickListener() {
+        mTvCamera.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -134,7 +149,7 @@ public class RxDialogChooseImage extends RxDialog {
                 });
             }
         });
-        tv_file.setOnClickListener(new View.OnClickListener() {
+        mTvFile.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -142,7 +157,9 @@ public class RxDialogChooseImage extends RxDialog {
                 cancel();
             }
         });
+
         setContentView(dialog_view);
+        mLayoutParams.gravity = Gravity.BOTTOM;
     }
 
 

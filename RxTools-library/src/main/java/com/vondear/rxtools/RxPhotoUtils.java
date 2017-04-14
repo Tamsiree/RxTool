@@ -1,5 +1,6 @@
 package com.vondear.rxtools;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -7,13 +8,18 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
+
+import com.vondear.rxtools.view.RxToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -140,26 +146,33 @@ public class RxPhotoUtils {
      * @param context
      * @return 图片的uri
      */
-    public static Uri createImagePathUri(Context context) {
-        Uri imageFilePath = null;
-        String status = Environment.getExternalStorageState();
-        SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA);
-        long time = System.currentTimeMillis();
-        String imageName = timeFormatter.format(new Date(time));
-        // ContentValues是我们希望这条记录被创建时包含的数据信息
-        ContentValues values = new ContentValues(3);
-        values.put(MediaStore.Images.Media.DISPLAY_NAME, imageName);
-        values.put(MediaStore.Images.Media.DATE_TAKEN, time);
-        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
-        if (status.equals(Environment.MEDIA_MOUNTED)) {// 判断是否有SD卡,优先使用SD卡存储,当没有SD卡时使用手机存储
-            imageFilePath = context.getContentResolver().insert(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+    public static Uri createImagePathUri(final Context context) {
+        final Uri[] imageFilePath = {null};
+
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            imageFilePath[0] = Uri.parse("");
+            RxToast.error("请先获取写入SDCard权限");
         } else {
-            imageFilePath = context.getContentResolver().insert(
-                    MediaStore.Images.Media.INTERNAL_CONTENT_URI, values);
+            String status = Environment.getExternalStorageState();
+            SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA);
+            long time = System.currentTimeMillis();
+            String imageName = timeFormatter.format(new Date(time));
+            // ContentValues是我们希望这条记录被创建时包含的数据信息
+            ContentValues values = new ContentValues(3);
+            values.put(MediaStore.Images.Media.DISPLAY_NAME, imageName);
+            values.put(MediaStore.Images.Media.DATE_TAKEN, time);
+            values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+
+            if (status.equals(Environment.MEDIA_MOUNTED)) {// 判断是否有SD卡,优先使用SD卡存储,当没有SD卡时使用手机存储
+                imageFilePath[0] = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+            } else {
+                imageFilePath[0] = context.getContentResolver().insert(MediaStore.Images.Media.INTERNAL_CONTENT_URI, values);
+            }
         }
-        Log.i("", "生成的照片输出路径：" + imageFilePath.toString());
-        return imageFilePath;
+
+        Log.i("", "生成的照片输出路径：" + imageFilePath[0].toString());
+        return imageFilePath[0];
     }
 
 
@@ -191,7 +204,9 @@ public class RxPhotoUtils {
     }
 
 
-    /**  * 根据Uri获取图片绝对路径，解决Android4.4以上版本Uri转换
+    /**
+     * 根据Uri获取图片绝对路径，解决Android4.4以上版本Uri转换
+     *
      * @param context
      * @param imageUri
      * @author yaoxing
@@ -226,7 +241,7 @@ public class RxPhotoUtils {
                     contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                 }
                 String selection = MediaStore.Images.Media._ID + "=?";
-                String[] selectionArgs = new String[] { split[1] };
+                String[] selectionArgs = new String[]{split[1]};
                 return getDataColumn(context, contentUri, selection, selectionArgs);
             }
         } // MediaStore (and general)
@@ -246,7 +261,7 @@ public class RxPhotoUtils {
     public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
         Cursor cursor = null;
         String column = MediaStore.Images.Media.DATA;
-        String[] projection = { column };
+        String[] projection = {column};
         try {
             cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
             if (cursor != null && cursor.moveToFirst()) {
