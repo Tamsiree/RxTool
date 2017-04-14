@@ -103,12 +103,7 @@ public class ActivityCodeTool extends ActivityBase {
     }
 
     private void initEvent() {
-        mRxTitle.setLeftOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mRxTitle.setLeftFinish(mContext);
 
         mIvCreateQrCode.setOnClickListener(new View.OnClickListener() {
             @Override

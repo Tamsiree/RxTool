@@ -1,6 +1,5 @@
 package com.vondear.tools.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -9,7 +8,9 @@ import android.widget.TextView;
 
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxDataUtils;
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxRulerWheelView;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.wheelhorizontal.AbstractWheel;
 import com.vondear.rxtools.view.wheelhorizontal.ArrayWheelAdapter;
 import com.vondear.rxtools.view.wheelhorizontal.OnWheelClickedListener;
@@ -24,26 +25,18 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class ActivityWheelHorizontal extends Activity {
+public class ActivityWheelHorizontal extends ActivityBase {
 
-    @BindView(R.id.iv_finish)
-    ImageView mIvFinish;
-    @BindView(R.id.tv_title)
-    TextView mTvTitle;
-    @BindView(R.id.ll_include_title)
-    LinearLayout mLlIncludeTitle;
+
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
+    @BindView(R.id.wheelView_year_month)
+    WheelHorizontalView mWheelViewYearMonth;
     @BindView(R.id.imageView1)
     ImageView mImageView1;
     @BindView(R.id.LinearLayout2)
     LinearLayout mLinearLayout2;
-    @BindView(R.id.LinearLayout1)
-    LinearLayout mLinearLayout1;
-    @BindView(R.id.wheelView_year_month)
-    WheelHorizontalView mWheelViewYearMonth;
-    @BindView(R.id.iv_menu)
-    ImageView mIvMenu;
     @BindView(R.id.wheelview)
     RxRulerWheelView mWheelview;
     @BindView(R.id.wheelview2)
@@ -58,7 +51,8 @@ public class ActivityWheelHorizontal extends Activity {
     TextView mChangedTv;
     @BindView(R.id.selected_tv)
     TextView mSelectedTv;
-
+    @BindView(R.id.LinearLayout1)
+    LinearLayout mLinearLayout1;
     private List<String> listYearMonth = new ArrayList<String>();
 
     @Override
@@ -69,7 +63,7 @@ public class ActivityWheelHorizontal extends Activity {
         ButterKnife.bind(this);
         initView();
         initData();
-        
+
         initRulerView();
     }
 
@@ -161,8 +155,7 @@ public class ActivityWheelHorizontal extends Activity {
     }
 
     private void initView() {
-        mLlIncludeTitle.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        mTvTitle.setText("横向滑动选择控件");
+        mRxTitle.setLeftFinish(mContext);
     }
 
     private void initData() {
@@ -229,10 +222,5 @@ public class ActivityWheelHorizontal extends Activity {
 				 */
             }
         });
-    }
-
-    @OnClick(R.id.iv_finish)
-    public void onClick() {
-        finish();
     }
 }

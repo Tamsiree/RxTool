@@ -1,9 +1,11 @@
 package com.vondear.rxtools.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -270,6 +272,16 @@ public class RxTitle extends FrameLayout {
     //==============================================================================================以上为get方法
 
     //**********************************************************************************************以下为set方法
+
+    public void setLeftFinish(final Activity activity) {
+        mLlLeft.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.finish();
+            }
+        });
+    }
+
 
     public void setLeftOnClickListener(OnClickListener onClickListener) {
         mLlLeft.setOnClickListener(onClickListener);

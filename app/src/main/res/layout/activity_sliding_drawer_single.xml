@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/colorPrimary"
-    android:clipToPadding="true"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical" >
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:background="@color/colorPrimary"
+              android:clipToPadding="true"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
 
-    <include
-        android:layout_width="fill_parent"
+    <com.vondear.rxtools.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/common_title_layout" />
+        android:background="@color/blue"
+        app:title="滑动式抽屉"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

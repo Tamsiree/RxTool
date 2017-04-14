@@ -1,11 +1,10 @@
 package com.vondear.tools.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxSeekBar;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.tools.R;
@@ -18,7 +17,7 @@ import butterknife.ButterKnife;
 import static com.vondear.tools.R.id.seekbar1;
 import static com.vondear.tools.R.id.seekbar2;
 
-public class ActivitySeekBar extends Activity {
+public class ActivitySeekBar extends ActivityBase {
 
     @BindView(R.id.rx_title)
     RxTitle mRxTitle;
@@ -43,12 +42,8 @@ public class ActivitySeekBar extends Activity {
         setContentView(R.layout.activity_seek_bar);
         ButterKnife.bind(this);
 
-        mRxTitle.setLeftOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mRxTitle.setLeftFinish(mContext);
+
         mSeekbar1.setValue(10);
         mSeekbar2.setValue(-0.5f, 0.8f);
 

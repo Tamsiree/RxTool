@@ -19,7 +19,6 @@
     <color name="mi_green">#52BA97</color>
 
 
-
     <color name="f0">#f0f0f0</color>
     <color name="e">#EEEEEE</color>
     <color name="c">#CCCCCC</color>
@@ -34,8 +33,13 @@
     <color name="transparent">#00000000</color><!-- 透明色 -->
     <color name="transparentBlank_5">#55000000</color><!-- 半透明 -->
 
-    <color name="shadow">#25808080</color>
-    <color name="shadow1">#80808080</color>
+    <color name="shadow25">#25808080</color>
+    <color name="shadow80">#80808080</color>
+
+    <color name="shadowBlue80">#803F51B5</color>
+    <color name="shadowBlue50">#503F51B5</color>
+
+    <color name="shadowPink50">#50FD4C5B</color>
 
     <color name="triangle">#aa72d572</color>
     <color name="circle">#aa738ffe</color>

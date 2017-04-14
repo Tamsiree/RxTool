@@ -93,12 +93,8 @@ public class ActivityRxPhoto extends ActivityBase {
                 + r.getResourceTypeName(R.drawable.elves_ball) + "/"
                 + r.getResourceEntryName(R.drawable.elves_ball));
 
-        mRxTitle.setLeftOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        mRxTitle.setLeftFinish(mContext);
+
         mIvAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -3,16 +3,16 @@ package com.vondear.tools.activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxRunTextView;
-import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.RxTextViewVerticalMore;
 import com.vondear.rxtools.view.RxTextviewVertical;
+import com.vondear.rxtools.view.RxTitle;
+import com.vondear.rxtools.view.RxToast;
 import com.vondear.tools.R;
 
 import java.util.ArrayList;
@@ -20,27 +20,20 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ActivityRunTextView extends ActivityBase {
 
-    @BindView(R.id.iv_finish)
-    ImageView mIvFinish;
-    @BindView(R.id.tv_title)
-    TextView mTvTitle;
-    @BindView(R.id.iv_menu)
-    ImageView mIvMenu;
-    @BindView(R.id.ll_include_title)
-    LinearLayout mLlIncludeTitle;
+
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
     @BindView(R.id.tv_runtitle)
     RxRunTextView mTvRuntitle;
-    @BindView(R.id.activity_run_text_view)
-    LinearLayout mActivityRunTextView;
     @BindView(R.id.text)
     RxTextviewVertical mRxVText;
     @BindView(R.id.upview1)
     RxTextViewVerticalMore mUpview1;
-
+    @BindView(R.id.activity_run_text_view)
+    LinearLayout mActivityRunTextView;
     private ArrayList<String> titleList = new ArrayList<String>();
 
     @Override
@@ -52,9 +45,8 @@ public class ActivityRunTextView extends ActivityBase {
     }
 
     protected void initView() {
-        mTvTitle.setText("RunTextView的使用");
+        mRxTitle.setLeftFinish(mContext);
 
-        mRxVText = (RxTextviewVertical) findViewById(R.id.text);
         titleList.add("你是天上最受宠的一架钢琴");
         titleList.add("我是丑人脸上的鼻涕");
         titleList.add("你发出完美的声音");
@@ -75,11 +67,11 @@ public class ActivityRunTextView extends ActivityBase {
         });
 
         List<View> views = new ArrayList<>();
-        setUPMarqueeView(views,11);
+        setUPMarqueeView(views, 11);
         mUpview1.setViews(views);
     }
 
-    private void setUPMarqueeView(List<View> views,int size) {
+    private void setUPMarqueeView(List<View> views, int size) {
         for (int i = 0; i < size; i = i + 2) {
             final int position = i;
             //设置滚动的单个布局
@@ -118,11 +110,6 @@ public class ActivityRunTextView extends ActivityBase {
             //添加到循环滚动数组里面去
             views.add(moreView);
         }
-    }
-
-    @OnClick(R.id.iv_finish)
-    public void onClick() {
-        finish();
     }
 
     @Override

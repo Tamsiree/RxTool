@@ -1,7 +1,5 @@
 package com.vondear.tools.activity;
 
-import android.app.Activity;
-import android.content.Context;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,32 +8,26 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vondear.rxtools.RxTextUtils;
+import com.vondear.rxtools.activity.ActivityBase;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.tools.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.vondear.rxtools.RxBarUtils.setTransparentStatusBar;
 import static com.vondear.rxtools.RxConstants.URL_VONTOOLS;
 
-public class ActivityTextUtils extends Activity {
+public class ActivityTextUtils extends ActivityBase {
 
-    @BindView(R.id.iv_finish)
-    ImageView ivFinish;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.ll_include_title)
-    LinearLayout llIncludeTitle;
-
-    private Context mContext;
-
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
+    @BindView(R.id.tv_about_spannable)
+    TextView mTvAboutSpannable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +40,7 @@ public class ActivityTextUtils extends Activity {
     }
 
     private void initView() {
-        llIncludeTitle.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        tvTitle.setText("VonTextUtils测试");
+        mRxTitle.setLeftFinish(mContext);
 
 
         ClickableSpan clickableSpan = new ClickableSpan() {
@@ -65,9 +56,9 @@ public class ActivityTextUtils extends Activity {
             }
         };
 
-        TextView tvAboutSpannable = (TextView) findViewById(R.id.tv_about_spannable);
+
         // 响应点击事件的话必须设置以下属性
-        tvAboutSpannable.setMovementMethod(LinkMovementMethod.getInstance());
+        mTvAboutSpannable.setMovementMethod(LinkMovementMethod.getInstance());
 
         RxTextUtils.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
                 .append("测试").append("Url\n").setUrl(URL_VONTOOLS)
@@ -90,11 +81,6 @@ public class ActivityTextUtils extends Activity {
                 .append("\n测试正常对齐\n").setAlign(Layout.Alignment.ALIGN_NORMAL)
                 .append("测试居中对齐\n").setAlign(Layout.Alignment.ALIGN_CENTER)
                 .append("测试相反对齐\n").setAlign(Layout.Alignment.ALIGN_OPPOSITE)
-                .into(tvAboutSpannable);
-    }
-
-    @OnClick(R.id.iv_finish)
-    public void onClick() {
-        finish();
+                .into(mTvAboutSpannable);
     }
 }

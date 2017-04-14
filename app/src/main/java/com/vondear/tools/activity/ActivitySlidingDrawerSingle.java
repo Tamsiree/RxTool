@@ -1,6 +1,5 @@
 package com.vondear.tools.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -19,26 +18,20 @@ import android.widget.ProgressBar;
 import android.widget.SlidingDrawer;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxConstants;
-import com.vondear.tools.R;
 import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.RxConstants;
+import com.vondear.rxtools.activity.ActivityBase;
+import com.vondear.rxtools.view.RxTitle;
+import com.vondear.tools.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class ActivitySlidingDrawerSingle extends Activity {
+public class ActivitySlidingDrawerSingle extends ActivityBase {
 
-    @BindView(R.id.iv_back)
-    ImageView mIvBack;
-    @BindView(R.id.ll_back)
-    LinearLayout mLlBack;
-    @BindView(R.id.tv_title)
-    TextView mTvTitle;
-    @BindView(R.id.iv_menu)
-    ImageView mIvMenu;
-    @BindView(R.id.ll_menu)
-    LinearLayout mLlMenu;
+
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
     @BindView(R.id.textView1)
     TextView mTextView1;
     @BindView(R.id.textView2)
@@ -66,9 +59,8 @@ public class ActivitySlidingDrawerSingle extends Activity {
     @BindView(R.id.slidingdrawer)
     SlidingDrawer mSlidingdrawer;
 
-    String webPath = "";
-
     private Boolean flag = false;
+    String webPath = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +70,11 @@ public class ActivitySlidingDrawerSingle extends Activity {
         RxBarUtils.setTransparentStatusBar(this);
         ButterKnife.bind(this);
 
-        mLlBack.setVisibility(View.VISIBLE);
-        mTvTitle.setText("滑动式抽屉");
+        mRxTitle.setLeftFinish(mContext);
 
         initData();
     }
-    
+
     @SuppressWarnings("deprecation")
     private void initData() {
         mSlidingdrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
@@ -213,10 +204,5 @@ public class ActivitySlidingDrawerSingle extends Activity {
 
         mWebBase.loadUrl(webPath);
         Log.v("帮助类完整连接", webPath);
-    }
-
-    @OnClick(R.id.ll_back)
-    public void onClick() {
-        finish();
     }
 }

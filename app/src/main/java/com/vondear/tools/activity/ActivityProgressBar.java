@@ -1,19 +1,19 @@
 package com.vondear.tools.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxDataUtils;
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxProgressBar;
 import com.vondear.rxtools.view.RxRoundProgress;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.roundprogressbar.RxIconRoundProgressBar;
 import com.vondear.rxtools.view.roundprogressbar.RxRoundProgressBar;
 import com.vondear.rxtools.view.roundprogressbar.RxTextRoundProgressBar;
@@ -23,36 +23,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ActivityProgressBar extends Activity {
+public class ActivityProgressBar extends ActivityBase {
 
-    @BindView(R.id.iv_finish)
-    ImageView mIvFinish;
-    @BindView(R.id.tv_title)
-    TextView mTvTitle;
-    @BindView(R.id.ll_include_title)
-    LinearLayout mLlIncludeTitle;
-    @BindView(R.id.roundProgressBar1)
-    RxRoundProgress mRxRoundProgress1;
-    @BindView(R.id.activity_round_progress_bar)
-    LinearLayout mActivityRoundProgressBar;
-    @BindView(R.id.pb_line_of_credit)
-    ProgressBar mPbLineOfCredit;
+
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
     @BindView(R.id.flikerbar)
     RxProgressBar mFlikerbar;
     @BindView(R.id.round_flikerbar)
     RxProgressBar mRoundFlikerbar;
-    @BindView(R.id.iv_menu)
-    ImageView mIvMenu;
-    @BindView(R.id.progress_one)
-    RxIconRoundProgressBar mProgressOne;
-    @BindView(R.id.progress_two)
-    RxRoundProgressBar mProgressTwo;
-    @BindView(R.id.progress_three)
-    RxTextRoundProgressBar mProgressThree;
-    @BindView(R.id.textView)
-    TextView mTextView;
-    @BindView(R.id.textView5)
-    TextView mTextView5;
     @BindView(R.id.rx_round_pd1)
     RxRoundProgressBar mRxRoundPd1;
     @BindView(R.id.rx_round_pd2)
@@ -87,7 +66,22 @@ public class ActivityProgressBar extends Activity {
     RxTextRoundProgressBar mRxRoundPd16;
     @BindView(R.id.rx_round_pd17)
     RxTextRoundProgressBar mRxRoundPd17;
-
+    @BindView(R.id.progress_one)
+    RxIconRoundProgressBar mProgressOne;
+    @BindView(R.id.progress_two)
+    RxRoundProgressBar mProgressTwo;
+    @BindView(R.id.progress_three)
+    RxTextRoundProgressBar mProgressThree;
+    @BindView(R.id.textView)
+    TextView mTextView;
+    @BindView(R.id.pb_line_of_credit)
+    ProgressBar mPbLineOfCredit;
+    @BindView(R.id.textView5)
+    TextView mTextView5;
+    @BindView(R.id.roundProgressBar1)
+    RxRoundProgress mRxRoundProgress1;
+    @BindView(R.id.activity_round_progress_bar)
+    LinearLayout mActivityRoundProgressBar;
     private double progress;
     private int progress1;
     double money = 1000;
@@ -117,8 +111,7 @@ public class ActivityProgressBar extends Activity {
     Thread downLoadRxRoundPdThread;
 
     private void initView() {
-        mLlIncludeTitle.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        mTvTitle.setText("进度条视图");
+        mRxTitle.setLeftFinish(mContext);
     }
 
     private int getMax(double currentProgress) {
@@ -398,12 +391,9 @@ public class ActivityProgressBar extends Activity {
         }
     };
 
-    @OnClick({R.id.iv_finish, R.id.flikerbar, R.id.round_flikerbar})
+    @OnClick({R.id.flikerbar, R.id.round_flikerbar})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_finish:
-                finish();
-                break;
             case R.id.flikerbar:
                 initFlikerProgressBar();
                 break;

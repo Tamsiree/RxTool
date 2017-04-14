@@ -3,27 +3,29 @@
                                             xmlns:tools="http://schemas.android.com/tools"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
-                                            android:background="@color/brown3"
+                                            android:background="@color/baby_blue"
                                             tools:context=".activity.ActivityWheelHorizontal">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:tools="http://schemas.android.com/tools"
-                  android:id="@+id/LinearLayout1"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:background="@color/brown3"
-                  android:clipToPadding="true"
-                  android:fitsSystemWindows="true"
-                  android:orientation="vertical"
-                  tools:context=".activity.ActivityWheelHorizontal">
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        tools:context=".activity.ActivityWheelHorizontal">
 
-        <include layout="@layout/include_title"/>
+        <com.vondear.rxtools.view.RxTitle
+            android:id="@+id/rx_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            app:title="横向滑动选择控件"/>
 
         <LinearLayout
             android:id="@+id/LinearLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/brown3"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 

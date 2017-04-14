@@ -57,12 +57,7 @@ public class ActivityDialog extends ActivityBase {
     }
 
     private void initView() {
-        mRxTitle.setLeftOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mRxTitle.setLeftFinish(mContext);
     }
 
     private void initWheelYearMonthDayDialog() {

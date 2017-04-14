@@ -9,7 +9,14 @@
               android:orientation="vertical"
               tools:context="com.vondear.tools.activity.ActivityProgressBar">
 
-    <include layout="@layout/include_title"/>
+    <!--<include layout="@layout/include_title"/>-->
+
+    <com.vondear.rxtools.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        app:title="进度条的艺术"/>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
