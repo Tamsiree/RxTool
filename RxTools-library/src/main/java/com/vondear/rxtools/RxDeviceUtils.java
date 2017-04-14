@@ -620,9 +620,8 @@ public class RxDeviceUtils {
      * @param phoneNumber 电话号码
      */
     public static void callPhone(final Context context, String phoneNumber) {
-        final String phoneNumber1 = phoneNumber.trim();// 删除字符串首部和尾部的空格
-
-        if (phoneNumber != null && !phoneNumber.equals("")) {
+        if (!RxDataUtils.isNullString(phoneNumber)) {
+            final String phoneNumber1 = phoneNumber.trim();// 删除字符串首部和尾部的空格
             // 调用系统的拨号服务实现电话拨打功能
             // 封装一个拨打电话的intent，并且将电话号码包装成一个Uri对象传入
 
