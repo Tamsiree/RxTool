@@ -1,1 +1,1 @@
-include ':app', ':RxTools-library'
+include ':app', ':RxTools-library', ':RxAliPay'
