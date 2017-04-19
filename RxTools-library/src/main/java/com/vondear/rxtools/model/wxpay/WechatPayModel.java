@@ -4,7 +4,7 @@ package com.vondear.rxtools.model.wxpay;
  * Created by Administrator on 2017/4/17.
  */
 
-public class WechatPayBean {
+public class WechatPayModel {
 
     private String appid;
     private String partnerid;
@@ -15,7 +15,7 @@ public class WechatPayBean {
 
     private String sign;
 
-    public WechatPayBean(String appid, String partnerid, String prepayid, String packageValue, String noncestr, String timestamp, String sign) {
+    public WechatPayModel(String appid, String partnerid, String prepayid, String packageValue, String noncestr, String timestamp, String sign) {
         this.appid = appid;
         this.partnerid = partnerid;
         this.prepayid = prepayid;

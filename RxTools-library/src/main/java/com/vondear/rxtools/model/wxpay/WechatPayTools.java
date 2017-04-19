@@ -125,7 +125,7 @@ public class WechatPayTools {
         String sign = "";//签名(该签名本应使用微信商户平台的API证书中的密匙key,但此处使用的是微信公众号的密匙APP_SECRET)
         sign = getSign(params, wx_private_key);
 
-        WechatPayBean beanWxPay = new WechatPayBean(appid, mch_id, mapXml.get("prepay_id"), "Sign=WechatPay", "5K8264ILTKCH16CQ2502SI8ZNMTM67VS", time, sign);
+        WechatPayModel beanWxPay = new WechatPayModel(appid, mch_id, mapXml.get("prepay_id"), "Sign=WechatPay", "5K8264ILTKCH16CQ2502SI8ZNMTM67VS", time, sign);
         String pay_param = new Gson().toJson(beanWxPay);
         WechatPayTools.doWXPay(mContext, appid, pay_param, onRxHttp);
     }
