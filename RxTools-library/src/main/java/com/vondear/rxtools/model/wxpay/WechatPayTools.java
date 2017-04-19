@@ -47,10 +47,7 @@ public class WechatPayTools {
      *
      * @return
      */
-    public static String unifiedOrder(final Context mContext, final String appid, final String mch_id, final String wx_private_key, WechatModel wechatModel, final onRequestListener onRequestListener) {
-//        Map map = WebUtils.getParameterMap();//获取前台数据
-//        String appid = Constant.WX_APP_ID;//appid
-//        String mch_id = Constant.WX_PARTNER_ID;//微信支付商户号
+    public static String wechatPayUnifyOrder(final Context mContext, final String appid, final String mch_id, final String wx_private_key, WechatModel wechatModel, final onRequestListener onRequestListener) {
         String nonce_str = getRandomStringByLength(8);//随机码
         String body = wechatModel.getDetail();//商品描述
         String out_trade_no = wechatModel.getOut_trade_no();//商品订单号
@@ -58,7 +55,7 @@ public class WechatPayTools {
         String total_fee = wechatModel.getMoney();//总金额 分
         String time_start = getCurrTime();//交易起始时间(订单生成时间非必须)
         String trade_type = "APP";//App支付
-        String notify_url = "http://" + "域名" + "/" + "项目名" + "回调地址.do";//回调函数
+        String notify_url = "";//"http://" + "域名" + "/" + "项目名" + "回调地址.do";//回调函数
         SortedMap<String, String> params = new TreeMap<String, String>();
         params.put("appid", appid);
         params.put("mch_id", mch_id);
@@ -105,7 +102,7 @@ public class WechatPayTools {
                         params.put("prepayid", mapXml.get("prepay_id"));
                         params.put("timestamp", time);
 
-                        wxpayApp(mapXml, time, params, appid, mch_id, wx_private_key, mContext, onRequestListener);
+                        wechatPayApp(mContext, appid, mch_id, wx_private_key, params, onRequestListener);
                     }
 
                     @Override
@@ -121,11 +118,10 @@ public class WechatPayTools {
         }
     }
 
-    private static void wxpayApp(Map<String, String> mapXml, String time, SortedMap<String, String> params, String appid, String mch_id, String wx_private_key, Context mContext, onRequestListener onRxHttp) {
-        String sign = "";//签名(该签名本应使用微信商户平台的API证书中的密匙key,但此处使用的是微信公众号的密匙APP_SECRET)
-        sign = getSign(params, wx_private_key);
+    public static void wechatPayApp(Context mContext, String appid, String mch_id, String wx_private_key, SortedMap<String, String> params, onRequestListener onRxHttp) {
+        String sign = getSign(params, wx_private_key);
 
-        WechatPayModel beanWxPay = new WechatPayModel(appid, mch_id, mapXml.get("prepay_id"), "Sign=WechatPay", "5K8264ILTKCH16CQ2502SI8ZNMTM67VS", time, sign);
+        WechatPayModel beanWxPay = new WechatPayModel(appid, mch_id, params.get("prepay_id"), "Sign=WechatPay", "5K8264ILTKCH16CQ2502SI8ZNMTM67VS", params.get("time"), sign);
         String pay_param = new Gson().toJson(beanWxPay);
         WechatPayTools.doWXPay(mContext, appid, pay_param, onRxHttp);
     }
