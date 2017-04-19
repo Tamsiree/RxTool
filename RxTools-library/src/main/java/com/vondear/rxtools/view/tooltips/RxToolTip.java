@@ -8,27 +8,21 @@ import android.view.ViewGroup;
 
 import com.vondear.rxtools.R;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 public class RxToolTip {
 
-    @IntDef({POSITION_ABOVE, POSITION_BELOW, POSITION_LEFT_TO, POSITION_RIGHT_TO})
-    public @interface Position {}
     public static final int POSITION_ABOVE = 0;
     public static final int POSITION_BELOW = 1;
     public static final int POSITION_LEFT_TO = 3;
     public static final int POSITION_RIGHT_TO = 4;
-
-    @IntDef({ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT})
-    public @interface Align {}
     public static final int ALIGN_CENTER = 0;
     public static final int ALIGN_LEFT = 1;
     public static final int ALIGN_RIGHT = 2;
-
-    @IntDef({GRAVITY_CENTER, GRAVITY_LEFT, GRAVITY_RIGHT})
-    public @interface Gravity {}
     public static final int GRAVITY_CENTER = 0;
     public static final int GRAVITY_LEFT = 1;
     public static final int GRAVITY_RIGHT = 2;
-
     private Context mContext;
     private View mAnchorView;
     private ViewGroup mRootViewGroup;
@@ -44,7 +38,6 @@ public class RxToolTip {
     private @Gravity int mTextGravity;
     private Spannable mSpannableMessage;
     private int mTextSize;
-
     public RxToolTip(Builder builder){
         mContext = builder.mContext;
         mAnchorView = builder.mAnchorView;
@@ -82,6 +75,10 @@ public class RxToolTip {
 
     public int getPosition() {
         return mPosition;
+    }
+
+    public void setPosition(@Position int position) {
+        mPosition = position;
     }
 
     public int getAlign() {
@@ -136,10 +133,6 @@ public class RxToolTip {
         return ALIGN_RIGHT == mAlign;
     }
 
-    public void setPosition(@Position int position){
-        mPosition = position;
-    }
-
     public float getElevation() {
         return mElevation;
     }
@@ -168,6 +161,21 @@ public class RxToolTip {
 
     public Spannable getSpannableMessage() {
         return mSpannableMessage;
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({POSITION_ABOVE, POSITION_BELOW, POSITION_LEFT_TO, POSITION_RIGHT_TO})
+    public @interface Position {
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT})
+    public @interface Align {
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({GRAVITY_CENTER, GRAVITY_LEFT, GRAVITY_RIGHT})
+    public @interface Gravity {
     }
 
     public static class Builder {
