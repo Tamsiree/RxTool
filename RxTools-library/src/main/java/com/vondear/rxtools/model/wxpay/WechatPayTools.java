@@ -118,9 +118,25 @@ public class WechatPayTools {
     public static void wechatPayApp(Context mContext, String appid, String mch_id, String wx_private_key, SortedMap<String, String> params, onRequestListener onRxHttp) {
         String sign = getSign(params, wx_private_key);
 
-        WechatPayModel beanWxPay = new WechatPayModel(appid, mch_id, params.get("prepayid"), "Sign=WechatPay", "5K8264ILTKCH16CQ2502SI8ZNMTM67VS", params.get("timestamp"), sign);
-        String pay_param = new Gson().toJson(beanWxPay);
+        WechatPayModel wechatPayModel = new WechatPayModel(appid, mch_id, params.get("prepayid"), "Sign=WechatPay", params.get("noncestr"), params.get("timestamp"), sign);
+        String pay_param = new Gson().toJson(wechatPayModel);
         WechatPayTools.doWXPay(mContext, appid, pay_param, onRxHttp);
+    }
+
+    public static void wechatPayApp(Context mContext, String app_id, String partner_id, String wx_private_key, String prepay_id, onRequestListener onRxHttp) {
+        SortedMap<String, String> params = new TreeMap<String, String>();
+        params.put("appid", app_id);
+        params.put("noncestr", "5K8264ILTKCH16CQ2502SI8ZNMTM67VS");
+        params.put("package", "Sign=WechatPay");
+        params.put("partnerid", partner_id);
+        params.put("prepayid", prepay_id);
+        params.put("timestamp", getCurrTime());
+
+        String sign = getSign(params, wx_private_key);
+
+        WechatPayModel wechatPayModel = new WechatPayModel(app_id, partner_id, prepay_id, "Sign=WechatPay", params.get("noncestr"), params.get("timestamp"), sign);
+        String pay_param = new Gson().toJson(wechatPayModel);
+        WechatPayTools.doWXPay(mContext, app_id, pay_param, onRxHttp);
     }
 
     /**
