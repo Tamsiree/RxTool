@@ -36,4 +36,7 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile files('src/main/libs/alipaySdk-20170309.jar')
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    compile 'com.lzy.net:okgo:2.1.4'
+    compile 'com.google.code.gson:gson:2.8.0'
 }
