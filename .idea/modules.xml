@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RxAliPay/RxAliPay.iml" filepath="$PROJECT_DIR$/RxAliPay/RxAliPay.iml" />
       <module fileurl="file://$PROJECT_DIR$/RxTools.iml" filepath="$PROJECT_DIR$/RxTools.iml" />
       <module fileurl="file://$PROJECT_DIR$/RxTools.iml" filepath="$PROJECT_DIR$/RxTools.iml" />
       <module fileurl="file://$PROJECT_DIR$/RxTools-library/RxTools-library.iml" filepath="$PROJECT_DIR$/RxTools-library/RxTools-library.iml" />

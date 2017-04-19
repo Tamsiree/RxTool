@@ -28,13 +28,12 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:recyclerview-v7:25.0.0'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
     compile files('src/main/libs/zbardecoder.jar')
     compile files('src/main/libs/zxing.jar')
-
     compile 'com.nineoldandroids:library:2.4.0'
-
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    compile files('src/main/libs/alipaySdk-20170309.jar')
 }

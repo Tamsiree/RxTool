@@ -1,4 +1,4 @@
-package com.vondear.rxtools;
+package com.vondear.rxtools.model.alipay;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

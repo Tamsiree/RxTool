@@ -24,7 +24,7 @@ import com.vondear.rxtools.RxPermissionsUtils;
 import com.vondear.rxtools.RxPhotoUtils;
 import com.vondear.rxtools.RxSPUtils;
 import com.vondear.rxtools.activity.ActivityBase;
-import com.vondear.rxtools.interfaces.onRequestListener;
+import com.vondear.rxtools.interfaces.onRequestPermissionsListener;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.dialog.RxDialog;
 import com.vondear.rxtools.view.dialog.RxDialogChooseImage;
@@ -76,6 +76,7 @@ public class ActivityRxPhoto extends ActivityBase {
     Button mBtnExit;
     @BindView(R.id.activity_user)
     LinearLayout mActivityUser;
+    private Uri resultUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +137,7 @@ public class ActivityRxPhoto extends ActivityBase {
             @Override
             public void onClick(View arg0) {
                 //请求Camera权限
-                RxPermissionsUtils.requestCamera(mContext, new onRequestListener() {
+                RxPermissionsUtils.requestCamera(mContext, new onRequestPermissionsListener() {
                     @Override
                     public void onRequestBefore() {
 
@@ -167,8 +168,6 @@ public class ActivityRxPhoto extends ActivityBase {
 
         dialogChooseImage.show();
     }
-
-    private Uri resultUri;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

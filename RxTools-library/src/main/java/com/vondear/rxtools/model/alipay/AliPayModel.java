@@ -1,4 +1,4 @@
-package com.vondear.rxtools;
+package com.vondear.rxtools.model.alipay;
 
 /**
  * Created by Administrator on 2017/4/18.

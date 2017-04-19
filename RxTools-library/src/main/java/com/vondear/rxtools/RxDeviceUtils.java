@@ -28,7 +28,7 @@ import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.vondear.rxtools.interfaces.onRequestListener;
+import com.vondear.rxtools.interfaces.onRequestPermissionsListener;
 
 import org.xmlpull.v1.XmlSerializer;
 
@@ -408,11 +408,7 @@ public class RxDeviceUtils {
                 Class clazz = Class.forName("android.content.Context");
                 Method method = clazz.getMethod("checkSelfPermission", String.class);
                 int rest = (Integer) method.invoke(context, permission);
-                if (rest == PackageManager.PERMISSION_GRANTED) {
-                    result = true;
-                } else {
-                    result = false;
-                }
+                result = rest == PackageManager.PERMISSION_GRANTED;
             } catch (Exception e) {
                 result = false;
             }
@@ -625,7 +621,7 @@ public class RxDeviceUtils {
             // 调用系统的拨号服务实现电话拨打功能
             // 封装一个拨打电话的intent，并且将电话号码包装成一个Uri对象传入
 
-            RxPermissionsUtils.requestCall(context, new onRequestListener() {
+            RxPermissionsUtils.requestCall(context, new onRequestPermissionsListener() {
                 @Override
                 public void onRequestBefore() {
 

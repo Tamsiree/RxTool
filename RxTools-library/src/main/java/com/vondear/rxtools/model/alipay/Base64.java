@@ -1,4 +1,4 @@
-package com.vondear.rxtools;
+package com.vondear.rxtools.model.alipay;
 
 public final class Base64 {
 
