@@ -89,9 +89,6 @@ public class WechatPayTools {
                         } catch (ParserConfigurationException | IOException | SAXException e) {
                             e.printStackTrace();
                         }
-
-                        SortedMap<String, String> sort = new TreeMap<String, String>(mapXml);
-
                         String time = getCurrTime();
 
                         SortedMap<String, String> params = new TreeMap<String, String>();
@@ -121,7 +118,7 @@ public class WechatPayTools {
     public static void wechatPayApp(Context mContext, String appid, String mch_id, String wx_private_key, SortedMap<String, String> params, onRequestListener onRxHttp) {
         String sign = getSign(params, wx_private_key);
 
-        WechatPayModel beanWxPay = new WechatPayModel(appid, mch_id, params.get("prepay_id"), "Sign=WechatPay", "5K8264ILTKCH16CQ2502SI8ZNMTM67VS", params.get("time"), sign);
+        WechatPayModel beanWxPay = new WechatPayModel(appid, mch_id, params.get("prepayid"), "Sign=WechatPay", "5K8264ILTKCH16CQ2502SI8ZNMTM67VS", params.get("timestamp"), sign);
         String pay_param = new Gson().toJson(beanWxPay);
         WechatPayTools.doWXPay(mContext, appid, pay_param, onRxHttp);
     }
