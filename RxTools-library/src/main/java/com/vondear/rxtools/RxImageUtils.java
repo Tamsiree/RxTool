@@ -16,12 +16,14 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.media.ThumbnailUtils;
@@ -56,6 +58,9 @@ import java.net.URL;
 
 public class RxImageUtils {
 
+    static ObjectAnimator invisToVis;
+    static ObjectAnimator visToInvis;
+
     /**
      * 显示大图
      *
@@ -79,7 +84,6 @@ public class RxImageUtils {
         rxDialog.show();
         rxDialog.setFullScreen();
     }
-
 
     /**
      * dip转px
@@ -195,11 +199,6 @@ public class RxImageUtils {
         return colorInt | -16777216;
     }
 
-    static ObjectAnimator invisToVis;
-    static ObjectAnimator visToInvis;
-
-
-
     /**
      * bitmap转byteArr
      *
@@ -208,7 +207,9 @@ public class RxImageUtils {
      * @return 字节数组
      */
     public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
-        return bitmap2Bytes(bitmap, format);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(format, 100, baos);
+        return baos.toByteArray();
     }
 
     /**
@@ -218,7 +219,11 @@ public class RxImageUtils {
      * @return bitmap对象
      */
     public static Bitmap bytes2Bitmap(byte[] bytes) {
-        return bytes2Bitmap(bytes);
+        if (bytes.length != 0) {
+            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -228,7 +233,21 @@ public class RxImageUtils {
      * @return bitmap对象
      */
     public static Bitmap drawable2Bitmap(Drawable drawable) {
-        return drawable2Bitmap(drawable);
+        // 取 drawable 的长宽
+        int w = drawable.getIntrinsicWidth();
+        int h = drawable.getIntrinsicHeight();
+
+        // 取 drawable 的颜色格式
+        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                : Bitmap.Config.RGB_565;
+        // 建立对应 bitmap
+        Bitmap bitmap = Bitmap.createBitmap(w, h, config);
+        // 建立对应 bitmap 的画布
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, w, h);
+        // 把 drawable 内容画到画布中
+        drawable.draw(canvas);
+        return bitmap;
     }
 
     /**
@@ -239,7 +258,11 @@ public class RxImageUtils {
      * @return drawable对象
      */
     public static Drawable bitmap2Drawable(Resources res, Bitmap bitmap) {
-        return bitmap2Drawable(res, bitmap);
+        return new BitmapDrawable(res, bitmap);
+    }
+
+    public static Drawable bitmap2Drawable(Bitmap bitmap) {
+        return new BitmapDrawable(bitmap);
     }
 
     /**
@@ -250,7 +273,8 @@ public class RxImageUtils {
      * @return 字节数组
      */
     public static byte[] drawable2Bytes(Drawable drawable, CompressFormat format) {
-        return drawable2Bytes(drawable, format);
+        Bitmap bitmap = drawable2Bitmap(drawable);
+        return bitmap2Bytes(bitmap, format);
     }
 
     /**
@@ -261,7 +285,15 @@ public class RxImageUtils {
      * @return drawable对象
      */
     public static Drawable bytes2Drawable(Resources res, byte[] bytes) {
-        return bytes2Drawable(res, bytes);
+        Bitmap bitmap = bytes2Bitmap(bytes);
+        Drawable drawable = bitmap2Drawable(res, bitmap);
+        return drawable;
+    }
+
+    public static Drawable bytes2Drawable(byte[] bytes) {
+        Bitmap bitmap = bytes2Bitmap(bytes);
+        Drawable drawable = bitmap2Drawable(bitmap);
+        return drawable;
     }
 
     /**
@@ -362,17 +394,6 @@ public class RxImageUtils {
     /**
      * 获取bitmap
      *
-     * @param is 输入流
-     * @return bitmap
-     */
-    public Bitmap getBitmap(InputStream is) {
-        if (is == null) return null;
-        return BitmapFactory.decodeStream(is);
-    }
-
-    /**
-     * 获取bitmap
-     *
      * @param is        输入流
      * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
@@ -386,18 +407,6 @@ public class RxImageUtils {
         options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeStream(is, null, options);
-    }
-
-    /**
-     * 获取bitmap
-     *
-     * @param data   数据
-     * @param offset 偏移量
-     * @return bitmap
-     */
-    public Bitmap getBitmap(byte[] data, int offset) {
-        if (data.length == 0) return null;
-        return BitmapFactory.decodeByteArray(data, offset, data.length);
     }
 
     /**
@@ -1537,8 +1546,6 @@ public class RxImageUtils {
         return src == null || src.getWidth() == 0 || src.getHeight() == 0;
     }
 
-    /******************************~~~~~~~~~ 下方和压缩有关 ~~~~~~~~~******************************/
-
     /**
      * 按缩放压缩
      *
@@ -1563,6 +1570,8 @@ public class RxImageUtils {
     public static Bitmap compressByScale(Bitmap src, int newWidth, int newHeight, boolean recycle) {
         return scale(src, newWidth, newHeight, recycle);
     }
+
+    /******************************~~~~~~~~~ 下方和压缩有关 ~~~~~~~~~******************************/
 
     /**
      * 按缩放压缩
@@ -1681,7 +1690,6 @@ public class RxImageUtils {
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
     }
 
-
     /**
      * 缩略图工具类，
      * 可以根据本地视频文件源、
@@ -1699,6 +1707,28 @@ public class RxImageUtils {
         return ThumbnailUtils.extractThumbnail(source, width, height);
     }
 
+    /**
+     * 获取bitmap
+     *
+     * @param is 输入流
+     * @return bitmap
+     */
+    public Bitmap getBitmap(InputStream is) {
+        if (is == null) return null;
+        return BitmapFactory.decodeStream(is);
+    }
+
+    /**
+     * 获取bitmap
+     *
+     * @param data   数据
+     * @param offset 偏移量
+     * @return bitmap
+     */
+    public Bitmap getBitmap(byte[] data, int offset) {
+        if (data.length == 0) return null;
+        return BitmapFactory.decodeByteArray(data, offset, data.length);
+    }
 
 
 }
