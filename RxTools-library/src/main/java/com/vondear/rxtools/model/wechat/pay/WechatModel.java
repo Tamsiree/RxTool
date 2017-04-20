@@ -1,4 +1,4 @@
-package com.vondear.rxtools.model.wxpay;
+package com.vondear.rxtools.model.wechat.pay;
 
 /**
  * Created by Administrator on 2017/4/18.

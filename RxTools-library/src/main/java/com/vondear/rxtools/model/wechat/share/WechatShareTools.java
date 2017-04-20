@@ -13,13 +13,19 @@ import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.vondear.rxtools.RxImageUtils;
-import com.vondear.rxtools.model.wxpay.WechatPayTools;
+import com.vondear.rxtools.model.wechat.pay.WechatPayTools;
 
 /**
  * Created by Administrator on 2017/4/20.
  */
 
 public class WechatShareTools {
+
+    /**
+     * 发送到聊天界面——WXSceneSession
+     * 发送到朋友圈——WXSceneTimeline
+     * 添加到微信收藏——WXSceneFavorite
+     */
 
     private static IWXAPI iwxapi;
 

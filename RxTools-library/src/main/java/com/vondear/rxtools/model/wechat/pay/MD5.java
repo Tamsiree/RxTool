@@ -1,4 +1,4 @@
-package com.vondear.rxtools.model.wxpay;
+package com.vondear.rxtools.model.wechat.pay;
 
 import java.security.MessageDigest;
 
