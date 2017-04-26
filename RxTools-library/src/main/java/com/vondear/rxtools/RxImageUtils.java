@@ -33,6 +33,7 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -54,6 +55,7 @@ import java.net.URL;
 
 /**
  * Created by vonde on 2016/1/24.
+ * 图像工具类
  */
 
 public class RxImageUtils {
@@ -1730,5 +1732,23 @@ public class RxImageUtils {
         return BitmapFactory.decodeByteArray(data, offset, data.length);
     }
 
+
+    public static Bitmap zoomImage(Bitmap bgimage, double newWidth, double newHeight) {
+        // 获取到bitmap的宽
+        float width = bgimage.getWidth();
+
+        float height = bgimage.getHeight();
+        //
+        Matrix matrix = new Matrix();
+        // 设置尺寸
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+
+        matrix.postScale(scaleWidth, scaleHeight);
+        Bitmap bitmap = Bitmap.createBitmap(bgimage, 0, 0, (int) width,
+                (int) height, matrix, true);
+        Log.e("tag", bitmap.getHeight() + bitmap.getWidth() + "d");
+        return bitmap;
+    }
 
 }
