@@ -247,10 +247,10 @@ public class RxRegUtils {
                 return errorInfo;
             }
         } else {
-            return "";
+            return "有效";
         }
         // =====================(end)=====================
-        return "";
+        return "有效";
     }
 
     /**
