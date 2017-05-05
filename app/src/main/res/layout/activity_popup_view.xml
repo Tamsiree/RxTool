@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/shadowBlue50"
     tools:context="com.vondear.tools.activity.ActivityPopupView">
 
     <com.vondear.rxtools.view.RxTitle
