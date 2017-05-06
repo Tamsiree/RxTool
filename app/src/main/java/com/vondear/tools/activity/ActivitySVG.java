@@ -1,23 +1,22 @@
 package com.vondear.tools.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.jrummyapps.android.widget.AnimatedSvgView;
 import com.vondear.rxtools.RxActivityUtils;
 import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.tools.R;
-import com.vondear.tools.bean.SVG;
+import com.vondear.tools.bean.ModelSVG;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ActivitySVG extends Activity {
+public class ActivitySVG extends ActivityBase {
 
     @BindView(R.id.animated_svg_view)
     AnimatedSvgView mSvgView;
@@ -32,16 +31,16 @@ public class ActivitySVG extends Activity {
         RxBarUtils.hideStatusBar(this);
         setContentView(R.layout.activity_svg);
         ButterKnife.bind(this);
-        setSvg(SVG.values()[3]);
+        setSvg(ModelSVG.values()[3]);
         CheckUpdate();
     }
 
-    private void setSvg(SVG svg) {
-        mSvgView.setGlyphStrings(svg.glyphs);
-        mSvgView.setFillColors(svg.colors);
-        mSvgView.setViewportSize(svg.width, svg.height);
+    private void setSvg(ModelSVG modelSvg) {
+        mSvgView.setGlyphStrings(modelSvg.glyphs);
+        mSvgView.setFillColors(modelSvg.colors);
+        mSvgView.setViewportSize(modelSvg.width, modelSvg.height);
         mSvgView.setTraceResidueColor(0x32000000);
-        mSvgView.setTraceColors(svg.colors);
+        mSvgView.setTraceColors(modelSvg.colors);
         mSvgView.rebuildGlyphData();
         mSvgView.start();
     }

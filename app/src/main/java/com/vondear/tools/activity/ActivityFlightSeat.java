@@ -1,12 +1,12 @@
 package com.vondear.tools.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxSeatAirplane;
 import com.vondear.tools.R;
 
@@ -14,7 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ActivityFlightSeat extends Activity {
+public class ActivityFlightSeat extends ActivityBase {
 
     @BindView(R.id.fsv)
     RxSeatAirplane mFlightSeatView;

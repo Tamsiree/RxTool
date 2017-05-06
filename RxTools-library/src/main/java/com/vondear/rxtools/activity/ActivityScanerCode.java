@@ -57,7 +57,7 @@ import java.util.Date;
 
 import static com.vondear.rxtools.RxConstants.SP_SCAN_CODE;
 
-public class ActivityScanerCode extends Activity implements SurfaceHolder.Callback {
+public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Callback {
     private final int CHOOSE_PICTURE = 1003;
     private CaptureActivityHandler handler;
     private boolean hasSurface;

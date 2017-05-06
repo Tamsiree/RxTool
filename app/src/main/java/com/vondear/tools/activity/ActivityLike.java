@@ -2,13 +2,13 @@ package com.vondear.tools.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.heart.RxHeartLayout;
 import com.vondear.rxtools.view.likeview.RxShineButton;
 import com.vondear.tools.R;
@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ActivityLike extends AppCompatActivity {
+public class ActivityLike extends ActivityBase {
 
     RxShineButton mRxShineButton;
     RxShineButton porterShapeImageView1;

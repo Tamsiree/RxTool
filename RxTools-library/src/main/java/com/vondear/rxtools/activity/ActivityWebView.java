@@ -1,7 +1,6 @@
 package com.vondear.rxtools.activity;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -29,7 +28,7 @@ import com.vondear.rxtools.RxImageUtils;
 import com.vondear.rxtools.RxKeyboardUtils;
 import com.vondear.rxtools.view.RxTextAutoZoom;
 
-public class ActivityWebView extends Activity {
+public class ActivityWebView extends ActivityBase {
 
     ProgressBar pbWebBase;
     TextView tvTitle;

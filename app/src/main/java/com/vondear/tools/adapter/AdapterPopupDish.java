@@ -11,8 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vondear.tools.R;
-import com.vondear.tools.bean.Dish;
-import com.vondear.tools.bean.ShopCart;
+import com.vondear.tools.bean.ModelDish;
+import com.vondear.tools.bean.ModelShopCart;
 import com.vondear.tools.interfaces.ShopCartInterface;
 
 import java.util.ArrayList;
@@ -23,18 +23,18 @@ import java.util.ArrayList;
 public class AdapterPopupDish extends RecyclerView.Adapter{
 
     private static String TAG = "PopupDishAdapter";
-    private ShopCart shopCart;
+    private ModelShopCart mModelShopCart;
     private Context context;
     private int itemCount;
-    private ArrayList<Dish> dishList;
+    private ArrayList<ModelDish> mModelDishList;
     private ShopCartInterface shopCartImp;
 
-    public AdapterPopupDish(Context context, ShopCart shopCart){
-        this.shopCart = shopCart;
+    public AdapterPopupDish(Context context, ModelShopCart modelShopCart){
+        this.mModelShopCart = modelShopCart;
         this.context = context;
-        this.itemCount = shopCart.getDishAccount();
-        this.dishList = new ArrayList<>();
-        dishList.addAll(shopCart.getShoppingSingleMap().keySet());
+        this.itemCount = modelShopCart.getDishAccount();
+        this.mModelDishList = new ArrayList<>();
+        mModelDishList.addAll(modelShopCart.getShoppingSingleMap().keySet());
         Log.e(TAG, "PopupDishAdapter: "+this.itemCount );
     }
 
@@ -48,17 +48,17 @@ public class AdapterPopupDish extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         DishViewHolder dishholder = (DishViewHolder)holder;
-        final Dish dish = getDishByPosition(position);
-        if(dish!=null) {
-            dishholder.right_dish_name_tv.setText(dish.getDishName());
-            dishholder.right_dish_price_tv.setText(dish.getDishPrice() + "");
-            int num = shopCart.getShoppingSingleMap().get(dish);
+        final ModelDish modelDish = getDishByPosition(position);
+        if(modelDish !=null) {
+            dishholder.right_dish_name_tv.setText(modelDish.getDishName());
+            dishholder.right_dish_price_tv.setText(modelDish.getDishPrice() + "");
+            int num = mModelShopCart.getShoppingSingleMap().get(modelDish);
             dishholder.right_dish_account_tv.setText(num+"");
 
             dishholder.right_dish_add_iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(shopCart.addShoppingSingle(dish)) {
+                    if(mModelShopCart.addShoppingSingle(modelDish)) {
                         notifyItemChanged(position);
                         if(shopCartImp!=null)
                             shopCartImp.add(view,position);
@@ -69,10 +69,10 @@ public class AdapterPopupDish extends RecyclerView.Adapter{
             dishholder.right_dish_remove_iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(shopCart.subShoppingSingle(dish)){
-                        dishList.clear();
-                        dishList.addAll(shopCart.getShoppingSingleMap().keySet());
-                        itemCount = shopCart.getDishAccount();
+                    if(mModelShopCart.subShoppingSingle(modelDish)){
+                        mModelDishList.clear();
+                        mModelDishList.addAll(mModelShopCart.getShoppingSingleMap().keySet());
+                        itemCount = mModelShopCart.getDishAccount();
                         notifyDataSetChanged();
                         if(shopCartImp!=null)
                             shopCartImp.remove(view,position);
@@ -87,8 +87,8 @@ public class AdapterPopupDish extends RecyclerView.Adapter{
         return this.itemCount;
     }
 
-    public Dish getDishByPosition(int position){
-       return dishList.get(position);
+    public ModelDish getDishByPosition(int position){
+       return mModelDishList.get(position);
     }
 
     public ShopCartInterface getShopCartInterface() {

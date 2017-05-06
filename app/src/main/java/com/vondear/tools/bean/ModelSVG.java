@@ -22,7 +22,7 @@ import android.graphics.Color;
 /**
  * Some SVGs to play with
  */
-public enum SVG {
+public enum ModelSVG {
     GOOGLE(
             new String[]{
                     "M142.9,24.2c40.2-13.9,85.3-13.6,125.3,1.1c22.2,8.2,42.5,21,59.9,37.1c-5.8,6.3-12.1,12.2-18.1,18.3 c-11.4,11.4-22.8,22.8-34.2,34.2c-11.3-10.8-25.1-19-40.1-23.6c-17.6-5.3-36.6-6.1-54.6-2.2c-21,4.5-40.5,15.5-55.6,30.9 c-12.2,12.3-21.4,27.5-27,43.9c-20.3-15.8-40.6-31.5-61-47.3C59,73.6,97.6,39.7,142.9,24.2z",
@@ -294,7 +294,7 @@ public enum SVG {
     public final float width;
     public final float height;
 
-    SVG(String[] glyphs, int[] colors, float width, float height) {
+    ModelSVG(String[] glyphs, int[] colors, float width, float height) {
         this.glyphs = glyphs;
         this.colors = colors;
         this.width = width;

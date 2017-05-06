@@ -13,7 +13,7 @@ import com.vondear.rxtools.RxRecyclerViewDivider;
 import com.vondear.rxtools.activity.ActivityCodeTool;
 import com.vondear.tools.R;
 import com.vondear.tools.adapter.AdapterRecyclerViewMain;
-import com.vondear.tools.bean.MainItem;
+import com.vondear.tools.bean.ModelMainItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class ActivityMain extends AppCompatActivity {
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
 
-    private List<MainItem> mData;
+    private List<ModelMainItem> mData;
 
     private int mColumnCount = 3;
 
@@ -44,28 +44,28 @@ public class ActivityMain extends AppCompatActivity {
 
     private void initData() {
         mData = new ArrayList<>();
-        mData.add(new MainItem("RxPhotoUtils操作UZrop裁剪图片", R.drawable.elves_ball, ActivityRxPhoto.class));
-        mData.add(new MainItem("二维码与条形码的扫描与生成", R.drawable.circle_qr_code, ActivityCodeTool.class));
-        mData.add(new MainItem("WebView的封装可播放视频", R.drawable.webpage, com.vondear.rxtools.activity.ActivityWebView.class));
-        mData.add(new MainItem("常用的Dialog展示", R.drawable.icon_dialog, ActivityDialog.class));
-        mData.add(new MainItem("RxTextUtils操作Demo", R.drawable.icon_text, ActivityTextUtils.class));
-        mData.add(new MainItem("进度条的艺术", R.drawable.circle_bar, ActivityProgressBar.class));
-        mData.add(new MainItem("添加购物车控件", R.drawable.shop_cart, ActivityShoppingView.class));
-        mData.add(new MainItem("点赞控件", R.drawable.heart_circle, ActivityLike.class));
-        mData.add(new MainItem("网速控件", R.drawable.net_speed, ActivityNetSpeed.class));
-        mData.add(new MainItem("验证码", R.drawable.circle_captcha, ActivityRxCaptcha.class));
-        mData.add(new MainItem("横向滑动选择控件", R.drawable.bookshelf, ActivityWheelHorizontal.class));
-        mData.add(new MainItem("横向左右自动滚动的ImageView", R.drawable.two_way, ActivityAutoImageView.class));
-        mData.add(new MainItem("SlidingDrawerSingle使用", R.drawable.up_down, ActivitySlidingDrawerSingle.class));
-        mData.add(new MainItem("RxSeekBar", R.drawable.circle_seek, ActivitySeekBar.class));
-        mData.add(new MainItem("登录界面", R.drawable.circle_clound, ActivityLoginAct.class));
-        mData.add(new MainItem("PopupView的使用", R.drawable.bullet, ActivityPopupView.class));
-        mData.add(new MainItem("RxToast的使用", R.drawable.rx_toast, ActivityRxToast.class));
-        mData.add(new MainItem("RunTextView的使用", R.drawable.wrap_text, ActivityRunTextView.class));
-        mData.add(new MainItem("选座控件", R.drawable.seat, ActivitySeat.class));
-        mData.add(new MainItem("银行卡组堆叠控件", R.drawable.credit_card, ActivityCardStack.class));
-        mData.add(new MainItem("联系人侧边快速导航", R.drawable.circle_phone, ActivityContact.class));
-        mData.add(new MainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
+        mData.add(new ModelMainItem("RxPhotoUtils操作UZrop裁剪图片", R.drawable.elves_ball, ActivityRxPhoto.class));
+        mData.add(new ModelMainItem("二维码与条形码的扫描与生成", R.drawable.circle_qr_code, ActivityCodeTool.class));
+        mData.add(new ModelMainItem("WebView的封装可播放视频", R.drawable.webpage, com.vondear.rxtools.activity.ActivityWebView.class));
+        mData.add(new ModelMainItem("常用的Dialog展示", R.drawable.icon_dialog, ActivityDialog.class));
+        mData.add(new ModelMainItem("RxTextUtils操作Demo", R.drawable.icon_text, ActivityTextUtils.class));
+        mData.add(new ModelMainItem("进度条的艺术", R.drawable.circle_bar, ActivityProgressBar.class));
+        mData.add(new ModelMainItem("添加购物车控件", R.drawable.shop_cart, ActivityShoppingView.class));
+        mData.add(new ModelMainItem("点赞控件", R.drawable.heart_circle, ActivityLike.class));
+        mData.add(new ModelMainItem("网速控件", R.drawable.net_speed, ActivityNetSpeed.class));
+        mData.add(new ModelMainItem("验证码", R.drawable.circle_captcha, ActivityRxCaptcha.class));
+        mData.add(new ModelMainItem("横向滑动选择控件", R.drawable.bookshelf, ActivityWheelHorizontal.class));
+        mData.add(new ModelMainItem("横向左右自动滚动的ImageView", R.drawable.two_way, ActivityAutoImageView.class));
+        mData.add(new ModelMainItem("SlidingDrawerSingle使用", R.drawable.up_down, ActivitySlidingDrawerSingle.class));
+        mData.add(new ModelMainItem("RxSeekBar", R.drawable.circle_seek, ActivitySeekBar.class));
+        mData.add(new ModelMainItem("登录界面", R.drawable.circle_clound, ActivityLoginAct.class));
+        mData.add(new ModelMainItem("PopupView的使用", R.drawable.bullet, ActivityPopupView.class));
+        mData.add(new ModelMainItem("RxToast的使用", R.drawable.rx_toast, ActivityRxToast.class));
+        mData.add(new ModelMainItem("RunTextView的使用", R.drawable.wrap_text, ActivityRunTextView.class));
+        mData.add(new ModelMainItem("选座控件", R.drawable.seat, ActivitySeat.class));
+        mData.add(new ModelMainItem("银行卡组堆叠控件", R.drawable.credit_card, ActivityCardStack.class));
+        mData.add(new ModelMainItem("联系人侧边快速导航", R.drawable.circle_phone, ActivityContact.class));
+        mData.add(new ModelMainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
     }
 
     private void initView() {

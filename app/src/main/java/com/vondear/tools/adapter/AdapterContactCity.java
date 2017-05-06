@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vondear.tools.R;
-import com.vondear.tools.bean.ContactCityBean;
+import com.vondear.tools.bean.ModelContactCity;
 
 import java.util.List;
 
@@ -15,19 +15,19 @@ import cc.solart.turbo.BaseTurboAdapter;
 import cc.solart.turbo.BaseViewHolder;
 
 
-public class AdapterContactCity extends BaseTurboAdapter<ContactCityBean, BaseViewHolder> {
+public class AdapterContactCity extends BaseTurboAdapter<ModelContactCity, BaseViewHolder> {
 
     public AdapterContactCity(Context context) {
         super(context);
     }
 
-    public AdapterContactCity(Context context, List<ContactCityBean> data) {
+    public AdapterContactCity(Context context, List<ModelContactCity> data) {
         super(context, data);
     }
 
     @Override
     protected int getDefItemViewType(int position) {
-        ContactCityBean city = getItem(position);
+        ModelContactCity city = getItem(position);
         return city.type;
     }
 
@@ -41,7 +41,7 @@ public class AdapterContactCity extends BaseTurboAdapter<ContactCityBean, BaseVi
 
 
     @Override
-    protected void convert(BaseViewHolder holder, ContactCityBean item) {
+    protected void convert(BaseViewHolder holder, ModelContactCity item) {
         if (holder instanceof CityHolder) {
             ((CityHolder) holder).city_name.setText(item.name);
         }else {

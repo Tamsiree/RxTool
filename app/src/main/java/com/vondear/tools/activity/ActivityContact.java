@@ -11,7 +11,7 @@ import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.sidebar.PinnedHeaderDecoration;
 import com.vondear.rxtools.view.sidebar.WaveSideBarView;
 import com.vondear.tools.adapter.AdapterContactCity;
-import com.vondear.tools.bean.ContactCityBean;
+import com.vondear.tools.bean.ModelContactCity;
 import com.vondear.tools.tools.LetterComparator;
 
 import java.lang.reflect.Type;
@@ -55,10 +55,10 @@ public class ActivityContact extends ActivityBase {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Type listType = new TypeToken<ArrayList<ContactCityBean>>() {
+                Type listType = new TypeToken<ArrayList<ModelContactCity>>() {
                 }.getType();
                 Gson gson = new Gson();
-                final List<ContactCityBean> list = gson.fromJson(ContactCityBean.DATA, listType);
+                final List<ModelContactCity> list = gson.fromJson(ModelContactCity.DATA, listType);
                 Collections.sort(list, new LetterComparator());
                 runOnUiThread(new Runnable() {
                     @Override

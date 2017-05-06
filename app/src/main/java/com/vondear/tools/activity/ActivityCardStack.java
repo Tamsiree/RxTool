@@ -2,16 +2,16 @@ package com.vondear.tools.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.cardstack.RxAdapterAllMoveDownAnimator;
-import com.vondear.rxtools.view.cardstack.RxCardStackView;
 import com.vondear.rxtools.view.cardstack.RxAdapterUpDownAnimator;
 import com.vondear.rxtools.view.cardstack.RxAdapterUpDownStackAnimator;
+import com.vondear.rxtools.view.cardstack.RxCardStackView;
 import com.vondear.tools.R;
 import com.vondear.tools.adapter.TestRxAdapterStack;
 
@@ -20,7 +20,7 @@ import java.util.Arrays;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ActivityCardStack extends AppCompatActivity implements RxCardStackView.ItemExpendListener {
+public class ActivityCardStack extends ActivityBase implements RxCardStackView.ItemExpendListener {
 
     @BindView(R.id.stackview_main)
     RxCardStackView mStackView;

@@ -1,9 +1,8 @@
 package com.vondear.tools.activity;
 
-import android.app.Activity;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -11,12 +10,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxUtils;
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxBarCode;
 import com.vondear.rxtools.view.RxQRCode;
 import com.vondear.tools.R;
 
-public class ActivityCreateQRCode extends Activity implements View.OnClickListener {
+public class ActivityCreateQRCode extends ActivityBase implements View.OnClickListener {
     private LinearLayout ll_back, ll_menu;
     private TextView tv_title;
     private ImageView iv_code;

@@ -1,14 +1,14 @@
 package com.vondear.tools.tools;
 
-import com.vondear.tools.bean.ContactCityBean;
+import com.vondear.tools.bean.ModelContactCity;
 
 import java.util.Comparator;
 
 
-public class LetterComparator implements Comparator<ContactCityBean> {
+public class LetterComparator implements Comparator<ModelContactCity> {
 
     @Override
-    public int compare(ContactCityBean l, ContactCityBean r) {
+    public int compare(ModelContactCity l, ModelContactCity r) {
         if (l == null || r == null) {
             return 0;
         }

@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.vondear.tools.R;
-import com.vondear.tools.bean.MainItem;
+import com.vondear.tools.bean.ModelMainItem;
 import com.vondear.rxtools.RxActivityUtils;
 
 import java.util.List;
@@ -28,9 +28,9 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
 
     private int mScreenWidth, mItemWidth, mItemHeight;
     private Context context;
-    private List<MainItem> mValues;
+    private List<ModelMainItem> mValues;
 
-    public AdapterRecyclerViewMain(List<MainItem> items) {
+    public AdapterRecyclerViewMain(List<ModelMainItem> items) {
         mValues = items;
     }
 
@@ -84,7 +84,7 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
         @BindView(R.id.tv_name)
         TextView tvName;
 
-        public MainItem mItem;
+        public ModelMainItem mItem;
         public final View mView;
 
         public ViewHolder(View view) {

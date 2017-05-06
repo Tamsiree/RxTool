@@ -1,19 +1,19 @@
 package com.vondear.tools.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.vondear.rxtools.RxActivityUtils;
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.tools.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ActivitySeat extends AppCompatActivity {
+public class ActivitySeat extends ActivityBase {
 
     @BindView(R.id.btn_movie)
     Button mBtnMovie;

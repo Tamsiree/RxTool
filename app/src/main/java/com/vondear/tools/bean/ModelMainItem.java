@@ -4,7 +4,7 @@ package com.vondear.tools.bean;
  * Created by vonde on 2016/11/13.
  */
 
-public class MainItem {
+public class ModelMainItem {
 
     private String name;
 
@@ -12,12 +12,12 @@ public class MainItem {
 
     private Class activity;
 
-    public MainItem(String name, int image) {
+    public ModelMainItem(String name, int image) {
         this.name = name;
         this.image = image;
     }
 
-    public MainItem(String name, int image, Class activity) {
+    public ModelMainItem(String name, int image, Class activity) {
         this.name = name;
         this.image = image;
         this.activity = activity;

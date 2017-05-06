@@ -10,9 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vondear.tools.R;
-import com.vondear.tools.bean.Dish;
-import com.vondear.tools.bean.DishMenu;
-import com.vondear.tools.bean.ShopCart;
+import com.vondear.tools.bean.ModelDish;
+import com.vondear.tools.bean.ModelDishMenu;
+import com.vondear.tools.bean.ModelShopCart;
 import com.vondear.tools.interfaces.ShopCartInterface;
 
 import java.util.ArrayList;
@@ -26,29 +26,29 @@ public class AdapterRightDish extends RecyclerView.Adapter {
     private final int HEAD_TYPE = 2;
 
     private Context mContext;
-    private ArrayList<DishMenu> mMenuList;
+    private ArrayList<ModelDishMenu> mMenuList;
     private int mItemCount;
-    private ShopCart shopCart;
+    private ModelShopCart mModelShopCart;
     private ShopCartInterface shopCartImp;
 
-    public AdapterRightDish(Context mContext, ArrayList<DishMenu> mMenuList, ShopCart shopCart){
+    public AdapterRightDish(Context mContext, ArrayList<ModelDishMenu> mMenuList, ModelShopCart modelShopCart){
         this.mContext = mContext;
         this.mMenuList = mMenuList;
         this.mItemCount = mMenuList.size();
-        this.shopCart = shopCart;
-        for(DishMenu menu:mMenuList){
-            mItemCount+=menu.getDishList().size();
+        this.mModelShopCart = modelShopCart;
+        for(ModelDishMenu menu:mMenuList){
+            mItemCount+=menu.getModelDishList().size();
         }
     }
 
     @Override
     public int getItemViewType(int position) {
         int sum=0;
-        for(DishMenu menu:mMenuList){
+        for(ModelDishMenu menu:mMenuList){
             if(position==sum){
                 return MENU_TYPE;
             }
-            sum+=menu.getDishList().size()+1;
+            sum+=menu.getModelDishList().size()+1;
         }
         return DISH_TYPE;
     }
@@ -78,14 +78,14 @@ public class AdapterRightDish extends RecyclerView.Adapter {
             final DishViewHolder dishholder = (DishViewHolder) holder;
             if (dishholder != null) {
 
-                final Dish dish = getDishByPosition(position);
-                dishholder.right_dish_name_tv.setText(dish.getDishName());
-                dishholder.right_dish_price_tv.setText(dish.getDishPrice()+"");
+                final ModelDish modelDish = getDishByPosition(position);
+                dishholder.right_dish_name_tv.setText(modelDish.getDishName());
+                dishholder.right_dish_price_tv.setText(modelDish.getDishPrice()+"");
                 dishholder.right_dish_layout.setContentDescription(position+"");
 
                 int count = 0;
-                if(shopCart.getShoppingSingleMap().containsKey(dish)){
-                    count = shopCart.getShoppingSingleMap().get(dish);
+                if(mModelShopCart.getShoppingSingleMap().containsKey(modelDish)){
+                    count = mModelShopCart.getShoppingSingleMap().get(modelDish);
                 }
                 if(count<=0){
                     dishholder.right_dish_remove_iv.setVisibility(View.GONE);
@@ -98,7 +98,7 @@ public class AdapterRightDish extends RecyclerView.Adapter {
                 dishholder.right_dish_add_iv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(shopCart.addShoppingSingle(dish)) {
+                        if(mModelShopCart.addShoppingSingle(modelDish)) {
                             notifyItemChanged(position);
                             if(shopCartImp!=null)
                                 shopCartImp.add(view,position);
@@ -109,7 +109,7 @@ public class AdapterRightDish extends RecyclerView.Adapter {
                 dishholder.right_dish_remove_iv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(shopCart.subShoppingSingle(dish)){
+                        if(mModelShopCart.subShoppingSingle(modelDish)){
                             notifyItemChanged(position);
                             if(shopCartImp!=null)
                                 shopCartImp.remove(view,position);
@@ -120,37 +120,37 @@ public class AdapterRightDish extends RecyclerView.Adapter {
         }
     }
 
-    public DishMenu getMenuByPosition(int position){
+    public ModelDishMenu getMenuByPosition(int position){
         int sum =0;
-        for(DishMenu menu:mMenuList){
+        for(ModelDishMenu menu:mMenuList){
             if(position==sum){
                 return menu;
             }
-            sum+=menu.getDishList().size()+1;
+            sum+=menu.getModelDishList().size()+1;
         }
         return null;
     }
 
-    public Dish getDishByPosition(int position){
-        for(DishMenu menu:mMenuList){
-            if(position>0 && position<=menu.getDishList().size()){
-                return menu.getDishList().get(position-1);
+    public ModelDish getDishByPosition(int position){
+        for(ModelDishMenu menu:mMenuList){
+            if(position>0 && position<=menu.getModelDishList().size()){
+                return menu.getModelDishList().get(position-1);
             }
             else{
-                position-=menu.getDishList().size()+1;
+                position-=menu.getModelDishList().size()+1;
             }
         }
         return null;
     }
 
-    public DishMenu getMenuOfMenuByPosition(int position){
-        for(DishMenu menu:mMenuList){
+    public ModelDishMenu getMenuOfMenuByPosition(int position){
+        for(ModelDishMenu menu:mMenuList){
             if(position==0)return menu;
-            if(position>0 && position<=menu.getDishList().size()){
+            if(position>0 && position<=menu.getModelDishList().size()){
                 return menu;
             }
             else{
-                position-=menu.getDishList().size()+1;
+                position-=menu.getModelDishList().size()+1;
             }
         }
         return null;

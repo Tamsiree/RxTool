@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vondear.tools.R;
-import com.vondear.tools.bean.DishMenu;
+import com.vondear.tools.bean.ModelDishMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +19,12 @@ import java.util.List;
  */
 public class AdapterLeftMenu extends RecyclerView.Adapter {
     private Context mContext;
-    private ArrayList<DishMenu> mMenuList;
+    private ArrayList<ModelDishMenu> mMenuList;
     private int mSelectedNum;
     private List<onItemSelectedListener> mSelectedListenerList;
 
     public interface onItemSelectedListener{
-        public void onLeftItemSelected(int postion, DishMenu menu);
+        public void onLeftItemSelected(int postion, ModelDishMenu menu);
     }
 
     public void addItemSelectedListener(onItemSelectedListener listener){
@@ -37,7 +37,7 @@ public class AdapterLeftMenu extends RecyclerView.Adapter {
             mSelectedListenerList.remove(listener);
     }
 
-    public AdapterLeftMenu(Context mContext, ArrayList<DishMenu> mMenuList){
+    public AdapterLeftMenu(Context mContext, ArrayList<ModelDishMenu> mMenuList){
         this.mContext = mContext;
         this.mMenuList = mMenuList;
         this.mSelectedNum = -1;
@@ -55,9 +55,9 @@ public class AdapterLeftMenu extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        DishMenu dishMenu = mMenuList.get(position);
+        ModelDishMenu modelDishMenu = mMenuList.get(position);
         LeftMenuViewHolder viewHolder = (LeftMenuViewHolder)holder;
-        viewHolder.menuName.setText(dishMenu.getMenuName());
+        viewHolder.menuName.setText(modelDishMenu.getMenuName());
         if(mSelectedNum==position){
             viewHolder.menuLayout.setSelected(true);
         }else{

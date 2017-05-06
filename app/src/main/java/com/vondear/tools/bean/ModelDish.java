@@ -3,14 +3,14 @@ package com.vondear.tools.bean;
 /**
  * Created by cheng on 16-11-10.
  */
-public class Dish {
+public class ModelDish {
 
     private String dishName;
     private double dishPrice;
     private int dishAmount;
     private int dishRemain;
 
-    public Dish(String dishName, double dishPrice, int dishAmount){
+    public ModelDish(String dishName, double dishPrice, int dishAmount){
         this.dishName = dishName;
         this.dishPrice = dishPrice;
         this.dishAmount = dishAmount;
@@ -59,10 +59,10 @@ public class Dish {
     public boolean equals(Object obj) {
         if(obj==this)return true;
 
-        return obj instanceof Dish &&
-                this.dishName.equals(((Dish)obj).dishName) &&
-                this.dishPrice ==  ((Dish)obj).dishPrice &&
-                this.dishAmount == ((Dish)obj).dishAmount &&
-                this.dishRemain == ((Dish)obj).dishRemain;
+        return obj instanceof ModelDish &&
+                this.dishName.equals(((ModelDish)obj).dishName) &&
+                this.dishPrice ==  ((ModelDish)obj).dishPrice &&
+                this.dishAmount == ((ModelDish)obj).dishAmount &&
+                this.dishRemain == ((ModelDish)obj).dishRemain;
     }
 }

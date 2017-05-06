@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.graphics.PointF;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,32 +19,33 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.tools.R;
-import com.vondear.tools.view.RxFakeAddImageView;
-import com.vondear.tools.view.RxPointFTypeEvaluator;
-import com.vondear.tools.view.RxDialogShopCart;
 import com.vondear.tools.adapter.AdapterLeftMenu;
 import com.vondear.tools.adapter.AdapterRightDish;
-import com.vondear.tools.bean.Dish;
-import com.vondear.tools.bean.DishMenu;
-import com.vondear.tools.bean.ShopCart;
+import com.vondear.tools.bean.ModelDish;
+import com.vondear.tools.bean.ModelDishMenu;
+import com.vondear.tools.bean.ModelShopCart;
 import com.vondear.tools.interfaces.ShopCartInterface;
+import com.vondear.tools.view.RxDialogShopCart;
+import com.vondear.tools.view.RxFakeAddImageView;
+import com.vondear.tools.view.RxPointFTypeEvaluator;
 
 import java.util.ArrayList;
 
-public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.onItemSelectedListener,ShopCartInterface,RxDialogShopCart.ShopCartDialogImp{
+public class ActivityELMe extends ActivityBase implements AdapterLeftMenu.onItemSelectedListener,ShopCartInterface,RxDialogShopCart.ShopCartDialogImp{
     private final static String TAG = "MainActivity";
     private RecyclerView leftMenu;//左侧菜单栏
     private RecyclerView rightMenu;//右侧菜单栏
     private TextView headerView;
     private LinearLayout headerLayout;//右侧菜单栏最上面的菜单
     private LinearLayout bottomLayout;
-    private DishMenu headMenu;
+    private ModelDishMenu headMenu;
     private AdapterLeftMenu leftAdapter;
     private AdapterRightDish rightAdapter;
-    private ArrayList<DishMenu> dishMenuList;//数据源
+    private ArrayList<ModelDishMenu> mModelDishMenuList;//数据源
     private boolean leftClickType = false;//左侧菜单点击引发的右侧联动
-    private ShopCart shopCart;
+    private ModelShopCart mModelShopCart;
     //    private RxFakeAddImageView fakeAddImageView;
     private ImageView shoppingCartView;
     private FrameLayout shopingCartLayout;
@@ -98,7 +98,7 @@ public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.o
                     underView = rightMenu.findChildViewUnder(headerLayout.getX(),0);
                 if(underView!=null && underView.getContentDescription()!=null ){
                     int position = Integer.parseInt(underView.getContentDescription().toString());
-                    DishMenu menu = rightAdapter.getMenuOfMenuByPosition(position);
+                    ModelDishMenu menu = rightAdapter.getMenuOfMenuByPosition(position);
 
                     if(leftClickType || !menu.getMenuName().equals(headMenu.getMenuName())) {
                         if (dy> 0 && headerLayout.getTranslationY()<=1 && headerLayout.getTranslationY()>= -1 * headerLayout.getMeasuredHeight()*4/5 && !leftClickType) {// underView.getTop()>9
@@ -116,8 +116,8 @@ public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.o
                             headerLayout.setTranslationY(0);
                             headMenu = menu;
                             headerView.setText(headMenu.getMenuName());
-                            for (int i = 0; i < dishMenuList.size(); i++) {
-                                if (dishMenuList.get(i) == headMenu) {
+                            for (int i = 0; i < mModelDishMenuList.size(); i++) {
+                                if (mModelDishMenuList.get(i) == headMenu) {
                                     leftAdapter.setSelectedNum(i);
                                     break;
                                 }
@@ -139,63 +139,63 @@ public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.o
     }
 
     private void initData(){
-        shopCart = new ShopCart();
-        dishMenuList = new ArrayList<>();
-        ArrayList<Dish> dishs1 = new ArrayList<>();
-        dishs1.add(new Dish("面包",1.0,10));
-        dishs1.add(new Dish("蛋挞",1.0,10));
-        dishs1.add(new Dish("牛奶",1.0,10));
-        dishs1.add(new Dish("肠粉",1.0,10));
-        dishs1.add(new Dish("绿茶饼",1.0,10));
-        dishs1.add(new Dish("花卷",1.0,10));
-        dishs1.add(new Dish("包子",1.0,10));
-        DishMenu breakfast = new DishMenu("早点",dishs1);
+        mModelShopCart = new ModelShopCart();
+        mModelDishMenuList = new ArrayList<>();
+        ArrayList<ModelDish> dishs1 = new ArrayList<>();
+        dishs1.add(new ModelDish("面包",1.0,10));
+        dishs1.add(new ModelDish("蛋挞",1.0,10));
+        dishs1.add(new ModelDish("牛奶",1.0,10));
+        dishs1.add(new ModelDish("肠粉",1.0,10));
+        dishs1.add(new ModelDish("绿茶饼",1.0,10));
+        dishs1.add(new ModelDish("花卷",1.0,10));
+        dishs1.add(new ModelDish("包子",1.0,10));
+        ModelDishMenu breakfast = new ModelDishMenu("早点",dishs1);
 
-        ArrayList<Dish> dishs2 = new ArrayList<>();
-        dishs2.add(new Dish("粥",1.0,10));
-        dishs2.add(new Dish("炒饭",1.0,10));
-        dishs2.add(new Dish("炒米粉",1.0,10));
-        dishs2.add(new Dish("炒粿条",1.0,10));
-        dishs2.add(new Dish("炒牛河",1.0,10));
-        dishs2.add(new Dish("炒菜",1.0,10));
-        DishMenu launch = new DishMenu("午餐",dishs2);
+        ArrayList<ModelDish> dishs2 = new ArrayList<>();
+        dishs2.add(new ModelDish("粥",1.0,10));
+        dishs2.add(new ModelDish("炒饭",1.0,10));
+        dishs2.add(new ModelDish("炒米粉",1.0,10));
+        dishs2.add(new ModelDish("炒粿条",1.0,10));
+        dishs2.add(new ModelDish("炒牛河",1.0,10));
+        dishs2.add(new ModelDish("炒菜",1.0,10));
+        ModelDishMenu launch = new ModelDishMenu("午餐",dishs2);
 
-        ArrayList<Dish> dishs3 = new ArrayList<>();
-        dishs3.add(new Dish("淋菜",1.0,10));
-        dishs3.add(new Dish("川菜",1.0,10));
-        dishs3.add(new Dish("湘菜",1.0,10));
-        dishs3.add(new Dish("粤菜",1.0,10));
-        dishs3.add(new Dish("赣菜",1.0,10));
-        dishs3.add(new Dish("东北菜",1.0,10));
-        DishMenu evening = new DishMenu("晚餐",dishs3);
+        ArrayList<ModelDish> dishs3 = new ArrayList<>();
+        dishs3.add(new ModelDish("淋菜",1.0,10));
+        dishs3.add(new ModelDish("川菜",1.0,10));
+        dishs3.add(new ModelDish("湘菜",1.0,10));
+        dishs3.add(new ModelDish("粤菜",1.0,10));
+        dishs3.add(new ModelDish("赣菜",1.0,10));
+        dishs3.add(new ModelDish("东北菜",1.0,10));
+        ModelDishMenu evening = new ModelDishMenu("晚餐",dishs3);
 
-        ArrayList<Dish> dishs4 = new ArrayList<>();
-        dishs4.add(new Dish("淋菜",1.0,10));
-        dishs4.add(new Dish("川菜",1.0,10));
-        dishs4.add(new Dish("湘菜",1.0,10));
-        dishs4.add(new Dish("湘菜",1.0,10));
-        dishs4.add(new Dish("湘菜1",1.0,10));
-        dishs4.add(new Dish("湘菜2",1.0,10));
-        dishs4.add(new Dish("湘菜3",1.0,10));
-        dishs4.add(new Dish("湘菜4",1.0,10));
-        dishs4.add(new Dish("湘菜5",1.0,10));
-        dishs4.add(new Dish("湘菜6",1.0,10));
-        dishs4.add(new Dish("湘菜7",1.0,10));
-        dishs4.add(new Dish("湘菜8",1.0,10));
-        dishs4.add(new Dish("粤菜",1.0,10));
-        dishs4.add(new Dish("赣菜",1.0,10));
-        dishs4.add(new Dish("东北菜",1.0,10));
-        DishMenu menu1 = new DishMenu("夜宵",dishs4);
+        ArrayList<ModelDish> dishs4 = new ArrayList<>();
+        dishs4.add(new ModelDish("淋菜",1.0,10));
+        dishs4.add(new ModelDish("川菜",1.0,10));
+        dishs4.add(new ModelDish("湘菜",1.0,10));
+        dishs4.add(new ModelDish("湘菜",1.0,10));
+        dishs4.add(new ModelDish("湘菜1",1.0,10));
+        dishs4.add(new ModelDish("湘菜2",1.0,10));
+        dishs4.add(new ModelDish("湘菜3",1.0,10));
+        dishs4.add(new ModelDish("湘菜4",1.0,10));
+        dishs4.add(new ModelDish("湘菜5",1.0,10));
+        dishs4.add(new ModelDish("湘菜6",1.0,10));
+        dishs4.add(new ModelDish("湘菜7",1.0,10));
+        dishs4.add(new ModelDish("湘菜8",1.0,10));
+        dishs4.add(new ModelDish("粤菜",1.0,10));
+        dishs4.add(new ModelDish("赣菜",1.0,10));
+        dishs4.add(new ModelDish("东北菜",1.0,10));
+        ModelDishMenu menu1 = new ModelDishMenu("夜宵",dishs4);
 
-        dishMenuList.add(breakfast);
-        dishMenuList.add(launch);
-        dishMenuList.add(evening);
-        dishMenuList.add(menu1);
+        mModelDishMenuList.add(breakfast);
+        mModelDishMenuList.add(launch);
+        mModelDishMenuList.add(evening);
+        mModelDishMenuList.add(menu1);
     }
 
     private void initAdapter(){
-        leftAdapter = new AdapterLeftMenu(this,dishMenuList);
-        rightAdapter = new AdapterRightDish(this,dishMenuList,shopCart);
+        leftAdapter = new AdapterLeftMenu(this, mModelDishMenuList);
+        rightAdapter = new AdapterRightDish(this, mModelDishMenuList, mModelShopCart);
         rightMenu.setAdapter(rightAdapter);
         leftMenu.setAdapter(leftAdapter);
         leftAdapter.addItemSelectedListener(this);
@@ -220,11 +220,11 @@ public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.o
         View underView = rightMenu.findChildViewUnder(headerView.getX(),0);
         if(underView!=null && underView.getContentDescription()!=null){
             int position = Integer.parseInt(underView.getContentDescription().toString());
-            DishMenu menu = rightAdapter.getMenuOfMenuByPosition(position+1);
+            ModelDishMenu menu = rightAdapter.getMenuOfMenuByPosition(position+1);
             headMenu = menu;
             headerView.setText(headMenu.getMenuName());
-            for (int i = 0; i < dishMenuList.size(); i++) {
-                if (dishMenuList.get(i) == headMenu) {
+            for (int i = 0; i < mModelDishMenuList.size(); i++) {
+                if (mModelDishMenuList.get(i) == headMenu) {
                     leftAdapter.setSelectedNum(i);
                     break;
                 }
@@ -233,10 +233,10 @@ public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.o
     }
 
     @Override
-    public void onLeftItemSelected(int position, DishMenu menu) {
+    public void onLeftItemSelected(int position, ModelDishMenu menu) {
         int sum=0;
         for(int i = 0;i<position;i++){
-            sum+=dishMenuList.get(i).getDishList().size()+1;
+            sum+= mModelDishMenuList.get(i).getModelDishList().size()+1;
         }
         LinearLayoutManager layoutManager = (LinearLayoutManager) rightMenu.getLayoutManager();
         layoutManager.scrollToPositionWithOffset(sum,0);
@@ -312,11 +312,11 @@ public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.o
     }
 
     private void showTotalPrice(){
-        if(shopCart!=null && shopCart.getShoppingTotalPrice()>0){
+        if(mModelShopCart !=null && mModelShopCart.getShoppingTotalPrice()>0){
             totalPriceTextView.setVisibility(View.VISIBLE);
-            totalPriceTextView.setText("¥ "+shopCart.getShoppingTotalPrice());
+            totalPriceTextView.setText("¥ "+ mModelShopCart.getShoppingTotalPrice());
             totalPriceNumTextView.setVisibility(View.VISIBLE);
-            totalPriceNumTextView.setText(""+shopCart.getShoppingAccount());
+            totalPriceNumTextView.setText(""+ mModelShopCart.getShoppingAccount());
 
         }else {
             totalPriceTextView.setVisibility(View.GONE);
@@ -325,8 +325,8 @@ public class ActivityELMe extends AppCompatActivity implements AdapterLeftMenu.o
     }
 
     private void showCart(View view) {
-        if(shopCart!=null && shopCart.getShoppingAccount()>0){
-            RxDialogShopCart dialog = new RxDialogShopCart(this,shopCart,R.style.cartdialog);
+        if(mModelShopCart !=null && mModelShopCart.getShoppingAccount()>0){
+            RxDialogShopCart dialog = new RxDialogShopCart(this, mModelShopCart,R.style.cartdialog);
             Window window = dialog.getWindow();
             dialog.setShopCartDialogImp(this);
             dialog.setCanceledOnTouchOutside(true);

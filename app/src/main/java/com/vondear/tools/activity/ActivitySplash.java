@@ -1,6 +1,5 @@
 package com.vondear.tools.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +11,13 @@ import android.widget.TextView;
 
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxDeviceUtils;
+import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogSureCancel;
 import com.vondear.tools.R;
 
 
-public class ActivitySplash extends Activity {
+public class ActivitySplash extends ActivityBase {
 
     private TextView tv_splash_version;
     private TextView tv_update_info;

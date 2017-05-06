@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.vondear.tools.R;
 import com.vondear.tools.adapter.AdapterPopupDish;
-import com.vondear.tools.bean.ShopCart;
+import com.vondear.tools.bean.ModelShopCart;
 import com.vondear.tools.interfaces.ShopCartInterface;
 
 
@@ -26,16 +26,16 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
 
     private LinearLayout linearLayout,bottomLayout,clearLayout;
     private FrameLayout shopingcartLayout;
-    private ShopCart shopCart;
+    private ModelShopCart mModelShopCart;
     private TextView totalPriceTextView;
     private TextView totalPriceNumTextView;
     private RecyclerView recyclerView;
     private AdapterPopupDish dishAdapter;
     private ShopCartDialogImp shopCartDialogImp;
 
-    public RxDialogShopCart(Context context, ShopCart shopCart, int themeResId) {
+    public RxDialogShopCart(Context context, ModelShopCart modelShopCart, int themeResId) {
         super(context,themeResId);
-        this.shopCart = shopCart;
+        this.mModelShopCart = modelShopCart;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
         bottomLayout.setOnClickListener(this);
         clearLayout.setOnClickListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        dishAdapter = new AdapterPopupDish(getContext(),shopCart);
+        dishAdapter = new AdapterPopupDish(getContext(), mModelShopCart);
         recyclerView.setAdapter(dishAdapter);
         dishAdapter.setShopCartInterface(this);
         showTotalPrice();
@@ -71,11 +71,11 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
     }
 
     private void showTotalPrice(){
-        if(shopCart!=null && shopCart.getShoppingTotalPrice()>0){
+        if(mModelShopCart !=null && mModelShopCart.getShoppingTotalPrice()>0){
             totalPriceTextView.setVisibility(View.VISIBLE);
-            totalPriceTextView.setText("¥ "+shopCart.getShoppingTotalPrice());
+            totalPriceTextView.setText("¥ "+ mModelShopCart.getShoppingTotalPrice());
             totalPriceNumTextView.setVisibility(View.VISIBLE);
-            totalPriceNumTextView.setText(""+shopCart.getShoppingAccount());
+            totalPriceNumTextView.setText(""+ mModelShopCart.getShoppingAccount());
 
         }else {
             totalPriceTextView.setVisibility(View.GONE);
@@ -145,7 +145,7 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
     @Override
     public void remove(View view, int postion) {
         showTotalPrice();
-        if(shopCart.getShoppingAccount()==0){
+        if(mModelShopCart.getShoppingAccount()==0){
             this.dismiss();
         }
     }
@@ -163,9 +163,9 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
     }
 
     public void clear(){
-        shopCart.clear();
+        mModelShopCart.clear();
         showTotalPrice();
-        if(shopCart.getShoppingAccount()==0){
+        if(mModelShopCart.getShoppingAccount()==0){
             this.dismiss();
         }
     }
