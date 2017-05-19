@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vondear.rxtools.RxAnimationUtils;
+import com.vondear.rxtools.RxKeyboardUtils;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.activity.AndroidBug5497Workaround;
 import com.vondear.tools.R;
@@ -172,6 +173,13 @@ public class ActivityLoginAct extends ActivityBase {
                     }
                     mService.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+
+        mBtnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RxKeyboardUtils.hideSoftInput(mContext);
             }
         });
     }
