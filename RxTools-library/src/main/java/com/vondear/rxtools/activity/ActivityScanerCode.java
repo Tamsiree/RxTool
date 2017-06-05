@@ -26,15 +26,13 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.vondear.rxtools.R;
+import com.vondear.rxtools.RxAnimationUtils;
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.RxDataUtils;
 import com.vondear.rxtools.RxSPUtils;
@@ -145,9 +143,10 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
                 // RxActivityUtils.skipActivity(ActivityScanerCode.this, ActivityCreateQRCode.class);
             }
         });
-        //请求Camera权限
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        //请求Camera权限 与 文件读写 权限
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
 
         rxDialogSure = new RxDialogSure(context);//提示弹窗
@@ -156,12 +155,7 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
 
     private void initScanerAnimation() {
         ImageView mQrLineView = (ImageView) findViewById(R.id.capture_scan_line);
-        ScaleAnimation animation = new ScaleAnimation(1.0f, 1.0f, 0.0f, 1.0f);
-        animation.setRepeatCount(-1);
-        animation.setRepeatMode(Animation.RESTART);
-        animation.setInterpolator(new LinearInterpolator());
-        animation.setDuration(1200);
-        mQrLineView.startAnimation(animation);
+        RxAnimationUtils.ScaleUpDowm(mQrLineView);
     }
 
     public int getX() {
