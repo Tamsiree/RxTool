@@ -146,8 +146,8 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
             }
         });
         //请求Camera权限
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA}, 1);
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
 
         rxDialogSure = new RxDialogSure(context);//提示弹窗
@@ -367,8 +367,8 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
         }
         File myCaptureFile = new File(ALBUM_PATH + fileName);
         path = myCaptureFile.getAbsolutePath();
-        BufferedOutputStream bos = new BufferedOutputStream(
-                new FileOutputStream(myCaptureFile));
+        FileOutputStream fileOutputStream = new FileOutputStream(myCaptureFile);
+        BufferedOutputStream bos = new BufferedOutputStream(fileOutputStream);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         int options = 100;
@@ -429,7 +429,7 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
 
         this.mResult = result;
         Log.v("二维码/条形码 扫描结果", result);
-
+        RxToast.success(result);
         dialogShow(result);
 
     }
