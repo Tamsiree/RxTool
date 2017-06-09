@@ -51,7 +51,7 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new ModelMainItem("常用的Dialog展示", R.drawable.icon_dialog, ActivityDialog.class));
         mData.add(new ModelMainItem("RxTextUtils操作Demo", R.drawable.icon_text, ActivityTextUtils.class));
         mData.add(new ModelMainItem("进度条的艺术", R.drawable.circle_bar, ActivityProgressBar.class));
-        mData.add(new ModelMainItem("加载的艺术", R.drawable.circle_bar, ActivityLoading.class));
+        mData.add(new ModelMainItem("加载的艺术", R.drawable.circle_loading_icon, ActivityLoading.class));
         mData.add(new ModelMainItem("添加购物车控件", R.drawable.shop_cart, ActivityShoppingView.class));
         mData.add(new ModelMainItem("点赞控件", R.drawable.heart_circle, ActivityLike.class));
         mData.add(new ModelMainItem("网速控件", R.drawable.net_speed, ActivityNetSpeed.class));
