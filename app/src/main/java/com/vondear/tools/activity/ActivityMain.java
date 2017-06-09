@@ -23,14 +23,15 @@ import butterknife.ButterKnife;
 
 public class ActivityMain extends AppCompatActivity {
 
+    //双击返回键 退出
+    //----------------------------------------------------------------------------------------------
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
-
     private List<ModelMainItem> mData;
-
     private int mColumnCount = 3;
-
     private Context context;
+    private long mBackPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +82,6 @@ public class ActivityMain extends AppCompatActivity {
 
         recyclerview.setAdapter(recyclerViewMain);
     }
-
-
-    //双击返回键 退出
-    //----------------------------------------------------------------------------------------------
-    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
-    private long mBackPressed;
 
     @Override
     public void onBackPressed() {
