@@ -6,6 +6,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
@@ -150,4 +151,17 @@ public class RxAnimationUtils {
         view.startAnimation(animation);
     }
 
+    public static void animateHeight(int start, int end, final View view){
+        ValueAnimator valueAnimator = ValueAnimator.ofInt(start,end);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int value = (int) animation.getAnimatedValue();//根据时间因子的变化系数进行设置高度
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                layoutParams.height = value;
+                view.setLayoutParams(layoutParams);//设置高度
+            }
+        });
+        valueAnimator.start();
+    }
 }

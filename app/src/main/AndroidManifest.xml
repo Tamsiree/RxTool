@@ -66,6 +66,10 @@
         </activity>
         <activity android:name=".activity.ActivityLoginAct">
         </activity>
+        <activity android:name=".activity.ActivityLoading">
+        </activity>
+        <activity android:name=".activity.ActivityLoadingDetail">
+        </activity>
     </application>
 
 </manifest>

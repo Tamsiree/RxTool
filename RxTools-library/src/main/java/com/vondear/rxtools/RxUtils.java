@@ -8,6 +8,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.vondear.rxtools.view.RxToast;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -156,5 +158,15 @@ public class RxUtils {
      */
     public static final int getResIdByName(Context context,String name,String defType) {
         return context.getResources().getIdentifier("ic_launcher", "drawable", context.getPackageName());
+    }
+
+    private static long mExitTime;
+    public static boolean doubleClickExit() {
+        if ((System.currentTimeMillis() - mExitTime) > 2000) {
+            RxToast.normal("再按一次退出");
+            mExitTime = System.currentTimeMillis();
+            return false;
+        }
+        return true;
     }
 }
