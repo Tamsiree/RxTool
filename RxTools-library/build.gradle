@@ -34,7 +34,7 @@ dependencies {
 
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-    compile 'com.lzy.net:okgo:3.0.1'
+    compile 'com.lzy.net:okgo:2.1.4'
     compile 'com.google.code.gson:gson:2.8.1'
     compile 'com.orhanobut:logger:2.1.1'
 
