@@ -4,7 +4,7 @@ apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '25.0.3'
 
     defaultConfig {
         minSdkVersion 14
@@ -34,12 +34,12 @@ dependencies {
 
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-    compile 'com.lzy.net:okgo:2.1.4'
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.orhanobut:logger:1.15'
+    compile 'com.lzy.net:okgo:3.0.1'
+    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.orhanobut:logger:2.1.1'
 
-    compile 'com.google.android:flexbox:0.2.6'
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    compile 'com.google.android:flexbox:0.2.7'
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:latest.integration'
 
     compile files('src/main/libs/zbardecoder.jar')
     compile files('src/main/libs/zxing.jar')
