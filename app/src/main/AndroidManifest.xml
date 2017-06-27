@@ -70,6 +70,8 @@
         </activity>
         <activity android:name=".activity.ActivityLoadingDetail">
         </activity>
+        <activity android:name=".activity.ActivityRxScaleImageView">
+        </activity>
     </application>
 
 </manifest>

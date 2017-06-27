@@ -49,6 +49,7 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new ModelMainItem("二维码与条形码的扫描与生成", R.drawable.circle_qr_code, ActivityCodeTool.class));
         mData.add(new ModelMainItem("WebView的封装可播放视频", R.drawable.webpage, com.vondear.rxtools.activity.ActivityWebView.class));
         mData.add(new ModelMainItem("常用的Dialog展示", R.drawable.icon_dialog, ActivityDialog.class));
+        mData.add(new ModelMainItem("图片的缩放艺术", R.drawable.circle_scale_icon, ActivityRxScaleImageView.class));
         mData.add(new ModelMainItem("RxTextUtils操作Demo", R.drawable.icon_text, ActivityTextUtils.class));
         mData.add(new ModelMainItem("进度条的艺术", R.drawable.circle_bar, ActivityProgressBar.class));
         mData.add(new ModelMainItem("加载的艺术", R.drawable.circle_loading_icon, ActivityLoading.class));
@@ -67,6 +68,7 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new ModelMainItem("选座控件", R.drawable.seat, ActivitySeat.class));
         mData.add(new ModelMainItem("银行卡组堆叠控件", R.drawable.credit_card, ActivityCardStack.class));
         mData.add(new ModelMainItem("联系人侧边快速导航", R.drawable.circle_phone, ActivityContact.class));
+        mData.add(new ModelMainItem("GPS原生定位", R.drawable.circle_gps_icon, ActivityLocation.class));
         mData.add(new ModelMainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
     }
 

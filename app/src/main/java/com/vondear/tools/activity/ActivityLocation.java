@@ -1,29 +1,44 @@
 package com.vondear.tools.activity;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.IBinder;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.vondear.rxtools.RxLocationUtils;
 import com.vondear.rxtools.activity.ActivityBase;
-import com.vondear.rxtools.service.ServiceLocation;
 import com.vondear.tools.R;
 
-public class ActivityLocation extends ActivityBase {//原生的定位 不好用 因为调用的是Google地图，然而Google被墙，所以你懂的！
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    private TextView tvAboutLocation;
-    private ServiceLocation mLocationService;
+public class ActivityLocation extends ActivityBase implements LocationListener {//原生的定位 需要手机设备GPS 很好
+
+    @BindView(R.id.tv_about_location)
+    TextView mTvAboutLocation;
+    @BindView(R.id.layer_change_btn)
+    LinearLayout mLayerChangeBtn;
+    private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
-        tvAboutLocation = (TextView) findViewById(R.id.tv_about_location);
+        ButterKnife.bind(this);
 
-        tvAboutLocation.setText("lastLatitude: unknown"
+        initLocation();
+        gpsCheck();
+
+
+        mTvAboutLocation.setText("lastLatitude: unknown"
                 + "\nlastLongitude: unknown"
                 + "\nlatitude: unknown"
                 + "\nlongitude: unknown"
@@ -32,42 +47,64 @@ public class ActivityLocation extends ActivityBase {//原生的定位 不好用 
                 + "\ngetStreet: unknown"
         );
 
-        bindService(new Intent(this, ServiceLocation.class), conn, Context.BIND_AUTO_CREATE);
+    }
+
+    private void initLocation() {
+        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+
+    }
+
+    //----------------------------------------------------------------------------------------------检测GPS是否已打开 start
+    private void gpsCheck() {
+        if (!RxLocationUtils.isGpsEnabled(this)) {
+            MaterialDialog.Builder builder = new MaterialDialog.Builder(this);
+            MaterialDialog materialDialog = builder.title("GPS未打开").content("您需要在系统设置中打开GPS方可采集数据").positiveText("去设置")
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            RxLocationUtils.openGpsSettings(mContext);
+                        }
+                    }).build();
+            materialDialog.setCanceledOnTouchOutside(false);
+            materialDialog.setCancelable(false);
+            materialDialog.show();
+        } else {
+            getLocation();
+        }
+    }
+    //==============================================================================================检测GPS是否已打开 end
+
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(mContext, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            return;
+        }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0, this);
+    }
+
+
+    @Override
+    public void onLocationChanged(Location location) {
+        mTvAboutLocation.setText("经度: " + RxLocationUtils.gpsToDegree(location.getLongitude()) +
+                "\n纬度: " + RxLocationUtils.gpsToDegree(location.getLatitude()) +
+                "\n精度: " + location.getAccuracy() +
+                "\n海拔: " + location.getAltitude() +
+                "\n方位: " + location.getBearing() +
+                "\n速度: " + location.getSpeed());
     }
 
     @Override
-    protected void onDestroy() {
-        unbindService(conn);
-        super.onDestroy();
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
     }
 
-    ServiceConnection conn = new ServiceConnection() {
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
+    @Override
+    public void onProviderEnabled(String provider) {
 
-        }
+    }
 
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            mLocationService = ((ServiceLocation.LocationBinder) service).getService();
-            mLocationService.setOnGetLocationListener(new ServiceLocation.OnGetLocationListener() {
-                @Override
-                public void getLocation(final String lastLatitude, final String lastLongitude, final String latitude, final String longitude, final String country, final String locality, final String street) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            tvAboutLocation.setText("lastLatitude: " + lastLatitude +
-                                    "\nlastLongitude: " + lastLongitude +
-                                    "\nlatitude: " + latitude +
-                                    "\nlongitude: " + longitude +
-                                    "\ngetCountryName: " + country +
-                                    "\ngetLocality: " + locality +
-                                    "\ngetStreet: " + street
-                            );
-                        }
-                    });
-                }
-            });
-        }
-    };
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
 }

@@ -8,8 +8,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.vondear.rxtools.view.RxToast;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -43,11 +41,6 @@ public class RxUtils {
         throw new NullPointerException("请先调用init()方法");
     }
 
-    //----------------------------------------------------------------------------------------------延时任务封装 start
-    public interface DelayListener {
-        void doSomething();
-    }
-
     public static void delayToDo(final DelayListener delayListener, long delayTime) {
         new Handler().postDelayed(new Runnable() {
             public void run() {
@@ -56,7 +49,6 @@ public class RxUtils {
             }
         }, delayTime);
     }
-    //==============================================================================================延时任务封装 end
 
     /**
      * 倒计时
@@ -83,6 +75,7 @@ public class RxUtils {
         };
         timer.start();
     }
+    //==============================================================================================延时任务封装 end
 
     /**
      * 手动计算出listView的高度，但是不再具有滚动效果
@@ -110,8 +103,6 @@ public class RxUtils {
         listView.setLayoutParams(params);
     }
 
-    //---------------------------------------------MD5加密-------------------------------------------
-
     /**
      * 生成MD5加密32位字符串
      *
@@ -128,6 +119,8 @@ public class RxUtils {
         }
     }
 
+    //---------------------------------------------MD5加密-------------------------------------------
+
     // MD5内部算法---------------不能修改!
     private static String bytesToHexString(byte[] bytes) {
         // http://stackoverflow.com/questions/332079
@@ -141,7 +134,6 @@ public class RxUtils {
         }
         return sb.toString();
     }
-    //============================================MD5加密============================================
 
     /**
      * 根据资源名称获取资源 id
@@ -159,14 +151,10 @@ public class RxUtils {
     public static final int getResIdByName(Context context,String name,String defType) {
         return context.getResources().getIdentifier("ic_launcher", "drawable", context.getPackageName());
     }
+    //============================================MD5加密============================================
 
-    private static long mExitTime;
-    public static boolean doubleClickExit() {
-        if ((System.currentTimeMillis() - mExitTime) > 2000) {
-            RxToast.normal("再按一次退出");
-            mExitTime = System.currentTimeMillis();
-            return false;
-        }
-        return true;
+    //----------------------------------------------------------------------------------------------延时任务封装 start
+    public interface DelayListener {
+        void doSomething();
     }
 }
