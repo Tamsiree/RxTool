@@ -42,7 +42,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.1'//gson json工具类 google解析Json的库
     compile 'com.orhanobut:logger:2.1.1'//Log日志格式美化包
 
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:latest.integration'//微信登录，支付，分享包
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.3.4'//微信登录，支付，分享包
 
     compile files('src/main/libs/alipaySdk-20170309.jar')//支付宝 支付包
     compile files('src/main/libs/zbardecoder.jar')//二维码解析
