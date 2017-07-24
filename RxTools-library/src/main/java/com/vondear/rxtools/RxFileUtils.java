@@ -886,7 +886,7 @@ public class RxFileUtils {
      * @param isMove      是否移动
      * @return {@code true}: 复制或移动成功<br>{@code false}: 复制或移动失败
      */
-    private static boolean copyOrMoveDir(String srcDirPath, String destDirPath, boolean isMove) {
+    public static boolean copyOrMoveDir(String srcDirPath, String destDirPath, boolean isMove) {
         return copyOrMoveDir(getFileByPath(srcDirPath), getFileByPath(destDirPath), isMove);
     }
 
@@ -898,7 +898,7 @@ public class RxFileUtils {
      * @param isMove  是否移动
      * @return {@code true}: 复制或移动成功<br>{@code false}: 复制或移动失败
      */
-    private static boolean copyOrMoveDir(File srcDir, File destDir, boolean isMove) {
+    public static boolean copyOrMoveDir(File srcDir, File destDir, boolean isMove) {
         if (srcDir == null || destDir == null) return false;
         // 如果目标目录在源目录中则返回false，看不懂的话好好想想递归怎么结束
         // srcPath : F:\\MyGithub\\AndroidUtilCode\\utilcode\\src\\test\\res
@@ -933,7 +933,7 @@ public class RxFileUtils {
      * @param isMove       是否移动
      * @return {@code true}: 复制或移动成功<br>{@code false}: 复制或移动失败
      */
-    private static boolean copyOrMoveFile(String srcFilePath, String destFilePath, boolean isMove) {
+    public static boolean copyOrMoveFile(String srcFilePath, String destFilePath, boolean isMove) {
         return copyOrMoveFile(getFileByPath(srcFilePath), getFileByPath(destFilePath), isMove);
     }
 
@@ -945,7 +945,7 @@ public class RxFileUtils {
      * @param isMove   是否移动
      * @return {@code true}: 复制或移动成功<br>{@code false}: 复制或移动失败
      */
-    private static boolean copyOrMoveFile(File srcFile, File destFile, boolean isMove) {
+    public static boolean copyOrMoveFile(File srcFile, File destFile, boolean isMove) {
         if (srcFile == null || destFile == null) return false;
         // 源文件不存在或者不是文件则返回false
         if (!srcFile.exists() || !srcFile.isFile()) return false;
