@@ -34,6 +34,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'//appcompat包
     compile 'com.android.support:recyclerview-v7:25.3.1'//recyclerview包
     compile 'com.android.support:support-annotations:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.android:flexbox:0.2.7'//流式布局
 
     compile 'com.nineoldandroids:library:2.4.0'//动画向下版本兼容 nineold包
