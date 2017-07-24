@@ -19,6 +19,7 @@ public class RxUtils {
 
     private static Context context;
 
+
     /**
      * 初始化工具类
      *
@@ -137,18 +138,18 @@ public class RxUtils {
 
     /**
      * 根据资源名称获取资源 id
-     *
-     *      不提倡使用这个方法获取资源,比其直接获取ID效率慢
-     *
+     * <p>
+     * 不提倡使用这个方法获取资源,比其直接获取ID效率慢
+     * <p>
      * 例如
-     *      getResources().getIdentifier("ic_launcher", "drawable", getPackageName());
+     * getResources().getIdentifier("ic_launcher", "drawable", getPackageName());
      *
      * @param context
      * @param name
      * @param defType
      * @return
      */
-    public static final int getResIdByName(Context context,String name,String defType) {
+    public static final int getResIdByName(Context context, String name, String defType) {
         return context.getResources().getIdentifier("ic_launcher", "drawable", context.getPackageName());
     }
     //============================================MD5加密============================================
@@ -159,13 +160,16 @@ public class RxUtils {
     }
 
     private static long lastClickTime;
-    public static boolean isFastClick(long millisecond) {
-        long time = System.currentTimeMillis();
-        long timeD = time - lastClickTime;
-        if ( 0 < timeD && timeD < 800) {
+
+    public static boolean isFastClick(int millisecond) {
+        long curClickTime = System.currentTimeMillis();
+        long interval = (curClickTime - lastClickTime);
+
+        if (0 < interval && interval < millisecond) {
+            // 超过点击间隔后再将lastClickTime重置为当前点击时间
             return true;
         }
-        lastClickTime = time;
+        lastClickTime = curClickTime;
         return false;
     }
 }
