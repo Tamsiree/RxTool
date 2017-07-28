@@ -2,8 +2,12 @@ package com.vondear.rxtools;
 
 import android.content.Context;
 import android.os.Handler;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.text.Spanned;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -171,5 +175,41 @@ public class RxUtils {
         }
         lastClickTime = curClickTime;
         return false;
+    }
+
+    /**
+     * Edittext 首位小数点自动加零，最多两位小数
+     *
+     * @param editText
+     */
+    private void setEdTwoDecimal(EditText editText) {
+        setEdDecimal(editText, 3);
+    }
+
+    private void setEdDecimal(EditText editText, int count) {
+        if (count < 1) {
+            count = 1;
+        }
+
+        editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_CLASS_NUMBER);
+
+        //设置字符过滤
+        final int finalCount = count;
+        editText.setFilters(new InputFilter[]{new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                if (source.equals(".") && dest.toString().length() == 0) {
+                    return "0.";
+                }
+                if (dest.toString().contains(".")) {
+                    int index = dest.toString().indexOf(".");
+                    int mlength = dest.toString().substring(index).length();
+                    if (mlength == finalCount) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        }});
     }
 }
