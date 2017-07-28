@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.vondear.tools">
 
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
@@ -71,6 +72,8 @@
         <activity android:name=".activity.ActivityLoadingDetail">
         </activity>
         <activity android:name=".activity.ActivityRxScaleImageView">
+        </activity>
+        <activity android:name=".activity.ActivityVibrate">
         </activity>
     </application>
 

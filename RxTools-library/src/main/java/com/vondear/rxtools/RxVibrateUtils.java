@@ -1,13 +1,10 @@
 package com.vondear.rxtools;
 
-/**
- * Created by Vondear on 2017/7/25.
- */
-
 import android.content.Context;
 import android.os.Vibrator;
 
 /**
+ * Created by Vondear on 2017/7/25.
  * 震动帮助类
  * androidManifest.xml中加入 以下权限
  * <uses-permission android:name="android.permission.VIBRATE" />
@@ -30,7 +27,13 @@ public class RxVibrateUtils {
      * 复杂的震动
      * @param context 调用震动的Context
      * @param pattern 震动形式
-     * @param repeate 震动的次数，-1不重复，非-1为从pattern的指定下标开始重复
+     *                数组参数意义：
+     *                      第一个参数为等待指定时间后开始震动，
+     *                      震动时间为第二个参数。
+     *                      后边的参数依次为等待震动和震动的时间
+     * @param repeate 震动的次数，-1不重复，非-1为从pattern的指定下标开始重复 0为一直震动
+     *
+     *
      */
     @SuppressWarnings("static-access")
     public static void vibrateComplicated(Context context, long[] pattern, int repeate) {

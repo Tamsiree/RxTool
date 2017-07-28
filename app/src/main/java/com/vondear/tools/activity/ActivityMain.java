@@ -69,6 +69,7 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new ModelMainItem("银行卡组堆叠控件", R.drawable.credit_card, ActivityCardStack.class));
         mData.add(new ModelMainItem("联系人侧边快速导航", R.drawable.circle_phone, ActivityContact.class));
         mData.add(new ModelMainItem("GPS原生定位", R.drawable.circle_gps_icon, ActivityLocation.class));
+        mData.add(new ModelMainItem("震动的艺术", R.drawable.circle_gps_icon, ActivityVibrate.class));
         mData.add(new ModelMainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
     }
 

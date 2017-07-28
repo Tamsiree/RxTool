@@ -34,5 +34,6 @@ dependencies {
     compile 'com.jrummyapps:animated-svg-view:1.0.1'
     compile 'cc.solart:turbo-recyclerview-helper:1.0.3-beta'
     compile 'com.afollestad.material-dialogs:core:0.9.3.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
 }
