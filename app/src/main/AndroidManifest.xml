@@ -75,6 +75,8 @@
         </activity>
         <activity android:name=".activity.ActivityVibrate">
         </activity>
+        <activity android:name=".activity.ActivityZipEncrypt">
+        </activity>
     </application>
 
 </manifest>

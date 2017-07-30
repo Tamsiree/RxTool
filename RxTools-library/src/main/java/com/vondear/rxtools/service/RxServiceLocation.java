@@ -12,7 +12,7 @@ import android.support.annotation.Nullable;
 import com.vondear.rxtools.RxLocationUtils;
 import com.vondear.rxtools.view.RxToast;
 
-public class ServiceLocation extends Service {
+public class RxServiceLocation extends Service {
 
     private boolean isSuccess;
     private String lastLatitude  = "loading...";
@@ -80,8 +80,8 @@ public class ServiceLocation extends Service {
     }
 
     public class LocationBinder extends Binder {
-        public ServiceLocation getService() {
-            return ServiceLocation.this;
+        public RxServiceLocation getService() {
+            return RxServiceLocation.this;
         }
     }
 
