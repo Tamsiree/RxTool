@@ -77,6 +77,8 @@
         </activity>
         <activity android:name=".activity.ActivityZipEncrypt">
         </activity>
+        <activity android:name=".activity.ActivityRxExifTool">
+        </activity>
     </application>
 
 </manifest>
