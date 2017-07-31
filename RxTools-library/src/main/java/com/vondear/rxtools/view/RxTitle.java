@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -321,7 +322,7 @@ public class RxTitle extends FrameLayout {
 
     public void setTitleSize(int titleSize) {
         mTitleSize = titleSize;
-        mTvTitle.setTextSize(mTitleSize);
+        mTvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX,mTitleSize);
     }
 
     public void setTitleVisibility(boolean titleVisibility) {
@@ -349,7 +350,7 @@ public class RxTitle extends FrameLayout {
 
     public void setLeftTextSize(int leftTextSize) {
         mLeftTextSize = leftTextSize;
-        mTvLeft.setTextSize(mLeftTextSize);
+        mTvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX,mLeftTextSize);
     }
 
     public void setLeftTextVisibility(boolean leftTextVisibility) {
@@ -376,7 +377,7 @@ public class RxTitle extends FrameLayout {
 
     public void setRightTextSize(int rightTextSize) {
         mRightTextSize = rightTextSize;
-        mTvRight.setTextSize(mRightTextSize);
+        mTvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX,mRightTextSize);
     }
 
     public void setRightTextVisibility(boolean rightTextVisibility) {
