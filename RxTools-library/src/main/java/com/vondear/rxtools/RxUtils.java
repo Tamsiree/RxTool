@@ -182,11 +182,11 @@ public class RxUtils {
      *
      * @param editText
      */
-    private void setEdTwoDecimal(EditText editText) {
+    public void setEdTwoDecimal(EditText editText) {
         setEdDecimal(editText, 3);
     }
 
-    private void setEdDecimal(EditText editText, int count) {
+    public void setEdDecimal(EditText editText, int count) {
         if (count < 1) {
             count = 1;
         }
