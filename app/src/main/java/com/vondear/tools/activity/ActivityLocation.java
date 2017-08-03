@@ -2,12 +2,15 @@ package com.vondear.tools.activity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.GpsSatellite;
+import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,6 +19,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.vondear.rxtools.RxLocationUtils;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.tools.R;
+
+import java.util.Iterator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +31,12 @@ public class ActivityLocation extends ActivityBase implements LocationListener {
     TextView mTvAboutLocation;
     @BindView(R.id.layer_change_btn)
     LinearLayout mLayerChangeBtn;
+    @BindView(R.id.gps_img)
+    ImageView mGpsImg;
+    @BindView(R.id.gps_count)
+    TextView mGpsCount;
+    @BindView(R.id.layer_gps_btn)
+    LinearLayout mLayerGpsBtn;
     private LocationManager locationManager;
 
     @Override
@@ -80,6 +91,39 @@ public class ActivityLocation extends ActivityBase implements LocationListener {
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0, this);
+        locationManager.addGpsStatusListener(new GpsStatus.Listener() {
+            @Override
+            public void onGpsStatusChanged(int event) {
+                switch (event) {
+                    case GpsStatus.GPS_EVENT_STARTED:
+                        System.out.println("GPS_EVENT_STARTED");
+                        mGpsCount.setText("0");
+                        break;
+                    case GpsStatus.GPS_EVENT_FIRST_FIX:
+                        System.out.println("GPS_EVENT_FIRST_FIX");
+                        break;
+                    case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+                        System.out.println("GPS_EVENT_SATELLITE_STATUS");
+                        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        GpsStatus gpsStatus = locationManager.getGpsStatus(null);
+                        Iterable<GpsSatellite> gpsSatellites = gpsStatus.getSatellites();
+                        int count = 0;
+                        Iterator iterator = gpsSatellites.iterator();
+                        while (iterator.hasNext()) {
+                            count++;
+                            iterator.next();
+                        }
+                        mGpsCount.setText(count + "");
+                        break;
+                    case GpsStatus.GPS_EVENT_STOPPED:
+                        System.out.println("GPS_EVENT_STOPPED");
+                        //gpsState.setText("已停止定位");
+                        break;
+                }
+            }
+        });
     }
 
 

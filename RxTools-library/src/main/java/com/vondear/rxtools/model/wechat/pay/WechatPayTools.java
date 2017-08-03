@@ -32,9 +32,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import okhttp3.Call;
-import okhttp3.Response;
-
 import static com.vondear.rxtools.RxConstants.WX_TOTAL_ORDER;
 
 /**
@@ -75,11 +72,12 @@ public class WechatPayTools {
         //判断返回码
         final String[] jsonStr = {""};
 
-        OkGo.post(WX_TOTAL_ORDER)
+        OkGo.<String>post(WX_TOTAL_ORDER)
                 .upString(xmlParams)
                 .execute(new StringCallback() {
                     @Override
-                    public void onSuccess(String s, Call call, Response response) {
+                    public void onSuccess(com.lzy.okgo.model.Response<String> response) {
+                        String s = response.body();
                         Log.d("微信统一下单", s);
                         jsonStr[0] = s;
 
@@ -100,11 +98,6 @@ public class WechatPayTools {
                         params.put("timestamp", time);
 
                         wechatPayApp(mContext, appid, mch_id, wx_private_key, params, onRequestListener);
-                    }
-
-                    @Override
-                    public void onError(Call call, Response response, Exception e) {
-                        super.onError(call, response, e);
                     }
                 });
 
