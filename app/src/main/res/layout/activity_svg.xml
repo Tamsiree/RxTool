@@ -25,7 +25,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.jrummyapps.android.widget.AnimatedSvgView
+        <com.jaredrummler.android.widget.AnimatedSvgView
             android:id="@+id/animated_svg_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

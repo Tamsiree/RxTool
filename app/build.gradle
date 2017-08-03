@@ -32,7 +32,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     compile 'com.yalantis:ucrop:2.2.0'
-    compile 'com.jrummyapps:animated-svg-view:1.0.1'
+    compile 'com.jaredrummler:animated-svg-view:1.0.4'
     compile 'cc.solart:turbo-recyclerview-helper:1.0.3-beta'
     compile 'com.afollestad.material-dialogs:core:0.9.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

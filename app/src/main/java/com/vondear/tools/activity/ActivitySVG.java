@@ -6,7 +6,7 @@ import android.os.Message;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.jrummyapps.android.widget.AnimatedSvgView;
+import com.jaredrummler.android.widget.AnimatedSvgView;
 import com.vondear.rxtools.RxActivityUtils;
 import com.vondear.rxtools.RxBarUtils;
 import com.vondear.rxtools.activity.ActivityBase;
@@ -31,7 +31,7 @@ public class ActivitySVG extends ActivityBase {
         RxBarUtils.hideStatusBar(this);
         setContentView(R.layout.activity_svg);
         ButterKnife.bind(this);
-        setSvg(ModelSVG.values()[3]);
+        setSvg(ModelSVG.values()[4]);
         CheckUpdate();
     }
 
