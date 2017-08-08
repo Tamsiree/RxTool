@@ -113,19 +113,19 @@ public class RxDeviceUtils {
     }
 
     /**
-     * 获取手机的IMIE （唯一标识序列号）
+     * IMEI （唯一标识序列号）
      * <p>需与{@link #isPhone(Context)}一起使用</p>
      * <p>需添加权限 {@code <uses-permission android:name="android.permission.READ_PHONE_STATE"/>}</p>
      *
      * @param context 上下文
-     * @return IMIE码
+     * @return IMEI
      */
     public static String getIMEI(Context context) {
         String deviceId;
         if (isPhone(context)) {
-            deviceId = getDeviceId_IMEI_(context);
+            deviceId = getDeviceIdIMEI(context);
         } else {
-            deviceId = getAndroid_id(context);
+            deviceId = getAndroidId(context);
         }
         return deviceId;
     }
@@ -146,7 +146,7 @@ public class RxDeviceUtils {
      * @param context
      * @return
      */
-    public static String getDeviceId_IMEI_(Context context) {
+    public static String getDeviceIdIMEI(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getDeviceId();
     }
@@ -311,7 +311,7 @@ public class RxDeviceUtils {
      * @param context
      * @return
      */
-    public static String getAndroid_id(Context context) {
+    public static String getAndroidId(Context context) {
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
@@ -334,7 +334,7 @@ public class RxDeviceUtils {
      * @return 设备厂商
      */
     public static String getBuildMANUFACTURER() {
-        return Build.MANUFACTURER;//// samsung 品牌
+        return Build.MANUFACTURER;// samsung 品牌
     }
 
     /**
