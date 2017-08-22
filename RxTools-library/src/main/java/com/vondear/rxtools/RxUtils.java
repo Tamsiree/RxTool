@@ -23,7 +23,6 @@ public class RxUtils {
 
     private static Context context;
 
-
     /**
      * 初始化工具类
      *
