@@ -212,4 +212,27 @@ public class RxUtils {
             }
         }});
     }
+
+    public static void initEditNumberPrefix(final EditText edSerialNumber, final int number) {
+        edSerialNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    String s = edSerialNumber.getText().toString();
+                    String temp = "";
+                    for (int i = s.length(); i < number; i++) {
+                        s = "0" + s;
+                    }
+
+                    for (int i = 0; i < number; i++) {
+                        temp += "0";
+                    }
+                    if (s.equals(temp)) {
+                        s = temp.substring(1) + "1";
+                    }
+                    edSerialNumber.setText(s);
+                }
+            }
+        });
+    }
 }

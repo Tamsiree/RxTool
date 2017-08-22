@@ -88,11 +88,8 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
         initScanerAnimation();//扫描动画初始化
         CameraManager.init(getApplication());//初始化 CameraManager
 
-
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
-
-
     }
 
     @SuppressWarnings("deprecation")

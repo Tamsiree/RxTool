@@ -3,6 +3,7 @@ package com.vondear.rxtools.interfaces;
 import android.view.View;
 
 import com.vondear.rxtools.RxUtils;
+import com.vondear.rxtools.view.RxToast;
 
 /**
  * Created by Vondear on 2017/7/24.
@@ -20,6 +21,9 @@ public abstract class onRepeatClickListener implements View.OnClickListener {
     public void onClick(View v) {
         if (!RxUtils.isFastClick(MIN_CLICK_DELAY_TIME)) {
             onRepeatClick(v);
+        }else{
+            RxToast.normal("请不要重复点击");
+            return;
         }
     }
 

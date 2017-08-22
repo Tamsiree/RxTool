@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.webkit.MimeTypeMap;
+import android.support.v4.content.FileProvider;
 
 import java.io.File;
 
@@ -16,32 +16,31 @@ import java.io.File;
 public class RxIntentUtils {
 
     /**
-     * 获取安装App(支持6.0)的意图
-     *
-     * @param filePath 文件路径
-     * @return 意图
+     * 获取安装App(支持7.0)的意图
+     * @param context
+     * @param filePath
+     * @param fileProvide
+     * @return
      */
-    public static Intent getInstallAppIntent(String filePath) {
-        return getInstallAppIntent(RxFileUtils.getFileByPath(filePath));
-    }
-
-    /**
-     * 获取安装App(支持6.0)的意图
-     *
-     * @param file 文件
-     * @return 意图
-     */
-    public static Intent getInstallAppIntent(File file) {
-        if (file == null) return null;
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        String type;
-        if (Build.VERSION.SDK_INT < 23) {
-            type = "application/vnd.android.package-archive";
-        } else {
-            type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(RxFileUtils.getFileExtension(file));
+    public static Intent getInstallAppIntent(Context context, String filePath, String fileProvide) {
+        //apk文件的本地路径
+        File apkfile = new File(filePath);
+        if (!apkfile.exists()) {
+            return null;
         }
-        return intent.setDataAndType(Uri.fromFile(file), type);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri contentUri;
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            contentUri = FileProvider.getUriForFile(context, fileProvide, apkfile);
+        } else {
+            contentUri = Uri.fromFile(apkfile);
+
+        }
+        intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+        return intent;
     }
 
     /**

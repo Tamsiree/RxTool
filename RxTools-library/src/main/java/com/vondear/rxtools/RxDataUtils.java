@@ -258,6 +258,18 @@ public class RxDataUtils {
         }
     }
 
+    public static float stringToFloat(String str) {
+        if (isNullString(str)) {
+            return 0;
+        } else {
+            try {
+                return Float.parseFloat(str);
+            } catch (NumberFormatException e) {
+                return 0;
+            }
+        }
+    }
+
     /**
      * 将字符串格式化为带两位小数的字符串
      *
@@ -911,6 +923,7 @@ public class RxDataUtils {
     }
 
     private static final DecimalFormat amountFormat = new DecimalFormat("###,###,###,##0.00");
+
     /**
      * 金额格式化
      *
@@ -920,6 +933,7 @@ public class RxDataUtils {
     public static String getAmountValue(double value) {
         return amountFormat.format(value);
     }
+
     /**
      * 金额格式化
      *
@@ -952,6 +966,7 @@ public class RxDataUtils {
         BigDecimal result = new BigDecimal(value);
         return result.setScale(digit, BigDecimal.ROUND_HALF_UP).toString();
     }
+
     /**
      * 四舍五入
      *
