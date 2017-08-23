@@ -26,12 +26,6 @@ public class Page2Fragment extends Fragment{
     int[] colors = new int[]{
             android.graphics.Color.parseColor("#D55400"),
             android.graphics.Color.parseColor("#2B3E51"),
-            android.graphics.Color.parseColor("#00BD9C"),
-            android.graphics.Color.parseColor("#227FBB"),
-            android.graphics.Color.parseColor("#7F8C8D"),
-            android.graphics.Color.parseColor("#FFCC5C"),
-            android.graphics.Color.parseColor("#D55400"),
-            android.graphics.Color.parseColor("#1AAF5D"),
     };
 
     private Wave mWaveDrawable;
@@ -56,7 +50,7 @@ public class Page2Fragment extends Fragment{
         ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progress);
         DoubleBounce doubleBounce = new DoubleBounce();
         doubleBounce.setBounds(0, 0, 100, 100);
-        doubleBounce.setColor(colors[7]);
+        doubleBounce.setColor(colors[1]);
         progressBar.setIndeterminateDrawable(doubleBounce);
 
         //Button
@@ -73,7 +67,7 @@ public class Page2Fragment extends Fragment{
         mCircleDrawable.setBounds(0, 0, 100, 100);
         mCircleDrawable.setColor(Color.WHITE);
         textView.setCompoundDrawables(null, null, mCircleDrawable, null);
-        textView.setBackgroundColor(colors[2]);
+        textView.setBackgroundColor(colors[0]);
 
         //ImageView
         ImageView imageView = (ImageView) view.findViewById(R.id.image);

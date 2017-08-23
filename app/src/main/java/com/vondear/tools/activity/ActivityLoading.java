@@ -5,29 +5,35 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 
+import com.vondear.rxtools.activity.ActivityBase;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.tools.R;
 import com.vondear.tools.fragment.Page1Fragment;
 import com.vondear.tools.fragment.Page2Fragment;
 
-public class ActivityLoading extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    TabLayout mTabLayout;
-    ViewPager mViewPager;
+public class ActivityLoading extends ActivityBase {
+
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
+    @BindView(R.id.tabs)
+    TabLayout mTabs;
+    @BindView(R.id.viewpager)
+    ViewPager mViewpager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
-
-        mTabLayout = (TabLayout) findViewById(R.id.tabs);
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
-
-        mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+        ButterKnife.bind(this);
+        mRxTitle.setLeftFinish(mContext);
+        mViewpager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
 
             String[] titles = new String[]{
-                    "page1", "page2"
+                    "加载的方式", "加载的例子"
             };
 
             @Override
@@ -49,6 +55,6 @@ public class ActivityLoading extends AppCompatActivity {
                 return titles[position];
             }
         });
-        mTabLayout.setupWithViewPager(mViewPager);
+        mTabs.setupWithViewPager(mViewpager);
     }
 }

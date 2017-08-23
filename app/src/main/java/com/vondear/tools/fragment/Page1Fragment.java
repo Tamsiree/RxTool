@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.vondear.rxtools.RxImageUtils;
+import com.vondear.rxtools.RxRecyclerViewDivider;
 import com.vondear.rxtools.view.progress.SpinKitView;
 import com.vondear.rxtools.view.progress.SpriteFactory;
 import com.vondear.rxtools.view.progress.Style;
@@ -23,14 +25,8 @@ import com.vondear.tools.activity.ActivityLoadingDetail;
 public class Page1Fragment extends Fragment  {
 
     int[] colors = new int[]{
-            android.graphics.Color.parseColor("#D55400"),
-            android.graphics.Color.parseColor("#2B3E51"),
-            android.graphics.Color.parseColor("#00BD9C"),
-            android.graphics.Color.parseColor("#227FBB"),
-            android.graphics.Color.parseColor("#7F8C8D"),
-            android.graphics.Color.parseColor("#FFCC5C"),
-            android.graphics.Color.parseColor("#D55400"),
-            android.graphics.Color.parseColor("#1AAF5D"),
+            android.graphics.Color.parseColor("#b19282"),
+            android.graphics.Color.parseColor("#52BA97"),
     };
 
     public static Page1Fragment newInstance() {
@@ -49,10 +45,10 @@ public class Page1Fragment extends Fragment  {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-
+        recyclerView.addItemDecoration(new RxRecyclerViewDivider(RxImageUtils.dp2px(getContext(), 5f)));
         recyclerView.setAdapter(new RecyclerView.Adapter<Holder>() {
             @Override
             public Holder onCreateViewHolder(ViewGroup parent, int viewType) {

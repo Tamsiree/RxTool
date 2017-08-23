@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipChildren="false"
-    android:fitsSystemWindows="true">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:clipChildren="false"
+             android:fitsSystemWindows="true">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,21 +18,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="ProgressBar" />
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ProgressBar
                     android:id="@+id/progress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:indeterminate="true" />
+                    android:indeterminate="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="ProgressBar示例"/>
 
             </LinearLayout>
 
@@ -40,22 +41,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Button" />
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/button"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:drawablePadding="10dp"
-                    android:text="button" />
+                    android:text="点我啊"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Button示例"/>
 
             </LinearLayout>
 
@@ -63,47 +62,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TextView" />
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/text"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:drawablePadding="10dp"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="TextView" />
+                    android:text="RxTools"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView示例"/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="ImageView" />
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/image"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="100dp"
                     android:layout_marginTop="10dp"
-                    android:layout_weight="2"
                     android:gravity="center"
-                    android:padding="10dp" />
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ImageView示例"/>
 
             </LinearLayout>
 
