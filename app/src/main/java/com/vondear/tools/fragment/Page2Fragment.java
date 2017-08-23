@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.vondear.rxtools.view.progress.style.ChasingDots;
 import com.vondear.rxtools.view.progress.style.Circle;
+import com.vondear.rxtools.view.progress.style.CubeGrid;
 import com.vondear.rxtools.view.progress.style.DoubleBounce;
 import com.vondear.rxtools.view.progress.style.Wave;
 import com.vondear.tools.R;
@@ -24,13 +24,13 @@ import com.vondear.tools.R;
 public class Page2Fragment extends Fragment{
 
     int[] colors = new int[]{
-            android.graphics.Color.parseColor("#D55400"),
+            android.graphics.Color.parseColor("#89CFF0"),
             android.graphics.Color.parseColor("#2B3E51"),
     };
 
     private Wave mWaveDrawable;
     private Circle mCircleDrawable;
-    private ChasingDots mChasingDotsDrawable;
+    private CubeGrid mChasingDotsDrawable;
 
     public static Page2Fragment newInstance() {
         return new Page2Fragment();
@@ -50,7 +50,7 @@ public class Page2Fragment extends Fragment{
         ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progress);
         DoubleBounce doubleBounce = new DoubleBounce();
         doubleBounce.setBounds(0, 0, 100, 100);
-        doubleBounce.setColor(colors[1]);
+        doubleBounce.setColor(colors[0]);
         progressBar.setIndeterminateDrawable(doubleBounce);
 
         //Button
@@ -71,7 +71,7 @@ public class Page2Fragment extends Fragment{
 
         //ImageView
         ImageView imageView = (ImageView) view.findViewById(R.id.image);
-        mChasingDotsDrawable = new ChasingDots();
+        mChasingDotsDrawable = new CubeGrid();
         mChasingDotsDrawable.setColor(Color.WHITE);
         imageView.setImageDrawable(mChasingDotsDrawable);
         imageView.setBackgroundColor(colors[0]);
