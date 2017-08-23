@@ -93,7 +93,7 @@ public class RxDataUtils {
     }
 
     /**
-     * 判断字符串是否是浮点数
+     * 判断字符串是否是双精度浮点数
      */
     public static boolean isDouble(String value) {
         try {
@@ -123,6 +123,13 @@ public class RxDataUtils {
     public static String getAstro(int month, int day) {
         String[] starArr = {"魔羯座", "水瓶座", "双鱼座", "牡羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座"};
         int[] DayArr = {22, 20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22};  // 两个星座分割日
+
+        if (month <= 0 || day <= 0) {
+            return "猴年马月座";
+        }else if (month>12||day>31){
+            return "猴年马月座";
+        }
+
         int index = month;
         // 所查询日期在分割日之前，索引-1，否则不变
         if (day < DayArr[month - 1]) {
@@ -140,6 +147,9 @@ public class RxDataUtils {
      * @return 130****0000
      */
     public static String hideMobilePhone4(String mobile_phone) {
+        if (mobile_phone.length()!=11) {
+            return "手机号码不正确";
+        }
         return mobile_phone.substring(0, 3) + "****" + mobile_phone.substring(7, 11);
     }
 
@@ -151,6 +161,9 @@ public class RxDataUtils {
      * @return 3749 **** **** 330
      */
     public static String formatCard(String cardNo) {
+        if (cardNo.length()<8) {
+            return "银行卡号有误";
+        }
         String card = "";
         card = cardNo.substring(0, 4) + " **** **** ";
         card += cardNo.substring(cardNo.length() - 4);
@@ -164,6 +177,9 @@ public class RxDataUtils {
      * @return
      */
     public static String formatCardEnd4(String cardNo) {
+        if (cardNo.length()<8) {
+            return "银行卡号有误";
+        }
         String card = "";
         card += cardNo.substring(cardNo.length() - 4);
         return card;
@@ -258,6 +274,12 @@ public class RxDataUtils {
         }
     }
 
+    /**
+     * 字符串转换成浮点型 Float
+     *
+     * @param str 待转换的字符串
+     * @return 转换后的 float
+     */
     public static float stringToFloat(String str) {
         if (isNullString(str)) {
             return 0;
@@ -491,7 +513,7 @@ public class RxDataUtils {
      * @param s 单个汉字字符串
      * @return 如果字符串长度是1返回的是对应的ascii码，否则返回-1
      */
-    private static int oneCn2ASCII(String s) {
+    public static int oneCn2ASCII(String s) {
         if (s.length() != 1) return -1;
         int ascii = 0;
         try {
@@ -517,7 +539,7 @@ public class RxDataUtils {
      * @param s 单个汉字字符串
      * @return 如果字符串长度是1返回的是对应的拼音，否则返回{@code null}
      */
-    private static String oneCn2PY(String s) {
+    public static String oneCn2PY(String s) {
         int ascii = oneCn2ASCII(s);
         if (ascii == -1) return null;
         String ret = null;
@@ -941,6 +963,9 @@ public class RxDataUtils {
      * @return
      */
     public static String getAmountValue(String value) {
+        if (isNullString(value)) {
+            return "0";
+        }
         return amountFormat.format(Double.parseDouble(value));
     }
 
@@ -975,6 +1000,9 @@ public class RxDataUtils {
      * @return
      */
     public static String getRoundUp(String value, int digit) {
+        if (isNullString(value)) {
+            return "0";
+        }
         BigDecimal result = new BigDecimal(Double.parseDouble(value));
         return result.setScale(digit, BigDecimal.ROUND_HALF_UP).toString();
     }

@@ -25,7 +25,6 @@
             app:rightIcon="@drawable/set"
             app:rightIconVisibility="false"
             android:background="@color/mi_green"
-            app:leftIcon="@drawable/back"
             app:leftIconVisibility="true"
             app:title="扫码工具"
             app:titleColor="@color/white"

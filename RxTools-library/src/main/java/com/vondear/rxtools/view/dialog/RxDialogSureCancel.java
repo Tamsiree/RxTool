@@ -24,7 +24,7 @@ public class RxDialogSureCancel extends RxDialog {
         mTvTitle.setText(title);
     }
 
-    public TextView getIv_logo() {
+    public TextView getTvTitle() {
         return mTvTitle;
     }
 
@@ -50,6 +50,14 @@ public class RxDialogSureCancel extends RxDialog {
 
     public TextView getTvCancel() {
         return mTvCancel;
+    }
+
+    public void setSureListener(View.OnClickListener sureListener) {
+        mTvSure.setOnClickListener(sureListener);
+    }
+
+    public void setCancelListener(View.OnClickListener cancelListener) {
+        mTvCancel.setOnClickListener(cancelListener);
     }
 
     private void initView() {

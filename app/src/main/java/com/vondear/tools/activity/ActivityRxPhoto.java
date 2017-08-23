@@ -90,9 +90,9 @@ public class ActivityRxPhoto extends ActivityBase {
     protected void initView() {
         Resources r = mContext.getResources();
         resultUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
-                + r.getResourcePackageName(R.drawable.elves_ball) + "/"
-                + r.getResourceTypeName(R.drawable.elves_ball) + "/"
-                + r.getResourceEntryName(R.drawable.elves_ball));
+                + r.getResourcePackageName(R.drawable.circle_elves_ball) + "/"
+                + r.getResourceTypeName(R.drawable.circle_elves_ball) + "/"
+                + r.getResourceEntryName(R.drawable.circle_elves_ball));
 
         mRxTitle.setLeftFinish(mContext);
 
@@ -193,10 +193,10 @@ public class ActivityRxPhoto extends ActivityBase {
                         diskCacheStrategy(DiskCacheStrategy.RESULT).
                         bitmapTransform(new CropCircleTransformation(mContext)).
                         thumbnail(0.5f).
-                        placeholder(R.drawable.elves_ball).
+                        placeholder(R.drawable.circle_elves_ball).
                         priority(Priority.LOW).
-                        error(R.drawable.elves_ball).
-                        fallback(R.drawable.elves_ball).
+                        error(R.drawable.circle_elves_ball).
+                        fallback(R.drawable.circle_elves_ball).
                         dontAnimate().
                         into(mIvAvatar);
 //                RequestUpdateAvatar(new File(RxPhotoUtils.getRealFilePath(mContext, RxPhotoUtils.cropImageUri)));
@@ -227,10 +227,10 @@ public class ActivityRxPhoto extends ActivityBase {
                 diskCacheStrategy(DiskCacheStrategy.RESULT).
                 bitmapTransform(new CropCircleTransformation(mContext)).
                 thumbnail(0.5f).
-                placeholder(R.drawable.elves_ball).
+                placeholder(R.drawable.circle_elves_ball).
                 priority(Priority.LOW).
-                error(R.drawable.elves_ball).
-                fallback(R.drawable.elves_ball).
+                error(R.drawable.circle_elves_ball).
+                fallback(R.drawable.circle_elves_ball).
                 dontAnimate().
                 into(imageView);
 

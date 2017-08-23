@@ -14,7 +14,6 @@
         app:rightIcon="@drawable/set"
         app:rightIconVisibility="false"
         android:background="@color/blue"
-        app:leftIcon="@drawable/back"
         app:leftIconVisibility="true"
         app:title="RxToast的展示使用"
         app:titleColor="@color/white"

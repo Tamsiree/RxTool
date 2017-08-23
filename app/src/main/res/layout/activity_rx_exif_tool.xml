@@ -9,70 +9,92 @@
 
     <com.google.android.cameraview.CameraView
         android:id="@+id/camera"
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:adjustViewBounds="true"
         android:keepScreenOn="true"
-        app:aspectRatio="4:3"
+        app:aspectRatio="16:9"
         app:autoFocus="true"
         app:facing="back"
         app:flash="auto"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
 
     </com.google.android.cameraview.CameraView>
 
-    <Button
-        android:id="@+id/btn_take_camera"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/system_dark"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:id="@+id/tv_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:text="状态"/>
+
+        <TextView
+            android:id="@+id/tv_gps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="GPS"/>
+
+        <Button
+            android:id="@+id/btn_take_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="拍照并记录当前经纬度信息"/>
+    </LinearLayout>
+
+
+    <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="拍照并记录当前经纬度信息"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="48dp"/>
-
-    <TextView
-        android:id="@+id/tv_gps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GPS"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.985"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_take_camera"/>
-
-    <TextView
-        android:id="@+id/tv_state"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="状态"
-        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.791">
 
-    <ImageView
-        android:id="@+id/iv_pic"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="177dp"
-        app:layout_constraintHorizontal_bias="0.937"/>
+        <ImageView
+            android:id="@+id/iv_pic"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_placeholder"/>
+    </android.support.v7.widget.CardView>
 
 </android.support.constraint.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.vondear.rxtools;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.Spanned;
@@ -233,5 +234,12 @@ public class RxUtils {
                 }
             }
         });
+    }
+
+    public static Handler getBackgroundHandler() {
+        HandlerThread thread = new HandlerThread("background");
+        thread.start();
+        Handler mBackgroundHandler = new Handler(thread.getLooper());
+        return mBackgroundHandler;
     }
 }

@@ -11,7 +11,7 @@
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:padding="15dp"
-        android:src="@drawable/back"/>
+        android:src="@drawable/previous_icon"/>
 
     <TextView
         android:id="@+id/tvContent"

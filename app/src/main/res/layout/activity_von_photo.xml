@@ -17,6 +17,7 @@
         android:layout_height="55dp"
         android:background="@color/blue"
         app:title="个人资料"
+        app:titleSize="20sp"
         app:titleColor="@color/white"/>
 
     <RelativeLayout
@@ -48,7 +49,7 @@
                 android:layout_marginRight="5dp"
                 android:background="@drawable/shape_circle_blue"
                 android:padding="3dp"
-                android:src="@drawable/elves_ball"/>
+                android:src="@drawable/circle_elves_ball"/>
         </LinearLayout>
 
     </RelativeLayout>

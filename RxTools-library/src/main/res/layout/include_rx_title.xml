@@ -6,6 +6,31 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
+    <!--<TextView-->
+    <!--android:id="@+id/tv_rx_title1"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:gravity="center"-->
+    <!--android:text="个人资料"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textSize="18sp"/>-->
+
+    <com.vondear.rxtools.view.RxTextAutoZoom
+        android:id="@+id/tv_rx_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:hint="标题"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:isScrollContainer="false"
+        android:maxLength="240"
+        android:text="个人资料"
+        android:textColor="@color/white"
+        android:textColorHint="@android:color/white"
+        android:textSize="20sp"/>
+
     <LinearLayout
         android:id="@+id/ll_left"
         android:layout_width="wrap_content"
@@ -32,15 +57,8 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_rx_title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:text="个人资料"
-        android:textColor="@color/white"
-        android:textSize="18sp"/>
+
+
 
     <LinearLayout
         android:id="@+id/ll_right"
