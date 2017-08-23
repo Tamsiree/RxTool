@@ -28,7 +28,7 @@
             app:leftIconVisibility="true"
             app:title="扫码工具"
             app:titleColor="@color/white"
-            app:titleSize="6sp"/>
+            app:titleSize="20sp"/>
 
         <View
             android:layout_width="match_parent"

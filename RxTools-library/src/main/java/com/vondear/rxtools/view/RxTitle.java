@@ -105,7 +105,7 @@ public class RxTitle extends FrameLayout {
             //getColor(R.styleable.RxTitle_RxBackground, getResources().getColor(R.color.transparent))
             mTitle = a.getString(R.styleable.RxTitle_title);//标题
             mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, getResources().getColor(R.color.white));//标题颜色
-            mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, 20);//标题字体大小
+            mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, 60);//标题字体大小
             //TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
             mTitleVisibility = a.getBoolean(R.styleable.RxTitle_titleVisibility, true);
 
@@ -116,12 +116,12 @@ public class RxTitle extends FrameLayout {
 
             mLeftText = a.getString(R.styleable.RxTitle_leftText);
             mLeftTextColor = a.getColor(R.styleable.RxTitle_leftTextColor, getResources().getColor(R.color.white));//左边字体颜色
-            mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, 16);//标题字体大小
+            mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, 48);//标题字体大小
             mLeftTextVisibility = a.getBoolean(R.styleable.RxTitle_leftTextVisibility, false);
 
             mRightText = a.getString(R.styleable.RxTitle_rightText);
             mRightTextColor = a.getColor(R.styleable.RxTitle_rightTextColor, getResources().getColor(R.color.white));//右边字体颜色
-            mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, 16);//标题字体大小
+            mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, 48);//标题字体大小
             mRightTextVisibility = a.getBoolean(R.styleable.RxTitle_rightTextVisibility, false);
 
         } finally {
@@ -349,7 +349,7 @@ public class RxTitle extends FrameLayout {
 
     public void setTitleSize(int titleSize) {
         mTitleSize = titleSize;
-        mTvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP,mTitleSize);
+        mTvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX,mTitleSize);
     }
 
     public void setTitleVisibility(boolean titleVisibility) {
@@ -377,7 +377,7 @@ public class RxTitle extends FrameLayout {
 
     public void setLeftTextSize(int leftTextSize) {
         mLeftTextSize = leftTextSize;
-        mTvLeft.setTextSize(mLeftTextSize);
+        mTvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX,mLeftTextSize);
     }
 
     public void setLeftTextVisibility(boolean leftTextVisibility) {
@@ -404,7 +404,7 @@ public class RxTitle extends FrameLayout {
 
     public void setRightTextSize(int rightTextSize) {
         mRightTextSize = rightTextSize;
-        mTvRight.setTextSize(mRightTextSize);
+        mTvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX,mRightTextSize);
     }
 
     public void setRightTextVisibility(boolean rightTextVisibility) {
