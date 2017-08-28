@@ -8,24 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * <pre>
- * 若把初始化内容放到initData实现
- * 就是采用Lazy方式加载的Fragment
+ * Created by vondear
+ * on 2015/11/21.
+ *
+ * 若需要采用Lazy方式加载的Fragment，初始化内容放到initData实现
  * 若不需要Lazy加载则initData方法内留空,初始化内容放到initViews即可
  *
- * 注1:
+ * 注意事项 1:
  * 如果是与ViewPager一起使用，调用的是setUserVisibleHint。
  *
- * 注2:
+ * 注意事项 2:
  * 如果是通过FragmentTransaction的show和hide的方法来控制显示，调用的是onHiddenChanged.
  * 针对初始就show的Fragment 为了触发onHiddenChanged事件 达到lazy效果 需要先hide再show
- * eg:
- * transaction.hide(aFragment);
- * transaction.show(aFragment);
  *
- * Created by vondear
- * on 2015/11/2.
- * </pre>
  */
 public abstract class FragmentLazy extends Fragment {
 
@@ -33,14 +28,12 @@ public abstract class FragmentLazy extends Fragment {
      * 是否可见状态
      */
     private boolean isVisible;
+
     /**
      * 标志位，View已经初始化完成。
-     * 2016/04/29
-     * 用isAdded()属性代替
-     * 2016/05/03
-     * isPrepared还是准一些,isAdded有可能出现onCreateView没走完但是isAdded了
      */
     private boolean isPrepared;
+
     /**
      * 是否第一次加载
      */
@@ -55,7 +48,6 @@ public abstract class FragmentLazy extends Fragment {
         // 导致initData反复执行,所以这里注释掉
         // isFirstLoad = true;
 
-        // 2016/04/29
         // 取消 isFirstLoad = true的注释 , 因为上述的initData本身就是应该执行的
         // onCreateView执行 证明被移出过FragmentManager initData确实要执行.
         // 如果这里有数据累加的Bug 请在initViews方法里初始化您的数据 比如 list.clear();
@@ -117,7 +109,6 @@ public abstract class FragmentLazy extends Fragment {
      */
     protected void lazyLoad() {
         if (!isPrepared || !isVisible || !isFirstLoad) {
-            //if (!isAdded() || !isVisible || !isFirstLoad) {
             return;
         }
         isFirstLoad = false;

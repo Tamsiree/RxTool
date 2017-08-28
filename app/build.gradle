@@ -5,7 +5,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '25.0.3'
     defaultConfig {
-        applicationId "com.vondear.rxtools"
+        applicationId "com.vondear.tools"
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
@@ -28,6 +28,7 @@ dependencies {
     })
 
     //noinspection GradleCompatible
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jakewharton:butterknife:8.2.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'jp.wasabeef:glide-transformations:2.0.1'
@@ -35,7 +36,6 @@ dependencies {
     compile 'com.jaredrummler:animated-svg-view:1.0.4'
     compile 'cc.solart:turbo-recyclerview-helper:1.0.3-beta'
     compile 'com.afollestad.material-dialogs:core:0.9.3.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.github.google:cameraview:3eaeac09a7'
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
     compile 'top.zibin:Luban:1.1.2'

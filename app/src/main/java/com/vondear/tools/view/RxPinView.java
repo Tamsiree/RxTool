@@ -28,16 +28,16 @@ import com.vondear.rxtools.view.scaleimage.RxScaleImageView;
 import com.vondear.tools.R;
 
 
-public class PinView extends RxScaleImageView {
+public class RxPinView extends RxScaleImageView {
 
     private PointF sPin;
     private Bitmap pin;
 
-    public PinView(Context context) {
+    public RxPinView(Context context) {
         this(context, null);
     }
 
-    public PinView(Context context, AttributeSet attr) {
+    public RxPinView(Context context, AttributeSet attr) {
         super(context, attr);
         initialise();
     }
@@ -78,7 +78,5 @@ public class PinView extends RxScaleImageView {
             float vY = vPin.y - pin.getHeight();
             canvas.drawBitmap(pin, vX, vY, paint);
         }
-
     }
-
 }

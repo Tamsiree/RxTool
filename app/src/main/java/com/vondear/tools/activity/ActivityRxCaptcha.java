@@ -16,6 +16,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxCaptcha;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.swipecaptcha.RxSwipeCaptcha;
 import com.vondear.tools.R;
@@ -42,6 +43,8 @@ public class ActivityRxCaptcha extends ActivityBase {
     Button mBtnChange;
     @BindView(R.id.activity_rx_captcha)
     LinearLayout mActivityRxCaptcha;
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class ActivityRxCaptcha extends ActivityBase {
     }
 
     private void initView() {
+        mRxTitle.setLeftFinish(mContext);
         mRxSwipeCaptcha.setOnCaptchaMatchCallback(new RxSwipeCaptcha.OnCaptchaMatchCallback() {
             @Override
             public void matchSuccess(RxSwipeCaptcha rxSwipeCaptcha) {

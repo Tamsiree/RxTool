@@ -13,7 +13,7 @@ import com.vondear.rxtools.view.cardstack.RxAdapterUpDownAnimator;
 import com.vondear.rxtools.view.cardstack.RxAdapterUpDownStackAnimator;
 import com.vondear.rxtools.view.cardstack.RxCardStackView;
 import com.vondear.tools.R;
-import com.vondear.tools.adapter.TestRxAdapterStack;
+import com.vondear.tools.adapter.AdapterStackTest;
 
 import java.util.Arrays;
 
@@ -56,7 +56,7 @@ public class ActivityCardStack extends ActivityBase implements RxCardStackView.I
             R.color.baby_blue
     };
 
-    private TestRxAdapterStack mTestStackAdapter;
+    private AdapterStackTest mTestStackAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class ActivityCardStack extends ActivityBase implements RxCardStackView.I
         ButterKnife.bind(this);
 
         mStackView.setItemExpendListener(this);
-        mTestStackAdapter = new TestRxAdapterStack(this);
+        mTestStackAdapter = new AdapterStackTest(this);
         mStackView.setAdapter(mTestStackAdapter);
 
 

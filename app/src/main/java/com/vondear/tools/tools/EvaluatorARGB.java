@@ -23,17 +23,17 @@ import android.animation.TypeEvaluator;
  * This evaluator can be used to perform type interpolation between integer
  * values that represent ARGB colors.
  */
-public class ArgbEvaluator implements TypeEvaluator {
-    private static final ArgbEvaluator sInstance = new ArgbEvaluator();
+public class EvaluatorARGB implements TypeEvaluator {
+    private static final EvaluatorARGB sInstance = new EvaluatorARGB();
 
     /**
-     * Returns an instance of <code>ArgbEvaluator</code> that may be used in
+     * Returns an instance of <code>EvaluatorARGB</code> that may be used in
      * {@link android.animation.ValueAnimator#setEvaluator(TypeEvaluator)}. The same instance may
      * be used in multiple <code>Animator</code>s because it holds no state.
      *
      * @return An instance of <code>ArgbEvalutor</code>.
      */
-    public static ArgbEvaluator getInstance() {
+    public static EvaluatorARGB getInstance() {
         return sInstance;
     }
 

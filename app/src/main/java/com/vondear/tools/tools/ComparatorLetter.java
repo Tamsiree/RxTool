@@ -5,7 +5,7 @@ import com.vondear.tools.bean.ModelContactCity;
 import java.util.Comparator;
 
 
-public class LetterComparator implements Comparator<ModelContactCity> {
+public class ComparatorLetter implements Comparator<ModelContactCity> {
 
     @Override
     public int compare(ModelContactCity l, ModelContactCity r) {

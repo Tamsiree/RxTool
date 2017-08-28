@@ -20,17 +20,17 @@ import com.vondear.tools.R;
 import com.vondear.tools.activity.ActivityLoadingDetail;
 
 /**
- * Created by ybq.
+ * Created by Vondear.
  */
-public class Page1Fragment extends Fragment  {
+public class FragmentLoadingWay extends Fragment  {
 
     int[] colors = new int[]{
-            android.graphics.Color.parseColor("#b19282"),
-            android.graphics.Color.parseColor("#52BA97"),
+            android.graphics.Color.parseColor("#99CCFF"),
+            android.graphics.Color.parseColor("#34A853"),
     };
 
-    public static Page1Fragment newInstance() {
-        return new Page1Fragment();
+    public static FragmentLoadingWay newInstance() {
+        return new FragmentLoadingWay();
     }
 
 

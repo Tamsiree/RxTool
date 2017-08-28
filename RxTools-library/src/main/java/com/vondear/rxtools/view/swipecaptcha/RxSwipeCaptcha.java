@@ -27,15 +27,14 @@ import com.vondear.rxtools.R;
 
 import java.util.Random;
 
-import static com.vondear.rxtools.view.swipecaptcha.RxDrawHelperUtils.drawPartCircle;
-
 /**
+ * Create By Vondear.
  * 介绍：仿斗鱼滑动验证码View
- * 时间： 2016/11/14.
+ * 更新时间： 2017/08/24.
  */
 
 public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView {
-    private static final String TAG = "zxt/" + RxSwipeCaptcha.class.getName();
+    private final String TAG = RxSwipeCaptcha.class.getName();
     //控件的宽高
     protected int mWidth;
     protected int mHeight;
@@ -132,7 +131,8 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
 
         mCaptchaPath = new Path();
 
-
+        mWidth = mCaptchaWidth;
+        mHeight = mCaptchaHeight;
     }
 
     @Override
@@ -237,8 +237,8 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
         gap = mCaptchaWidth / 3;
 
         //随机生成验证码阴影左上角 x y 点，
-        mCaptchaX = mRandom.nextInt(mWidth - mCaptchaWidth - gap);
-        mCaptchaY = mRandom.nextInt(mHeight - mCaptchaHeight - gap);
+        mCaptchaX = mRandom.nextInt(Math.abs(mWidth - mCaptchaWidth - gap));
+        mCaptchaY = mRandom.nextInt(Math.abs(mHeight - mCaptchaHeight - gap));
         Log.d(TAG, "createCaptchaPath() called mWidth:" + mWidth + ", mHeight:" + mHeight + ", mCaptchaX:" + mCaptchaX + ", mCaptchaY:" + mCaptchaY);
 
         mCaptchaPath.reset();
@@ -454,5 +454,84 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
     public RxSwipeCaptcha setOnCaptchaMatchCallback(OnCaptchaMatchCallback onCaptchaMatchCallback) {
         this.onCaptchaMatchCallback = onCaptchaMatchCallback;
         return this;
+    }
+
+    /**
+     * 传入起点、终点 坐标、凹凸和Path。
+     * 会自动绘制凹凸的半圆弧
+     *
+     * @param start 起点坐标
+     * @param end   终点坐标
+     * @param path  半圆会绘制在这个path上
+     * @param outer 是否凸半圆
+     */
+    private void drawPartCircle(PointF start, PointF end, Path path, boolean outer) {
+        float c = 0.551915024494f;
+        //中点
+        PointF middle = new PointF(start.x + (end.x - start.x) / 2, start.y + (end.y - start.y) / 2);
+        //半径
+        float r1 = (float) Math.sqrt(Math.pow((middle.x - start.x), 2) + Math.pow((middle.y - start.y), 2));
+        //gap值
+        float gap1 = r1 * c;
+
+        if (start.x == end.x) {
+            //绘制竖直方向的
+
+            //是否是从上到下
+            boolean topToBottom = end.y - start.y > 0 ? true : false;
+            //以下是我写出了所有的计算公式后推的，不要问我过程，只可意会。
+            int flag;//旋转系数
+            if (topToBottom) {
+                flag = 1;
+            } else {
+                flag = -1;
+            }
+            if (outer) {
+                //凸的 两个半圆
+                path.cubicTo(start.x + gap1 * flag, start.y,
+                        middle.x + r1 * flag, middle.y - gap1 * flag,
+                        middle.x + r1 * flag, middle.y);
+                path.cubicTo(middle.x + r1 * flag, middle.y + gap1 * flag,
+                        end.x + gap1 * flag, end.y,
+                        end.x, end.y);
+            } else {
+                //凹的 两个半圆
+                path.cubicTo(start.x - gap1 * flag, start.y,
+                        middle.x - r1 * flag, middle.y - gap1 * flag,
+                        middle.x - r1 * flag, middle.y);
+                path.cubicTo(middle.x - r1 * flag, middle.y + gap1 * flag,
+                        end.x - gap1 * flag, end.y,
+                        end.x, end.y);
+            }
+        } else {
+            //绘制水平方向的
+
+            //是否是从左到右
+            boolean leftToRight = end.x - start.x > 0 ? true : false;
+            //以下是我写出了所有的计算公式后推的，不要问我过程，只可意会。
+            int flag;//旋转系数
+            if (leftToRight) {
+                flag = 1;
+            } else {
+                flag = -1;
+            }
+            if (outer) {
+                //凸 两个半圆
+                path.cubicTo(start.x, start.y - gap1 * flag,
+                        middle.x - gap1 * flag, middle.y - r1 * flag,
+                        middle.x, middle.y - r1 * flag);
+                path.cubicTo(middle.x + gap1 * flag, middle.y - r1 * flag,
+                        end.x, end.y - gap1 * flag,
+                        end.x, end.y);
+            } else {
+                //凹 两个半圆
+                path.cubicTo(start.x, start.y + gap1 * flag,
+                        middle.x - gap1 * flag, middle.y + r1 * flag,
+                        middle.x, middle.y + r1 * flag);
+                path.cubicTo(middle.x + gap1 * flag, middle.y + r1 * flag,
+                        end.x, end.y + gap1 * flag,
+                        end.x, end.y);
+            }
+        }
     }
 }

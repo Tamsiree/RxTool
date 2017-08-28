@@ -19,9 +19,9 @@ import com.vondear.rxtools.view.progress.style.Wave;
 import com.vondear.tools.R;
 
 /**
- * Created by ybq.
+ * Created by Vondear.
  */
-public class Page2Fragment extends Fragment{
+public class FragmentLoadingDemo extends Fragment{
 
     int[] colors = new int[]{
             android.graphics.Color.parseColor("#89CFF0"),
@@ -32,8 +32,8 @@ public class Page2Fragment extends Fragment{
     private Circle mCircleDrawable;
     private CubeGrid mChasingDotsDrawable;
 
-    public static Page2Fragment newInstance() {
-        return new Page2Fragment();
+    public static FragmentLoadingDemo newInstance() {
+        return new FragmentLoadingDemo();
     }
 
     @Nullable

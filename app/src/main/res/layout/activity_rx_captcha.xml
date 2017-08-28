@@ -11,6 +11,7 @@
               tools:context="com.vondear.tools.activity.ActivityRxCaptcha">
 
     <com.vondear.rxtools.view.RxTitle
+        android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:rightIconVisibility="false"

@@ -9,8 +9,8 @@ import android.support.v4.view.ViewPager;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.tools.R;
-import com.vondear.tools.fragment.Page1Fragment;
-import com.vondear.tools.fragment.Page2Fragment;
+import com.vondear.tools.fragment.FragmentLoadingWay;
+import com.vondear.tools.fragment.FragmentLoadingDemo;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,9 +39,9 @@ public class ActivityLoading extends ActivityBase {
             @Override
             public Fragment getItem(int position) {
                 if (position == 0) {
-                    return Page1Fragment.newInstance();
+                    return FragmentLoadingWay.newInstance();
                 } else {
-                    return Page2Fragment.newInstance();
+                    return FragmentLoadingDemo.newInstance();
                 }
             }
 
