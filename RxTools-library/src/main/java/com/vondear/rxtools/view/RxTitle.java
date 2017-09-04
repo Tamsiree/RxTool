@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxDataUtils;
+import com.vondear.rxtools.RxImageUtils;
+import com.vondear.rxtools.RxKeyboardUtils;
 
 /**
  * @author by vondear on 2017/1/2.
@@ -23,7 +26,7 @@ public class RxTitle extends FrameLayout {
     //*******************************************控件start******************************************
     private RelativeLayout mRootLayout;//根布局
 
-    private TextView mTvTitle;//Title的TextView控件
+    private RxTextAutoZoom mTvTitle;//Title的TextView控件
 
     private LinearLayout mLlLeft;//左边布局
 
@@ -86,7 +89,7 @@ public class RxTitle extends FrameLayout {
         LayoutInflater.from(context).inflate(R.layout.include_rx_title, this);
 
         mRootLayout = (RelativeLayout) findViewById(R.id.root_layout);
-        mTvTitle = (TextView) findViewById(R.id.tv_rx_title);
+        mTvTitle = (RxTextAutoZoom) findViewById(R.id.tv_rx_title);
         mLlLeft = (LinearLayout) findViewById(R.id.ll_left);
         mIvLeft = (ImageView) findViewById(R.id.iv_left);
         mIvRight = (ImageView) findViewById(R.id.iv_right);
@@ -102,23 +105,23 @@ public class RxTitle extends FrameLayout {
             //getColor(R.styleable.RxTitle_RxBackground, getResources().getColor(R.color.transparent))
             mTitle = a.getString(R.styleable.RxTitle_title);//标题
             mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, getResources().getColor(R.color.white));//标题颜色
-            mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, 20);//标题字体大小
+            mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, 60);//标题字体大小
             //TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
             mTitleVisibility = a.getBoolean(R.styleable.RxTitle_titleVisibility, true);
 
-            mLeftIcon = a.getResourceId(R.styleable.RxTitle_leftIcon, R.drawable.back);//左边图标
+            mLeftIcon = a.getResourceId(R.styleable.RxTitle_leftIcon, R.drawable.previous_icon);//左边图标
             mRightIcon = a.getResourceId(R.styleable.RxTitle_rightIcon, R.drawable.set);//右边图标
             mLeftIconVisibility = a.getBoolean(R.styleable.RxTitle_leftIconVisibility, true);//左边图标是否显示
             mRightIconVisibility = a.getBoolean(R.styleable.RxTitle_rightIconVisibility, false);//右边图标是否显示
 
             mLeftText = a.getString(R.styleable.RxTitle_leftText);
             mLeftTextColor = a.getColor(R.styleable.RxTitle_leftTextColor, getResources().getColor(R.color.white));//左边字体颜色
-            mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, 16);//标题字体大小
+            mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, 48);//标题字体大小
             mLeftTextVisibility = a.getBoolean(R.styleable.RxTitle_leftTextVisibility, false);
 
             mRightText = a.getString(R.styleable.RxTitle_rightText);
             mRightTextColor = a.getColor(R.styleable.RxTitle_rightTextColor, getResources().getColor(R.color.white));//右边字体颜色
-            mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, 16);//标题字体大小
+            mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, 48);//标题字体大小
             mRightTextVisibility = a.getBoolean(R.styleable.RxTitle_rightTextVisibility, false);
 
         } finally {
@@ -168,7 +171,33 @@ public class RxTitle extends FrameLayout {
         setLeftIconVisibility(mLeftIconVisibility);
 
         setRightIconVisibility(mRightIconVisibility);
+
+
+        initAutoFitEditText();
         //==========================================================================================以上为属性初始化
+    }
+
+    private void initAutoFitEditText() {
+
+        mTvTitle.clearFocus();
+        mTvTitle.setEnabled(false);
+        mTvTitle.setFocusableInTouchMode(false);
+        mTvTitle.setFocusable(false);
+        mTvTitle.setEnableSizeCache(false);
+        //might cause crash on some devices
+        mTvTitle.setMovementMethod(null);
+        // can be added after layout inflation;
+        mTvTitle.setMaxHeight(RxImageUtils.dip2px(getContext(),55f));
+        //don't forget to add min text size programmatically
+        mTvTitle.setMinTextSize(37f);
+
+        try {
+            RxTextAutoZoom.setNormalization((Activity) getContext(), mRootLayout, mTvTitle);
+            RxKeyboardUtils.hideSoftInput((Activity) getContext());
+        }catch (Exception e){
+
+        }
+
     }
 
     //**********************************************************************************************以下为get方法
@@ -177,7 +206,7 @@ public class RxTitle extends FrameLayout {
         return mRootLayout;
     }
 
-    public TextView getTvTitle() {
+    public RxTextAutoZoom getTvTitle() {
         return mTvTitle;
     }
 
@@ -320,7 +349,7 @@ public class RxTitle extends FrameLayout {
 
     public void setTitleSize(int titleSize) {
         mTitleSize = titleSize;
-        mTvTitle.setTextSize(mTitleSize);
+        mTvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX,mTitleSize);
     }
 
     public void setTitleVisibility(boolean titleVisibility) {
@@ -348,7 +377,7 @@ public class RxTitle extends FrameLayout {
 
     public void setLeftTextSize(int leftTextSize) {
         mLeftTextSize = leftTextSize;
-        mTvLeft.setTextSize(mLeftTextSize);
+        mTvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX,mLeftTextSize);
     }
 
     public void setLeftTextVisibility(boolean leftTextVisibility) {
@@ -375,7 +404,7 @@ public class RxTitle extends FrameLayout {
 
     public void setRightTextSize(int rightTextSize) {
         mRightTextSize = rightTextSize;
-        mTvRight.setTextSize(mRightTextSize);
+        mTvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX,mRightTextSize);
     }
 
     public void setRightTextVisibility(boolean rightTextVisibility) {

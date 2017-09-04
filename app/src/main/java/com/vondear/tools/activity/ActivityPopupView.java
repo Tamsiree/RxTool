@@ -136,20 +136,20 @@ public class ActivityPopupView extends ActivityBase implements RxToolTipsManager
                 break;
             case R.id.button_above:
                 mRxToolTipsManager.findAndDismiss(mTextView);
-                builder = new RxToolTip.Builder(this, mTextView, mRootLayout, text, RxToolTip.POSITION_ABOVE);
+                builder = new RxToolTip.Builder(this, mTextView, mParentLayout, text, RxToolTip.POSITION_ABOVE);
                 builder.setAlign(mAlign);
                 tipvView =  mRxToolTipsManager.show(builder.build());
                 break;
             case R.id.button_below:
                 mRxToolTipsManager.findAndDismiss(mTextView);
-                builder = new RxToolTip.Builder(this, mTextView, mRootLayout, text, RxToolTip.POSITION_BELOW);
+                builder = new RxToolTip.Builder(this, mTextView, mParentLayout, text, RxToolTip.POSITION_BELOW);
                 builder.setAlign(mAlign);
                 builder.setBackgroundColor(getResources().getColor(R.color.orange));
                 tipvView = mRxToolTipsManager.show(builder.build());
                 break;
             case R.id.button_left_to:
                 mRxToolTipsManager.findAndDismiss(mTextView);
-                builder = new RxToolTip.Builder(this, mTextView, mRootLayout, text, RxToolTip.POSITION_LEFT_TO);
+                builder = new RxToolTip.Builder(this, mTextView, mParentLayout, text, RxToolTip.POSITION_LEFT_TO);
                 builder.setBackgroundColor(getResources().getColor(R.color.greenyellow));
                 builder.setTextColor(getResources().getColor(R.color.black));
                 builder.setGravity(RxToolTip.GRAVITY_CENTER);
@@ -158,9 +158,9 @@ public class ActivityPopupView extends ActivityBase implements RxToolTipsManager
                 break;
             case R.id.button_right_to:
                 mRxToolTipsManager.findAndDismiss(mTextView);
-                builder = new RxToolTip.Builder(this, mTextView, mRootLayout, text, RxToolTip.POSITION_RIGHT_TO);
+                builder = new RxToolTip.Builder(this, mTextView, mParentLayout, text, RxToolTip.POSITION_RIGHT_TO);
                 builder.setBackgroundColor(getResources().getColor(R.color.paleturquoise));
-                builder.setTextColor(getResources().getColor(android.R.color.white));
+                builder.setTextColor(getResources().getColor(android.R.color.black));
                 tipvView =  mRxToolTipsManager.show(builder.build());
                 break;
             case R.id.button_align_center:

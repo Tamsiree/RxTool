@@ -11,7 +11,7 @@ import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.scaleimage.ImageSource;
 import com.vondear.rxtools.view.scaleimage.RxScaleImageView;
 import com.vondear.tools.R;
-import com.vondear.tools.view.PinView;
+import com.vondear.tools.view.RxPinView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -65,15 +65,15 @@ public class ActivityRxScaleImageView extends ActivityBase implements View.OnCli
             position--;
             updateNotes();
         } else if (view.getId() == R.id.play) {
-            PinView pinView = (PinView) findViewById(R.id.imageView);
+            RxPinView rxPinView = (RxPinView) findViewById(R.id.imageView);
             Random random = new Random();
-            if (pinView.isReady()) {
-                float maxScale = pinView.getMaxScale();
-                float minScale = pinView.getMinScale();
+            if (rxPinView.isReady()) {
+                float maxScale = rxPinView.getMaxScale();
+                float minScale = rxPinView.getMinScale();
                 float scale = (random.nextFloat() * (maxScale - minScale)) + minScale;
-                PointF center = new PointF(random.nextInt(pinView.getSWidth()), random.nextInt(pinView.getSHeight()));
-                pinView.setPin(center);
-                RxScaleImageView.AnimationBuilder animationBuilder = pinView.animateScaleAndCenter(scale, center);
+                PointF center = new PointF(random.nextInt(rxPinView.getSWidth()), random.nextInt(rxPinView.getSHeight()));
+                rxPinView.setPin(center);
+                RxScaleImageView.AnimationBuilder animationBuilder = rxPinView.animateScaleAndCenter(scale, center);
                 if (position == 3) {
                     animationBuilder.withDuration(2000).withEasing(RxScaleImageView.EASE_OUT_QUAD).withInterruptible(false).start();
                 } else {

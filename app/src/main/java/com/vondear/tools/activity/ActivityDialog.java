@@ -14,6 +14,7 @@ import com.vondear.rxtools.view.dialog.RxDialog;
 import com.vondear.rxtools.view.dialog.RxDialogAcfunVideoLoading;
 import com.vondear.rxtools.view.dialog.RxDialogEditSureCancel;
 import com.vondear.rxtools.view.dialog.RxDialogLoading;
+import com.vondear.rxtools.view.dialog.RxDialogScaleView;
 import com.vondear.rxtools.view.dialog.RxDialogShapeLoading;
 import com.vondear.rxtools.view.dialog.RxDialogSure;
 import com.vondear.rxtools.view.dialog.RxDialogSureCancel;
@@ -47,6 +48,8 @@ public class ActivityDialog extends ActivityBase {
     RxTitle mRxTitle;
     @BindView(R.id.button_DialogLoadingspinkit)
     Button mButtonDialogLoadingspinkit;
+    @BindView(R.id.button_DialogScaleView)
+    Button mButtonDialogScaleView;
     private RxDialogWheelYearMonthDay mRxDialogWheelYearMonthDay;
 
     @Override
@@ -95,7 +98,16 @@ public class ActivityDialog extends ActivityBase {
         // ------------------------------------------------------------------选择日期结束
     }
 
-    @OnClick({R.id.button_DialogLoadingspinkit,R.id.button_tran, R.id.button_DialogSure, R.id.button_DialogSureCancle, R.id.button_DialogEditTextSureCancle, R.id.button_DialogWheelYearMonthDay, R.id.button_DialogShapeLoading, R.id.button_DialogLoadingProgressAcfunVideo})
+    @OnClick({
+            R.id.button_DialogScaleView,
+            R.id.button_DialogLoadingspinkit,
+            R.id.button_tran,
+            R.id.button_DialogSure,
+            R.id.button_DialogSureCancle,
+            R.id.button_DialogEditTextSureCancle,
+            R.id.button_DialogWheelYearMonthDay,
+            R.id.button_DialogShapeLoading,
+            R.id.button_DialogLoadingProgressAcfunVideo})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_tran:
@@ -163,6 +175,11 @@ public class ActivityDialog extends ActivityBase {
                 break;
             case R.id.button_DialogLoadingspinkit:
                 new RxDialogLoading(mContext).show();
+                break;
+            case R.id.button_DialogScaleView:
+                RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(mContext);
+                rxDialogScaleView.setImageAssets("squirrel.jpg");
+                rxDialogScaleView.show();
                 break;
         }
     }

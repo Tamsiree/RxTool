@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.vondear.rxtools.activity.ActivityBase;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.heart.RxHeartLayout;
 import com.vondear.rxtools.view.likeview.RxShineButton;
 import com.vondear.tools.R;
@@ -21,18 +22,14 @@ import butterknife.OnClick;
 
 public class ActivityLike extends ActivityBase {
 
-    RxShineButton mRxShineButton;
-    RxShineButton porterShapeImageView1;
-    RxShineButton porterShapeImageView2;
-    RxShineButton porterShapeImageView3;
     @BindView(R.id.po_image0)
-    RxShineButton mPoImage0;
+    RxShineButton mRxShineButton;
     @BindView(R.id.po_image1)
-    RxShineButton mPoImage1;
+    RxShineButton porterShapeImageView1;
     @BindView(R.id.po_image2)
-    RxShineButton mPoImage2;
+    RxShineButton porterShapeImageView2;
     @BindView(R.id.po_image3)
-    RxShineButton mPoImage3;
+    RxShineButton porterShapeImageView3;
     @BindView(R.id.ll_top)
     LinearLayout mLlTop;
     @BindView(R.id.wrapper)
@@ -51,28 +48,20 @@ public class ActivityLike extends ActivityBase {
     TextView mTvHv;
     @BindView(R.id.activity_like)
     RelativeLayout mActivityLike;
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like);
         ButterKnife.bind(this);
+        mRxTitle.setLeftFinish(mContext);
 
-        mRxShineButton = (RxShineButton) findViewById(R.id.po_image0);
-
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.wrapper);
-
-        if (mRxShineButton != null)
-            mRxShineButton.init(this);
-        porterShapeImageView1 = (RxShineButton) findViewById(R.id.po_image1);
-        if (porterShapeImageView1 != null)
-            porterShapeImageView1.init(this);
-        porterShapeImageView2 = (RxShineButton) findViewById(R.id.po_image2);
-        if (porterShapeImageView2 != null)
-            porterShapeImageView2.init(this);
-        porterShapeImageView3 = (RxShineButton) findViewById(R.id.po_image3);
-        if (porterShapeImageView3 != null)
-            porterShapeImageView3.init(this);
+        mRxShineButton.init(this);
+        porterShapeImageView1.init(this);
+        porterShapeImageView2.init(this);
+        porterShapeImageView3.init(this);
 
         RxShineButton rxShineButtonJava = new RxShineButton(this);
 
@@ -83,8 +72,8 @@ public class ActivityLike extends ActivityBase {
         rxShineButtonJava.setShineSize(100);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(100, 100);
         rxShineButtonJava.setLayoutParams(layoutParams);
-        if (linearLayout != null) {
-            linearLayout.addView(rxShineButtonJava);
+        if (mWrapper != null) {
+            mWrapper.addView(rxShineButtonJava);
         }
 
 

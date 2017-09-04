@@ -17,7 +17,7 @@ import com.vondear.rxtools.view.progress.SpriteFactory;
 import com.vondear.rxtools.view.progress.Style;
 import com.vondear.rxtools.view.progress.sprite.Sprite;
 import com.vondear.tools.R;
-import com.vondear.tools.tools.ArgbEvaluator;
+import com.vondear.tools.tools.EvaluatorARGB;
 
 public class ActivityLoadingDetail extends AppCompatActivity {
 
@@ -82,7 +82,7 @@ public class ActivityLoadingDetail extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                int color = (int) ArgbEvaluator.getInstance().evaluate(positionOffset,
+                int color = (int) EvaluatorARGB.getInstance().evaluate(positionOffset,
                         colors[position % colors.length],
                         colors[(position + 1) % colors.length]);
                 getWindow().getDecorView().setBackgroundColor(color);

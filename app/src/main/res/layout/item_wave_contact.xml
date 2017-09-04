@@ -16,7 +16,7 @@
             android:id="@+id/iv_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/heart_circle" />
+            android:src="@drawable/circle_heart_circle" />
 
         <LinearLayout
             android:layout_width="match_parent"

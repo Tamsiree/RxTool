@@ -16,7 +16,6 @@
     <com.vondear.rxtools.view.RxTitle
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        app:leftIcon="@drawable/back"
         android:id="@+id/rx_title"
         app:title="RxDialog"/>
 
@@ -90,5 +89,14 @@
         android:layout_margin="5dp"
         android:background="@color/shadowPink50"
         android:text="一个常用加载Dialog"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/button_DialogScaleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/shadowBlue50"
+        android:text="一个图片缩放Dialog"
         android:textAllCaps="false"/>
 </LinearLayout>

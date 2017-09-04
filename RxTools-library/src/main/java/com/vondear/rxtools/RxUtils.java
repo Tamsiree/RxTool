@@ -2,6 +2,7 @@ package com.vondear.rxtools;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.Spanned;
@@ -22,7 +23,6 @@ import java.security.NoSuchAlgorithmException;
 public class RxUtils {
 
     private static Context context;
-
 
     /**
      * 初始化工具类
@@ -211,5 +211,35 @@ public class RxUtils {
                 return null;
             }
         }});
+    }
+
+    public static void initEditNumberPrefix(final EditText edSerialNumber, final int number) {
+        edSerialNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    String s = edSerialNumber.getText().toString();
+                    String temp = "";
+                    for (int i = s.length(); i < number; i++) {
+                        s = "0" + s;
+                    }
+
+                    for (int i = 0; i < number; i++) {
+                        temp += "0";
+                    }
+                    if (s.equals(temp)) {
+                        s = temp.substring(1) + "1";
+                    }
+                    edSerialNumber.setText(s);
+                }
+            }
+        });
+    }
+
+    public static Handler getBackgroundHandler() {
+        HandlerThread thread = new HandlerThread("background");
+        thread.start();
+        Handler mBackgroundHandler = new Handler(thread.getLooper());
+        return mBackgroundHandler;
     }
 }

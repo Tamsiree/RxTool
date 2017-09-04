@@ -23,16 +23,14 @@ import java.util.List;
  */
 public class RxAppUtils {
 
-
-
     /**
      * 安装App(支持6.0)
      *
      * @param context  上下文
      * @param filePath 文件路径
      */
-    public static void installApp(Context context, String filePath) {
-        installApp(context, RxFileUtils.getFileByPath(filePath));
+    public static void installApp(Context context, String filePath, String fileProvide) {
+        context.startActivity(RxIntentUtils.getInstallAppIntent(context, filePath, fileProvide));
     }
 
     /**
@@ -41,9 +39,9 @@ public class RxAppUtils {
      * @param context 上下文
      * @param file    文件
      */
-    public static void installApp(Context context, File file) {
+    public static void installApp(Context context, File file, String fileProvide) {
         if (!RxFileUtils.isFileExists(file)) return;
-        context.startActivity(RxIntentUtils.getInstallAppIntent(file));
+        installApp(context, file.getAbsolutePath(), fileProvide);
     }
 
     /**
@@ -53,8 +51,8 @@ public class RxAppUtils {
      * @param filePath    文件路径
      * @param requestCode 请求值
      */
-    public static void installApp(Activity activity, String filePath, int requestCode) {
-        installApp(activity, RxFileUtils.getFileByPath(filePath), requestCode);
+    public static void installApp(Activity activity, String filePath, String fileProvide, int requestCode) {
+        activity.startActivityForResult(RxIntentUtils.getInstallAppIntent(activity, filePath, fileProvide), requestCode);
     }
 
     /**
@@ -64,9 +62,9 @@ public class RxAppUtils {
      * @param file        文件
      * @param requestCode 请求值
      */
-    public static void installApp(Activity activity, File file, int requestCode) {
+    public static void installApp(Activity activity, File file, String fileProvide, int requestCode) {
         if (!RxFileUtils.isFileExists(file)) return;
-        activity.startActivityForResult(RxIntentUtils.getInstallAppIntent(file), requestCode);
+        installApp(activity, RxFileUtils.getFileByPath(file.getPath()), fileProvide, requestCode);
     }
 
     /**
@@ -483,6 +481,7 @@ public class RxAppUtils {
         return !RxDataUtils.isNullString(packageName) && packageName.equals(RxProcessUtils.getForegroundProcessName(context));
     }
     //----------------------------------------------------------------------------------------------------------------
+
     /**
      * 判断App是否安装
      *
@@ -496,6 +495,7 @@ public class RxAppUtils {
 
     /**
      * 安装APK
+     *
      * @param context
      * @param APK_PATH
      */
@@ -505,7 +505,6 @@ public class RxAppUtils {
         i.setDataAndType(Uri.parse("file://" + APK_PATH), "application/vnd.android.package-archive");
         context.startActivity(i);
     }
-
 
 
     /**
@@ -714,16 +713,16 @@ public class RxAppUtils {
         for (String dirPath : dirPaths) {
             dirs[i++] = new File(dirPath);
         }
-        return cleanAppData(context,dirs);
+        return cleanAppData(context, dirs);
     }
 
     /**
      * 清除App所有数据
      *
-     * @param dirs    目录
+     * @param dirs 目录
      * @return {@code true}: 成功<br>{@code false}: 失败
      */
-    public static boolean cleanAppData(Context context,File... dirs) {
+    public static boolean cleanAppData(Context context, File... dirs) {
         boolean isSuccess = RxFileUtils.cleanInternalCache(context);
         isSuccess &= RxFileUtils.cleanInternalDbs(context);
         isSuccess &= RxFileUtils.cleanInternalSP(context);

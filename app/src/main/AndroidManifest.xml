@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
     <application
@@ -78,6 +83,10 @@
         <activity android:name=".activity.ActivityZipEncrypt">
         </activity>
         <activity android:name=".activity.ActivityRxExifTool">
+        </activity>
+        <activity android:name=".activity.ActivityRxDataUtils">
+        </activity>
+        <activity android:name=".activity.ActivityDeviceInfo">
         </activity>
     </application>
 
