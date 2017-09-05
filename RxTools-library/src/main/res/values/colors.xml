@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="BD">#BDBDBD</color>
+
     <color name="white">#FFFFFFFF</color>
     <color name="whiteTrans66">#66FFFFFF</color>
     <color name="black">#FF000000</color>
