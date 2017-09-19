@@ -28,38 +28,38 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    //design包
-    compile 'com.android.support:design:25.3.1'
-    //cardView包
-    compile 'com.android.support:cardview-v7:25.3.1'
     //appcompat包
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    provided 'com.android.support:appcompat-v7:25.3.1'
+    //design包
+    provided 'com.android.support:design:25.3.1'
+    //cardView包
+    provided 'com.android.support:cardview-v7:25.3.1'
     //recyclerview包
-    compile 'com.android.support:recyclerview-v7:25.3.1'
+    provided 'com.android.support:recyclerview-v7:25.3.1'
 
-    compile 'com.android.support:support-annotations:25.3.1'
+    provided 'com.android.support:support-annotations:25.3.1'
 
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    provided 'com.android.support.constraint:constraint-layout:1.0.2'
     //流式布局
-    compile 'com.google.android:flexbox:0.2.7'
+    provided 'com.google.android:flexbox:0.2.7'
     //动画向下版本兼容 nineold包
-    compile 'com.nineoldandroids:library:2.4.0'
+    provided 'com.nineoldandroids:library:2.4.0'
     //沉浸式
-    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    provided 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     //okgo 网络请求框架包
-    compile 'com.lzy.net:okgo:3.0.4'
+    provided 'com.lzy.net:okgo:3.0.4'
     //gson json工具类 google解析Json的库
-    compile 'com.google.code.gson:gson:2.8.1'
+    provided 'com.google.code.gson:gson:2.8.1'
     //Log日志格式美化包
-    compile 'com.orhanobut:logger:2.1.1'
+    provided 'com.orhanobut:logger:2.1.1'
     //微信登录，支付，分享包
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.3.4'
+    provided 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.3.4'
     //支付宝 支付包
-    compile files('src/main/libs/alipaySdk-20170309.jar')
+    provided files('src/main/libs/alipaySdk-20170309.jar')
     //二维码解析
-    compile files('src/main/libs/zbardecoder.jar')
+    provided files('src/main/libs/zbardecoder.jar')
     //二维码生成
-    compile files('src/main/libs/zxing.jar')
+    provided files('src/main/libs/zxing.jar')
     //压缩与加密
-    compile files('src/main/libs/zip4j_1.3.2.jar')
+    provided files('src/main/libs/zip4j_1.3.2.jar')
 }

@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="10dp"
-        app:SpinKit_Color="?colorPrimary"/>
+        app:SpinKit_Color="#3F51B5"/>
 
     <TextView
         android:id="@+id/name"

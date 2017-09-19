@@ -24,7 +24,7 @@ import java.util.List;
 public class RxAppUtils {
 
     /**
-     * 安装App(支持6.0)
+     * 安装App(支持7.0)
      *
      * @param context  上下文
      * @param filePath 文件路径
@@ -34,7 +34,7 @@ public class RxAppUtils {
     }
 
     /**
-     * 安装App（支持6.0）
+     * 安装App（支持7.0）
      *
      * @param context 上下文
      * @param file    文件
@@ -45,7 +45,7 @@ public class RxAppUtils {
     }
 
     /**
-     * 安装App（支持6.0）
+     * 安装App（支持7.0）
      *
      * @param activity    activity
      * @param filePath    文件路径
@@ -56,7 +56,7 @@ public class RxAppUtils {
     }
 
     /**
-     * 安装App(支持6.0)
+     * 安装App(支持7.0)
      *
      * @param activity    activity
      * @param file        文件

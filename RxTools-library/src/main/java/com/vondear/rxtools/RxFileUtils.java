@@ -1783,7 +1783,12 @@ public class RxFileUtils {
         return filePath.substring(lastPoi);
     }
 
-
+    /**
+     * 将文件转换成uri(支持7.0)
+     * @param mContext
+     * @param file
+     * @return
+     */
     public static Uri getUriForFile(Context mContext, File file) {
         Uri fileUri = null;
         if (Build.VERSION.SDK_INT >= 24) {
@@ -1795,7 +1800,7 @@ public class RxFileUtils {
     }
 
     /**
-     * 将文件转换成uri
+     * 将图片文件转换成uri
      *
      * @param context
      * @param imageFile

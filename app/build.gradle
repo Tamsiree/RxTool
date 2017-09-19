@@ -28,7 +28,22 @@ dependencies {
     })
 
     //noinspection GradleCompatible
+    compile 'com.android.support:design:25.3.1'
+    //cardView包
+    compile 'com.android.support:cardview-v7:25.3.1'
+    //appcompat包
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    //recyclerview包
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+
+    compile 'com.android.support:support-annotations:25.3.1'
+
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    //流式布局
+    compile 'com.google.android:flexbox:0.2.7'
+    //动画向下版本兼容 nineold包
+    compile 'com.nineoldandroids:library:2.4.0'
+
     compile 'com.jakewharton:butterknife:8.2.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'jp.wasabeef:glide-transformations:2.0.1'
@@ -39,4 +54,6 @@ dependencies {
     compile 'com.github.google:cameraview:3eaeac09a7'
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
     compile 'top.zibin:Luban:1.1.2'
+    compile 'com.orhanobut:logger:2.1.1'
+    compile 'com.google.code.gson:gson:2.8.1'
 }
