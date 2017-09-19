@@ -28,8 +28,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    //单元测试模块
-    testCompile 'junit:junit:4.12'
     //design包
     compile 'com.android.support:design:25.3.1'
     //cardView包
