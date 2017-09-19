@@ -46,87 +46,6 @@ public class RxNote {
      *　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　丶
      */
 
-    /**
-     *
-     *                                                             ::;;iii;:;iirrrrrssssri;:
-     *                                                        :irsh55SS39933SS9999993933SSS55hsi:
-     *                                                     :r11h5S9998GgggHHAggAggggggggXG89333SShr:
-     *                                                   i1555S39888GXgHAHM#HAAgggXXXXGGXgggG933333S1;
-     *                                                :r15SSS3988898GgAAgHB#HAHXXXXGG88898GXXG8933SSS5s:
-     *                                              :rh5S33339888998GgAXXAHMHgHX8XXXG89339998G89933Sh11si
-     *                                             r155S333998899998GgXGXXAHgXAX88GG88893339938893S391irsr;
-     *                                           ;r1h5S33333993SS999GG8888XgXGXX9998G9889S3333S9X8Sh38hrs11r:
-     *                                          ;ii1115SSSS9855h5S98933S359XG8GXSS558899831559839gXSh9GSh5551;
-     *                                        :;;;11;rh5553X5shhssGG5111513XGGGg351iSg883G3S33889GgX9S8G3SSSShi
-     *                                       :;;;s5rr155SSG81h55h3XG1s11Sh9XGGGAGSS5SXXX8GXG888GGXggXG9G833SS3hi
-     *                                       ;;rsShS5S5S38g9SS399GX8S333938XXGGHg9898GgXgXgXXXXXXXgAgXGGG833SS3hi
-     *                                      ;;1hSS9933398Xg9888GGXX8GG88GGXXXXXHH8GGGXgggggggAggXXgAAggXXG833SSS1;
-     *                                     ;;s5S9989988GGgg8XXGXXXXXXXXXgXXggggHHXXXXXgAgAAAgAAAgXgHAAggXG89335S5s:
-     *                                    :isSS998888GGXXggXXXXXXgXgXgggAgXAAAAHBgXXXXgHAAHHHAHAAggHHAAggX8939S5S5r
-     *                                    ;sh3389G8GGGGXXAgXggXXXggggAgAHAgHAHHHBAgggggHHHHHHHHHHggHBHHAgX893395SS1;
-     *                                   ;s5S398GXGXXXXgXHgXggXXXggggAAHHAgBHHBHBHAgAggHBBHBBBHBBAgHBHHAgg83S39S5S5s:
-     *                                  :;hS398GXXGXXXggXHgXgXXXXggAAHAHHHABBBBBHBHAAAAHBBHBBBBBBHAHBHHHAgG3SS995SS1i
-     *                                  ;i5S98GGXgXgggAggHgXgXXXXgAAAHAHHHAHBBBBABBAHAAHBHBBBBBMMBHHBBHHAgX9S398S5Shr:
-     *                                  ;sS39GGXggXgAAAAgAAXgXXgggAgAHgAHHAABHHBgBBHHHAHBHHBBBBMMMBHBBHHHgX833983SS5s;
-     *                                 :;1S38GXXgAgAAAAAAAHggXggXgAXgAXgHAggHAHHGABHHHAAHHHHBBBBMMBBBBHBHAgG99989SSS1r
-     *                                 :ihS38XXXgAAAAAAHAAHggggXXXgXXX8GggG8gggA9XHHHAAAAAHHHHHHBMMBBBHBHAgX889883SShs:
-     *                                 :r5S98XXXgAggAAAAggAAgggXGXXGX85SG8SS88GG38gggggggXXXXXgAgABBBHHBHAgX8888G93Shsi
-     *                                 ;s5398XXXggggggggXGGGGGG838G89Sss5S1shhh5h5339993Sh5555388GgHHHHBHAgXGGG8G8935ss:
-     *                                 isS398XXXXgXG8893S55555h111hh1riirrriiiirrs11111srriiiir1538gAHHHHAgXGGG8X893S11r
-     *                                rsS998XXXXX8511h55SSS5h1riiiiiiii;iiiiiiirsshS8GXgXX895srh53GgAAHHAgXXGGGXG83S11s:
-     *                                :s1S998XXXX831h9G8gHHAX83h1riiii;;;;;iiirrs1S33gBMBAgH83X83S39GggAAAgXXGGGXX833h11i
-     *                                ;1hS988XXXG9S3X8i;8HBBHAHXS1sri;;;;;;;iirr138s 5ggHBAgr:3893S538GXgggggXXGXXG33511s:
-     *                               :i1S3988XgX93339Ssih88gAgXG9hsri;::::::;;iirhh1ss5h5S51iriirsrrs538GggggXXXXXG395hhsi
-     *                               ;rh3888GXgG351rirs1111111111sii;;:    :::;;iiirriii;;;;;;;;;;;iii53GggAAXXXXXG395551s;
-     *                              :i159GGGGXg85ri;;;;;;iiiiiiii;;;;:      :::::;;iiiiiiii;;;:::  :;;s58ggAAgXXXg899SS5hsr
-     *                              ;rhS8GGGGXg3r;;:;;;;;iiii;;;;;;;;:             ::;;;;;::         :i18ggAAggXXgG893SS51si
-     *                             :is538XXGGXA3i::::::::::::::;;;;::                                 ;18ggAAggXggGG8333S51r;
-     *                             ;ihS9GXXXGXA8i:            ::::::                                  :18gAHAggXggXG8993SShsr
-     *                            :;sS38XGXXGXggs:               :                                    :1GgAHAggggAXG8989S3Shri
-     *                            ;i5S38XGgXGXgA5:                                                    :1GgAHAAggAgXX8889393Ssr;
-     *                           :;1S39GXXggXXgA8;                                                    ;hXAAHAAgAAggXG8G899835ri:
-     *                           ;r5S39GXgXAXXXggs              :r11r;;;;;i133hi:                     ;SgAHHAggAAgXXGGG889883hii
-     *                          :;hSSS8GgAggAXXgAS;              :ir11ssss1h11r:                     :r9AHHHAgAAAgXXXXGGG88X83s;i
-     *                          ;s5SSSGGAAAXHXXXgGr:                 :irri                           :sXHHHAgAAHAXXXXXGGXXGXX8Sr;:
-     *                         :ihSS53GXAAHggAggXgS;:                   :                           :;3AHHHgAHHHXXggXXXXXXXXgG8Si:
-     *                        :;15S558GXAAHHgHAgggg1;:                                             :;1XHHHAgHABgXggAXgXggXggggG85:
-     *                        :r1S553GGXgAAHAAHAgggGs;:::::::::                                  ::;rGHHHHgHAHAXgAAgXggggggggggG8s
-     *                       :isSSS38GGXgAHHHAHHAAXg8r;:::;;;;;irs1hh5h11hhh1sri;;;:::::       :::;r8HHHHAHHHHXgHHAggAAgggXgAgAgG3
-     *                       ;r53S3888GXgAHHHHABHHgXgG1;;;;;;iir1h5S3999399SSSS5hsii;;;::::::::;;;1GHHAAAAHHHXXHBHAgAHAgggggggAAgG
-     *                       ih3339888GgXAHHAHHABHAgXAA3r;;;;;iiiiiiirs111sriiiii;;;;;;;;;;;;;;;r5XHHAAgAHAHXgBBBHAAHHAgggAXggggAX
-     *                      isS3398888GgXgHHAAHHHBHHggHBA3si;;;;iiiiii;;;;iiiii;;;;;;;;;;;;;;ir13gHAgAggAAHggBMBBHHHBBHgggAggggggg
-     *                     ;rh33988898XXXgHHHAHBHHBHHggHBBHGS1i;iiiiiiiiiiiiiiii;;;;;;;;iiirshS8gHAggggAAHAgBMBBBBHBMBHggAAAgggXXX
-     *                    ;rsS39998898XXXXAHHAHHBHHBHHggAHBBBHG1iiiiiiiiiiiiiiiiiiiiiiiiishSS9XAAXXgggAAHAAHBBMBBBHMMMHgggAAAgggG8
-     *                   :rrhS93h98998GGGXAHHAHHHHHHHBHggHBHgAgGhriiiiiiiiiiii;;;;;;iirshSSS8AAgGGggggAHAAHBMMBMBHBMMMHgXgAAAgggg8
-     *                   rr1S99rs98898GGGXgHHAHHHHHHHHHAXAAXGGgS1riiiii;;;;;;;;;;;;irsh5553gHHX9GggggAHHAABMMMMMBBMMM#HgXXgAAAgggg
-     *                  iis599s:5988988GGXgAAAAHBBHAHHAAgXXXX3X1;;;;;iiiiiiiiiiirrss1hhh58AHAG38XggggAHHAHBMMMMMBB#M##HAgXXggAgXXg
-     *                 iirhS9s:iS989388GGXXgAggAHBHHHHggAXAHXs8s :;;;iirrrrrrrrsssss1115GHAgGS8XXXXXgHHAHBBMBMMMBB####HAgXXXggAgXX
-     *                ;i;153h::s3983S988GGXgggGgHHBHHHgAHgAB8s9; :;;;iiirrrrrrrrrrss115XHAgGS8XGGGGgHHAHHHBBBMMBBB####HAgXXGXgggXX
-     *               :r;r155;:;1S9955S98XGGXXX8XAHBBBBHHHHABh5h  ::;;;iiiiiiirrrrrrss5XHggGS9G9888XHAgAHHHBBBMMBBB####HAgXG88G8GG9
-     *               i;is15i:;;hS93s1h59X898GX89gHBBBBBBBHHG13;  :::;;;iiiiiiiiiiirrhXAGGXS383S59XAAXgHHAAABBMMBBB####BAgX88985S33
-     *              ;i:rshs:;;i5S33sshs19G1S9XGS9ABBBBBBBBH881;;;:::::;;;;iiiiiiiir1GAG3X9S99339Xgg9GAHAAgXHBBBBBBM##MBAgG9999Ssh5
-     *              i;;ss1;:;;rS3931sh1s1X5h3Gg3SGHBBBBBBBHAGShsii;;::;;;;;;;;iiiir3AXh9X99988GXgg89ABHgAXXHBBBBBBB#MMBAgG9393hr;r
-     *             ;i:irsr::;i1999S5h5S558X398X839gHBBHBBBHgX835sii;;;;;;;;;;;;;;isXAS18G89GGGggggXABHAAgXgAHBBHBHHBBHHAg89S93i;i:
-     *             i;;rrs;:;;sS988SS5S989GgXGGXX998AHBHHHHAX95h1sriii;;;;;;;;;;:;;SXG1h888GXXgggAgAHBAAAggggHHBHAHAggX8Xg8SSS3s s:
-     *            :i:iirs;:iih388833398GGXgAXXXgG98GgHHAHAgG3s;:   ::;;iiii;;;;;:r8G3s5G8GXXgggAAAHBBgAgggXgAHHBAggg8X38XG9S53h  r
-     *            :;;iirr;iisS38889998GXXXXgAggggG88GgBgAAgG31r;:           :::: 18851S8GXXgggAAHHHBHgHgggXXgAHHHgGA838S8983S5S:
-     *            ;;;i;rr;ri1S39GG9888XXXXggAAggggX838AAgAg81r;:                 h591sSGXXgggAAHHHHBHgHAggXGXXgHAHXGAS988S393hhi
-     *            :i;i;is;rr1S39GX8888XXgggggHAggggGS59AGAXG1i:               :: 5h9ss9GGXXgHAABHAHBHgHAXAXGGG8gAAAXAX38gS1S9S11i:
-     *            :i;;;isirsh539GXX8G8XggggAgAHAgggg85h8GXX3S;:                  5h91SGGXXXAHAHBAgHBHgHAgggG88S9ggggAXG9gG1sS93Ss
-     *            :i;;;;s11sh5398XgGGGXggAgAAgAHAgggg3h58GghSr                   ssS39GGXXgHAHBHgXABHgHAgXAXG83S8gXXXgGGXg81s5SSs
-     *             ;i;;;ihh1hSS98XAXGXXggAAAAAgHHggggG5hS9gh1h                   ;sS388GGXAAABBAg8ABBgHAAXgXG89S9GgXXXgGXgG8s;15si
-     *              i;;;r1ShhS338GAAXXXgAAAAAAggHAgggX3hhSgSih                    h5388GGXAAABBgG3gBBgAAAgXXGG999GXggXXg8gg83rhs1h
-     *              :risss5553998GgHgXggAAAAAAAgAHAXgg8hh5X9;h;                  :ss338GGXggHBAX95XBBggHAAXX8G898GGgggGXX8gX335;ir
-     *               r11sh5SS3899GXAHggAAHHHAAHAgHHgXXX5h5GG;1i                  ;;1S388GXggHBgG3sGHHAgAAggXG3G3GGXXgggGXXGX33Ss;:
-     *             ;i;s1h55S398G88GXgAXgAHHHHAHHHAHHXXX9558Xisi                 ::;1h989GXggHHG9Si3HHAgAAAggX3989XXXgAXXGXGX9Shsr
-     *           ;ii:rsrhh5S398GG8XXgggXggAAAgggAggAgGX83S9Gssi                 ; ;s13938GXXAA9S5;5AHAgAgAggX8hGSGXXgggXgGGXX9s;i;
-     *          i;;;i1s155S3S9XXXG8XXgAAgAAAAAgggggggGGG89881s;                :: ;rs3338GGXggSh5;sXHAgHggggX8S58SgXgXgXXgGGXXSii
-     *        :i;:;;s1s5S339938XXXGGXXXXXXggggXGXXgggXGGG8G83hi:               ;  ;rr3398G8GXXh1S;;9AAgAHggXX8918S9gggXAXggGGX81:
-     *       ;i::;;i1s15S33399988GG98GGGGGXXXXXXGGXXXXGGG8GG8S1ri;:            : :;rs3398888XG1r3;:1gAggAAXXXX33s8hXggXggXXX8GX9r
-     *       ;   ::;sishhh111h55S555h55SSSSSSSSSSSSS33S3SS3951si;;::               ii5SS993S88r h;  8gXXgAXGGG3S1hS5XXXXgXGGG8GGSr
-     *
-     */
-
 
     /**
      *          .,:,,,                                        .::,,,::.
@@ -475,7 +394,7 @@ public class RxNote {
      *            .A3hH@#5S553&@@#h   i:i9S          #@@@@@@@@@@@@@@@@@@@@@@@@@A.
      *
      *
-     *    又看源码，看你妹妹呀！
+     *    产品又改需求，改你妹啊！！
      */
 
 

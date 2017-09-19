@@ -127,14 +127,41 @@ public class RxIntentUtils {
     }
 
     /**
-     * 获取App具体设置的意图
+     * 获取应用详情页面具体设置 intent
+     *
+     * @return
+     */
+    public static Intent getAppDetailsSettingsIntent(Context mContext) {
+        Intent localIntent = new Intent();
+        localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT >= 9) {
+            localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            localIntent.setData(Uri.fromParts("package", mContext.getPackageName(), null));
+        } else if (Build.VERSION.SDK_INT <= 8) {
+            localIntent.setAction(Intent.ACTION_VIEW);
+            localIntent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
+            localIntent.putExtra("com.android.settings.ApplicationPkgName", mContext.getPackageName());
+        }
+        return localIntent;
+    }
+
+    /**
+     * 获取应用详情页面具体设置 intent
      *
      * @param packageName 包名
      * @return intent
      */
     public static Intent getAppDetailsSettingsIntent(String packageName) {
-        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-        intent.setData(Uri.parse("package:" + packageName));
-        return intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent localIntent = new Intent();
+        localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT >= 9) {
+            localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            localIntent.setData(Uri.fromParts("package", packageName, null));
+        } else if (Build.VERSION.SDK_INT <= 8) {
+            localIntent.setAction(Intent.ACTION_VIEW);
+            localIntent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
+            localIntent.putExtra("com.android.settings.ApplicationPkgName", packageName);
+        }
+        return localIntent;
     }
 }
