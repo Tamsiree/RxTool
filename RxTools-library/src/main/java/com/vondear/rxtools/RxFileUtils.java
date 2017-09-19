@@ -29,6 +29,7 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.util.Base64;
 import android.util.Log;
 
@@ -1782,6 +1783,17 @@ public class RxFileUtils {
         return filePath.substring(lastPoi);
     }
 
+
+    public static Uri getUriForFile(Context mContext, File file) {
+        Uri fileUri = null;
+        if (Build.VERSION.SDK_INT >= 24) {
+            fileUri = FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".fileprovider", file);
+        } else {
+            fileUri = Uri.fromFile(file);
+        }
+        return fileUri;
+    }
+
     /**
      * 将文件转换成uri
      *
@@ -1816,7 +1828,7 @@ public class RxFileUtils {
      * @param uri
      * @return
      */
-    public static File getFileFromUri(Activity context, Uri uri) {
+    public static File getFilePhotoFromUri(Activity context, Uri uri) {
         return new File(RxPhotoUtils.getImageAbsolutePath(context, uri));
     }
 
@@ -2012,22 +2024,22 @@ public class RxFileUtils {
         }
     }
 
-    public static String file2Base64(String filePath){
+    public static String file2Base64(String filePath) {
         FileInputStream fis = null;
         String base64String = "";
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
             fis = new FileInputStream(filePath);
-            byte[] buffer = new byte[1024*100];
+            byte[] buffer = new byte[1024 * 100];
             int count = 0;
-            while ((count = fis.read(buffer)) != -1){
-                bos.write(buffer,0,count);
+            while ((count = fis.read(buffer)) != -1) {
+                bos.write(buffer, 0, count);
             }
             fis.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        base64String =  Base64.encodeToString(bos.toByteArray(), Base64.DEFAULT);
+        base64String = Base64.encodeToString(bos.toByteArray(), Base64.DEFAULT);
         return base64String;
 
     }

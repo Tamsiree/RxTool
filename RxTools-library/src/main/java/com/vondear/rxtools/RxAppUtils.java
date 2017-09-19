@@ -29,8 +29,8 @@ public class RxAppUtils {
      * @param context  上下文
      * @param filePath 文件路径
      */
-    public static void installApp(Context context, String filePath, String fileProvide) {
-        context.startActivity(RxIntentUtils.getInstallAppIntent(context, filePath, fileProvide));
+    public static void installApp(Context context, String filePath) {
+        context.startActivity(RxIntentUtils.getInstallAppIntent(context, filePath));
     }
 
     /**
@@ -39,9 +39,9 @@ public class RxAppUtils {
      * @param context 上下文
      * @param file    文件
      */
-    public static void installApp(Context context, File file, String fileProvide) {
+    public static void installApp(Context context, File file) {
         if (!RxFileUtils.isFileExists(file)) return;
-        installApp(context, file.getAbsolutePath(), fileProvide);
+        installApp(context, file.getAbsolutePath());
     }
 
     /**
@@ -51,8 +51,8 @@ public class RxAppUtils {
      * @param filePath    文件路径
      * @param requestCode 请求值
      */
-    public static void installApp(Activity activity, String filePath, String fileProvide, int requestCode) {
-        activity.startActivityForResult(RxIntentUtils.getInstallAppIntent(activity, filePath, fileProvide), requestCode);
+    public static void installApp(Activity activity, String filePath, int requestCode) {
+        activity.startActivityForResult(RxIntentUtils.getInstallAppIntent(activity, filePath), requestCode);
     }
 
     /**
@@ -62,9 +62,9 @@ public class RxAppUtils {
      * @param file        文件
      * @param requestCode 请求值
      */
-    public static void installApp(Activity activity, File file, String fileProvide, int requestCode) {
+    public static void installApp(Activity activity, File file, int requestCode) {
         if (!RxFileUtils.isFileExists(file)) return;
-        installApp(activity, RxFileUtils.getFileByPath(file.getPath()), fileProvide, requestCode);
+        installApp(activity, file.getAbsolutePath(), requestCode);
     }
 
     /**
