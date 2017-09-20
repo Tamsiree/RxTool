@@ -61,5 +61,5 @@ dependencies {
     //二维码生成
     provided files('src/main/libs/zxing.jar')
     //压缩与加密
-    provided files('src/main/libs/zip4j_1.3.2.jar')
+    compile files('src/main/libs/zip4j_1.3.2.jar')
 }
