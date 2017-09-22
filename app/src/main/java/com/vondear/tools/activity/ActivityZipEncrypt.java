@@ -7,10 +7,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
-import com.vondear.tools.R;
-import com.vondear.rxtools.RxFileUtils;
+import com.vondear.rxtools.RxFileTool;
 import com.vondear.rxtools.RxZipUtils;
 import com.vondear.rxtools.view.RxToast;
+import com.vondear.tools.R;
 
 import java.io.File;
 
@@ -40,16 +40,16 @@ public class ActivityZipEncrypt extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_create_folder:
-                fileDir = new File(RxFileUtils.getRootPath().getAbsolutePath() + File.separator + "RxTools");
+                fileDir = new File(RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxTools");
                 if (!fileDir.exists()) {
                     fileDir.mkdirs();
                 }
                 mTvState.setText("文件夹 RxTools 创建成功,文件夹位于在根目录");
                 break;
             case R.id.btn_zip:
-                File fileZip = new File(RxFileUtils.getRootPath().getAbsolutePath() + File.separator + "RxTools.zip");
+                File fileZip = new File(RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxTools.zip");
                 if (fileZip.exists()) {
-                    RxFileUtils.deleteFile(fileZip);
+                    RxFileTool.deleteFile(fileZip);
                     Logger.d("导出文件已存在，将之删除");
                 }
 

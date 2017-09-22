@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vondear.rxtools.R;
-import com.vondear.rxtools.RxRegUtils;
-import com.vondear.rxtools.RxTextUtils;
+import com.vondear.rxtools.RxRegTool;
+import com.vondear.rxtools.RxTextTool;
 
 
 /**
@@ -77,10 +77,10 @@ public class RxDialogSure extends RxDialog {
     }
 
     public void setContent(String str) {
-        if (RxRegUtils.isURL(str)) {
+        if (RxRegTool.isURL(str)) {
             // 响应点击事件的话必须设置以下属性
             mTvContent.setMovementMethod(LinkMovementMethod.getInstance());
-            mTvContent.setText(RxTextUtils.getBuilder("").setBold().append(str).setUrl(str).create());//当内容为网址的时候，内容变为可点击
+            mTvContent.setText(RxTextTool.getBuilder("").setBold().append(str).setUrl(str).create());//当内容为网址的时候，内容变为可点击
         } else {
             mTvContent.setText(str);
         }

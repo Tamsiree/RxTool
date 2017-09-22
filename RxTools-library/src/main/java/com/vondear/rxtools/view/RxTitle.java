@@ -14,9 +14,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.vondear.rxtools.R;
-import com.vondear.rxtools.RxDataUtils;
-import com.vondear.rxtools.RxImageUtils;
-import com.vondear.rxtools.RxKeyboardUtils;
+import com.vondear.rxtools.RxDataTool;
+import com.vondear.rxtools.RxImageTool;
+import com.vondear.rxtools.RxKeyboardTool;
 
 /**
  * @author by vondear on 2017/1/2.
@@ -130,7 +130,7 @@ public class RxTitle extends FrameLayout {
         }
 
         //******************************************************************************************以下属性初始化
-        if (!RxDataUtils.isNullString(mTitle)) {
+        if (!RxDataTool.isNullString(mTitle)) {
             setTitle(mTitle);
         }
 
@@ -187,13 +187,13 @@ public class RxTitle extends FrameLayout {
         //might cause crash on some devices
         mTvTitle.setMovementMethod(null);
         // can be added after layout inflation;
-        mTvTitle.setMaxHeight(RxImageUtils.dip2px(getContext(),55f));
+        mTvTitle.setMaxHeight(RxImageTool.dip2px(getContext(), 55f));
         //don't forget to add min text size programmatically
         mTvTitle.setMinTextSize(37f);
 
         try {
             RxTextAutoZoom.setNormalization((Activity) getContext(), mRootLayout, mTvTitle);
-            RxKeyboardUtils.hideSoftInput((Activity) getContext());
+            RxKeyboardTool.hideSoftInput((Activity) getContext());
         }catch (Exception e){
 
         }
@@ -238,69 +238,179 @@ public class RxTitle extends FrameLayout {
         return mTitleVisibility;
     }
 
+    public void setTitleVisibility(boolean titleVisibility) {
+        mTitleVisibility = titleVisibility;
+        if (mTitleVisibility) {
+            mTvTitle.setVisibility(VISIBLE);
+        } else {
+            mTvTitle.setVisibility(GONE);
+        }
+    }
+
     public String getLeftText() {
         return mLeftText;
+    }
+
+    //**********************************************************************************************以下为  左边文字  相关方法
+    public void setLeftText(String leftText) {
+        mLeftText = leftText;
+        mTvLeft.setText(mLeftText);
+
     }
 
     public int getLeftTextColor() {
         return mLeftTextColor;
     }
 
+    public void setLeftTextColor(int leftTextColor) {
+        mLeftTextColor = leftTextColor;
+        mTvLeft.setTextColor(mLeftTextColor);
+    }
+
     public int getLeftTextSize() {
         return mLeftTextSize;
+    }
+
+    public void setLeftTextSize(int leftTextSize) {
+        mLeftTextSize = leftTextSize;
+        mTvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, mLeftTextSize);
     }
 
     public boolean isLeftTextVisibility() {
         return mLeftTextVisibility;
     }
 
+    public void setLeftTextVisibility(boolean leftTextVisibility) {
+        mLeftTextVisibility = leftTextVisibility;
+        if (mLeftTextVisibility) {
+            mTvLeft.setVisibility(VISIBLE);
+        } else {
+            mTvLeft.setVisibility(GONE);
+        }
+    }
+
     public String getRightText() {
         return mRightText;
+    }
+
+    //**********************************************************************************************以下为  右边文字  相关方法
+    public void setRightText(String rightText) {
+        mRightText = rightText;
+        mTvRight.setText(mRightText);
+
     }
 
     public int getRightTextColor() {
         return mRightTextColor;
     }
 
+    public void setRightTextColor(int rightTextColor) {
+        mRightTextColor = rightTextColor;
+        mTvRight.setTextColor(mRightTextColor);
+    }
+
     public int getRightTextSize() {
         return mRightTextSize;
     }
 
+    public void setRightTextSize(int rightTextSize) {
+        mRightTextSize = rightTextSize;
+        mTvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, mRightTextSize);
+    }
+
+    //==============================================================================================以上为get方法
+
+    //**********************************************************************************************以下为set方法
+
     public boolean isRightTextVisibility() {
         return mRightTextVisibility;
+    }
+
+    public void setRightTextVisibility(boolean rightTextVisibility) {
+        mRightTextVisibility = rightTextVisibility;
+        if (mRightTextVisibility) {
+            mTvRight.setVisibility(VISIBLE);
+            if (isRightIconVisibility()) {
+                mTvRight.setPadding(0, 0, 0, 0);
+            }
+        } else {
+            mTvRight.setVisibility(GONE);
+        }
     }
 
     public String getTitle() {
         return mTitle;
     }
 
+    //**********************************************************************************************以下为Title相关方法
+    public void setTitle(String title) {
+        mTitle = title;
+        mTvTitle.setText(mTitle);
+    }
+
     public int getTitleColor() {
         return mTitleColor;
+    }
+
+    public void setTitleColor(int titleColor) {
+        mTitleColor = titleColor;
+        mTvTitle.setTextColor(mTitleColor);
     }
 
     public int getTitleSize() {
         return mTitleSize;
     }
 
+    public void setTitleSize(int titleSize) {
+        mTitleSize = titleSize;
+        mTvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTitleSize);
+    }
+
     public int getLeftIcon() {
         return mLeftIcon;
     }
 
+    public void setLeftIcon(int leftIcon) {
+        mLeftIcon = leftIcon;
+        mIvLeft.setImageResource(mLeftIcon);
+    }
+
     public int getRightIcon() {
         return mRightIcon;
+    }
+    //==============================================================================================以上为  Title  相关方法
+
+    public void setRightIcon(int rightIcon) {
+        mRightIcon = rightIcon;
+        mIvRight.setImageResource(mRightIcon);
     }
 
     public boolean isLeftIconVisibility() {
         return mLeftIconVisibility;
     }
 
+    public void setLeftIconVisibility(boolean leftIconVisibility) {
+        mLeftIconVisibility = leftIconVisibility;
+        if (mLeftIconVisibility) {
+            mIvLeft.setVisibility(VISIBLE);
+        } else {
+            mIvLeft.setVisibility(GONE);
+        }
+    }
+
     public boolean isRightIconVisibility() {
         return mRightIconVisibility;
     }
+    //==============================================================================================以上为  左边文字  相关方法
 
-    //==============================================================================================以上为get方法
-
-    //**********************************************************************************************以下为set方法
+    public void setRightIconVisibility(boolean rightIconVisibility) {
+        mRightIconVisibility = rightIconVisibility;
+        if (mRightIconVisibility) {
+            mIvRight.setVisibility(VISIBLE);
+        } else {
+            mIvRight.setVisibility(GONE);
+        }
+    }
 
     public void setLeftFinish(final Activity activity) {
         mLlLeft.setOnClickListener(new OnClickListener() {
@@ -311,7 +421,6 @@ public class RxTitle extends FrameLayout {
         });
     }
 
-
     public void setLeftOnClickListener(OnClickListener onClickListener) {
         mLlLeft.setOnClickListener(onClickListener);
     }
@@ -319,6 +428,7 @@ public class RxTitle extends FrameLayout {
     public void setRightOnClickListener(OnClickListener onClickListener) {
         mLlRight.setOnClickListener(onClickListener);
     }
+    //==============================================================================================以上为  右边文字  相关方法
 
     public void setLeftTextOnClickListener(OnClickListener onClickListener) {
         mTvLeft.setOnClickListener(onClickListener);
@@ -334,119 +444,6 @@ public class RxTitle extends FrameLayout {
 
     public void setRightIconOnClickListener(OnClickListener onClickListener) {
         mIvRight.setOnClickListener(onClickListener);
-    }
-
-    //**********************************************************************************************以下为Title相关方法
-    public void setTitle(String title) {
-        mTitle = title;
-        mTvTitle.setText(mTitle);
-    }
-
-    public void setTitleColor(int titleColor) {
-        mTitleColor = titleColor;
-        mTvTitle.setTextColor(mTitleColor);
-    }
-
-    public void setTitleSize(int titleSize) {
-        mTitleSize = titleSize;
-        mTvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX,mTitleSize);
-    }
-
-    public void setTitleVisibility(boolean titleVisibility) {
-        mTitleVisibility = titleVisibility;
-        if (mTitleVisibility) {
-            mTvTitle.setVisibility(VISIBLE);
-        } else {
-            mTvTitle.setVisibility(GONE);
-        }
-    }
-    //==============================================================================================以上为  Title  相关方法
-
-
-    //**********************************************************************************************以下为  左边文字  相关方法
-    public void setLeftText(String leftText) {
-        mLeftText = leftText;
-        mTvLeft.setText(mLeftText);
-
-    }
-
-    public void setLeftTextColor(int leftTextColor) {
-        mLeftTextColor = leftTextColor;
-        mTvLeft.setTextColor(mLeftTextColor);
-    }
-
-    public void setLeftTextSize(int leftTextSize) {
-        mLeftTextSize = leftTextSize;
-        mTvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX,mLeftTextSize);
-    }
-
-    public void setLeftTextVisibility(boolean leftTextVisibility) {
-        mLeftTextVisibility = leftTextVisibility;
-        if (mLeftTextVisibility) {
-            mTvLeft.setVisibility(VISIBLE);
-        } else {
-            mTvLeft.setVisibility(GONE);
-        }
-    }
-    //==============================================================================================以上为  左边文字  相关方法
-
-    //**********************************************************************************************以下为  右边文字  相关方法
-    public void setRightText(String rightText) {
-        mRightText = rightText;
-        mTvRight.setText(mRightText);
-
-    }
-
-    public void setRightTextColor(int rightTextColor) {
-        mRightTextColor = rightTextColor;
-        mTvRight.setTextColor(mRightTextColor);
-    }
-
-    public void setRightTextSize(int rightTextSize) {
-        mRightTextSize = rightTextSize;
-        mTvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX,mRightTextSize);
-    }
-
-    public void setRightTextVisibility(boolean rightTextVisibility) {
-        mRightTextVisibility = rightTextVisibility;
-        if (mRightTextVisibility) {
-            mTvRight.setVisibility(VISIBLE);
-            if (isRightIconVisibility()) {
-                mTvRight.setPadding(0, 0, 0, 0);
-            }
-        } else {
-            mTvRight.setVisibility(GONE);
-        }
-    }
-    //==============================================================================================以上为  右边文字  相关方法
-
-
-    public void setLeftIcon(int leftIcon) {
-        mLeftIcon = leftIcon;
-        mIvLeft.setImageResource(mLeftIcon);
-    }
-
-    public void setLeftIconVisibility(boolean leftIconVisibility) {
-        mLeftIconVisibility = leftIconVisibility;
-        if (mLeftIconVisibility) {
-            mIvLeft.setVisibility(VISIBLE);
-        } else {
-            mIvLeft.setVisibility(GONE);
-        }
-    }
-
-    public void setRightIcon(int rightIcon) {
-        mRightIcon = rightIcon;
-        mIvRight.setImageResource(mRightIcon);
-    }
-
-    public void setRightIconVisibility(boolean rightIconVisibility) {
-        mRightIconVisibility = rightIconVisibility;
-        if (mRightIconVisibility) {
-            mIvRight.setVisibility(VISIBLE);
-        } else {
-            mIvRight.setVisibility(GONE);
-        }
     }
     //==============================================================================================以上为set方法
 

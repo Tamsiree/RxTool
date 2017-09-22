@@ -7,8 +7,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.jaredrummler.android.widget.AnimatedSvgView;
-import com.vondear.rxtools.RxActivityUtils;
-import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.RxActivityTool;
+import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.tools.R;
 import com.vondear.tools.bean.ModelSVG;
@@ -24,11 +24,17 @@ public class ActivitySVG extends ActivityBase {
     RelativeLayout mActivitySvg;
     @BindView(R.id.app_name)
     ImageView mAppName;
+    private Handler checkhandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+//            mAppName.setVisibility(View.VISIBLE);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.hideStatusBar(this);
+        RxBarTool.hideStatusBar(this);
         setContentView(R.layout.activity_svg);
         ButterKnife.bind(this);
         setSvg(ModelSVG.values()[4]);
@@ -65,14 +71,7 @@ public class ActivitySVG extends ActivityBase {
         }.start();
     }
 
-    private Handler checkhandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-//            mAppName.setVisibility(View.VISIBLE);
-        }
-    };
-
     public void toMain() {
-        RxActivityUtils.skipActivityAndFinish(this, ActivityMain.class);
+        RxActivityTool.skipActivityAndFinish(this, ActivityMain.class);
     }
 }

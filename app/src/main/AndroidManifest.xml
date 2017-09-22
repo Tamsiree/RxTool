@@ -35,7 +35,7 @@
             android:name=".activity.ActivitySplash"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.ActivityDialog"/>
-        <activity android:name=".activity.ActivityTextUtils"/>
+        <activity android:name=".activity.ActivityTextTool"/>
         <activity
             android:name="com.vondear.rxtools.activity.ActivityWebView"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
@@ -84,7 +84,7 @@
         </activity>
         <activity android:name=".activity.ActivityRxExifTool">
         </activity>
-        <activity android:name=".activity.ActivityRxDataUtils">
+        <activity android:name=".activity.ActivityRxDataTool">
         </activity>
         <activity android:name=".activity.ActivityDeviceInfo">
         </activity>

@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.vondear.rxtools.RxActivityUtils;
+import com.vondear.rxtools.RxActivityTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.tools.R;
 
@@ -33,10 +33,10 @@ public class ActivitySeat extends ActivityBase {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_movie:
-                RxActivityUtils.skipActivity(ActivitySeat.this, ActivityMovieSeat.class);
+                RxActivityTool.skipActivity(ActivitySeat.this, ActivityMovieSeat.class);
                 break;
             case R.id.btn_flight:
-                RxActivityUtils.skipActivity(ActivitySeat.this, ActivityFlightSeat.class);
+                RxActivityTool.skipActivity(ActivitySeat.this, ActivityFlightSeat.class);
                 break;
         }
     }

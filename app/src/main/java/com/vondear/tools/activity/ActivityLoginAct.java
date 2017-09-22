@@ -22,8 +22,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.vondear.rxtools.RxAnimationUtils;
-import com.vondear.rxtools.RxKeyboardUtils;
+import com.vondear.rxtools.RxAnimationTool;
+import com.vondear.rxtools.RxKeyboardTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.activity.AndroidBug5497Workaround;
 import com.vondear.tools.R;
@@ -157,7 +157,7 @@ public class ActivityLoginAct extends ActivityBase {
                         mAnimatorTranslateY.setDuration(300);
                         mAnimatorTranslateY.setInterpolator(new LinearInterpolator());
                         mAnimatorTranslateY.start();
-                        RxAnimationUtils.zoomIn(mLogo, 0.6f, dist);
+                        RxAnimationTool.zoomIn(mLogo, 0.6f, dist);
                     }
                     mService.setVisibility(View.INVISIBLE);
 
@@ -169,7 +169,7 @@ public class ActivityLoginAct extends ActivityBase {
                         mAnimatorTranslateY.setInterpolator(new LinearInterpolator());
                         mAnimatorTranslateY.start();
                         //键盘收回后，logo恢复原来大小，位置同样回到初始位置
-                        RxAnimationUtils.zoomOut(mLogo, 0.6f);
+                        RxAnimationTool.zoomOut(mLogo, 0.6f);
                     }
                     mService.setVisibility(View.VISIBLE);
                 }
@@ -179,7 +179,7 @@ public class ActivityLoginAct extends ActivityBase {
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RxKeyboardUtils.hideSoftInput(mContext);
+                RxKeyboardTool.hideSoftInput(mContext);
             }
         });
     }

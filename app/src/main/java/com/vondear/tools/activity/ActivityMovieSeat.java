@@ -3,7 +3,7 @@ package com.vondear.tools.activity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
-import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxSeatMovie;
 import com.vondear.rxtools.view.RxTitle;
@@ -24,8 +24,8 @@ public class ActivityMovieSeat extends ActivityBase {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.noTitle(this);
-        RxBarUtils.setTransparentStatusBar(this);
+        RxBarTool.noTitle(this);
+        RxBarTool.setTransparentStatusBar(this);
         setContentView(R.layout.activity_movie_seat);
         ButterKnife.bind(this);
         initView();
@@ -42,18 +42,12 @@ public class ActivityMovieSeat extends ActivityBase {
 
             @Override
             public boolean isValidSeat(int row, int column) {
-                if (column == 2 || column == 12) {
-                    return false;
-                }
-                return true;
+                return !(column == 2 || column == 12);
             }
 
             @Override
             public boolean isSold(int row, int column) {
-                if (row == 6 && column == 6) {
-                    return true;
-                }
-                return false;
+                return row == 6 && column == 6;
             }
 
             @Override

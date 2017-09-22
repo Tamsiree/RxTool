@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.alipay.sdk.app.PayTask;
-import com.vondear.rxtools.interfaces.onRequestListener;
+import com.vondear.rxtools.interfaces.OnRequestListener;
 
 import java.util.Map;
 
@@ -16,7 +16,7 @@ public class AliPayTools {
 
     private static final int SDK_PAY_FLAG = 1;
 
-    private static onRequestListener sOnRequestListener;
+    private static OnRequestListener sOnRequestListener;
     @SuppressLint("HandlerLeak")
     private static Handler mHandler = new Handler() {
         @SuppressWarnings("unused")
@@ -45,7 +45,7 @@ public class AliPayTools {
         }
     };
 
-    public static void aliPay(final Activity activity, String appid, boolean isRsa2, String alipay_rsa_private, AliPayModel aliPayModel, onRequestListener onRxHttp1) {
+    public static void aliPay(final Activity activity, String appid, boolean isRsa2, String alipay_rsa_private, AliPayModel aliPayModel, OnRequestListener onRxHttp1) {
         sOnRequestListener = onRxHttp1;
         Map<String, String> params = AliPayOrderInfoUtil.buildOrderParamMap(appid, isRsa2, aliPayModel.getOut_trade_no(), aliPayModel.getName(), aliPayModel.getMoney(), aliPayModel.getDetail());
         String orderParam = AliPayOrderInfoUtil.buildOrderParam(params);

@@ -9,6 +9,7 @@ import java.io.File;
 
 /**
  * Created by Vondear on 2017/7/28.
+ *
  */
 
 public class RxExifTool {

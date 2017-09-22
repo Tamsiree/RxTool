@@ -16,9 +16,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.vondear.rxtools.RxBarUtils;
-import com.vondear.rxtools.RxPhotoUtils;
-import com.vondear.rxtools.RxSPUtils;
+import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtools.RxPhotoTool;
+import com.vondear.rxtools.RxSPTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.dialog.RxDialogChooseImage;
@@ -76,7 +76,7 @@ public class ActivityRxPhoto extends ActivityBase {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.noTitle(this);
+        RxBarTool.noTitle(this);
         setContentView(R.layout.activity_von_photo);
         ButterKnife.bind(this);
         initView();
@@ -100,7 +100,7 @@ public class ActivityRxPhoto extends ActivityBase {
         mIvAvatar.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-//                RxImageUtils.showBigImageView(mContext, resultUri);
+//                RxImageTool.showBigImageView(mContext, resultUri);
                 RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(mContext);
                 rxDialogScaleView.setImageUri(resultUri);
                 rxDialogScaleView.show();
@@ -117,24 +117,24 @@ public class ActivityRxPhoto extends ActivityBase {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case RxPhotoUtils.GET_IMAGE_FROM_PHONE://选择相册之后的处理
+            case RxPhotoTool.GET_IMAGE_FROM_PHONE://选择相册之后的处理
                 if (resultCode == RESULT_OK) {
-//                    RxPhotoUtils.cropImage(ActivityUser.this, );// 裁剪图片
+//                    RxPhotoTool.cropImage(ActivityUser.this, );// 裁剪图片
                     initUCrop(data.getData());
                 }
 
                 break;
-            case RxPhotoUtils.GET_IMAGE_BY_CAMERA://选择照相机之后的处理
+            case RxPhotoTool.GET_IMAGE_BY_CAMERA://选择照相机之后的处理
                 if (resultCode == RESULT_OK) {
                    /* data.getExtras().get("data");*/
-//                    RxPhotoUtils.cropImage(ActivityUser.this, RxPhotoUtils.imageUriFromCamera);// 裁剪图片
-                    initUCrop(RxPhotoUtils.imageUriFromCamera);
+//                    RxPhotoTool.cropImage(ActivityUser.this, RxPhotoTool.imageUriFromCamera);// 裁剪图片
+                    initUCrop(RxPhotoTool.imageUriFromCamera);
                 }
 
                 break;
-            case RxPhotoUtils.CROP_IMAGE://普通裁剪后的处理
+            case RxPhotoTool.CROP_IMAGE://普通裁剪后的处理
                 Glide.with(mContext).
-                        load(RxPhotoUtils.cropImageUri).
+                        load(RxPhotoTool.cropImageUri).
                         diskCacheStrategy(DiskCacheStrategy.RESULT).
                         bitmapTransform(new CropCircleTransformation(mContext)).
                         thumbnail(0.5f).
@@ -143,14 +143,14 @@ public class ActivityRxPhoto extends ActivityBase {
                         error(R.drawable.circle_elves_ball).
                         fallback(R.drawable.circle_elves_ball).
                         into(mIvAvatar);
-//                RequestUpdateAvatar(new File(RxPhotoUtils.getRealFilePath(mContext, RxPhotoUtils.cropImageUri)));
+//                RequestUpdateAvatar(new File(RxPhotoTool.getRealFilePath(mContext, RxPhotoTool.cropImageUri)));
                 break;
 
             case UCrop.REQUEST_CROP://UCrop裁剪之后的处理
                 if (resultCode == RESULT_OK) {
                     resultUri = UCrop.getOutput(data);
                     roadImageView(resultUri, mIvAvatar);
-                    RxSPUtils.putContent(mContext, "AVATAR", resultUri.toString());
+                    RxSPTool.putContent(mContext, "AVATAR", resultUri.toString());
                 } else if (resultCode == UCrop.RESULT_ERROR) {
                     final Throwable cropError = UCrop.getError(data);
                 }
@@ -177,11 +177,11 @@ public class ActivityRxPhoto extends ActivityBase {
                 fallback(R.drawable.circle_elves_ball).
                 into(imageView);
 
-        return (new File(RxPhotoUtils.getImageAbsolutePath(this, uri)));
+        return (new File(RxPhotoTool.getImageAbsolutePath(this, uri)));
     }
 
     private void initUCrop(Uri uri) {
-        //Uri destinationUri = RxPhotoUtils.createImagePathUri(this);
+        //Uri destinationUri = RxPhotoTool.createImagePathUri(this);
 
         SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA);
         long time = System.currentTimeMillis();

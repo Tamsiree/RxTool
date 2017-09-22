@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxBarUtils;
-import com.vondear.rxtools.RxDeviceUtils;
+import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtools.RxDeviceTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogSureCancel;
@@ -54,10 +54,10 @@ public class ActivitySplash extends ActivityBase {
         public void handleMessage(Message msg) {
             if (!update) {
                 RxToast.showToast(context, "正在检查版本更新...", 500);
-                // TODO: 使用 RxDeviceUtils.getAppVersionNo(context); 方法 获取当前app版本号 与 提交给服务器 做对比
+                // TODO: 使用 RxDeviceTool.getAppVersionNo(context); 方法 获取当前app版本号 与 提交给服务器 做对比
                 String temp = getResources().getString(R.string.newest_apk_down);
-                String timeTip = String.format(temp, RxDeviceUtils.getAppVersionName(context));
-                //  或简化成 String.format(getResources().getString(R.string.newest_apk_down),RxDeviceUtils.getAppVersionName(context))
+                String timeTip = String.format(temp, RxDeviceTool.getAppVersionName(context));
+                //  或简化成 String.format(getResources().getString(R.string.newest_apk_down),RxDeviceTool.getAppVersionName(context))
                 ShowDialog(timeTip, "your_apk_down_url");
             } else {
                 RxToast.showToast(context, "当前为最新版本，无需更新!", 500);
@@ -69,7 +69,7 @@ public class ActivitySplash extends ActivityBase {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.hideStatusBar(this);//隐藏状态栏 并 全屏
+        RxBarTool.hideStatusBar(this);//隐藏状态栏 并 全屏
         setContentView(R.layout.activity_splash);
         context = this;
         initView();
@@ -81,7 +81,7 @@ public class ActivitySplash extends ActivityBase {
         pg = (ProgressBar) findViewById(R.id.pg);
         tv_update_info = (TextView) findViewById(R.id.tv_update_info);
         tv_splash_version = (TextView) findViewById(R.id.tv_splash_version);
-        appVersionName = RxDeviceUtils.getAppVersionName(context);
+        appVersionName = RxDeviceTool.getAppVersionName(context);
         tv_splash_version.setText("版本号 "+appVersionName);
     }
 
@@ -122,9 +122,9 @@ public class ActivitySplash extends ActivityBase {
         rxDialogSureCancel.getSureView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getFile(apk_down_url, RxFileUtils.getDiskFileDir(context) + File.separator + "update", str + ".apk");
+                //getFile(apk_down_url, RxFileTool.getDiskFileDir(context) + File.separator + "update", str + ".apk");
                 // TODO: 第一步 在此处 使用 你的网络框架下载 新的Apk文件 可参照下面的例子 使用的是 okGo网络框架
-                // TODO: 第二步 可使用 RxAppUtils.InstallAPK(context,file.getAbsolutePath()); 方法进行 最新版本Apk文件的安装
+                // TODO: 第二步 可使用 RxAppTool.InstallAPK(context,file.getAbsolutePath()); 方法进行 最新版本Apk文件的安装
                 rxDialogSureCancel.cancel();
             }
         });

@@ -22,30 +22,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vondear.rxtools.R;
-import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.RxConstants;
-import com.vondear.rxtools.RxImageUtils;
-import com.vondear.rxtools.RxKeyboardUtils;
+import com.vondear.rxtools.RxImageTool;
+import com.vondear.rxtools.RxKeyboardTool;
 import com.vondear.rxtools.view.RxTextAutoZoom;
 
 public class ActivityWebView extends ActivityBase {
 
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     ProgressBar pbWebBase;
     TextView tvTitle;
     WebView webBase;
     ImageView ivFinish;
-
     RxTextAutoZoom mRxTextAutoZoom;
-
     LinearLayout llIncludeTitle;
-
     private String webPath = "";
-
+    private long mBackPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.setTransparentStatusBar(this);
+        RxBarTool.setTransparentStatusBar(this);
         setContentView(R.layout.activity_webview);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         initView();// 初始化控件 - FindViewById之类的操作
@@ -84,13 +82,13 @@ public class ActivityWebView extends ActivityBase {
         //might cause crash on some devices
         mRxTextAutoZoom.setMovementMethod(null);
         // can be added after layout inflation;
-        mRxTextAutoZoom.setMaxHeight(RxImageUtils.dip2px(this,55f));
+        mRxTextAutoZoom.setMaxHeight(RxImageTool.dip2px(this, 55f));
         //don't forget to add min text size programmatically
         mRxTextAutoZoom.setMinTextSize(37f);
 
         RxTextAutoZoom.setNormalization(this, llIncludeTitle, mRxTextAutoZoom);
 
-        RxKeyboardUtils.hideSoftInput(this);
+        RxKeyboardTool.hideSoftInput(this);
     }
 
     private void initData() {
@@ -185,9 +183,14 @@ public class ActivityWebView extends ActivityBase {
                     return false;
                 }
 
+
                 // Otherwise allow the OS to handle things like tel, mailto, etc.
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 return true;
             }
         });
@@ -221,9 +224,6 @@ public class ActivityWebView extends ActivityBase {
         } catch (Exception ex) {
         }
     }
-
-    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
-    private long mBackPressed;
 
     @Override
     public void onBackPressed() {

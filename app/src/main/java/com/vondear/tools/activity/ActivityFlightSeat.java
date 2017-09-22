@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxSeatAirplane;
 import com.vondear.tools.R;
@@ -30,8 +30,8 @@ public class ActivityFlightSeat extends ActivityBase {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.noTitle(this);
-        RxBarUtils.setTransparentStatusBar(this);
+        RxBarTool.noTitle(this);
+        RxBarTool.setTransparentStatusBar(this);
         setContentView(R.layout.activity_flight_seat);
         ButterKnife.bind(this);
         initView();

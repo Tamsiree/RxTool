@@ -9,7 +9,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 
-import com.vondear.rxtools.RxLocationUtils;
+import com.vondear.rxtools.RxLocationTool;
 import com.vondear.rxtools.view.RxToast;
 
 public class RxServiceLocation extends Service {
@@ -23,12 +23,7 @@ public class RxServiceLocation extends Service {
     private String locality      = "loading...";
     private String street        = "loading...";
     private OnGetLocationListener mOnGetLocationListener;
-
-    public void setOnGetLocationListener(OnGetLocationListener onGetLocationListener) {
-        mOnGetLocationListener = onGetLocationListener;
-    }
-
-    private RxLocationUtils.OnLocationChangeListener mOnLocationChangeListener = new RxLocationUtils.OnLocationChangeListener() {
+    private RxLocationTool.OnLocationChangeListener mOnLocationChangeListener = new RxLocationTool.OnLocationChangeListener() {
         @Override
         public void getLastKnownLocation(Location location) {
             lastLatitude = String.valueOf(location.getLatitude());
@@ -45,9 +40,9 @@ public class RxServiceLocation extends Service {
             if (mOnGetLocationListener != null) {
                 mOnGetLocationListener.getLocation(lastLatitude, lastLongitude, latitude, longitude, country, locality, street);
             }
-            country = RxLocationUtils.getCountryName(getApplicationContext(),Double.parseDouble(latitude), Double.parseDouble(longitude));
-            locality = RxLocationUtils.getLocality(getApplicationContext(),Double.parseDouble(latitude), Double.parseDouble(longitude));
-            street = RxLocationUtils.getStreet(getApplicationContext(),Double.parseDouble(latitude), Double.parseDouble(longitude));
+            country = RxLocationTool.getCountryName(getApplicationContext(), Double.parseDouble(latitude), Double.parseDouble(longitude));
+            locality = RxLocationTool.getLocality(getApplicationContext(), Double.parseDouble(latitude), Double.parseDouble(longitude));
+            street = RxLocationTool.getStreet(getApplicationContext(), Double.parseDouble(latitude), Double.parseDouble(longitude));
             if (mOnGetLocationListener != null) {
                 mOnGetLocationListener.getLocation(lastLatitude, lastLongitude, latitude, longitude, country, locality, street);
             }
@@ -59,6 +54,10 @@ public class RxServiceLocation extends Service {
         }
     };
 
+    public void setOnGetLocationListener(OnGetLocationListener onGetLocationListener) {
+        mOnGetLocationListener = onGetLocationListener;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -66,7 +65,7 @@ public class RxServiceLocation extends Service {
             @Override
             public void run() {
                 Looper.prepare();
-                isSuccess = RxLocationUtils.register(getApplicationContext(),0, 0, mOnLocationChangeListener);
+                isSuccess = RxLocationTool.registerLocation(getApplicationContext(), 0, 0, mOnLocationChangeListener);
                 if (isSuccess) RxToast.success("init success");
                 Looper.loop();
             }
@@ -79,15 +78,9 @@ public class RxServiceLocation extends Service {
         return new LocationBinder();
     }
 
-    public class LocationBinder extends Binder {
-        public RxServiceLocation getService() {
-            return RxServiceLocation.this;
-        }
-    }
-
     @Override
     public void onDestroy() {
-        RxLocationUtils.unregister();
+        RxLocationTool.unRegisterLocation();
         // 一定要制空，否则内存泄漏
         mOnGetLocationListener = null;
         super.onDestroy();
@@ -102,5 +95,11 @@ public class RxServiceLocation extends Service {
                 String latitude, String longitude,
                 String country, String locality, String street
         );
+    }
+
+    public class LocationBinder extends Binder {
+        public RxServiceLocation getService() {
+            return RxServiceLocation.this;
+        }
     }
 }

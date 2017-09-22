@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.vondear.rxtools.R;
-import com.vondear.rxtools.RxDataUtils;
+import com.vondear.rxtools.RxDataTool;
 
 
 /**
@@ -20,8 +20,9 @@ import com.vondear.rxtools.RxDataUtils;
  *
  */
 public class RxRoundProgress extends View {
-	/**
-	 * 画笔对象的引用
+    public static final int STROKE = 0;
+    /**
+     * 画笔对象的引用
 	 */
 	private Paint paint;
 	private Paint textPaint;
@@ -31,32 +32,26 @@ public class RxRoundProgress extends View {
 	 * 圆环的颜色
 	 */
 	private int roundColor;
-	
 	/**
 	 * 圆环进度的颜色
 	 */
 	private int roundProgressColor;
-	
 	/**
 	 * 中间进度百分比的字符串的颜色
 	 */
 	private int textColor;
-	
 	/**
 	 * 中间进度百分比的字符串的字体
 	 */
 	private float textSize;
-	
 	/**
 	 * 圆环的宽度
 	 */
 	private float roundWidth;
-	
 	/**
 	 * 最大进度
 	 */
 	private double max;
-	
 	/**
 	 * 当前进度
 	 */
@@ -65,13 +60,10 @@ public class RxRoundProgress extends View {
 	 * 是否显示中间的进度
 	 */
 	private boolean textIsDisplayable;
-	
 	/**
 	 * 进度的风格，实心或者空心
 	 */
 	private int style;
-	
-	public static final int STROKE = 0;
 	
 
 	public RxRoundProgress(Context context) {
@@ -137,12 +129,12 @@ public class RxRoundProgress extends View {
 			double money = progress*1+(Math.floor(Math.random()*getMax()));
 			canvas.drawText(money+"", (centre+90) - moneyPaint.measureText(money+"")/2-15, centre+165, moneyPaint);//右边最大值
 		}else{*/
-			canvas.drawText(RxDataUtils.format2Decimals(getProgress()+""), (centre+90) - moneyPaint.measureText(RxDataUtils.format2Decimals(getProgress()+""))/2-15, centre+105, moneyPaint);//右边最大值
-		//}
-		canvas.drawText("元", (centre+90) + moneyPaint.measureText(RxDataUtils.format2Decimals(getProgress()+""))/2-10, centre+105, moneyDPaint);//右边最大值
-		canvas.drawArc(oval, 135, 270, false, paint);  //根据进度画圆弧
-		
-		/**
+        canvas.drawText(RxDataTool.format2Decimals(getProgress() + ""), (centre + 90) - moneyPaint.measureText(RxDataTool.format2Decimals(getProgress() + "")) / 2 - 15, centre + 105, moneyPaint);//右边最大值
+        //}
+        canvas.drawText("元", (centre + 90) + moneyPaint.measureText(RxDataTool.format2Decimals(getProgress() + "")) / 2 - 10, centre + 105, moneyDPaint);//右边最大值
+        canvas.drawArc(oval, 135, 270, false, paint);  //根据进度画圆弧
+
+        /**
 		 * 画进度百分比
 		 */
 		paint.setStrokeWidth(0);  

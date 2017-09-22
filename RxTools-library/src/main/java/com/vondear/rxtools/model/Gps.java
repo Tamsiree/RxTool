@@ -6,32 +6,32 @@ package com.vondear.rxtools.model;
 
 public class Gps {
 
-    private double wgLat;
-    private double wgLon;
+    private double mLatitude;
+    private double mLongitude;
 
-    public Gps(double wgLat, double wgLon) {
-        setWgLat(wgLat);
-        setWgLon(wgLon);
+    public Gps(double longitude, double mLatitude) {
+        setLatitude(mLatitude);
+        setLongitude(longitude);
     }
 
-    public double getWgLat() {
-        return wgLat;
+    public double getLatitude() {
+        return mLatitude;
     }
 
-    public void setWgLat(double wgLat) {
-        this.wgLat = wgLat;
+    public void setLatitude(double latitude) {
+        this.mLatitude = latitude;
     }
 
-    public double getWgLon() {
-        return wgLon;
+    public double getLongitude() {
+        return mLongitude;
     }
 
-    public void setWgLon(double wgLon) {
-        this.wgLon = wgLon;
+    public void setLongitude(double longitude) {
+        this.mLongitude = longitude;
     }
 
     @Override
     public String toString() {
-        return wgLat + "," + wgLon;
+        return mLongitude + "," + mLatitude;
     }
 }

@@ -12,7 +12,7 @@ import com.tencent.mm.opensdk.modelmsg.WXVideoObject;
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.vondear.rxtools.RxImageUtils;
+import com.vondear.rxtools.RxImageTool;
 import com.vondear.rxtools.model.wechat.pay.WechatPayTools;
 
 /**
@@ -72,7 +72,7 @@ public class WechatShareTools {
 
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bitmap, 100, 100, true);
         bitmap.recycle();
-        msg.thumbData = RxImageUtils.bitmap2Bytes(thumbBmp, Bitmap.CompressFormat.PNG);
+        msg.thumbData = RxImageTool.bitmap2Bytes(thumbBmp, Bitmap.CompressFormat.PNG);
 
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         req.transaction = WechatPayTools.getCurrTime();

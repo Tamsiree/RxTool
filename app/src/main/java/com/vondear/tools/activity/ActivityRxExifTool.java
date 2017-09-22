@@ -10,11 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.cameraview.CameraView;
-import com.vondear.rxtools.RxBarUtils;
-import com.vondear.rxtools.RxFileUtils;
-import com.vondear.rxtools.RxLocationUtils;
-import com.vondear.rxtools.RxPermissionTool;
-import com.vondear.rxtools.RxTimeUtils;
+import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtools.RxFileTool;
+import com.vondear.rxtools.RxLocationTool;
+import com.vondear.rxtools.RxPermissionsTool;
+import com.vondear.rxtools.RxTimeTool;
 import com.vondear.rxtools.activity.ActivityBaseLocation;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogScaleView;
@@ -46,8 +46,8 @@ public class ActivityRxExifTool extends ActivityBaseLocation {
 
     @Override
     public void setGpsInfo(Location location) {
-        mTvGps.setText("经度: " + RxLocationUtils.gpsToDegree(location.getLongitude()) +
-                "  纬度: " + RxLocationUtils.gpsToDegree(location.getLatitude()) +
+        mTvGps.setText("经度: " + RxLocationTool.gpsToDegree(location.getLongitude()) +
+                "  纬度: " + RxLocationTool.gpsToDegree(location.getLatitude()) +
                 "\n精度: " + location.getAccuracy() +
                 //"  海拔: " + altitudeDf.format(location.getAltitude()) +
                 "  方位: " + location.getBearing());
@@ -56,12 +56,12 @@ public class ActivityRxExifTool extends ActivityBaseLocation {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.noTitle(this);
-        RxBarUtils.setTransparentStatusBar(this);
+        RxBarTool.noTitle(this);
+        RxBarTool.setTransparentStatusBar(this);
         setContentView(R.layout.activity_rx_exif_tool);
         ButterKnife.bind(this);
 
-        RxPermissionTool.
+        RxPermissionsTool.
                 with(mContext).
                 addPermission(Manifest.permission.ACCESS_FINE_LOCATION).
                 addPermission(Manifest.permission.ACCESS_COARSE_LOCATION).
@@ -94,8 +94,8 @@ public class ActivityRxExifTool extends ActivityBaseLocation {
     }
 
     private void initCameraEvent(final byte[] data) {
-        String fileDir = RxFileUtils.getRootPath().getAbsolutePath() + File.separator + "RoadExcel" + File.separator + "picture";
-        String fileName = RxTimeUtils.getCurrentDateTime("yyyyMMddHHmmss") + "_" + new Random().nextInt(1000) + ".jpg";
+        String fileDir = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RoadExcel" + File.separator + "picture";
+        String fileName = RxTimeTool.getCurrentDateTime("yyyyMMddHHmmss") + "_" + new Random().nextInt(1000) + ".jpg";
         RxCameraTool.initCameraEvent(mContext, mCameraView, data, fileDir, fileName, mLongitude, mLatitude, false, new onRxCamera() {
             @Override
             public void onBefore() {
@@ -106,14 +106,14 @@ public class ActivityRxExifTool extends ActivityBaseLocation {
             public void onSuccessCompress(File file) {
                 mTvState.setText(mTvState.getText() + "图片压缩成功\n");
                 photo = file;
-                mIvPic.setImageURI(RxFileUtils.getImageContentUri(mContext, photo));
+                mIvPic.setImageURI(RxFileTool.getImageContentUri(mContext, photo));
             }
 
             @Override
             public void onSuccessExif(File filePhoto) {
                 mTvState.setText(mTvState.getText() + "地理位置信息写入图片成功\n");
                 photo = filePhoto;
-                mIvPic.setImageURI(RxFileUtils.getImageContentUri(mContext, photo));
+                mIvPic.setImageURI(RxFileTool.getImageContentUri(mContext, photo));
             }
         });
     }

@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.vondear.rxtools.RxLocationUtils;
+import com.vondear.rxtools.RxLocationTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.tools.R;
 
@@ -67,13 +67,13 @@ public class ActivityLocation extends ActivityBase implements LocationListener {
 
     //----------------------------------------------------------------------------------------------检测GPS是否已打开 start
     private void gpsCheck() {
-        if (!RxLocationUtils.isGpsEnabled(this)) {
+        if (!RxLocationTool.isGpsEnabled(this)) {
             MaterialDialog.Builder builder = new MaterialDialog.Builder(this);
             MaterialDialog materialDialog = builder.title("GPS未打开").content("您需要在系统设置中打开GPS方可采集数据").positiveText("去设置")
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            RxLocationUtils.openGpsSettings(mContext);
+                            RxLocationTool.openGpsSettings(mContext);
                         }
                     }).build();
             materialDialog.setCanceledOnTouchOutside(false);
@@ -129,8 +129,8 @@ public class ActivityLocation extends ActivityBase implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        mTvAboutLocation.setText("经度: " + RxLocationUtils.gpsToDegree(location.getLongitude()) +
-                "\n纬度: " + RxLocationUtils.gpsToDegree(location.getLatitude()) +
+        mTvAboutLocation.setText("经度: " + RxLocationTool.gpsToDegree(location.getLongitude()) +
+                "\n纬度: " + RxLocationTool.gpsToDegree(location.getLatitude()) +
                 "\n精度: " + location.getAccuracy() +
                 "\n海拔: " + location.getAltitude() +
                 "\n方位: " + location.getBearing() +

@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.vondear.rxtools.R;
 
-import static com.vondear.rxtools.RxUtils.getContext;
+import static com.vondear.rxtools.RxTool.getContext;
 
 /**
  * @author vondear 在系统的Toast基础上封装

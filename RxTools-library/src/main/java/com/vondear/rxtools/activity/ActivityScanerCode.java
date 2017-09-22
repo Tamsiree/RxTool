@@ -35,11 +35,11 @@ import com.google.zxing.DecodeHintType;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
-import com.vondear.rxtools.RxAnimationUtils;
-import com.vondear.rxtools.RxBarUtils;
-import com.vondear.rxtools.RxDataUtils;
-import com.vondear.rxtools.RxSPUtils;
-import com.vondear.rxtools.interfaces.onRxScanerListener;
+import com.vondear.rxtools.RxAnimationTool;
+import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtools.RxDataTool;
+import com.vondear.rxtools.RxSPTool;
+import com.vondear.rxtools.interfaces.OnRxScanerListener;
 import com.vondear.rxtools.model.scaner.BitmapLuminanceSource;
 import com.vondear.rxtools.model.scaner.CameraManager;
 import com.vondear.rxtools.model.scaner.CaptureActivityHandler;
@@ -66,7 +66,7 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
     private static final float BEEP_VOLUME = 0.50f;
     private final static String ALBUM_PATH = Environment.getExternalStorageDirectory() + File.separator + "fengci/";
     private static final long VIBRATE_DURATION = 200L;
-    private static onRxScanerListener mScanerListener;
+    private static OnRxScanerListener mScanerListener;
     private final int CHOOSE_PICTURE = 1003;
     boolean flag = true;
     private CaptureActivityHandler handler;
@@ -87,7 +87,7 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
     //----------------------------------------------------------------------------------------------解析结果 及 后续处理 start
     private String mResult;
 
-    public static void setScanerListener(onRxScanerListener scanerListener) {
+    public static void setScanerListener(OnRxScanerListener scanerListener) {
         mScanerListener = scanerListener;
     }
 
@@ -157,9 +157,9 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.setNoTitle(this);
+        RxBarTool.setNoTitle(this);
         setContentView(com.vondear.rxtools.R.layout.activity_scaner_code);
-        RxBarUtils.setTransparentStatusBar(this);
+        RxBarTool.setTransparentStatusBar(this);
         initView();//界面控件初始化
         initScanerAnimation();//扫描动画初始化
         CameraManager.init(mContext);//初始化 CameraManager
@@ -213,7 +213,7 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
         ll_scan_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // RxActivityUtils.skipActivity(ActivityScanerCode.this, ActivityCreateQRCode.class);
+                // RxActivityTool.skipActivity(ActivityScanerCode.this, ActivityCreateQRCode.class);
             }
         });
         //请求Camera权限 与 文件读写 权限
@@ -228,7 +228,7 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
 
     private void initScanerAnimation() {
         ImageView mQrLineView = (ImageView) findViewById(com.vondear.rxtools.R.id.capture_scan_line);
-        RxAnimationUtils.ScaleUpDowm(mQrLineView);
+        RxAnimationTool.ScaleUpDowm(mQrLineView);
     }
 
     public int getX() {
@@ -462,7 +462,7 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
         });
         rxDialogSure.show();
 
-        RxSPUtils.putContent(mContext, SP_SCAN_CODE, RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, SP_SCAN_CODE)) + 1 + "");
+        RxSPTool.putContent(mContext, SP_SCAN_CODE, RxDataTool.stringToInt(RxSPTool.getContent(mContext, SP_SCAN_CODE)) + 1 + "");
     }
     //==============================================================================================解析结果 及 后续处理 end
 

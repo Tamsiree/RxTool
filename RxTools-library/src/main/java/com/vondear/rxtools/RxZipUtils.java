@@ -21,7 +21,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
-import static com.vondear.rxtools.RxConstUtils.KB;
+import static com.vondear.rxtools.RxConstTool.KB;
 
 /**
  * Created by vondear on 2016/1/24.
@@ -53,7 +53,7 @@ public class RxZipUtils {
      */
     public static boolean zipFiles(Collection<File> resFiles, String zipFilePath, String comment)
             throws IOException {
-        return zipFiles(resFiles, RxFileUtils.getFileByPath(zipFilePath), comment);
+        return zipFiles(resFiles, RxFileTool.getFileByPath(zipFilePath), comment);
     }
 
     /**
@@ -91,7 +91,7 @@ public class RxZipUtils {
         } finally {
             if (zos != null) {
                 zos.finish();
-                RxFileUtils.closeIO(zos);
+                RxFileTool.closeIO(zos);
             }
         }
     }
@@ -120,7 +120,7 @@ public class RxZipUtils {
      */
     public static boolean zipFile(String resFilePath, String zipFilePath, String comment)
             throws IOException {
-        return zipFile(RxFileUtils.getFileByPath(resFilePath), RxFileUtils.getFileByPath(zipFilePath), comment);
+        return zipFile(RxFileTool.getFileByPath(resFilePath), RxFileTool.getFileByPath(zipFilePath), comment);
     }
 
     /**
@@ -155,7 +155,7 @@ public class RxZipUtils {
         } finally {
             if (zos != null) {
                 zos.finish();
-                RxFileUtils.closeIO(zos);
+                RxFileTool.closeIO(zos);
             }
         }
     }
@@ -172,13 +172,13 @@ public class RxZipUtils {
      */
     private static boolean zipFile(File resFile, String rootPath, ZipOutputStream zos, String comment)
             throws IOException {
-        rootPath = rootPath + (RxDataUtils.isNullString(rootPath) ? "" : File.separator) + resFile.getName();
+        rootPath = rootPath + (RxDataTool.isNullString(rootPath) ? "" : File.separator) + resFile.getName();
         if (resFile.isDirectory()) {
             File[] fileList = resFile.listFiles();
             // 如果是空文件夹那么创建它，我把'/'换为File.separator测试就不成功，eggPain
             if (fileList.length <= 0) {
                 ZipEntry entry = new ZipEntry(rootPath + '/');
-                if (!RxDataUtils.isNullString(comment)) entry.setComment(comment);
+                if (!RxDataTool.isNullString(comment)) entry.setComment(comment);
                 zos.putNextEntry(entry);
                 zos.closeEntry();
             } else {
@@ -192,7 +192,7 @@ public class RxZipUtils {
             try {
                 is = new BufferedInputStream(new FileInputStream(resFile));
                 ZipEntry entry = new ZipEntry(rootPath);
-                if (!RxDataUtils.isNullString(comment)) entry.setComment(comment);
+                if (!RxDataTool.isNullString(comment)) entry.setComment(comment);
                 zos.putNextEntry(entry);
                 byte buffer[] = new byte[KB];
                 int len;
@@ -201,7 +201,7 @@ public class RxZipUtils {
                 }
                 zos.closeEntry();
             } finally {
-                RxFileUtils.closeIO(is);
+                RxFileTool.closeIO(is);
             }
         }
         return true;
@@ -217,7 +217,7 @@ public class RxZipUtils {
      */
     public static boolean unzipFiles(Collection<File> zipFiles, String destDirPath)
             throws IOException {
-        return unzipFiles(zipFiles, RxFileUtils.getFileByPath(destDirPath));
+        return unzipFiles(zipFiles, RxFileTool.getFileByPath(destDirPath));
     }
 
     /**
@@ -247,7 +247,7 @@ public class RxZipUtils {
      */
     public static boolean unzipFile(String zipFilePath, String destDirPath)
             throws IOException {
-        return unzipFile(RxFileUtils.getFileByPath(zipFilePath), RxFileUtils.getFileByPath(destDirPath));
+        return unzipFile(RxFileTool.getFileByPath(zipFilePath), RxFileTool.getFileByPath(destDirPath));
     }
 
     /**
@@ -274,8 +274,8 @@ public class RxZipUtils {
      */
     public static List<File> unzipFileByKeyword(String zipFilePath, String destDirPath, String keyword)
             throws IOException {
-        return unzipFileByKeyword(RxFileUtils.getFileByPath(zipFilePath),
-                RxFileUtils.getFileByPath(destDirPath), keyword);
+        return unzipFileByKeyword(RxFileTool.getFileByPath(zipFilePath),
+                RxFileTool.getFileByPath(destDirPath), keyword);
     }
 
     /**
@@ -296,14 +296,14 @@ public class RxZipUtils {
         while (entries.hasMoreElements()) {
             ZipEntry entry = ((ZipEntry) entries.nextElement());
             String entryName = entry.getName();
-            if (RxDataUtils.isNullString(keyword) || RxFileUtils.getFileName(entryName).toLowerCase().contains(keyword.toLowerCase())) {
+            if (RxDataTool.isNullString(keyword) || RxFileTool.getFileName(entryName).toLowerCase().contains(keyword.toLowerCase())) {
                 String filePath = destDir + File.separator + entryName;
                 File file = new File(filePath);
                 files.add(file);
                 if (entry.isDirectory()) {
-                    if (!RxFileUtils.createOrExistsDir(file)) return null;
+                    if (!RxFileTool.createOrExistsDir(file)) return null;
                 } else {
-                    if (!RxFileUtils.createOrExistsFile(file)) return null;
+                    if (!RxFileTool.createOrExistsFile(file)) return null;
                     InputStream in = null;
                     OutputStream out = null;
                     try {
@@ -315,7 +315,7 @@ public class RxZipUtils {
                             out.write(buffer, 0, len);
                         }
                     } finally {
-                        RxFileUtils.closeIO(in, out);
+                        RxFileTool.closeIO(in, out);
                     }
                 }
             }
@@ -332,7 +332,7 @@ public class RxZipUtils {
      */
     public static List<String> getFilesPath(String zipFilePath)
             throws IOException {
-        return getFilesPath(RxFileUtils.getFileByPath(zipFilePath));
+        return getFilesPath(RxFileTool.getFileByPath(zipFilePath));
     }
 
     /**
@@ -362,7 +362,7 @@ public class RxZipUtils {
      */
     public static List<String> getComments(String zipFilePath)
             throws IOException {
-        return getComments(RxFileUtils.getFileByPath(zipFilePath));
+        return getComments(RxFileTool.getFileByPath(zipFilePath));
     }
 
 
@@ -394,7 +394,7 @@ public class RxZipUtils {
      */
     public static Enumeration<?> getEntries(String zipFilePath)
             throws IOException {
-        return getEntries(RxFileUtils.getFileByPath(zipFilePath));
+        return getEntries(RxFileTool.getFileByPath(zipFilePath));
     }
 
     /**
@@ -479,7 +479,7 @@ public class RxZipUtils {
         ZipParameters parameters = new ZipParameters();
         parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);           // 压缩方式
         parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);    // 压缩级别
-        if (!RxDataUtils.isNullString(passwd)) {
+        if (!RxDataTool.isNullString(passwd)) {
             parameters.setEncryptFiles(true);
             parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD); // 加密方式
             parameters.setPassword(passwd.toCharArray());
@@ -514,7 +514,7 @@ public class RxZipUtils {
      * @return 正确的压缩文件存放路径
      */
     private static String buildDestinationZipFilePath(File srcFile,String destParam) {
-        if (RxDataUtils.isNullString(destParam)) {
+        if (RxDataTool.isNullString(destParam)) {
             if (srcFile.isDirectory()) {
                 destParam = srcFile.getParent() + File.separator + srcFile.getName() + ".zip";
             } else {

@@ -18,7 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.SlidingDrawer;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.RxConstants;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxTitle;
@@ -58,16 +58,15 @@ public class ActivitySlidingDrawerSingle extends ActivityBase {
     LinearLayout mContent;
     @BindView(R.id.slidingdrawer)
     SlidingDrawer mSlidingdrawer;
-
-    private Boolean flag = false;
     String webPath = "";
+    private Boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.noTitle(this);
+        RxBarTool.noTitle(this);
         setContentView(R.layout.activity_sliding_drawer_single);
-        RxBarUtils.setTransparentStatusBar(this);
+        RxBarTool.setTransparentStatusBar(this);
         ButterKnife.bind(this);
 
         mRxTitle.setLeftFinish(mContext);

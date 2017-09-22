@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.vondear.rxtools.RxVibrateTool;
 import com.vondear.tools.R;
-import com.vondear.rxtools.RxVibrateUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,13 +35,13 @@ public class ActivityVibrate extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_vibrate_once:
-                RxVibrateUtils.vibrateOnce(this,2000);
+                RxVibrateTool.vibrateOnce(this, 2000);
                 break;
             case R.id.btn_vibrate_Complicated:
-                RxVibrateUtils.vibrateComplicated(this,temp,0);
+                RxVibrateTool.vibrateComplicated(this, temp, 0);
                 break;
             case R.id.btn_vibrate_stop:
-                RxVibrateUtils.vibrateStop();
+                RxVibrateTool.vibrateStop();
                 break;
         }
     }

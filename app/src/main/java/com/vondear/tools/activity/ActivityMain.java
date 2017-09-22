@@ -8,9 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.vondear.rxtools.RxImageUtils;
-import com.vondear.rxtools.RxPermissionTool;
-import com.vondear.rxtools.RxRecyclerViewDivider;
+import com.vondear.rxtools.RxImageTool;
+import com.vondear.rxtools.RxPermissionsTool;
+import com.vondear.rxtools.RxRecyclerViewDividerTool;
 import com.vondear.rxtools.activity.ActivityCodeTool;
 import com.vondear.tools.R;
 import com.vondear.tools.adapter.AdapterRecyclerViewMain;
@@ -43,7 +43,7 @@ public class ActivityMain extends AppCompatActivity {
         initData();
         initView();
 
-        RxPermissionTool.
+        RxPermissionsTool.
                 with(mContext).
                 addPermission(Manifest.permission.ACCESS_FINE_LOCATION).
                 addPermission(Manifest.permission.ACCESS_COARSE_LOCATION).
@@ -55,14 +55,14 @@ public class ActivityMain extends AppCompatActivity {
 
     private void initData() {
         mData = new ArrayList<>();
-        mData.add(new ModelMainItem("RxPhotoUtils操作UZrop裁剪图片", R.drawable.circle_elves_ball, ActivityRxPhoto.class));
+        mData.add(new ModelMainItem("RxPhotoTool操作UZrop裁剪图片", R.drawable.circle_elves_ball, ActivityRxPhoto.class));
         mData.add(new ModelMainItem("二维码与条形码的扫描与生成", R.drawable.circle_qr_code, ActivityCodeTool.class));
         mData.add(new ModelMainItem("WebView的封装可播放视频", R.drawable.circle_webpage, com.vondear.rxtools.activity.ActivityWebView.class));
         mData.add(new ModelMainItem("常用的Dialog展示", R.drawable.circle_dialog, ActivityDialog.class));
         mData.add(new ModelMainItem("图片的缩放艺术", R.drawable.circle_scale_icon, ActivityRxScaleImageView.class));
-        mData.add(new ModelMainItem("RxDataUtils操作Demo", R.drawable.circle_data, ActivityRxDataUtils.class));
+        mData.add(new ModelMainItem("RxDataTool操作Demo", R.drawable.circle_data, ActivityRxDataTool.class));
         mData.add(new ModelMainItem("设备信息", R.drawable.circle_device_info, ActivityDeviceInfo.class));
-        mData.add(new ModelMainItem("RxTextUtils操作Demo", R.drawable.circle_text, ActivityTextUtils.class));
+        mData.add(new ModelMainItem("RxTextTool操作Demo", R.drawable.circle_text, ActivityTextTool.class));
         mData.add(new ModelMainItem("进度条的艺术", R.drawable.circle_bar, ActivityProgressBar.class));
         mData.add(new ModelMainItem("加载的艺术", R.drawable.circle_loading_icon, ActivityLoading.class));
         mData.add(new ModelMainItem("添加购物车控件", R.drawable.circle_shop_cart, ActivityShoppingView.class));
@@ -94,7 +94,7 @@ public class ActivityMain extends AppCompatActivity {
             recyclerview.setLayoutManager(new GridLayoutManager(mContext, mColumnCount));
         }
 
-        recyclerview.addItemDecoration(new RxRecyclerViewDivider(RxImageUtils.dp2px(mContext, 5f)));
+        recyclerview.addItemDecoration(new RxRecyclerViewDividerTool(RxImageTool.dp2px(mContext, 5f)));
         AdapterRecyclerViewMain recyclerViewMain = new AdapterRecyclerViewMain(mData);
 
         recyclerview.setAdapter(recyclerViewMain);

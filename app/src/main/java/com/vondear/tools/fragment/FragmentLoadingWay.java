@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vondear.rxtools.RxImageUtils;
-import com.vondear.rxtools.RxRecyclerViewDivider;
+import com.vondear.rxtools.RxImageTool;
+import com.vondear.rxtools.RxRecyclerViewDividerTool;
 import com.vondear.rxtools.view.progress.SpinKitView;
 import com.vondear.rxtools.view.progress.SpriteFactory;
 import com.vondear.rxtools.view.progress.Style;
@@ -48,7 +48,7 @@ public class FragmentLoadingWay extends Fragment  {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new RxRecyclerViewDivider(RxImageUtils.dp2px(getContext(), 5f)));
+        recyclerView.addItemDecoration(new RxRecyclerViewDividerTool(RxImageTool.dp2px(getContext(), 5f)));
         recyclerView.setAdapter(new RecyclerView.Adapter<Holder>() {
             @Override
             public Holder onCreateViewHolder(ViewGroup parent, int viewType) {

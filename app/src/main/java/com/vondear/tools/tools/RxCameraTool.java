@@ -6,9 +6,10 @@ import android.util.Log;
 import com.google.android.cameraview.CameraView;
 import com.orhanobut.logger.Logger;
 import com.vondear.rxtools.RxExifTool;
-import com.vondear.rxtools.RxFileUtils;
-import com.vondear.rxtools.RxUtils;
-import com.vondear.rxtools.RxVibrateUtils;
+import com.vondear.rxtools.RxFileTool;
+import com.vondear.rxtools.RxTool;
+import com.vondear.rxtools.RxVibrateTool;
+import com.vondear.rxtools.interfaces.OnDelayListener;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.tools.interfaces.onRxCamera;
 
@@ -27,22 +28,22 @@ import top.zibin.luban.OnCompressListener;
 public class RxCameraTool {
 
     public static void takePic(Context mContext,final CameraView mCameraView) {
-        if (RxUtils.isFastClick(1000)) {
+        if (RxTool.isFastClick(1000)) {
             RxToast.normal("请不要重复点击拍照按钮");
             return;
         } else {
             try {
                 if (mCameraView.isCameraOpened()) {
-                    RxVibrateUtils.vibrateOnce(mContext, 150);
+                    RxVibrateTool.vibrateOnce(mContext, 150);
                     RxToast.normal("正在拍照..");
                     if (mCameraView != null) {
                         mCameraView.takePicture();
                     }
                 } else {
                     mCameraView.start();
-                    RxVibrateUtils.vibrateOnce(mContext, 150);
+                    RxVibrateTool.vibrateOnce(mContext, 150);
                     RxToast.normal("正在拍照..");
-                    RxUtils.delayToDo(new RxUtils.DelayListener() {
+                    RxTool.delayToDo(500, new OnDelayListener() {
                         @Override
                         public void doSomething() {
                             try {
@@ -53,7 +54,7 @@ public class RxCameraTool {
                                 Logger.d(e);
                             }
                         }
-                    }, 500);
+                    });
                 }
             } catch (Exception e) {
                 Logger.d(e);
@@ -63,11 +64,11 @@ public class RxCameraTool {
 
     public static void initCameraEvent(final Context mContext, final CameraView mCameraView, final byte[] data, final String fileDir, final String picName, final double mLongitude, final double mLatitude, final boolean isEconomize,final onRxCamera onRxCamera) {
         onRxCamera.onBefore();
-        RxUtils.getBackgroundHandler().post(new Runnable() {
+        RxTool.getBackgroundHandler().post(new Runnable() {
             @Override
             public void run() {
                 File fileParent = new File(fileDir);
-                File cacheParent = new File(RxFileUtils.getCecheFolder(mContext) + File.separator + "cache" + File.separator + "picture");
+                File cacheParent = new File(RxFileTool.getCecheFolder(mContext) + File.separator + "cache" + File.separator + "picture");
                 if (!cacheParent.exists()) {
                     cacheParent.mkdirs();
                 }
@@ -93,7 +94,7 @@ public class RxCameraTool {
 
                                 @Override
                                 public void onSuccess(File file) {
-                                    if (RxFileUtils.copyOrMoveFile(file, compressFile, true)) {
+                                    if (RxFileTool.copyOrMoveFile(file, compressFile, true)) {
                                         Log.d("图片压缩", "压缩完成");
                                         onRxCamera.onSuccessCompress(compressFile);
                                         if (mLongitude != 0 || mLatitude != 0) {

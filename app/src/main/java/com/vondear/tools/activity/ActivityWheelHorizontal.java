@@ -6,8 +6,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxBarUtils;
-import com.vondear.rxtools.RxDataUtils;
+import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtools.RxDataTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxRulerWheelView;
 import com.vondear.rxtools.view.RxTitle;
@@ -58,7 +58,7 @@ public class ActivityWheelHorizontal extends ActivityBase {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.noTitle(this);
+        RxBarTool.noTitle(this);
         setContentView(R.layout.activity_wheel_horizontal);
         ButterKnife.bind(this);
         initView();
@@ -167,7 +167,7 @@ public class ActivityWheelHorizontal extends ActivityBase {
                 listYearMonth.add(i + "年" + j + "月");
             }
         }
-        String[] arr = (String[]) listYearMonth.toArray(new String[listYearMonth.size()]);
+        String[] arr = listYearMonth.toArray(new String[listYearMonth.size()]);
         int CurrentIndex = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].equals(calendar.get(Calendar.YEAR) + "年" + (calendar.get(Calendar.MONTH) + 1) + "月")) {
@@ -198,9 +198,9 @@ public class ActivityWheelHorizontal extends ActivityBase {
                 behind = listYearMonth.get(wheel.getCurrentItem());
                 Log.v("addScrollingListener", "listYearMonth:" + listYearMonth.get(wheel.getCurrentItem()));
                 if (!before.equals(behind)) {
-                    int year = RxDataUtils.stringToInt(listYearMonth.get(
+                    int year = RxDataTool.stringToInt(listYearMonth.get(
                             wheel.getCurrentItem()).substring(0, 4));
-                    int month = RxDataUtils.stringToInt(listYearMonth.get(
+                    int month = RxDataTool.stringToInt(listYearMonth.get(
                             wheel.getCurrentItem()).substring(5, 6));
                     //initBarChart(VonUtil.getDaysByYearMonth(year, month));
                 }

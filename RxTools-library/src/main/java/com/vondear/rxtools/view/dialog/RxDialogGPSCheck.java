@@ -5,7 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 
-import com.vondear.rxtools.RxLocationUtils;
+import com.vondear.rxtools.RxLocationTool;
 
 
 /**
@@ -51,7 +51,7 @@ public class RxDialogGPSCheck extends RxDialogSureCancel {
         getSureView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RxLocationUtils.openGpsSettings(mContext);
+                RxLocationTool.openGpsSettings(mContext);
                 cancel();
             }
         });

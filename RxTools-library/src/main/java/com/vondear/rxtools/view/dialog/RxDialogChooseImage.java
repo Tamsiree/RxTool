@@ -8,9 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.vondear.rxtools.R;
-import com.vondear.rxtools.RxPermissionsUtils;
-import com.vondear.rxtools.RxPhotoUtils;
-import com.vondear.rxtools.interfaces.onRequestPermissionsListener;
+import com.vondear.rxtools.RxPhotoTool;
+import com.vondear.rxtools.interfaces.OnRequestPermissionsListener;
 import com.vondear.rxtools.view.RxToast;
 
 
@@ -134,7 +133,7 @@ public class RxDialogChooseImage extends RxDialog {
             @Override
             public void onClick(View arg0) {
                 //请求Camera权限
-                RxPermissionsUtils.requestCamera(activity, new onRequestPermissionsListener() {
+                RxPermissionTool.requestCamera(activity, new OnRequestPermissionsListener() {
                     @Override
                     public void onRequestBefore() {
                         RxToast.error("请先获取相机权限");
@@ -142,7 +141,7 @@ public class RxDialogChooseImage extends RxDialog {
 
                     @Override
                     public void onRequestLater() {
-                        RxPhotoUtils.openCameraImage(activity);
+                        RxPhotoTool.openCameraImage(activity);
                         cancel();
                     }
                 });
@@ -152,7 +151,7 @@ public class RxDialogChooseImage extends RxDialog {
 
             @Override
             public void onClick(View arg0) {
-                RxPermissionsUtils.requestReadExternalStorage(mContext, new onRequestPermissionsListener() {
+                RxPermissionTool.requestReadExternalStorage(mContext, new OnRequestPermissionsListener() {
                     @Override
                     public void onRequestBefore() {
                         cancel();
@@ -162,7 +161,7 @@ public class RxDialogChooseImage extends RxDialog {
 
                     @Override
                     public void onRequestLater() {
-                        RxPhotoUtils.openLocalImage(activity);
+                        RxPhotoTool.openLocalImage(activity);
                         cancel();
                     }
                 });
@@ -197,7 +196,7 @@ public class RxDialogChooseImage extends RxDialog {
             @Override
             public void onClick(View arg0) {
                 //请求Camera权限
-                RxPermissionsUtils.requestCamera(fragment.getContext(), new onRequestPermissionsListener() {
+                RxPermissionTool.requestCamera(fragment.getContext(), new OnRequestPermissionsListener() {
                     @Override
                     public void onRequestBefore() {
 
@@ -205,7 +204,7 @@ public class RxDialogChooseImage extends RxDialog {
 
                     @Override
                     public void onRequestLater() {
-                        RxPhotoUtils.openCameraImage(fragment);
+                        RxPhotoTool.openCameraImage(fragment);
                         cancel();
                     }
                 });
@@ -215,7 +214,7 @@ public class RxDialogChooseImage extends RxDialog {
 
             @Override
             public void onClick(View arg0) {
-                RxPhotoUtils.openLocalImage(fragment);
+                RxPhotoTool.openLocalImage(fragment);
                 cancel();
             }
         });

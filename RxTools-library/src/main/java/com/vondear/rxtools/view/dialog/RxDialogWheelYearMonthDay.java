@@ -12,7 +12,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.vondear.rxtools.R;
-import com.vondear.rxtools.RxTimeUtils;
+import com.vondear.rxtools.RxTimeTool;
 import com.vondear.rxtools.view.dialog.dialogWheel.DateArrayAdapter;
 import com.vondear.rxtools.view.dialog.dialogWheel.NumericWheelAdapter;
 import com.vondear.rxtools.view.dialog.dialogWheel.OnWheelChangedListener;
@@ -226,7 +226,7 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
         mCalendar.set(Calendar.YEAR, beginYear + year.getCurrentItem());
         mCalendar.set(Calendar.MONTH, month.getCurrentItem());
         int maxDay = mCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-        int maxDays = RxTimeUtils.getDaysByYearMonth(beginYear + year.getCurrentItem(), month.getCurrentItem() + 1);
+        int maxDays = RxTimeTool.getDaysByYearMonth(beginYear + year.getCurrentItem(), month.getCurrentItem() + 1);
         day.setViewAdapter(new DateNumericAdapter(mContext, 1, maxDays, mCalendar.get(Calendar.DAY_OF_MONTH) - 1));
         int curDay = Math.min(maxDays, day.getCurrentItem() + 1);
         day.setCurrentItem(curDay - 1, true);

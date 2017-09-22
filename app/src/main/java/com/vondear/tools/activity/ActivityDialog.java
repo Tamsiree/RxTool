@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.vondear.rxtools.RxBarUtils;
+import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.dialog.RxDialog;
@@ -55,9 +55,9 @@ public class ActivityDialog extends ActivityBase {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.noTitle(this);
+        RxBarTool.noTitle(this);
         setContentView(R.layout.activity_dialog);
-        RxBarUtils.setTransparentStatusBar(this);
+        RxBarTool.setTransparentStatusBar(this);
         ButterKnife.bind(this);
         initView();
     }

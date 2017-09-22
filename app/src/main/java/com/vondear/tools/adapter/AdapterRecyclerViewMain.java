@@ -11,9 +11,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.vondear.rxtools.RxActivityTool;
 import com.vondear.tools.R;
 import com.vondear.tools.bean.ModelMainItem;
-import com.vondear.rxtools.RxActivityUtils;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
     public AdapterRecyclerViewMain.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview_main, parent, false);
         context = view.getContext();
-      /*  mScreenWidth = RxDeviceUtils.getScreenWidth(context) > RxDeviceUtils.getScreenHeight(context) ? RxDeviceUtils.getScreenHeight(context) : RxDeviceUtils.getScreenWidth(context);
+      /*  mScreenWidth = RxDeviceTool.getScreenWidth(context) > RxDeviceTool.getScreenHeight(context) ? RxDeviceTool.getScreenHeight(context) : RxDeviceTool.getScreenWidth(context);
         mItemWidth = (mScreenWidth - 50) / 3;
         mItemHeight = mItemWidth * 6 / 4;
         GridLayoutManager.LayoutParams layoutParams = new GridLayoutManager.LayoutParams(mItemWidth, mItemHeight);
@@ -66,7 +66,7 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RxActivityUtils.skipActivity(context, holder.mItem.getActivity());
+                RxActivityTool.skipActivity(context, holder.mItem.getActivity());
             }
         });
     }
@@ -79,13 +79,12 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        public final View mView;
+        public ModelMainItem mItem;
         @BindView(R.id.imageView)
         ImageView imageView;
         @BindView(R.id.tv_name)
         TextView tvName;
-
-        public ModelMainItem mItem;
-        public final View mView;
 
         public ViewHolder(View view) {
             super(view);

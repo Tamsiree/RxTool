@@ -12,7 +12,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.vondear.rxtools.R;
-import com.vondear.rxtools.RxDeviceUtils;
+import com.vondear.rxtools.RxDeviceTool;
 import com.vondear.rxtools.bean.ActionItem;
 
 import java.util.ArrayList;
@@ -22,17 +22,13 @@ import java.util.ArrayList;
  */
 public class RxPopupImply extends PopupWindow {
 
-    private Context mContext;
-
     // 列表弹窗的间隔
     protected final int LIST_PADDING = 10;
-
-    // 实例化一个矩形
-    private Rect mRect = new Rect();
-
     // 坐标的位置（x、y）
     private final int[] mLocation = new int[2];
-
+    private Context mContext;
+    // 实例化一个矩形
+    private Rect mRect = new Rect();
     // 屏幕的宽度和高度
     private int mScreenWidth, mScreenHeight;
 
@@ -47,6 +43,7 @@ public class RxPopupImply extends PopupWindow {
 
     // 定义弹窗子类项列表
     private ArrayList<ActionItem> mActionItems = new ArrayList<ActionItem>();
+    private TextView tv_imply;
 
     public RxPopupImply(Context context) {
         // 设置布局的参数
@@ -57,7 +54,6 @@ public class RxPopupImply extends PopupWindow {
         // 设置布局的参数
         this(context, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,str);
     }
-
     public RxPopupImply(Context context, int width, int height, String str) {
         this.mContext = context;
 
@@ -69,8 +65,8 @@ public class RxPopupImply extends PopupWindow {
         setOutsideTouchable(true);
 
         // 获得屏幕的宽度和高度
-        mScreenWidth = RxDeviceUtils.getScreenWidth(mContext);
-        mScreenHeight = RxDeviceUtils.getScreenHeight(mContext);
+        mScreenWidth = RxDeviceTool.getScreenWidth(mContext);
+        mScreenHeight = RxDeviceTool.getScreenHeight(mContext);
 
         // 设置弹窗的宽度和高度
         setWidth(width);
@@ -84,7 +80,7 @@ public class RxPopupImply extends PopupWindow {
 
         initUI(str);
     }
-    private TextView tv_imply;
+
     /**
      * 初始化弹窗列表
      */

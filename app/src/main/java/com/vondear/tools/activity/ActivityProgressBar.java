@@ -8,8 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxBarUtils;
-import com.vondear.rxtools.RxDataUtils;
+import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtools.RxDataTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxProgressBar;
 import com.vondear.rxtools.view.RxRoundProgress;
@@ -82,18 +82,59 @@ public class ActivityProgressBar extends ActivityBase {
     RxRoundProgress mRxRoundProgress1;
     @BindView(R.id.activity_round_progress_bar)
     LinearLayout mActivityRoundProgressBar;
+    double money = 1000;
+    Thread downLoadThread;
+    Thread downLoadThread1;
+    Thread downLoadThread2;
+    Thread downLoadRxRoundPdThread;
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            mFlikerbar.setProgress(msg.arg1);
+            mRoundFlikerbar.setProgress(msg.arg1);
+            if (msg.arg1 == 100) {
+                mFlikerbar.finishLoad();
+                mRoundFlikerbar.finishLoad();
+            }
+        }
+    };
     private double progress;
     private int progress1;
-    double money = 1000;
     private int money1 = 10000;
-
     private int mRxRoundProgress;
+    Handler mRxRoundPdHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            mRxRoundPd1.setProgress(mRxRoundProgress);
+            mRxRoundPd2.setProgress(mRxRoundProgress);
+            mRxRoundPd3.setProgress(mRxRoundProgress);
+            mRxRoundPd4.setProgress(mRxRoundProgress);
+            mRxRoundPd5.setProgress(mRxRoundProgress);
+            mRxRoundPd6.setProgress(mRxRoundProgress);
+            mRxRoundPd7.setProgress(mRxRoundProgress);
+            mRxRoundPd8.setProgress(mRxRoundProgress);
+            mRxRoundPd9.setProgress(mRxRoundProgress);
+            mRxRoundPd10.setProgress(mRxRoundProgress);
+            mRxRoundPd11.setProgress(mRxRoundProgress);
+            mRxRoundPd12.setProgress(mRxRoundProgress);
+            mRxRoundPd13.setProgress(mRxRoundProgress);
+            mRxRoundPd14.setProgress(mRxRoundProgress);
+            mRxRoundPd15.setProgress(mRxRoundProgress);
+            mRxRoundPd16.setProgress(mRxRoundProgress);
+            mRxRoundPd17.setProgress(mRxRoundProgress);
+            mProgressOne.setProgress(mRxRoundProgress);
+            mProgressTwo.setProgress(mRxRoundProgress);
+            mProgressThree.setProgress(mRxRoundProgress);
+        }
+    };
     private int mRxRoundPdMax = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.noTitle(this);
+        RxBarTool.noTitle(this);
         setContentView(R.layout.activity_progress_bar);
         ButterKnife.bind(this);
         initView();
@@ -103,12 +144,6 @@ public class ActivityProgressBar extends ActivityBase {
 
         downLoad();
     }
-
-    Thread downLoadThread;
-    Thread downLoadThread1;
-    Thread downLoadThread2;
-
-    Thread downLoadRxRoundPdThread;
 
     private void initView() {
         mRxTitle.setLeftFinish(mContext);
@@ -126,9 +161,9 @@ public class ActivityProgressBar extends ActivityBase {
         } else if (currentProgress >= 20000 && currentProgress < 100000) {
             return 100000;
         } else if (currentProgress >= 100000) {
-            return RxDataUtils.stringToInt(currentProgress * 1.1 + "");
+            return RxDataTool.stringToInt(currentProgress * 1.1 + "");
         } else {
-            return RxDataUtils.stringToInt(currentProgress + "");
+            return RxDataTool.stringToInt(currentProgress + "");
         }
     }
 
@@ -325,6 +360,7 @@ public class ActivityProgressBar extends ActivityBase {
 
 
     }
+    //==============================================================================================Flikerbar 加载事件处理 end
 
     private void downLoad() {
         downLoadThread = new Thread(new Runnable() {
@@ -349,47 +385,6 @@ public class ActivityProgressBar extends ActivityBase {
         });
         downLoadThread.start();
     }
-
-    Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            mFlikerbar.setProgress(msg.arg1);
-            mRoundFlikerbar.setProgress(msg.arg1);
-            if (msg.arg1 == 100) {
-                mFlikerbar.finishLoad();
-                mRoundFlikerbar.finishLoad();
-            }
-        }
-    };
-    //==============================================================================================Flikerbar 加载事件处理 end
-
-    Handler mRxRoundPdHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            mRxRoundPd1.setProgress(mRxRoundProgress);
-            mRxRoundPd2.setProgress(mRxRoundProgress);
-            mRxRoundPd3.setProgress(mRxRoundProgress);
-            mRxRoundPd4.setProgress(mRxRoundProgress);
-            mRxRoundPd5.setProgress(mRxRoundProgress);
-            mRxRoundPd6.setProgress(mRxRoundProgress);
-            mRxRoundPd7.setProgress(mRxRoundProgress);
-            mRxRoundPd8.setProgress(mRxRoundProgress);
-            mRxRoundPd9.setProgress(mRxRoundProgress);
-            mRxRoundPd10.setProgress(mRxRoundProgress);
-            mRxRoundPd11.setProgress(mRxRoundProgress);
-            mRxRoundPd12.setProgress(mRxRoundProgress);
-            mRxRoundPd13.setProgress(mRxRoundProgress);
-            mRxRoundPd14.setProgress(mRxRoundProgress);
-            mRxRoundPd15.setProgress(mRxRoundProgress);
-            mRxRoundPd16.setProgress(mRxRoundProgress);
-            mRxRoundPd17.setProgress(mRxRoundProgress);
-            mProgressOne.setProgress(mRxRoundProgress);
-            mProgressTwo.setProgress(mRxRoundProgress);
-            mProgressThree.setProgress(mRxRoundProgress);
-        }
-    };
 
     @OnClick({R.id.flikerbar, R.id.round_flikerbar})
     public void onClick(View view) {

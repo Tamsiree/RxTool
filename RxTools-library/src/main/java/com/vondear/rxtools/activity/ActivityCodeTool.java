@@ -9,10 +9,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.vondear.rxtools.R;
-import com.vondear.rxtools.RxActivityUtils;
-import com.vondear.rxtools.RxBarUtils;
-import com.vondear.rxtools.RxDataUtils;
-import com.vondear.rxtools.RxSPUtils;
+import com.vondear.rxtools.RxActivityTool;
+import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtools.RxDataTool;
+import com.vondear.rxtools.RxSPTool;
 import com.vondear.rxtools.view.RxBarCode;
 import com.vondear.rxtools.view.RxQRCode;
 import com.vondear.rxtools.view.RxTitle;
@@ -48,8 +48,8 @@ public class ActivityCodeTool extends ActivityBase {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarUtils.noTitle(this);
-        RxBarUtils.setTransparentStatusBar(this);
+        RxBarTool.noTitle(this);
+        RxBarTool.setTransparentStatusBar(this);
         setContentView(R.layout.activity_code_tool);
         initView();
         initEvent();
@@ -90,11 +90,11 @@ public class ActivityCodeTool extends ActivityBase {
     }
 
     private void updateScanCodeCount() {
-        mRxTickerViewScan.setText(RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, SP_SCAN_CODE)) + "", true);
+        mRxTickerViewScan.setText(RxDataTool.stringToInt(RxSPTool.getContent(mContext, SP_SCAN_CODE)) + "", true);
     }
 
     private void updateMadeCodeCount() {
-        mRxTickerViewMade.setText(RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, SP_MADE_CODE)) + "", true);
+        mRxTickerViewMade.setText(RxDataTool.stringToInt(RxSPTool.getContent(mContext, SP_MADE_CODE)) + "", true);
     }
 
     private void initEvent() {
@@ -104,7 +104,7 @@ public class ActivityCodeTool extends ActivityBase {
             @Override
             public void onClick(View v) {
                 String str = mEtQrCode.getText().toString();
-                if (RxDataUtils.isNullString(str)) {
+                if (RxDataTool.isNullString(str)) {
                     RxToast.error(mContext, "二维码文字内容不能为空！", Toast.LENGTH_SHORT, true).show();
                 } else {
                     mLlCode.setVisibility(View.VISIBLE);
@@ -121,7 +121,7 @@ public class ActivityCodeTool extends ActivityBase {
 
                     RxToast.success(mContext, "二维码已生成!", Toast.LENGTH_SHORT, true).show();
 
-                    RxSPUtils.putContent(mContext, SP_MADE_CODE, RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, SP_MADE_CODE)) + 1 + "");
+                    RxSPTool.putContent(mContext, SP_MADE_CODE, RxDataTool.stringToInt(RxSPTool.getContent(mContext, SP_MADE_CODE)) + 1 + "");
 
                     updateMadeCodeCount();
 
@@ -134,7 +134,7 @@ public class ActivityCodeTool extends ActivityBase {
             @Override
             public void onClick(View v) {
                 String str1 = mEtBarCode.getText().toString();
-                if (RxDataUtils.isNullString(str1)) {
+                if (RxDataTool.isNullString(str1)) {
                     RxToast.error(mContext, "条形码文字内容不能为空！", Toast.LENGTH_SHORT, true).show();
                 } else {
                     mLlBarCode.setVisibility(View.VISIBLE);
@@ -152,7 +152,7 @@ public class ActivityCodeTool extends ActivityBase {
 
                     RxToast.success(mContext, "条形码已生成!", Toast.LENGTH_SHORT, true).show();
 
-                    RxSPUtils.putContent(mContext, SP_MADE_CODE, RxDataUtils.stringToInt(RxSPUtils.getContent(mContext, SP_MADE_CODE)) + 1 + "");
+                    RxSPTool.putContent(mContext, SP_MADE_CODE, RxDataTool.stringToInt(RxSPTool.getContent(mContext, SP_MADE_CODE)) + 1 + "");
 
                     updateMadeCodeCount();
                 }
@@ -162,7 +162,7 @@ public class ActivityCodeTool extends ActivityBase {
         mLlScaner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RxActivityUtils.skipActivity(mContext, ActivityScanerCode.class);
+                RxActivityTool.skipActivity(mContext, ActivityScanerCode.class);
             }
         });
 

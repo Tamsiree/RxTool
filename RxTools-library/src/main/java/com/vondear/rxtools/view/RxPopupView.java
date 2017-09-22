@@ -17,8 +17,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.vondear.rxtools.R;
-import com.vondear.rxtools.RxDeviceUtils;
-import com.vondear.rxtools.RxImageUtils;
+import com.vondear.rxtools.RxDeviceTool;
+import com.vondear.rxtools.RxImageTool;
 import com.vondear.rxtools.bean.ActionItem;
 
 import java.util.ArrayList;
@@ -27,17 +27,13 @@ import java.util.ArrayList;
  * @author vondear 功能描述：标题按钮上的弹窗（继承自PopupWindow）
  */
 public class RxPopupView extends PopupWindow {
-    private Context mContext;
-
     // 列表弹窗的间隔
     protected final int LIST_PADDING = 10;
-
-    // 实例化一个矩形
-    private Rect mRect = new Rect();
-
     // 坐标的位置（x、y）
     private final int[] mLocation = new int[2];
-
+    private Context mContext;
+    // 实例化一个矩形
+    private Rect mRect = new Rect();
     // 屏幕的宽度和高度
     private int mScreenWidth, mScreenHeight;
 
@@ -55,6 +51,7 @@ public class RxPopupView extends PopupWindow {
 
     // 定义弹窗子类项列表
     private ArrayList<ActionItem> mActionItems = new ArrayList<ActionItem>();
+    private int colorItemText = 0;
 
     public RxPopupView(Context context) {
         // 设置布局的参数
@@ -72,8 +69,8 @@ public class RxPopupView extends PopupWindow {
         setOutsideTouchable(true);
 
         // 获得屏幕的宽度和高度
-        mScreenWidth = RxDeviceUtils.getScreenWidth(mContext);
-        mScreenHeight = RxDeviceUtils.getScreenHeight(mContext);
+        mScreenWidth = RxDeviceTool.getScreenWidth(mContext);
+        mScreenHeight = RxDeviceTool.getScreenHeight(mContext);
 
         // 设置弹窗的宽度和高度
         setWidth(width);
@@ -99,8 +96,8 @@ public class RxPopupView extends PopupWindow {
         setOutsideTouchable(true);
 
         // 获得屏幕的宽度和高度
-        mScreenWidth = RxDeviceUtils.getScreenWidth(mContext);
-        mScreenHeight = RxDeviceUtils.getScreenHeight(mContext);
+        mScreenWidth = RxDeviceTool.getScreenWidth(mContext);
+        mScreenHeight = RxDeviceTool.getScreenHeight(mContext);
 
         // 设置弹窗的宽度和高度
         setWidth(width);
@@ -152,7 +149,7 @@ public class RxPopupView extends PopupWindow {
         }
 
         // 显示弹窗的位置
-        showAtLocation(view, popupGravity, mScreenWidth - LIST_PADDING - (getWidth() / 2), mRect.bottom + RxImageUtils.dp2px(mContext, 7.5f));
+        showAtLocation(view, popupGravity, mScreenWidth - LIST_PADDING - (getWidth() / 2), mRect.bottom + RxImageTool.dp2px(mContext, 7.5f));
     }
 
     /**
@@ -174,8 +171,6 @@ public class RxPopupView extends PopupWindow {
         // 显示弹窗的位置
         showAtLocation(view, popupGravity, mLocation[0], mRect.bottom + dex);
     }
-
-    private int colorItemText = 0;
 
     public void setColorItemText(int colorItemText) {
         this.colorItemText = colorItemText;
@@ -281,7 +276,7 @@ public class RxPopupView extends PopupWindow {
     /**
      * @author yangyu 功能描述：弹窗子类项按钮监听事件
      */
-    public static interface OnItemOnClickListener {
-        public void onItemClick(ActionItem item, int position);
+    public interface OnItemOnClickListener {
+        void onItemClick(ActionItem item, int position);
     }
 }
