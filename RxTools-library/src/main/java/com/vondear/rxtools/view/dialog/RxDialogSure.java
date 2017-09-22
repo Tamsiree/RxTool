@@ -1,6 +1,5 @@
 package com.vondear.rxtools.view.dialog;
 
-import android.app.Activity;
 import android.content.Context;
 import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
@@ -25,19 +24,43 @@ public class RxDialogSure extends RxDialog {
     private TextView mTvContent;
     private TextView mTvSure;
 
-    public ImageView getIvLogo() {
+    public RxDialogSure(Context context, int themeResId) {
+        super(context, themeResId);
+        initView();
+    }
+
+    public RxDialogSure(Context context, boolean cancelable, OnCancelListener cancelListener) {
+        super(context, cancelable, cancelListener);
+        initView();
+    }
+
+    public RxDialogSure(Context context) {
+        super(context);
+        initView();
+    }
+
+    public RxDialogSure(Context context, float alpha, int gravity) {
+        super(context, alpha, gravity);
+        initView();
+    }
+
+    public ImageView getLogoView() {
         return mIvLogo;
     }
 
-    public TextView getTvTitle() {
+    public TextView getTitleView() {
         return mTvTitle;
     }
 
-    public TextView getTvSure() {
+    public TextView getSureView() {
         return mTvSure;
     }
 
-    public TextView getTvContent() {
+    public void setSureListener(View.OnClickListener listener) {
+        mTvSure.setOnClickListener(listener);
+    }
+
+    public TextView getContentView() {
         return mTvContent;
     }
 
@@ -52,7 +75,6 @@ public class RxDialogSure extends RxDialog {
     public void setSure(String content) {
         mTvSure.setText(content);
     }
-
 
     public void setContent(String str) {
         if (RxRegUtils.isURL(str)) {
@@ -75,31 +97,6 @@ public class RxDialogSure extends RxDialog {
         mTvContent.setTextIsSelectable(true);
         mIvLogo = (ImageView) dialog_view.findViewById(R.id.iv_logo);
         setContentView(dialog_view);
-    }
-
-    public RxDialogSure(Context context, int themeResId) {
-        super(context, themeResId);
-        initView();
-    }
-
-    public RxDialogSure(Context context, boolean cancelable, OnCancelListener cancelListener) {
-        super(context, cancelable, cancelListener);
-        initView();
-    }
-
-    public RxDialogSure(Context context) {
-        super(context);
-        initView();
-    }
-
-    public RxDialogSure(Activity context) {
-        super(context);
-        initView();
-    }
-
-    public RxDialogSure(Context context, float alpha, int gravity) {
-        super(context, alpha, gravity);
-        initView();
     }
 
 }

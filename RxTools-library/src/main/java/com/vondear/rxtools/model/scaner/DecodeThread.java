@@ -3,7 +3,6 @@ package com.vondear.rxtools.model.scaner;
 import android.os.Handler;
 import android.os.Looper;
 
-
 import com.vondear.rxtools.activity.ActivityScanerCode;
 
 import java.util.concurrent.CountDownLatch;
@@ -14,9 +13,9 @@ import java.util.concurrent.CountDownLatch;
  */
 final class DecodeThread extends Thread {
 
-	ActivityScanerCode activity;
-	private Handler handler;
-	private final CountDownLatch handlerInitLatch;
+    private final CountDownLatch handlerInitLatch;
+    ActivityScanerCode activity;
+    private Handler handler;
 
 	DecodeThread(ActivityScanerCode activity) {
 		this.activity = activity;

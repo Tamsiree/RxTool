@@ -21,26 +21,57 @@ import com.vondear.rxtools.view.dialog.dialogWheel.WheelView;
 import java.util.Calendar;
 
 public class RxDialogWheelYearMonthDay extends RxDialog {
-    private Context context;
-    private WheelView year;
-    private WheelView month;
-    private WheelView day;
+    private WheelView mYearView;
+    private WheelView mMonthView;
+    private WheelView mDayView;
     private int curYear;
     private int curMonth;
     private int curDay;
-    private TextView tv_sure;
-    private TextView tv_cancle;
-    private CheckBox checkBox_day;
-    private Calendar calendar;
-    private String months[] = new String[]{"01", "02", "03",
+    private TextView mTvSure;
+    private TextView mTvCancle;
+    private CheckBox mCheckBoxDay;
+    private Calendar mCalendar;
+    private String mMonths[] = new String[]{"01", "02", "03",
             "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-    private String days[] = new String[]{"01", "02", "03", "04", "05", "06", "07",
+    private String mDays[] = new String[]{"01", "02", "03", "04", "05", "06", "07",
             "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
             "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
 
     private int beginYear = 0;
     private int endYear = 0;
     private int divideYear = endYear - beginYear;
+
+    public RxDialogWheelYearMonthDay(Context mContext) {
+        super(mContext);
+        // TODO Auto-generated constructor stub
+        this.mContext = mContext;
+        build();
+    }
+
+    public RxDialogWheelYearMonthDay(Context mContext, int beginYear) {
+        super(mContext);
+        // TODO Auto-generated constructor stub
+        this.mContext = mContext;
+        this.beginYear = beginYear;
+        build();
+    }
+
+    public RxDialogWheelYearMonthDay(Context mContext, int beginYear, int endYear) {
+        super(mContext);
+        // TODO Auto-generated constructor stub
+        this.mContext = mContext;
+        this.beginYear = beginYear;
+        this.endYear = endYear;
+        build();
+    }
+
+    public RxDialogWheelYearMonthDay(Context mContext, TextView tv_time) {
+        super(mContext);
+        // TODO Auto-generated constructor stub
+        this.mContext = mContext;
+        build();
+        tv_time.setText(curYear + "年" + mMonths[curMonth] + "月");
+    }
 
     public int getBeginYear() {
         return beginYear;
@@ -54,50 +85,18 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
         return divideYear;
     }
 
-    public RxDialogWheelYearMonthDay(Context context) {
-        super(context);
-        // TODO Auto-generated constructor stub
-        this.context = context;
-        build();
-    }
-
-    public RxDialogWheelYearMonthDay(Context context, int beginYear) {
-        super(context);
-        // TODO Auto-generated constructor stub
-        this.context = context;
-        this.beginYear = beginYear;
-        build();
-    }
-
-    public RxDialogWheelYearMonthDay(Context context, int beginYear, int endYear) {
-        super(context);
-        // TODO Auto-generated constructor stub
-        this.context = context;
-        this.beginYear = beginYear;
-        this.endYear = endYear;
-        build();
-    }
-
-    public RxDialogWheelYearMonthDay(Context context, TextView tv_time) {
-        super(context);
-        // TODO Auto-generated constructor stub
-        this.context = context;
-        build();
-        tv_time.setText(curYear + "年" + months[curMonth] + "月");
-    }
-
     private void build() {
-        calendar = Calendar.getInstance();
-        final View dialogView1 = LayoutInflater.from(context).inflate(R.layout.dialog_year_month_day, null);
+        mCalendar = Calendar.getInstance();
+        final View dialogView1 = LayoutInflater.from(mContext).inflate(R.layout.dialog_year_month_day, null);
 
         OnWheelChangedListener listener = new OnWheelChangedListener() {
             @Override
             public void onChanged(WheelView wheel, int oldValue, int newValue) {
-                updateDays(year, month, day);
+                updateDays(mYearView, mMonthView, mDayView);
             }
         };
 
-        curYear = calendar.get(Calendar.YEAR);
+        curYear = mCalendar.get(Calendar.YEAR);
         if (beginYear == 0) {
             beginYear = curYear - 5;
         }
@@ -108,53 +107,53 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
             endYear = beginYear;
         }
 
-        //year
-        year = (WheelView) dialogView1.findViewById(R.id.wheelView_year);
-        year.setBackgroundResource(R.drawable.transparent_bg);
-        year.setWheelBackground(R.drawable.transparent_bg);
-        year.setWheelForeground(R.drawable.wheel_val_holo);
-        year.setShadowColor(0xFFDADCDB, 0x88DADCDB, 0x00DADCDB);
-        year.setViewAdapter(new DateNumericAdapter(context, beginYear, endYear, endYear - beginYear));
-        year.setCurrentItem(endYear - beginYear);
-        year.addChangingListener(listener);
+        //mYearView
+        mYearView = (WheelView) dialogView1.findViewById(R.id.wheelView_year);
+        mYearView.setBackgroundResource(R.drawable.transparent_bg);
+        mYearView.setWheelBackground(R.drawable.transparent_bg);
+        mYearView.setWheelForeground(R.drawable.wheel_val_holo);
+        mYearView.setShadowColor(0xFFDADCDB, 0x88DADCDB, 0x00DADCDB);
+        mYearView.setViewAdapter(new DateNumericAdapter(mContext, beginYear, endYear, endYear - beginYear));
+        mYearView.setCurrentItem(endYear - beginYear);
+        mYearView.addChangingListener(listener);
 
 
-        // month
-        month = (WheelView) dialogView1
+        // mMonthView
+        mMonthView = (WheelView) dialogView1
                 .findViewById(R.id.wheelView_month);
-        month.setBackgroundResource(R.drawable.transparent_bg);
-        month.setWheelBackground(R.drawable.transparent_bg);
-        month.setWheelForeground(R.drawable.wheel_val_holo);
-        month.setShadowColor(0xFFDADCDB, 0x88DADCDB, 0x00DADCDB);
-        curMonth = calendar.get(Calendar.MONTH);
-        month.setViewAdapter(new DateArrayAdapter(context, months, curMonth));
-        month.setCurrentItem(curMonth);
-        month.addChangingListener(listener);
+        mMonthView.setBackgroundResource(R.drawable.transparent_bg);
+        mMonthView.setWheelBackground(R.drawable.transparent_bg);
+        mMonthView.setWheelForeground(R.drawable.wheel_val_holo);
+        mMonthView.setShadowColor(0xFFDADCDB, 0x88DADCDB, 0x00DADCDB);
+        curMonth = mCalendar.get(Calendar.MONTH);
+        mMonthView.setViewAdapter(new DateArrayAdapter(mContext, mMonths, curMonth));
+        mMonthView.setCurrentItem(curMonth);
+        mMonthView.addChangingListener(listener);
 
 
-        //day
-        day = (WheelView) dialogView1.findViewById(R.id.wheelView_day);
-        updateDays(year, month, day);
-        curDay = calendar.get(Calendar.DAY_OF_MONTH);
-        day.setCurrentItem(curDay - 1);
-        day.setBackgroundResource(R.drawable.transparent_bg);
-        day.setWheelBackground(R.drawable.transparent_bg);
-        day.setWheelForeground(R.drawable.wheel_val_holo);
-        day.setShadowColor(0xFFDADCDB, 0x88DADCDB, 0x00DADCDB);
+        //mDayView
+        mDayView = (WheelView) dialogView1.findViewById(R.id.wheelView_day);
+        updateDays(mYearView, mMonthView, mDayView);
+        curDay = mCalendar.get(Calendar.DAY_OF_MONTH);
+        mDayView.setCurrentItem(curDay - 1);
+        mDayView.setBackgroundResource(R.drawable.transparent_bg);
+        mDayView.setWheelBackground(R.drawable.transparent_bg);
+        mDayView.setWheelForeground(R.drawable.wheel_val_holo);
+        mDayView.setShadowColor(0xFFDADCDB, 0x88DADCDB, 0x00DADCDB);
 
-        tv_sure = (TextView) dialogView1.findViewById(R.id.tv_sure);
-        tv_cancle = (TextView) dialogView1.findViewById(R.id.tv_cancel);
+        mTvSure = (TextView) dialogView1.findViewById(R.id.tv_sure);
+        mTvCancle = (TextView) dialogView1.findViewById(R.id.tv_cancel);
 
-        checkBox_day = (CheckBox) dialogView1.findViewById(R.id.checkBox_day);
-        checkBox_day.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        mCheckBoxDay = (CheckBox) dialogView1.findViewById(R.id.checkBox_day);
+        mCheckBoxDay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // TODO Auto-generated method stub
                 if (isChecked) {
-                    day.setVisibility(View.VISIBLE);
+                    mDayView.setVisibility(View.VISIBLE);
                 } else {
-                    day.setVisibility(View.GONE);
+                    mDayView.setVisibility(View.GONE);
                 }
             }
         });
@@ -164,24 +163,24 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
     }
 
 
-    public WheelView getDay() {
-        return day;
+    public WheelView getDayView() {
+        return mDayView;
     }
 
     public int getCurDay() {
         return curDay;
     }
 
-    public CheckBox getCheckBox_day() {
-        return checkBox_day;
+    public CheckBox getCheckBoxDay() {
+        return mCheckBoxDay;
     }
 
-    public WheelView getYear() {
-        return year;
+    public WheelView getYearView() {
+        return mYearView;
     }
 
-    public WheelView getMonth() {
-        return month;
+    public WheelView getMonthView() {
+        return mMonthView;
     }
 
     private int getCurYear() {
@@ -192,43 +191,43 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
         return curMonth;
     }
 
-    public TextView getTv_sure() {
-        return tv_sure;
+    public TextView getSureView() {
+        return mTvSure;
     }
 
-    public TextView getTv_cancle() {
-        return tv_cancle;
+    public TextView getCancleView() {
+        return mTvCancle;
     }
 
     private String[] getMonths() {
-        return months;
+        return mMonths;
     }
 
     private String[] getDays() {
-        return days;
+        return mDays;
     }
 
     public int getSelectorYear() {
-        return beginYear + getYear().getCurrentItem();
+        return beginYear + getYearView().getCurrentItem();
     }
 
     public String getSelectorMonth() {
-        return getMonths()[getMonth().getCurrentItem()];
+        return getMonths()[getMonthView().getCurrentItem()];
     }
 
     public String getSelectorDay() {
-        return getDays()[getDay().getCurrentItem()];
+        return getDays()[getDayView().getCurrentItem()];
     }
 
     /**
-     * Updates day wheel. Sets max days according to selected month and year
+     * Updates mDayView wheel. Sets max mDays according to selected mMonthView and mYearView
      */
     private void updateDays(WheelView year, WheelView month, WheelView day) {
-        calendar.set(Calendar.YEAR, beginYear + year.getCurrentItem());
-        calendar.set(Calendar.MONTH, month.getCurrentItem());
-        int maxDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        mCalendar.set(Calendar.YEAR, beginYear + year.getCurrentItem());
+        mCalendar.set(Calendar.MONTH, month.getCurrentItem());
+        int maxDay = mCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
         int maxDays = RxTimeUtils.getDaysByYearMonth(beginYear + year.getCurrentItem(), month.getCurrentItem() + 1);
-        day.setViewAdapter(new DateNumericAdapter(context, 1, maxDays, calendar.get(Calendar.DAY_OF_MONTH) - 1));
+        day.setViewAdapter(new DateNumericAdapter(mContext, 1, maxDays, mCalendar.get(Calendar.DAY_OF_MONTH) - 1));
         int curDay = Math.min(maxDays, day.getCurrentItem() + 1);
         day.setCurrentItem(curDay - 1, true);
 
@@ -247,8 +246,8 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
         /**
          * Constructor
          */
-        public DateNumericAdapter(Context context, int minValue, int maxValue, int current) {
-            super(context, minValue, maxValue);
+        public DateNumericAdapter(Context mContext, int minValue, int maxValue, int current) {
+            super(mContext, minValue, maxValue);
             this.currentValue = current;
             setTextSize(16);
         }

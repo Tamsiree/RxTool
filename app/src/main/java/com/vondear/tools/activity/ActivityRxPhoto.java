@@ -227,13 +227,13 @@ public class ActivityRxPhoto extends ActivityBase {
     @OnClick(R.id.btn_exit)
     public void onClick() {
         final RxDialogSureCancel rxDialogSureCancel = new RxDialogSureCancel(this);
-        rxDialogSureCancel.getTvCancel().setOnClickListener(new View.OnClickListener() {
+        rxDialogSureCancel.getCancelView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rxDialogSureCancel.cancel();
             }
         });
-        rxDialogSureCancel.getTvSure().setOnClickListener(new View.OnClickListener() {
+        rxDialogSureCancel.getSureView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

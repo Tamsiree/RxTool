@@ -11,10 +11,7 @@
         android:id="@+id/tv_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/logo"/>
-
-
+        android:layout_marginBottom="20dp"/>
 
     <EditText
         android:id="@+id/editText"
@@ -24,7 +21,7 @@
         android:layout_marginRight="30dp"
         android:background="@drawable/shape_round_gray_bored"
         android:ems="10"
-        android:hint="昵称"
+        android:hint="请输入..."
         android:inputType="textPersonName"
         android:padding="5dp"
         android:text=""

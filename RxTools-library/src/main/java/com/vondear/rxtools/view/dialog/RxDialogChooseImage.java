@@ -92,15 +92,15 @@ public class RxDialogChooseImage extends RxDialog {
         initView(fragment);
     }
 
-    public TextView getTvCamera() {
+    public TextView getFromCameraView() {
         return mTvCamera;
     }
 
-    public TextView getTvFile() {
+    public TextView getFromFileView() {
         return mTvFile;
     }
 
-    public TextView getTvCancel() {
+    public TextView getCancelView() {
         return mTvCancel;
     }
 

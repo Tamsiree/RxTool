@@ -20,7 +20,6 @@ public class RxDialogLoading extends RxDialog {
     private View mDialogContentView;
     private TextView mTextView;
 
-
     public RxDialogLoading(Context context, int themeResId) {
         super(context, themeResId);
         initView(context);
@@ -99,5 +98,5 @@ public class RxDialogLoading extends RxDialog {
         return mTextView;
     }
 
-    public static enum RxCancelType {normal, error, success, info}
+    public enum RxCancelType {normal, error, success, info}
 }

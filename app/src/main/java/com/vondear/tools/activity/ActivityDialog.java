@@ -69,12 +69,12 @@ public class ActivityDialog extends ActivityBase {
     private void initWheelYearMonthDayDialog() {
         // ------------------------------------------------------------------选择日期开始
         mRxDialogWheelYearMonthDay = new RxDialogWheelYearMonthDay(this, 1994, 2017);
-        mRxDialogWheelYearMonthDay.getTv_sure().setOnClickListener(
+        mRxDialogWheelYearMonthDay.getSureView().setOnClickListener(
                 new View.OnClickListener() {
 
                     @Override
                     public void onClick(View arg0) {
-                        if (mRxDialogWheelYearMonthDay.getCheckBox_day().isChecked()) {
+                        if (mRxDialogWheelYearMonthDay.getCheckBoxDay().isChecked()) {
                             mButtonDialogWheelYearMonthDay.setText(
                                     mRxDialogWheelYearMonthDay.getSelectorYear() + "年"
                                             + mRxDialogWheelYearMonthDay.getSelectorMonth() + "月"
@@ -87,7 +87,7 @@ public class ActivityDialog extends ActivityBase {
                         mRxDialogWheelYearMonthDay.cancel();
                     }
                 });
-        mRxDialogWheelYearMonthDay.getTv_cancle().setOnClickListener(
+        mRxDialogWheelYearMonthDay.getCancleView().setOnClickListener(
                 new View.OnClickListener() {
 
                     @Override
@@ -120,7 +120,7 @@ public class ActivityDialog extends ActivityBase {
                 break;
             case R.id.button_DialogSure:
                 final RxDialogSure rxDialogSure = new RxDialogSure(mContext);//提示弹窗
-                rxDialogSure.getTvSure().setOnClickListener(new View.OnClickListener() {
+                rxDialogSure.getSureView().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         rxDialogSure.cancel();
@@ -130,13 +130,13 @@ public class ActivityDialog extends ActivityBase {
                 break;
             case R.id.button_DialogSureCancle:
                 final RxDialogSureCancel rxDialogSureCancel = new RxDialogSureCancel(mContext);//提示弹窗
-                rxDialogSureCancel.getTvSure().setOnClickListener(new View.OnClickListener() {
+                rxDialogSureCancel.getSureView().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         rxDialogSureCancel.cancel();
                     }
                 });
-                rxDialogSureCancel.getTvCancel().setOnClickListener(new View.OnClickListener() {
+                rxDialogSureCancel.getCancelView().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         rxDialogSureCancel.cancel();
@@ -146,13 +146,14 @@ public class ActivityDialog extends ActivityBase {
                 break;
             case R.id.button_DialogEditTextSureCancle:
                 final RxDialogEditSureCancel rxDialogEditSureCancel = new RxDialogEditSureCancel(mContext);//提示弹窗
-                rxDialogEditSureCancel.getTvSure().setOnClickListener(new View.OnClickListener() {
+                rxDialogEditSureCancel.getTitleView().setBackgroundResource(R.drawable.logo);
+                rxDialogEditSureCancel.getSureView().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         rxDialogEditSureCancel.cancel();
                     }
                 });
-                rxDialogEditSureCancel.getTvCancel().setOnClickListener(new View.OnClickListener() {
+                rxDialogEditSureCancel.getCancelView().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         rxDialogEditSureCancel.cancel();

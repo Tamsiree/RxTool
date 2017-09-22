@@ -22,53 +22,6 @@ public class RxDialogEditSureCancel extends RxDialog {
     private EditText editText;
     private TextView mTvTitle;
 
-    public void setTitle(String title) {
-        mTvTitle.setText(title);
-    }
-
-    public TextView getTvTitle() {
-        return mTvTitle;
-    }
-
-    public EditText getEditText() {
-        return editText;
-    }
-
-    public TextView getTvContent() {
-        return mTvContent;
-    }
-
-    public void setContent(String content) {
-        this.mTvContent.setText(content);
-    }
-
-    public TextView getTvSure() {
-        return mTvSure;
-    }
-
-    public void setSure(String strSure) {
-        this.mTvSure.setText(strSure);
-    }
-
-
-    public TextView getTvCancel() {
-        return mTvCancel;
-    }
-
-    public void setCancel(String strCancel) {
-        this.mTvCancel.setText(strCancel);
-    }
-
-    private void initView() {
-        View dialog_view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_edittext_sure_false, null);
-        mTvTitle = (TextView) dialog_view.findViewById(R.id.tv_logo);
-        mTvSure = (TextView) dialog_view.findViewById(R.id.tv_sure);
-        mTvCancel = (TextView) dialog_view.findViewById(R.id.tv_cancle);
-        editText = (EditText) dialog_view.findViewById(R.id.editText);
-        mTvContent = (TextView) dialog_view.findViewById(R.id.tv_title);
-        setContentView(dialog_view);
-    }
-
     public RxDialogEditSureCancel(Context context, int themeResId) {
         super(context, themeResId);
         initView();
@@ -92,5 +45,51 @@ public class RxDialogEditSureCancel extends RxDialog {
     public RxDialogEditSureCancel(Context context, float alpha, int gravity) {
         super(context, alpha, gravity);
         initView();
+    }
+
+    public void setTitle(String title) {
+        mTvTitle.setText(title);
+    }
+
+    public TextView getTitleView() {
+        return mTvTitle;
+    }
+
+    public EditText getEditText() {
+        return editText;
+    }
+
+    public TextView getContentView() {
+        return mTvContent;
+    }
+
+    public void setContent(String content) {
+        this.mTvContent.setText(content);
+    }
+
+    public TextView getSureView() {
+        return mTvSure;
+    }
+
+    public void setSure(String strSure) {
+        this.mTvSure.setText(strSure);
+    }
+
+    public TextView getCancelView() {
+        return mTvCancel;
+    }
+
+    public void setCancel(String strCancel) {
+        this.mTvCancel.setText(strCancel);
+    }
+
+    private void initView() {
+        View dialog_view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_edittext_sure_false, null);
+        mTvTitle = (TextView) dialog_view.findViewById(R.id.tv_logo);
+        mTvSure = (TextView) dialog_view.findViewById(R.id.tv_sure);
+        mTvCancel = (TextView) dialog_view.findViewById(R.id.tv_cancle);
+        editText = (EditText) dialog_view.findViewById(R.id.editText);
+        mTvContent = (TextView) dialog_view.findViewById(R.id.tv_title);
+        setContentView(dialog_view);
     }
 }

@@ -14,33 +14,6 @@ import com.vondear.rxtools.RxLocationUtils;
  */
 public class RxDialogGPSCheck extends RxDialogSureCancel {
     
-    private void initView() {
-        getTvTitle().setBackgroundDrawable(null);
-        setTitle("GPS未打开");
-        getTvTitle().setTextSize(16f);
-        getTvTitle().setTextColor(Color.BLACK);
-        setContent("您需要在系统设置中打开GPS方可采集数据");
-        getTvSure().setText("去设置");
-        getTvCancel().setText("知道了");
-
-        getTvSure().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RxLocationUtils.openGpsSettings(mContext);
-                cancel();
-            }
-        });
-
-        getTvCancel().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancel();
-            }
-        });
-        setCanceledOnTouchOutside(false);
-        setCancelable(false);
-    }
-
     public RxDialogGPSCheck(Context context, int themeResId) {
         super(context, themeResId);
         initView();
@@ -64,6 +37,33 @@ public class RxDialogGPSCheck extends RxDialogSureCancel {
     public RxDialogGPSCheck(Context context, float alpha, int gravity) {
         super(context, alpha, gravity);
         initView();
+    }
+
+    private void initView() {
+        getTitleView().setBackgroundDrawable(null);
+        setTitle("GPS未打开");
+        getTitleView().setTextSize(16f);
+        getTitleView().setTextColor(Color.BLACK);
+        setContent("您需要在系统设置中打开GPS方可采集数据");
+        getSureView().setText("去设置");
+        getCancelView().setText("知道了");
+
+        getSureView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RxLocationUtils.openGpsSettings(mContext);
+                cancel();
+            }
+        });
+
+        getCancelView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancel();
+            }
+        });
+        setCanceledOnTouchOutside(false);
+        setCancelable(false);
     }
 
 }

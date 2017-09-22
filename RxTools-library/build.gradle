@@ -36,9 +36,7 @@ dependencies {
     provided 'com.android.support:cardview-v7:25.3.1'
     //recyclerview包
     provided 'com.android.support:recyclerview-v7:25.3.1'
-
     provided 'com.android.support:support-annotations:25.3.1'
-
     provided 'com.android.support.constraint:constraint-layout:1.0.2'
     //流式布局
     provided 'com.google.android:flexbox:0.2.7'
@@ -55,11 +53,9 @@ dependencies {
     //微信登录，支付，分享包
     provided 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.3.4'
     //支付宝 支付包
-    provided files('src/main/libs/alipaySdk-20170309.jar')
-    //二维码解析
-    provided files('src/main/libs/zbardecoder.jar')
-    //二维码生成
-    provided files('src/main/libs/zxing.jar')
+    provided files('libs/alipaySdk-20170309.jar')
     //压缩与加密
-    compile files('src/main/libs/zip4j_1.3.2.jar')
+    provided files('libs/zip4j_1.3.2.jar')
+    //Zxing核心包
+    provided files('libs/zxing_core_3.0.1.jar')
 }

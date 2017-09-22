@@ -25,6 +25,7 @@ import static com.vondear.rxtools.RxConstants.SP_SCAN_CODE;
 
 public class ActivityCodeTool extends ActivityBase {
 
+    private static final char[] NUMBER_LIST = RxTickerUtils.getDefaultNumberList();
     RxTitle mRxTitle;
     EditText mEtQrCode;
     ImageView mIvCreateQrCode;
@@ -32,7 +33,6 @@ public class ActivityCodeTool extends ActivityBase {
     LinearLayout mActivityCodeTool;
     LinearLayout mLlCode;
     LinearLayout mLlQrRoot;
-
     EditText mEtBarCode;
     ImageView mIvCreateBarCode;
     ImageView mIvBarCode;
@@ -41,12 +41,9 @@ public class ActivityCodeTool extends ActivityBase {
     LinearLayout mLlScaner;
     LinearLayout mLlQr;
     LinearLayout mLlBar;
-
     private RxTickerView mRxTickerViewMade;
     private RxTickerView mRxTickerViewScan;
     private NestedScrollView nestedScrollView;
-
-    private static final char[] NUMBER_LIST = RxTickerUtils.getDefaultNumberList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +54,6 @@ public class ActivityCodeTool extends ActivityBase {
         initView();
         initEvent();
     }
-
-
 
     @Override
     protected void onResume() {
