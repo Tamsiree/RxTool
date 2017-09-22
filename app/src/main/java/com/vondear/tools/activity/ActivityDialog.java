@@ -174,7 +174,9 @@ public class ActivityDialog extends ActivityBase {
                 new RxDialogAcfunVideoLoading(this).show();
                 break;
             case R.id.button_DialogLoadingspinkit:
-                new RxDialogLoading(mContext).show();
+                RxDialogLoading rxDialogLoading = new RxDialogLoading(mContext);
+                rxDialogLoading.show();
+                //rxDialogLoading.cancel(RxDialogLoading.RxCancelType.error,"");
                 break;
             case R.id.button_DialogScaleView:
                 RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(mContext);

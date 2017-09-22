@@ -6,8 +6,6 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,15 +17,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.vondear.rxtools.RxBarUtils;
-import com.vondear.rxtools.RxImageUtils;
-import com.vondear.rxtools.RxPermissionsUtils;
 import com.vondear.rxtools.RxPhotoUtils;
 import com.vondear.rxtools.RxSPUtils;
 import com.vondear.rxtools.activity.ActivityBase;
-import com.vondear.rxtools.interfaces.onRequestPermissionsListener;
 import com.vondear.rxtools.view.RxTitle;
-import com.vondear.rxtools.view.dialog.RxDialog;
 import com.vondear.rxtools.view.dialog.RxDialogChooseImage;
+import com.vondear.rxtools.view.dialog.RxDialogScaleView;
 import com.vondear.rxtools.view.dialog.RxDialogSureCancel;
 import com.vondear.tools.R;
 import com.yalantis.ucrop.UCrop;
@@ -99,73 +94,23 @@ public class ActivityRxPhoto extends ActivityBase {
         mIvAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                initDialogOpenAvatar();
                 initDialogChooseImage();
             }
         });
         mIvAvatar.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                RxImageUtils.showBigImageView(mContext, resultUri);
+//                RxImageUtils.showBigImageView(mContext, resultUri);
+                RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(mContext);
+                rxDialogScaleView.setImageUri(resultUri);
+                rxDialogScaleView.show();
                 return false;
             }
         });
     }
 
-    /**
-     * 选择头像 弹窗
-     */
-    private void initDialogOpenAvatar() {
-        final RxDialog dialog1 = new RxDialog(this);
-        dialog1.getLayoutParams().gravity = Gravity.BOTTOM;
-        View dialogView1 = LayoutInflater.from(this).inflate(
-                R.layout.dialog_picker_pictrue, null);
-        TextView tv_camera = (TextView) dialogView1
-                .findViewById(R.id.tv_camera);
-        TextView tv_file = (TextView) dialogView1
-                .findViewById(R.id.tv_file);
-        TextView tv_cancelid = (TextView) dialogView1
-                .findViewById(R.id.tv_cancel);
-        tv_cancelid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                dialog1.cancel();
-            }
-        });
-        tv_camera.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                //请求Camera权限
-                RxPermissionsUtils.requestCamera(mContext, new onRequestPermissionsListener() {
-                    @Override
-                    public void onRequestBefore() {
-
-                    }
-
-                    @Override
-                    public void onRequestLater() {
-                        RxPhotoUtils.openCameraImage(ActivityRxPhoto.this);
-                        dialog1.cancel();
-                    }
-                });
-            }
-        });
-        tv_file.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                RxPhotoUtils.openLocalImage(ActivityRxPhoto.this);
-                dialog1.cancel();
-            }
-        });
-        dialog1.setContentView(dialogView1);
-        dialog1.show();
-    }
-
     private void initDialogChooseImage() {
         RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(mContext, TITLE);
-
         dialogChooseImage.show();
     }
 
@@ -197,7 +142,6 @@ public class ActivityRxPhoto extends ActivityBase {
                         priority(Priority.LOW).
                         error(R.drawable.circle_elves_ball).
                         fallback(R.drawable.circle_elves_ball).
-                        dontAnimate().
                         into(mIvAvatar);
 //                RequestUpdateAvatar(new File(RxPhotoUtils.getRealFilePath(mContext, RxPhotoUtils.cropImageUri)));
                 break;
@@ -231,7 +175,6 @@ public class ActivityRxPhoto extends ActivityBase {
                 priority(Priority.LOW).
                 error(R.drawable.circle_elves_ball).
                 fallback(R.drawable.circle_elves_ball).
-                dontAnimate().
                 into(imageView);
 
         return (new File(RxPhotoUtils.getImageAbsolutePath(this, uri)));
@@ -262,17 +205,17 @@ public class ActivityRxPhoto extends ActivityBase {
         //设置图片在切换比例时的动画
         options.setImageToCropBoundsAnimDuration(666);
         //设置裁剪窗口是否为椭圆
-//        options.setOvalDimmedLayer(true);
+        //options.setOvalDimmedLayer(true);
         //设置是否展示矩形裁剪框
-//        options.setShowCropFrame(false);
+        // options.setShowCropFrame(false);
         //设置裁剪框横竖线的宽度
-//        options.setCropGridStrokeWidth(20);
+        //options.setCropGridStrokeWidth(20);
         //设置裁剪框横竖线的颜色
-//        options.setCropGridColor(Color.GREEN);
+        //options.setCropGridColor(Color.GREEN);
         //设置竖线的数量
-//        options.setCropGridColumnCount(2);
+        //options.setCropGridColumnCount(2);
         //设置横线的数量
-//        options.setCropGridRowCount(1);
+        //options.setCropGridRowCount(1);
 
         UCrop.of(uri, destinationUri)
                 .withAspectRatio(1, 1)

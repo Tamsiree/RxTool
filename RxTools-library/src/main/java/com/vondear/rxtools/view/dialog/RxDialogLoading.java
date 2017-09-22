@@ -61,7 +61,7 @@ public class RxDialogLoading extends RxDialog {
         mLoadingView.setColor(color);
     }
 
-    public void cancel(cancelType code, String str) {
+    public void cancel(RxCancelType code, String str) {
         cancel();
         switch (code) {
             case normal:
@@ -99,5 +99,5 @@ public class RxDialogLoading extends RxDialog {
         return mTextView;
     }
 
-    private enum cancelType {normal, error, success, info}
+    public static enum RxCancelType {normal, error, success, info}
 }
