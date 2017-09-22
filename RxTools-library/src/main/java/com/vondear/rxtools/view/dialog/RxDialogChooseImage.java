@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxPhotoTool;
-import com.vondear.rxtools.interfaces.OnRequestPermissionsListener;
-import com.vondear.rxtools.view.RxToast;
 
 
 /**
@@ -132,39 +130,16 @@ public class RxDialogChooseImage extends RxDialog {
 
             @Override
             public void onClick(View arg0) {
-                //请求Camera权限
-                RxPermissionTool.requestCamera(activity, new OnRequestPermissionsListener() {
-                    @Override
-                    public void onRequestBefore() {
-                        RxToast.error("请先获取相机权限");
-                    }
-
-                    @Override
-                    public void onRequestLater() {
-                        RxPhotoTool.openCameraImage(activity);
-                        cancel();
-                    }
-                });
+                RxPhotoTool.openCameraImage(activity);
+                cancel();
             }
         });
         mTvFile.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                RxPermissionTool.requestReadExternalStorage(mContext, new OnRequestPermissionsListener() {
-                    @Override
-                    public void onRequestBefore() {
-                        cancel();
-                        RxToast.error("请先获取读取SDCard权限");
-                        return;
-                    }
-
-                    @Override
-                    public void onRequestLater() {
-                        RxPhotoTool.openLocalImage(activity);
-                        cancel();
-                    }
-                });
+                RxPhotoTool.openLocalImage(activity);
+                cancel();
             }
         });
         setContentView(dialog_view);
@@ -196,18 +171,8 @@ public class RxDialogChooseImage extends RxDialog {
             @Override
             public void onClick(View arg0) {
                 //请求Camera权限
-                RxPermissionTool.requestCamera(fragment.getContext(), new OnRequestPermissionsListener() {
-                    @Override
-                    public void onRequestBefore() {
-
-                    }
-
-                    @Override
-                    public void onRequestLater() {
-                        RxPhotoTool.openCameraImage(fragment);
-                        cancel();
-                    }
-                });
+                RxPhotoTool.openCameraImage(fragment);
+                cancel();
             }
         });
         mTvFile.setOnClickListener(new View.OnClickListener() {
