@@ -28,8 +28,6 @@ import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.vondear.rxtools.interfaces.OnRequestPermissionsListener;
-
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.BufferedReader;
@@ -621,23 +619,11 @@ public class RxDeviceTool {
             // 调用系统的拨号服务实现电话拨打功能
             // 封装一个拨打电话的intent，并且将电话号码包装成一个Uri对象传入
 
-            RxPermissionTool.requestCall(context, new OnRequestPermissionsListener() {
-                @Override
-                public void onRequestBefore() {
-
-                }
-
-                @Override
-                public void onRequestLater() {
-                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber1));
-                    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                        return;
-                    }
-                    context.startActivity(intent);// 内部类
-                }
-            });
-
-
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber1));
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            context.startActivity(intent);// 内部类
         }
     }
 

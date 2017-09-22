@@ -49,6 +49,7 @@ public class ActivityMain extends AppCompatActivity {
                 addPermission(Manifest.permission.ACCESS_COARSE_LOCATION).
                 addPermission(Manifest.permission.READ_EXTERNAL_STORAGE).
                 addPermission(Manifest.permission.CAMERA).
+                addPermission(Manifest.permission.CALL_PHONE).
                 addPermission(Manifest.permission.READ_PHONE_STATE).
                 initPermission();
     }
