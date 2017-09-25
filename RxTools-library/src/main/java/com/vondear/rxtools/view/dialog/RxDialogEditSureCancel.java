@@ -18,7 +18,6 @@ public class RxDialogEditSureCancel extends RxDialog {
 
     private TextView mTvSure;
     private TextView mTvCancel;
-    private TextView mTvContent;
     private EditText editText;
     private TextView mTvTitle;
 
@@ -59,14 +58,6 @@ public class RxDialogEditSureCancel extends RxDialog {
         return editText;
     }
 
-    public TextView getContentView() {
-        return mTvContent;
-    }
-
-    public void setContent(String content) {
-        this.mTvContent.setText(content);
-    }
-
     public TextView getSureView() {
         return mTvSure;
     }
@@ -85,11 +76,10 @@ public class RxDialogEditSureCancel extends RxDialog {
 
     private void initView() {
         View dialog_view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_edittext_sure_false, null);
-        mTvTitle = (TextView) dialog_view.findViewById(R.id.tv_logo);
+        mTvTitle = (TextView) dialog_view.findViewById(R.id.tv_title);
         mTvSure = (TextView) dialog_view.findViewById(R.id.tv_sure);
         mTvCancel = (TextView) dialog_view.findViewById(R.id.tv_cancle);
         editText = (EditText) dialog_view.findViewById(R.id.editText);
-        mTvContent = (TextView) dialog_view.findViewById(R.id.tv_title);
         setContentView(dialog_view);
     }
 }

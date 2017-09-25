@@ -76,23 +76,6 @@
         android:layout_height="45dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_cancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="取消"
-            android:textColor="#595757"
-            android:textSize="18sp"/>
-
-        <View
-            android:layout_width="0.1dp"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="#005D9E"/>
 
         <TextView
             android:id="@+id/tv_sure"
@@ -104,6 +87,25 @@
             android:text="确定"
             android:textColor="#595757"
             android:textSize="18sp"/>
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#005D9E"/>
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="取消"
+            android:textColor="#595757"
+            android:textSize="18sp"/>
+
     </LinearLayout>
 
 </LinearLayout>

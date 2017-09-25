@@ -120,6 +120,7 @@ public class ActivityDialog extends ActivityBase {
                 break;
             case R.id.button_DialogSure:
                 final RxDialogSure rxDialogSure = new RxDialogSure(mContext);//提示弹窗
+                rxDialogSure.getLogoView().setImageResource(R.drawable.logo);
                 rxDialogSure.getSureView().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -130,6 +131,7 @@ public class ActivityDialog extends ActivityBase {
                 break;
             case R.id.button_DialogSureCancle:
                 final RxDialogSureCancel rxDialogSureCancel = new RxDialogSureCancel(mContext);//提示弹窗
+                rxDialogSureCancel.getTitleView().setBackgroundResource(R.drawable.logo);
                 rxDialogSureCancel.getSureView().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
