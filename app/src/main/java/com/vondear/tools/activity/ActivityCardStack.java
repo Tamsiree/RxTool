@@ -1,13 +1,14 @@
 package com.vondear.tools.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.vondear.rxtools.activity.ActivityBase;
+import com.vondear.rxtools.RxTool;
+import com.vondear.rxtools.interfaces.OnDelayListener;
 import com.vondear.rxtools.view.cardstack.RxAdapterAllMoveDownAnimator;
 import com.vondear.rxtools.view.cardstack.RxAdapterUpDownAnimator;
 import com.vondear.rxtools.view.cardstack.RxAdapterUpDownStackAnimator;
@@ -20,7 +21,7 @@ import java.util.Arrays;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ActivityCardStack extends ActivityBase implements RxCardStackView.ItemExpendListener {
+public class ActivityCardStack extends AppCompatActivity implements RxCardStackView.ItemExpendListener {
 
     @BindView(R.id.stackview_main)
     RxCardStackView mStackView;
@@ -68,16 +69,12 @@ public class ActivityCardStack extends ActivityBase implements RxCardStackView.I
         mTestStackAdapter = new AdapterStackTest(this);
         mStackView.setAdapter(mTestStackAdapter);
 
-
-        new Handler().postDelayed(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        mTestStackAdapter.updateData(Arrays.asList(TEST_DATAS));
-                    }
-                }
-                , 200
-        );
+        RxTool.delayToDo(200, new OnDelayListener() {
+            @Override
+            public void doSomething() {
+                mTestStackAdapter.updateData(Arrays.asList(TEST_DATAS));
+            }
+        });
     }
 
     @Override
@@ -112,6 +109,6 @@ public class ActivityCardStack extends ActivityBase implements RxCardStackView.I
 
     @Override
     public void onItemExpend(boolean expend) {
-        mButtonContainer.setVisibility(expend ? View.VISIBLE : View.INVISIBLE);
+        mButtonContainer.setVisibility(expend ? View.VISIBLE : View.GONE);
     }
 }

@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxSeatAirplane;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.tools.R;
 
 import butterknife.BindView;
@@ -26,6 +27,8 @@ public class ActivityFlightSeat extends ActivityBase {
     Button mBtnGoto;
     @BindView(R.id.activity_flight_seat)
     LinearLayout mActivityFlightSeat;
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class ActivityFlightSeat extends ActivityBase {
         RxBarTool.setTransparentStatusBar(this);
         setContentView(R.layout.activity_flight_seat);
         ButterKnife.bind(this);
+        mRxTitle.setLeftFinish(mContext);
         initView();
 
         setTestData();

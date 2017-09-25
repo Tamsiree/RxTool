@@ -1,7 +1,6 @@
 package com.vondear.tools.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,6 +8,8 @@ import android.widget.TextView;
 import com.orhanobut.logger.Logger;
 import com.vondear.rxtools.RxFileTool;
 import com.vondear.rxtools.RxZipUtils;
+import com.vondear.rxtools.activity.ActivityBase;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.tools.R;
 
@@ -18,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ActivityZipEncrypt extends AppCompatActivity {
+public class ActivityZipEncrypt extends ActivityBase {
 
     @BindView(R.id.btn_create_folder)
     Button mBtnCreateFolder;
@@ -26,6 +27,8 @@ public class ActivityZipEncrypt extends AppCompatActivity {
     Button mBtnZip;
     @BindView(R.id.tv_state)
     TextView mTvState;
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
 
     private File fileDir;
 
@@ -34,6 +37,7 @@ public class ActivityZipEncrypt extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zip_encrypt);
         ButterKnife.bind(this);
+        mRxTitle.setLeftFinish(mContext);
     }
 
     @OnClick({R.id.btn_create_folder, R.id.btn_zip})
@@ -57,10 +61,10 @@ public class ActivityZipEncrypt extends AppCompatActivity {
                     if (fileDir.exists()) {
                         String result = RxZipUtils.zipEncrypt(fileDir.getAbsolutePath(), fileZip.getAbsolutePath(), true, "123456");
                         mTvState.setText("压缩并加密成功,路径" + result);
-                    }else{
+                    } else {
                         RxToast.error("导出的文件不存在");
                     }
-                }else{
+                } else {
                     RxToast.error("导出的文件不存在");
                 }
                 break;

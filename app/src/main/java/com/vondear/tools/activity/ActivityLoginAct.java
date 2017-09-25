@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vondear.rxtools.RxAnimationTool;
+import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.RxKeyboardTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.activity.AndroidBug5497Workaround;
@@ -72,6 +73,8 @@ public class ActivityLoginAct extends ActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_act);
+        RxBarTool.setTransparentStatusBar(this);//状态栏透明化
+        RxBarTool.StatusBarLightMode(mContext);
         ButterKnife.bind(this);
 
         if (isFullScreen(this)) {

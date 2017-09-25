@@ -5,6 +5,7 @@
     android:id="@+id/activity_card_stack"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:orientation="vertical"
     tools:context="com.vondear.tools.activity.ActivityCardStack">
 
@@ -13,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <Button
             android:layout_width="wrap_content"
@@ -39,6 +41,5 @@
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:paddingTop="12dp"/>
-
 
 </LinearLayout>

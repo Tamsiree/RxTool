@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_seat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.vondear.tools.activity.ActivitySeat">
 
-    <Button
-        android:text="电影票选座"
+    <com.vondear.rxtools.view.RxTitle
+        android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_movie"/>
+        android:background="?colorPrimary"
+        app:title="选座控件"/>
 
     <Button
-        android:text="飞机票选座"
+        android:id="@+id/btn_movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_flight"/>
+        android:layout_margin="10dp"
+        android:text="电影票选座"/>
+
+    <Button
+        android:id="@+id/btn_flight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="飞机票选座"/>
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 
 import com.vondear.rxtools.RxActivityTool;
 import com.vondear.rxtools.activity.ActivityBase;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.tools.R;
 
 import butterknife.BindView;
@@ -21,12 +22,15 @@ public class ActivitySeat extends ActivityBase {
     Button mBtnFlight;
     @BindView(R.id.activity_seat)
     LinearLayout mActivitySeat;
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat);
         ButterKnife.bind(this);
+        mRxTitle.setLeftFinish(mContext);
     }
 
     @OnClick({R.id.btn_movie, R.id.btn_flight})

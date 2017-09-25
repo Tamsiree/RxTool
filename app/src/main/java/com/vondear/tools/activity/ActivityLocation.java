@@ -18,6 +18,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.vondear.rxtools.RxLocationTool;
 import com.vondear.rxtools.activity.ActivityBase;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.tools.R;
 
 import java.util.Iterator;
@@ -37,6 +38,8 @@ public class ActivityLocation extends ActivityBase implements LocationListener {
     TextView mGpsCount;
     @BindView(R.id.layer_gps_btn)
     LinearLayout mLayerGpsBtn;
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
     private LocationManager locationManager;
 
     @Override
@@ -44,7 +47,7 @@ public class ActivityLocation extends ActivityBase implements LocationListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         ButterKnife.bind(this);
-
+        mRxTitle.setLeftFinish(mContext);
         initLocation();
         gpsCheck();
 

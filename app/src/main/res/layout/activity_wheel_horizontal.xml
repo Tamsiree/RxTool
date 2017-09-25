@@ -1,25 +1,25 @@
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                                            xmlns:tools="http://schemas.android.com/tools"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:background="@color/baby_blue"
-                                            tools:context=".activity.ActivityWheelHorizontal">
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mi_green"
+    tools:context=".activity.ActivityWheelHorizontal">
 
     <LinearLayout
         android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="true"
-        android:fitsSystemWindows="true"
-        android:orientation="vertical"
-        tools:context=".activity.ActivityWheelHorizontal">
+        android:orientation="vertical">
 
         <com.vondear.rxtools.view.RxTitle
             android:id="@+id/rx_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue"
+            android:clipToPadding="true"
+            android:fitsSystemWindows="true"
             app:title="横向滑动选择控件"/>
 
         <LinearLayout

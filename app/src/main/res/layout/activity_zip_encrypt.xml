@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     tools:context="com.vondear.tools.activity.ActivityZipEncrypt">
 
+    <com.vondear.rxtools.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="?colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="文件压缩与加密"/>
 
     <Button
         android:id="@+id/btn_create_folder"
