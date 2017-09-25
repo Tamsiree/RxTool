@@ -20,6 +20,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:background="@color/custom_progress_blue_progress_half"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -34,6 +35,7 @@
                 app:cardPreventCornerOverlap="true">
 
                 <LinearLayout
+                    android:background="@color/custom_progress_blue_progress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -166,7 +168,7 @@
                 app:cardElevation="8dp"
                 app:cardPreventCornerOverlap="true">
 
-                <LinearLayout
+                <LinearLayout android:background="@color/custom_progress_blue_progress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -228,7 +230,7 @@
                 app:cardElevation="8dp"
                 app:cardPreventCornerOverlap="true">
 
-                <LinearLayout
+                <LinearLayout android:background="@color/custom_progress_blue_progress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -275,7 +277,7 @@
                 app:cardElevation="8dp"
                 app:cardPreventCornerOverlap="true">
 
-                <LinearLayout
+                <LinearLayout android:background="@color/custom_progress_blue_progress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -344,7 +346,7 @@
                 app:cardElevation="8dp"
                 app:cardPreventCornerOverlap="true">
 
-                <LinearLayout
+                <LinearLayout android:background="@color/custom_progress_blue_progress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -412,7 +414,7 @@
                 app:cardElevation="8dp"
                 app:cardPreventCornerOverlap="true">
 
-                <LinearLayout
+                <LinearLayout android:background="@color/custom_progress_blue_progress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -547,7 +549,7 @@
                 app:cardElevation="8dp"
                 app:cardPreventCornerOverlap="true">
 
-                <LinearLayout
+                <LinearLayout android:background="@color/custom_progress_blue_progress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"

@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxNetSpeedView;
+import com.vondear.rxtools.view.RxTitle;
 import com.vondear.tools.R;
 
 import butterknife.BindView;
@@ -23,12 +24,15 @@ public class ActivityNetSpeed extends ActivityBase {
     RelativeLayout mActivityNetSpeed;
     @BindView(R.id.rx_net_speed_view)
     RxNetSpeedView mRxNetSpeedView;
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_net_speed);
         ButterKnife.bind(this);
+        mRxTitle.setLeftFinish(mContext);
     }
 
     @OnClick({R.id.button2, R.id.button3})

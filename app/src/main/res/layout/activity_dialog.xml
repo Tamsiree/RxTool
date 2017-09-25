@@ -5,16 +5,16 @@
               android:id="@+id/activity_dialog"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-
               android:orientation="vertical"
-
               tools:context="com.vondear.tools.activity.ActivityDialog">
 
     <com.vondear.rxtools.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        android:background="#FF528FBA"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
         app:title="RxDialog"/>
 
     <LinearLayout
