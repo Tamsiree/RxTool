@@ -172,13 +172,11 @@ public class RxTitle extends FrameLayout {
 
         setRightIconVisibility(mRightIconVisibility);
 
-
         initAutoFitEditText();
         //==========================================================================================以上为属性初始化
     }
 
     private void initAutoFitEditText() {
-
         mTvTitle.clearFocus();
         mTvTitle.setEnabled(false);
         mTvTitle.setFocusableInTouchMode(false);
@@ -190,14 +188,12 @@ public class RxTitle extends FrameLayout {
         mTvTitle.setMaxHeight(RxImageTool.dip2px(getContext(), 55f));
         //don't forget to add min text size programmatically
         mTvTitle.setMinTextSize(37f);
-
         try {
             RxTextAutoZoom.setNormalization((Activity) getContext(), mRootLayout, mTvTitle);
             RxKeyboardTool.hideSoftInput((Activity) getContext());
         }catch (Exception e){
 
         }
-
     }
 
     //**********************************************************************************************以下为get方法

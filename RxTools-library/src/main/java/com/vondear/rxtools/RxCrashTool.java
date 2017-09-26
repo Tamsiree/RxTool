@@ -14,6 +14,7 @@ import java.lang.Thread.UncaughtExceptionHandler;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
 /**
  * Created by vonde on 2016/12/21.
  */
@@ -23,10 +24,10 @@ public class RxCrashTool implements Thread.UncaughtExceptionHandler {
     private volatile static RxCrashTool mInstance;
 
     private UncaughtExceptionHandler mHandler;
-    private boolean                  mInitialized;
-    private String                   crashDir;
-    private String                   versionName;
-    private int                      versionCode;
+    private boolean mInitialized;
+    private String crashDir;
+    private String versionName;
+    private int versionCode;
 
     private Context context;
 
@@ -58,11 +59,21 @@ public class RxCrashTool implements Thread.UncaughtExceptionHandler {
      */
     public boolean init() {
         if (mInitialized) return true;
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            crashDir = context.getExternalCacheDir().getPath() + File.separator + "crash" + File.separator;
-        } else {
-            crashDir = context.getCacheDir().getPath() + File.separator + "crash" + File.separator;
+
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+            int labelRes = packageInfo.applicationInfo.labelRes;
+            String name = context.getResources().getString(labelRes);
+            crashDir = RxFileTool.getRootPath() + File.separator + name + File.separator + "crash" + File.separator;
+        } catch (Exception e) {
+            if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+                crashDir = context.getExternalCacheDir().getPath() + File.separator + "crash" + File.separator;
+            } else {
+                crashDir = context.getCacheDir().getPath() + File.separator + "crash" + File.separator;
+            }
         }
+
         try {
             PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             versionName = pi.versionName;
@@ -78,7 +89,7 @@ public class RxCrashTool implements Thread.UncaughtExceptionHandler {
 
     @Override
     public void uncaughtException(Thread thread, final Throwable throwable) {
-        String now = new SimpleDateFormat("yy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+        String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
         final String fullPath = crashDir + now + ".txt";
         if (!RxFileTool.createOrExistsFile(fullPath)) return;
         new Thread(new Runnable() {

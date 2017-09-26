@@ -202,6 +202,20 @@ public class RxImageTool {
     }
 
     /**
+     * 修改颜色透明度
+     * @param color
+     * @param alpha
+     * @return
+     */
+    public static int changeColorAlpha(int color, int alpha) {
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+
+        return Color.argb(alpha, red, green, blue);
+    }
+
+    /**
      * bitmap转byteArr
      *
      * @param bitmap bitmap对象
