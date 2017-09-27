@@ -40,10 +40,10 @@ import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.RxDataTool;
 import com.vondear.rxtools.RxSPTool;
 import com.vondear.rxtools.interfaces.OnRxScanerListener;
-import com.vondear.rxtools.model.scaner.BitmapLuminanceSource;
-import com.vondear.rxtools.model.scaner.CameraManager;
-import com.vondear.rxtools.model.scaner.CaptureActivityHandler;
-import com.vondear.rxtools.model.scaner.decoding.InactivityTimer;
+import com.vondear.rxtools.module.scaner.BitmapLuminanceSource;
+import com.vondear.rxtools.module.scaner.CameraManager;
+import com.vondear.rxtools.module.scaner.CaptureActivityHandler;
+import com.vondear.rxtools.module.scaner.decoding.InactivityTimer;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogSure;
 

@@ -88,6 +88,8 @@
         </activity>
         <activity android:name=".activity.ActivityDeviceInfo">
         </activity>
+        <activity android:name=".activity.ActivityCobweb">
+        </activity>
     </application>
 
 </manifest>

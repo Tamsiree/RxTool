@@ -195,7 +195,6 @@
     <color name="darkblue">#00008B</color><!--暗蓝色 -->
     <color name="navy">#000080</color><!--海军色 -->
 
-
     <color name="round_corner_progress_bar_background_default">#5f5f5f</color>
     <color name="round_corner_progress_bar_progress_default">#7f7f7f</color>
     <color name="round_corner_progress_bar_secondary_progress_default">@android:color/transparent

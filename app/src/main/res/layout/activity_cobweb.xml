@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/e"
+              android:orientation="vertical">
+
+    <com.vondear.rxtools.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mi_green"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
+        app:title="蛛网等级Demo"/>
+
+    <com.vondear.rxtools.view.RxCobwebView
+        android:id="@+id/cobweb_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="蛛网层级"
+                android:textColor="@color/mi_green"/>
+
+            <SeekBar
+                android:id="@+id/seekbar_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:max="14"
+                android:progress="4"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="蛛网层级"
+                android:textColor="@color/mi_green"/>
+
+            <SeekBar
+                android:id="@+id/seekbar_spider_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:max="23"
+                android:progress="6"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

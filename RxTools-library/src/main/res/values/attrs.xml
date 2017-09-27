@@ -282,4 +282,16 @@
         <attr name="quickScaleEnabled" format="boolean"/>
         <attr name="tileBackgroundColor" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="RxCobwebView">
+
+        <attr name="spiderColor" format="color"/>
+        <attr name="spiderRadiusColor" format="color"/>
+        <attr name="spiderLevelColor" format="color"/>
+        <attr name="spiderLevelStroke" format="boolean"/>
+        <attr name="spiderLevelStrokeWidth" format="float"/>
+        <attr name="spiderMaxLevel" format="integer"/>
+        <attr name="spiderNameSize" format="dimension"/>
+
+    </declare-styleable>
 </resources>
