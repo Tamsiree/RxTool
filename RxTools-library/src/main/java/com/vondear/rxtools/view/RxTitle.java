@@ -105,7 +105,7 @@ public class RxTitle extends FrameLayout {
             //getColor(R.styleable.RxTitle_RxBackground, getResources().getColor(R.color.transparent))
             mTitle = a.getString(R.styleable.RxTitle_title);//标题
             mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, getResources().getColor(R.color.white));//标题颜色
-            mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, 60);//标题字体大小
+            mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, RxImageTool.dip2px(20));//标题字体大小
             //TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
             mTitleVisibility = a.getBoolean(R.styleable.RxTitle_titleVisibility, true);
 
@@ -116,12 +116,12 @@ public class RxTitle extends FrameLayout {
 
             mLeftText = a.getString(R.styleable.RxTitle_leftText);
             mLeftTextColor = a.getColor(R.styleable.RxTitle_leftTextColor, getResources().getColor(R.color.white));//左边字体颜色
-            mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, 48);//标题字体大小
+            mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, RxImageTool.dip2px(8));//标题字体大小
             mLeftTextVisibility = a.getBoolean(R.styleable.RxTitle_leftTextVisibility, false);
 
             mRightText = a.getString(R.styleable.RxTitle_rightText);
             mRightTextColor = a.getColor(R.styleable.RxTitle_rightTextColor, getResources().getColor(R.color.white));//右边字体颜色
-            mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, 48);//标题字体大小
+            mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, RxImageTool.dip2px(8));//标题字体大小
             mRightTextVisibility = a.getBoolean(R.styleable.RxTitle_rightTextVisibility, false);
 
         } finally {
@@ -185,13 +185,13 @@ public class RxTitle extends FrameLayout {
         //might cause crash on some devices
         mTvTitle.setMovementMethod(null);
         // can be added after layout inflation;
-        mTvTitle.setMaxHeight(RxImageTool.dip2px(getContext(), 55f));
+        mTvTitle.setMaxHeight(RxImageTool.dip2px(55f));
         //don't forget to add min text size programmatically
         mTvTitle.setMinTextSize(37f);
         try {
             RxTextAutoZoom.setNormalization((Activity) getContext(), mRootLayout, mTvTitle);
             RxKeyboardTool.hideSoftInput((Activity) getContext());
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }

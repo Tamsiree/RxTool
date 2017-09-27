@@ -48,7 +48,7 @@ public class FragmentLoadingWay extends Fragment  {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new RxRecyclerViewDividerTool(RxImageTool.dp2px(getContext(), 5f)));
+        recyclerView.addItemDecoration(new RxRecyclerViewDividerTool(RxImageTool.dp2px(5f)));
         recyclerView.setAdapter(new RecyclerView.Adapter<Holder>() {
             @Override
             public Holder onCreateViewHolder(ViewGroup parent, int viewType) {

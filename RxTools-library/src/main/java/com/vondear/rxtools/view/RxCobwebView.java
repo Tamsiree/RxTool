@@ -151,7 +151,10 @@ public class RxCobwebView extends View {
         float offsetAngle = averageAngle > 0 && mSpiderNumber % 2 == 0 ? averageAngle / 2 : 0;
         for (int position = 0; position < mSpiderNumber; position++) {
             float scale = (mSpiderList.get(position).getSpiderLevel() / mSpiderMaxLevel);
-            currentRadius = scale > 1 ? 1 : scale * one_radius;
+            if (scale >= 1) {
+                scale = 1;
+            }
+            currentRadius = scale * one_radius;
             nextAngle = offsetAngle + (position * averageAngle);
             nextRadians = (float) Math.toRadians(nextAngle);
             nextPointX = (float) (center + Math.sin(nextRadians) * currentRadius);

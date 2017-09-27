@@ -149,7 +149,7 @@ public class RxPopupView extends PopupWindow {
         }
 
         // 显示弹窗的位置
-        showAtLocation(view, popupGravity, mScreenWidth - LIST_PADDING - (getWidth() / 2), mRect.bottom + RxImageTool.dp2px(mContext, 7.5f));
+        showAtLocation(view, popupGravity, mScreenWidth - LIST_PADDING - (getWidth() / 2), mRect.bottom + RxImageTool.dp2px(7.5f));
     }
 
     /**

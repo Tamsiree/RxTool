@@ -90,70 +90,64 @@ public class RxImageTool {
     /**
      * dip转px
      *
-     * @param context 上下文
      * @param dpValue dp值
      * @return px值
      */
-    public static int dip2px(Context context, float dpValue) {
-        return dp2px(context, dpValue);
+    public static int dip2px(float dpValue) {
+        return dp2px(dpValue);
     }
 
     /**
      * dp转px
      *
-     * @param context 上下文
      * @param dpValue dp值
      * @return px值
      */
-    public static int dp2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
+    public static int dp2px(float dpValue) {
+        final float scale = RxTool.getContext().getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 
     /**
      * px转dip
      *
-     * @param context 上下文
      * @param pxValue px值
      * @return dip值
      */
-    public static int px2dip(Context context, float pxValue) {
-        return px2dp(context, pxValue);
+    public static int px2dip(float pxValue) {
+        return px2dp(pxValue);
     }
 
     /**
      * px转dp
      *
-     * @param context 上下文
      * @param pxValue px值
      * @return dp值
      */
-    public static int px2dp(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
+    public static int px2dp(float pxValue) {
+        final float scale = RxTool.getContext().getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
     /**
      * sp转px
      *
-     * @param context 上下文
      * @param spValue sp值
      * @return px值
      */
-    public static int sp2px(Context context, float spValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+    public static int sp2px( float spValue) {
+        final float fontScale = RxTool.getContext().getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
 
     /**
      * px转sp
      *
-     * @param context 上下文
      * @param pxValue px值
      * @return sp值
      */
-    public static int px2sp(Context context, float pxValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+    public static int px2sp( float pxValue) {
+        final float fontScale = RxTool.getContext().getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
 
@@ -203,6 +197,7 @@ public class RxImageTool {
 
     /**
      * 修改颜色透明度
+     *
      * @param color
      * @param alpha
      * @return
@@ -447,30 +442,28 @@ public class RxImageTool {
     /**
      * 获取bitmap
      *
-     * @param context 上下文
      * @param resId   资源id
      * @return bitmap
      */
-    public static Bitmap getBitmap(Context context, int resId) {
-        if (context == null) return null;
-        InputStream is = context.getResources().openRawResource(resId);
+    public static Bitmap getBitmap( int resId) {
+        if (RxTool.getContext() == null) return null;
+        InputStream is = RxTool.getContext().getResources().openRawResource(resId);
         return BitmapFactory.decodeStream(is);
     }
 
     /**
      * 获取bitmap
      *
-     * @param context   上下文
      * @param resId     资源id
      * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
      * @return bitmap
      */
-    public static Bitmap getBitmap(Context context, int resId, int maxWidth, int maxHeight) {
-        if (context == null) return null;
+    public static Bitmap getBitmap(int resId, int maxWidth, int maxHeight) {
+        if (RxTool.getContext() == null) return null;
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        InputStream is = context.getResources().openRawResource(resId);
+        InputStream is = RxTool.getContext().getResources().openRawResource(resId);
         BitmapFactory.decodeStream(is, null, options);
         options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
         options.inJustDecodeBounds = false;
@@ -826,28 +819,26 @@ public class RxImageTool {
      * 快速模糊
      * <p>先缩小原图，对小图进行模糊，再放大回原先尺寸</p>
      *
-     * @param context 上下文
      * @param src     源图片
      * @param scale   缩小倍数(0...1)
      * @param radius  模糊半径
      * @return 模糊后的图片
      */
-    public static Bitmap fastBlur(Context context, Bitmap src, float scale, float radius) {
-        return fastBlur(context, src, scale, radius, false);
+    public static Bitmap fastBlur( Bitmap src, float scale, float radius) {
+        return fastBlur(src, scale, radius, false);
     }
 
     /**
      * 快速模糊
      * <p>先缩小原图，对小图进行模糊，再放大回原先尺寸</p>
      *
-     * @param context 上下文
      * @param src     源图片
      * @param scale   缩小倍数(0...1)
      * @param radius  模糊半径
      * @param recycle 是否回收
      * @return 模糊后的图片
      */
-    public static Bitmap fastBlur(Context context, Bitmap src, float scale, float radius, boolean recycle) {
+    public static Bitmap fastBlur( Bitmap src, float scale, float radius, boolean recycle) {
         if (isEmptyBitmap(src)) return null;
         int width = src.getWidth();
         int height = src.getHeight();
@@ -863,7 +854,7 @@ public class RxImageTool {
         canvas.scale(scale, scale);
         canvas.drawBitmap(scaleBitmap, 0, 0, paint);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            scaleBitmap = renderScriptBlur(context, scaleBitmap, radius);
+            scaleBitmap = renderScriptBlur(scaleBitmap, radius);
         } else {
             scaleBitmap = stackBlur(scaleBitmap, (int) radius, true);
         }
@@ -878,17 +869,16 @@ public class RxImageTool {
      * renderScript模糊图片
      * <p>API大于17</p>
      *
-     * @param context 上下文
      * @param src     源图片
      * @param radius  模糊度(0...25)
      * @return 模糊后的图片
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static Bitmap renderScriptBlur(Context context, Bitmap src, float radius) {
+    public static Bitmap renderScriptBlur( Bitmap src, float radius) {
         if (isEmptyBitmap(src)) return null;
         RenderScript rs = null;
         try {
-            rs = RenderScript.create(context);
+            rs = RenderScript.create(RxTool.getContext());
             rs.setMessageHandler(new RenderScript.RSMessageHandler());
             Allocation input = Allocation.createFromBitmap(rs, src, Allocation.MipmapControl.MIPMAP_NONE, Allocation
                     .USAGE_SCRIPT);

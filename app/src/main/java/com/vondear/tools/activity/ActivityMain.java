@@ -105,7 +105,7 @@ public class ActivityMain extends AppCompatActivity {
             recyclerview.setLayoutManager(new GridLayoutManager(mContext, mColumnCount));
         }
 
-        recyclerview.addItemDecoration(new RxRecyclerViewDividerTool(RxImageTool.dp2px(mContext, 5f)));
+        recyclerview.addItemDecoration(new RxRecyclerViewDividerTool(RxImageTool.dp2px(5f)));
         AdapterRecyclerViewMain recyclerViewMain = new AdapterRecyclerViewMain(mData);
 
         recyclerview.setAdapter(recyclerViewMain);

@@ -82,7 +82,7 @@ public class ActivityWebView extends ActivityBase {
         //might cause crash on some devices
         mRxTextAutoZoom.setMovementMethod(null);
         // can be added after layout inflation;
-        mRxTextAutoZoom.setMaxHeight(RxImageTool.dip2px(this, 55f));
+        mRxTextAutoZoom.setMaxHeight(RxImageTool.dip2px(55f));
         //don't forget to add min text size programmatically
         mRxTextAutoZoom.setMinTextSize(37f);
 
@@ -122,7 +122,7 @@ public class ActivityWebView extends ActivityBase {
         }*/
 
 
-       // setMediaPlaybackRequiresUserGesture(boolean require) //是否需要用户手势来播放Media，默认true
+        // setMediaPlaybackRequiresUserGesture(boolean require) //是否需要用户手势来播放Media，默认true
 
         webSettings.setJavaScriptEnabled(true); // 设置支持javascript脚本
 //        webSettings.setPluginState(WebSettings.PluginState.ON);
