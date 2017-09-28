@@ -17,18 +17,18 @@ import android.widget.TextView;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.model.ActionItem;
 import com.vondear.rxtools.view.RxPopupImply;
-import com.vondear.rxtools.view.RxPopupView;
+import com.vondear.rxtools.view.RxPopupSingleView;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.RxToast;
-import com.vondear.rxtools.view.tooltips.RxToolTip;
-import com.vondear.rxtools.view.tooltips.RxToolTipsManager;
+import com.vondear.rxtools.view.tooltips.RxPopupView;
+import com.vondear.rxtools.view.tooltips.RxPopupViewManager;
 import com.vondear.tools.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ActivityPopupView extends ActivityBase implements RxToolTipsManager.TipListener {
+public class ActivityPopupView extends ActivityBase implements RxPopupViewManager.TipListener {
 
 
     @BindView(R.id.rx_title)
@@ -69,15 +69,15 @@ public class ActivityPopupView extends ActivityBase implements RxToolTipsManager
     RelativeLayout mRootLayout;
     @BindView(R.id.activity_popup_view)
     LinearLayout mActivityPopupView;
-    private RxPopupView titlePopup;
+    private RxPopupSingleView titlePopup;
 
     private static final String TAG = ActivityPopupView.class.getSimpleName();
     public static final String TIP_TEXT = "Tip";
 
-    RxToolTipsManager mRxToolTipsManager;
+    RxPopupViewManager mRxPopupViewManager;
 
-    @RxToolTip.Align
-    int mAlign = RxToolTip.ALIGN_CENTER;
+    @RxPopupView.Align
+    int mAlign = RxPopupView.ALIGN_CENTER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,19 +90,19 @@ public class ActivityPopupView extends ActivityBase implements RxToolTipsManager
     protected void initView() {
         mRxTitle.setLeftFinish(mContext);
 
-        mRxToolTipsManager = new RxToolTipsManager(this);
+        mRxPopupViewManager = new RxPopupViewManager(this);
 
         mButtonAlignCenter.setChecked(true);
 
     }
 
     private void initPopupView() {
-        titlePopup = new RxPopupView(mContext, ViewGroup.LayoutParams.WRAP_CONTENT,
+        titlePopup = new RxPopupSingleView(mContext, ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT, R.layout.popupwindow_definition_layout);
         titlePopup.addAction(new ActionItem("标清"));
         titlePopup.addAction(new ActionItem("高清"));
         titlePopup.addAction(new ActionItem("超清"));
-        titlePopup.setItemOnClickListener(new RxPopupView.OnItemOnClickListener() {
+        titlePopup.setItemOnClickListener(new RxPopupSingleView.OnItemOnClickListener() {
 
             @Override
             public void onItemClick(ActionItem item, int position) {
@@ -121,7 +121,7 @@ public class ActivityPopupView extends ActivityBase implements RxToolTipsManager
     @OnClick({R.id.tv_imply, R.id.tv_definition, R.id.button_above, R.id.button_below, R.id.button_left_to, R.id.button_right_to, R.id.button_align_center, R.id.button_align_left, R.id.button_align_right})
     public void onClick(View view) {
         String text = TextUtils.isEmpty(mTextInputEditText.getText()) ? TIP_TEXT : mTextInputEditText.getText().toString();
-        RxToolTip.Builder builder;
+        RxPopupView.Builder builder;
         View tipvView;
         switch (view.getId()) {
             case R.id.tv_imply:
@@ -135,42 +135,42 @@ public class ActivityPopupView extends ActivityBase implements RxToolTipsManager
                 titlePopup.show(mTvDefinition, 0);
                 break;
             case R.id.button_above:
-                mRxToolTipsManager.findAndDismiss(mTextView);
-                builder = new RxToolTip.Builder(this, mTextView, mParentLayout, text, RxToolTip.POSITION_ABOVE);
+                mRxPopupViewManager.findAndDismiss(mTextView);
+                builder = new RxPopupView.Builder(this, mTextView, mParentLayout, text, RxPopupView.POSITION_ABOVE);
                 builder.setAlign(mAlign);
-                tipvView =  mRxToolTipsManager.show(builder.build());
+                tipvView =  mRxPopupViewManager.show(builder.build());
                 break;
             case R.id.button_below:
-                mRxToolTipsManager.findAndDismiss(mTextView);
-                builder = new RxToolTip.Builder(this, mTextView, mParentLayout, text, RxToolTip.POSITION_BELOW);
+                mRxPopupViewManager.findAndDismiss(mTextView);
+                builder = new RxPopupView.Builder(this, mTextView, mParentLayout, text, RxPopupView.POSITION_BELOW);
                 builder.setAlign(mAlign);
                 builder.setBackgroundColor(getResources().getColor(R.color.orange));
-                tipvView = mRxToolTipsManager.show(builder.build());
+                tipvView = mRxPopupViewManager.show(builder.build());
                 break;
             case R.id.button_left_to:
-                mRxToolTipsManager.findAndDismiss(mTextView);
-                builder = new RxToolTip.Builder(this, mTextView, mParentLayout, text, RxToolTip.POSITION_LEFT_TO);
+                mRxPopupViewManager.findAndDismiss(mTextView);
+                builder = new RxPopupView.Builder(this, mTextView, mParentLayout, text, RxPopupView.POSITION_LEFT_TO);
                 builder.setBackgroundColor(getResources().getColor(R.color.greenyellow));
                 builder.setTextColor(getResources().getColor(R.color.black));
-                builder.setGravity(RxToolTip.GRAVITY_CENTER);
+                builder.setGravity(RxPopupView.GRAVITY_CENTER);
                 builder.setTextSize(12);
-                tipvView = mRxToolTipsManager.show(builder.build());
+                tipvView = mRxPopupViewManager.show(builder.build());
                 break;
             case R.id.button_right_to:
-                mRxToolTipsManager.findAndDismiss(mTextView);
-                builder = new RxToolTip.Builder(this, mTextView, mParentLayout, text, RxToolTip.POSITION_RIGHT_TO);
+                mRxPopupViewManager.findAndDismiss(mTextView);
+                builder = new RxPopupView.Builder(this, mTextView, mParentLayout, text, RxPopupView.POSITION_RIGHT_TO);
                 builder.setBackgroundColor(getResources().getColor(R.color.paleturquoise));
                 builder.setTextColor(getResources().getColor(android.R.color.black));
-                tipvView =  mRxToolTipsManager.show(builder.build());
+                tipvView =  mRxPopupViewManager.show(builder.build());
                 break;
             case R.id.button_align_center:
-                mAlign = RxToolTip.ALIGN_CENTER;
+                mAlign = RxPopupView.ALIGN_CENTER;
                 break;
             case R.id.button_align_left:
-                mAlign = RxToolTip.ALIGN_LEFT;
+                mAlign = RxPopupView.ALIGN_LEFT;
                 break;
             case R.id.button_align_right:
-                mAlign = RxToolTip.ALIGN_RIGHT;
+                mAlign = RxPopupView.ALIGN_RIGHT;
                 break;
         }
     }
@@ -181,9 +181,9 @@ public class ActivityPopupView extends ActivityBase implements RxToolTipsManager
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        RxToolTip.Builder builder = new RxToolTip.Builder(this, mTextView, mRootLayout, TIP_TEXT, RxToolTip.POSITION_ABOVE);
+        RxPopupView.Builder builder = new RxPopupView.Builder(this, mTextView, mRootLayout, TIP_TEXT, RxPopupView.POSITION_ABOVE);
         builder.setAlign(mAlign);
-        mRxToolTipsManager.show(builder.build());
+        mRxPopupViewManager.show(builder.build());
     }
 
 

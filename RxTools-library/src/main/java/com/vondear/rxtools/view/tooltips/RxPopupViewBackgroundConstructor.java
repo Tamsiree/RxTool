@@ -9,91 +9,91 @@ import android.view.View;
 import com.vondear.rxtools.R;
 
 
-class RxToolTipBackgroundConstructor {
+class RxPopupViewBackgroundConstructor {
 
     /**
      * Select which background will be assign to the tip view
      */
-    static void setBackground(View tipView, RxToolTip rxToolTip) {
+    static void setBackground(View tipView, RxPopupView rxPopupView) {
 
         // show tool tip without arrow. no need to continue
-        if (rxToolTip.hideArrow()) {
-            setToolTipNoArrowBackground(tipView, rxToolTip.getBackgroundColor());
+        if (rxPopupView.hideArrow()) {
+            setToolTipNoArrowBackground(tipView, rxPopupView.getBackgroundColor());
             return;
         }
 
         // show tool tip according to requested position
-        switch (rxToolTip.getPosition()) {
-            case RxToolTip.POSITION_ABOVE:
-                setToolTipAboveBackground(tipView, rxToolTip);
+        switch (rxPopupView.getPosition()) {
+            case RxPopupView.POSITION_ABOVE:
+                setToolTipAboveBackground(tipView, rxPopupView);
                 break;
-            case RxToolTip.POSITION_BELOW:
-                setToolTipBelowBackground(tipView, rxToolTip);
+            case RxPopupView.POSITION_BELOW:
+                setToolTipBelowBackground(tipView, rxPopupView);
                 break;
-            case RxToolTip.POSITION_LEFT_TO:
-                setToolTipLeftToBackground(tipView, rxToolTip.getBackgroundColor());
+            case RxPopupView.POSITION_LEFT_TO:
+                setToolTipLeftToBackground(tipView, rxPopupView.getBackgroundColor());
                 break;
-            case RxToolTip.POSITION_RIGHT_TO:
-                setToolTipRightToBackground(tipView, rxToolTip.getBackgroundColor());
+            case RxPopupView.POSITION_RIGHT_TO:
+                setToolTipRightToBackground(tipView, rxPopupView.getBackgroundColor());
                 break;
         }
 
     }
 
-    private static void setToolTipAboveBackground(View tipView, RxToolTip rxToolTip) {
-        switch (rxToolTip.getAlign()) {
-            case RxToolTip.ALIGN_CENTER:
-                setTipBackground(tipView, R.drawable.tooltip_arrow_down, rxToolTip.getBackgroundColor());
+    private static void setToolTipAboveBackground(View tipView, RxPopupView rxPopupView) {
+        switch (rxPopupView.getAlign()) {
+            case RxPopupView.ALIGN_CENTER:
+                setTipBackground(tipView, R.drawable.tooltip_arrow_down, rxPopupView.getBackgroundColor());
                 break;
-            case RxToolTip.ALIGN_LEFT:
+            case RxPopupView.ALIGN_LEFT:
                 setTipBackground(tipView,
-                        !RxToolTipUtils.isRtl() ?
+                        !RxPopupViewTool.isRtl() ?
                                 R.drawable.tooltip_arrow_down_left :
                                 R.drawable.tooltip_arrow_down_right
-                        , rxToolTip.getBackgroundColor());
+                        , rxPopupView.getBackgroundColor());
                 break;
-            case RxToolTip.ALIGN_RIGHT:
+            case RxPopupView.ALIGN_RIGHT:
                 setTipBackground(tipView,
-                        !RxToolTipUtils.isRtl() ?
+                        !RxPopupViewTool.isRtl() ?
                                 R.drawable.tooltip_arrow_down_right :
                                 R.drawable.tooltip_arrow_down_left
-                        , rxToolTip.getBackgroundColor());
+                        , rxPopupView.getBackgroundColor());
                 break;
         }
     }
 
-    private static void setToolTipBelowBackground(View tipView, RxToolTip rxToolTip) {
+    private static void setToolTipBelowBackground(View tipView, RxPopupView rxPopupView) {
 
-        switch (rxToolTip.getAlign()) {
-            case RxToolTip.ALIGN_CENTER:
-                setTipBackground(tipView, R.drawable.tooltip_arrow_up, rxToolTip.getBackgroundColor());
+        switch (rxPopupView.getAlign()) {
+            case RxPopupView.ALIGN_CENTER:
+                setTipBackground(tipView, R.drawable.tooltip_arrow_up, rxPopupView.getBackgroundColor());
                 break;
-            case RxToolTip.ALIGN_LEFT:
+            case RxPopupView.ALIGN_LEFT:
                 setTipBackground(tipView,
-                        !RxToolTipUtils.isRtl() ?
+                        !RxPopupViewTool.isRtl() ?
                                 R.drawable.tooltip_arrow_up_left :
                                 R.drawable.tooltip_arrow_up_right
-                        , rxToolTip.getBackgroundColor());
+                        , rxPopupView.getBackgroundColor());
                 break;
-            case RxToolTip.ALIGN_RIGHT:
+            case RxPopupView.ALIGN_RIGHT:
                 setTipBackground(tipView,
-                        !RxToolTipUtils.isRtl() ?
+                        !RxPopupViewTool.isRtl() ?
                                 R.drawable.tooltip_arrow_up_right :
                                 R.drawable.tooltip_arrow_up_left
-                        , rxToolTip.getBackgroundColor());
+                        , rxPopupView.getBackgroundColor());
                 break;
         }
 
     }
 
     private static void setToolTipLeftToBackground(View tipView, int color) {
-        setTipBackground(tipView, !RxToolTipUtils.isRtl() ?
+        setTipBackground(tipView, !RxPopupViewTool.isRtl() ?
                         R.drawable.tooltip_arrow_right : R.drawable.tooltip_arrow_left,
                 color);
     }
 
     private static void setToolTipRightToBackground(View tipView, int color) {
-        setTipBackground(tipView, !RxToolTipUtils.isRtl() ?
+        setTipBackground(tipView, !RxPopupViewTool.isRtl() ?
                         R.drawable.tooltip_arrow_left : R.drawable.tooltip_arrow_right,
                 color);
     }

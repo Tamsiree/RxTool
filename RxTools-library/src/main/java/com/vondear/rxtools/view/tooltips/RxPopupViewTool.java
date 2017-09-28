@@ -2,7 +2,7 @@ package com.vondear.rxtools.view.tooltips;
 
 import java.util.Locale;
 
-class RxToolTipUtils {
+class RxPopupViewTool {
 
     static boolean isRtl() {
         Locale defLocal = Locale.getDefault();

@@ -26,7 +26,7 @@ import java.util.ArrayList;
 /***
  * @author vondear 功能描述：标题按钮上的弹窗（继承自PopupWindow）
  */
-public class RxPopupView extends PopupWindow {
+public class RxPopupSingleView extends PopupWindow {
     // 列表弹窗的间隔
     protected final int LIST_PADDING = 10;
     // 坐标的位置（x、y）
@@ -53,12 +53,12 @@ public class RxPopupView extends PopupWindow {
     private ArrayList<ActionItem> mActionItems = new ArrayList<ActionItem>();
     private int colorItemText = 0;
 
-    public RxPopupView(Context context) {
+    public RxPopupSingleView(Context context) {
         // 设置布局的参数
         this(context, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     }
 
-    public RxPopupView(Context context, int width, int height) {
+    public RxPopupSingleView(Context context, int width, int height) {
         this.mContext = context;
 
         // 设置可以获得焦点
@@ -85,7 +85,7 @@ public class RxPopupView extends PopupWindow {
         initUI();
     }
 
-    public RxPopupView(Context context, int width, int height, int layout) {
+    public RxPopupSingleView(Context context, int width, int height, int layout) {
         this.mContext = context;
 
         // 设置可以获得焦点

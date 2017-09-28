@@ -11,7 +11,7 @@ import com.vondear.rxtools.R;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-public class RxToolTip {
+public class RxPopupView {
 
     public static final int POSITION_ABOVE = 0;
     public static final int POSITION_BELOW = 1;
@@ -38,7 +38,7 @@ public class RxToolTip {
     private @Gravity int mTextGravity;
     private Spannable mSpannableMessage;
     private int mTextSize;
-    public RxToolTip(Builder builder){
+    public RxPopupView(Builder builder){
         mContext = builder.mContext;
         mAnchorView = builder.mAnchorView;
         mRootViewGroup = builder.mRootViewGroup;
@@ -303,8 +303,8 @@ public class RxToolTip {
             return this;
         }
 
-        public RxToolTip build(){
-            return new RxToolTip(this);
+        public RxPopupView build(){
+            return new RxPopupView(this);
         }
 
     }
