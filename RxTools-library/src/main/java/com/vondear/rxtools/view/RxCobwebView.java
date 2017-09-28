@@ -343,6 +343,7 @@ public class RxCobwebView extends View {
 
     public void setSpiderColor(int spiderColor) {
         mSpiderColor = spiderColor;
+        initLevelPoints();
         invalidate();
     }
 
@@ -356,11 +357,12 @@ public class RxCobwebView extends View {
     }
 
     public int getSpiderLevelColor() {
-        return mSpiderLevelColor;
+        return mSpiderLevelStrokeColor;
     }
 
     public void setSpiderLevelColor(int spiderLevelColor) {
-        mSpiderLevelColor = spiderLevelColor;
+        mSpiderLevelStrokeColor = spiderLevelColor;
+        mSpiderLevelColor = RxImageTool.changeColorAlpha(mSpiderLevelStrokeColor, (255 / 2));
         invalidate();
     }
 

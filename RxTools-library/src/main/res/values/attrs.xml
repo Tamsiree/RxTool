@@ -294,4 +294,21 @@
         <attr name="spiderNameSize" format="dimension"/>
 
     </declare-styleable>
+
+    <declare-styleable name="ColorPickerPreference">
+        <attr name="alphaSlider" format="boolean"/>
+        <attr name="lightnessSlider" format="boolean"/>
+        <attr name="density" format="integer"/>
+        <attr name="initialColor" format="integer"/>
+        <attr name="wheelType" format="enum">
+            <enum name="FLOWER" value="0"/>
+            <enum name="CIRCLE" value="1"/>
+        </attr>
+        <attr name="lightnessSliderView" format="reference"/>
+        <attr name="alphaSliderView" format="reference"/>
+        <attr name="pickerColorEditTextColor" format="integer"/>
+        <attr name="pickerTitle" format="reference|string"/>
+        <attr name="pickerButtonOk" format="reference|string"/>
+        <attr name="pickerButtonCancel" format="reference|string"/>
+    </declare-styleable>
 </resources>

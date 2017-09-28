@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="@dimen/default_preview_height"
+              android:layout_height="@dimen/default_preview_height"
+              android:background="@android:color/transparent"
+              android:padding="2dp">
+
+    <ImageView
+        android:id="@+id/image_preview"
+        android:layout_width="@dimen/default_preview_image_height"
+        android:layout_height="@dimen/default_preview_image_height"
+        android:src="@android:color/transparent"/>
+</LinearLayout>

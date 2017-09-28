@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="@dimen/default_preview_height"
+              android:background="@android:color/transparent"
+              android:gravity="center"
+              android:orientation="horizontal">
+</LinearLayout>
