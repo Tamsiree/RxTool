@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.vondear.rxtools.RxFileTool;
-import com.vondear.rxtools.RxZipUtils;
+import com.vondear.rxtools.RxZipTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.RxToast;
@@ -59,7 +59,7 @@ public class ActivityZipEncrypt extends ActivityBase {
 
                 if (fileDir != null) {
                     if (fileDir.exists()) {
-                        String result = RxZipUtils.zipEncrypt(fileDir.getAbsolutePath(), fileZip.getAbsolutePath(), true, "123456");
+                        String result = RxZipTool.zipEncrypt(fileDir.getAbsolutePath(), fileZip.getAbsolutePath(), true, "123456");
                         mTvState.setText("压缩并加密成功,路径" + result);
                     } else {
                         RxToast.error("导出的文件不存在");

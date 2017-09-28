@@ -27,7 +27,7 @@ import static com.vondear.rxtools.RxConstTool.KB;
  * Created by vondear on 2016/1/24.
  * 压缩相关工具类
  */
-public class RxZipUtils {
+public class RxZipTool {
 
     /**
      * 批量压缩文件
