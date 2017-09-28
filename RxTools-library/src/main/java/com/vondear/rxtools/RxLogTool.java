@@ -6,8 +6,10 @@ import android.util.Log;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -180,5 +182,26 @@ public class RxLogTool {
         now.setTime(nowtime);
         now.set(Calendar.DATE, now.get(Calendar.DATE) - LOG_SAVE_DAYS);
         return now.getTime();
+    }
+
+    public static void saveLogFile(String message) {
+        File fileDir = new File(RxFileTool.getRootPath() + File.separator + RxTool.getContext().getPackageName());
+        if (!fileDir.exists()) {
+            fileDir.mkdirs();
+        }
+
+        File file = new File(fileDir, RxTimeTool.getCurrentDateTime("yyyyMMdd") + ".txt");
+        try {
+            if (file.exists()) {
+                PrintStream ps = new PrintStream(new FileOutputStream(file, true));
+                ps.append(RxTimeTool.getCurrentDateTime("\n\n\nyyyy-MM-dd HH:mm:ss") + "\n" + message);// 往文件里写入字符串
+            } else {
+                PrintStream ps = new PrintStream(new FileOutputStream(file));
+                file.createNewFile();
+                ps.println(RxTimeTool.getCurrentDateTime("yyyy-MM-dd HH:mm:ss") + "\n" + message);// 往文件里写入字符串
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

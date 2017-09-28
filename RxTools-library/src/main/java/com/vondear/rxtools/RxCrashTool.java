@@ -16,7 +16,8 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by vonde on 2016/12/21.
+ * Created by vondear on 2016/12/21.
+ *
  */
 
 public class RxCrashTool implements Thread.UncaughtExceptionHandler {
@@ -25,14 +26,14 @@ public class RxCrashTool implements Thread.UncaughtExceptionHandler {
 
     private UncaughtExceptionHandler mHandler;
     private boolean mInitialized;
-    private String crashDir;
-    private String versionName;
-    private int versionCode;
+    private String mCrashDirPath;
+    private String mVersionName;
+    private int mVersionCode;
 
-    private Context context;
+    private Context mContext;
 
     private RxCrashTool(Context context) {
-        this.context = context;
+        this.mContext = context;
     }
 
     /**
@@ -61,23 +62,23 @@ public class RxCrashTool implements Thread.UncaughtExceptionHandler {
         if (mInitialized) return true;
 
         try {
-            PackageManager packageManager = context.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+            PackageManager packageManager = mContext.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(mContext.getPackageName(), 0);
             int labelRes = packageInfo.applicationInfo.labelRes;
-            String name = context.getResources().getString(labelRes);
-            crashDir = RxFileTool.getRootPath() + File.separator + name + File.separator + "crash" + File.separator;
+            String name = mContext.getResources().getString(labelRes);
+            mCrashDirPath = RxFileTool.getRootPath() + File.separator + name + File.separator + "crash" + File.separator;
         } catch (Exception e) {
             if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-                crashDir = context.getExternalCacheDir().getPath() + File.separator + "crash" + File.separator;
+                mCrashDirPath = mContext.getExternalCacheDir().getPath() + File.separator + "crash" + File.separator;
             } else {
-                crashDir = context.getCacheDir().getPath() + File.separator + "crash" + File.separator;
+                mCrashDirPath = mContext.getCacheDir().getPath() + File.separator + "crash" + File.separator;
             }
         }
 
         try {
-            PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-            versionName = pi.versionName;
-            versionCode = pi.versionCode;
+            PackageInfo pi = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);
+            mVersionName = pi.versionName;
+            mVersionCode = pi.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             return false;
@@ -90,7 +91,7 @@ public class RxCrashTool implements Thread.UncaughtExceptionHandler {
     @Override
     public void uncaughtException(Thread thread, final Throwable throwable) {
         String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
-        final String fullPath = crashDir + now + ".txt";
+        final String fullPath = mCrashDirPath + now + ".txt";
         if (!RxFileTool.createOrExistsFile(fullPath)) return;
         new Thread(new Runnable() {
             @Override
@@ -128,8 +129,8 @@ public class RxCrashTool implements Thread.UncaughtExceptionHandler {
                 "\nDevice Model       : " + Build.MODEL +// 设备型号
                 "\nAndroid Version    : " + Build.VERSION.RELEASE +// 系统版本
                 "\nAndroid SDK        : " + Build.VERSION.SDK_INT +// SDK版本
-                "\nApp VersionName    : " + versionName +
-                "\nApp VersionCode    : " + versionCode +
+                "\nApp VersionName    : " + mVersionName +
+                "\nApp VersionCode    : " + mVersionCode +
                 "\n************* Crash Log Head ****************\n\n";
     }
 }
