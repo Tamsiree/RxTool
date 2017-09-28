@@ -1,6 +1,8 @@
-package com.vondear.rxtools.view.cardstack;
+package com.vondear.rxtools.view.cardstack.tools;
 
 import android.view.View;
+
+import com.vondear.rxtools.view.cardstack.RxCardStackView;
 
 public class RxStackScrollDelegateImpl implements RxScrollDelegate {
 
@@ -10,6 +12,16 @@ public class RxStackScrollDelegateImpl implements RxScrollDelegate {
 
     public RxStackScrollDelegateImpl(RxCardStackView rxCardStackView) {
         mRxCardStackView = rxCardStackView;
+    }
+
+    private static int clamp(int n, int my, int child) {
+        if (my >= child || n < 0) {
+            return 0;
+        }
+        if ((my + n) > child) {
+            return child - my;
+        }
+        return n;
     }
 
     private void updateChildPos() {
@@ -34,14 +46,9 @@ public class RxStackScrollDelegateImpl implements RxScrollDelegate {
         updateChildPos();
     }
 
-    private static int clamp(int n, int my, int child) {
-        if (my >= child || n < 0) {
-            return 0;
-        }
-        if ((my + n) > child) {
-            return child - my;
-        }
-        return n;
+    @Override
+    public int getViewScrollY() {
+        return mScrollY;
     }
 
     @Override
@@ -50,17 +57,12 @@ public class RxStackScrollDelegateImpl implements RxScrollDelegate {
     }
 
     @Override
-    public void setViewScrollX(int x) {
-        scrollViewTo(x, mScrollY);
-    }
-
-    @Override
-    public int getViewScrollY() {
-        return mScrollY;
-    }
-
-    @Override
     public int getViewScrollX() {
         return mScrollX;
+    }
+
+    @Override
+    public void setViewScrollX(int x) {
+        scrollViewTo(x, mScrollY);
     }
 }

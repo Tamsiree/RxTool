@@ -17,30 +17,26 @@ import android.view.Window;
 import android.view.animation.LinearInterpolator;
 
 import com.vondear.rxtools.R;
+import com.vondear.rxtools.view.likeview.tools.RxPorterShapeImageView;
+import com.vondear.rxtools.view.likeview.tools.RxShineView;
 
 /**
  * 16/7/5 下午2:27
  **/
 public class RxShineButton extends RxPorterShapeImageView {
     private static final String TAG = "RxShineButton";
-    private boolean isChecked = false;
-
-    private int btnColor;
-    private int btnFillColor;
-
     int DEFAULT_WIDTH = 50;
     int DEFAULT_HEIGHT = 50;
-
     DisplayMetrics metrics = new DisplayMetrics();
-
-
     Activity activity;
     RxShineView mRxShineView;
     ValueAnimator shakeAnimator;
     RxShineView.ShineParams shineParams = new RxShineView.ShineParams();
-
     OnCheckedChangeListener listener;
-
+    OnButtonClickListener onButtonClickListener;
+    private boolean isChecked = false;
+    private int btnColor;
+    private int btnFillColor;
     private int bottomHeight;
 
     public RxShineButton(Context context) {
@@ -50,11 +46,11 @@ public class RxShineButton extends RxPorterShapeImageView {
         }
     }
 
+
     public RxShineButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         initButton(context, attrs);
     }
-
 
     public RxShineButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -96,6 +92,9 @@ public class RxShineButton extends RxPorterShapeImageView {
         return isChecked;
     }
 
+    public void setChecked(boolean checked) {
+        setChecked(checked, false);
+    }
 
     public void setBtnColor(int btnColor) {
         this.btnColor = btnColor;
@@ -118,10 +117,6 @@ public class RxShineButton extends RxPorterShapeImageView {
             if (anim) setCancel();
         }
         onListenerUpdate(checked);
-    }
-
-    public void setChecked(boolean checked) {
-        setChecked(checked, false);
     }
 
     private void onListenerUpdate(boolean checked) {
@@ -196,9 +191,6 @@ public class RxShineButton extends RxPorterShapeImageView {
     public void setOnCheckStateChangeListener(OnCheckedChangeListener listener) {
         this.listener = listener;
     }
-
-
-    OnButtonClickListener onButtonClickListener;
 
     public void init(Activity activity) {
         this.activity = activity;
@@ -298,11 +290,11 @@ public class RxShineButton extends RxPorterShapeImageView {
         }
     }
 
-    public class OnButtonClickListener implements View.OnClickListener {
-        public void setListener(View.OnClickListener listener) {
-            this.listener = listener;
-        }
+    public interface OnCheckedChangeListener {
+        void onCheckedChanged(View view, boolean checked);
+    }
 
+    public class OnButtonClickListener implements View.OnClickListener {
         View.OnClickListener listener;
 
         public OnButtonClickListener() {
@@ -310,6 +302,10 @@ public class RxShineButton extends RxPorterShapeImageView {
 
         public OnButtonClickListener(View.OnClickListener l) {
             listener = l;
+        }
+
+        public void setListener(View.OnClickListener listener) {
+            this.listener = listener;
         }
 
         @Override
@@ -326,10 +322,6 @@ public class RxShineButton extends RxPorterShapeImageView {
                 listener.onClick(view);
             }
         }
-    }
-
-    public interface OnCheckedChangeListener {
-        void onCheckedChanged(View view, boolean checked);
     }
 
 }

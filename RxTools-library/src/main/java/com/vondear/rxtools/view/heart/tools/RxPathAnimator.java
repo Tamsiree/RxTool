@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.vondear.rxtools.view.heart;
+package com.vondear.rxtools.view.heart.tools;
 
 import android.graphics.Matrix;
 import android.graphics.Path;
@@ -35,6 +35,10 @@ public class RxPathAnimator extends RxAbstractPathAnimator {
     public RxPathAnimator(Config config) {
         super(config);
         mHandler = new Handler(Looper.getMainLooper());
+    }
+
+    private static float scale(double a, double b, double c, double d, double e) {
+        return (float) ((a - b) / (c - b) * (e - d) + d);
     }
 
     @Override
@@ -98,10 +102,6 @@ public class RxPathAnimator extends RxAbstractPathAnimator {
             mView.setScaleY(scale);
             transformation.setAlpha(1.0F - factor);
         }
-    }
-
-    private static float scale(double a, double b, double c, double d, double e) {
-        return (float) ((a - b) / (c - b) * (e - d) + d);
     }
 }
 

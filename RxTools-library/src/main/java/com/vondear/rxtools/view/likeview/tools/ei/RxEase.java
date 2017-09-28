@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.likeview.ei;
+package com.vondear.rxtools.view.likeview.tools.ei;
 
 /**
  * The Easing class provides a collection of ease functions. It does not use the standard 4 param

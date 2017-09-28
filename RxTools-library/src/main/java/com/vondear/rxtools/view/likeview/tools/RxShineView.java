@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.likeview;
+package com.vondear.rxtools.view.likeview.tools;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -10,8 +10,9 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.vondear.rxtools.view.likeview.ei.RxEase;
-import com.vondear.rxtools.view.likeview.ei.RxEasingInterpolator;
+import com.vondear.rxtools.view.likeview.RxShineButton;
+import com.vondear.rxtools.view.likeview.tools.ei.RxEase;
+import com.vondear.rxtools.view.likeview.tools.ei.RxEasingInterpolator;
 
 import java.util.Random;
 
@@ -20,20 +21,12 @@ import java.util.Random;
  **/
 public class RxShineView extends View {
     private static final String TAG = "ShineView";
-
+    static int colorRandom[] = new int[10];
     private static long FRAME_REFRESH_DELAY = 25;//default 10ms ,change to 25ms for saving cpu.
-
     RxShineAnimator mRxShineAnimator;
     ValueAnimator clickAnimator;
-
     RxShineButton mRxShineButton;
-    private Paint paint;
-    private Paint paint2;
-    private Paint paintSmall;
-
     int colorCount = 10;
-    static int colorRandom[] = new int[10];
-
     //Customer property
     int shineCount;
     float smallOffsetAngle;
@@ -43,26 +36,23 @@ public class RxShineView extends View {
     float shineDistanceMultiple;
     int smallShineColor = colorRandom[0];
     int bigShineColor = colorRandom[1];
-
     int shineSize = 0;
-
     boolean allowRandomColor = false;
     boolean enableFlashing = false;
-
-
     RectF rectF = new RectF();
     RectF rectFSmall = new RectF();
-
     Random random = new Random();
     int centerAnimX;
     int centerAnimY;
     int btnWidth;
     int btnHeight;
-
     double thirdLength;
     float value;
     float clickValue = 0;
     boolean isRun = false;
+    private Paint paint;
+    private Paint paint2;
+    private Paint paintSmall;
     private float distanceOffset = 0.2f;
 
 
@@ -240,33 +230,6 @@ public class RxShineView extends View {
         return Math.sqrt(all);
     }
 
-    public static class ShineParams {
-        ShineParams() {
-            colorRandom[0] = Color.parseColor("#FFFF99");
-            colorRandom[1] = Color.parseColor("#FFCCCC");
-            colorRandom[2] = Color.parseColor("#996699");
-            colorRandom[3] = Color.parseColor("#FF6666");
-            colorRandom[4] = Color.parseColor("#FFFF66");
-            colorRandom[5] = Color.parseColor("#F44336");
-            colorRandom[6] = Color.parseColor("#666666");
-            colorRandom[7] = Color.parseColor("#CCCC00");
-            colorRandom[8] = Color.parseColor("#666666");
-            colorRandom[9] = Color.parseColor("#999933");
-        }
-
-        public boolean allowRandomColor = false;
-        public long animDuration = 1500;
-        public int bigShineColor = 0;
-        public long clickAnimDuration = 200;
-        public boolean enableFlashing = false;
-        public int shineCount = 7;
-        public float shineTurnAngle = 20;
-        public float shineDistanceMultiple = 1.5f;
-        public float smallShineOffsetAngle = 20;
-        public int smallShineColor = 0;
-        public int shineSize = 0;
-    }
-
     private void initShineParams(ShineParams shineParams, RxShineButton rxShineButton) {
         shineCount = shineParams.shineCount;
         turnAngle = shineParams.shineTurnAngle;
@@ -287,5 +250,32 @@ public class RxShineView extends View {
             bigShineColor = rxShineButton.getColor();
         }
 
+    }
+
+    public static class ShineParams {
+        public boolean allowRandomColor = false;
+        public long animDuration = 1500;
+        public int bigShineColor = 0;
+        public long clickAnimDuration = 200;
+        public boolean enableFlashing = false;
+        public int shineCount = 7;
+        public float shineTurnAngle = 20;
+        public float shineDistanceMultiple = 1.5f;
+        public float smallShineOffsetAngle = 20;
+        public int smallShineColor = 0;
+        public int shineSize = 0;
+
+        public ShineParams() {
+            colorRandom[0] = Color.parseColor("#FFFF99");
+            colorRandom[1] = Color.parseColor("#FFCCCC");
+            colorRandom[2] = Color.parseColor("#996699");
+            colorRandom[3] = Color.parseColor("#FF6666");
+            colorRandom[4] = Color.parseColor("#FFFF66");
+            colorRandom[5] = Color.parseColor("#F44336");
+            colorRandom[6] = Color.parseColor("#666666");
+            colorRandom[7] = Color.parseColor("#CCCC00");
+            colorRandom[8] = Color.parseColor("#666666");
+            colorRandom[9] = Color.parseColor("#999933");
+        }
     }
 }

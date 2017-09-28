@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.vondear.rxtools.view.heart;
+package com.vondear.rxtools.view.heart.tools;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -28,8 +28,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public abstract class RxAbstractPathAnimator {
-    private final Random mRandom;
     protected final Config mConfig;
+    private final Random mRandom;
 
 
     public RxAbstractPathAnimator(Config config) {
@@ -74,7 +74,7 @@ public abstract class RxAbstractPathAnimator {
         public int heartHeight;
         public int animDuration;
 
-        static Config fromTypeArray(TypedArray typedArray) {
+        public static Config fromTypeArray(TypedArray typedArray) {
             Config config = new Config();
             Resources res = typedArray.getResources();
             config.initX = (int) typedArray.getDimension(R.styleable.RxHeartLayout_initX,

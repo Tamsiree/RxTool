@@ -1,12 +1,14 @@
-package com.vondear.rxtools.view.cardstack;
+package com.vondear.rxtools.view.cardstack.tools;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
+import com.vondear.rxtools.view.cardstack.RxCardStackView;
+
 public abstract class RxAdapterAnimator {
-    static final int ANIMATION_DURATION = 400;
+    public static final int ANIMATION_DURATION = 400;
 
     protected RxCardStackView mRxCardStackView;
     protected AnimatorSet mSet;

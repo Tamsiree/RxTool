@@ -21,6 +21,9 @@ import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
 import com.vondear.rxtools.R;
+import com.vondear.rxtools.view.heart.tools.RxAbstractPathAnimator;
+import com.vondear.rxtools.view.heart.tools.RxHeartView;
+import com.vondear.rxtools.view.heart.tools.RxPathAnimator;
 
 public class RxHeartLayout extends RelativeLayout {
 

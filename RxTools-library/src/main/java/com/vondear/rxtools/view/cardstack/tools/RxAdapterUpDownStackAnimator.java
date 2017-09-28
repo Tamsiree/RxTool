@@ -1,7 +1,9 @@
-package com.vondear.rxtools.view.cardstack;
+package com.vondear.rxtools.view.cardstack.tools;
 
 import android.animation.ObjectAnimator;
 import android.view.View;
+
+import com.vondear.rxtools.view.cardstack.RxCardStackView;
 
 public class RxAdapterUpDownStackAnimator extends RxAdapterAnimator {
 

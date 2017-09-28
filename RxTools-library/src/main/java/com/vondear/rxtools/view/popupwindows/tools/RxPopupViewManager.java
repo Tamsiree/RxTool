@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.tooltips;
+package com.vondear.rxtools.view.popupwindows.tools;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.TextView;
+
+import com.vondear.rxtools.RxAnimationTool;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,10 +28,6 @@ public class RxPopupViewManager {
 
     private int mAnimationDuration;
     private TipListener mListener;
-
-    public interface TipListener {
-        void onTipDismissed(View view, int anchorViewId, boolean byUser);
-    }
 
     public RxPopupViewManager() {
         mAnimationDuration = DEFAULT_ANIM_DURATION;
@@ -47,7 +45,7 @@ public class RxPopupViewManager {
         }
 
         // animate tip visibility
-        RxAnimationUtils.popup(tipView, mAnimationDuration).start();
+        RxAnimationTool.popup(tipView, mAnimationDuration).start();
 
         return tipView;
     }
@@ -194,7 +192,7 @@ public class RxPopupViewManager {
     }
 
     private void animateDismiss(final View view, final boolean byUser) {
-        RxAnimationUtils.popout(view, mAnimationDuration, new AnimatorListenerAdapter() {
+        RxAnimationTool.popout(view, mAnimationDuration, new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
@@ -207,6 +205,10 @@ public class RxPopupViewManager {
 
     public boolean isVisible(View tipView) {
         return tipView.getVisibility() == View.VISIBLE;
+    }
+
+    public interface TipListener {
+        void onTipDismissed(View view, int anchorViewId, boolean byUser);
     }
 
 }

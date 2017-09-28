@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.vondear.rxtools.view.heart;
+package com.vondear.rxtools.view.heart.tools;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -31,11 +31,11 @@ import com.vondear.rxtools.R;
 public class RxHeartView extends android.support.v7.widget.AppCompatImageView {
 
     private static final Paint sPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-    private int mHeartResId = R.drawable.anim_heart;
-    private int mHeartBorderResId = R.drawable.anim_heart_border;
+    private static final Canvas sCanvas = new Canvas();
     private static Bitmap sHeart;
     private static Bitmap sHeartBorder;
-    private static final Canvas sCanvas = new Canvas();
+    private int mHeartResId = R.drawable.anim_heart;
+    private int mHeartBorderResId = R.drawable.anim_heart_border;
 
     public RxHeartView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -47,6 +47,15 @@ public class RxHeartView extends android.support.v7.widget.AppCompatImageView {
 
     public RxHeartView(Context context) {
         super(context);
+    }
+
+    private static Bitmap createBitmapSafely(int width, int height) {
+        try {
+            return Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        } catch (OutOfMemoryError error) {
+            error.printStackTrace();
+        }
+        return null;
     }
 
     public void setColor(int color) {
@@ -90,15 +99,6 @@ public class RxHeartView extends android.support.v7.widget.AppCompatImageView {
         p.setColorFilter(null);
         canvas.setBitmap(null);
         return bm;
-    }
-
-    private static Bitmap createBitmapSafely(int width, int height) {
-        try {
-            return Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        } catch (OutOfMemoryError error) {
-            error.printStackTrace();
-        }
-        return null;
     }
 
 }

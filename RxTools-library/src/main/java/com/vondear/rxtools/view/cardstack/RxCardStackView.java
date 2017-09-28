@@ -16,39 +16,41 @@ import android.view.ViewParent;
 import android.widget.OverScroller;
 
 import com.vondear.rxtools.R;
+import com.vondear.rxtools.view.cardstack.tools.RxAdapterAllMoveDownAnimator;
+import com.vondear.rxtools.view.cardstack.tools.RxAdapterAnimator;
+import com.vondear.rxtools.view.cardstack.tools.RxAdapterStack;
+import com.vondear.rxtools.view.cardstack.tools.RxAdapterUpDownAnimator;
+import com.vondear.rxtools.view.cardstack.tools.RxAdapterUpDownStackAnimator;
+import com.vondear.rxtools.view.cardstack.tools.RxScrollDelegate;
+import com.vondear.rxtools.view.cardstack.tools.RxStackScrollDelegateImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
 
-    private static final int INVALID_POINTER = -1;
     public static final int INVALID_TYPE = -1;
     public static final int ANIMATION_STATE_START = 0;
     public static final int ANIMATION_STATE_END = 1;
     public static final int ANIMATION_STATE_CANCEL = 2;
-
-    private static final String TAG = "CardStackView";
-
     public static final int ALL_DOWN = 0;
     public static final int UP_DOWN = 1;
     public static final int UP_DOWN_STACK = 2;
-
-    static final int DEFAULT_SELECT_POSITION = -1;
-
+    public static final int DEFAULT_SELECT_POSITION = -1;
+    private static final int INVALID_POINTER = -1;
+    private static final String TAG = "RxCardStackView";
+    private final ViewDataObserver mObserver = new ViewDataObserver();
+    private final int[] mScrollOffset = new int[2];
     private int mTotalLength;
     private int mOverlapGaps;
     private int mOverlapGapsCollapse;
     private int mNumBottomShow;
     private RxAdapterStack mRxAdapterStack;
-    private final ViewDataObserver mObserver = new ViewDataObserver();
     private int mSelectPosition = DEFAULT_SELECT_POSITION;
     private int mShowHeight;
     private List<ViewHolder> mViewHolders;
-
     private RxAdapterAnimator mRxAdapterAnimator;
     private int mDuration;
-
     private OverScroller mScroller;
     private int mLastMotionY;
     private boolean mIsBeingDragged = false;
@@ -57,7 +59,6 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
     private int mMinimumVelocity;
     private int mMaximumVelocity;
     private int mActivePointerId = INVALID_POINTER;
-    private final int[] mScrollOffset = new int[2];
     private int mNestedYOffset;
     private boolean mScrollEnable = true;
 
@@ -81,6 +82,16 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
     public RxCardStackView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs, defStyleAttr, defStyleRes);
+    }
+
+    private static int clamp(int n, int my, int child) {
+        if (my >= child || n < 0) {
+            return 0;
+        }
+        if ((my + n) > child) {
+            return child - my;
+        }
+        return n;
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -245,7 +256,7 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
         requestLayout();
     }
 
-    ViewHolder getViewHolder(int i) {
+    public ViewHolder getViewHolder(int i) {
         if (i == DEFAULT_SELECT_POSITION) return null;
         ViewHolder viewHolder;
         if (mViewHolders.size() <= i || mViewHolders.get(i).mItemViewType != mRxAdapterStack.getItemViewType(i)) {
@@ -604,18 +615,13 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
     }
 
     @Override
-    public void scrollViewTo(int x, int y) {
-        scrollTo(x, y);
-    }
-
-    @Override
-    public void setViewScrollY(int y) {
-        setScrollY(y);
-    }
-
-    @Override
     public void setViewScrollX(int x) {
         setScrollX(x);
+    }
+
+    @Override
+    public void scrollViewTo(int x, int y) {
+        scrollTo(x, y);
     }
 
     @Override
@@ -623,19 +629,14 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
         return getScrollY();
     }
 
+    @Override
+    public void setViewScrollY(int y) {
+        setScrollY(y);
+    }
+
     private void endDrag() {
         mIsBeingDragged = false;
         recycleVelocityTracker();
-    }
-
-    private static int clamp(int n, int my, int child) {
-        if (my >= child || n < 0) {
-            return 0;
-        }
-        if ((my + n) > child) {
-            return child - my;
-        }
-        return n;
     }
 
     @Override
@@ -656,6 +657,76 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
     @Override
     protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
         return p instanceof LayoutParams;
+    }
+
+    public int getSelectPosition() {
+        return mSelectPosition;
+    }
+
+    public void setSelectPosition(int selectPosition) {
+        mSelectPosition = selectPosition;
+        mItemExpendListener.onItemExpend(mSelectPosition != DEFAULT_SELECT_POSITION);
+    }
+
+    public int getOverlapGaps() {
+        return mOverlapGaps;
+    }
+
+    public void setOverlapGaps(int overlapGaps) {
+        mOverlapGaps = overlapGaps;
+    }
+
+    public int getOverlapGapsCollapse() {
+        return mOverlapGapsCollapse;
+    }
+
+    public void setOverlapGapsCollapse(int overlapGapsCollapse) {
+        mOverlapGapsCollapse = overlapGapsCollapse;
+    }
+
+    public void setScrollEnable(boolean scrollEnable) {
+        mScrollEnable = scrollEnable;
+    }
+
+    public int getShowHeight() {
+        return mShowHeight;
+    }
+
+    public int getTotalLength() {
+        return mTotalLength;
+    }
+
+    public int getDuration() {
+        if (mRxAdapterAnimator != null) return mDuration;
+        return 0;
+    }
+
+    public void setDuration(int duration) {
+        mDuration = duration;
+    }
+
+    public int getNumBottomShow() {
+        return mNumBottomShow;
+    }
+
+    public void setNumBottomShow(int numBottomShow) {
+        mNumBottomShow = numBottomShow;
+    }
+
+    public RxScrollDelegate getRxScrollDelegate() {
+        return mRxScrollDelegate;
+    }
+
+    public ItemExpendListener getItemExpendListener() {
+        return mItemExpendListener;
+    }
+
+    public void setItemExpendListener(ItemExpendListener itemExpendListener) {
+        mItemExpendListener = itemExpendListener;
+    }
+
+    public interface ItemExpendListener {
+        void onItemExpend(boolean expend);
     }
 
     public static class LayoutParams extends MarginLayoutParams {
@@ -681,7 +752,7 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
     public static abstract class Adapter<VH extends ViewHolder> {
         private final AdapterDataObservable mObservable = new AdapterDataObservable();
 
-        VH createView(ViewGroup parent, int viewType) {
+        public VH createView(ViewGroup parent, int viewType) {
             VH holder = onCreateView(parent, viewType);
             holder.mItemViewType = viewType;
             return holder;
@@ -726,7 +797,7 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
 
         public abstract void onItemExpand(boolean b);
 
-        protected void onAnimationStateChange(int state, boolean willBeSelect) {
+        public void onAnimationStateChange(int state, boolean willBeSelect) {
 
         }
     }
@@ -753,75 +824,5 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
         public void onChanged() {
             refreshView();
         }
-    }
-
-    public int getSelectPosition() {
-        return mSelectPosition;
-    }
-
-    public void setSelectPosition(int selectPosition) {
-        mSelectPosition = selectPosition;
-        mItemExpendListener.onItemExpend(mSelectPosition != DEFAULT_SELECT_POSITION);
-    }
-
-    public int getOverlapGaps() {
-        return mOverlapGaps;
-    }
-
-    public void setOverlapGaps(int overlapGaps) {
-        mOverlapGaps = overlapGaps;
-    }
-
-    public int getOverlapGapsCollapse() {
-        return mOverlapGapsCollapse;
-    }
-
-    public void setOverlapGapsCollapse(int overlapGapsCollapse) {
-        mOverlapGapsCollapse = overlapGapsCollapse;
-    }
-
-    public void setScrollEnable(boolean scrollEnable) {
-        mScrollEnable = scrollEnable;
-    }
-
-    public int getShowHeight() {
-        return mShowHeight;
-    }
-
-    public int getTotalLength() {
-        return mTotalLength;
-    }
-
-    public void setDuration(int duration) {
-        mDuration = duration;
-    }
-
-    public int getDuration() {
-        if (mRxAdapterAnimator != null) return mDuration;
-        return 0;
-    }
-
-    public void setNumBottomShow(int numBottomShow) {
-        mNumBottomShow = numBottomShow;
-    }
-
-    public int getNumBottomShow() {
-        return mNumBottomShow;
-    }
-
-    public RxScrollDelegate getRxScrollDelegate() {
-        return mRxScrollDelegate;
-    }
-
-    public ItemExpendListener getItemExpendListener() {
-        return mItemExpendListener;
-    }
-
-    public void setItemExpendListener(ItemExpendListener itemExpendListener) {
-        mItemExpendListener = itemExpendListener;
-    }
-
-    public interface ItemExpendListener{
-        void onItemExpend(boolean expend);
     }
 }

@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.tooltips;
+package com.vondear.rxtools.view.popupwindows.tools;
 
 import android.content.Context;
 import android.support.annotation.IntDef;

@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.likeview.ei;
+package com.vondear.rxtools.view.likeview.tools.ei;
 
 import android.support.annotation.NonNull;
 

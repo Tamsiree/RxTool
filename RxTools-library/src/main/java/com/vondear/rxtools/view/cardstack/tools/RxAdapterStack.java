@@ -1,7 +1,9 @@
-package com.vondear.rxtools.view.cardstack;
+package com.vondear.rxtools.view.cardstack.tools;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+
+import com.vondear.rxtools.view.cardstack.RxCardStackView;
 
 import java.util.ArrayList;
 import java.util.List;

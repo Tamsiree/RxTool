@@ -16,7 +16,7 @@ import android.widget.ViewSwitcher;
 
 import java.util.ArrayList;
 
-public class RxTextviewVertical extends TextSwitcher implements ViewSwitcher.ViewFactory {
+public class RxTextViewVertical extends TextSwitcher implements ViewSwitcher.ViewFactory {
 
     private static final int FLAG_START_AUTO_SCROLL = 0;
     private static final int FLAG_STOP_AUTO_SCROLL = 1;
@@ -24,6 +24,22 @@ public class RxTextviewVertical extends TextSwitcher implements ViewSwitcher.Vie
     private float mTextSize = 16;
     private int mPadding = 5;
     private int textColor = Color.BLACK;
+    private OnItemClickListener itemClickListener;
+    private Context mContext;
+    private int currentId = -1;
+    private ArrayList<String> textList;
+    private Handler handler;
+
+    public RxTextViewVertical(Context context) {
+        this(context, null);
+        mContext = context;
+    }
+
+    public RxTextViewVertical(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        mContext = context;
+        textList = new ArrayList<String>();
+    }
 
     /**
      * @param textSize  字号
@@ -34,23 +50,6 @@ public class RxTextviewVertical extends TextSwitcher implements ViewSwitcher.Vie
         mTextSize = textSize;
         mPadding = padding;
         this.textColor = textColor;
-    }
-
-    private OnItemClickListener itemClickListener;
-    private Context mContext;
-    private int currentId = -1;
-    private ArrayList<String> textList;
-    private Handler handler;
-
-    public RxTextviewVertical(Context context) {
-        this(context, null);
-        mContext = context;
-    }
-
-    public RxTextviewVertical(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        mContext = context;
-        textList = new ArrayList<String>();
     }
 
     public void setAnimTime(long animDuration) {

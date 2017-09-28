@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.tooltips;
+package com.vondear.rxtools.view.popupwindows.tools;
 
 import android.graphics.Point;
 import android.view.View;
@@ -12,45 +12,45 @@ class RxPopupViewCoordinatesFinder {
      * return the top left coordinates for positioning the tip
      * 
      * @param tipView - the newly created tip view
-     * @param tooltip - tool tip object
+     * @param popupView - tool tip object
      * @return point
      */
-    static Point getCoordinates(final TextView tipView, RxPopupView tooltip) {
+    static Point getCoordinates(final TextView tipView, RxPopupView popupView) {
         Point point = new Point();
-        final RxCoordinates anchorViewRxCoordinates = new RxCoordinates(tooltip.getAnchorView());
-        final RxCoordinates rootRxCoordinates = new RxCoordinates(tooltip.getRootView());
+        final RxCoordinates anchorViewRxCoordinates = new RxCoordinates(popupView.getAnchorView());
+        final RxCoordinates rootRxCoordinates = new RxCoordinates(popupView.getRootView());
 
         tipView.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        switch (tooltip.getPosition()) {
+        switch (popupView.getPosition()) {
             case RxPopupView.POSITION_ABOVE:
-                point = getPositionAbove(tipView, tooltip,
+                point = getPositionAbove(tipView, popupView,
                         anchorViewRxCoordinates, rootRxCoordinates);
                 break;
             case RxPopupView.POSITION_BELOW:
-                point = getPositionBelow(tipView, tooltip,
+                point = getPositionBelow(tipView, popupView,
                         anchorViewRxCoordinates, rootRxCoordinates);
                 break;
             case RxPopupView.POSITION_LEFT_TO:
-                point = getPositionLeftTo(tipView, tooltip,
+                point = getPositionLeftTo(tipView, popupView,
                         anchorViewRxCoordinates, rootRxCoordinates);
                 break;
             case RxPopupView.POSITION_RIGHT_TO:
-                point = getPositionRightTo(tipView, tooltip,
+                point = getPositionRightTo(tipView, popupView,
                         anchorViewRxCoordinates, rootRxCoordinates);
                 break;
         }
 
         // add user defined offset values
-        point.x += RxPopupViewTool.isRtl() ? -tooltip.getOffsetX() : tooltip.getOffsetX();
-        point.y += tooltip.getOffsetY();
+        point.x += RxPopupViewTool.isRtl() ? -popupView.getOffsetX() : popupView.getOffsetX();
+        point.y += popupView.getOffsetY();
 
         // coordinates retrieved are relative to 0,0 of the root layout
         // added view to root is subject to root padding
         // we need to subtract the top and left padding of root from coordinates. to adjust
         // top left tip coordinates
-        point.x -= tooltip.getRootView().getPaddingLeft();
-        point.y -= tooltip.getRootView().getPaddingTop();
+        point.x -= popupView.getRootView().getPaddingLeft();
+        point.y -= popupView.getRootView().getPaddingTop();
 
         return point;
 

@@ -1,10 +1,10 @@
-package com.vondear.rxtools.view.likeview;
+package com.vondear.rxtools.view.likeview.tools;
 
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 
-import com.vondear.rxtools.view.likeview.ei.RxEase;
-import com.vondear.rxtools.view.likeview.ei.RxEasingInterpolator;
+import com.vondear.rxtools.view.likeview.tools.ei.RxEase;
+import com.vondear.rxtools.view.likeview.tools.ei.RxEasingInterpolator;
 
 /**
  * 16/7/5 下午5:09

@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.likeview;
+package com.vondear.rxtools.view.likeview.tools;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -40,7 +40,7 @@ public class RxPorterShapeImageView extends RxPorterImageView {
         matrix = new Matrix();
     }
 
-    void setShape(Drawable drawable) {
+    public void setShape(Drawable drawable) {
         shape = drawable;
         invalidate();
     }
