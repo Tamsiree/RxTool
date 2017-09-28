@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vondear.rxtools.view.cardstack.RxCardStackView;
-import com.vondear.rxtools.view.cardstack.RxAdapterStack;
+import com.vondear.rxtools.view.cardstack.tools.RxAdapterStack;
 import com.vondear.tools.R;
 
 public class AdapterStackTest extends RxAdapterStack<Integer> {
@@ -123,7 +123,7 @@ public class AdapterStackTest extends RxAdapterStack<Integer> {
         }
 
         @Override
-        protected void onAnimationStateChange(int state, boolean willBeSelect) {
+        public void onAnimationStateChange(int state, boolean willBeSelect) {
             super.onAnimationStateChange(state, willBeSelect);
             if (state == RxCardStackView.ANIMATION_STATE_START && willBeSelect) {
                 onItemExpand(true);

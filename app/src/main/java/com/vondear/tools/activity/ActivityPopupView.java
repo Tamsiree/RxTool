@@ -16,12 +16,12 @@ import android.widget.TextView;
 
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.model.ActionItem;
-import com.vondear.rxtools.view.RxPopupImply;
-import com.vondear.rxtools.view.RxPopupSingleView;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.RxToast;
-import com.vondear.rxtools.view.tooltips.RxPopupView;
-import com.vondear.rxtools.view.tooltips.RxPopupViewManager;
+import com.vondear.rxtools.view.popupwindows.RxPopupImply;
+import com.vondear.rxtools.view.popupwindows.RxPopupSingleView;
+import com.vondear.rxtools.view.popupwindows.tools.RxPopupView;
+import com.vondear.rxtools.view.popupwindows.tools.RxPopupViewManager;
 import com.vondear.tools.R;
 
 import butterknife.BindView;
@@ -31,6 +31,8 @@ import butterknife.OnClick;
 public class ActivityPopupView extends ActivityBase implements RxPopupViewManager.TipListener {
 
 
+    public static final String TIP_TEXT = "Tip";
+    private static final String TAG = ActivityPopupView.class.getSimpleName();
     @BindView(R.id.rx_title)
     RxTitle mRxTitle;
     @BindView(R.id.tv_imply)
@@ -69,15 +71,11 @@ public class ActivityPopupView extends ActivityBase implements RxPopupViewManage
     RelativeLayout mRootLayout;
     @BindView(R.id.activity_popup_view)
     LinearLayout mActivityPopupView;
-    private RxPopupSingleView titlePopup;
-
-    private static final String TAG = ActivityPopupView.class.getSimpleName();
-    public static final String TIP_TEXT = "Tip";
-
     RxPopupViewManager mRxPopupViewManager;
-
     @RxPopupView.Align
     int mAlign = RxPopupView.ALIGN_CENTER;
+    private RxPopupSingleView titlePopup;
+    private RxPopupImply popupImply;//提示  一小时后有惊喜
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,8 +172,6 @@ public class ActivityPopupView extends ActivityBase implements RxPopupViewManage
                 break;
         }
     }
-
-    private RxPopupImply popupImply;//提示  一小时后有惊喜
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.view.RxRunTextView;
+import com.vondear.rxtools.view.RxTextViewVertical;
 import com.vondear.rxtools.view.RxTextViewVerticalMore;
-import com.vondear.rxtools.view.RxTextviewVertical;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.tools.R;
@@ -29,7 +29,7 @@ public class ActivityRunTextView extends ActivityBase {
     @BindView(R.id.tv_runtitle)
     RxRunTextView mTvRuntitle;
     @BindView(R.id.text)
-    RxTextviewVertical mRxVText;
+    RxTextViewVertical mRxVText;
     @BindView(R.id.upview1)
     RxTextViewVerticalMore mUpview1;
     @BindView(R.id.activity_run_text_view)
@@ -59,7 +59,7 @@ public class ActivityRunTextView extends ActivityBase {
         mRxVText.setText(26, 5, 0xff766156);//设置属性
         mRxVText.setTextStillTime(3000);//设置停留时长间隔
         mRxVText.setAnimTime(300);//设置进入和退出的时间间隔
-        mRxVText.setOnItemClickListener(new RxTextviewVertical.OnItemClickListener() {
+        mRxVText.setOnItemClickListener(new RxTextViewVertical.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 RxToast.success(mContext, "点击了 : " + titleList.get(position), Toast.LENGTH_SHORT, true).show();

@@ -31,7 +31,7 @@
         android:text="邻家小萝莉干了什么坏事，妈妈生气不理她了。爸爸温柔地告诉萝莉：妈妈在等你认错呢，快去吧。萝莉就泪汪汪地过去对妈妈说：你……你是不是范冰冰？“啥？！”妈妈莫名其妙。萝莉继续泪汪汪：我认错了…"
         android:textColor="@color/brown"/>
 
-    <com.vondear.rxtools.view.RxTextviewVertical
+    <com.vondear.rxtools.view.RxTextViewVertical
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

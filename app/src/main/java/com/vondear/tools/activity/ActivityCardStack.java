@@ -9,10 +9,10 @@ import android.widget.LinearLayout;
 
 import com.vondear.rxtools.RxTool;
 import com.vondear.rxtools.interfaces.OnDelayListener;
-import com.vondear.rxtools.view.cardstack.RxAdapterAllMoveDownAnimator;
-import com.vondear.rxtools.view.cardstack.RxAdapterUpDownAnimator;
-import com.vondear.rxtools.view.cardstack.RxAdapterUpDownStackAnimator;
 import com.vondear.rxtools.view.cardstack.RxCardStackView;
+import com.vondear.rxtools.view.cardstack.tools.RxAdapterAllMoveDownAnimator;
+import com.vondear.rxtools.view.cardstack.tools.RxAdapterUpDownAnimator;
+import com.vondear.rxtools.view.cardstack.tools.RxAdapterUpDownStackAnimator;
 import com.vondear.tools.R;
 import com.vondear.tools.adapter.AdapterStackTest;
 
@@ -22,11 +22,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ActivityCardStack extends AppCompatActivity implements RxCardStackView.ItemExpendListener {
-
-    @BindView(R.id.stackview_main)
-    RxCardStackView mStackView;
-    @BindView(R.id.button_container)
-    LinearLayout mButtonContainer;
 
     public static Integer[] TEST_DATAS = new Integer[]{
             R.color.custom_progress_green_header,
@@ -56,7 +51,10 @@ public class ActivityCardStack extends AppCompatActivity implements RxCardStackV
             R.color.orange,
             R.color.baby_blue
     };
-
+    @BindView(R.id.stackview_main)
+    RxCardStackView mStackView;
+    @BindView(R.id.button_container)
+    LinearLayout mButtonContainer;
     private AdapterStackTest mTestStackAdapter;
 
     @Override
