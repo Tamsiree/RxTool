@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/e"
@@ -21,14 +20,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:spiderColor="@color/colorPrimaryDark"
-        android:padding="5dp"/>
+        android:padding="5dp"
+        app:spiderColor="@color/colorPrimaryDark"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,9 +77,89 @@
 
 
         <TextView
-            android:text=""
-            android:textColor="@color/brown"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/brown"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="蛛网填充颜色"
+                    android:textColor="@color/mi_green"/>
+
+                <com.vondear.rxtools.view.colorpicker.ColorPickerView
+                    android:id="@+id/color_picker_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:alphaSlider="true"
+                    app:alphaSliderView="@+id/v_alpha_slider"
+                    app:density="12"
+                    app:lightnessSlider="true"
+                    app:lightnessSliderView="@+id/v_lightness_slider"
+                    app:wheelType="FLOWER"/>
+
+                <com.vondear.rxtools.view.colorpicker.slider.LightnessSlider
+                    android:id="@+id/v_lightness_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"/>
+
+                <com.vondear.rxtools.view.colorpicker.slider.AlphaSlider
+                    android:id="@+id/v_alpha_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="蛛网等级颜色"
+                    android:textColor="@color/mi_green"/>
+
+                <com.vondear.rxtools.view.colorpicker.ColorPickerView
+                    android:id="@+id/color_picker_view_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:alphaSlider="true"
+                    app:alphaSliderView="@+id/v_alpha_slider_level"
+                    app:density="12"
+                    app:lightnessSlider="true"
+                    app:lightnessSliderView="@+id/v_lightness_slider_level"
+                    app:wheelType="FLOWER"/>
+
+                <com.vondear.rxtools.view.colorpicker.slider.LightnessSlider
+                    android:id="@+id/v_lightness_slider_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"/>
+
+                <com.vondear.rxtools.view.colorpicker.slider.AlphaSlider
+                    android:id="@+id/v_alpha_slider_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>

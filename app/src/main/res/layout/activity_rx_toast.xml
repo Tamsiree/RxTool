@@ -11,13 +11,12 @@
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:rightIcon="@drawable/set"
-        app:rightIconVisibility="false"
         android:background="@color/blue"
         app:leftIconVisibility="true"
+        app:rightIcon="@drawable/set"
+        app:rightIconVisibility="false"
         app:title="RxToast的展示使用"
-        app:titleColor="@color/white"
-        app:titleSize="6sp"/>
+        app:titleColor="@color/white"/>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"

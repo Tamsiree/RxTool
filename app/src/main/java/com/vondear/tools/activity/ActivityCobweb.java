@@ -8,6 +8,11 @@ import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.rxtools.model.ModelSpider;
 import com.vondear.rxtools.view.RxCobwebView;
 import com.vondear.rxtools.view.RxTitle;
+import com.vondear.rxtools.view.colorpicker.ColorPickerView;
+import com.vondear.rxtools.view.colorpicker.OnColorChangedListener;
+import com.vondear.rxtools.view.colorpicker.OnColorSelectedListener;
+import com.vondear.rxtools.view.colorpicker.slider.AlphaSlider;
+import com.vondear.rxtools.view.colorpicker.slider.LightnessSlider;
 import com.vondear.tools.R;
 
 import java.util.ArrayList;
@@ -27,6 +32,18 @@ public class ActivityCobweb extends ActivityBase implements SeekBar.OnSeekBarCha
     SeekBar mSeekbarLevel;
     @BindView(R.id.seekbar_spider_number)
     SeekBar mSeekbarSpiderNumber;
+    @BindView(R.id.color_picker_view)
+    ColorPickerView mColorPickerView;
+    @BindView(R.id.v_lightness_slider)
+    LightnessSlider mVLightnessSlider;
+    @BindView(R.id.v_alpha_slider)
+    AlphaSlider mVAlphaSlider;
+    @BindView(R.id.color_picker_view_level)
+    ColorPickerView mColorPickerViewLevel;
+    @BindView(R.id.v_lightness_slider_level)
+    LightnessSlider mVLightnessSliderLevel;
+    @BindView(R.id.v_alpha_slider_level)
+    AlphaSlider mVAlphaSliderLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +54,26 @@ public class ActivityCobweb extends ActivityBase implements SeekBar.OnSeekBarCha
         mRxTitle.setLeftFinish(mContext);
         mSeekbarLevel.setOnSeekBarChangeListener(this);
         mSeekbarSpiderNumber.setOnSeekBarChangeListener(this);
+
+        mColorPickerView.addOnColorChangedListener(new OnColorChangedListener() {
+            @Override
+            public void onColorChanged(int selectedColor) {
+                // Handle on color change
+                mCobwebView.setSpiderColor(selectedColor);
+            }
+        });
+        mColorPickerView.addOnColorSelectedListener(new OnColorSelectedListener() {
+            @Override
+            public void onColorSelected(int selectedColor) {
+//                mCobwebView.setSpiderColor(selectedColor);
+            }
+        });
+        mColorPickerViewLevel.addOnColorChangedListener(new OnColorChangedListener() {
+            @Override
+            public void onColorChanged(int selectedColor) {
+                mCobwebView.setSpiderLevelColor(selectedColor);
+            }
+        });
     }
 
 
