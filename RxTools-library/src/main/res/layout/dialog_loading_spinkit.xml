@@ -12,7 +12,7 @@
               android:paddingTop="18dp">
 
 
-    <com.vondear.rxtools.view.progress.SpinKitView
+    <com.vondear.rxtools.view.progressing.SpinKitView
         android:id="@+id/spin_kit"
         style="@style/SpinKitView.CubeGrid"
         android:layout_width="wrap_content"

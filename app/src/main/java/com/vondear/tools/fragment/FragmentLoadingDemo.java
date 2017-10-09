@@ -12,10 +12,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.vondear.rxtools.view.progress.style.Circle;
-import com.vondear.rxtools.view.progress.style.CubeGrid;
-import com.vondear.rxtools.view.progress.style.DoubleBounce;
-import com.vondear.rxtools.view.progress.style.Wave;
+import com.vondear.rxtools.view.progressing.style.Circle;
+import com.vondear.rxtools.view.progressing.style.CubeGrid;
+import com.vondear.rxtools.view.progressing.style.DoubleBounce;
+import com.vondear.rxtools.view.progressing.style.Wave;
 import com.vondear.tools.R;
 
 /**

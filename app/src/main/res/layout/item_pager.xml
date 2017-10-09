@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <com.vondear.rxtools.view.progress.SpinKitView
+    <com.vondear.rxtools.view.progressing.SpinKitView
         android:id="@+id/spin_kit"
         style="@style/SpinKitView.Large"
         android:layout_width="wrap_content"

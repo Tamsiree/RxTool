@@ -53,6 +53,7 @@ public class RxCobwebView extends View {
     private int mSpiderLevelStrokeColor; // 蛛网等级描边的颜色
     private boolean mSpiderLevelStroke; // 是否使用蛛网等级的描边
     private float mSpiderLevelStrokeWidth; // 蛛网等级描边的宽度
+    private boolean mSpiderRotate;//是否支持手势旋转
 
     private int mSpiderNameSize;
 
@@ -63,7 +64,7 @@ public class RxCobwebView extends View {
     private Scroller mScroller;
     private float mFlingPoint;
     private double mRotateOrientation;
-    private boolean mSpiderRotate;//是否支持手势旋转
+
 
     private double mPerimeter = 0;
     private double mRotateAngle;

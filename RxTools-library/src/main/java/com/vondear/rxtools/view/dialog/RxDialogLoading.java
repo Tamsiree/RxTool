@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.view.RxToast;
-import com.vondear.rxtools.view.progress.SpinKitView;
+import com.vondear.rxtools.view.progressing.SpinKitView;
 
 /**
  * Created by Administrator on 2017/3/16.

@@ -12,10 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.vondear.rxtools.view.progress.SpinKitView;
-import com.vondear.rxtools.view.progress.SpriteFactory;
-import com.vondear.rxtools.view.progress.Style;
-import com.vondear.rxtools.view.progress.sprite.Sprite;
+import com.vondear.rxtools.view.progressing.SpinKitView;
+import com.vondear.rxtools.view.progressing.SpriteFactory;
+import com.vondear.rxtools.view.progressing.Style;
+import com.vondear.rxtools.view.progressing.sprite.Sprite;
 import com.vondear.tools.R;
 import com.vondear.tools.tools.EvaluatorARGB;
 
