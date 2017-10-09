@@ -27,7 +27,8 @@
         <com.vondear.rxtools.view.RxRotateBar
             android:id="@+id/rating_view"
             android:layout_width="200dp"
-            android:layout_height="200dp"/>
+            android:layout_height="200dp"
+            app:ratingCenterTitle="能力"/>
 
         <Button
             android:id="@+id/btn_change"

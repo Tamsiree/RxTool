@@ -14,6 +14,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 
 import com.vondear.rxtools.R;
+import com.vondear.rxtools.RxImageTool;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class RxRotateBar extends FrameLayout {
     private Paint mCenterTextPaint;
     private int mCenterTextColor; // 蛛网等级填充的颜色
     private int mCenterTextSize = 40;
-    private String mCenterText = "能力";
+    private String mCenterText = "";
     private boolean isShowCenterTitle = false;
 
     public RxRotateBar(Context context) {
@@ -66,6 +67,8 @@ public class RxRotateBar extends FrameLayout {
     private void initAttrs(Context context, AttributeSet attrs) {
         //load styled attributes.
         final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.RxRotateBar, 0, 0);
+        mCenterText = attributes.getString(R.styleable.RxRotateBar_ratingCenterTitle);//中心标题
+        mCenterTextSize = attributes.getDimensionPixelSize(R.styleable.RxRotateBar_centerTitleSize, RxImageTool.dip2px(20));//标题字体大小
         mRatedColor = attributes.getColor(R.styleable.RxRotateBar_ratingRatedColor, 0);
         mUnratedColor = attributes.getColor(R.styleable.RxRotateBar_ratingUnratedColor, 0);
         mTitleColor = attributes.getColor(R.styleable.RxRotateBar_ratingTitleColor, 0);
@@ -332,6 +335,24 @@ public class RxRotateBar extends FrameLayout {
 
     public void setCenterTextColor(int centerTextColor) {
         mCenterTextColor = centerTextColor;
+        invalidate();
+    }
+
+    public int getCenterTextSize() {
+        return mCenterTextSize;
+    }
+
+    public void setCenterTextSize(int centerTextSize) {
+        mCenterTextSize = centerTextSize;
+        invalidate();
+    }
+
+    public String getCenterText() {
+        return mCenterText;
+    }
+
+    public void setCenterText(String centerText) {
+        mCenterText = centerText;
         invalidate();
     }
 

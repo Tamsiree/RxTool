@@ -314,6 +314,8 @@
     </declare-styleable>
 
     <declare-styleable name="RxRotateBar">
+        <attr name="ratingCenterTitle" format="string"/>
+        <attr name="centerTitleSize" format="dimension"/>
         <attr name="ratingMax" format="integer"/>
         <attr name="ratingUnratedColor" format="color"/>
         <attr name="ratingRatedColor" format="color"/>

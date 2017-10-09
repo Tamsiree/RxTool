@@ -82,24 +82,24 @@ public class ActivityRxRotateBar extends ActivityBase {
     public void onViewClicked() {
         mBtnChange.setVisibility(View.GONE);
         mLlChange.setBackgroundColor(Color.WHITE);
-        mRatingView.setCenterTextColor(R.color.brown);
+        mRatingView.setCenterTextColor(R.color.navy);
         mRatingView.clear();
         bar1.setRatedColor(getResources().getColor(R.color.google_red));
         bar1.setOutlineColor(getResources().getColor(R.color.google_red));
         bar1.setRatingBarColor(RxImageTool.changeColorAlpha(getResources().getColor(R.color.google_red), 130));
-        bar1.setRate(10);
+        bar1.setRate(9);
         bar2.setRatedColor(getResources().getColor(R.color.google_yellow));
         bar2.setOutlineColor(getResources().getColor(R.color.google_yellow));
         bar2.setRatingBarColor(RxImageTool.changeColorAlpha(getResources().getColor(R.color.google_yellow), 130));
-        bar2.setRate(10);
+        bar2.setRate(9);
         bar3.setRatedColor(getResources().getColor(R.color.darkslateblue));
         bar3.setOutlineColor(getResources().getColor(R.color.darkslateblue));
         bar3.setRatingBarColor(RxImageTool.changeColorAlpha(getResources().getColor(R.color.darkslateblue), 130));
-        bar3.setRate(10);
+        bar3.setRate(9);
         bar4.setRatedColor(getResources().getColor(R.color.google_green));
         bar4.setOutlineColor(getResources().getColor(R.color.google_green));
         bar4.setRatingBarColor(RxImageTool.changeColorAlpha(getResources().getColor(R.color.google_green), 130));
-        bar4.setRate(10);
+        bar4.setRate(9);
         mRatingView.show();
     }
 }
