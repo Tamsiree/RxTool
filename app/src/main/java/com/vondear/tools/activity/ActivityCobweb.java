@@ -45,6 +45,13 @@ public class ActivityCobweb extends ActivityBase implements SeekBar.OnSeekBarCha
     @BindView(R.id.v_alpha_slider_level)
     AlphaSlider mVAlphaSliderLevel;
 
+    private String[] nameStrs = {
+            "金钱", "能力", "美貌", "智慧", "交际",
+            "口才", "力量", "智力", "体力", "体质",
+            "敏捷", "精神", "耐力", "精通", "急速",
+            "暴击", "回避", "命中", "跳跃", "反应",
+            "幸运", "魅力", "感知", "活力", "意志"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +94,7 @@ public class ActivityCobweb extends ActivityBase implements SeekBar.OnSeekBarCha
                 int number = progress + 1;
                 List<ModelSpider> modelSpiders = new ArrayList<>();
                 for (int i = 0; i < number; i++) {
-                    modelSpiders.add(new ModelSpider("" + (i + 1), 1 + new Random().nextInt(mCobwebView.getSpiderMaxLevel())));
+                    modelSpiders.add(new ModelSpider(nameStrs[i], 1 + new Random().nextInt(mCobwebView.getSpiderMaxLevel())));
                 }
                 mCobwebView.setSpiderList(modelSpiders);
                 break;
