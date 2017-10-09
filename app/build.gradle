@@ -27,7 +27,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-
     //cardView包
     //appcompat包
     //recyclerview包

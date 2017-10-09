@@ -312,4 +312,15 @@
         <attr name="pickerButtonOk" format="reference|string"/>
         <attr name="pickerButtonCancel" format="reference|string"/>
     </declare-styleable>
+
+    <declare-styleable name="RxRotateBar">
+        <attr name="ratingMax" format="integer"/>
+        <attr name="ratingUnratedColor" format="color"/>
+        <attr name="ratingRatedColor" format="color"/>
+        <attr name="ratingTitleColor" format="color"/>
+        <attr name="ratingOutlineColor" format="color"/>
+        <attr name="ratingDefaultColor" format="color"/>
+        <attr name="ratingTitleVisible" format="boolean"/>
+        <attr name="ratingCenterColor" format="color"/>
+    </declare-styleable>
 </resources>

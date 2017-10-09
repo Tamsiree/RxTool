@@ -90,6 +90,8 @@
         </activity>
         <activity android:name=".activity.ActivityCobweb">
         </activity>
+        <activity android:name=".activity.ActivityRxRotateBar">
+        </activity>
     </application>
 
 </manifest>
