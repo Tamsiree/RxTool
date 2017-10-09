@@ -70,7 +70,7 @@ public class ActivityMain extends AppCompatActivity {
 
         mData.add(new ModelMainItem("加载的艺术", R.drawable.circle_loading_icon, ActivityLoading.class));
         mData.add(new ModelMainItem("蛛网等级View", R.drawable.circle_cobweb, ActivityCobweb.class));
-        mData.add(new ModelMainItem("旋转引擎View", R.drawable.circle_cobweb, ActivityRxRotateBar.class));
+        mData.add(new ModelMainItem("旋转引擎View", R.drawable.circle_rotate, ActivityRxRotateBar.class));
 
         mData.add(new ModelMainItem("添加购物车控件", R.drawable.circle_shop_cart, ActivityShoppingView.class));
         mData.add(new ModelMainItem("点赞控件", R.drawable.circle_heart_circle, ActivityLike.class));
