@@ -50,7 +50,8 @@ public class ActivityCobweb extends ActivityBase implements SeekBar.OnSeekBarCha
             "口才", "力量", "智力", "体力", "体质",
             "敏捷", "精神", "耐力", "精通", "急速",
             "暴击", "回避", "命中", "跳跃", "反应",
-            "幸运", "魅力", "感知", "活力", "意志"};
+            "幸运", "魅力", "感知", "活力", "意志"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class ActivityCobweb extends ActivityBase implements SeekBar.OnSeekBarCha
         mColorPickerView.addOnColorSelectedListener(new OnColorSelectedListener() {
             @Override
             public void onColorSelected(int selectedColor) {
-//                mCobwebView.setSpiderColor(selectedColor);
+                //mCobwebView.setSpiderColor(selectedColor);
             }
         });
         mColorPickerViewLevel.addOnColorChangedListener(new OnColorChangedListener() {

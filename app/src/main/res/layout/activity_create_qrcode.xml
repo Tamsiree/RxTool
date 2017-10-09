@@ -1,11 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/blue"
-    android:clipToPadding="true"
-    android:fitsSystemWindows="true"
-    tools:context=".activity.ActivityCreateQRCode" >
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/blue"
+                android:clipToPadding="true"
+                android:fitsSystemWindows="true"
+                tools:context=".activity.ActivityCreateQRCode">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,32 +14,35 @@
         android:background="@color/brown1"
         android:orientation="vertical" >
 
-        <include
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/common_title_layout" />
+        <com.vondear.rxtools.view.RxTitle
+            android:id="@+id/rx_title"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/blue"
+            app:title="动态生成码"
+            app:titleColor="@color/white"/>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
             android:background="@drawable/white_circle_l_shape"
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
             <TextView
-                android:textColor="@color/brown1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="30dp"
                 android:gravity="center"
-                android:text="定时更新\n二维码与条形码" />
+                android:text="定时更新\n二维码与条形码"
+                android:textColor="@color/brown1"/>
 
             <LinearLayout
                 android:layout_width="fill_parent"
