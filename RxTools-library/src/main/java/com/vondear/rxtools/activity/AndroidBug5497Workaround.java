@@ -11,9 +11,6 @@ import android.widget.FrameLayout;
  *
  */
 public class AndroidBug5497Workaround {
-    public static void assistActivity(Activity activity) {
-        new AndroidBug5497Workaround(activity);
-    }
     private View mChildOfContent;
     private int usableHeightPrevious;
     private FrameLayout.LayoutParams frameLayoutParams;
@@ -21,7 +18,6 @@ public class AndroidBug5497Workaround {
     private   boolean isfirst = true;
     private   Activity activity;
     private  int statusBarHeight;
-
     private AndroidBug5497Workaround(Activity activity) {
         //获取状态栏的高度
         int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
@@ -43,6 +39,10 @@ public class AndroidBug5497Workaround {
 
         frameLayoutParams = (FrameLayout.LayoutParams)
                 mChildOfContent.getLayoutParams();
+    }
+
+    public static void assistActivity(Activity activity) {
+        new AndroidBug5497Workaround(activity);
     }
 
     //重新调整跟布局的高度
@@ -71,7 +71,12 @@ public class AndroidBug5497Workaround {
             usableHeightPrevious = usableHeightNow;
         }
     }
-    /**     * 计算mChildOfContent可见高度     ** @return     */
+
+    /**
+     * 计算mChildOfContent可见高度
+     *
+     * @return
+     */
     private int computeUsableHeight() {
         Rect r = new Rect();
         mChildOfContent.getWindowVisibleDisplayFrame(r);
