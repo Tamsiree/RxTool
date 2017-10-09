@@ -63,7 +63,7 @@ public class RxCobwebView extends View {
     private Scroller mScroller;
     private float mFlingPoint;
     private double mRotateOrientation;
-    private boolean mRotationEnable = true;
+    private boolean mSpiderRotate;//是否支持手势旋转
 
     private double mPerimeter = 0;
     private double mRotateAngle;
@@ -125,7 +125,7 @@ public class RxCobwebView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (!mRotationEnable) return super.onTouchEvent(event);
+        if (!mSpiderRotate) return super.onTouchEvent(event);
         return mDetector.onTouchEvent(event);
     }
 
@@ -162,14 +162,14 @@ public class RxCobwebView extends View {
 
     private void initAttrs(AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.RxCobwebView);//获得这个控件对应的属性。
-
         mSpiderColor = a.getColor(R.styleable.RxCobwebView_spiderColor, getResources().getColor(R.color.teal));//蛛网内部颜色
         mSpiderRadiusColor = a.getColor(R.styleable.RxCobwebView_spiderRadiusColor, Color.WHITE);//蛛网半径颜色
-        mSpiderLevelStrokeColor = a.getColor(R.styleable.RxCobwebView_spiderLevelColor, getResources().getColor(R.color.custom_progress_orange_progress));//蛛网半径颜色
-        mSpiderLevelColor = RxImageTool.changeColorAlpha(mSpiderLevelStrokeColor, (255 / 2));
-        mSpiderLevelStroke = a.getBoolean(R.styleable.RxCobwebView_spiderLevelStroke, true);
-        mSpiderLevelStrokeWidth = a.getFloat(R.styleable.RxCobwebView_spiderLevelStrokeWidth, 3f);
-        mSpiderMaxLevel = a.getInteger(R.styleable.RxCobwebView_spiderMaxLevel, 4);
+        mSpiderLevelStrokeColor = a.getColor(R.styleable.RxCobwebView_spiderLevelColor, getResources().getColor(R.color.custom_progress_orange_progress));//蛛网等级描边颜色
+        mSpiderLevelColor = RxImageTool.changeColorAlpha(mSpiderLevelStrokeColor, (255 / 2));//蛛网等级颜色
+        mSpiderLevelStroke = a.getBoolean(R.styleable.RxCobwebView_spiderLevelStroke, true);//是否需要 蛛网等级描边
+        mSpiderRotate = a.getBoolean(R.styleable.RxCobwebView_spiderRotate, true);//是否需要 蛛网等级描边
+        mSpiderLevelStrokeWidth = a.getFloat(R.styleable.RxCobwebView_spiderLevelStrokeWidth, 3f);//蛛网等级描边 宽度
+        mSpiderMaxLevel = a.getInteger(R.styleable.RxCobwebView_spiderMaxLevel, 4);//蛛网最大层级数
         mSpiderNameSize = a.getDimensionPixelSize(R.styleable.RxCobwebView_spiderNameSize, RxImageTool.dp2px(16));//标题字体大小
         a.recycle();
     }
