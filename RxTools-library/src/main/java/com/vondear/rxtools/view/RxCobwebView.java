@@ -6,10 +6,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PointF;
 import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Scroller;
 
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxImageTool;
@@ -52,6 +56,20 @@ public class RxCobwebView extends View {
 
     private int mSpiderNameSize;
 
+    private GestureDetector mDetector;
+
+    private Context mContext;
+
+    private Scroller mScroller;
+    private float mFlingPoint;
+    private double mRotateOrientation;
+    private boolean mRotationEnable = true;
+
+    private double mPerimeter = 0;
+    private double mRotateAngle;
+
+    private PointF mPointCenter;
+
     public RxCobwebView(Context context) {
         this(context, null);
     }
@@ -62,19 +80,13 @@ public class RxCobwebView extends View {
 
     public RxCobwebView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mContext = context;
+        initAttrs(attrs);
+        initEvent();
+    }
 
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.RxCobwebView);//获得这个控件对应的属性。
-
-        mSpiderColor = a.getColor(R.styleable.RxCobwebView_spiderColor, getResources().getColor(R.color.teal));//蛛网内部颜色
-        mSpiderRadiusColor = a.getColor(R.styleable.RxCobwebView_spiderRadiusColor, Color.WHITE);//蛛网半径颜色
-        mSpiderLevelStrokeColor = a.getColor(R.styleable.RxCobwebView_spiderLevelColor, getResources().getColor(R.color.custom_progress_orange_progress));//蛛网半径颜色
-        mSpiderLevelColor = RxImageTool.changeColorAlpha(mSpiderLevelStrokeColor, (255 / 2));
-        mSpiderLevelStroke = a.getBoolean(R.styleable.RxCobwebView_spiderLevelStroke, true);
-        mSpiderLevelStrokeWidth = a.getFloat(R.styleable.RxCobwebView_spiderLevelStrokeWidth, 3f);
-        mSpiderMaxLevel = a.getInteger(R.styleable.RxCobwebView_spiderMaxLevel, 4);
-        mSpiderNameSize = a.getDimensionPixelSize(R.styleable.RxCobwebView_spiderNameSize, dp_px(16));//标题字体大小
-
-        defalutSize = dp_px(defalutSize);
+    private void initEvent() {
+        defalutSize = RxImageTool.dp2px(defalutSize);
 
         mSpiderNames = new String[]{"金钱", "能力", "美貌", "智慧", "交际", "口才"};
         mSpiderLevels = new float[]{1, 1, 1, 1, 1, 1};
@@ -105,6 +117,61 @@ public class RxCobwebView extends View {
         center_paint = new Paint();
         center_paint.setAntiAlias(true);
         center_paint.setColor(mSpiderRadiusColor);
+
+        mScroller = new Scroller(mContext);
+        mDetector = new GestureDetector(mContext, new GestureListener());
+        mDetector.setIsLongpressEnabled(false);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (!mRotationEnable) return super.onTouchEvent(event);
+        return mDetector.onTouchEvent(event);
+    }
+
+    @Override
+    public void computeScroll() {
+        if (mScroller.computeScrollOffset()) {
+            int x = mScroller.getCurrX();
+            int y = mScroller.getCurrY();
+            int max = Math.max(Math.abs(x), Math.abs(y));
+            double rotateDis = RxRotateTool.CIRCLE_ANGLE * (Math.abs(max - mFlingPoint) / mPerimeter);
+            double rotate = mRotateAngle;
+            if (mRotateOrientation > 0) {
+                rotate += rotateDis;
+            } else if (mRotateOrientation < 0) {
+                rotate -= rotateDis;
+            }
+            handleRotate(rotate);
+            mFlingPoint = max;
+            invalidate();
+        }
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        mPointCenter = new PointF(w / 2, h / 2);
+    }
+
+    private void handleRotate(double rotate) {
+        rotate = RxRotateTool.getNormalizedAngle(rotate);
+        mRotateAngle = rotate;
+        invalidate();
+    }
+
+    private void initAttrs(AttributeSet attrs) {
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.RxCobwebView);//获得这个控件对应的属性。
+
+        mSpiderColor = a.getColor(R.styleable.RxCobwebView_spiderColor, getResources().getColor(R.color.teal));//蛛网内部颜色
+        mSpiderRadiusColor = a.getColor(R.styleable.RxCobwebView_spiderRadiusColor, Color.WHITE);//蛛网半径颜色
+        mSpiderLevelStrokeColor = a.getColor(R.styleable.RxCobwebView_spiderLevelColor, getResources().getColor(R.color.custom_progress_orange_progress));//蛛网半径颜色
+        mSpiderLevelColor = RxImageTool.changeColorAlpha(mSpiderLevelStrokeColor, (255 / 2));
+        mSpiderLevelStroke = a.getBoolean(R.styleable.RxCobwebView_spiderLevelStroke, true);
+        mSpiderLevelStrokeWidth = a.getFloat(R.styleable.RxCobwebView_spiderLevelStrokeWidth, 3f);
+        mSpiderMaxLevel = a.getInteger(R.styleable.RxCobwebView_spiderMaxLevel, 4);
+        mSpiderNameSize = a.getDimensionPixelSize(R.styleable.RxCobwebView_spiderNameSize, RxImageTool.dp2px(16));//标题字体大小
+        a.recycle();
     }
 
     private void initLevelPoints() {
@@ -124,7 +191,6 @@ public class RxCobwebView extends View {
         }
     }
 
-
     @Override
     protected void onDraw(Canvas canvas) {
         drawSpiderName(canvas);
@@ -134,7 +200,6 @@ public class RxCobwebView extends View {
         drawSpiderRadiusLine(canvas);
         drawSpiderLevel(canvas);
     }
-
 
     /**
      * 绘制等级进度
@@ -157,8 +222,8 @@ public class RxCobwebView extends View {
             currentRadius = scale * one_radius;
             nextAngle = offsetAngle + (position * averageAngle);
             nextRadians = (float) Math.toRadians(nextAngle);
-            nextPointX = (float) (center + Math.sin(nextRadians) * currentRadius);
-            nextPointY = (float) (center - Math.cos(nextRadians) * currentRadius);
+            nextPointX = (float) (center + Math.sin(nextRadians - mRotateAngle) * currentRadius);
+            nextPointY = (float) (center - Math.cos(nextRadians - mRotateAngle) * currentRadius);
 
             if (position == 0) {
                 path.moveTo(nextPointX, nextPointY);
@@ -192,7 +257,6 @@ public class RxCobwebView extends View {
         }
     }
 
-
     /**
      * 绘制字体
      *
@@ -210,14 +274,21 @@ public class RxCobwebView extends View {
             currentRadius = (float) (getPaddingTop() + str_rect.height()) + one_radius;
             nextAngle = offsetAngle + (position * averageAngle);
             nextRadians = (float) Math.toRadians(nextAngle);
-            nextPointX = (float) (center + Math.sin(nextRadians) * currentRadius - str_rect.width() / 2);
-            nextPointY = (float) (center - Math.cos(nextRadians) * currentRadius + str_rect.height() / 2);
 
-            canvas.drawText(mSpiderList.get(position).getSpiderName(),
+            String text = mSpiderList.get(position).getSpiderName();
+            float textWidth = mSpiderNamePaint.measureText(text);
+            Paint.FontMetrics fontMetrics = mSpiderNamePaint.getFontMetrics();
+            float textHeight = fontMetrics.descent - fontMetrics.ascent;
+
+            nextPointX = (float) (center + Math.sin(nextRadians - mRotateAngle) * currentRadius - textWidth / 2);
+            nextPointY = (float) (center - Math.cos(nextRadians - mRotateAngle) * currentRadius + textHeight / 4);
+
+            canvas.drawText(text,
                     nextPointX,
                     nextPointY,
                     mSpiderNamePaint);
         }
+        mPerimeter = 2 * Math.PI * one_radius;
     }
 
     /**
@@ -239,8 +310,8 @@ public class RxCobwebView extends View {
             currentRadius = (index + 1) * one_radius / mSpiderMaxLevel;
             nextAngle = offsetAngle + (position * averageAngle);
             nextRadians = (float) Math.toRadians(nextAngle);
-            nextPointX = (float) (center + Math.sin(nextRadians) * currentRadius);
-            nextPointY = (float) (center - Math.cos(nextRadians) * currentRadius);
+            nextPointX = (float) (center + Math.sin(nextRadians - mRotateAngle) * currentRadius);
+            nextPointY = (float) (center - Math.cos(nextRadians - mRotateAngle) * currentRadius);
 
             if (position == 0) {
                 path.moveTo(nextPointX, nextPointY);
@@ -284,8 +355,8 @@ public class RxCobwebView extends View {
         for (int position = 0; position < mSpiderNumber; position++) {
             nextAngle = offsetAngle + (position * averageAngle);
             nextRadians = (float) Math.toRadians(nextAngle);
-            nextPointX = (float) (center + Math.sin(nextRadians) * one_radius);
-            nextPointY = (float) (center - Math.cos(nextRadians) * one_radius);
+            nextPointX = (float) (center + Math.sin(nextRadians - mRotateAngle) * one_radius);
+            nextPointY = (float) (center - Math.cos(nextRadians - mRotateAngle) * one_radius);
 
             canvas.drawLine(center, center, nextPointX, nextPointY, center_paint);
         }
@@ -393,16 +464,52 @@ public class RxCobwebView extends View {
         invalidate();
     }
 
-    /**
-     * dp转px
-     *
-     * @param values
-     * @return
-     */
-    public int dp_px(int values) {
+    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onDown(MotionEvent e) {
+            if (!mScroller.isFinished()) {
+                mScroller.forceFinished(true);
+            }
+            return true;
+        }
 
-        float density = getResources().getDisplayMetrics().density;
-        return (int) (values * density + 0.5f);
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if (Math.abs(velocityX) > Math.abs(velocityY)) {
+                mFlingPoint = e2.getX();
+                mScroller.fling((int) e2.getX(),
+                        0,
+                        (int) velocityX,
+                        0,
+                        (int) (-mPerimeter + e2.getX()),
+                        (int) (mPerimeter + e2.getX()),
+                        0,
+                        0);
+            } else if (Math.abs(velocityY) > Math.abs(velocityX)) {
+                mFlingPoint = e2.getY();
+                mScroller.fling(0,
+                        (int) e2.getY(),
+                        0,
+                        (int) velocityY,
+                        0,
+                        0,
+                        (int) (-mPerimeter + e2.getY()),
+                        (int) (mPerimeter + e2.getY()));
+            }
+            invalidate();
+            return super.onFling(e1, e2, velocityX, velocityY);
+        }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            double rotate = mRotateAngle;
+            double dis = RxRotateTool.getRotateAngle(new PointF(e2.getX() - distanceX, e2.getY() - distanceY)
+                    , new PointF(e2.getX(), e2.getY()), mPointCenter);
+            rotate += dis;
+            handleRotate(rotate);
+            mRotateOrientation = dis;
+            return super.onScroll(e1, e2, distanceX, distanceY);
+        }
+
     }
-
 }
