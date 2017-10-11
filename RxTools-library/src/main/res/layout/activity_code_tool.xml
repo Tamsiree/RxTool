@@ -22,10 +22,10 @@
             android:id="@+id/rx_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:rightIcon="@drawable/set"
-            app:rightIconVisibility="false"
             android:background="@color/mi_green"
             app:leftIconVisibility="true"
+            app:rightIcon="@drawable/set"
+            app:rightIconVisibility="false"
             app:title="扫码工具"
             app:titleColor="@color/white"
             app:titleSize="20sp"/>
@@ -55,14 +55,6 @@
                     android:layout_height="wrap_content"
                     android:text="扫码次数"
                     android:textColor="#aaf8f8f8"/>
-                <!--
-                                <TextView
-                                    android:id="@+id/tv_scan_count"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="0"
-                                    android:textColor="@color/f0"
-                                    android:textSize="40sp"/>-->
 
                 <com.vondear.rxtools.view.ticker.RxTickerView
                     android:id="@+id/ticker_scan_count"
@@ -90,14 +82,6 @@
                     android:layout_height="wrap_content"
                     android:text="生成码次数"
                     android:textColor="#aaf8f8f8"/>
-                <!--
-                                <TextView
-                                    android:id="@+id/tv_made_count"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="0"
-                                    android:textColor="@color/f0"
-                                    android:textSize="40sp"/>-->
 
                 <com.vondear.rxtools.view.ticker.RxTickerView
                     android:id="@+id/ticker_made_count"
@@ -122,7 +106,7 @@
         <LinearLayout
             android:id="@+id/ll_scaner"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_margin="0.1dp"
             android:layout_weight="1"
             android:background="#f8f8f8"
@@ -130,8 +114,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/circle_capture"/>
 
@@ -141,13 +125,14 @@
                 android:layout_margin="10dp"
                 android:gravity="center"
                 android:text="扫描\n二维码与条形码"
-                android:textColor="@color/brown2"/>
+                android:textColor="@color/brown2"
+                android:textSize="12sp"/>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_qr"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_margin="0.1dp"
             android:layout_weight="1"
             android:background="#f8f8f8"
@@ -155,8 +140,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/circle_qr_code"/>
 
@@ -166,13 +151,14 @@
                 android:layout_margin="10dp"
                 android:gravity="center"
                 android:text="生成\n二维码"
-                android:textColor="@color/brown2"/>
+                android:textColor="@color/brown2"
+                android:textSize="12sp"/>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_bar"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_margin="0.1dp"
             android:layout_weight="1"
             android:background="#f8f8f8"
@@ -180,8 +166,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/circle_bar_code"/>
 
@@ -191,7 +177,8 @@
                 android:layout_margin="10dp"
                 android:gravity="center"
                 android:text="生成\n条形码"
-                android:textColor="@color/brown2"/>
+                android:textColor="@color/brown2"
+                android:textSize="12sp"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -204,6 +191,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
             android:background="#e0e0e0"
             android:orientation="vertical">
 
@@ -211,7 +199,7 @@
                 android:id="@+id/ll_qr_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
+                android:background="@color/e"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingTop="10dp">
@@ -251,6 +239,7 @@
                     android:id="@+id/ll_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:visibility="gone">
@@ -260,7 +249,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/transparent_bg"/>
+                        android:src="@drawable/transparent_bg"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -276,7 +266,7 @@
                 android:id="@+id/ll_bar_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
+                android:background="@color/c"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingTop="10dp"
@@ -296,7 +286,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        android:digits="@string/number_letter"
                         android:gravity="center"
                         android:hint="请输入条形码文字内容"
                         android:padding="10dp"
@@ -318,6 +308,7 @@
                     android:id="@+id/ll_bar_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:visibility="gone">
@@ -329,7 +320,8 @@
                         android:layout_gravity="center"
                         android:layout_marginBottom="30dp"
                         android:layout_marginTop="30dp"
-                        android:src="@drawable/transparent_bg"/>
+                        android:src="@drawable/transparent_bg"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:layout_width="wrap_content"

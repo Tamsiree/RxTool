@@ -113,11 +113,13 @@ public class ActivityCodeTool extends ActivityBase {
                     RxQRCode.builder(str).
                             backColor(getResources().getColor(R.color.white)).
                             codeColor(getResources().getColor(R.color.black)).
-                            codeSide(800).
+                            codeSide(600).
                             into(mIvQrCode);
 
                     //二维码生成方式二 默认宽和高都为800 背景为白色 二维码为黑色
                     // RxQRCode.createQRCode(str,mIvQrCode);
+
+                    mIvQrCode.setVisibility(View.VISIBLE);
 
                     RxToast.success(mContext, "二维码已生成!", Toast.LENGTH_SHORT, true).show();
 
@@ -149,6 +151,8 @@ public class ActivityCodeTool extends ActivityBase {
 
                     //条形码生成方式二  默认宽为1000 高为300 背景为白色 二维码为黑色
                     //mIvBarCode.setImageBitmap(RxBarCode.createBarCode(str1, 1000, 300));
+
+                    mIvBarCode.setVisibility(View.VISIBLE);
 
                     RxToast.success(mContext, "条形码已生成!", Toast.LENGTH_SHORT, true).show();
 

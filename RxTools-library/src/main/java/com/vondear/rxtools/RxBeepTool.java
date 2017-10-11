@@ -11,6 +11,7 @@ import static android.content.Context.AUDIO_SERVICE;
 
 /**
  * Created by Vondear on 2017/10/11.
+ * 提示音工具
  */
 
 public class RxBeepTool {
