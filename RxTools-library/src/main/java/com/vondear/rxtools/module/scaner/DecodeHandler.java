@@ -110,9 +110,9 @@ final class DecodeHandler extends Handler {
 
     @Override
     public void handleMessage(Message message) {
-        if (message.what == com.vondear.rxtools.R.id.decode) {
+        if (message.what == R.id.decode) {
             decode((byte[]) message.obj, message.arg1, message.arg2);
-        } else if (message.what == com.vondear.rxtools.R.id.quit) {
+        } else if (message.what == R.id.quit) {
             Looper.myLooper().quit();
         }
     }
