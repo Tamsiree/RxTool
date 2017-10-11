@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.RxActivityTool;
@@ -26,21 +25,21 @@ import static com.vondear.rxtools.RxConstants.SP_SCAN_CODE;
 public class ActivityCodeTool extends ActivityBase {
 
     private static final char[] NUMBER_LIST = RxTickerUtils.getDefaultNumberList();
-    RxTitle mRxTitle;
-    EditText mEtQrCode;
-    ImageView mIvCreateQrCode;
-    ImageView mIvQrCode;
-    LinearLayout mActivityCodeTool;
-    LinearLayout mLlCode;
-    LinearLayout mLlQrRoot;
-    EditText mEtBarCode;
-    ImageView mIvCreateBarCode;
-    ImageView mIvBarCode;
-    LinearLayout mLlBarCode;
-    LinearLayout mLlBarRoot;
-    LinearLayout mLlScaner;
-    LinearLayout mLlQr;
-    LinearLayout mLlBar;
+    private RxTitle mRxTitle;
+    private EditText mEtQrCode;
+    private ImageView mIvCreateQrCode;
+    private ImageView mIvQrCode;
+    private LinearLayout mActivityCodeTool;
+    private LinearLayout mLlCode;
+    private LinearLayout mLlQrRoot;
+    private EditText mEtBarCode;
+    private ImageView mIvCreateBarCode;
+    private ImageView mIvBarCode;
+    private LinearLayout mLlBarCode;
+    private LinearLayout mLlBarRoot;
+    private LinearLayout mLlScaner;
+    private LinearLayout mLlQr;
+    private LinearLayout mLlBar;
     private RxTickerView mRxTickerViewMade;
     private RxTickerView mRxTickerViewScan;
     private NestedScrollView nestedScrollView;
@@ -105,7 +104,7 @@ public class ActivityCodeTool extends ActivityBase {
             public void onClick(View v) {
                 String str = mEtQrCode.getText().toString();
                 if (RxDataTool.isNullString(str)) {
-                    RxToast.error(mContext, "二维码文字内容不能为空！", Toast.LENGTH_SHORT, true).show();
+                    RxToast.error("二维码文字内容不能为空！");
                 } else {
                     mLlCode.setVisibility(View.VISIBLE);
 
@@ -121,7 +120,7 @@ public class ActivityCodeTool extends ActivityBase {
 
                     mIvQrCode.setVisibility(View.VISIBLE);
 
-                    RxToast.success(mContext, "二维码已生成!", Toast.LENGTH_SHORT, true).show();
+                    RxToast.success("二维码已生成!");
 
                     RxSPTool.putContent(mContext, SP_MADE_CODE, RxDataTool.stringToInt(RxSPTool.getContent(mContext, SP_MADE_CODE)) + 1 + "");
 
@@ -137,7 +136,7 @@ public class ActivityCodeTool extends ActivityBase {
             public void onClick(View v) {
                 String str1 = mEtBarCode.getText().toString();
                 if (RxDataTool.isNullString(str1)) {
-                    RxToast.error(mContext, "条形码文字内容不能为空！", Toast.LENGTH_SHORT, true).show();
+                    RxToast.error("条形码文字内容不能为空！");
                 } else {
                     mLlBarCode.setVisibility(View.VISIBLE);
 
@@ -154,7 +153,7 @@ public class ActivityCodeTool extends ActivityBase {
 
                     mIvBarCode.setVisibility(View.VISIBLE);
 
-                    RxToast.success(mContext, "条形码已生成!", Toast.LENGTH_SHORT, true).show();
+                    RxToast.success("条形码已生成!");
 
                     RxSPTool.putContent(mContext, SP_MADE_CODE, RxDataTool.stringToInt(RxSPTool.getContent(mContext, SP_MADE_CODE)) + 1 + "");
 
