@@ -456,7 +456,7 @@ public class ActivityScanerCode extends ActivityBase implements SurfaceHolder.Ca
         rxDialogSure.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                if (handler == null) {
+                if (handler != null) {
                     // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
                     handler.sendEmptyMessage(com.vondear.rxtools.R.id.restart_preview);
                 }
