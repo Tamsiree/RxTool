@@ -7,6 +7,12 @@
               android:orientation="vertical"
               android:paddingTop="16.5dp">
 
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"/>
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"

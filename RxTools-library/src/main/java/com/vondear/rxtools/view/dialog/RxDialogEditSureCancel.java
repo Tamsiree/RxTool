@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vondear.rxtools.R;
@@ -16,6 +17,7 @@ import com.vondear.rxtools.R;
  */
 public class RxDialogEditSureCancel extends RxDialog {
 
+    private ImageView mIvLogo;
     private TextView mTvSure;
     private TextView mTvCancel;
     private EditText editText;
@@ -44,6 +46,10 @@ public class RxDialogEditSureCancel extends RxDialog {
     public RxDialogEditSureCancel(Context context, float alpha, int gravity) {
         super(context, alpha, gravity);
         initView();
+    }
+
+    public ImageView getLogoView() {
+        return mIvLogo;
     }
 
     public void setTitle(String title) {
@@ -75,11 +81,12 @@ public class RxDialogEditSureCancel extends RxDialog {
     }
 
     private void initView() {
-        View dialog_view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_edittext_sure_false, null);
-        mTvTitle = (TextView) dialog_view.findViewById(R.id.tv_title);
-        mTvSure = (TextView) dialog_view.findViewById(R.id.tv_sure);
-        mTvCancel = (TextView) dialog_view.findViewById(R.id.tv_cancle);
-        editText = (EditText) dialog_view.findViewById(R.id.editText);
-        setContentView(dialog_view);
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_edittext_sure_false, null);
+        mIvLogo = (ImageView) dialogView.findViewById(R.id.iv_logo);
+        mTvTitle = (TextView) dialogView.findViewById(R.id.tv_title);
+        mTvSure = (TextView) dialogView.findViewById(R.id.tv_sure);
+        mTvCancel = (TextView) dialogView.findViewById(R.id.tv_cancle);
+        editText = (EditText) dialogView.findViewById(R.id.editText);
+        setContentView(dialogView);
     }
 }

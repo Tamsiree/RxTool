@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vondear.rxtools.R;
@@ -15,6 +16,7 @@ import com.vondear.rxtools.R;
  */
 public class RxDialogSureCancel extends RxDialog {
 
+    private ImageView mIvLogo;
     private TextView mTvContent;
     private TextView mTvSure;
     private TextView mTvCancel;
@@ -43,6 +45,10 @@ public class RxDialogSureCancel extends RxDialog {
     public RxDialogSureCancel(Context context, float alpha, int gravity) {
         super(context, alpha, gravity);
         initView();
+    }
+
+    public ImageView getLogoView() {
+        return mIvLogo;
     }
 
     public void setTitle(String title) {
@@ -86,12 +92,13 @@ public class RxDialogSureCancel extends RxDialog {
     }
 
     private void initView() {
-        View dialog_view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_sure_false, null);
-        mTvSure = (TextView) dialog_view.findViewById(R.id.tv_sure);
-        mTvCancel = (TextView) dialog_view.findViewById(R.id.tv_cancel);
-        mTvContent = (TextView) dialog_view.findViewById(R.id.tv_content);
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_sure_false, null);
+        mIvLogo = (ImageView) dialogView.findViewById(R.id.iv_logo);
+        mTvSure = (TextView) dialogView.findViewById(R.id.tv_sure);
+        mTvCancel = (TextView) dialogView.findViewById(R.id.tv_cancel);
+        mTvContent = (TextView) dialogView.findViewById(R.id.tv_content);
         mTvContent.setTextIsSelectable(true);
-        mTvTitle = (TextView) dialog_view.findViewById(R.id.tv_title);
-        setContentView(dialog_view);
+        mTvTitle = (TextView) dialogView.findViewById(R.id.tv_title);
+        setContentView(dialogView);
     }
 }
