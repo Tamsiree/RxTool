@@ -9,9 +9,11 @@ import com.vondear.rxtools.RxTool;
  */
 
 public class ApplicationRxTools extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
         RxTool.init(this);
     }
+
 }
