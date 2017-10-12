@@ -5,6 +5,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Looper;
+import android.util.Log;
+
+import com.vondear.rxtools.view.RxToast;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -113,9 +117,42 @@ public class RxCrashTool implements Thread.UncaughtExceptionHandler {
                 }
             }
         }).start();
-        if (mHandler != null) {
+
+        if (!handleException(throwable) && mHandler != null) {
+            //如果用户没有处理则让系统默认的异常处理器来处理
             mHandler.uncaughtException(thread, throwable);
+        } else {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                Log.e(mContext.getPackageName(), "error : ", e);
+            }
+            //退出程序
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
         }
+    }
+
+    /**
+     * 自定义错误处理,收集错误信息 发送错误报告等操作均在此完成.
+     *
+     * @param ex
+     * @return true:如果处理了该异常信息;否则返回false.
+     */
+    private boolean handleException(Throwable ex) {
+        if (ex == null) {
+            return false;
+        }
+        //使用Toast来显示异常信息
+        new Thread() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                RxToast.error("很抱歉,程序出现异常,即将退出.");
+                Looper.loop();
+            }
+        }.start();
+        return true;
     }
 
     /**
