@@ -21,7 +21,6 @@ import java.util.Locale;
 
 /**
  * Created by vondear on 2016/12/21.
- *
  */
 
 public class RxCrashTool implements Thread.UncaughtExceptionHandler {
@@ -123,7 +122,7 @@ public class RxCrashTool implements Thread.UncaughtExceptionHandler {
             mHandler.uncaughtException(thread, throwable);
         } else {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 Log.e(mContext.getPackageName(), "error : ", e);
             }
@@ -148,7 +147,7 @@ public class RxCrashTool implements Thread.UncaughtExceptionHandler {
             @Override
             public void run() {
                 Looper.prepare();
-                RxToast.error("很抱歉,程序出现异常,即将退出.");
+                RxToast.error(mContext, "很抱歉,程序异常,即将退出应用.").show();
                 Looper.loop();
             }
         }.start();
