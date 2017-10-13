@@ -122,6 +122,7 @@ public class RxCrashTool implements Thread.UncaughtExceptionHandler {
             mHandler.uncaughtException(thread, throwable);
         } else {
             try {
+                RxToast.error(mContext, "很抱歉,程序异常,即将退出应用.").show();
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 Log.e(mContext.getPackageName(), "error : ", e);
