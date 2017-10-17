@@ -52,7 +52,7 @@ public class RxRegTool {
      * @return
      */
     public static boolean isMobile(String mobiles) {
-        Pattern p = Pattern.compile("^1(3[0-9]|5[012356789]|8[0256789]|7[0678])\\d{8}$");
+        Pattern p = Pattern.compile("^(13[0-9]|15[012356789]|17[03678]|18[0-9]|14[57])[0-9]{8}$");
         Matcher m = p.matcher(mobiles);
         return m.matches();
     }
