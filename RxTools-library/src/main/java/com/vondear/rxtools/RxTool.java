@@ -46,7 +46,7 @@ public class RxTool {
      */
     public static void init(Context context) {
         RxTool.context = context.getApplicationContext();
-        RxCrashTool.getInstance(context).init();
+        RxCrashTool.init(context);
     }
 
     /**

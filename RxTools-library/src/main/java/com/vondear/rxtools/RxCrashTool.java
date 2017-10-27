@@ -5,64 +5,140 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
-import android.os.Looper;
-import android.util.Log;
-
-import com.vondear.rxtools.view.RxToast;
+import android.support.annotation.NonNull;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.Thread.UncaughtExceptionHandler;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by vondear on 2016/12/21.
  */
 
-public class RxCrashTool implements Thread.UncaughtExceptionHandler {
+public class RxCrashTool {
 
-    private volatile static RxCrashTool mInstance;
+    private static final String FILE_SEP = System.getProperty("file.separator");
 
-    private UncaughtExceptionHandler mHandler;
-    private boolean mInitialized;
-    private String mCrashDirPath;
-    private String mVersionName;
-    private int mVersionCode;
+    //----------------------------------------------------------------------------------------------
+    private static final Format FORMAT = new SimpleDateFormat("MM-dd HH-mm-ss", Locale.getDefault());
+    private static final String CRASH_HEAD;
+    private static final UncaughtExceptionHandler DEFAULT_UNCAUGHT_EXCEPTION_HANDLER;
+    private static final UncaughtExceptionHandler UNCAUGHT_EXCEPTION_HANDLER;
+    private static Context mContext;
+    private static String mCrashDirPath;
+    private static String dir;
+    private static String versionName;
+    private static int versionCode;
+    private static ExecutorService sExecutor;
 
-    private Context mContext;
+    static {
 
-    private RxCrashTool(Context context) {
-        this.mContext = context;
-    }
 
-    /**
-     * 获取单例
-     * <p>在Application中初始化{@code RxCrashTool.getInstance().init(this);}</p>
-     *
-     * @return 单例
-     */
-    public static RxCrashTool getInstance(Context context) {
-        if (mInstance == null) {
-            synchronized (RxCrashTool.class) {
-                if (mInstance == null) {
-                    mInstance = new RxCrashTool(context);
+        CRASH_HEAD = "\n************* Crash Log Head ****************" +
+                "\nDevice Manufacturer: " + Build.MANUFACTURER +// 设备厂商
+                "\nDevice Model       : " + Build.MODEL +// 设备型号
+                "\nAndroid Version    : " + Build.VERSION.RELEASE +// 系统版本
+                "\nAndroid SDK        : " + Build.VERSION.SDK_INT +// SDK版本
+                "\nApp VersionName    : " + versionName +
+                "\nApp VersionCode    : " + versionCode +
+                "\n************* Crash Log Head ****************\n\n";
+
+        DEFAULT_UNCAUGHT_EXCEPTION_HANDLER = Thread.getDefaultUncaughtExceptionHandler();
+
+        UNCAUGHT_EXCEPTION_HANDLER = new UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(final Thread t, final Throwable e) {
+                if (e == null) {
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                    System.exit(0);
+                    return;
+                }
+                Date now = new Date(System.currentTimeMillis());
+                String fileName = FORMAT.format(now) + ".txt";
+                final String fullPath = (dir == null ? mCrashDirPath : dir) + fileName;
+                if (!createOrExistsFile(fullPath)) {
+                    return;
+                }
+                if (sExecutor == null) {
+                    sExecutor = Executors.newSingleThreadExecutor();
+                }
+                sExecutor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        PrintWriter pw = null;
+                        try {
+                            pw = new PrintWriter(new FileWriter(fullPath, false));
+                            pw.write(CRASH_HEAD);
+                            e.printStackTrace(pw);
+                            Throwable cause = e.getCause();
+                            while (cause != null) {
+                                cause.printStackTrace(pw);
+                                cause = cause.getCause();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } finally {
+                            if (pw != null) {
+                                pw.close();
+                            }
+                        }
+                    }
+                });
+                if (DEFAULT_UNCAUGHT_EXCEPTION_HANDLER != null) {
+                    DEFAULT_UNCAUGHT_EXCEPTION_HANDLER.uncaughtException(t, e);
                 }
             }
-        }
-        return mInstance;
+        };
     }
 
     /**
      * 初始化
-     *
-     * @return {@code true}: 成功<br>{@code false}: 失败
+     * <p>需添加权限 {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}</p>
      */
-    public boolean init() {
-        if (mInitialized) return true;
+    public static void init(Context context) {
+        mContext = context;
+        try {
+            PackageInfo pi = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);
+            if (pi != null) {
+                versionName = pi.versionName;
+                versionCode = pi.versionCode;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        init("");
+    }
+
+    /**
+     * 初始化
+     * <p>需添加权限 {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}</p>
+     *
+     * @param crashDir 崩溃文件存储目录
+     */
+    public static void init(@NonNull final File crashDir) {
+        init(crashDir.getAbsolutePath());
+    }
+
+    /**
+     * 初始化
+     * <p>需添加权限 {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}</p>
+     *
+     * @param crashDir 崩溃文件存储目录
+     */
+    public static void init(final String crashDir) {
+        if (isSpace(crashDir)) {
+            dir = null;
+        } else {
+            dir = crashDir.endsWith(FILE_SEP) ? crashDir : crashDir + FILE_SEP;
+        }
 
         try {
             PackageManager packageManager = mContext.getPackageManager();
@@ -78,96 +154,39 @@ public class RxCrashTool implements Thread.UncaughtExceptionHandler {
             }
         }
 
+
+        Thread.setDefaultUncaughtExceptionHandler(UNCAUGHT_EXCEPTION_HANDLER);
+    }
+
+    private static boolean createOrExistsFile(final String filePath) {
+        File file = new File(filePath);
+        if (file.exists()) {
+            return file.isFile();
+        }
+        if (!createOrExistsDir(file.getParentFile())) {
+            return false;
+        }
         try {
-            PackageInfo pi = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);
-            mVersionName = pi.versionName;
-            mVersionCode = pi.versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
+            return file.createNewFile();
+        } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
-        mHandler = Thread.getDefaultUncaughtExceptionHandler();
-        Thread.setDefaultUncaughtExceptionHandler(this);
-        return mInitialized = true;
     }
 
-    @Override
-    public void uncaughtException(Thread thread, final Throwable throwable) {
-        String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
-        final String fullPath = mCrashDirPath + now + ".txt";
-        if (!RxFileTool.createOrExistsFile(fullPath)) return;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                PrintWriter pw = null;
-                try {
-                    pw = new PrintWriter(new FileWriter(fullPath, false));
-                    pw.write(getCrashHead());
-                    throwable.printStackTrace(pw);
-                    Throwable cause = throwable.getCause();
-                    while (cause != null) {
-                        cause.printStackTrace(pw);
-                        cause = cause.getCause();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    RxFileTool.closeIO(pw);
-                }
-            }
-        }).start();
-
-        if (!handleException(throwable) && mHandler != null) {
-            //如果用户没有处理则让系统默认的异常处理器来处理
-            mHandler.uncaughtException(thread, throwable);
-        } else {
-            try {
-                RxToast.error(mContext, "很抱歉,程序异常,即将退出应用.").show();
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                Log.e(mContext.getPackageName(), "error : ", e);
-            }
-            //退出程序
-            android.os.Process.killProcess(android.os.Process.myPid());
-            System.exit(1);
-        }
+    private static boolean createOrExistsDir(final File file) {
+        return file != null && (file.exists() ? file.isDirectory() : file.mkdirs());
     }
 
-    /**
-     * 自定义错误处理,收集错误信息 发送错误报告等操作均在此完成.
-     *
-     * @param ex
-     * @return true:如果处理了该异常信息;否则返回false.
-     */
-    private boolean handleException(Throwable ex) {
-        if (ex == null) {
-            return false;
+    private static boolean isSpace(final String s) {
+        if (s == null) {
+            return true;
         }
-        //使用Toast来显示异常信息
-        new Thread() {
-            @Override
-            public void run() {
-                Looper.prepare();
-                RxToast.error(mContext, "很抱歉,程序异常,即将退出应用.").show();
-                Looper.loop();
+        for (int i = 0, len = s.length(); i < len; ++i) {
+            if (!Character.isWhitespace(s.charAt(i))) {
+                return false;
             }
-        }.start();
+        }
         return true;
-    }
-
-    /**
-     * 获取崩溃头
-     *
-     * @return 崩溃头
-     */
-    private String getCrashHead() {
-        return "\n************* Crash Log Head ****************" +
-                "\nDevice Manufacturer: " + Build.MANUFACTURER +// 设备厂商
-                "\nDevice Model       : " + Build.MODEL +// 设备型号
-                "\nAndroid Version    : " + Build.VERSION.RELEASE +// 系统版本
-                "\nAndroid SDK        : " + Build.VERSION.SDK_INT +// SDK版本
-                "\nApp VersionName    : " + mVersionName +
-                "\nApp VersionCode    : " + mVersionCode +
-                "\n************* Crash Log Head ****************\n\n";
     }
 }
