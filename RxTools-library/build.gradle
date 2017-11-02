@@ -3,12 +3,12 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 26
         versionCode 1
         versionName "1.2.3"
 
@@ -29,14 +29,14 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //appcompat包
-    provided 'com.android.support:appcompat-v7:27.0.0'
+    provided 'com.android.support:appcompat-v7:26.0.0-alpha1'
     //design包
-    provided 'com.android.support:design:27.0.0'
+    provided 'com.android.support:design:26.0.0-alpha1'
     //cardView包
-    provided 'com.android.support:cardview-v7:27.0.0'
+    provided 'com.android.support:cardview-v7:26.0.0-alpha1'
     //recyclerview包
-    provided 'com.android.support:recyclerview-v7:27.0.0'
-    provided 'com.android.support:support-annotations:27.0.0'
+    provided 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+    provided 'com.android.support:support-annotations:26.0.0-alpha1'
     provided 'com.android.support.constraint:constraint-layout:1.0.2'
     //流式布局
     provided 'com.google.android:flexbox:0.2.7'
