@@ -58,7 +58,7 @@ public class RxQRCode {
         }
 
         public Bitmap into(ImageView imageView) {
-            Bitmap bitmap = RxQRCode.creatQRCode(content, codeSide, codeSide, backgroundColor, codeColor);
+            Bitmap bitmap = RxQRCode.createQRCode(content, codeSide, codeSide, backgroundColor, codeColor);
             if (imageView != null) {
                 imageView.setImageBitmap(bitmap);
             }
@@ -68,7 +68,7 @@ public class RxQRCode {
 
     //----------------------------------------------------------------------------------------------以下为生成二维码算法
 
-    public static Bitmap creatQRCode(CharSequence content, int QR_WIDTH, int QR_HEIGHT, int backgroundColor, int codeColor) {
+    public static Bitmap createQRCode(CharSequence content, int QR_WIDTH, int QR_HEIGHT, int backgroundColor, int codeColor) {
         Bitmap bitmap = null;
         try {
             // 判断URL合法性
@@ -100,12 +100,12 @@ public class RxQRCode {
         return bitmap;
     }
 
-    public static Bitmap creatQRCode(CharSequence content, int QR_WIDTH, int QR_HEIGHT) {
-        return creatQRCode(content, QR_WIDTH, QR_HEIGHT, 0xffffffff, 0xff000000);
+    public static Bitmap createQRCode(CharSequence content, int QR_WIDTH, int QR_HEIGHT) {
+        return createQRCode(content, QR_WIDTH, QR_HEIGHT, 0xffffffff, 0xff000000);
     }
 
-    public static Bitmap creatQRCode(CharSequence content) {
-        return creatQRCode(content, 800, 800);
+    public static Bitmap createQRCode(CharSequence content) {
+        return createQRCode(content, 800, 800);
     }
 
     //==============================================================================================二维码算法结束
@@ -118,7 +118,7 @@ public class RxQRCode {
      * @param iv_code   图片空间
      */
     public static void createQRCode(String content, int QR_WIDTH, int QR_HEIGHT, ImageView iv_code) {
-        iv_code.setImageBitmap(creatQRCode(content, QR_WIDTH, QR_HEIGHT));
+        iv_code.setImageBitmap(createQRCode(content, QR_WIDTH, QR_HEIGHT));
     }
 
     /**
@@ -129,6 +129,6 @@ public class RxQRCode {
      * @param iv_code 图片空间
      */
     public static void createQRCode(String content, ImageView iv_code) {
-        iv_code.setImageBitmap(creatQRCode(content));
+        iv_code.setImageBitmap(createQRCode(content));
     }
 }
