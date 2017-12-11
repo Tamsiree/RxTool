@@ -1,6 +1,7 @@
 package com.vondear.rxtools;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.ContentResolver;
@@ -144,9 +145,18 @@ public class RxDeviceTool {
      * @param context
      * @return
      */
+    @SuppressLint("HardwareIds")
     public static String getDeviceIdIMEI(Context context) {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        return tm.getDeviceId();
+        String id;
+        //android.telephony.TelephonyManager
+        TelephonyManager mTelephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (mTelephony.getDeviceId() != null) {
+            id = mTelephony.getDeviceId();
+        } else {
+            //android.provider.Settings;
+            id = Settings.Secure.getString(context.getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        }
+        return id;
     }
 
     /**
@@ -432,7 +442,7 @@ public class RxDeviceTool {
                     .getSystemService(Context.TELEPHONY_SERVICE);
             String device_id = null;
             if (checkPermission(context, Manifest.permission.READ_PHONE_STATE)) {
-                device_id = tm.getDeviceId();
+                device_id = getDeviceIdIMEI(context);
             }
             String mac = null;
             FileReader fstream = null;
@@ -578,7 +588,7 @@ public class RxDeviceTool {
         TelephonyManager tm = (TelephonyManager) context
                 .getSystemService(Context.TELEPHONY_SERVICE);
         String str = "";
-        str += "DeviceId(IMEI) = " + tm.getDeviceId() + "\n";
+        str += "DeviceId(IMEI) = " + getDeviceIdIMEI(context) + "\n";
         str += "DeviceSoftwareVersion = " + tm.getDeviceSoftwareVersion() + "\n";
         str += "Line1Number = " + tm.getLine1Number() + "\n";
         str += "NetworkCountryIso = " + tm.getNetworkCountryIso() + "\n";
