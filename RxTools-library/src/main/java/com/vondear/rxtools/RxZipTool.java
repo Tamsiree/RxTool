@@ -1,6 +1,7 @@
 package com.vondear.rxtools;
 
 import net.lingala.zip4j.exception.ZipException;
+import net.lingala.zip4j.model.FileHeader;
 import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.util.Zip4jConstants;
 
@@ -80,12 +81,16 @@ public class RxZipTool {
      */
     public static boolean zipFiles(Collection<File> resFiles, File zipFile, String comment)
             throws IOException {
-        if (resFiles == null || zipFile == null) return false;
+        if (resFiles == null || zipFile == null) {
+            return false;
+        }
         ZipOutputStream zos = null;
         try {
             zos = new ZipOutputStream(new FileOutputStream(zipFile));
             for (File resFile : resFiles) {
-                if (!zipFile(resFile, "", zos, comment)) return false;
+                if (!zipFile(resFile, "", zos, comment)) {
+                    return false;
+                }
             }
             return true;
         } finally {
@@ -147,7 +152,9 @@ public class RxZipTool {
      */
     public static boolean zipFile(File resFile, File zipFile, String comment)
             throws IOException {
-        if (resFile == null || zipFile == null) return false;
+        if (resFile == null || zipFile == null) {
+            return false;
+        }
         ZipOutputStream zos = null;
         try {
             zos = new ZipOutputStream(new FileOutputStream(zipFile));
@@ -178,13 +185,17 @@ public class RxZipTool {
             // 如果是空文件夹那么创建它，我把'/'换为File.separator测试就不成功，eggPain
             if (fileList.length <= 0) {
                 ZipEntry entry = new ZipEntry(rootPath + '/');
-                if (!RxDataTool.isNullString(comment)) entry.setComment(comment);
+                if (!RxDataTool.isNullString(comment)) {
+                    entry.setComment(comment);
+                }
                 zos.putNextEntry(entry);
                 zos.closeEntry();
             } else {
                 for (File file : fileList) {
                     // 如果递归返回false则返回false
-                    if (!zipFile(file, rootPath, zos, comment)) return false;
+                    if (!zipFile(file, rootPath, zos, comment)) {
+                        return false;
+                    }
                 }
             }
         } else {
@@ -192,7 +203,9 @@ public class RxZipTool {
             try {
                 is = new BufferedInputStream(new FileInputStream(resFile));
                 ZipEntry entry = new ZipEntry(rootPath);
-                if (!RxDataTool.isNullString(comment)) entry.setComment(comment);
+                if (!RxDataTool.isNullString(comment)) {
+                    entry.setComment(comment);
+                }
                 zos.putNextEntry(entry);
                 byte buffer[] = new byte[KB];
                 int len;
@@ -230,9 +243,13 @@ public class RxZipTool {
      */
     public static boolean unzipFiles(Collection<File> zipFiles, File destDir)
             throws IOException {
-        if (zipFiles == null || destDir == null) return false;
+        if (zipFiles == null || destDir == null) {
+            return false;
+        }
         for (File zipFile : zipFiles) {
-            if (!unzipFile(zipFile, destDir)) return false;
+            if (!unzipFile(zipFile, destDir)) {
+                return false;
+            }
         }
         return true;
     }
@@ -289,7 +306,9 @@ public class RxZipTool {
      */
     public static List<File> unzipFileByKeyword(File zipFile, File destDir, String keyword)
             throws IOException {
-        if (zipFile == null || destDir == null) return null;
+        if (zipFile == null || destDir == null) {
+            return null;
+        }
         List<File> files = new ArrayList<>();
         ZipFile zf = new ZipFile(zipFile);
         Enumeration<?> entries = zf.entries();
@@ -301,9 +320,13 @@ public class RxZipTool {
                 File file = new File(filePath);
                 files.add(file);
                 if (entry.isDirectory()) {
-                    if (!RxFileTool.createOrExistsDir(file)) return null;
+                    if (!RxFileTool.createOrExistsDir(file)) {
+                        return null;
+                    }
                 } else {
-                    if (!RxFileTool.createOrExistsFile(file)) return null;
+                    if (!RxFileTool.createOrExistsFile(file)) {
+                        return null;
+                    }
                     InputStream in = null;
                     OutputStream out = null;
                     try {
@@ -344,7 +367,9 @@ public class RxZipTool {
      */
     public static List<String> getFilesPath(File zipFile)
             throws IOException {
-        if (zipFile == null) return null;
+        if (zipFile == null) {
+            return null;
+        }
         List<String> paths = new ArrayList<>();
         Enumeration<?> entries = getEntries(zipFile);
         while (entries.hasMoreElements()) {
@@ -375,7 +400,9 @@ public class RxZipTool {
      */
     public static List<String> getComments(File zipFile)
             throws IOException {
-        if (zipFile == null) return null;
+        if (zipFile == null) {
+            return null;
+        }
         List<String> comments = new ArrayList<>();
         Enumeration<?> entries = getEntries(zipFile);
         while (entries.hasMoreElements()) {
@@ -406,19 +433,23 @@ public class RxZipTool {
      */
     public static Enumeration<?> getEntries(File zipFile)
             throws IOException {
-        if (zipFile == null) return null;
+        if (zipFile == null) {
+            return null;
+        }
         return new ZipFile(zipFile).entries();
     }
 
     //----------------------------------------加密压缩------------------------------------------------
+
     /**
      * 将存放在sourceFilePath目录下的源文件，打包成fileName名称的zip文件，并存放到zipFilePath路径下
+     *
      * @param sourceFilePath :待压缩的文件路径
-     * @param zipFilePath :压缩后存放路径
-     * @param fileName :压缩后文件的名称
+     * @param zipFilePath    :压缩后存放路径
+     * @param fileName       :压缩后文件的名称
      * @return
      */
-    public static boolean fileToZip(String sourceFilePath,String zipFilePath,String fileName){
+    public static boolean fileToZip(String sourceFilePath, String zipFilePath, String fileName) {
         boolean flag = false;
         File sourceFile = new File(sourceFilePath);
         FileInputStream fis = null;
@@ -426,29 +457,29 @@ public class RxZipTool {
         FileOutputStream fos = null;
         ZipOutputStream zos = null;
 
-        if(sourceFile.exists()){
+        if (sourceFile.exists()) {
             try {
-                File zipFile = new File(zipFilePath + "/" + fileName +".zip");
-                if(zipFile.exists()){
-                    System.out.println(zipFilePath + "目录下存在名字为:" + fileName +".zip" +"打包文件.");
-                }else{
+                File zipFile = new File(zipFilePath + "/" + fileName + ".zip");
+                if (zipFile.exists()) {
+                    System.out.println(zipFilePath + "目录下存在名字为:" + fileName + ".zip" + "打包文件.");
+                } else {
                     File[] sourceFiles = sourceFile.listFiles();
-                    if(null == sourceFiles || sourceFiles.length<1){
+                    if (null == sourceFiles || sourceFiles.length < 1) {
                         System.out.println("待压缩的文件目录：" + sourceFilePath + "里面不存在文件，无需压缩.");
-                    }else{
+                    } else {
                         fos = new FileOutputStream(zipFile);
                         zos = new ZipOutputStream(new BufferedOutputStream(fos));
-                        byte[] bufs = new byte[1024*10];
-                        for(int i=0;i<sourceFiles.length;i++){
+                        byte[] bufs = new byte[1024 * 10];
+                        for (int i = 0; i < sourceFiles.length; i++) {
                             //创建ZIP实体，并添加进压缩包
                             ZipEntry zipEntry = new ZipEntry(sourceFiles[i].getName());
                             //zos.putNextEntry(zipEntry);
                             //读取待压缩的文件并写进压缩包里
                             fis = new FileInputStream(sourceFiles[i]);
-                            bis = new BufferedInputStream(fis, 1024*10);
+                            bis = new BufferedInputStream(fis, 1024 * 10);
                             int read = 0;
-                            while((read=bis.read(bufs, 0, 1024*10)) != -1){
-                                zos.write(bufs,0,read);
+                            while ((read = bis.read(bufs, 0, 1024 * 10)) != -1) {
+                                zos.write(bufs, 0, read);
                             }
                         }
                         flag = true;
@@ -457,18 +488,22 @@ public class RxZipTool {
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
-            } finally{
+            } finally {
                 //关闭流
                 try {
-                    if(null != bis) bis.close();
-                    if(null != zos) zos.close();
+                    if (null != bis) {
+                        bis.close();
+                    }
+                    if (null != zos) {
+                        zos.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     throw new RuntimeException(e);
                 }
             }
-        }else{
-            System.out.println("待压缩的文件目录："+sourceFilePath+"不存在.");
+        } else {
+            System.out.println("待压缩的文件目录：" + sourceFilePath + "不存在.");
         }
         return flag;
     }
@@ -477,11 +512,14 @@ public class RxZipTool {
         File srcFile = new File(src);
         dest = buildDestinationZipFilePath(srcFile, dest);
         ZipParameters parameters = new ZipParameters();
-        parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);           // 压缩方式
-        parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);    // 压缩级别
+        // 压缩方式
+        parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
+        // 压缩级别
+        parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
         if (!RxDataTool.isNullString(passwd)) {
             parameters.setEncryptFiles(true);
-            parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD); // 加密方式
+            // 加密方式
+            parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
             parameters.setPassword(passwd.toCharArray());
         }
         try {
@@ -489,7 +527,7 @@ public class RxZipTool {
             if (srcFile.isDirectory()) {
                 // 如果不创建目录的话,将直接把给定目录下的文件压缩到压缩文件,即没有目录结构
                 if (!isCreateDir) {
-                    File [] subFiles = srcFile.listFiles();
+                    File[] subFiles = srcFile.listFiles();
                     ArrayList<File> temp = new ArrayList<File>();
                     Collections.addAll(temp, subFiles);
                     zipFile.addFiles(temp, parameters);
@@ -509,11 +547,12 @@ public class RxZipTool {
     /**
      * 构建压缩文件存放路径,如果不存在将会创建
      * 传入的可能是文件名或者目录,也可能不传,此方法用以转换最终压缩文件的存放路径
-     * @param srcFile 源文件
+     *
+     * @param srcFile   源文件
      * @param destParam 压缩目标路径
      * @return 正确的压缩文件存放路径
      */
-    private static String buildDestinationZipFilePath(File srcFile,String destParam) {
+    private static String buildDestinationZipFilePath(File srcFile, String destParam) {
         if (RxDataTool.isNullString(destParam)) {
             if (srcFile.isDirectory()) {
                 destParam = srcFile.getParent() + File.separator + srcFile.getName() + ".zip";
@@ -522,7 +561,8 @@ public class RxZipTool {
                 destParam = srcFile.getParent() + File.separator + fileName + ".zip";
             }
         } else {
-            createDestDirectoryIfNecessary(destParam);  // 在指定路径不存在的情况下将其创建出来
+            // 在指定路径不存在的情况下将其创建出来
+            createDestDirectoryIfNecessary(destParam);
             if (destParam.endsWith(File.separator)) {
                 String fileName = "";
                 if (srcFile.isDirectory()) {
@@ -538,6 +578,7 @@ public class RxZipTool {
 
     /**
      * 在必要的情况下创建压缩文件存放目录,比如指定的存放路径并没有被创建
+     *
      * @param destParam 指定的存放路径,有可能该路径并没有被创建
      */
     private static void createDestDirectoryIfNecessary(String destParam) {
@@ -550,5 +591,63 @@ public class RxZipTool {
         if (!destDir.exists()) {
             destDir.mkdirs();
         }
+    }
+
+    public static String zipEncryptRargo(String src, String dest, boolean isCreateDir, String passwd, int unit) {
+        File srcFile = new File(src);
+        dest = buildDestinationZipFilePath(srcFile, dest);
+        ZipParameters parameters = new ZipParameters();
+        // 默认COMP_DEFLATE
+        parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
+        parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
+        if (!RxDataTool.isNullString(passwd)) {
+            parameters.setEncryptFiles(true);
+            parameters.setEncryptionMethod(0);
+            parameters.setPassword(passwd.toCharArray());
+        }
+
+        try {
+            net.lingala.zip4j.core.ZipFile zipFile = new net.lingala.zip4j.core.ZipFile(dest);
+            if (srcFile.isDirectory()) {
+                if (!isCreateDir) {
+                    File[] subFiles = srcFile.listFiles();
+                    ArrayList<File> temp = new ArrayList();
+                    Collections.addAll(temp, subFiles);
+//                    zipFile.addFiles(temp, parameters);
+                    zipFile.createZipFile(temp, parameters, true, unit * 1000);
+                    return dest;
+                }
+                zipFile.createZipFileFromFolder(srcFile, parameters, true, unit * 1000);
+                //粗略的算一下分成多少份，获取的大小比实际的大点（一般是准确的）
+                int partsize = (int) zipInfo(dest) / (unit); //65536byte=64kb
+                System.out.println("分割成功！总共分割成了" + (partsize + 1) + "个文件！");
+            } else {
+                zipFile.createZipFile(srcFile, parameters, true, unit * 1000);
+            }
+
+            return dest;
+        } catch (ZipException var9) {
+            var9.printStackTrace();
+            return null;
+        }
+    }
+
+    // 预览压缩文件信息
+    public static double zipInfo(String zipFile) throws ZipException {
+        net.lingala.zip4j.core.ZipFile zip = new net.lingala.zip4j.core.ZipFile(zipFile);
+        zip.setFileNameCharset("GBK");
+        List<FileHeader> list = zip.getFileHeaders();
+        long zipCompressedSize = 0;
+        for (FileHeader head : list) {
+            zipCompressedSize += head.getCompressedSize();
+            //      System.out.println(zipFile+"文件相关信息如下：");
+            //      System.out.println("Name: "+head.getFileName());
+            //      System.out.println("Compressed Size:"+(head.getCompressedSize()/1.0/1024)+"kb");
+            //      System.out.println("Uncompressed Size:"+(head.getUncompressedSize()/1.0/1024)+"kb");
+            //      System.out.println("CRC32:"+head.getCrc32());
+            //      System.out.println("*************************************");
+        }
+        double size = zipCompressedSize / 1.0 / 1024;//转换为kb
+        return size;
     }
 }
