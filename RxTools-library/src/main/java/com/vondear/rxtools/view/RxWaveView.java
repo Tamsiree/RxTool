@@ -1,4 +1,4 @@
-package com.gelitenight.waveview.library;
+package com.vondear.rxtools.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -34,7 +34,8 @@ import java.util.TimerTask;
  *
  * @author gelitenight
  */
-public class WaveView1 extends View {
+public class RxWaveView extends View {
+    
 
     /**
      * 水波平移速度
@@ -102,17 +103,17 @@ public class WaveView1 extends View {
     private Timer timer;
     private MyTimerTask mTask;
 
-    public WaveView1(Context context) {
+    public RxWaveView(Context context) {
         super(context);
         init();
     }
 
-    public WaveView1(Context context, AttributeSet attrs) {
+    public RxWaveView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public WaveView1(Context context, AttributeSet attrs, int defStyle) {
+    public RxWaveView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
