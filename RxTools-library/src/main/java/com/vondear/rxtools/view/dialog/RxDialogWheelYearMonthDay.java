@@ -94,6 +94,7 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
             llType.setVisibility(View.VISIBLE);
         }
         mCheckBoxDay.setChecked(!isTrue);
+
     }
 
     private void build() {
