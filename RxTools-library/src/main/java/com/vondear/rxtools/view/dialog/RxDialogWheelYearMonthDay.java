@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vondear.rxtools.R;
@@ -31,6 +32,7 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
     private TextView mTvCancle;
     private CheckBox mCheckBoxDay;
     private Calendar mCalendar;
+    private LinearLayout llType;
     private String mMonths[] = new String[]{"01", "02", "03",
             "04", "05", "06", "07", "08", "09", "10", "11", "12"};
     private String mDays[] = new String[]{"01", "02", "03", "04", "05", "06", "07",
@@ -65,12 +67,12 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
         build();
     }
 
-    public RxDialogWheelYearMonthDay(Context mContext, TextView tv_time) {
+    public RxDialogWheelYearMonthDay(Context mContext, TextView tvTime) {
         super(mContext);
         // TODO Auto-generated constructor stub
         this.mContext = mContext;
         build();
-        tv_time.setText(curYear + "年" + mMonths[curMonth] + "月");
+        tvTime.setText(curYear + "年" + mMonths[curMonth] + "月");
     }
 
     public int getBeginYear() {
@@ -83,6 +85,15 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
 
     public int getDivideYear() {
         return divideYear;
+    }
+
+    public void setMonthType(Boolean isTrue) {
+        if (isTrue) {
+            llType.setVisibility(View.INVISIBLE);
+        } else {
+            llType.setVisibility(View.VISIBLE);
+        }
+        mCheckBoxDay.setChecked(!isTrue);
     }
 
     private void build() {
@@ -143,6 +154,7 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
 
         mTvSure = (TextView) dialogView1.findViewById(R.id.tv_sure);
         mTvCancle = (TextView) dialogView1.findViewById(R.id.tv_cancel);
+        llType = (LinearLayout) dialogView1.findViewById(R.id.ll_type);
 
         mCheckBoxDay = (CheckBox) dialogView1.findViewById(R.id.checkBox_day);
         mCheckBoxDay.setOnCheckedChangeListener(new OnCheckedChangeListener() {

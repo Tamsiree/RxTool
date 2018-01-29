@@ -58,4 +58,6 @@ dependencies {
     provided files('libs/zip4j_1.3.2.jar')
     //Zxing核心包
     provided files('libs/zxing_core_3.0.1.jar')
+
+    provided 'com.android.support:support-annotations:26.0.0-alpha1'
 }

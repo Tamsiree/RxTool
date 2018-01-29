@@ -112,8 +112,8 @@ public class ActivityDialog extends ActivityBase {
             case R.id.button_tran:
                 RxDialog rxDialog = new RxDialog(mContext, R.style.tran_dialog);
                 View view1 = LayoutInflater.from(mContext).inflate(R.layout.image, null);
-                ImageView page_item = (ImageView) view1.findViewById(R.id.page_item);
-                page_item.setImageResource(R.drawable.coin);
+                ImageView pageItem = (ImageView) view1.findViewById(R.id.page_item);
+                pageItem.setImageResource(R.drawable.coin);
                 rxDialog.setContentView(view1);
                 rxDialog.show();
                 break;
@@ -184,6 +184,8 @@ public class ActivityDialog extends ActivityBase {
                 RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(mContext);
                 rxDialogScaleView.setImageAssets("squirrel.jpg");
                 rxDialogScaleView.show();
+                break;
+            default:
                 break;
         }
     }
