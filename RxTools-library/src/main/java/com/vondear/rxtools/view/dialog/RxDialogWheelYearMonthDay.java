@@ -155,7 +155,7 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
 
         mTvSure = (TextView) dialogView1.findViewById(R.id.tv_sure);
         mTvCancle = (TextView) dialogView1.findViewById(R.id.tv_cancel);
-        llType = (LinearLayout) dialogView1.findViewById(R.id.ll_type);
+        llType = (LinearLayout) dialogView1.findViewById(R.id.ll_month_type);
 
         mCheckBoxDay = (CheckBox) dialogView1.findViewById(R.id.checkBox_day);
         mCheckBoxDay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
