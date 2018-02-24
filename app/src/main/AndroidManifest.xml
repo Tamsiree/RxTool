@@ -92,6 +92,8 @@
         </activity>
         <activity android:name=".activity.ActivityRxRotateBar">
         </activity>
+        <activity android:name=".activity.ActivityRxWaveView">
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.vondear.tools.activity.ActivityRxWaveView">
+
+    <com.vondear.rxtools.view.waveview.RxWaveView
+        android:id="@+id/wave"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="22dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/border"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+            android:gravity="center_vertical"
+            android:text="边框"
+            android:textColor="@color/blue"/>
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="150"
+            android:progress="10"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/shape"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+            android:gravity="center_vertical"
+            android:text="形状"
+            android:textColor="@color/blue"/>
+
+        <RadioGroup
+            android:id="@+id/shapeChoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/shapeCircle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="圆形"
+                android:textColor="@color/blue"/>
+
+            <RadioButton
+                android:id="@+id/shapeSquare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="方形"
+                android:textColor="@color/blue"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="7dp"
+                android:text="填充颜色"
+                android:textColor="@color/mi_green"/>
+
+            <com.vondear.rxtools.view.colorpicker.ColorPickerView
+                android:id="@+id/color_picker_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alphaSlider="true"
+                app:alphaSliderView="@+id/v_alpha_slider"
+                app:density="12"
+                app:lightnessSlider="true"
+                app:lightnessSliderView="@+id/v_lightness_slider"
+                app:wheelType="FLOWER"/>
+
+            <com.vondear.rxtools.view.colorpicker.slider.LightnessSlider
+                android:id="@+id/v_lightness_slider"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
+            <com.vondear.rxtools.view.colorpicker.slider.AlphaSlider
+                android:id="@+id/v_alpha_slider"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+
+
