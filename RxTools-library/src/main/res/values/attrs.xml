@@ -325,4 +325,5 @@
         <attr name="ratingTitleVisible" format="boolean"/>
         <attr name="ratingCenterColor" format="color"/>
     </declare-styleable>
+
 </resources>
