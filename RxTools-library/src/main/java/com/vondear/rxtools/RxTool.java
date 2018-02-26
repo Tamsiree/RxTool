@@ -217,6 +217,11 @@ public class RxTool {
                         return "";
                     }
                 }
+
+                if (dest.toString().startsWith("00") || dest.toString().startsWith("00.")) {
+                    return dest.toString().substring(1);
+                }
+
                 return null;
             }
         }});
