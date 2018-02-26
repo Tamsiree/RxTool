@@ -195,6 +195,7 @@ public class RxTool {
         setEdDecimal(editText, 3);
     }
 
+
     public static void setEdDecimal(EditText editText, int count) {
         if (count < 1) {
             count = 1;
