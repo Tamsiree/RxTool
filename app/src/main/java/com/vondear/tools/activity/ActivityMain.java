@@ -98,8 +98,8 @@ public class ActivityMain extends AppCompatActivity {
 
         mData.add(new ModelMainItem("压缩与加密的艺术", R.drawable.circle_zip, ActivityZipEncrypt.class));
         mData.add(new ModelMainItem("图片添加经纬度信息", R.drawable.circle_picture_location, ActivityRxExifTool.class));
+        mData.add(new ModelMainItem("RxWaveView", R.drawable.circle_wave, ActivityRxWaveView.class));
         mData.add(new ModelMainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
-        mData.add(new ModelMainItem("RxWaveView", R.mipmap.ic_launcher, ActivityRxWaveView.class));
     }
 
     private void initView() {
