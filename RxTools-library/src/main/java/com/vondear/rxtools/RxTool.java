@@ -57,7 +57,9 @@ public class RxTool {
      * @return ApplicationContext
      */
     public static Context getContext() {
-        if (context != null) return context;
+        if (context != null) {
+            return context;
+        }
         throw new NullPointerException("请先调用init()方法");
     }
     //==============================================================================================延时任务封装 end
@@ -65,6 +67,7 @@ public class RxTool {
     //----------------------------------------------------------------------------------------------延时任务封装 start
     public static void delayToDo(long delayTime, final OnDelayListener onDelayListener) {
         new Handler().postDelayed(new Runnable() {
+            @Override
             public void run() {
                 //execute the task
                 onDelayListener.doSomething();
@@ -208,6 +211,7 @@ public class RxTool {
         editText.setFilters(new InputFilter[]{new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+//                Log.d("setEdDecimal", "source:" + source + " start:" + start + " end:" + end + " dest:" + dest + " dstart:" + dstart + " dstart:" + dend);
                 if (source.equals(".") && dest.toString().length() == 0) {
                     return "0.";
                 }
@@ -219,10 +223,8 @@ public class RxTool {
                     }
                 }
 
-
-
-                if (dest.toString().startsWith("00")) {
-                    return "0";
+                if (dest.toString().equals("0") && source.equals("0")) {
+                    return "";
                 }
 
                 return null;
