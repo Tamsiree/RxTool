@@ -219,8 +219,10 @@ public class RxTool {
                     }
                 }
 
-                if (dest.toString().startsWith("00") || dest.toString().startsWith("00.")) {
-                    return dest.toString().substring(1);
+
+
+                if (dest.toString().startsWith("00")) {
+                    return "0";
                 }
 
                 return null;
