@@ -3,9 +3,11 @@ package com.vondear.rxtools;
 import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.Spanned;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -17,6 +19,9 @@ import com.vondear.rxtools.interfaces.OnDelayListener;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * Created by vondear on 2016/1/24.
@@ -195,14 +200,55 @@ public class RxTool {
      * @param editText
      */
     public static void setEdTwoDecimal(EditText editText) {
-        setEdDecimal(editText, 3);
+        setEdDecimal(editText, 2);
     }
 
+    /**
+     *
+     * @param editText
+     * @param type
+     */
+    public static void setEdType(final EditText editText,int type){
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void
+            beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void
+            onTextChanged(CharSequence s, int start, int before, int count) {
+                String editable = editText.getText().toString();
+                String str = stringFilter(editable);
+                if (!editable.equals(str)) {
+                    editText.setText(str);
+                    editText.setSelection(str.length());//设置新的光标所在位置
+                }
+            }
+
+            @Override
+            public void
+            afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    public static String stringFilter(String str) throws PatternSyntaxException {
+        // 只允许字母、数字和汉字
+        String regEx = "[^0-9\u4E00-\u9FA5]";//正则表达式
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(str);
+        return m.replaceAll("").trim();
+    }
 
     public static void setEdDecimal(EditText editText, int count) {
-        if (count < 1) {
-            count = 1;
+        if (count < 0) {
+            count = 0;
         }
+
+        count += 1;
 
         editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_CLASS_NUMBER);
 
