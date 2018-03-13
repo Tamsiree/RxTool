@@ -43,22 +43,76 @@ import com.vondear.rxtools.view.dialog.RxDialogSure;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author vondear
+ */
 public class ActivityScanerCode extends ActivityBase {
 
-    private static OnRxScanerListener mScanerListener;//扫描结果监听
-    private InactivityTimer inactivityTimer;
-    private CaptureActivityHandler handler;//扫描处理
-    private RelativeLayout mContainer = null;//整体根布局
-    private RelativeLayout mCropLayout = null;//扫描框根布局
-    private int mCropWidth = 0;//扫描边界的宽度
-    private int mCropHeight = 0;//扫描边界的高度
-    private boolean hasSurface;//是否有预览
-    private boolean vibrate = true;//扫描成功后是否震动
-    private boolean mFlashing = true;//闪光灯开启状态
-    private LinearLayout mLlScanHelp;//生成二维码 & 条形码 布局
-    private ImageView mIvLight;//闪光灯 按钮
-    private RxDialogSure rxDialogSure;//扫描结果显示框
+    /**
+     * 扫描结果监听
+     */
+    private static OnRxScanerListener mScanerListener;
 
+    private InactivityTimer inactivityTimer;
+
+    /**
+     * 扫描处理
+     */
+    private CaptureActivityHandler handler;
+
+    /**
+     * 整体根布局
+     */
+    private RelativeLayout mContainer = null;
+
+    /**
+     * 扫描框根布局
+     */
+    private RelativeLayout mCropLayout = null;
+
+    /**
+     * 扫描边界的宽度
+     */
+    private int mCropWidth = 0;
+
+    /**
+     * 扫描边界的高度
+     */
+    private int mCropHeight = 0;
+
+    /**
+     * 是否有预览
+     */
+    private boolean hasSurface;
+
+    /**
+     * 扫描成功后是否震动
+     */
+    private boolean vibrate = true;
+
+    /**
+     * 闪光灯开启状态
+     */
+    private boolean mFlashing = true;
+
+    /**
+     * 生成二维码 & 条形码 布局
+     */
+    private LinearLayout mLlScanHelp;
+
+    /**
+     * 闪光灯 按钮
+     */
+    private ImageView mIvLight;
+
+    /**
+     * 扫描结果显示框
+     */
+    private RxDialogSure rxDialogSure;
+
+    /**
+     * 设置扫描信息回调
+     */
     public static void setScanerListener(OnRxScanerListener scanerListener) {
         mScanerListener = scanerListener;
     }
@@ -69,9 +123,14 @@ public class ActivityScanerCode extends ActivityBase {
         RxBarTool.setNoTitle(this);
         setContentView(R.layout.activity_scaner_code);
         RxBarTool.setTransparentStatusBar(this);
-        initView();//界面控件初始化
-        initScanerAnimation();//扫描动画初始化
-        CameraManager.init(mContext);//初始化 CameraManager
+        //界面控件初始化
+        initView();
+        //权限初始化
+        initPermission();
+        //扫描动画初始化
+        initScanerAnimation();
+        //初始化 CameraManager
+        CameraManager.init(mContext);
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
     }
@@ -80,10 +139,11 @@ public class ActivityScanerCode extends ActivityBase {
     @Override
     protected void onResume() {
         super.onResume();
-        SurfaceView surfaceView = (SurfaceView) findViewById(R.id.capture_preview);
+        SurfaceView surfaceView = findViewById(R.id.capture_preview);
         SurfaceHolder surfaceHolder = surfaceView.getHolder();
         if (hasSurface) {
-            initCamera(surfaceHolder);//Camera初始化
+            //Camera初始化
+            initCamera(surfaceHolder);
         } else {
             surfaceHolder.addCallback(new SurfaceHolder.Callback() {
                 @Override
@@ -127,10 +187,15 @@ public class ActivityScanerCode extends ActivityBase {
     }
 
     private void initView() {
-        mIvLight = (ImageView) findViewById(R.id.top_mask);
-        mContainer = (RelativeLayout) findViewById(R.id.capture_containter);
-        mCropLayout = (RelativeLayout) findViewById(R.id.capture_crop_layout);
-        mLlScanHelp = (LinearLayout) findViewById(R.id.ll_scan_help);
+        mIvLight = findViewById(R.id.top_mask);
+        mContainer = findViewById(R.id.capture_containter);
+        mCropLayout = findViewById(R.id.capture_crop_layout);
+        mLlScanHelp = findViewById(R.id.ll_scan_help);
+
+
+    }
+
+    private void initPermission() {
         //请求Camera权限 与 文件读写 权限
         if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(mContext, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -139,7 +204,7 @@ public class ActivityScanerCode extends ActivityBase {
     }
 
     private void initScanerAnimation() {
-        ImageView mQrLineView = (ImageView) findViewById(R.id.capture_scan_line);
+        ImageView mQrLineView = findViewById(R.id.capture_scan_line);
         RxAnimationTool.ScaleUpDowm(mQrLineView);
     }
 
@@ -244,7 +309,8 @@ public class ActivityScanerCode extends ActivityBase {
         String realContent = result.getText();
 
         if (rxDialogSure == null) {
-            rxDialogSure = new RxDialogSure(mContext);//提示弹窗
+            //提示弹窗
+            rxDialogSure = new RxDialogSure(mContext);
         }
 
         if (BarcodeFormat.QR_CODE.equals(type)) {
@@ -281,7 +347,8 @@ public class ActivityScanerCode extends ActivityBase {
 
     public void handleDecode(Result result) {
         inactivityTimer.onActivity();
-        RxBeepTool.playBeep(mContext, vibrate);//扫描成功之后的振动与声音提示
+        //扫描成功之后的振动与声音提示
+        RxBeepTool.playBeep(mContext, vibrate);
 
         String result1 = result.getText();
         Log.v("二维码/条形码 扫描结果", result1);

@@ -16,8 +16,10 @@ import com.vondear.rxtools.view.dialog.RxDialogGPSCheck;
 
 public abstract class ActivityBaseLocation extends ActivityBase {
 
-    public double mLongitude = 0;//经度
-    public double mLatitude = 0;//纬度
+    //经度
+    public double mLongitude = 0;
+    //纬度
+    public double mLatitude = 0;
     public LocationManager mLocationManager;
     private LocationListener mLocationListener;
 
@@ -43,7 +45,6 @@ public abstract class ActivityBaseLocation extends ActivityBase {
             getLocation();
         }
     }
-
     //==============================================================================================检测GPS是否已打开 end
 
     private void getLocation() {
@@ -74,6 +75,8 @@ public abstract class ActivityBaseLocation extends ActivityBase {
                     //GPS状态为暂停服务时
                     case LocationProvider.TEMPORARILY_UNAVAILABLE:
 
+                        break;
+                    default:
                         break;
                 }
             }

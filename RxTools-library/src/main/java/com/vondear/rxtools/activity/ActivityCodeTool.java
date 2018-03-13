@@ -22,6 +22,9 @@ import com.vondear.rxtools.view.ticker.RxTickerView;
 import static com.vondear.rxtools.RxConstants.SP_MADE_CODE;
 import static com.vondear.rxtools.RxConstants.SP_SCAN_CODE;
 
+/**
+ * @author vondear
+ */
 public class ActivityCodeTool extends ActivityBase {
 
     private static final char[] NUMBER_LIST = RxTickerUtils.getDefaultNumberList();
@@ -61,29 +64,29 @@ public class ActivityCodeTool extends ActivityBase {
     }
 
     protected void initView() {
-        mRxTitle = (RxTitle) findViewById(R.id.rx_title);
-        mEtQrCode = (EditText) findViewById(R.id.et_qr_code);
-        mIvCreateQrCode = (ImageView) findViewById(R.id.iv_create_qr_code);
-        mIvQrCode = (ImageView) findViewById(R.id.iv_qr_code);
-        mActivityCodeTool = (LinearLayout) findViewById(R.id.activity_code_tool);
-        mLlCode = (LinearLayout) findViewById(R.id.ll_code);
-        mLlQrRoot = (LinearLayout) findViewById(R.id.ll_qr_root);
+        mRxTitle =  findViewById(R.id.rx_title);
+        mEtQrCode =  findViewById(R.id.et_qr_code);
+        mIvCreateQrCode = findViewById(R.id.iv_create_qr_code);
+        mIvQrCode =  findViewById(R.id.iv_qr_code);
+        mActivityCodeTool =  findViewById(R.id.activity_code_tool);
+        mLlCode =  findViewById(R.id.ll_code);
+        mLlQrRoot =  findViewById(R.id.ll_qr_root);
 
-        nestedScrollView = (NestedScrollView) findViewById(R.id.nestedScrollView);
+        nestedScrollView =  findViewById(R.id.nestedScrollView);
 
-        mEtBarCode = (EditText) findViewById(R.id.et_bar_code);
-        mIvCreateBarCode = (ImageView) findViewById(R.id.iv_create_bar_code);
-        mIvBarCode = (ImageView) findViewById(R.id.iv_bar_code);
-        mLlBarCode = (LinearLayout) findViewById(R.id.ll_bar_code);
-        mLlBarRoot = (LinearLayout) findViewById(R.id.ll_bar_root);
-        mLlScaner = (LinearLayout) findViewById(R.id.ll_scaner);
-        mLlQr = (LinearLayout) findViewById(R.id.ll_qr);
-        mLlBar = (LinearLayout) findViewById(R.id.ll_bar);
+        mEtBarCode =  findViewById(R.id.et_bar_code);
+        mIvCreateBarCode =  findViewById(R.id.iv_create_bar_code);
+        mIvBarCode = findViewById(R.id.iv_bar_code);
+        mLlBarCode =  findViewById(R.id.ll_bar_code);
+        mLlBarRoot = findViewById(R.id.ll_bar_root);
+        mLlScaner = findViewById(R.id.ll_scaner);
+        mLlQr = findViewById(R.id.ll_qr);
+        mLlBar = findViewById(R.id.ll_bar);
 
-        mRxTickerViewScan = (RxTickerView) findViewById(R.id.ticker_scan_count);
+        mRxTickerViewScan =  findViewById(R.id.ticker_scan_count);
         mRxTickerViewScan.setCharacterList(NUMBER_LIST);
 
-        mRxTickerViewMade = (RxTickerView) findViewById(R.id.ticker_made_count);
+        mRxTickerViewMade =findViewById(R.id.ticker_made_count);
         mRxTickerViewMade.setCharacterList(NUMBER_LIST);
         updateMadeCodeCount();
     }

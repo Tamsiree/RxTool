@@ -1,6 +1,7 @@
 package com.vondear.tools;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.vondear.rxtools.RxTool;
 
@@ -9,6 +10,12 @@ import com.vondear.rxtools.RxTool;
  */
 
 public class ApplicationRxTools extends Application {
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+//        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {

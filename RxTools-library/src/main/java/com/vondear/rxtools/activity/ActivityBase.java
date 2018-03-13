@@ -6,6 +6,9 @@ import android.support.v4.app.FragmentActivity;
 
 import com.vondear.rxtools.RxActivityTool;
 
+/**
+ * @author vondear
+ */
 public class ActivityBase extends FragmentActivity {
 
     public ActivityBase mContext;
