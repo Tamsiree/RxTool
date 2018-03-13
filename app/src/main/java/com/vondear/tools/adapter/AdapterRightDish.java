@@ -18,7 +18,8 @@ import com.vondear.tools.interfaces.ShopCartInterface;
 import java.util.ArrayList;
 
 /**
- * Created by cheng on 16-11-10.
+ * @author vondear
+ * @date 16-11-10
  */
 public class AdapterRightDish extends RecyclerView.Adapter {
     private final int MENU_TYPE = 0;

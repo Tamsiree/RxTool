@@ -21,6 +21,7 @@ import android.graphics.Color;
 
 /**
  * Some SVGs to play with
+ * @author vondear
  */
 public enum ModelSVG {
     RXROAD(

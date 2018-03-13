@@ -1,18 +1,14 @@
 package com.vondear.tools.view;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.PointF;
-import android.os.Build;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
-public class RxFakeAddImageView extends ImageView {
+/**
+ * @author vondear
+ */
+public class RxFakeAddImageView extends android.support.v7.widget.AppCompatImageView {
     private PointF mPointF;
-
-    public RxFakeAddImageView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
 
     public RxFakeAddImageView(Context context) {
         super(context);
@@ -22,9 +18,8 @@ public class RxFakeAddImageView extends ImageView {
         super(context, attrs);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public RxFakeAddImageView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+    public RxFakeAddImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     public void setMPointF(PointF pointF) {

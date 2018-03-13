@@ -21,7 +21,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by vonde on 2016/11/13.
+ * @author vondear
+ * @date 2016/11/13
  */
 
 public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecyclerViewMain.ViewHolder> {

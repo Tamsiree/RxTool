@@ -15,6 +15,9 @@ import cc.solart.turbo.BaseTurboAdapter;
 import cc.solart.turbo.BaseViewHolder;
 
 
+/**
+ * @author vondear
+ */
 public class AdapterContactCity extends BaseTurboAdapter<ModelContactCity, BaseViewHolder> {
 
     public AdapterContactCity(Context context) {

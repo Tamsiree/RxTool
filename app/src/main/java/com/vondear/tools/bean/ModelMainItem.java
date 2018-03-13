@@ -1,7 +1,8 @@
 package com.vondear.tools.bean;
 
 /**
- * Created by vonde on 2016/11/13.
+ * @author vondear
+ * @date 2016/11/13
  */
 
 public class ModelMainItem {

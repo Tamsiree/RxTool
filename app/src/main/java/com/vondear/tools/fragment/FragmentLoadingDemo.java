@@ -20,6 +20,7 @@ import com.vondear.tools.R;
 
 /**
  * Created by Vondear.
+ * @author vondear
  */
 public class FragmentLoadingDemo extends Fragment{
 

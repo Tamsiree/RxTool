@@ -23,9 +23,9 @@ import com.vondear.tools.interfaces.ShopCartInterface;
  * @author vondear
  * @date 16-12-22
  */
-public class RxDialogShopCart extends Dialog implements View.OnClickListener,ShopCartInterface {
+public class RxDialogShopCart extends Dialog implements View.OnClickListener, ShopCartInterface {
 
-    private LinearLayout linearLayout,bottomLayout,clearLayout;
+    private LinearLayout linearLayout, bottomLayout, clearLayout;
     private FrameLayout shopingcartLayout;
     private ModelShopCart mModelShopCart;
     private TextView totalPriceTextView;
@@ -35,7 +35,7 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
     private ShopCartDialogImp shopCartDialogImp;
 
     public RxDialogShopCart(Context context, ModelShopCart modelShopCart, int themeResId) {
-        super(context,themeResId);
+        super(context, themeResId);
         this.mModelShopCart = modelShopCart;
     }
 
@@ -43,13 +43,13 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart_popupview);
-        linearLayout = (LinearLayout) findViewById(R.id.linearlayout);
-        clearLayout = (LinearLayout)findViewById(R.id.clear_layout);
-        shopingcartLayout = (FrameLayout)findViewById(R.id.shopping_cart_layout);
-        bottomLayout = (LinearLayout)findViewById(R.id.shopping_cart_bottom);
-        totalPriceTextView = (TextView)findViewById(R.id.shopping_cart_total_tv);
-        totalPriceNumTextView = (TextView)findViewById(R.id.shopping_cart_total_num);
-        recyclerView = (RecyclerView)findViewById(R.id.recycleview);
+        linearLayout = findViewById(R.id.linearlayout);
+        clearLayout = findViewById(R.id.clear_layout);
+        shopingcartLayout = findViewById(R.id.shopping_cart_layout);
+        bottomLayout = findViewById(R.id.shopping_cart_bottom);
+        totalPriceTextView = findViewById(R.id.shopping_cart_total_tv);
+        totalPriceNumTextView = findViewById(R.id.shopping_cart_total_num);
+        recyclerView = findViewById(R.id.recycleview);
         shopingcartLayout.setOnClickListener(this);
         bottomLayout.setOnClickListener(this);
         clearLayout.setOnClickListener(this);
@@ -71,14 +71,14 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
         animationHide(500);
     }
 
-    private void showTotalPrice(){
-        if(mModelShopCart !=null && mModelShopCart.getShoppingTotalPrice()>0){
+    private void showTotalPrice() {
+        if (mModelShopCart != null && mModelShopCart.getShoppingTotalPrice() > 0) {
             totalPriceTextView.setVisibility(View.VISIBLE);
-            totalPriceTextView.setText("¥ "+ mModelShopCart.getShoppingTotalPrice());
+            totalPriceTextView.setText(getContext().getResources().getString(R.string.rmb) + " " + mModelShopCart.getShoppingTotalPrice());
             totalPriceNumTextView.setVisibility(View.VISIBLE);
-            totalPriceNumTextView.setText(""+ mModelShopCart.getShoppingAccount());
+            totalPriceNumTextView.setText("" + mModelShopCart.getShoppingAccount());
 
-        }else {
+        } else {
             totalPriceTextView.setVisibility(View.GONE);
             totalPriceNumTextView.setVisibility(View.GONE);
         }
@@ -87,7 +87,7 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
     private void animationShow(int mDuration) {
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(
-                ObjectAnimator.ofFloat(linearLayout, "translationY",1000, 0).setDuration(mDuration)
+                ObjectAnimator.ofFloat(linearLayout, "translationY", 1000, 0).setDuration(mDuration)
         );
         animatorSet.start();
     }
@@ -95,11 +95,11 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
     private void animationHide(int mDuration) {
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(
-                ObjectAnimator.ofFloat(linearLayout, "translationY",0,1000).setDuration(mDuration)
+                ObjectAnimator.ofFloat(linearLayout, "translationY", 0, 1000).setDuration(mDuration)
         );
         animatorSet.start();
 
-        if(shopCartDialogImp!=null){
+        if (shopCartDialogImp != null) {
             shopCartDialogImp.dialogDismiss();
         }
 
@@ -127,7 +127,7 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.shopping_cart_bottom:
             case R.id.shopping_cart_layout:
                 this.dismiss();
@@ -146,7 +146,7 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
     @Override
     public void remove(View view, int postion) {
         showTotalPrice();
-        if(mModelShopCart.getShoppingAccount()==0){
+        if (mModelShopCart.getShoppingAccount() == 0) {
             this.dismiss();
         }
     }
@@ -159,14 +159,14 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
         this.shopCartDialogImp = shopCartDialogImp;
     }
 
-    public interface ShopCartDialogImp{
+    public interface ShopCartDialogImp {
         public void dialogDismiss();
     }
 
-    public void clear(){
+    public void clear() {
         mModelShopCart.clear();
         showTotalPrice();
-        if(mModelShopCart.getShoppingAccount()==0){
+        if (mModelShopCart.getShoppingAccount() == 0) {
             this.dismiss();
         }
     }

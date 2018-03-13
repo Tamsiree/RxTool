@@ -28,6 +28,9 @@ import com.vondear.rxtools.view.scaleimage.RxScaleImageView;
 import com.vondear.tools.R;
 
 
+/**
+ * @author vondear
+ */
 public class RxPinView extends RxScaleImageView {
 
     private PointF sPin;

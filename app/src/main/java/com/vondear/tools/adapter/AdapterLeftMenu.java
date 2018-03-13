@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by cheng on 16-11-10.
+ *
+ * @author vondear
+ * @date 16-11-10
  */
 public class AdapterLeftMenu extends RecyclerView.Adapter {
     private Context mContext;

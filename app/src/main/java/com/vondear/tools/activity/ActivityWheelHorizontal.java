@@ -56,7 +56,7 @@ public class ActivityWheelHorizontal extends ActivityBase {
     TextView mSelectedTv;
     @BindView(R.id.LinearLayout1)
     LinearLayout mLinearLayout1;
-    private List<String> listYearMonth = new ArrayList<String>();
+    private List<String> listYearMonth = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

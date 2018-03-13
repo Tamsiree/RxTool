@@ -21,6 +21,7 @@ import com.vondear.tools.activity.ActivityLoadingDetail;
 
 /**
  * Created by Vondear.
+ * @author vondear
  */
 public class FragmentLoadingWay extends Fragment  {
 

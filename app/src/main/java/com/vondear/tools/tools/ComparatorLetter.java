@@ -5,6 +5,9 @@ import com.vondear.tools.bean.ModelContactCity;
 import java.util.Comparator;
 
 
+/**
+ * @author vondear
+ */
 public class ComparatorLetter implements Comparator<ModelContactCity> {
 
     @Override

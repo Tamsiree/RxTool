@@ -19,7 +19,7 @@ import com.vondear.rxtools.activity.ActivityBaseLocation;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogScaleView;
 import com.vondear.tools.R;
-import com.vondear.tools.interfaces.onRxCamera;
+import com.vondear.tools.interfaces.OnRxCamera;
 import com.vondear.tools.tools.RxCameraTool;
 
 import java.io.File;
@@ -99,7 +99,7 @@ public class ActivityRxExifTool extends ActivityBaseLocation {
     private void initCameraEvent(final byte[] data) {
         String fileDir = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RoadExcel" + File.separator + "picture";
         String fileName = RxTimeTool.getCurrentDateTime("yyyyMMddHHmmss") + "_" + new Random().nextInt(1000) + ".jpg";
-        RxCameraTool.initCameraEvent(mContext, mCameraView, data, fileDir, fileName, mLongitude, mLatitude, false, new onRxCamera() {
+        RxCameraTool.initCameraEvent(mContext, mCameraView, data, fileDir, fileName, mLongitude, mLatitude, false, new OnRxCamera() {
             @Override
             public void onBefore() {
                 mTvState.setText("拍照成功,开始压缩\n");

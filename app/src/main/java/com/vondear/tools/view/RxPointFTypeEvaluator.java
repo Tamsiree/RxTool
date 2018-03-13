@@ -9,6 +9,7 @@ import android.graphics.PointF;
 
 /**
  * 自定义估值器
+ * @author vondear
  */
 public class RxPointFTypeEvaluator implements TypeEvaluator<PointF> {
     /**

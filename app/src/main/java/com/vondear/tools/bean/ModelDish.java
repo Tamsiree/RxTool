@@ -1,7 +1,8 @@
 package com.vondear.tools.bean;
 
 /**
- * Created by cheng on 16-11-10.
+ * @author vondear
+ * @date 16-11-10
  */
 public class ModelDish {
 
@@ -50,6 +51,7 @@ public class ModelDish {
         this.dishRemain = dishRemain;
     }
 
+    @Override
     public int hashCode(){
         int code = this.dishName.hashCode()+(int)this.dishPrice;
         return code;

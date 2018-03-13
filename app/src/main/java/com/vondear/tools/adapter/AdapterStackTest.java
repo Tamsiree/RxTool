@@ -11,6 +11,9 @@ import com.vondear.rxtools.view.cardstack.RxCardStackView;
 import com.vondear.rxtools.view.cardstack.tools.RxAdapterStack;
 import com.vondear.tools.R;
 
+/**
+ * @author vondear
+ */
 public class AdapterStackTest extends RxAdapterStack<Integer> {
 
     public AdapterStackTest(Context context) {

@@ -3,7 +3,8 @@ package com.vondear.tools.bean;
 import java.util.ArrayList;
 
 /**
- * Created by cheng on 16-11-10.
+ * @author vondear
+ * @date 16-11-10
  */
 public class ModelDishMenu {
     private String menuName;

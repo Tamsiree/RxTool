@@ -18,7 +18,9 @@ import com.vondear.tools.interfaces.ShopCartInterface;
 import java.util.ArrayList;
 
 /**
- * Created by cheng on 16-12-23.
+ *
+ * @author vondear
+ * @date 16-12-23
  */
 public class AdapterPopupDish extends RecyclerView.Adapter{
 

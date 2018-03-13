@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by cheng on 16-11-12.
+ * @author vondear
+ * @date 16-11-12
  */
 public class ModelShopCart {
     private int shoppingAccount;//商品总数

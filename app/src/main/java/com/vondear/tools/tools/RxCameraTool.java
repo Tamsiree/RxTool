@@ -11,7 +11,7 @@ import com.vondear.rxtools.RxTool;
 import com.vondear.rxtools.RxVibrateTool;
 import com.vondear.rxtools.interfaces.OnDelayListener;
 import com.vondear.rxtools.view.RxToast;
-import com.vondear.tools.interfaces.onRxCamera;
+import com.vondear.tools.interfaces.OnRxCamera;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,7 +22,9 @@ import top.zibin.luban.Luban;
 import top.zibin.luban.OnCompressListener;
 
 /**
- * Created by Vondear on 2017/8/9.
+ *
+ * @author Vondear
+ * @date 2017/8/9
  */
 
 public class RxCameraTool {
@@ -62,8 +64,8 @@ public class RxCameraTool {
         }
     }
 
-    public static void initCameraEvent(final Context mContext, final CameraView mCameraView, final byte[] data, final String fileDir, final String picName, final double mLongitude, final double mLatitude, final boolean isEconomize,final onRxCamera onRxCamera) {
-        onRxCamera.onBefore();
+    public static void initCameraEvent(final Context mContext, final CameraView mCameraView, final byte[] data, final String fileDir, final String picName, final double mLongitude, final double mLatitude, final boolean isEconomize,final OnRxCamera OnRxCamera) {
+        OnRxCamera.onBefore();
         RxTool.getBackgroundHandler().post(new Runnable() {
             @Override
             public void run() {
@@ -96,10 +98,10 @@ public class RxCameraTool {
                                 public void onSuccess(File file) {
                                     if (RxFileTool.copyOrMoveFile(file, compressFile, true)) {
                                         Log.d("图片压缩", "压缩完成");
-                                        onRxCamera.onSuccessCompress(compressFile);
+                                        OnRxCamera.onSuccessCompress(compressFile);
                                         if (mLongitude != 0 || mLatitude != 0) {
                                             RxExifTool.writeLatLonIntoJpeg(compressFile.getAbsolutePath(), mLatitude, mLongitude);
-                                            onRxCamera.onSuccessExif(compressFile);
+                                            OnRxCamera.onSuccessExif(compressFile);
                                             RxToast.normal("拍照成功");
                                         } else {
                                             RxToast.error("请先获取定位信息");

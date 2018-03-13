@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 
 /**
  * Created by ybq.
+ * @author vondear
  */
 public class RxSquareFrameLayout extends FrameLayout {
     public RxSquareFrameLayout(Context context) {
