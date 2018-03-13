@@ -23,6 +23,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author vondear
+ */
 public class ActivityContact extends ActivityBase {
 
     @BindView(R.id.recycler_view)

@@ -21,6 +21,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author vondear
+ */
 public class ActivityRunTextView extends ActivityBase {
 
 

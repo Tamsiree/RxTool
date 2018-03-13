@@ -15,6 +15,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * @author vondear
+ */
 public class ActivityFlightSeat extends ActivityBase {
 
     @BindView(R.id.fsv)

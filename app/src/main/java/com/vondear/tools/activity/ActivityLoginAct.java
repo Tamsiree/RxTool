@@ -35,6 +35,9 @@ import butterknife.OnClick;
 
 import static com.vondear.tools.R.id.service;
 
+/**
+ * @author vondear
+ */
 public class ActivityLoginAct extends ActivityBase {
 
     @BindView(R.id.logo)

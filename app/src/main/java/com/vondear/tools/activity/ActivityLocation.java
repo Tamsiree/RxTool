@@ -26,6 +26,9 @@ import java.util.Iterator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author vondear
+ */
 public class ActivityLocation extends ActivityBase implements LocationListener {//原生的定位 需要手机设备GPS 很好
 
     @BindView(R.id.tv_about_location)

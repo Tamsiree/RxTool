@@ -29,6 +29,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * @author vondear
+ */
 public class ActivityRxExifTool extends ActivityBaseLocation {
 
     @BindView(R.id.camera)

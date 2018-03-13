@@ -15,6 +15,9 @@ import com.vondear.tools.fragment.FragmentLoadingDemo;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author vondear
+ */
 public class ActivityLoading extends ActivityBase {
 
     @BindView(R.id.rx_title)

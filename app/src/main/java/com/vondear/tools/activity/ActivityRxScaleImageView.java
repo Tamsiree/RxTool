@@ -17,6 +17,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @author vondear
+ */
 public class ActivityRxScaleImageView extends ActivityBase implements View.OnClickListener {
 
     private static final String BUNDLE_POSITION = "position";

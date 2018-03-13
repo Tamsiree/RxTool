@@ -21,6 +21,9 @@ import java.util.Arrays;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author vondear
+ */
 public class ActivityCardStack extends AppCompatActivity implements RxCardStackView.ItemExpendListener {
 
     public static Integer[] TEST_DATAS = new Integer[]{
@@ -92,6 +95,8 @@ public class ActivityCardStack extends AppCompatActivity implements RxCardStackV
                 break;
             case R.id.menu_up_down_stack:
                 mStackView.setRxAdapterAnimator(new RxAdapterUpDownStackAnimator(mStackView));
+                break;
+            default:
                 break;
         }
         return super.onOptionsItemSelected(item);

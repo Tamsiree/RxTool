@@ -20,6 +20,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * @author vondear
+ */
 public class ActivityLike extends ActivityBase {
 
     @BindView(R.id.po_image0)

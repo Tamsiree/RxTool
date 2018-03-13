@@ -23,6 +23,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * @author vondear
+ */
 public class ActivityProgressBar extends ActivityBase {
 
 

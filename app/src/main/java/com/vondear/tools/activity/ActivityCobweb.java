@@ -22,6 +22,9 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author vondear
+ */
 public class ActivityCobweb extends ActivityBase implements SeekBar.OnSeekBarChangeListener {
 
     @BindView(R.id.rx_title)
@@ -99,6 +102,8 @@ public class ActivityCobweb extends ActivityBase implements SeekBar.OnSeekBarCha
                 }
                 mCobwebView.setSpiderList(modelSpiders);
                 break;
+                default:
+                    break;
         }
     }
 

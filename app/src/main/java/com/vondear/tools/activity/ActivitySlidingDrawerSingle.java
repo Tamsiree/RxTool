@@ -27,6 +27,9 @@ import com.vondear.tools.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author vondear
+ */
 public class ActivitySlidingDrawerSingle extends ActivityBase {
 
 

@@ -16,6 +16,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * @author vondear
+ */
 public class ActivityRxToast extends ActivityBase {
 
     @BindView(R.id.button_error_toast)

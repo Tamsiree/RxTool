@@ -1,5 +1,6 @@
 package com.vondear.tools.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,6 +21,9 @@ import butterknife.ButterKnife;
 
 import static com.vondear.tools.R.id.iv_linecode;
 
+/**
+ * @author vondear
+ */
 public class ActivityCreateQRCode extends ActivityBase implements View.OnClickListener {
 
     private static android.os.Handler Handler = new Handler();
@@ -38,6 +42,7 @@ public class ActivityCreateQRCode extends ActivityBase implements View.OnClickLi
     TextView mTvTimeSecond;
     @BindView(R.id.ll_refresh)
     LinearLayout mLlRefresh;
+    @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -65,10 +70,10 @@ public class ActivityCreateQRCode extends ActivityBase implements View.OnClickLi
         AuthCode(mTvTimeSecond, second);
     }
 
-    private void AuthCode(final TextView view, final int time_second) {
+    private void AuthCode(final TextView view, final int timeSecond) {
 
         mRunnable = new Runnable() {
-            int mSumNum = time_second;
+            int mSumNum = timeSecond;
 
             @Override
             public void run() {

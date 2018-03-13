@@ -28,6 +28,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * @author vondear
+ */
 public class ActivityPopupView extends ActivityBase implements RxPopupViewManager.TipListener {
 
 

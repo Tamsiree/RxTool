@@ -17,6 +17,9 @@ import butterknife.ButterKnife;
 import static com.vondear.tools.R.id.seekbar1;
 import static com.vondear.tools.R.id.seekbar2;
 
+/**
+ * @author vondear
+ */
 public class ActivitySeekBar extends ActivityBase {
 
     @BindView(R.id.rx_title)

@@ -22,6 +22,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author vondear
+ */
 public class ActivityMain extends AppCompatActivity {
 
     //双击返回键 退出

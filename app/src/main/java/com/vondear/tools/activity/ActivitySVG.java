@@ -16,6 +16,9 @@ import com.vondear.tools.bean.ModelSVG;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author vondear
+ */
 public class ActivitySVG extends ActivityBase {
 
     @BindView(R.id.animated_svg_view)

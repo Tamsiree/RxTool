@@ -20,7 +20,8 @@ import com.vondear.tools.interfaces.ShopCartInterface;
 
 
 /**
- * Created by cheng on 16-12-22.
+ * @author vondear
+ * @date 16-12-22
  */
 public class RxDialogShopCart extends Dialog implements View.OnClickListener,ShopCartInterface {
 

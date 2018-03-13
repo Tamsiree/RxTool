@@ -12,6 +12,9 @@ import com.vondear.tools.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author vondear
+ */
 public class ActivityMovieSeat extends ActivityBase {
 
     @BindView(R.id.seatView)

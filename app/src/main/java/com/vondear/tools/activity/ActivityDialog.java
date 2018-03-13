@@ -25,6 +25,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * @author vondear
+ */
 public class ActivityDialog extends ActivityBase {
 
     @BindView(R.id.button_tran)

@@ -27,6 +27,9 @@ import butterknife.OnClick;
 
 import static com.vondear.rxtools.view.RxCaptcha.TYPE.CHARS;
 
+/**
+ * @author vondear
+ */
 public class ActivityRxCaptcha extends ActivityBase {
 
     @BindView(R.id.tv_code)

@@ -6,6 +6,9 @@ import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.tools.R;
 
+/**
+ * @author vondear
+ */
 public class ActivityAutoImageView extends ActivityBase {
 
     @Override

@@ -40,6 +40,9 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 import static com.vondear.rxtools.view.dialog.RxDialogChooseImage.LayoutType.TITLE;
 
+/**
+ * @author vondear
+ */
 public class ActivityRxPhoto extends ActivityBase {
 
 

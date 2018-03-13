@@ -19,6 +19,9 @@ import com.vondear.rxtools.view.progressing.sprite.Sprite;
 import com.vondear.tools.R;
 import com.vondear.tools.tools.EvaluatorARGB;
 
+/**
+ * @author vondear
+ */
 public class ActivityLoadingDetail extends AppCompatActivity {
 
     int[] colors = new int[]{

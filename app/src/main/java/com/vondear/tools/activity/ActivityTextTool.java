@@ -22,6 +22,9 @@ import butterknife.ButterKnife;
 import static com.vondear.rxtools.RxBarTool.setTransparentStatusBar;
 import static com.vondear.rxtools.RxConstants.URL_VONTOOLS;
 
+/**
+ * @author vondear
+ */
 public class ActivityTextTool extends ActivityBase {
 
     @BindView(R.id.rx_title)

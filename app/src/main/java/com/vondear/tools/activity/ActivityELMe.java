@@ -37,6 +37,9 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author vondear
+ */
 public class ActivityELMe extends ActivityBase implements AdapterLeftMenu.onItemSelectedListener, ShopCartInterface, RxDialogShopCart.ShopCartDialogImp {
     private final static String TAG = "MainActivity";
     @BindView(R.id.rx_title)

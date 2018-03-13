@@ -19,6 +19,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * @author vondear
+ */
 public class ActivityZipEncrypt extends ActivityBase {
 
     @BindView(R.id.btn_create_folder)
@@ -67,6 +70,8 @@ public class ActivityZipEncrypt extends ActivityBase {
                 } else {
                     RxToast.error("导出的文件不存在");
                 }
+                break;
+            default:
                 break;
         }
     }

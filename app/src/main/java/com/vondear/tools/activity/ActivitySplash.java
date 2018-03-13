@@ -17,6 +17,9 @@ import com.vondear.rxtools.view.dialog.RxDialogSureCancel;
 import com.vondear.tools.R;
 
 
+/**
+ * @author vondear
+ */
 public class ActivitySplash extends ActivityBase {
 
     ProgressBar pg;
