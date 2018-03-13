@@ -6,7 +6,8 @@ import android.content.Context;
 import com.vondear.rxtools.RxTool;
 
 /**
- * Created by vonde on 2016/12/23.
+ * @author vonde
+ * @date 2016/12/23
  */
 
 public class ApplicationRxTools extends Application {
