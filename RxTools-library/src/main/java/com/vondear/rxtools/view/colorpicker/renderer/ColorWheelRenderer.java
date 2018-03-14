@@ -5,6 +5,9 @@ import com.vondear.rxtools.view.colorpicker.ColorCircle;
 
 import java.util.List;
 
+/**
+ * @author vondear
+ */
 public interface ColorWheelRenderer {
     float GAP_PERCENTAGE = 0.025f;
 

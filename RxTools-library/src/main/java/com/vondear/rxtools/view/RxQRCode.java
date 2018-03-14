@@ -13,7 +13,8 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import java.util.Hashtable;
 
 /**
- * @author  by vondear on 2017/2/17.
+ * @author vondear
+ * @date 2017/2/17.
  */
 
 public class RxQRCode {

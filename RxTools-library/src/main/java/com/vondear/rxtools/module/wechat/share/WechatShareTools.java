@@ -16,7 +16,8 @@ import com.vondear.rxtools.RxImageTool;
 import com.vondear.rxtools.module.wechat.pay.WechatPayTools;
 
 /**
- * Created by Administrator on 2017/4/20.
+ * @author Vondear
+ * @date 2017/4/20
  */
 
 public class WechatShareTools {
@@ -56,6 +57,8 @@ public class WechatShareTools {
             case Favorites:
                 req.scene = SendMessageToWX.Req.WXSceneFavorite;
                 break;
+            default:
+                break;
         }
 
         if (iwxapi != null) {
@@ -87,6 +90,8 @@ public class WechatShareTools {
                 break;
             case Favorites:
                 req.scene = SendMessageToWX.Req.WXSceneFavorite;
+                break;
+            default:
                 break;
         }
 
@@ -122,6 +127,8 @@ public class WechatShareTools {
             case Favorites:
                 req.scene = SendMessageToWX.Req.WXSceneFavorite;
                 break;
+            default:
+                break;
         }
 
         if (iwxapi != null) {
@@ -155,6 +162,9 @@ public class WechatShareTools {
             case Favorites:
                 req.scene = SendMessageToWX.Req.WXSceneFavorite;
                 break;
+            default:
+                break;
+
         }
 
         if (iwxapi != null) {
@@ -188,6 +198,8 @@ public class WechatShareTools {
             case Favorites:
                 req.scene = SendMessageToWX.Req.WXSceneFavorite;
                 break;
+                default:
+                    break;
         }
 
         if (iwxapi != null) {
@@ -198,6 +210,8 @@ public class WechatShareTools {
     }
 
     public enum SharePlace {
-        Friend, Zone, Favorites
+        Friend,
+        Zone,
+        Favorites
     }
 }

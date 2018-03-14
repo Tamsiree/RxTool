@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 
 /**
+ * @author vondear
  * Interface for image decoding classes, allowing the default {@link android.graphics.BitmapRegionDecoder}
  * based on the Skia library to be replaced with a custom class.
  */

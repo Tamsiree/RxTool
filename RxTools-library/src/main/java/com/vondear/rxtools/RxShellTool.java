@@ -7,7 +7,9 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 /**
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  * Shell相关工具类
  */
 public class RxShellTool {

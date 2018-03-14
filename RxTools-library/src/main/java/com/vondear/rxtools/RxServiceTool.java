@@ -7,7 +7,8 @@ import android.content.Context;
 import java.util.List;
 
 /**
- * @author  by vondear on 2016/9/24.
+ * @author vondear
+ * @date 2016/9/24
  */
 
 public class RxServiceTool {

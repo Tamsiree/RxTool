@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 import android.content.Context;
 import android.os.Handler;
@@ -10,7 +10,8 @@ import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
 /**
- * Scroller class handles scrolling events and updates the 
+ * @author vondear
+ * Scroller class handles scrolling events and updates the
  */
 public class WheelScroller {
     /**

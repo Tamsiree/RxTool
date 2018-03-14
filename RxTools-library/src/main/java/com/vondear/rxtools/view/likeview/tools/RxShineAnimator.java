@@ -7,8 +7,9 @@ import com.vondear.rxtools.view.likeview.tools.ei.RxEase;
 import com.vondear.rxtools.view.likeview.tools.ei.RxEasingInterpolator;
 
 /**
- * 16/7/5 下午5:09
- **/
+ * @author vondear
+ * @date 2016/7/5 下午5:09
+ */
 public class RxShineAnimator extends ValueAnimator {
 
     float MAX_VALUE = 1.5f;

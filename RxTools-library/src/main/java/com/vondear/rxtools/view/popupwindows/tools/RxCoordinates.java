@@ -2,6 +2,9 @@ package com.vondear.rxtools.view.popupwindows.tools;
 
 import android.view.View;
 
+/**
+ * @author vondear
+ */
 public class RxCoordinates {
 
     int left;
@@ -17,6 +20,5 @@ public class RxCoordinates {
         top = location[1];
         bottom = top + view.getHeight();
     }
-
 
 }

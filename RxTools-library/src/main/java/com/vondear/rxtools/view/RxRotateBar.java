@@ -19,7 +19,9 @@ import com.vondear.rxtools.RxImageTool;
 import java.util.ArrayList;
 
 /**
- * Created by Vondear on 2017/10/9.
+ *
+ * @author Vondear
+ * @date 2017/10/9
  *
  */
 public class RxRotateBar extends FrameLayout {

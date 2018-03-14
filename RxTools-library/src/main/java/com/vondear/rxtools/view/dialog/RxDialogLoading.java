@@ -11,7 +11,8 @@ import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.progressing.SpinKitView;
 
 /**
- * Created by Administrator on 2017/3/16.
+ * @author Vondear
+ * @date 2017/3/16
  */
 
 public class RxDialogLoading extends RxDialog {

@@ -14,8 +14,9 @@ import com.vondear.rxtools.view.scaleimage.RxScaleImageView;
 
 
 /**
- * Created by vondear on 2016/7/19.
- * Mainly used for confirmation and cancel.
+ * @author vondear
+ * @date 2016/7/19
+ * 查看图片并支持手势缩放
  */
 public class RxDialogScaleView extends RxDialog {
 

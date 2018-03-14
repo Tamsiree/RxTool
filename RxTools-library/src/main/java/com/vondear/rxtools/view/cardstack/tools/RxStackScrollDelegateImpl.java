@@ -4,6 +4,9 @@ import android.view.View;
 
 import com.vondear.rxtools.view.cardstack.RxCardStackView;
 
+/**
+ * @author vondear
+ */
 public class RxStackScrollDelegateImpl implements RxScrollDelegate {
 
     private RxCardStackView mRxCardStackView;

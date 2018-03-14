@@ -9,8 +9,9 @@ import com.vondear.rxtools.RxLocationTool;
 
 
 /**
- * Created by vondear on 2016/7/19.
- * Mainly used for confirmation and cancel.
+ * @author vondear
+ * @date 2016/7/19
+ * 检测Gps状态
  */
 public class RxDialogGPSCheck extends RxDialogSureCancel {
     

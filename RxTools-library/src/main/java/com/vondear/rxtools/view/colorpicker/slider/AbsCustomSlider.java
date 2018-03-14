@@ -12,6 +12,9 @@ import android.view.View;
 import com.vondear.rxtools.R;
 
 
+/**
+ * @author vondear
+ */
 public abstract class AbsCustomSlider extends View {
     protected Bitmap bitmap;
     protected Canvas bitmapCanvas;

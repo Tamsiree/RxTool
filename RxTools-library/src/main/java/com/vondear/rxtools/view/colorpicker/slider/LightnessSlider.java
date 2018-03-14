@@ -12,6 +12,9 @@ import com.vondear.rxtools.view.colorpicker.ColorPickerView;
 import com.vondear.rxtools.view.colorpicker.builder.PaintBuilder;
 
 
+/**
+ * @author vondear
+ */
 public class LightnessSlider extends AbsCustomSlider {
     private int color;
     private Paint barPaint = PaintBuilder.newPaint().build();

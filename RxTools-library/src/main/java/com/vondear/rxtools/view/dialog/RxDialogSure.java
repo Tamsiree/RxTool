@@ -14,8 +14,9 @@ import com.vondear.rxtools.RxTextTool;
 
 
 /**
- * Created by vondear on 2016/7/19.
- * Mainly used for confirmation and cancel.
+ * @author vondear
+ * @date 2016/7/19
+ * 确认 弹出框
  */
 public class RxDialogSure extends RxDialog {
 

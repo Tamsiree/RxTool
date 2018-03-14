@@ -1,11 +1,12 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 import android.content.Context;
 
 /**
- * Adapter class for old wheel adapter (deprecated WheelAdapter class).
- * 
+ * @author vondear
  * @deprecated Will be removed soon
+ * Adapter class for old wheel adapter (deprecated WheelAdapter class).
+ *
  */
 public class AdapterWheel extends AbstractWheelTextAdapter {
 

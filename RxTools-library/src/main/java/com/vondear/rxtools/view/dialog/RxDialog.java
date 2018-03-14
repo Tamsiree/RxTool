@@ -10,6 +10,9 @@ import android.view.WindowManager.LayoutParams;
 
 import com.vondear.rxtools.R;
 
+/**
+ * @author vondear
+ */
 public class RxDialog extends Dialog {
 
     protected Context mContext;

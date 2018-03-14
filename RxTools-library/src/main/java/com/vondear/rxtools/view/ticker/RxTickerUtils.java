@@ -1,6 +1,7 @@
 package com.vondear.rxtools.view.ticker;
 
 /**
+ * @author vondear
  * Static utility class for the ticker package. This class contains helper methods such as those
  * that generate default character lists to use for animation.
  */

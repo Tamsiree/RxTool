@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public class RectSprite extends ShapeSprite {
     @Override

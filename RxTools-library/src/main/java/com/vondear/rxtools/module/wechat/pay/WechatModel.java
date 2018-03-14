@@ -1,7 +1,9 @@
 package com.vondear.rxtools.module.wechat.pay;
 
 /**
- * Created by Administrator on 2017/4/18.
+ *
+ * @author Vondear
+ * @date 2017/4/18
  */
 
 public class WechatModel {

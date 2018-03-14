@@ -3,7 +3,7 @@ package com.vondear.rxtools.view.progressing.animation.interpolator;
 import android.view.animation.Interpolator;
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public class Ease {
     public static Interpolator inOut() {

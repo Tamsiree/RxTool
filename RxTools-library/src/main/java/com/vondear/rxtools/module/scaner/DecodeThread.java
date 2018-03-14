@@ -8,7 +8,7 @@ import com.vondear.rxtools.activity.ActivityScanerCode;
 import java.util.concurrent.CountDownLatch;
 
 /**
- *
+ * @author Vondear
  * 描述: 解码线程
  */
 final class DecodeThread extends Thread {

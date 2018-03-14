@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 import android.database.DataSetObserver;
 import android.view.View;
@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * @author vondear
  * Abstract Wheel adapter.
  */
 public abstract class AbstractWheelAdapter implements WheelViewAdapter {

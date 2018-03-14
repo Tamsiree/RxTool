@@ -1,10 +1,11 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 import android.content.Context;
 
 /**
- * The simple Array wheel adapter
+ * @author vondear
  * @param <T> the element type
+ * The simple Array wheel adapter
  */
 public class ArrayWheelAdapter<T> extends AbstractWheelTextAdapter {
     

@@ -6,7 +6,7 @@ import com.vondear.rxtools.view.progressing.animation.SpriteAnimatorBuilder;
 import com.vondear.rxtools.view.progressing.sprite.CircleSprite;
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public class Pulse extends CircleSprite {
 

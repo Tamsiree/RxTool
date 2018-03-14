@@ -24,7 +24,8 @@ import com.vondear.rxtools.model.ActionItem;
 import java.util.ArrayList;
 
 /***
- * @author vondear 功能描述：标题按钮上的弹窗（继承自PopupWindow）
+ * @author vondear
+ * 功能描述：标题按钮上的弹窗（继承自PopupWindow）
  */
 public class RxPopupSingleView extends PopupWindow {
     // 列表弹窗的间隔

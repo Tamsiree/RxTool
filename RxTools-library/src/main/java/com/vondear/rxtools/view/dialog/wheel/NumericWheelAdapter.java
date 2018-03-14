@@ -1,8 +1,9 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 import android.content.Context;
 
 /**
+ * @author vondear
  * Numeric Wheel adapter.
  */
 public class NumericWheelAdapter extends AbstractWheelTextAdapter {

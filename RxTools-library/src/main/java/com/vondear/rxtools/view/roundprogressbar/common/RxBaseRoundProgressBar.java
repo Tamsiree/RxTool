@@ -20,6 +20,9 @@ import android.widget.TextView;
 
 import com.vondear.rxtools.R;
 
+/**
+ * @author vondear
+ */
 public abstract class RxBaseRoundProgressBar extends LinearLayout {
     protected final static int DEFAULT_MAX_PROGRESS = 100;
     protected final static int DEFAULT_PROGRESS = 0;

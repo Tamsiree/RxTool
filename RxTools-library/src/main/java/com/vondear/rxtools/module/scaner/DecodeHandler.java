@@ -23,6 +23,7 @@ import static android.content.ContentValues.TAG;
 
 
 /**
+ * @author Vondear
  * 描述: 接受消息后解码
  */
 final class DecodeHandler extends Handler {

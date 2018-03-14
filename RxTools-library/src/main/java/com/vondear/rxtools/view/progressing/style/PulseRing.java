@@ -8,7 +8,7 @@ import com.vondear.rxtools.view.progressing.sprite.RingSprite;
 
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public class PulseRing extends RingSprite {
 

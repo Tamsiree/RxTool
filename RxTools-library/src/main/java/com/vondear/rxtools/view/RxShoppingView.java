@@ -23,7 +23,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * @author  Vondear on 16/7/10 17:59
+ * @author Vondear
+ * @date 2016/7/10 17:59:00
  */
 public class RxShoppingView extends View {
 

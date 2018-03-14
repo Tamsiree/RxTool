@@ -28,6 +28,9 @@ import android.util.AttributeSet;
 import com.vondear.rxtools.R;
 
 
+/**
+ * @author vondear
+ */
 public class RxHeartView extends android.support.v7.widget.AppCompatImageView {
 
     private static final Paint sPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);

@@ -10,7 +10,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
 /**
- * Created by vondear on 2017/2/17.
+ * @author vondear
+ * @date 2017/2/17
  */
 
 public class RxBarCode {

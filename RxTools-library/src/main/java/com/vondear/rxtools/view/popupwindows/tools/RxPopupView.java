@@ -11,6 +11,9 @@ import com.vondear.rxtools.R;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * @author Vondear
+ */
 public class RxPopupView {
 
     public static final int POSITION_ABOVE = 0;

@@ -25,7 +25,9 @@ import java.util.zip.ZipOutputStream;
 import static com.vondear.rxtools.RxConstTool.KB;
 
 /**
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  * 压缩相关工具类
  */
 public class RxZipTool {

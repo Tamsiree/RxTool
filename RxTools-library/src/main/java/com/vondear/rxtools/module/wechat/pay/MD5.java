@@ -2,6 +2,9 @@ package com.vondear.rxtools.module.wechat.pay;
 
 import java.security.MessageDigest;
 
+/**
+ * @author vondear
+ */
 public class MD5 {
 
     private MD5() {

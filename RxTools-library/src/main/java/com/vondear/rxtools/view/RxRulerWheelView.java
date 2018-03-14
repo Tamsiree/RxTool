@@ -26,7 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author  by Vondear on 15/11/9.
+ * @author Vondear
+ * @date 15/11/9
  */
 public class RxRulerWheelView extends View implements GestureDetector.OnGestureListener {
     public static final float DEFAULT_INTERVAL_FACTOR = 1.2f;

@@ -28,6 +28,9 @@ import android.view.animation.Transformation;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author vondear
+ */
 public class RxPathAnimator extends RxAbstractPathAnimator {
     private final AtomicInteger mCounter = new AtomicInteger(0);
     private Handler mHandler;

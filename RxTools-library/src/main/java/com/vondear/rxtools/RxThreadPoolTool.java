@@ -13,7 +13,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  *  线程池相关工具类
  */
 public class RxThreadPoolTool {

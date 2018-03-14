@@ -29,6 +29,9 @@ import com.vondear.rxtools.R;
 import com.vondear.rxtools.view.roundprogressbar.common.RxBaseRoundProgressBar;
 
 
+/**
+ * @author vondear
+ */
 public class RxRoundProgressBar extends RxBaseRoundProgressBar {
 
     public RxRoundProgressBar(Context context, AttributeSet attrs) {

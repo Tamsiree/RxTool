@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
+ * @author vondear
  * Abstract wheel adapter provides common functionality for adapters.
  */
 public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {

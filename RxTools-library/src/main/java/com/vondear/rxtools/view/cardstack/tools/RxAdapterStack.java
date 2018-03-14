@@ -8,6 +8,9 @@ import com.vondear.rxtools.view.cardstack.RxCardStackView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author vondear
+ */
 public abstract class RxAdapterStack<T> extends RxCardStackView.Adapter<RxCardStackView.ViewHolder> {
 
     private final Context mContext;

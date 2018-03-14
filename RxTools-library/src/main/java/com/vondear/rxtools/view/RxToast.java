@@ -24,7 +24,8 @@ import com.vondear.rxtools.R;
 import static com.vondear.rxtools.RxTool.getContext;
 
 /**
- * @author vondear 在系统的Toast基础上封装
+ * @author vondear
+ * 在系统的Toast基础上封装
  */
 
 @SuppressLint("InflateParams")

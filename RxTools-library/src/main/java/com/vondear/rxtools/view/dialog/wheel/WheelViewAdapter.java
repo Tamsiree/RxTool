@@ -1,10 +1,11 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 import android.database.DataSetObserver;
 import android.view.View;
 import android.view.ViewGroup;
 
 /**
+ * @author vondear
  * Wheel items adapter interface
  */
 public interface WheelViewAdapter {

@@ -11,6 +11,9 @@ import com.vondear.rxtools.R;
 
 import java.util.Random;
 
+/**
+ * @author vondear
+ */
 public class RxDialogAcfunVideoLoading extends RxDialog {
     private ProgressBar loading_progressBar;
     private TextView tv_reminder;

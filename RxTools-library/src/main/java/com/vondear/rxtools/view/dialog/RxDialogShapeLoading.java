@@ -7,10 +7,11 @@ import android.view.View;
 
 import com.vondear.rxtools.R;
 import com.vondear.rxtools.view.RxToast;
-import com.vondear.rxtools.view.dialog.dialogShapeLoadingView.RxShapeLoadingView;
+import com.vondear.rxtools.view.dialog.shapeloadingview.RxShapeLoadingView;
 
 /**
- * Created by Administrator on 2017/3/16.
+ * @author Vondear
+ * @date 2017/3/16
  */
 
 public class RxDialogShapeLoading extends RxDialog {

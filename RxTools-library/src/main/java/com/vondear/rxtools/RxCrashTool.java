@@ -20,7 +20,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by vondear on 2016/12/21.
+ *
+ * @author vondear
+ * @date 2016/12/21
  */
 
 public class RxCrashTool {

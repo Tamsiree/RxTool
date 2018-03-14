@@ -6,8 +6,9 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
 /**
- * @author vonde
+ * @author vondear
  * @date 2018/3/5
+ * 解决滑动冲突
  */
 
 public class RxFrameLayoutTouch extends FrameLayout {

@@ -18,7 +18,7 @@ import com.vondear.rxtools.view.progressing.style.WanderingCubes;
 import com.vondear.rxtools.view.progressing.style.Wave;
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public class SpriteFactory {
 

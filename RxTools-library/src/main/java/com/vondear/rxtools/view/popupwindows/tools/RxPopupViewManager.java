@@ -17,6 +17,9 @@ import com.vondear.rxtools.RxAnimationTool;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author vondear
+ */
 public class RxPopupViewManager {
 
     private static final String TAG = RxPopupViewManager.class.getSimpleName();

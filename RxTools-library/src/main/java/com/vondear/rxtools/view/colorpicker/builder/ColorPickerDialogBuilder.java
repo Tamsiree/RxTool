@@ -23,6 +23,9 @@ import com.vondear.rxtools.view.colorpicker.slider.AlphaSlider;
 import com.vondear.rxtools.view.colorpicker.slider.LightnessSlider;
 
 
+/**
+ * @author vondear
+ */
 public class ColorPickerDialogBuilder {
     private AlertDialog.Builder builder;
     private LinearLayout pickerContainer;

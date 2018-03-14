@@ -8,6 +8,9 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * @author vondear
+ */
 public class PinnedHeaderDecoration extends RecyclerView.ItemDecoration {
     private int mHeaderPosition;
     private int mPinnedHeaderTop;

@@ -1,7 +1,7 @@
 package com.vondear.rxtools.view.progressing;
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public enum Style {
 

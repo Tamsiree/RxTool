@@ -1,9 +1,10 @@
 package com.vondear.rxtools.view.scaleimage.decoder;
 
 /**
- * Interface for decoder (and region decoder) factories.
- *
+ * @author vondear
  * @param <T> the class of decoder that will be produced.
+ *
+ * Interface for decoder (and region decoder) factories.
  */
 public interface DecoderFactory<T> {
     /**

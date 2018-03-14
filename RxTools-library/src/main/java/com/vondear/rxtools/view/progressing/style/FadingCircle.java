@@ -8,7 +8,7 @@ import com.vondear.rxtools.view.progressing.sprite.CircleSprite;
 import com.vondear.rxtools.view.progressing.sprite.Sprite;
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public class FadingCircle extends CircleLayoutContainer {
 

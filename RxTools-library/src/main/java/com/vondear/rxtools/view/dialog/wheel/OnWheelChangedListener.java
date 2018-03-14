@@ -1,6 +1,7 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 /**
+ * @author vondear
  * Wheel changed listener interface.
  * <p>The onChanged() method is called whenever current wheel positions is changed:
  * <li> New Wheel position is set

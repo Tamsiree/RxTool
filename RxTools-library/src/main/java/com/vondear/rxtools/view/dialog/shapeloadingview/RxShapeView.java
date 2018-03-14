@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.dialog.dialogShapeLoadingView;
+package com.vondear.rxtools.view.dialog.shapeloadingview;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -15,6 +15,9 @@ import com.nineoldandroids.animation.ArgbEvaluator;
 import com.vondear.rxtools.R;
 
 
+/**
+ * @author vondear
+ */
 public class RxShapeView extends View {
 
 

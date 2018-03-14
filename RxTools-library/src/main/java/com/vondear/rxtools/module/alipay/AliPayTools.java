@@ -12,6 +12,9 @@ import com.vondear.rxtools.interfaces.OnRequestListener;
 
 import java.util.Map;
 
+/**
+ * @author vondear
+ */
 public class AliPayTools {
 
     private static final int SDK_PAY_FLAG = 1;

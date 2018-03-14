@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -20,9 +20,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Numeric wheel view.
- * 
  * @author Vondear
+ *
+ * Numeric wheel view.
  */
 public class WheelView extends View {
 

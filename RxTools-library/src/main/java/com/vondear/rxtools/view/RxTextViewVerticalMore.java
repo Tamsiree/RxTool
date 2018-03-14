@@ -13,9 +13,10 @@ import com.vondear.rxtools.R;
 import java.util.List;
 
 /**
- * 仿淘宝首页的 淘宝头条滚动的自定义View
+ * @author vondear
+ * @date 2016/7/20
  *
- * Created by vondear on 2016/7/20.
+ * 仿淘宝首页的 淘宝头条滚动的自定义View
  */
 public class RxTextViewVerticalMore extends ViewFlipper {
 

@@ -6,6 +6,9 @@ import android.graphics.Paint;
 import com.vondear.rxtools.view.colorpicker.ColorCircle;
 import com.vondear.rxtools.view.colorpicker.builder.PaintBuilder;
 
+/**
+ * @author vondear
+ */
 public class FlowerColorWheelRenderer extends AbsColorWheelRenderer {
     private Paint selectorFill = PaintBuilder.newPaint().build();
     private float[] hsv = new float[3];
@@ -22,8 +25,10 @@ public class FlowerColorWheelRenderer extends AbsColorWheelRenderer {
         float cSize = colorWheelRenderOption.cSize;
 
         for (int i = 0; i < density; i++) {
-            float p = (float) i / (density - 1); // 0~1
-            float jitter = (i - density / 2f) / density; // -0.5 ~ 0.5
+            // 0~1
+            float p = (float) i / (density - 1);
+            // -0.5 ~ 0.5
+            float jitter = (i - density / 2f) / density;
             float radius = maxRadius * p;
             float size = Math.max(1.5f + strokeWidth, cSize + (i == 0 ? 0 : cSize * sizeJitter * jitter));
             int total = Math.min(calcTotalCount(radius, size), density * 2);

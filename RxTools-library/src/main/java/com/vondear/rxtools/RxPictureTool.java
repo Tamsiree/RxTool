@@ -13,7 +13,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  * 相机相关工具类
  */
 public class RxPictureTool {

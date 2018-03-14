@@ -2,6 +2,9 @@ package com.vondear.rxtools.view;
 
 import android.graphics.PointF;
 
+/**
+ * @author vondear
+ */
 public class RxRotateTool {
     public static final double CIRCLE_ANGLE = 2 * Math.PI;
 

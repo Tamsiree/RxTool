@@ -22,6 +22,7 @@ import java.util.Random;
  * RxCaptcha
  * 2015年2月10日 上午11:32:34
  *
+ * @author vondear
  * @version 1.0.0
  */
 public class RxCaptcha {

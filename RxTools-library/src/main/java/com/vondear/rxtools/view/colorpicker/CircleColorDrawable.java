@@ -7,6 +7,9 @@ import android.graphics.drawable.ColorDrawable;
 import com.vondear.rxtools.view.colorpicker.builder.PaintBuilder;
 
 
+/**
+ * @author vondear
+ */
 public class CircleColorDrawable extends ColorDrawable {
     private float strokeWidth;
     private Paint strokePaint = PaintBuilder.newPaint().style(Paint.Style.STROKE).stroke(strokeWidth).color(0xffffffff).build();

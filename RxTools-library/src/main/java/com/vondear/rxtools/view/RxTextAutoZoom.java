@@ -18,6 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
+/**
+ * @author vondear
+ */
 public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText {
     private static final int NO_LINE_LIMIT = -1;
     private final RectF _availableSpaceRect = new RectF();

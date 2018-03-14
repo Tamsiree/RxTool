@@ -1,13 +1,13 @@
 package com.vondear.rxtools;
 
 /**
- * Created by vonde on 2017/1/13
+ * @author vondear
+ * @date 2017/1/13
  */
 
 public class RxNote {
 
     //暂无实际作用
-    //图片转字符可以上这个  传送门
 
     /**　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
      *　　　　　　　　　瓦瓦　　　　　　　　　　　　十　　　　　　　　　　　　　

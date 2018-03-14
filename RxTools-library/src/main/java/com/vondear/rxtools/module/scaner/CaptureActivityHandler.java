@@ -9,7 +9,7 @@ import com.vondear.rxtools.activity.ActivityScanerCode;
 
 
 /**
- * Author: Vondear
+ * @author vondear
  * 描述: 扫描消息转发
  */
 public final class CaptureActivityHandler extends Handler {

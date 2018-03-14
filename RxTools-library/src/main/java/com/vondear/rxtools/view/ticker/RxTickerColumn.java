@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import java.util.Map;
 
 /**
+ * @author vondear
  * Represents a column of characters to be drawn on the screen. This class primarily handles
  * animating within the column from one character to the next and drawing all of the intermediate
  * states.

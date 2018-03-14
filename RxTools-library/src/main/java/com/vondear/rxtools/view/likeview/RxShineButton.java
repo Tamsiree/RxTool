@@ -21,7 +21,8 @@ import com.vondear.rxtools.view.likeview.tools.RxPorterShapeImageView;
 import com.vondear.rxtools.view.likeview.tools.RxShineView;
 
 /**
- * 16/7/5 下午2:27
+ * @author vondear
+ * @date 2016/7/5 下午2:27
  **/
 public class RxShineButton extends RxPorterShapeImageView {
     private static final String TAG = "RxShineButton";
@@ -110,11 +111,15 @@ public class RxShineButton extends RxPorterShapeImageView {
         if (checked) {
             setSrcColor(btnFillColor);
             isChecked = true;
-            if (anim) showAnim();
+            if (anim) {
+                showAnim();
+            }
         } else {
             setSrcColor(btnColor);
             isChecked = false;
-            if (anim) setCancel();
+            if (anim) {
+                setCancel();
+            }
         }
         onListenerUpdate(checked);
     }

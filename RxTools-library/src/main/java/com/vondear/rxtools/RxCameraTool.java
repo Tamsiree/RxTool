@@ -3,7 +3,9 @@ package com.vondear.rxtools;
 import android.hardware.Camera;
 
 /**
- * Created by Vondear on 2017/9/22.
+ *
+ * @author Vondear
+ * @date 2017/9/22
  */
 
 public class RxCameraTool {

@@ -7,7 +7,7 @@ import android.graphics.Rect;
 import com.vondear.rxtools.view.progressing.animation.AnimationUtils;
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 @SuppressWarnings("WeakerAccess")
 public abstract class SpriteContainer extends Sprite {

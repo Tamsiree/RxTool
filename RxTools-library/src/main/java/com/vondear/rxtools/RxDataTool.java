@@ -26,7 +26,9 @@ import static com.vondear.rxtools.RxConstTool.KB;
 import static com.vondear.rxtools.RxConstTool.MB;
 
 /**
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  * 数据处理相关
  * <p>
  * ┌───┐   ┌───┬───┬───┬───┐ ┌───┬───┬───┬───┐ ┌───┬───┬───┬───┐ ┌───┬───┬───┐

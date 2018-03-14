@@ -20,6 +20,7 @@ import java.util.List;
 
 /**
  * 波浪侧边栏
+ * @author vondear
  */
 public class WaveSideBarView extends View {
 

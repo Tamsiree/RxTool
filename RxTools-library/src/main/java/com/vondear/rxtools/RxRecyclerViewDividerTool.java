@@ -5,7 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by vonde on 2016/11/13.
+ * @author vonde
+ * @date 2016/11/13
  */
 
 public class RxRecyclerViewDividerTool extends RecyclerView.ItemDecoration {

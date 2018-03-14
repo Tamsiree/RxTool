@@ -16,7 +16,7 @@ import com.vondear.rxtools.view.progressing.animation.FloatProperty;
 import com.vondear.rxtools.view.progressing.animation.IntProperty;
 
 /**
- * Created by ybq.
+ * @author vondear.
  */
 @SuppressWarnings("WeakerAccess")
 public abstract class Sprite extends Drawable implements

@@ -14,7 +14,8 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 /**
- * Created by Vondear on 2017/10/11.
+ * @author Vondear
+ * @date 2017/10/11
  */
 
 public class RxQrBarTool {

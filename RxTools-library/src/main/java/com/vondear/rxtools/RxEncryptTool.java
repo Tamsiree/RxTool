@@ -16,7 +16,9 @@ import static com.vondear.rxtools.RxDataTool.bytes2HexString;
 import static com.vondear.rxtools.RxDataTool.hexString2Bytes;
 
 /**
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  * 加密解密相关的工具类
  */
 public class RxEncryptTool {

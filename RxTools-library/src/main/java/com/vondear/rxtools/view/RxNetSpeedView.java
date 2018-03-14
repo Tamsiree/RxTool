@@ -13,7 +13,8 @@ import com.vondear.rxtools.R;
 import java.text.DecimalFormat;
 
 /**
- * Created by vonde on 2017/2/15.
+ * @author vondear
+ * @date 2017/2/15
  */
 
 public class RxNetSpeedView extends FrameLayout {

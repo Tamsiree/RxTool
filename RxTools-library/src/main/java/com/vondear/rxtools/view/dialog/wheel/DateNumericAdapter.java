@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -6,7 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class DateArrayAdapter extends ArrayWheelAdapter<String> {
+/**
+ * @author vondear
+ */
+public class DateNumericAdapter extends NumericWheelAdapter {
 	// Index of current item
 	int currentItem;
 	// Index of item to be highlighted
@@ -15,8 +18,9 @@ public class DateArrayAdapter extends ArrayWheelAdapter<String> {
 	/**
 	 * Constructor
 	 */
-	public DateArrayAdapter(Context context, String[] items, int current) {
-		super(context, items);
+	public DateNumericAdapter(Context context, int minValue, int maxValue,
+							  int current) {
+		super(context, minValue, maxValue);
 		this.currentValue = current;
 		setTextSize(16);
 	}

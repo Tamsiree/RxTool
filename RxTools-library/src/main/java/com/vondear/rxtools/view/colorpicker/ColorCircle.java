@@ -2,6 +2,9 @@ package com.vondear.rxtools.view.colorpicker;
 
 import android.graphics.Color;
 
+/**
+ * @author vondear
+ */
 public class ColorCircle {
     private float x, y;
     private float[] hsv = new float[3];

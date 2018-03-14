@@ -1,6 +1,7 @@
 package com.vondear.rxtools.view.ticker;
 
 /**
+ * @author vondear
  * https://en.wikipedia.org/wiki/Levenshtein_distance
  */
 public class RxLevenshteinUtils {

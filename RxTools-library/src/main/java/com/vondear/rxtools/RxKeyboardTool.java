@@ -8,7 +8,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 /**
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  */
 public class RxKeyboardTool {
 

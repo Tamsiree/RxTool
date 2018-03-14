@@ -1,9 +1,10 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 /**
- * Wheel adapter interface
- * 
+ * @author vondear
  * @deprecated Use WheelViewAdapter
+ *
+ * Wheel adapter interface
  */
 public interface WheelAdapter {
 	/**

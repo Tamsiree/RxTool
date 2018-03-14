@@ -35,7 +35,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import static com.vondear.rxtools.RxConstants.WX_TOTAL_ORDER;
 
 /**
- * Created by Administrator on 2017/4/17.
+ *
+ * @author Vondear
+ * @date 2017/4/17
  */
 
 public class WechatPayTools {

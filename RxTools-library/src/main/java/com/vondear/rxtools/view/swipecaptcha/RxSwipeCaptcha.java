@@ -28,9 +28,9 @@ import com.vondear.rxtools.R;
 import java.util.Random;
 
 /**
- * Create By Vondear.
+ * @author Vondear.
  * 介绍：仿斗鱼滑动验证码View
- * 更新时间： 2017/08/24.
+ * @date 更新时间： 2017/08/24.
  */
 
 public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView {
@@ -215,7 +215,7 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
         mSuccessPath.close();
     }
 
-    //生成验证码区域
+    /**生成验证码区域*/
     public void createCaptcha() {
         if (getDrawable() != null) {
             resetFlags();
@@ -225,12 +225,12 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
         }
     }
 
-    //重置一些flasg， 开启验证模式
+    /**重置一些flasg， 开启验证模式*/
     private void resetFlags() {
         isMatchMode = true;
     }
 
-    //生成验证码Path
+    /**生成验证码Path*/
     private void createCaptchaPath() {
         //原本打算随机生成gap，后来发现 宽度/3 效果比较好，
         int gap = mRandom.nextInt(mCaptchaWidth / 2);
@@ -249,7 +249,7 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
         mCaptchaPath.moveTo(mCaptchaX, mCaptchaY);//左上角
 
 
-/*        mCaptchaPath.lineTo(mCaptchaX + gap, mCaptchaY);
+        /*mCaptchaPath.lineTo(mCaptchaX + gap, mCaptchaY);
         //画出凹凸 由于是多段Path 无法闭合，简直阿西吧
         int r = mCaptchaWidth / 2 - gap;
         RectF oval = new RectF(mCaptchaX + gap, mCaptchaY - (r), mCaptchaX + gap + r * 2, mCaptchaY + (r));
@@ -328,19 +328,19 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
         mCanvas.drawPath(mask, mMaskPaint);
         //设置遮罩模式(图像混合模式)
         mMaskPaint.setXfermode(mPorterDuffXfermode);
-//        mMaskPaint.setShadowLayer(5, 3, 3, 0xFF0000FF);
+        //mMaskPaint.setShadowLayer(5, 3, 3, 0xFF0000FF);
 
         // 设置光源的方向
         float[] direction = new float[]{ 1, 1, 1 };
-//设置环境光亮度
+        //设置环境光亮度
         float light = 1f;
-// 选择要应用的反射等级
+        // 选择要应用的反射等级
         float specular = 6;
-// 向mask应用一定级别的模糊
+        // 向mask应用一定级别的模糊
         float blur = 3.5f;
-//        EmbossMaskFilter emboss=new EmbossMaskFilter(direction,light,specular,blur);
+        //EmbossMaskFilter emboss=new EmbossMaskFilter(direction,light,specular,blur);
         BlurMaskFilter maskFilter = new BlurMaskFilter(10, BlurMaskFilter.Blur.SOLID);
-// 应用mask
+        // 应用mask
         mMaskPaint.setMaskFilter(maskFilter);
 
         //★考虑到scaleType等因素，要用Matrix对Bitmap进行缩放

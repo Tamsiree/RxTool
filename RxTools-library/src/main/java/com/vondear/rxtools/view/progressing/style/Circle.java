@@ -9,7 +9,7 @@ import com.vondear.rxtools.view.progressing.sprite.Sprite;
 
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public class Circle extends CircleLayoutContainer {
 

@@ -1,7 +1,9 @@
 package com.vondear.rxtools;
 
 /**
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  * 常量工具类
  */
 public class RxConstTool {

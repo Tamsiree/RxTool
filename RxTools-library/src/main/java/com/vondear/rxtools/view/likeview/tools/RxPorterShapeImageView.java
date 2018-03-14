@@ -11,6 +11,9 @@ import android.util.AttributeSet;
 
 import com.vondear.rxtools.R;
 
+/**
+ * @author vondear
+ */
 public class RxPorterShapeImageView extends RxPorterImageView {
     private Drawable shape;
     private Matrix matrix;

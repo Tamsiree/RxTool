@@ -5,11 +5,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
-/**
- * Created by Vondear on 2017/6/8.
- */
 
 /**
+ * @author Vondear
+ * @date 2017/6/8
  * 官方的BUG
  * 解决 IndexOutOfBoundsException: Inconsistency detected. Invalid view holder adapter
  */

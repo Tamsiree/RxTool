@@ -18,7 +18,9 @@ import com.vondear.rxtools.model.ActionItem;
 import java.util.ArrayList;
 
 /**
- *  @author Created by vondear on 2016/8/4.
+ *
+ * @author vondear
+ * @date 2016/8/4
  */
 public class RxPopupImply extends PopupWindow {
 

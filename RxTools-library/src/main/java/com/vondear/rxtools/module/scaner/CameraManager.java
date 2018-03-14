@@ -28,6 +28,7 @@ import android.view.SurfaceHolder;
 import java.io.IOException;
 
 /**
+ * @author vondear
  * This object wraps the Camera service object and expects to be the only one talking to it. The
  * implementation encapsulates the steps needed to take preview-sized images, which are used for
  * both preview and decoding.

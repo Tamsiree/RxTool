@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
+ * @author vondear
  * Default implementation of {@link com.vondear.rxtools.view.scaleimage.decoder.ImageDecoder}
  * using Android's {@link BitmapFactory}, based on the Skia library. This
  * works well in most circumstances and has reasonable performance, however it has some problems

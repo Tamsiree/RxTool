@@ -17,12 +17,14 @@ import com.vondear.rxtools.view.likeview.tools.ei.RxEasingInterpolator;
 import java.util.Random;
 
 /**
- * 16/7/5 下午3:57
- **/
+ * @author vondear
+ * @date 2016/7/5 下午3:57
+ */
 public class RxShineView extends View {
     private static final String TAG = "ShineView";
     static int colorRandom[] = new int[10];
-    private static long FRAME_REFRESH_DELAY = 25;//default 10ms ,change to 25ms for saving cpu.
+    //default 10ms ,change to 25ms for saving cpu.
+    private static long FRAME_REFRESH_DELAY = 25;
     RxShineAnimator mRxShineAnimator;
     ValueAnimator clickAnimator;
     RxShineButton mRxShineButton;

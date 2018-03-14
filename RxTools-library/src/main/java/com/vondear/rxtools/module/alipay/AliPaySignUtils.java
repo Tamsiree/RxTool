@@ -4,6 +4,9 @@ import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 
+/**
+ * @author vondear
+ */
 public class AliPaySignUtils {
 
     private static final String ALGORITHM = "RSA";

@@ -13,6 +13,9 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 
+/**
+ * @author vondear
+ */
 public abstract class RxPorterImageView extends android.support.v7.widget.AppCompatImageView {
     private static final String TAG = RxPorterImageView.class.getSimpleName();
 

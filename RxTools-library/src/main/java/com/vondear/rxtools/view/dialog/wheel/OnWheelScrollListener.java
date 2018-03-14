@@ -1,6 +1,7 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 /**
+ * @author vondear
  * Wheel scrolled listener interface.
  */
 public interface OnWheelScrollListener {

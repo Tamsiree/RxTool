@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * @author vondear
  * In ticker, each character in the rendered text is represented by a {@link RxTickerColumn}. The
  * column can be seen as a column of text in which we can animate from one character to the next
  * by scrolling the column vertically. The {@link RxTickerColumnManager} is then a

@@ -27,6 +27,9 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
+/**
+ * @author vondear
+ */
 public abstract class RxAbstractPathAnimator {
     protected final Config mConfig;
     private final Random mRandom;

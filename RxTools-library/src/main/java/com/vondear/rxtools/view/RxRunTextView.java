@@ -3,10 +3,10 @@ package com.vondear.rxtools.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewDebug;
-import android.widget.TextView;
 
 /**
- * @author  by vondear on 2016/6/28.
+ * @author vondear
+ * @date 2016/6/28
  */
 public class RxRunTextView extends android.support.v7.widget.AppCompatTextView {
     public RxRunTextView(Context context, AttributeSet attrs, int defStyle) {

@@ -27,6 +27,9 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
 
+/**
+ * @author vondear
+ */
 public class RxWaveView extends View {
     /**
      * +------------------------+

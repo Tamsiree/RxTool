@@ -27,6 +27,9 @@ import com.vondear.rxtools.view.cardstack.tools.RxStackScrollDelegateImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Vondear
+ */
 public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
 
     public static final int INVALID_TYPE = -1;

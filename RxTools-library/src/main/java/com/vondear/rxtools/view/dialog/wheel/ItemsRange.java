@@ -1,6 +1,7 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 /**
+ * @author vondear
  * Range for visible items.
  */
 public class ItemsRange {

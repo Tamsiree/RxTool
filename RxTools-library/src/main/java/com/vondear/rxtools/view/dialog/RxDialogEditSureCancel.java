@@ -12,7 +12,8 @@ import com.vondear.rxtools.R;
 
 
 /**
- * Created by vondear on 2016/7/19.
+ * @author vondear
+ * @date 2016/7/19
  * Mainly used for confirmation and cancel.
  */
 public class RxDialogEditSureCancel extends RxDialog {

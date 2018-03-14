@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 import android.view.View;
 import android.widget.LinearLayout;
@@ -7,7 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Recycle stores wheel items to reuse. 
+ * @author vondear
+ * Recycle stores wheel items to reuse.
  */
 public class WheelRecycle {
 	// Cached items

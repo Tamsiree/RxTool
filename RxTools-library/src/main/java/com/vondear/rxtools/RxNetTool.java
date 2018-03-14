@@ -18,7 +18,8 @@ import java.util.List;
 
 
 /**
- * Created by vonde on 2016/1/29.
+ * @author vondear
+ * @date 2016/1/29
  */
 public class RxNetTool {
 

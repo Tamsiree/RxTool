@@ -54,18 +54,18 @@
         android:layout_height="150dp"
         android:gravity="center">
 
-        <com.vondear.rxtools.view.dialog.dialogWheel.WheelView
+        <com.vondear.rxtools.view.dialog.wheel.WheelView
             android:id="@+id/wheelView_year"
             android:layout_width="60dp"
             android:layout_height="80dp"/>
 
-        <com.vondear.rxtools.view.dialog.dialogWheel.WheelView
+        <com.vondear.rxtools.view.dialog.wheel.WheelView
             android:id="@+id/wheelView_month"
             android:layout_width="60dp"
             android:layout_height="80dp"
             android:layout_marginLeft="20dp"/>
 
-        <com.vondear.rxtools.view.dialog.dialogWheel.WheelView
+        <com.vondear.rxtools.view.dialog.wheel.WheelView
             android:id="@+id/wheelView_day"
             android:layout_width="60dp"
             android:layout_height="80dp"

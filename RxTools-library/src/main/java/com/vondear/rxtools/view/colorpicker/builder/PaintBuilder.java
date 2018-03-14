@@ -8,6 +8,9 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
 
+/**
+ * @author vondear
+ */
 public class PaintBuilder {
     public static PaintHolder newPaint() {
         return new PaintHolder();

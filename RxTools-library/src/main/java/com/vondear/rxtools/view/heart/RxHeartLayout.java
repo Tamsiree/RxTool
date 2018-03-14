@@ -25,6 +25,9 @@ import com.vondear.rxtools.view.heart.tools.RxAbstractPathAnimator;
 import com.vondear.rxtools.view.heart.tools.RxHeartView;
 import com.vondear.rxtools.view.heart.tools.RxPathAnimator;
 
+/**
+ * @author vondear
+ */
 public class RxHeartLayout extends RelativeLayout {
 
     private RxAbstractPathAnimator mAnimator;

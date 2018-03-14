@@ -12,6 +12,9 @@ import android.support.annotation.Nullable;
 import com.vondear.rxtools.RxLocationTool;
 import com.vondear.rxtools.view.RxToast;
 
+/**
+ * @author vondear
+ */
 public class RxServiceLocation extends Service {
 
     private boolean isSuccess;

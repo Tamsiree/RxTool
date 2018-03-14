@@ -28,6 +28,9 @@ import com.vondear.rxtools.view.colorpicker.slider.LightnessSlider;
 
 import java.util.ArrayList;
 
+/**
+ * @author vondear
+ */
 public class ColorPickerView extends View {
     private static final float STROKE_RATIO = 2f;
 

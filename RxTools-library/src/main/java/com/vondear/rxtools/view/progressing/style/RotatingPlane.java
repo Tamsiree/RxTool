@@ -8,7 +8,7 @@ import com.vondear.rxtools.view.progressing.sprite.RectSprite;
 
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public class RotatingPlane extends RectSprite {
     @Override

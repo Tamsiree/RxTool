@@ -20,7 +20,9 @@ import static com.vondear.rxtools.RxDataTool.isNullString;
 import static com.vondear.rxtools.RxDataTool.stringToInt;
 
 /**
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  * 时间相关工具类
  */
 public class RxTimeTool {

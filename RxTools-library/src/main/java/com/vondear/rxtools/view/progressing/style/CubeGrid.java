@@ -9,7 +9,7 @@ import com.vondear.rxtools.view.progressing.sprite.Sprite;
 import com.vondear.rxtools.view.progressing.sprite.SpriteContainer;
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public class CubeGrid extends SpriteContainer {
 

@@ -11,6 +11,9 @@ import com.vondear.rxtools.view.colorpicker.ColorPickerView;
 import com.vondear.rxtools.view.colorpicker.builder.PaintBuilder;
 
 
+/**
+ * @author vondear
+ */
 public class AlphaSlider extends AbsCustomSlider {
     public int color;
     private Paint alphaPatternPaint = PaintBuilder.newPaint().build();

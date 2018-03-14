@@ -17,7 +17,7 @@ import com.vondear.rxtools.RxDataTool;
 /**
  * 弧形进度条
  * @author Vondear
- *
+ * @date 2015/12/03
  */
 public class RxRoundProgress extends View {
     public static final int STROKE = 0;

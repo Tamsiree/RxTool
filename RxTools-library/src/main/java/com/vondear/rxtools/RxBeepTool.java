@@ -10,7 +10,9 @@ import java.io.IOException;
 import static android.content.Context.AUDIO_SERVICE;
 
 /**
- * Created by Vondear on 2017/10/11.
+ *
+ * @author Vondear
+ * @date 2017/10/11
  * 提示音工具
  */
 

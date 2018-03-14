@@ -5,7 +5,9 @@ import android.content.SharedPreferences;
 
 /**
  * SharedPreferences工具类
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  */
 
 public class RxSPTool {

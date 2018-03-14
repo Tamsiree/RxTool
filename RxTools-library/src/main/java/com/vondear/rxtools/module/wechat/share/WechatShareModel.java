@@ -1,7 +1,9 @@
 package com.vondear.rxtools.module.wechat.share;
 
 /**
- * Created by Administrator on 2017/4/20.
+ *
+ * @author Vondear
+ * @date 2017/4/20
  */
 
 public class WechatShareModel {

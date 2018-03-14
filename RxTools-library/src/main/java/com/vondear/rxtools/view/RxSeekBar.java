@@ -28,6 +28,9 @@ import android.view.View;
 import com.vondear.rxtools.R;
 
 
+/**
+ * @author vondear
+ */
 public class RxSeekBar extends View {
 
 

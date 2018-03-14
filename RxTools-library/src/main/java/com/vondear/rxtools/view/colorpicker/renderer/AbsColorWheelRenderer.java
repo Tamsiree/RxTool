@@ -6,10 +6,14 @@ import com.vondear.rxtools.view.colorpicker.ColorCircle;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author vondear
+ */
 public abstract class AbsColorWheelRenderer implements ColorWheelRenderer {
     protected ColorWheelRenderOption colorWheelRenderOption;
     protected List<ColorCircle> colorCircleList = new ArrayList<>();
 
+    @Override
     public void initWith(ColorWheelRenderOption colorWheelRenderOption) {
         this.colorWheelRenderOption = colorWheelRenderOption;
         this.colorCircleList.clear();
@@ -21,6 +25,7 @@ public abstract class AbsColorWheelRenderer implements ColorWheelRenderer {
         return colorWheelRenderOption;
     }
 
+    @Override
     public List<ColorCircle> getColorCircleList() {
         return colorCircleList;
     }

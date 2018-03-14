@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Finishes an activity after a period of inactivity.
+ * @author vondear
  */
 public final class InactivityTimer {
 

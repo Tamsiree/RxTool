@@ -6,6 +6,9 @@ import android.graphics.Paint;
 import com.vondear.rxtools.view.colorpicker.ColorCircle;
 import com.vondear.rxtools.view.colorpicker.builder.PaintBuilder;
 
+/**
+ * @author vondear
+ */
 public class SimpleColorWheelRenderer extends AbsColorWheelRenderer {
     private Paint selectorFill = PaintBuilder.newPaint().build();
     private float[] hsv = new float[3];
@@ -19,7 +22,8 @@ public class SimpleColorWheelRenderer extends AbsColorWheelRenderer {
         float maxRadius = colorWheelRenderOption.maxRadius;
 
         for (int i = 0; i < density; i++) {
-            float p = (float) i / (density - 1); // 0~1
+            // 0~1
+            float p = (float) i / (density - 1);
             float radius = maxRadius * p;
             float size = colorWheelRenderOption.cSize;
             int total = calcTotalCount(radius, size);

@@ -23,7 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by jiangzehui on 16/9/25.
+ * @author vondear
+ * @date 16/9/25
  */
 public class RxCobwebView extends View {
     private int center;//中心点

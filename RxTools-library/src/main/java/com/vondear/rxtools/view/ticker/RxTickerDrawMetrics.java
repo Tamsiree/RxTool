@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * @author vondear
  * This wrapper class represents some core drawing metrics that {@link RxTickerView} and
  * {@link RxTickerColumnManager} require to calculate the positions and offsets for rendering
  * the text onto the canvas.

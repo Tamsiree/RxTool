@@ -32,7 +32,9 @@ import static com.vondear.rxtools.RxFileTool.isGooglePhotosUri;
 import static com.vondear.rxtools.RxFileTool.isMediaDocument;
 
 /**
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  */
 
 public class RxPhotoTool {

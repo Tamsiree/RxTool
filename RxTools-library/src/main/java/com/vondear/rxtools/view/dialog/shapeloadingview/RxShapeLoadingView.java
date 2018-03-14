@@ -1,4 +1,4 @@
-package com.vondear.rxtools.view.dialog.dialogShapeLoadingView;
+package com.vondear.rxtools.view.dialog.shapeloadingview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -21,7 +21,8 @@ import com.vondear.rxtools.R;
 
 
 /**
- * Created by Vondear on 15/4/6.
+ * @author Vondear
+ * @date 2015/4/6
  */
 public class RxShapeLoadingView extends FrameLayout {
 

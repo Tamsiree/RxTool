@@ -13,7 +13,9 @@ import java.util.Stack;
 
 
 /**
- * Created by vondear on 2016/1/24.
+ * @author vondear
+ * @date 2016/1/24
+ *
  * 封装Activity相关工具类
  */
 public class RxActivityTool {

@@ -12,6 +12,10 @@ import android.widget.ImageView;
 
 import com.vondear.rxtools.R;
 
+/**
+ * @author vondear
+ * 自动左右平滑移动的ImageView
+ */
 public class RxAutoImageView extends FrameLayout {
 
     private ImageView mImageView;

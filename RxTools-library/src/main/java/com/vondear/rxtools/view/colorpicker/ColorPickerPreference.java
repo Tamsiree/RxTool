@@ -18,6 +18,9 @@ import com.vondear.rxtools.R;
 import com.vondear.rxtools.view.colorpicker.builder.ColorPickerClickListener;
 import com.vondear.rxtools.view.colorpicker.builder.ColorPickerDialogBuilder;
 
+/**
+ * @author vondear
+ */
 public class ColorPickerPreference extends Preference {
 
     protected boolean alphaSlider;

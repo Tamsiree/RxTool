@@ -8,7 +8,9 @@ import android.view.View;
 
 import com.vondear.rxtools.R;
 
-
+/**
+ * @author Vondear
+ */
 class RxPopupViewBackgroundConstructor {
 
     /**
@@ -36,6 +38,8 @@ class RxPopupViewBackgroundConstructor {
             case RxPopupView.POSITION_RIGHT_TO:
                 setToolTipRightToBackground(tipView, rxPopupView.getBackgroundColor());
                 break;
+            default:
+                break;
         }
 
     }
@@ -59,6 +63,8 @@ class RxPopupViewBackgroundConstructor {
                                 R.drawable.tooltip_arrow_down_left
                         , rxPopupView.getBackgroundColor());
                 break;
+            default:
+                break;
         }
     }
 
@@ -81,6 +87,8 @@ class RxPopupViewBackgroundConstructor {
                                 R.drawable.tooltip_arrow_up_right :
                                 R.drawable.tooltip_arrow_up_left
                         , rxPopupView.getBackgroundColor());
+                break;
+            default:
                 break;
         }
 

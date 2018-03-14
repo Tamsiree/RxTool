@@ -5,7 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
+/**
+ * @author Vondear
+ */
 class RxPopupViewCoordinatesFinder {
 
     /**
@@ -38,6 +40,8 @@ class RxPopupViewCoordinatesFinder {
             case RxPopupView.POSITION_RIGHT_TO:
                 point = getPositionRightTo(tipView, popupView,
                         anchorViewRxCoordinates, rootRxCoordinates);
+                break;
+            default:
                 break;
         }
 

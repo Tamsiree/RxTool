@@ -2,6 +2,9 @@ package com.vondear.rxtools.view.popupwindows.tools;
 
 import java.util.Locale;
 
+/**
+ * @author Vondear
+ */
 class RxPopupViewTool {
 
     static boolean isRtl() {

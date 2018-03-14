@@ -9,22 +9,22 @@ import android.widget.FrameLayout;
 /**
  * @author vondear
  */
-public class RxSquareFrameLayout extends FrameLayout {
-    public RxSquareFrameLayout(Context context) {
+public class RxFrameLayoutSquare extends FrameLayout {
+    public RxFrameLayoutSquare(Context context) {
         super(context);
     }
 
-    public RxSquareFrameLayout(Context context, AttributeSet attrs) {
+    public RxFrameLayoutSquare(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public RxSquareFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxFrameLayoutSquare(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @SuppressWarnings("unused")
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public RxSquareFrameLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public RxFrameLayoutSquare(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 

@@ -10,6 +10,9 @@ import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author vondear
+ */
 public class RxWaveHelper {
     private RxWaveView mWaveView;
 

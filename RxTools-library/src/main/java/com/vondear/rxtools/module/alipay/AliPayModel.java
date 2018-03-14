@@ -1,7 +1,8 @@
 package com.vondear.rxtools.module.alipay;
 
 /**
- * Created by Administrator on 2017/4/18.
+ * @author Vondear
+ * @date 2017/4/18
  */
 
 public class AliPayModel {

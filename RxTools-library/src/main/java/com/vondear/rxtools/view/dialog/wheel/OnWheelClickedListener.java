@@ -1,6 +1,7 @@
-package com.vondear.rxtools.view.dialog.dialogWheel;
+package com.vondear.rxtools.view.dialog.wheel;
 
 /**
+ * @author vondear
  * Wheel clicked listener interface.
  * <p>The onItemClicked() method is called whenever a wheel item is clicked
  * <li> New Wheel position is set

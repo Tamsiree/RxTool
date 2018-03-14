@@ -7,6 +7,9 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.vondear.rxtools.view.cardstack.RxCardStackView;
 
+/**
+ * @author vondear
+ */
 public abstract class RxAdapterAnimator {
     public static final int ANIMATION_DURATION = 400;
 

@@ -12,8 +12,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * 微信支付
- * Created by tsy on 16/6/1.
+ * @author Vondear
+ * @date 16/6/1
  */
 public class WechatPay {
 

@@ -12,6 +12,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * @author vondear
+ */
 public class AliPayOrderInfoUtil {
 
     /**
@@ -46,7 +49,7 @@ public class AliPayOrderInfoUtil {
         // 授权范围， 固定值
         keyValues.put("scope", "kuaijie");
 
-        // 商户唯一标识，如：kkkkk091125
+        // 商户唯一标识，如：vondear
         keyValues.put("target_id", target_id);
 
         // 授权类型， 固定值

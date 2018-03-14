@@ -36,7 +36,8 @@ import android.widget.TextView;
 import static android.graphics.BlurMaskFilter.Blur;
 
 /**
- * @author by vondear on 2016/12/23.
+ * @author vondear
+ * @date 2016/12/23
  */
 
 public class RxTextTool {

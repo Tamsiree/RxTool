@@ -1,7 +1,8 @@
 package com.vondear.rxtools.interfaces;
 
 /**
- * Created by Administrator on 2017/4/19.
+ * @author Vondear
+ * @date 2017/4/19
  */
 
 public interface OnRequestListener {

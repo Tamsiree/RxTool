@@ -32,7 +32,7 @@
             android:textSize="14sp"
             android:visibility="gone" />
 
-        <com.vondear.rxtools.view.dialog.dialogShapeLoadingView.RxShapeView
+        <com.vondear.rxtools.view.dialog.shapeloadingview.RxShapeView
             android:id="@+id/shapeLoadingView"
             android:layout_width="24dp"
             android:layout_height="24dp"

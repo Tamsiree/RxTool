@@ -4,7 +4,7 @@ import android.animation.TimeInterpolator;
 import android.view.animation.Interpolator;
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public class KeyFrameInterpolator implements Interpolator {
 

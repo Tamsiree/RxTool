@@ -48,7 +48,9 @@ import java.util.Map;
 
 /**
  * 设备工具类
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  */
 
 public class RxDeviceTool {

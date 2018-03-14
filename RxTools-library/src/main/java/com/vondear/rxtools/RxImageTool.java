@@ -54,7 +54,9 @@ import java.io.OutputStream;
 import java.net.URL;
 
 /**
- * Created by vonde on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  * 图像工具类
  */
 

@@ -6,6 +6,9 @@ import com.vondear.rxtools.view.progressing.animation.SpriteAnimatorBuilder;
 import com.vondear.rxtools.view.progressing.sprite.CircleSprite;
 
 
+/**
+ * @author vondear
+ */
 public class RotatingCircle extends CircleSprite {
 
     @Override

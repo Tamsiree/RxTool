@@ -1,7 +1,8 @@
 package com.vondear.rxtools.model;
 
 /**
- * Created by Vondear on 2017/9/27.
+ * @author Vondear
+ * @date 2017/9/27
  */
 
 public class ModelSpider {

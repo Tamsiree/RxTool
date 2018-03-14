@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public class SpriteAnimatorBuilder {
     private Sprite sprite;

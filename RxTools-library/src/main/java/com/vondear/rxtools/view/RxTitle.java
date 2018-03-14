@@ -19,7 +19,8 @@ import com.vondear.rxtools.RxImageTool;
 import com.vondear.rxtools.RxKeyboardTool;
 
 /**
- * @author by vondear on 2017/1/2.
+ * @author vondear
+ * @date 2017/1/2
  */
 
 public class RxTitle extends FrameLayout {

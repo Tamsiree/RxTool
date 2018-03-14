@@ -7,7 +7,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 /**
- * Created by vondear on 2016/12/26.
+ *
+ * @author vondear
+ * @date 2016/12/26
  */
 
 public class RxFragmentTool {

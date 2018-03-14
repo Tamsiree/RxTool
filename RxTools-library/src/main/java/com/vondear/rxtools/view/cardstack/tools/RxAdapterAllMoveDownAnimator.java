@@ -5,12 +5,16 @@ import android.view.View;
 
 import com.vondear.rxtools.view.cardstack.RxCardStackView;
 
+/**
+ * @author vondear
+ */
 public class RxAdapterAllMoveDownAnimator extends RxAdapterAnimator {
 
     public RxAdapterAllMoveDownAnimator(RxCardStackView rxCardStackView) {
         super(rxCardStackView);
     }
 
+    @Override
     protected void itemExpandAnimatorSet(final RxCardStackView.ViewHolder viewHolder, int position) {
         final View itemView = viewHolder.itemView;
         itemView.clearAnimation();

@@ -19,7 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by vondear on 2016/1/24.
+ * @author vondear
+ * @date 2016/1/24
  */
 public class RxAppTool {
 

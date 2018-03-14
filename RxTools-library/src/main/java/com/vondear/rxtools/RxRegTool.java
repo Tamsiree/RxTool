@@ -23,7 +23,8 @@ import static com.vondear.rxtools.RxConstTool.REGEX_USERNAME;
 import static com.vondear.rxtools.RxDataTool.isNullString;
 
 /**
- * Created by Administrator on 2017/3/15.
+ * @author Vondear
+ * @date 2017/3/15
  */
 
 public class RxRegTool {

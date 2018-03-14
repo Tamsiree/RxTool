@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 /**
+ * @author vondear
  * Helper class used to set the source and additional attributes from a variety of sources. Supports
  * use of a bitmap, asset, resource, external file or any other URI.
  * <p>

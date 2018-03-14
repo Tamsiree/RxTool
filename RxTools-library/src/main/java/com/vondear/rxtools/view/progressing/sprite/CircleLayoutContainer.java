@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 /**
- * Created by ybq.
+ * @author vondear
  */
 public abstract class CircleLayoutContainer extends SpriteContainer {
 

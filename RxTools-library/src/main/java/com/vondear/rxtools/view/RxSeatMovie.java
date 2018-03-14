@@ -32,7 +32,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Created by baoyunlong on 16/6/16.
+ * @author Vondear
+ * @date 16/6/16
  */
 public class RxSeatMovie extends View {
     private final boolean DBG = false;

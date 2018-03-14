@@ -24,7 +24,9 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 /**
- * Created by vondear on 2016/1/24.
+ *
+ * @author vondear
+ * @date 2016/1/24
  * RxTools的常用工具类
  * <p>
  * For the brave souls who get this far: You are the chosen ones,

@@ -1,5 +1,8 @@
 package com.vondear.rxtools.module.alipay;
 
+/**
+ * @author vondear
+ */
 public final class Base64 {
 
     private static final int BASELENGTH = 128;

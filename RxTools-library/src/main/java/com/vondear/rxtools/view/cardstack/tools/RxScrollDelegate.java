@@ -1,5 +1,8 @@
 package com.vondear.rxtools.view.cardstack.tools;
 
+/**
+ * @author vondear
+ */
 public interface RxScrollDelegate {
 
     void scrollViewTo(int x, int y);

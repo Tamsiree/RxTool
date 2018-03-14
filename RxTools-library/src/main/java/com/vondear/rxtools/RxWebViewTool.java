@@ -12,7 +12,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 /**
- * Created by Vondear on 2017/4/1.
+ *
+ * @author Vondear
+ * @date 2017/4/1
  */
 
 public class RxWebViewTool {
