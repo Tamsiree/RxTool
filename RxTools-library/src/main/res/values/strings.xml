@@ -12,4 +12,8 @@
 
     <string name="rmb">¥</string>
 
+    <string name="journey">行程</string>
+    <string name="distance">距离</string>
+    <string name="km_h">km/h</string>
+
 </resources>
