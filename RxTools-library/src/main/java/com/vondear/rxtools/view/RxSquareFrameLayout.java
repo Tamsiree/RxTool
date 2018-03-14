@@ -1,4 +1,4 @@
-package com.vondear.tools.view;
+package com.vondear.rxtools.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
 /**
- * Created by ybq.
  * @author vondear
  */
 public class RxSquareFrameLayout extends FrameLayout {

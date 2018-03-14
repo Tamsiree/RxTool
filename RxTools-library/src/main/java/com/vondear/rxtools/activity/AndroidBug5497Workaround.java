@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 
 /**
  *
+ * @author vondear
  */
 public class AndroidBug5497Workaround {
     private View mChildOfContent;

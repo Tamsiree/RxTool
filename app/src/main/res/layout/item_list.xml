@@ -7,7 +7,7 @@
     app:cardCornerRadius="4dp"
     app:cardElevation="3dp">
 
-    <com.vondear.tools.view.RxSquareFrameLayout
+    <com.vondear.rxtools.view.RxSquareFrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"
@@ -21,6 +21,6 @@
             android:layout_gravity="center"
             android:padding="10dp"/>
 
-    </com.vondear.tools.view.RxSquareFrameLayout>
+    </com.vondear.rxtools.view.RxSquareFrameLayout>
 
 </android.support.v7.widget.CardView>

@@ -14,6 +14,9 @@ import com.vondear.rxtools.RxVibrateTool;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogGPSCheck;
 
+/**
+ * @author vondear
+ */
 public abstract class ActivityBaseLocation extends ActivityBase {
 
     //经度

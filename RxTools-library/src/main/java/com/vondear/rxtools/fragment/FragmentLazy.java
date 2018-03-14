@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by vondear
- * on 2015/11/21.
  *
  * 若需要采用Lazy方式加载的Fragment，初始化内容放到initData实现
  * 若不需要Lazy加载则initData方法内留空,初始化内容放到initViews即可
@@ -21,6 +19,8 @@ import android.view.ViewGroup;
  * 如果是通过FragmentTransaction的show和hide的方法来控制显示，调用的是onHiddenChanged.
  * 针对初始就show的Fragment 为了触发onHiddenChanged事件 达到lazy效果 需要先hide再show
  *
+ * @author vondear
+ * @date 2015/11/21.
  */
 public abstract class FragmentLazy extends Fragment {
 
