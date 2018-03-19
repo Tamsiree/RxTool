@@ -13,7 +13,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.vondear.rxtools.RxActivityTool;
 import com.vondear.tools.R;
-import com.vondear.tools.bean.ModelMainItem;
+import com.vondear.tools.model.ModelMainItem;
 
 import java.util.List;
 

@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vondear.tools.R;
-import com.vondear.tools.bean.ModelDishMenu;
+import com.vondear.tools.model.ModelDishMenu;
 
 import java.util.ArrayList;
 import java.util.List;

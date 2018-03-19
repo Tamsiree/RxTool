@@ -12,7 +12,7 @@ import com.vondear.rxtools.view.sidebar.PinnedHeaderDecoration;
 import com.vondear.rxtools.view.sidebar.WaveSideBarView;
 import com.vondear.tools.R;
 import com.vondear.tools.adapter.AdapterContactCity;
-import com.vondear.tools.bean.ModelContactCity;
+import com.vondear.tools.model.ModelContactCity;
 import com.vondear.tools.tools.ComparatorLetter;
 
 import java.lang.reflect.Type;

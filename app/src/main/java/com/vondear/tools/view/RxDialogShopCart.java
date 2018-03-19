@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.vondear.tools.R;
 import com.vondear.tools.adapter.AdapterPopupDish;
-import com.vondear.tools.bean.ModelShopCart;
+import com.vondear.tools.model.ModelShopCart;
 import com.vondear.tools.interfaces.ShopCartInterface;
 
 

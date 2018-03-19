@@ -1,4 +1,4 @@
-package com.vondear.tools.bean;
+package com.vondear.tools.model;
 
 import android.util.Log;
 

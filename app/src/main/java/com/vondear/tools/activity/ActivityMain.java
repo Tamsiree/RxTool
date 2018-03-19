@@ -14,7 +14,7 @@ import com.vondear.rxtools.RxRecyclerViewDividerTool;
 import com.vondear.rxtools.activity.ActivityCodeTool;
 import com.vondear.tools.R;
 import com.vondear.tools.adapter.AdapterRecyclerViewMain;
-import com.vondear.tools.bean.ModelMainItem;
+import com.vondear.tools.model.ModelMainItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,6 +103,7 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new ModelMainItem("图片添加经纬度信息", R.drawable.circle_picture_location, ActivityRxExifTool.class));
         mData.add(new ModelMainItem("RxWaveView", R.drawable.circle_wave, ActivityRxWaveView.class));
         mData.add(new ModelMainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
+        mData.add(new ModelMainItem("PULL解析XML", R.mipmap.ic_launcher, ActivityXmlParse.class));
     }
 
     private void initView() {

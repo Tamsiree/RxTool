@@ -11,7 +11,7 @@ import com.vondear.rxtools.RxActivityTool;
 import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.activity.ActivityBase;
 import com.vondear.tools.R;
-import com.vondear.tools.bean.ModelSVG;
+import com.vondear.tools.model.ModelSVG;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

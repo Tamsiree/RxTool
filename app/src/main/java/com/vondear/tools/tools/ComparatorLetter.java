@@ -1,6 +1,6 @@
 package com.vondear.tools.tools;
 
-import com.vondear.tools.bean.ModelContactCity;
+import com.vondear.tools.model.ModelContactCity;
 
 import java.util.Comparator;
 

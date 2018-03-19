@@ -94,6 +94,8 @@
         </activity>
         <activity android:name=".activity.ActivityRxWaveView">
         </activity>
+        <activity android:name=".activity.ActivityXmlParse">
+        </activity>
     </application>
 
 </manifest>
