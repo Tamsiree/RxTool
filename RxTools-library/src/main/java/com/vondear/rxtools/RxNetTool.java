@@ -23,12 +23,30 @@ import java.util.List;
  */
 public class RxNetTool {
 
-    public static final int NETWORK_NO = -1;   // no network
-    public static final int NETWORK_WIFI = 1;    // wifi network
-    public static final int NETWORK_2G = 2;    // "2G" networks
-    public static final int NETWORK_3G = 3;    // "3G" networks
-    public static final int NETWORK_4G = 4;    // "4G" networks
-    public static final int NETWORK_UNKNOWN = 5;    // unknown network
+    /**
+     * no network
+     */
+    public static final int NETWORK_NO = -1;
+    /**
+     * wifi network
+     */
+    public static final int NETWORK_WIFI = 1;
+    /**
+     * "2G" networks
+     */
+    public static final int NETWORK_2G = 2;
+    /**
+     * "3G" networks
+     */
+    public static final int NETWORK_3G = 3;
+    /**
+     * "4G" networks
+     */
+    public static final int NETWORK_4G = 4;
+    /**
+     * unknown network
+     */
+    public static final int NETWORK_UNKNOWN = 5;
 
     private static final int NETWORK_TYPE_GSM = 16;
     private static final int NETWORK_TYPE_TD_SCDMA = 17;
@@ -36,14 +54,17 @@ public class RxNetTool {
 
     /**
      * 需添加权限
-     *      @code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
      *
+     * @param context 上下文
+     * @return 网络类型
+     * @code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * <p>
      * 它主要负责的是
-     *  1 监视网络连接状态 包括（Wi-Fi, 2G, 3G, 4G）
-     *  2 当网络状态改变时发送广播通知
-     *  3 网络连接失败尝试连接其他网络
-     *  4 提供API，允许应用程序获取可用的网络状态
-     *
+     * 1 监视网络连接状态 包括（Wi-Fi, 2G, 3G, 4G）
+     * 2 当网络状态改变时发送广播通知
+     * 3 网络连接失败尝试连接其他网络
+     * 4 提供API，允许应用程序获取可用的网络状态
+     * <p>
      * netTyped 的结果
      * @link #NETWORK_NO      = -1; 当前无网络连接
      * @link #NETWORK_WIFI    =  1; wifi的情况下
@@ -51,9 +72,6 @@ public class RxNetTool {
      * @link #NETWORK_3G      =  3; 切换到3G环境下
      * @link #NETWORK_4G      =  4; 切换到4G环境下
      * @link #NETWORK_UNKNOWN =  5; 未知网络
-     *
-     * @param context 上下文
-     * @return 网络类型
      */
     public static int getNetWorkType(Context context) {
         // 获取ConnectivityManager
@@ -239,6 +257,42 @@ public class RxNetTool {
     }
 
     /**
+     * ping IP
+     * 不要在主线程使用，会阻塞线程
+     */
+    public static final boolean ping(String ip) {
+
+        String result = null;
+        try {
+            Process p = Runtime.getRuntime().exec("ping -c 3 -w 100 " + ip);// ping网址3次
+            // 读取ping的内容，可以不加
+            InputStream input = p.getInputStream();
+            BufferedReader in = new BufferedReader(new InputStreamReader(input));
+            StringBuffer stringBuffer = new StringBuffer();
+            String content = "";
+            while ((content = in.readLine()) != null) {
+                stringBuffer.append(content);
+            }
+//            Log.d("------ping-----", "result content : " + stringBuffer.toString());
+            // ping的状态
+            int status = p.waitFor();
+            if (status == 0) {
+                result = "success";
+                return true;
+            } else {
+                result = "failed";
+            }
+        } catch (IOException e) {
+            result = "IOException";
+        } catch (InterruptedException e) {
+            result = "InterruptedException";
+        } finally {
+//            Log.d("----result---", "result = " + result);
+        }
+        return false;
+    }
+
+    /**
      * 判断WIFI是否打开
      */
     public static boolean isWifiEnabled(Context context) {
@@ -284,7 +338,8 @@ public class RxNetTool {
     /**
      * 判断网络是否是4G
      * 需添加权限
-     *      @code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     *
+     * @code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
      */
     public static boolean is4G(Context context) {
         NetworkInfo info = getActiveNetworkInfo(context);
