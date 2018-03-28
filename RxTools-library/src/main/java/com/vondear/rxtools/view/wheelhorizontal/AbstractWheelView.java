@@ -1,5 +1,7 @@
 package com.vondear.rxtools.view.wheelhorizontal;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -10,8 +12,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.ObjectAnimator;
 import com.vondear.rxtools.R;
 
 
@@ -81,12 +81,12 @@ public abstract class AbstractWheelView extends AbstractWheel {
     protected Paint mSeparatorsPaint;
 
     /**
-     * {@link com.nineoldandroids.animation.Animator} for dimming the selector spinnerwheel.
+     *  for dimming the selector spinnerwheel.
      */
     protected Animator mDimSelectorWheelAnimator;
 
     /**
-     * {@link com.nineoldandroids.animation.Animator} for dimming the selector spinnerwheel.
+     *  for dimming the selector spinnerwheel.
      */
     protected Animator mDimSeparatorsAnimator;
 

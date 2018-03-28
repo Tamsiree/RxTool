@@ -1,5 +1,6 @@
 package com.vondear.rxtools.view.dialog.shapeloadingview;
 
+import android.animation.ArgbEvaluator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,7 +12,6 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
-import com.nineoldandroids.animation.ArgbEvaluator;
 import com.vondear.rxtools.R;
 
 
@@ -22,15 +22,15 @@ public class RxShapeView extends View {
 
 
     private static final float genhao3 = 1.7320508075689f;
-    private static  final  float mTriangle2Circle =0.25555555f;
+    private static final float mTriangle2Circle = 0.25555555f;
 
     private Shape mShape = Shape.SHAPE_CIRCLE;
-    private Interpolator mInterpolator=new DecelerateInterpolator();
-    private ArgbEvaluator mArgbEvaluator=new ArgbEvaluator();
+    private Interpolator mInterpolator = new DecelerateInterpolator();
+    private ArgbEvaluator mArgbEvaluator = new ArgbEvaluator();
 
-    private int mTriangleColor ;
-    private int mCircleColor  ;
-    private int mRectColor ;
+    private int mTriangleColor;
+    private int mCircleColor;
+    private int mRectColor;
 
     /**
      * 用赛贝尔曲线画圆
@@ -79,7 +79,7 @@ public class RxShapeView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if(getVisibility()==GONE){
+        if (getVisibility() == GONE) {
             return;
         }
         // FIXME: 15/6/15  动画待优化
@@ -88,7 +88,7 @@ public class RxShapeView extends View {
 
                 if (mIsLoading) {
                     mAnimPercent += 0.1611113;
-                    int color= (int) mArgbEvaluator.evaluate(mAnimPercent,mTriangleColor,mCircleColor);
+                    int color = (int) mArgbEvaluator.evaluate(mAnimPercent, mTriangleColor, mCircleColor);
                     mPaint.setColor(color);
                     // triangle to circle
                     Path path = new Path();
@@ -97,13 +97,13 @@ public class RxShapeView extends View {
                     if (mAnimPercent >= 1) {
                         mShape = Shape.SHAPE_CIRCLE;
                         mIsLoading = false;
-                        mAnimPercent=1;
+                        mAnimPercent = 1;
                     }
-                    float controlX = mControlX - relativeXFromView(mAnimPercent* mTriangle2Circle)
+                    float controlX = mControlX - relativeXFromView(mAnimPercent * mTriangle2Circle)
                             * genhao3;
-                    float controlY = mControlY - relativeYFromView(mAnimPercent* mTriangle2Circle);
+                    float controlY = mControlY - relativeYFromView(mAnimPercent * mTriangle2Circle);
                     path.quadTo(relativeXFromView(1) - controlX, controlY, relativeXFromView(0.5f + genhao3 / 4), relativeYFromView(0.75f));
-                    path.quadTo(relativeXFromView(0.5f), relativeYFromView(0.75f + 2 * mAnimPercent* mTriangle2Circle), relativeXFromView(0.5f - genhao3 / 4), relativeYFromView(0.75f));
+                    path.quadTo(relativeXFromView(0.5f), relativeYFromView(0.75f + 2 * mAnimPercent * mTriangle2Circle), relativeXFromView(0.5f - genhao3 / 4), relativeYFromView(0.75f));
                     path.quadTo(controlX, controlY, relativeXFromView(0.5f), relativeYFromView(0f));
                     path.close();
                     canvas.drawPath(path, mPaint);
@@ -115,7 +115,7 @@ public class RxShapeView extends View {
                     mPaint.setColor(getResources().getColor(R.color.triangle));
                     path.moveTo(relativeXFromView(0.5f), relativeYFromView(0f));
                     path.lineTo(relativeXFromView(1), relativeYFromView(genhao3 / 2f));
-                    path.lineTo(relativeXFromView(0), relativeYFromView(genhao3/2f));
+                    path.lineTo(relativeXFromView(0), relativeYFromView(genhao3 / 2f));
                     mControlX = relativeXFromView(0.5f - genhao3 / 8.0f);
                     mControlY = relativeYFromView(3 / 8.0f);
                     mAnimPercent = 0;
@@ -134,7 +134,7 @@ public class RxShapeView extends View {
                         mShape = Shape.SHAPE_RECT;
                         mIsLoading = false;
                     }
-                    int color= (int) mArgbEvaluator.evaluate(mAnimPercent,mCircleColor,mRectColor);
+                    int color = (int) mArgbEvaluator.evaluate(mAnimPercent, mCircleColor, mRectColor);
                     mPaint.setColor(color);
 
                     Path path = new Path();
@@ -201,7 +201,7 @@ public class RxShapeView extends View {
                         mIsLoading = false;
                         mAnimPercent = 1;
                     }
-                    int color= (int) mArgbEvaluator.evaluate(mAnimPercent,mRectColor,mTriangleColor);
+                    int color = (int) mArgbEvaluator.evaluate(mAnimPercent, mRectColor, mTriangleColor);
                     mPaint.setColor(color);
                     Path path = new Path();
                     path.moveTo(relativeXFromView(0.5f * mAnimPercent), 0);
@@ -235,7 +235,8 @@ public class RxShapeView extends View {
 
 
                 break;
-
+            default:
+                break;
         }
 
 
@@ -267,7 +268,7 @@ public class RxShapeView extends View {
     public void setVisibility(int visibility) {
         super.setVisibility(visibility);
 
-        if(visibility==VISIBLE){
+        if (visibility == VISIBLE) {
             invalidate();
         }
     }

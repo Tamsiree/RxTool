@@ -18,6 +18,7 @@ public class ActivityBase extends FragmentActivity {
         super.onCreate(savedInstanceState);
         mContext = this;
         RxActivityTool.addActivity(this);
+//        DragAndDropPermissionsCompat
     }
 
     @Override

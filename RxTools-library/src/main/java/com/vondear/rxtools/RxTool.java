@@ -1,5 +1,6 @@
 package com.vondear.rxtools;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -24,7 +25,6 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 /**
- *
  * @author vondear
  * @date 2016/1/24
  * RxTools的常用工具类
@@ -43,6 +43,7 @@ import java.util.regex.PatternSyntaxException;
  */
 public class RxTool {
 
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
     private static long lastClickTime;
 
@@ -94,9 +95,10 @@ public class RxTool {
         textView.setEnabled(false);
         android.os.CountDownTimer timer = new android.os.CountDownTimer(waitTime, interval) {
 
+            @SuppressLint("DefaultLocale")
             @Override
             public void onTick(long millisUntilFinished) {
-                textView.setText("剩下 " + (millisUntilFinished / 1000) + " S");
+                textView.setText(String.format("剩下 %d S", millisUntilFinished / 1000));
             }
 
             @Override
@@ -180,7 +182,7 @@ public class RxTool {
      * @param defType
      * @return
      */
-    public static final int getResIdByName(Context context, String name, String defType) {
+    public final static int getResIdByName(Context context, String name, String defType) {
         return context.getResources().getIdentifier("ic_launcher", "drawable", context.getPackageName());
     }
 
@@ -206,11 +208,9 @@ public class RxTool {
     }
 
     /**
-     *
      * @param editText
-     * @param type
      */
-    public static void setEdType(final EditText editText,int type){
+    public static void setEdType(final EditText editText) {
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void
@@ -225,7 +225,8 @@ public class RxTool {
                 String str = stringFilter(editable);
                 if (!editable.equals(str)) {
                     editText.setText(str);
-                    editText.setSelection(str.length());//设置新的光标所在位置
+                    //设置新的光标所在位置
+                    editText.setSelection(str.length());
                 }
             }
 
@@ -237,8 +238,15 @@ public class RxTool {
         });
     }
 
+    /**
+     * // 只允许数字和汉字
+     *
+     * @param str
+     * @return
+     * @throws PatternSyntaxException
+     */
     public static String stringFilter(String str) throws PatternSyntaxException {
-        // 只允许字母、数字和汉字
+
         String regEx = "[^0-9\u4E00-\u9FA5]";//正则表达式
         Pattern p = Pattern.compile(regEx);
         Matcher m = p.matcher(str);
@@ -259,8 +267,7 @@ public class RxTool {
         editText.setFilters(new InputFilter[]{new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-//                Log.d("setEdDecimal", "source:" + source + " start:" + start + " end:" + end + " dest:" + dest + " dstart:" + dstart + " dstart:" + dend);
-                if (source.equals(".") && dest.toString().length() == 0) {
+                if (".".contentEquals(source) && dest.toString().length() == 0) {
                     return "0.";
                 }
                 if (dest.toString().contains(".")) {
@@ -280,33 +287,66 @@ public class RxTool {
         }});
     }
 
-    public static void setEditNumberPrefix(final EditText edSerialNumber, final int number) {
-        edSerialNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+    /**
+     * @param editText       输入框控件
+     * @param number         位数
+     *                       1 -> 1
+     *                       2 -> 01
+     *                       3 -> 001
+     *                       4 -> 0001
+     * @param isStartForZero 是否从000开始
+     *                       true -> 从 000 开始
+     *                       false -> 从 001 开始
+     */
+    public static void setEditNumberAuto(final EditText editText, final int number, final boolean isStartForZero) {
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    String s = edSerialNumber.getText().toString();
-                    String temp = "";
-                    for (int i = s.length(); i < number; i++) {
-                        s = "0" + s;
-                    }
-
-                    for (int i = 0; i < number; i++) {
-                        temp += "0";
-                    }
-                    if (s.equals(temp)) {
-                        s = temp.substring(1) + "1";
-                    }
-                    edSerialNumber.setText(s);
+                    setEditNumber(editText, number, isStartForZero);
                 }
             }
         });
     }
 
+    /**
+     * @param editText       输入框控件
+     * @param number         位数
+     *                       1 -> 1
+     *                       2 -> 01
+     *                       3 -> 001
+     *                       4 -> 0001
+     * @param isStartForZero 是否从000开始
+     *                       true -> 从 000 开始
+     *                       false -> 从 001 开始
+     */
+    public static void setEditNumber(EditText editText, int number, boolean isStartForZero) {
+        StringBuilder s = new StringBuilder(editText.getText().toString());
+        StringBuilder temp = new StringBuilder();
+
+        int i;
+        for (i = s.length(); i < number; ++i) {
+            s.insert(0, "0");
+        }
+        if (!isStartForZero) {
+            for (i = 0; i < number; ++i) {
+                temp.append("0");
+            }
+
+            if (s.toString().equals(temp.toString())) {
+                s = new StringBuilder(temp.substring(1) + "1");
+            }
+        }
+        editText.setText(s.toString());
+    }
+
+    /**
+     * 获取
+     * @return
+     */
     public static Handler getBackgroundHandler() {
         HandlerThread thread = new HandlerThread("background");
         thread.start();
-        Handler mBackgroundHandler = new Handler(thread.getLooper());
-        return mBackgroundHandler;
+        return new Handler(thread.getLooper());
     }
 }

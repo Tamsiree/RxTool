@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.RxPhotoTool;
 import com.vondear.rxtools.RxSPTool;
@@ -129,22 +130,24 @@ public class ActivityRxPhoto extends ActivityBase {
                 break;
             case RxPhotoTool.GET_IMAGE_BY_CAMERA://选择照相机之后的处理
                 if (resultCode == RESULT_OK) {
-                   /* data.getExtras().get("data");*/
+                    /* data.getExtras().get("data");*/
 //                    RxPhotoTool.cropImage(ActivityUser.this, RxPhotoTool.imageUriFromCamera);// 裁剪图片
                     initUCrop(RxPhotoTool.imageUriFromCamera);
                 }
 
                 break;
             case RxPhotoTool.CROP_IMAGE://普通裁剪后的处理
+                RequestOptions options = new RequestOptions()
+                        .placeholder(R.drawable.circle_elves_ball)
+                        //异常占位图(当加载异常的时候出现的图片)
+                        .error(R.drawable.circle_elves_ball)
+                        //禁止Glide硬盘缓存缓存
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+
                 Glide.with(mContext).
                         load(RxPhotoTool.cropImageUri).
-                        diskCacheStrategy(DiskCacheStrategy.RESULT).
-                        bitmapTransform(new CropCircleTransformation(mContext)).
+                        apply(options).
                         thumbnail(0.5f).
-                        placeholder(R.drawable.circle_elves_ball).
-                        priority(Priority.LOW).
-                        error(R.drawable.circle_elves_ball).
-                        fallback(R.drawable.circle_elves_ball).
                         into(mIvAvatar);
 //                RequestUpdateAvatar(new File(RxPhotoTool.getRealFilePath(mContext, RxPhotoTool.cropImageUri)));
                 break;
@@ -171,13 +174,7 @@ public class ActivityRxPhoto extends ActivityBase {
     private File roadImageView(Uri uri, ImageView imageView) {
         Glide.with(mContext).
                 load(uri).
-                diskCacheStrategy(DiskCacheStrategy.RESULT).
-                bitmapTransform(new CropCircleTransformation(mContext)).
                 thumbnail(0.5f).
-                placeholder(R.drawable.circle_elves_ball).
-                priority(Priority.LOW).
-                error(R.drawable.circle_elves_ball).
-                fallback(R.drawable.circle_elves_ball).
                 into(imageView);
 
         return (new File(RxPhotoTool.getImageAbsolutePath(this, uri)));

@@ -264,7 +264,8 @@ public class RxNetTool {
 
         String result = null;
         try {
-            Process p = Runtime.getRuntime().exec("ping -c 3 -w 100 " + ip);// ping网址3次
+            // ping网址3次
+            Process p = Runtime.getRuntime().exec("ping -c 3 -w 100 " + ip);
             // 读取ping的内容，可以不加
             InputStream input = p.getInputStream();
             BufferedReader in = new BufferedReader(new InputStreamReader(input));
@@ -273,7 +274,7 @@ public class RxNetTool {
             while ((content = in.readLine()) != null) {
                 stringBuffer.append(content);
             }
-//            Log.d("------ping-----", "result content : " + stringBuffer.toString());
+            //Log.d("------ping-----", "result content : " + stringBuffer.toString());
             // ping的状态
             int status = p.waitFor();
             if (status == 0) {
@@ -287,7 +288,7 @@ public class RxNetTool {
         } catch (InterruptedException e) {
             result = "InterruptedException";
         } finally {
-//            Log.d("----result---", "result = " + result);
+            //Log.d("----result---", "result = " + result);
         }
         return false;
     }

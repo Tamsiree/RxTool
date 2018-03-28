@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.vondear.rxtools.RxActivityTool;
 import com.vondear.tools.R;
 import com.vondear.tools.model.ModelMainItem;
@@ -56,12 +54,7 @@ public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecycle
 
         Glide.with(context).
                 load(holder.mItem.getImage()).
-                diskCacheStrategy(DiskCacheStrategy.RESULT).
                 thumbnail(0.5f).
-                priority(Priority.HIGH).
-                placeholder(R.drawable.pikachu_sit).
-                error(R.drawable.pikachu_sit).
-                fallback(R.drawable.pikachu_sit).
                 into(holder.imageView);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {

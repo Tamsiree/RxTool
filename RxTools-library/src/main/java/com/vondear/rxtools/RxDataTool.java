@@ -26,7 +26,6 @@ import static com.vondear.rxtools.RxConstTool.KB;
 import static com.vondear.rxtools.RxConstTool.MB;
 
 /**
- *
  * @author vondear
  * @date 2016/1/24
  * 数据处理相关
@@ -49,10 +48,14 @@ import static com.vondear.rxtools.RxConstTool.MB;
 
 public class RxDataTool {
 
-    static final char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+
+    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
             'A', 'B', 'C', 'D', 'E', 'F'};
 
-    private static final DecimalFormat amountFormat = new DecimalFormat("###,###,###,##0.00");
+    /**
+     * 金额 格式化
+     */
+    private static final DecimalFormat AMOUNT_FORMAT = new DecimalFormat("###,###,###,##0.00");
 
     /**
      * 判断字符串是否为空 为空即true
@@ -61,7 +64,7 @@ public class RxDataTool {
      * @return
      */
     public static boolean isNullString(@Nullable String str) {
-        return str == null || str.length() == 0 || "".equals(str) || "null".equals(str);
+        return str == null || str.length() == 0 || "null".equals(str);
     }
 
     /**
@@ -373,7 +376,9 @@ public class RxDataTool {
      */
     public static String reverse(String s) {
         int len = s.length();
-        if (len <= 1) return s;
+        if (len <= 1) {
+            return s;
+        }
         int mid = len >> 1;
         char[] chars = s.toCharArray();
         char c;
@@ -438,7 +443,9 @@ public class RxDataTool {
      * @return 如果字符串长度是1返回的是对应的ascii码，否则返回-1
      */
     public static int oneCn2ASCII(String s) {
-        if (s.length() != 1) return -1;
+        if (s.length() != 1) {
+            return -1;
+        }
         int ascii = 0;
         try {
             byte[] bytes = s.getBytes("GB2312");
@@ -465,7 +472,9 @@ public class RxDataTool {
      */
     public static String oneCn2PY(String s) {
         int ascii = oneCn2ASCII(s);
-        if (ascii == -1) return null;
+        if (ascii == -1) {
+            return null;
+        }
         String ret = null;
         if (0 <= ascii && ascii <= 127) {
             ret = String.valueOf((char) ascii);
@@ -487,11 +496,15 @@ public class RxDataTool {
      * @return 拼音
      */
     public static String getPYFirstLetter(String s) {
-        if (isNullString(s)) return "";
+        if (isNullString(s)) {
+            return "";
+        }
         String first, py;
         first = s.substring(0, 1);
         py = oneCn2PY(first);
-        if (py == null) return null;
+        if (py == null) {
+            return null;
+        }
         return py.substring(0, 1);
     }
 
@@ -526,8 +539,8 @@ public class RxDataTool {
     public static String bytes2HexString(byte[] bytes) {
         char[] ret = new char[bytes.length << 1];
         for (int i = 0, j = 0; i < bytes.length; i++) {
-            ret[j++] = hexDigits[bytes[i] >>> 4 & 0x0f];
-            ret[j++] = hexDigits[bytes[i] & 0x0f];
+            ret[j++] = HEX_DIGITS[bytes[i] >>> 4 & 0x0f];
+            ret[j++] = HEX_DIGITS[bytes[i] & 0x0f];
         }
         return new String(ret);
     }
@@ -612,7 +625,9 @@ public class RxDataTool {
      * @return 以unit为单位的size
      */
     public static double byte2Size(long byteNum, RxConstTool.MemoryUnit unit) {
-        if (byteNum < 0) return -1;
+        if (byteNum < 0) {
+            return -1;
+        }
         switch (unit) {
             default:
             case BYTE:
@@ -639,7 +654,9 @@ public class RxDataTool {
      * @return 字节数
      */
     public static long size2Byte(long size, RxConstTool.MemoryUnit unit) {
-        if (size < 0) return -1;
+        if (size < 0) {
+            return -1;
+        }
         switch (unit) {
             default:
             case BYTE:
@@ -681,7 +698,9 @@ public class RxDataTool {
      * @return outputStream子类
      */
     public static ByteArrayOutputStream input2OutputStream(InputStream is) {
-        if (is == null) return null;
+        if (is == null) {
+            return null;
+        }
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             byte[] b = new byte[KB];
@@ -725,7 +744,9 @@ public class RxDataTool {
      * @return 字节数组
      */
     public static byte[] outputStream2Bytes(OutputStream out) {
-        if (out == null) return null;
+        if (out == null) {
+            return null;
+        }
         return ((ByteArrayOutputStream) out).toByteArray();
     }
 
@@ -757,7 +778,9 @@ public class RxDataTool {
      * @return 字符串
      */
     public static String inputStream2String(InputStream is, String charsetName) {
-        if (is == null || isNullString(charsetName)) return null;
+        if (is == null || isNullString(charsetName)) {
+            return null;
+        }
         try {
             return new String(inputStream2Bytes(is), charsetName);
         } catch (UnsupportedEncodingException e) {
@@ -774,7 +797,9 @@ public class RxDataTool {
      * @return 输入流
      */
     public static InputStream string2InputStream(String string, String charsetName) {
-        if (string == null || isNullString(charsetName)) return null;
+        if (string == null || isNullString(charsetName)) {
+            return null;
+        }
         try {
             return new ByteArrayInputStream(string.getBytes(charsetName));
         } catch (UnsupportedEncodingException e) {
@@ -791,7 +816,9 @@ public class RxDataTool {
      * @return 字符串
      */
     public static String outputStream2String(OutputStream out, String charsetName) {
-        if (out == null) return null;
+        if (out == null) {
+            return null;
+        }
         try {
             return new String(outputStream2Bytes(out), charsetName);
         } catch (UnsupportedEncodingException e) {
@@ -808,7 +835,9 @@ public class RxDataTool {
      * @return 输入流
      */
     public static OutputStream string2OutputStream(String string, String charsetName) {
-        if (string == null || isNullString(charsetName)) return null;
+        if (string == null || isNullString(charsetName)) {
+            return null;
+        }
         try {
             return bytes2OutputStream(string.getBytes(charsetName));
         } catch (UnsupportedEncodingException e) {
@@ -824,7 +853,7 @@ public class RxDataTool {
      * @return
      */
     public static String getAmountValue(double value) {
-        return amountFormat.format(value);
+        return AMOUNT_FORMAT.format(value);
     }
 
     /**
@@ -837,7 +866,7 @@ public class RxDataTool {
         if (isNullString(value)) {
             return "0";
         }
-        return amountFormat.format(Double.parseDouble(value));
+        return AMOUNT_FORMAT.format(Double.parseDouble(value));
     }
 
     /**
@@ -920,7 +949,9 @@ public class RxDataTool {
      * @return inputStream子类
      */
     public ByteArrayInputStream output2InputStream(OutputStream out) {
-        if (out == null) return null;
+        if (out == null) {
+            return null;
+        }
         return new ByteArrayInputStream(((ByteArrayOutputStream) out).toByteArray());
     }
 
@@ -973,48 +1004,74 @@ public class RxDataTool {
             -10328, -10322, -10315, -10309,
             -10307, -10296, -10281, -10274, -10270, -10262, -10260, -10256, -10254};
     private static String[] pyStr = new String[]{
+            /*A*/
             "a", "ai", "an", "ang", "ao", "ba", "bai", "ban", "bang", "bao",
-            "bei", "ben", "beng", "bi", "bian",
-            "biao", "bie", "bin", "bing", "bo", "bu", "ca", "cai", "can", "cang", "cao", "ce", "ceng", "cha", "chai",
-            "chan", "chang", "chao", "che",
-            "chen", "cheng", "chi", "chong", "chou", "chu", "chuai", "chuan", "chuang", "chui", "chun", "chuo", "ci",
-            "cong", "cou", "cu", "cuan",
-            "cui", "cun", "cuo", "da", "dai", "dan", "dang", "dao", "de", "deng", "di", "dian", "diao", "die",
-            "ding", "diu", "dong", "dou", "du",
-            "duan", "dui", "dun", "duo", "e", "en", "er", "fa", "fan", "fang", "fei", "fen", "feng", "fo", "fou",
-            "fu", "ga", "gai", "gan", "gang",
-            "gao", "ge", "gei", "gen", "geng", "gong", "gou", "gu", "gua", "guai", "guan", "guang", "gui", "gun",
-            "guo", "ha", "hai", "han", "hang",
-            "hao", "he", "hei", "hen", "heng", "hong", "hou", "hu", "hua", "huai", "huan", "huang", "hui", "hun",
-            "huo", "ji", "jia", "jian",
-            "jiang", "jiao", "jie", "jin", "jing", "jiong", "jiu", "ju", "juan", "jue", "jun", "ka", "kai", "kan",
-            "kang", "kao", "ke", "ken",
-            "keng", "kong", "kou", "ku", "kua", "kuai", "kuan", "kuang", "kui", "kun", "kuo", "la", "lai", "lan",
-            "lang", "lao", "le", "lei", "leng",
-            "li", "lia", "lian", "liang", "liao", "lie", "lin", "ling", "liu", "long", "lou", "lu", "lv", "luan",
-            "lue", "lun", "luo", "ma", "mai",
-            "man", "mang", "mao", "me", "mei", "men", "meng", "mi", "mian", "miao", "mie", "min", "ming", "miu",
-            "mo", "mou", "mu", "na", "nai",
-            "nan", "nang", "nao", "ne", "nei", "nen", "neng", "ni", "nian", "niang", "niao", "nie", "nin", "ning",
-            "niu", "nong", "nu", "nv", "nuan",
-            "nue", "nuo", "o", "ou", "pa", "pai", "pan", "pang", "pao", "pei", "pen", "peng", "pi", "pian", "piao",
-            "pie", "pin", "ping", "po", "pu",
+
+            /*B*/
+            "bei", "ben", "beng", "bi", "bian", "biao", "bie", "bin", "bing", "bo", "bu",
+
+            /*C*/
+            "ca", "cai", "can", "cang", "cao", "ce", "ceng", "cha", "chai", "chan", "chang", "chao", "che", "chen", "cheng", "chi", "chong", "chou", "chu", "chuai", "chuan", "chuang", "chui", "chun", "chuo", "ci", "cong", "cou", "cu", "cuan", "cui", "cun", "cuo",
+
+            /*D*/
+            "da", "dai", "dan", "dang", "dao", "de", "deng", "di", "dian", "diao", "die", "ding", "diu", "dong", "dou", "du", "duan", "dui", "dun", "duo",
+
+            /*E*/
+            "e", "en", "er",
+
+            /*F*/
+            "fa", "fan", "fang", "fei", "fen", "feng", "fo", "fou", "fu",
+
+            /*G*/
+            "ga", "gai", "gan", "gang", "gao", "ge", "gei", "gen", "geng", "gong", "gou", "gu", "gua", "guai", "guan", "guang", "gui", "gun", "guo",
+
+            /*H*/
+            "ha", "hai", "han", "hang", "hao", "he", "hei", "hen", "heng", "hong", "hou", "hu", "hua", "huai", "huan", "huang", "hui", "hun", "huo",
+
+            /*J*/
+            "ji", "jia", "jian", "jiang", "jiao", "jie", "jin", "jing", "jiong", "jiu", "ju", "juan", "jue", "jun",
+
+            /*K*/
+            "ka", "kai", "kan", "kang", "kao", "ke", "ken", "keng", "kong", "kou", "ku", "kua", "kuai", "kuan", "kuang", "kui", "kun", "kuo",
+
+            /*L*/
+            "la", "lai", "lan", "lang", "lao", "le", "lei", "leng", "li", "lia", "lian", "liang", "liao", "lie", "lin", "ling", "liu", "long", "lou", "lu", "lv", "luan", "lue", "lun", "luo",
+
+            /*M*/
+            "ma", "mai", "man", "mang", "mao", "me", "mei", "men", "meng", "mi", "mian", "miao", "mie", "min", "ming", "miu", "mo", "mou", "mu",
+
+            /*N*/
+            "na", "nai", "nan", "nang", "nao", "ne", "nei", "nen", "neng", "ni", "nian", "niang", "niao", "nie", "nin", "ning", "niu", "nong", "nu", "nv", "nuan", "nue", "nuo",
+
+            /*O*/
+            "o", "ou",
+
+            /*P*/
+            "pa", "pai", "pan", "pang", "pao", "pei", "pen", "peng", "pi", "pian", "piao", "pie", "pin", "ping", "po", "pu",
+
+            /*Q*/
             "qi", "qia", "qian", "qiang", "qiao", "qie", "qin", "qing", "qiong", "qiu", "qu", "quan", "que", "qun",
-            "ran", "rang", "rao", "re",
-            "ren", "reng", "ri", "rong", "rou", "ru", "ruan", "rui", "run", "ruo", "sa", "sai", "san", "sang", "sao",
-            "se", "sen", "seng", "sha",
-            "shai", "shan", "shang", "shao", "she", "shen", "sheng", "shi", "shou", "shu", "shua", "shuai", "shuan",
-            "shuang", "shui", "shun",
-            "shuo", "si", "song", "sou", "su", "suan", "sui", "sun", "suo", "ta", "tai", "tan", "tang", "tao", "te",
-            "teng", "ti", "tian", "tiao",
-            "tie", "ting", "tong", "tou", "tu", "tuan", "tui", "tun", "tuo", "wa", "wai", "wan", "wang", "wei",
-            "wen", "weng", "wo", "wu", "xi",
-            "xia", "xian", "xiang", "xiao", "xie", "xin", "xing", "xiong", "xiu", "xu", "xuan", "xue", "xun", "ya",
-            "yan", "yang", "yao", "ye", "yi",
-            "yin", "ying", "yo", "yong", "you", "yu", "yuan", "yue", "yun", "za", "zai", "zan", "zang", "zao", "ze",
-            "zei", "zen", "zeng", "zha",
-            "zhai", "zhan", "zhang", "zhao", "zhe", "zhen", "zheng", "zhi", "zhong", "zhou", "zhu", "zhua", "zhuai",
-            "zhuan", "zhuang", "zhui",
-            "zhun", "zhuo", "zi", "zong", "zou", "zu", "zuan", "zui", "zun", "zuo"};
+
+            /*R*/
+            "ran", "rang", "rao", "re", "ren", "reng", "ri", "rong", "rou", "ru", "ruan", "rui", "run", "ruo",
+
+            /*S*/
+            "sa", "sai", "san", "sang", "sao", "se", "sen", "seng", "sha", "shai", "shan", "shang", "shao", "she", "shen", "sheng", "shi", "shou", "shu", "shua", "shuai", "shuan", "shuang", "shui", "shun", "shuo", "si", "song", "sou", "su", "suan", "sui", "sun", "suo",
+
+            /*T*/
+            "ta", "tai", "tan", "tang", "tao", "te", "teng", "ti", "tian", "tiao", "tie", "ting", "tong", "tou", "tu", "tuan", "tui", "tun", "tuo",
+
+            /*W*/
+            "wa", "wai", "wan", "wang", "wei", "wen", "weng", "wo", "wu",
+
+            /*X*/
+            "xi", "xia", "xian", "xiang", "xiao", "xie", "xin", "xing", "xiong", "xiu", "xu", "xuan", "xue", "xun",
+
+            /*Y*/
+            "ya", "yan", "yang", "yao", "ye", "yi", "yin", "ying", "yo", "yong", "you", "yu", "yuan", "yue", "yun",
+
+            /*Z*/
+            "za", "zai", "zan", "zang", "zao", "ze", "zei", "zen", "zeng", "zha", "zhai", "zhan", "zhang", "zhao", "zhe", "zhen", "zheng", "zhi", "zhong", "zhou", "zhu", "zhua", "zhuai", "zhuan", "zhuang", "zhui", "zhun", "zhuo", "zi", "zong", "zou", "zu", "zuan", "zui", "zun", "zuo"
+    };
 
 }
