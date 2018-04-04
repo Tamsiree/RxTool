@@ -10,6 +10,8 @@ import com.vondear.rxtools.RxFileTool;
 import com.vondear.rxtools.RxTool;
 import com.vondear.rxtools.RxVibrateTool;
 import com.vondear.rxtools.interfaces.OnDelayListener;
+import com.vondear.rxtools.module.RxMagic.OnCompressListener;
+import com.vondear.rxtools.module.RxMagic.RxMagic;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.tools.interfaces.OnRxCamera;
 
@@ -18,8 +20,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import top.zibin.luban.Luban;
-import top.zibin.luban.OnCompressListener;
+
 
 /**
  *
@@ -86,7 +87,7 @@ public class RxCameraTool {
                     os.write(data);
                     os.close();
 
-                    Luban.with(mContext).
+                    RxMagic.with(mContext).
                             load(cachefile).
                             setCompressListener(new OnCompressListener() {
                                 @Override

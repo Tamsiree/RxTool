@@ -30,7 +30,7 @@ dependencies {
     //动画向下版本兼容 nineold包
     //noinspection GradleCompatible
     implementation 'com.android.support:design:26.0.0-alpha1'
-    implementation 'com.android.support:cardview-v7:26.0.0-alpha1'
+    implementation 'com.android.support:cardview-v7:28.0.0-alpha1'
     implementation 'com.android.support:appcompat-v7:26.0.0-alpha1'
     implementation 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     implementation 'com.android.support:support-annotations:28.0.0-alpha1'
@@ -46,7 +46,6 @@ dependencies {
     implementation 'cc.solart:turbo-recyclerview-helper:1.0.3-beta'
     implementation 'com.afollestad.material-dialogs:core:0.9.3.0'
     implementation 'com.github.google:cameraview:3eaeac09a7'
-    implementation 'top.zibin:Luban:1.1.3'
     implementation 'com.orhanobut:logger:2.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }
