@@ -26,6 +26,7 @@ public class RxDialogScaleView extends RxDialog {
     private String fileAssetName;
     private Bitmap fileBitmap;
     private int resId;
+    private int maxScale = 100;
 
     public RxDialogScaleView(Context context) {
         super(context);
@@ -111,9 +112,9 @@ public class RxDialogScaleView extends RxDialog {
 
     private void initView() {
         View dialogView = LayoutInflater.from(mContext).inflate(R.layout.dialog_scaleview, null);
-        mRxScaleImageView = (RxScaleImageView) dialogView.findViewById(R.id.rx_scale_view);
-        mRxScaleImageView.setMaxScale(20);
-        ImageView ivClose = (ImageView) dialogView.findViewById(R.id.iv_close);
+        mRxScaleImageView = dialogView.findViewById(R.id.rx_scale_view);
+        mRxScaleImageView.setMaxScale(maxScale);
+        ImageView ivClose =  dialogView.findViewById(R.id.iv_close);
         ivClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,6 +123,15 @@ public class RxDialogScaleView extends RxDialog {
         });
         setFullScreen();
         setContentView(dialogView);
+    }
+
+    public int getMaxScale() {
+        return maxScale;
+    }
+
+    public void setMaxScale(int maxScale) {
+        this.maxScale = maxScale;
+        initView();
     }
 
     public String getFilePath() {
