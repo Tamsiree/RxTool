@@ -85,10 +85,11 @@ public class RxDialogScaleView extends RxDialog {
     }
 
     public void setImage(String filePath,boolean isAssets) {
-        this.filePath = filePath;
         if (isAssets) {
+            this.fileAssetName = fileAssetName;
             mRxScaleImageView.setImage(ImageSource.asset(filePath));
         }else {
+            this.filePath = filePath;
             mRxScaleImageView.setImage(ImageSource.uri(filePath));
         }
     }
@@ -122,5 +123,26 @@ public class RxDialogScaleView extends RxDialog {
         setFullScreen();
         setContentView(dialogView);
     }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public Uri getFileUri() {
+        return fileUri;
+    }
+
+    public String getFileAssetName() {
+        return fileAssetName;
+    }
+
+    public Bitmap getFileBitmap() {
+        return fileBitmap;
+    }
+
+    public int getResId() {
+        return resId;
+    }
+
 
 }
