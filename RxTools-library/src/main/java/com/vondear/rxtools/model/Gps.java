@@ -10,6 +10,9 @@ public class Gps {
     private double mLatitude;
     private double mLongitude;
 
+    public Gps() {
+    }
+
     public Gps(double longitude, double mLatitude) {
         setLatitude(mLatitude);
         setLongitude(longitude);

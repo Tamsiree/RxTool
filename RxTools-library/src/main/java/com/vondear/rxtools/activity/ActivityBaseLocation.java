@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 
 import com.vondear.rxtools.RxLocationTool;
 import com.vondear.rxtools.RxVibrateTool;
+import com.vondear.rxtools.model.Gps;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogGPSCheck;
 import com.vondear.rxtools.view.dialog.RxDialogTool;
@@ -24,6 +25,9 @@ public abstract class ActivityBaseLocation extends ActivityBase {
     public double mLongitude = 0;
     //纬度
     public double mLatitude = 0;
+
+    public Gps mGps;
+
     public LocationManager mLocationManager;
     private LocationListener mLocationListener;
 
@@ -62,6 +66,7 @@ public abstract class ActivityBaseLocation extends ActivityBase {
             public void onLocationChanged(Location location) {
                 mLongitude = location.getLongitude();
                 mLatitude = location.getLatitude();
+                mGps = new Gps(mLongitude, mLatitude);
                 setGpsInfo(location);
             }
 
