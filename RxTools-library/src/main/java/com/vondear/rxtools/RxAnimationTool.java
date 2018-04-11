@@ -18,7 +18,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
 
-import com.vondear.rxtools.interfaces.OnUpdateListener;
+import com.vondear.rxtools.interfaces.OnDoIntListener;
 
 import static com.vondear.rxtools.RxImageTool.invisToVis;
 import static com.vondear.rxtools.RxImageTool.visToInvis;
@@ -37,13 +37,13 @@ public class RxAnimationTool {
      * @param afterColor  变化之后的颜色
      * @param listener    变化事件
      */
-    public static void animationColorGradient(int beforeColor, int afterColor, final OnUpdateListener listener) {
+    public static void animationColorGradient(int beforeColor, int afterColor, final OnDoIntListener listener) {
         ValueAnimator valueAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), beforeColor, afterColor).setDuration(3000);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
 //                textView.setTextColor((Integer) animation.getAnimatedValue());
-                listener.onUpdate((Integer) animation.getAnimatedValue());
+                listener.doSomething((Integer) animation.getAnimatedValue());
             }
         });
         valueAnimator.start();

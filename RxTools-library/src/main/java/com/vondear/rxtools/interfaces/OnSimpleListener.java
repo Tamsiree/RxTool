@@ -6,6 +6,6 @@ package com.vondear.rxtools.interfaces;
  * @date 2017/9/22
  */
 
-public interface OnDelayListener {
+public interface OnSimpleListener {
     void doSomething();
 }

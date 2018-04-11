@@ -5,7 +5,7 @@ package com.vondear.rxtools.interfaces;
  * @date 2017/4/19
  */
 
-public interface OnRequestListener {
+public interface OnSuccessAndErrorListener {
     void onSuccess(String s);
 
     void onError(String s);

@@ -16,7 +16,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.vondear.rxtools.interfaces.OnDelayListener;
+import com.vondear.rxtools.interfaces.OnSimpleListener;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -73,12 +73,12 @@ public class RxTool {
     //==============================================================================================延时任务封装 end
 
     //----------------------------------------------------------------------------------------------延时任务封装 start
-    public static void delayToDo(long delayTime, final OnDelayListener onDelayListener) {
+    public static void delayToDo(long delayTime, final OnSimpleListener onSimpleListener) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 //execute the task
-                onDelayListener.doSomething();
+                onSimpleListener.doSomething();
             }
         }, delayTime);
     }

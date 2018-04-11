@@ -5,6 +5,8 @@ package com.vondear.rxtools.interfaces;
  * @date 2017/3/10
  */
 
-public interface OnUpdateListener {
-    void onUpdate(int intValue);
+public interface OnDoIntListener {
+
+    void doSomething(int intValue);
+
 }

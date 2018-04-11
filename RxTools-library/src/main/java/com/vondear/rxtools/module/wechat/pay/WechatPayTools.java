@@ -6,7 +6,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
-import com.vondear.rxtools.interfaces.OnRequestListener;
+import com.vondear.rxtools.interfaces.OnSuccessAndErrorListener;
 import com.vondear.rxtools.view.RxToast;
 
 import org.w3c.dom.Document;
@@ -46,7 +46,7 @@ public class WechatPayTools {
      *
      * @return
      */
-    public static String wechatPayUnifyOrder(final Context mContext, final String appid, final String mch_id, final String wx_private_key, WechatModel wechatModel, final OnRequestListener OnRequestListener) {
+    public static String wechatPayUnifyOrder(final Context mContext, final String appid, final String mch_id, final String wx_private_key, WechatModel wechatModel, final OnSuccessAndErrorListener OnSuccessAndErrorListener) {
         String nonce_str = getRandomStringByLength(8);//随机码
         String body = wechatModel.getDetail();//商品描述
         String out_trade_no = wechatModel.getOut_trade_no();//商品订单号
@@ -99,7 +99,7 @@ public class WechatPayTools {
                         params.put("prepayid", mapXml.get("prepay_id"));
                         params.put("timestamp", time);
 
-                        wechatPayApp(mContext, appid, mch_id, wx_private_key, params, OnRequestListener);
+                        wechatPayApp(mContext, appid, mch_id, wx_private_key, params, OnSuccessAndErrorListener);
                     }
                 });
 
@@ -110,7 +110,7 @@ public class WechatPayTools {
         }
     }
 
-    public static void wechatPayApp(Context mContext, String appid, String mch_id, String wx_private_key, SortedMap<String, String> params, OnRequestListener onRxHttp) {
+    public static void wechatPayApp(Context mContext, String appid, String mch_id, String wx_private_key, SortedMap<String, String> params, OnSuccessAndErrorListener onRxHttp) {
         String sign = getSign(params, wx_private_key);
 
         WechatPayModel wechatPayModel = new WechatPayModel(appid, mch_id, params.get("prepayid"), "Sign=WechatPay", params.get("noncestr"), params.get("timestamp"), sign);
@@ -118,7 +118,7 @@ public class WechatPayTools {
         WechatPayTools.doWXPay(mContext, appid, pay_param, onRxHttp);
     }
 
-    public static void wechatPayApp(Context mContext, String app_id, String partner_id, String wx_private_key, String prepay_id, OnRequestListener onRxHttp) {
+    public static void wechatPayApp(Context mContext, String app_id, String partner_id, String wx_private_key, String prepay_id, OnSuccessAndErrorListener onRxHttp) {
         SortedMap<String, String> params = new TreeMap<String, String>();
         params.put("appid", app_id);
         params.put("noncestr", "5K8264ILTKCH16CQ2502SI8ZNMTM67VS");
@@ -234,7 +234,7 @@ public class WechatPayTools {
     }
 
 
-    public static void doWXPay(Context mContext, String wx_appid, String pay_param, final OnRequestListener onRxHttpString) {
+    public static void doWXPay(Context mContext, String wx_appid, String pay_param, final OnSuccessAndErrorListener onRxHttpString) {
         WechatPay.init(mContext, wx_appid);//要在支付前调用
         WechatPay.getInstance().doPay(pay_param, new WechatPay.WXPayResultCallBack() {
             @Override

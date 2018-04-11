@@ -9,7 +9,7 @@ import com.vondear.rxtools.RxExifTool;
 import com.vondear.rxtools.RxFileTool;
 import com.vondear.rxtools.RxTool;
 import com.vondear.rxtools.RxVibrateTool;
-import com.vondear.rxtools.interfaces.OnDelayListener;
+import com.vondear.rxtools.interfaces.OnSimpleListener;
 import com.vondear.rxtools.module.RxMagic.OnCompressListener;
 import com.vondear.rxtools.module.RxMagic.RxMagic;
 import com.vondear.rxtools.view.RxToast;
@@ -46,7 +46,7 @@ public class RxCameraTool {
                     mCameraView.start();
                     RxVibrateTool.vibrateOnce(mContext, 150);
                     RxToast.normal("正在拍照..");
-                    RxTool.delayToDo(500, new OnDelayListener() {
+                    RxTool.delayToDo(500, new OnSimpleListener() {
                         @Override
                         public void doSomething() {
                             try {

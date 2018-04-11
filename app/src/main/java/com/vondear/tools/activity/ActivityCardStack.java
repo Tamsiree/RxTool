@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.vondear.rxtools.RxTool;
-import com.vondear.rxtools.interfaces.OnDelayListener;
+import com.vondear.rxtools.interfaces.OnSimpleListener;
 import com.vondear.rxtools.view.cardstack.RxCardStackView;
 import com.vondear.rxtools.view.cardstack.tools.RxAdapterAllMoveDownAnimator;
 import com.vondear.rxtools.view.cardstack.tools.RxAdapterUpDownAnimator;
@@ -70,7 +70,7 @@ public class ActivityCardStack extends AppCompatActivity implements RxCardStackV
         mTestStackAdapter = new AdapterStackTest(this);
         mStackView.setAdapter(mTestStackAdapter);
 
-        RxTool.delayToDo(200, new OnDelayListener() {
+        RxTool.delayToDo(200, new OnSimpleListener() {
             @Override
             public void doSomething() {
                 mTestStackAdapter.updateData(Arrays.asList(TEST_DATAS));
