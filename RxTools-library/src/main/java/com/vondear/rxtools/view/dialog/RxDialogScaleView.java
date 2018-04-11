@@ -27,16 +27,6 @@ public class RxDialogScaleView extends RxDialog {
     private Bitmap fileBitmap;
     private int resId;
 
-    public RxDialogScaleView(Context context, int themeResId) {
-        super(context, themeResId);
-        initView();
-    }
-
-    public RxDialogScaleView(Context context, boolean cancelable, OnCancelListener cancelListener) {
-        super(context, cancelable, cancelListener);
-        initView();
-    }
-
     public RxDialogScaleView(Context context) {
         super(context);
         initView();
@@ -47,6 +37,44 @@ public class RxDialogScaleView extends RxDialog {
         initView();
     }
 
+
+    public RxDialogScaleView(Context context,String filePath,boolean isAssets) {
+        super(context);
+        initView();
+        setImage(filePath,isAssets);
+    }
+
+    public RxDialogScaleView(Context context,Uri uri) {
+        super(context);
+        initView();
+        setImage(uri);
+    }
+
+    public RxDialogScaleView(Context context,int resId,boolean isResId) {
+        super(context);
+        initView();
+        if (isResId) {
+            setImage(resId);
+        }
+    }
+
+    public RxDialogScaleView(Context context,Bitmap bitmap) {
+        super(context);
+        initView();
+        setImage(bitmap);
+    }
+
+    public RxDialogScaleView(Context context, int themeResId) {
+        super(context, themeResId);
+        initView();
+    }
+
+    public RxDialogScaleView(Context context, boolean cancelable, OnCancelListener cancelListener) {
+        super(context, cancelable, cancelListener);
+        initView();
+    }
+
+
     public RxDialogScaleView(Context context, float alpha, int gravity) {
         super(context, alpha, gravity);
         initView();
@@ -56,27 +84,26 @@ public class RxDialogScaleView extends RxDialog {
         return mRxScaleImageView;
     }
 
-    public void setImagePath(String filePath) {
+    public void setImage(String filePath,boolean isAssets) {
         this.filePath = filePath;
-        mRxScaleImageView.setImage(ImageSource.uri(filePath));
+        if (isAssets) {
+            mRxScaleImageView.setImage(ImageSource.asset(filePath));
+        }else {
+            mRxScaleImageView.setImage(ImageSource.uri(filePath));
+        }
     }
 
-    public void setImageUri(Uri uri) {
+    public void setImage(Uri uri) {
         this.fileUri = uri;
         mRxScaleImageView.setImage(ImageSource.uri(uri));
     }
 
-    public void setImageAssets(String assetName) {
-        this.fileAssetName = assetName;
-        mRxScaleImageView.setImage(ImageSource.asset(assetName));
-    }
-
-    public void setImageRes(int resId) {
+    public void setImage(int resId) {
         this.resId = resId;
         mRxScaleImageView.setImage(ImageSource.resource(resId));
     }
 
-    public void setImageBitmap(Bitmap bitmap) {
+    public void setImage(Bitmap bitmap) {
         this.fileBitmap = bitmap;
         mRxScaleImageView.setImage(ImageSource.bitmap(fileBitmap));
     }
