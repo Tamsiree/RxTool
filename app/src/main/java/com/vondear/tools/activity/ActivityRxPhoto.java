@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.vondear.rxtools.RxBarTool;
@@ -37,7 +36,6 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 import static com.vondear.rxtools.view.dialog.RxDialogChooseImage.LayoutType.TITLE;
 
@@ -106,7 +104,7 @@ public class ActivityRxPhoto extends ActivityBase {
             public boolean onLongClick(View view) {
 //                RxImageTool.showBigImageView(mContext, resultUri);
                 RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(mContext);
-                rxDialogScaleView.setImageUri(resultUri);
+                rxDialogScaleView.setImage(resultUri);
                 rxDialogScaleView.show();
                 return false;
             }

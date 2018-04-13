@@ -49,11 +49,7 @@ public class ActivityRxExifTool extends ActivityBaseLocation {
 
     @Override
     public void setGpsInfo(Location location) {
-        mTvGps.setText("经度: " + RxLocationTool.gpsToDegree(location.getLongitude()) +
-                "  纬度: " + RxLocationTool.gpsToDegree(location.getLatitude()) +
-                "\n精度: " + location.getAccuracy() +
-                //"  海拔: " + altitudeDf.format(location.getAltitude()) +
-                "  方位: " + location.getBearing());
+        mTvGps.setText(String.format("经度: %s  纬度: %s\n精度: %s  方位: %s", RxLocationTool.gpsToDegree(location.getLongitude()), RxLocationTool.gpsToDegree(location.getLatitude()), location.getAccuracy(), location.getBearing()));
     }
 
     @Override
@@ -107,14 +103,14 @@ public class ActivityRxExifTool extends ActivityBaseLocation {
 
             @Override
             public void onSuccessCompress(File file) {
-                mTvState.setText(mTvState.getText() + "图片压缩成功\n");
+                mTvState.setText(String.format("%s图片压缩成功\n", mTvState.getText()));
                 photo = file;
                 mIvPic.setImageURI(RxFileTool.getImageContentUri(mContext, photo));
             }
 
             @Override
             public void onSuccessExif(File filePhoto) {
-                mTvState.setText(mTvState.getText() + "地理位置信息写入图片成功\n");
+                mTvState.setText(String.format("%s地理位置信息写入图片成功\n", mTvState.getText()));
                 photo = filePhoto;
                 mIvPic.setImageURI(RxFileTool.getImageContentUri(mContext, photo));
             }
@@ -154,9 +150,11 @@ public class ActivityRxExifTool extends ActivityBaseLocation {
                     RxToast.normal("请先拍照");
                 } else {
                     RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(mContext);
-                    rxDialogScaleView.setImagePath(photo.getAbsolutePath());
+                    rxDialogScaleView.setImage(photo.getAbsolutePath(), false);
                     rxDialogScaleView.show();
                 }
+                break;
+            default:
                 break;
         }
     }
