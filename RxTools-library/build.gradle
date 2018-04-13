@@ -57,7 +57,7 @@ dependencies {
     //压缩与加密
     compileOnly files('libs/zip4j_1.3.2.jar')
     //Zxing核心包
-    compileOnly files('libs/zxing_core_3.0.1.jar')
+    compile 'com.google.zxing:core:3.3.0'
 
 
 }
