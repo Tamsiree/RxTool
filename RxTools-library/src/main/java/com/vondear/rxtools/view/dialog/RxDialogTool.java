@@ -84,10 +84,10 @@ public class RxDialogTool {
      * 耗时操作加载框
      */
     public static void loading(Context context) {
-        if (mDialogLoading != null) {
-            mDialogLoading.cancel();
+        if (mDialogLoad != null) {
+            mDialogLoad.cancel();
         }
-        mDialogLoading = new RxDialogLoading(context);
+        mDialogLoad = new RxDialogLoading(context);
         mDialogLoad.setCanceledOnTouchOutside(false);
         mDialogLoad.setCancelable(false);
         mDialogLoad.setLoadingColor(ContextCompat.getColor(context, R.color.lightseagreen));
@@ -103,10 +103,10 @@ public class RxDialogTool {
      * @param hint 提示语
      */
     public static void loading(Context context, String hint) {
-        if (mDialogLoading != null) {
-            mDialogLoading.cancel();
+        if (mDialogLoad != null) {
+            mDialogLoad.cancel();
         }
-        mDialogLoading = new RxDialogLoading(context);
+        mDialogLoad = new RxDialogLoading(context);
         mDialogLoad.setCanceledOnTouchOutside(false);
         mDialogLoad.setCancelable(false);
         mDialogLoad.setLoadingColor(ContextCompat.getColor(context, R.color.lightseagreen));
