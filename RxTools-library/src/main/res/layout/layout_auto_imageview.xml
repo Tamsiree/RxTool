@@ -11,8 +11,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="-100dp"
         android:layout_marginRight="-300dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ova"/>
+        android:scaleType="centerCrop"/>
 
 
 </FrameLayout>
