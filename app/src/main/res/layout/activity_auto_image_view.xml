@@ -13,6 +13,4 @@
         android:layout_height="match_parent"
         app:ImageSrc="@drawable/ova"/>
 
-
-
 </RelativeLayout>
