@@ -36,6 +36,7 @@ public class RxBeepTool {
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
                     mediaPlayer.seekTo(0);
                 }

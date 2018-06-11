@@ -186,12 +186,14 @@ public class RxPhotoTool {
 
     //此方法 只能用于4.4以下的版本
     public static String getRealFilePath(final Context context, final Uri uri) {
-        if (null == uri) return null;
+        if (null == uri) {
+            return null;
+        }
         final String scheme = uri.getScheme();
         String data = null;
-        if (scheme == null)
+        if (scheme == null) {
             data = uri.getPath();
-        else if (ContentResolver.SCHEME_FILE.equals(scheme)) {
+        } else if (ContentResolver.SCHEME_FILE.equals(scheme)) {
             data = uri.getPath();
         } else if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
             String[] projection = {MediaStore.Images.ImageColumns.DATA};
@@ -222,8 +224,9 @@ public class RxPhotoTool {
      */
     @TargetApi(19)
     public static String getImageAbsolutePath(Context context, Uri imageUri) {
-        if (context == null || imageUri == null)
+        if (context == null || imageUri == null) {
             return null;
+        }
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(context, imageUri)) {
             if (isExternalStorageDocument(imageUri)) {
                 String docId = DocumentsContract.getDocumentId(imageUri);
@@ -255,8 +258,9 @@ public class RxPhotoTool {
         } // MediaStore (and general)
         else if ("content".equalsIgnoreCase(imageUri.getScheme())) {
             // Return the remote address
-            if (isGooglePhotosUri(imageUri))
+            if (isGooglePhotosUri(imageUri)) {
                 return imageUri.getLastPathSegment();
+            }
             return getDataColumn(context, imageUri, null, null);
         }
         // File

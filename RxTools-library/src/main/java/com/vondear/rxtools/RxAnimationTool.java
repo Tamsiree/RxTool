@@ -20,9 +20,6 @@ import android.view.animation.ScaleAnimation;
 
 import com.vondear.rxtools.interfaces.OnDoIntListener;
 
-import static com.vondear.rxtools.RxImageTool.invisToVis;
-import static com.vondear.rxtools.RxImageTool.visToInvis;
-
 /**
  * @author Vondear
  * @date 2017/3/15
@@ -53,19 +50,21 @@ public class RxAnimationTool {
      * 卡片翻转动画
      *
      * @param beforeView
-     * @param AfterView
+     * @param afterView
      */
-    public static void cardFilpAnimation(final View beforeView, final View AfterView) {
+    public static void cardFilpAnimation(final View beforeView, final View afterView) {
         Interpolator accelerator = new AccelerateInterpolator();
         Interpolator decelerator = new DecelerateInterpolator();
+        ObjectAnimator invisToVis = null;
+        ObjectAnimator visToInvis = null;
         if (beforeView.getVisibility() == View.GONE) {
             // 局部layout可达到字体翻转 背景不翻转
             invisToVis = ObjectAnimator.ofFloat(beforeView,
                     "rotationY", -90f, 0f);
-            visToInvis = ObjectAnimator.ofFloat(AfterView,
+            visToInvis = ObjectAnimator.ofFloat(afterView,
                     "rotationY", 0f, 90f);
-        } else if (AfterView.getVisibility() == View.GONE) {
-            invisToVis = ObjectAnimator.ofFloat(AfterView,
+        } else if (afterView.getVisibility() == View.GONE) {
+            invisToVis = ObjectAnimator.ofFloat(afterView,
                     "rotationY", -90f, 0f);
             visToInvis = ObjectAnimator.ofFloat(beforeView,
                     "rotationY", 0f, 90f);
@@ -75,17 +74,19 @@ public class RxAnimationTool {
         visToInvis.setInterpolator(accelerator);// 在动画开始的地方速率改变比较慢，然后开始加速
         invisToVis.setDuration(250);
         invisToVis.setInterpolator(decelerator);
+        final ObjectAnimator finalInvisToVis = invisToVis;
+        final ObjectAnimator finalVisToInvis = visToInvis;
         visToInvis.addListener(new Animator.AnimatorListener() {
 
             @Override
             public void onAnimationEnd(Animator arg0) {
                 if (beforeView.getVisibility() == View.GONE) {
-                    AfterView.setVisibility(View.GONE);
-                    invisToVis.start();
+                    afterView.setVisibility(View.GONE);
+                    finalInvisToVis.start();
                     beforeView.setVisibility(View.VISIBLE);
                 } else {
-                    AfterView.setVisibility(View.GONE);
-                    visToInvis.start();
+                    afterView.setVisibility(View.GONE);
+                    finalVisToInvis.start();
                     beforeView.setVisibility(View.VISIBLE);
                 }
             }

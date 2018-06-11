@@ -20,11 +20,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vondear.rxtools.R;
-
-import static com.vondear.rxtools.RxTool.getContext;
+import com.vondear.rxtools.RxTool;
 
 /**
  * @author vondear
+ * @date 2018/06/11 14:20:10
  * 在系统的Toast基础上封装
  */
 
@@ -58,74 +58,74 @@ public class RxToast {
     private static long mExitTime;
 
     public static void normal(@NonNull String message) {
-        normal(getContext(), message, Toast.LENGTH_SHORT, null, false).show();
+        normal(RxTool.getContext(), message, Toast.LENGTH_SHORT, null, false).show();
     }
 
     public static void normal(@NonNull String message, Drawable icon) {
-        normal(getContext(), message, Toast.LENGTH_SHORT, icon, true).show();
+        normal(RxTool.getContext(), message, Toast.LENGTH_SHORT, icon, true).show();
     }
 
     public static void normal(@NonNull String message, int duration) {
-        normal(getContext(), message, duration, null, false).show();
+        normal(RxTool.getContext(), message, duration, null, false).show();
     }
 
     public static void normal(@NonNull String message, int duration, Drawable icon) {
-        normal(getContext(), message, duration, icon, true).show();
+        normal(RxTool.getContext(), message, duration, icon, true).show();
     }
 
     public static Toast normal(@NonNull String message, int duration, Drawable icon, boolean withIcon) {
-        return custom(getContext(), message, icon, DEFAULT_TEXT_COLOR, duration, withIcon);
+        return custom(RxTool.getContext(), message, icon, DEFAULT_TEXT_COLOR, duration, withIcon);
     }
 
     public static void warning(@NonNull String message) {
-        warning(getContext(), message, Toast.LENGTH_SHORT, true).show();
+        warning(RxTool.getContext(), message, Toast.LENGTH_SHORT, true).show();
     }
 
     public static void warning(@NonNull String message, int duration) {
-        warning(getContext(), message, duration, true).show();
+        warning(RxTool.getContext(), message, duration, true).show();
     }
 
     public static Toast warning(@NonNull String message, int duration, boolean withIcon) {
-        return custom(getContext(), message, getDrawable(getContext(), R.drawable.ic_error_outline_white_48dp), DEFAULT_TEXT_COLOR, WARNING_COLOR, duration, withIcon, true);
+        return custom(RxTool.getContext(), message, getDrawable(RxTool.getContext(), R.drawable.ic_error_outline_white_48dp), DEFAULT_TEXT_COLOR, WARNING_COLOR, duration, withIcon, true);
     }
 
     public static void info(@NonNull String message) {
-        info(getContext(), message, Toast.LENGTH_SHORT, true).show();
+        info(RxTool.getContext(), message, Toast.LENGTH_SHORT, true).show();
     }
 
     public static void info(@NonNull String message, int duration) {
-        info(getContext(), message, duration, true).show();
+        info(RxTool.getContext(), message, duration, true).show();
     }
 
     public static Toast info(@NonNull String message, int duration, boolean withIcon) {
-        return custom(getContext(), message, getDrawable(getContext(), R.drawable.ic_info_outline_white_48dp), DEFAULT_TEXT_COLOR, INFO_COLOR, duration, withIcon, true);
+        return custom(RxTool.getContext(), message, getDrawable(RxTool.getContext(), R.drawable.ic_info_outline_white_48dp), DEFAULT_TEXT_COLOR, INFO_COLOR, duration, withIcon, true);
     }
 
     public static void success(@NonNull String message) {
-        success(getContext(), message, Toast.LENGTH_SHORT, true).show();
+        success(RxTool.getContext(), message, Toast.LENGTH_SHORT, true).show();
     }
 
     public static void success(@NonNull String message, int duration) {
-        success(getContext(), message, duration, true).show();
+        success(RxTool.getContext(), message, duration, true).show();
     }
 
     public static Toast success(@NonNull String message, int duration, boolean withIcon) {
-        return custom(getContext(), message, getDrawable(getContext(), R.drawable.ic_check_white_48dp), DEFAULT_TEXT_COLOR, SUCCESS_COLOR, duration, withIcon, true);
+        return custom(RxTool.getContext(), message, getDrawable(RxTool.getContext(), R.drawable.ic_check_white_48dp), DEFAULT_TEXT_COLOR, SUCCESS_COLOR, duration, withIcon, true);
     }
 
     public static void error(@NonNull String message) {
-        error(getContext(), message, Toast.LENGTH_SHORT, true).show();
+        error(RxTool.getContext(), message, Toast.LENGTH_SHORT, true).show();
     }
     //===========================================使用ApplicationContext 方法=========================
 
     //*******************************************常规方法********************************************
 
     public static void error(@NonNull String message, int duration) {
-        error(getContext(), message, duration, true).show();
+        error(RxTool.getContext(), message, duration, true).show();
     }
 
     public static Toast error(@NonNull String message, int duration, boolean withIcon) {
-        return custom(getContext(), message, getDrawable(getContext(), R.drawable.ic_clear_white_48dp), DEFAULT_TEXT_COLOR, ERROR_COLOR, duration, withIcon, true);
+        return custom(RxTool.getContext(), message, getDrawable(RxTool.getContext(), R.drawable.ic_clear_white_48dp), DEFAULT_TEXT_COLOR, ERROR_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
@@ -233,8 +233,8 @@ public class RxToast {
             currentToast = new Toast(context);
         }
         final View toastLayout = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.toast_layout, null);
-        final ImageView toastIcon = (ImageView) toastLayout.findViewById(R.id.toast_icon);
-        final TextView toastTextView = (TextView) toastLayout.findViewById(R.id.toast_text);
+        final ImageView toastIcon =  toastLayout.findViewById(R.id.toast_icon);
+        final TextView toastTextView =  toastLayout.findViewById(R.id.toast_text);
         Drawable drawableFrame;
 
         if (shouldTint) {
@@ -245,11 +245,13 @@ public class RxToast {
         setBackground(toastLayout, drawableFrame);
 
         if (withIcon) {
-            if (icon == null)
+            if (icon == null) {
                 throw new IllegalArgumentException("Avoid passing 'icon' as null if 'withIcon' is set to true");
+            }
             setBackground(toastIcon, icon);
-        } else
+        } else {
             toastIcon.setVisibility(View.GONE);
+        }
 
         toastTextView.setTextColor(textColor);
         toastTextView.setText(message);
@@ -271,17 +273,19 @@ public class RxToast {
     //******************************************系统 Toast 替代方法***************************************
 
     public static final void setBackground(@NonNull View view, Drawable drawable) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             view.setBackground(drawable);
-        else
+        } else {
             view.setBackgroundDrawable(drawable);
+        }
     }
 
     public static final Drawable getDrawable(@NonNull Context context, @DrawableRes int id) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return context.getDrawable(id);
-        else
+        } else {
             return context.getResources().getDrawable(id);
+        }
     }
 
     /**
@@ -303,28 +307,28 @@ public class RxToast {
      * 封装了Toast的方法 :需要等待
      */
     public static void showToastShort(String str) {
-        Toast.makeText(getContext(), str, Toast.LENGTH_SHORT).show();
+        Toast.makeText(RxTool.getContext(), str, Toast.LENGTH_SHORT).show();
     }
 
     /**
      * 封装了Toast的方法 :需要等待
      */
     public static void showToastShort(int resId) {
-        Toast.makeText(getContext(), getContext().getString(resId), Toast.LENGTH_SHORT).show();
+        Toast.makeText(RxTool.getContext(), RxTool.getContext().getString(resId), Toast.LENGTH_SHORT).show();
     }
 
     /**
      * 封装了Toast的方法 :需要等待
      */
     public static void showToastLong(String str) {
-        Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
+        Toast.makeText(RxTool.getContext(), str, Toast.LENGTH_LONG).show();
     }
 
     /**
      * 封装了Toast的方法 :需要等待
      */
     public static void showToastLong(int resId) {
-        Toast.makeText(getContext(), getContext().getString(resId), Toast.LENGTH_LONG).show();
+        Toast.makeText(RxTool.getContext(), RxTool.getContext().getString(resId), Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -334,7 +338,7 @@ public class RxToast {
      */
     public static void showToast(String msg) {
         if (mToast == null) {
-            mToast = Toast.makeText(getContext(), msg, Toast.LENGTH_LONG);
+            mToast = Toast.makeText(RxTool.getContext(), msg, Toast.LENGTH_LONG);
         } else {
             mToast.setText(msg);
         }
@@ -348,9 +352,9 @@ public class RxToast {
      */
     public static void showToast(int resId) {
         if (mToast == null) {
-            mToast = Toast.makeText(getContext(), getContext().getString(resId), Toast.LENGTH_LONG);
+            mToast = Toast.makeText(RxTool.getContext(), RxTool.getContext().getString(resId), Toast.LENGTH_LONG);
         } else {
-            mToast.setText(getContext().getString(resId));
+            mToast.setText(RxTool.getContext().getString(resId));
         }
         mToast.show();
     }

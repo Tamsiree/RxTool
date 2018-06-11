@@ -11,7 +11,7 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.2.3"
-
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -29,35 +29,26 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //design包
-    compileOnly 'com.android.support:design:26.0.0-alpha1'
+    compileOnly 'com.android.support:design:27.1.1'
 
     //appcompat包
-    compileOnly 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compileOnly 'com.android.support:appcompat-v7:27.1.1'
 
     //cardView包
-    compileOnly 'com.android.support:cardview-v7:28.0.0-alpha1'
+    compileOnly 'com.android.support:cardview-v7:27.1.1'
     //recyclerview包
-    compileOnly 'com.android.support:recyclerview-v7:26.0.0-alpha1'
-    compileOnly 'com.android.support:support-annotations:28.0.0-alpha1'
-    compileOnly 'com.android.support.constraint:constraint-layout:1.0.2'
+    compileOnly 'com.android.support:recyclerview-v7:27.1.1'
+    compileOnly 'com.android.support:support-annotations:27.1.1'
+    compileOnly 'com.android.support.constraint:constraint-layout:1.1.0'
     //流式布局
     compileOnly 'com.google.android:flexbox:0.3.2'
     //沉浸式
     compileOnly 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-    //okgo 网络请求框架包
-    compileOnly 'com.lzy.net:okgo:3.0.4'
-    //gson json工具类 google解析Json的库
-    compileOnly 'com.google.code.gson:gson:2.8.2'
+
     //Log日志格式美化包
     compileOnly 'com.orhanobut:logger:2.2.0'
-    //微信登录，支付，分享包
-    compileOnly 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.4.0'
-    //支付宝 支付包
-    compileOnly files('libs/alipaySdk-20170309.jar')
+
     //压缩与加密
     compileOnly files('libs/zip4j_1.3.2.jar')
-    //Zxing核心包
-    compile 'com.google.zxing:core:3.3.0'
-
 
 }
