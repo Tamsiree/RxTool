@@ -1,1 +1,1 @@
-include ':RxDemo', ':RxTool', ':RxResource', ':RxUI', ':RxFeature'
+include ':RxDemo', ':RxKit', ':RxResource', ':RxUI', ':RxFeature'
