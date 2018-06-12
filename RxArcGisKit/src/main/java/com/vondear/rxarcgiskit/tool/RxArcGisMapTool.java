@@ -57,22 +57,14 @@ public class RxArcGisMapTool {
      *
      * @param mMapView 地图容器
      */
-    public static void initAcrMap(final Context mContext,final MapView mMapView, final TextView mTvPlottingScale) {
+    public static void initAcrMap(final Context mContext, final MapView mMapView, final TextView mTvPlottingScale) {
         ArcGISRuntimeEnvironment.setLicense("runtimelite,1000,rud5954166547,none,2K0RJAY3FLGP9KB10136");
 
         mMapView.addMapScaleChangedListener(new MapScaleChangedListener() {
             @Override
             public void mapScaleChanged(MapScaleChangedEvent mapScaleChangedEvent) {
                 double s = (int) RxMapTool.screenPixelToMetre(RxImageTool.dp2px(30) * 1.5, mapScaleChangedEvent.getSource().getMapScale(), mContext);
-
-                String str;
-                if (s > 1000) {
-                    str = s / 1000 + "千米";
-                } else {
-                    str = s + "米";
-                }
-
-                mTvPlottingScale.setText(str);
+                mTvPlottingScale.setText(RxDataTool.changeDistance(s));
             }
         });
     }

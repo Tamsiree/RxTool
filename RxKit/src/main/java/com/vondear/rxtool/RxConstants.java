@@ -1,5 +1,7 @@
 package com.vondear.rxtool;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author vondear
@@ -68,5 +70,18 @@ public class RxConstants {
     public static final String GAODE_PACKAGE_NAME = "com.autonavi.minimap";
     //百度地图APP 包名
     public static final String BAIDU_PACKAGE_NAME = "com.baidu.BaiduMap";
+
+    /**
+     * 速度格式化
+     */
+    public static final DecimalFormat FORMAT_ONE = new DecimalFormat("#.#");
+    /**
+     * 距离格式化
+     */
+    public static final DecimalFormat FORMAT_TWO = new DecimalFormat("#.##");
+    /**
+     * 速度格式化
+     */
+    public static final DecimalFormat FORMAT_THREE = new DecimalFormat("#.###");
 
 }

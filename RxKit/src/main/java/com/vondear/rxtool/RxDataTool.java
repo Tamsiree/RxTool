@@ -940,6 +940,14 @@ public class RxDataTool {
         return getPercentValue(result, 2);
     }
 
+    public static String changeDistance(double length) {
+        if (length < 1000) {
+            return RxConstants.FORMAT_TWO.format(length) + "米";
+        } else {
+            return RxConstants.FORMAT_TWO.format(length / 1000) + "千米";
+        }
+    }
+
     /**
      * outputStream转inputStream
      *
