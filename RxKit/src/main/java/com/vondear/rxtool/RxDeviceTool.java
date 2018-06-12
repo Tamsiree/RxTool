@@ -754,15 +754,14 @@ public class RxDeviceTool {
      * 打开手机联系人界面点击联系人后便获取该号码
      * <p>参照以下注释代码</p>
      */
-    public static void getContantNum() {
+    public static void getContantNum(Activity context) {
         Log.i("tips", "U should copy the following code.");
-        /*
         Intent intent = new Intent();
         intent.setAction("android.intent.action.PICK");
         intent.setType("vnd.android.cursor.dir/phone_v2");
-        startActivityForResult(intent, 0);
+        context.startActivityForResult(intent, 0);
 
-        @Override
+        /*@Override
         protected void onActivityResult ( int requestCode, int resultCode, Intent data){
             super.onActivityResult(requestCode, resultCode, data);
             if (data != null) {
@@ -778,8 +777,7 @@ public class RxDeviceTool {
                 cursor.close();
                 num = num.replaceAll("-", "");//替换的操作,555-6 -> 5556
             }
-        }
-        */
+        }*/
     }
 
     /**
