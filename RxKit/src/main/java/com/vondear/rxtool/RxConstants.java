@@ -12,7 +12,7 @@ public class RxConstants {
     /**
      * RxTools的Github地址
      */
-    public static final String URL_VONTOOLS = "https://github.com/vondear/RxTools";
+    public static final String URL_VONTOOLS = "https://github.com/vondear/RxTool";
 
     /**
      * 百度文字搜索
@@ -62,5 +62,11 @@ public class RxConstants {
             "&uuid=864394108025091" +
             "&openudid=80FA5B208E050000" +
             "&manifest_version_code=431";
+
+
+    //高德地图APP 包名
+    public static final String GAODE_PACKAGE_NAME = "com.autonavi.minimap";
+    //百度地图APP 包名
+    public static final String BAIDU_PACKAGE_NAME = "com.baidu.BaiduMap";
 
 }
