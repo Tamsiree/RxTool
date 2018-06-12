@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@color/white"
+                  android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/food"/>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/right_dish_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/right_dish_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dish_name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/item_dish_word_size"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp"
+                android:text="新鲜番茄加洋葱，五香牛肉，五香猪肉慢火精炖，调制成汁稠味浓的意大利肉酱面。（350g）"
+                android:textColor="@color/_9"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginBottom="10dp"
+                android:text="月售86份    好评率100%"
+                android:textColor="@color/_6"/>
+
+
+            <FrameLayout
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="¥"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/item_dish_money_size"/>
+
+                    <TextView
+                        android:id="@+id/right_dish_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/item_dish_small_horizontal_margin"
+                        android:text="10.0"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/item_dish_word_size"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/right_dish_remove"
+                        android:layout_width="@dimen/item_dish_circle_size"
+                        android:layout_height="@dimen/item_dish_circle_size"
+                        android:clickable="true"
+                        android:src="@drawable/ic_remove_circle_outline_blue_700_36dp"/>
+
+                    <TextView
+                        android:id="@+id/right_dish_account"
+                        android:layout_width="@dimen/item_dish_account_width"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/item_dish_small_word_size"/>
+
+                    <ImageView
+                        android:id="@+id/right_dish_add"
+                        android:layout_width="@dimen/item_dish_circle_size"
+                        android:layout_height="@dimen/item_dish_circle_size"
+                        android:clickable="true"
+                        android:src="@drawable/ic_add_circle_blue_700_36dp"/>
+                </LinearLayout>
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/f6"/>
+</LinearLayout>

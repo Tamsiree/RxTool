@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+    defaultConfig {
+        applicationId "com.vondear.rxdemo"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.2.3"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation project(':RxTools-library')
+    implementation project(':RxUI')
+    implementation project(':RxFeature')
+    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+
+    //cardView包
+    //appcompat包
+    //recyclerview包
+
+    //流式布局
+    //动画向下版本兼容 nineold包
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:support-annotations:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.google.android:flexbox:0.3.2'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
+    // If you want to use the GPU Filters
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    implementation 'com.github.yalantis:ucrop:2.2.2-native'
+    implementation 'com.jaredrummler:animated-svg-view:1.0.4'
+    implementation 'cc.solart:turbo-recyclerview-helper:1.0.3-beta'
+    implementation 'com.afollestad.material-dialogs:core:0.9.3.0'
+    implementation 'com.github.google:cameraview:3eaeac09a7'
+    implementation 'com.orhanobut:logger:2.2.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    configurations.all {
+        exclude group: 'com.android.support', module: 'support-v13'
+    }
+}

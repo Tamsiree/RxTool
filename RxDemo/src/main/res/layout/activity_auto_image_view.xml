@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_auto_image_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.vondear.rxdemo.activity.ActivityAutoImageView">
+
+    <com.vondear.rxui.view.RxAutoImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ImageSrc="@drawable/ova"/>
+
+</RelativeLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="44dp"
+        android:orientation="vertical">
+
+        <ImageView
+
+            android:id="@+id/indication"
+            android:layout_width="23dp"
+            android:layout_height="3dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="82dp"
+            android:src="@drawable/shadow" />
+
+        <TextView
+            android:id="@+id/promptTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/indication"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:minWidth="44dp"
+            android:textColor="#757575"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <com.vondear.rxui.view.dialog.shapeloadingview.RxShapeView
+            android:id="@+id/shapeLoadingView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp" />
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/activity_dialog"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.vondear.rxdemo.activity.ActivityDialog">
+
+    <com.vondear.rxui.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF528FBA"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
+        app:title="RxDialog"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ova"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <Button
+            android:id="@+id/button_tran"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/shadowBlue50"
+            android:text="透明的弹窗"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/button_DialogSure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/shadowPink50"
+            android:text="确定的弹窗"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/button_DialogSureCancle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/shadowBlue50"
+            android:text="确认取消的弹窗"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/button_DialogEditTextSureCancle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/shadowPink50"
+            android:text="输入框的弹窗"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/button_DialogWheelYearMonthDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/shadowBlue50"
+            android:text="可选择年月(日)"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/button_DialogShapeLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/shadowPink50"
+            android:text="三种形状的跳跃变换"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/button_DialogLoadingProgressAcfunVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/shadowBlue50"
+            android:text="一只可爱的A站舰娘在拼命的奔跑"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/button_DialogLoadingspinkit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/shadowPink50"
+            android:text="一个常用加载Dialog"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/button_DialogScaleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/shadowBlue50"
+            android:text="一个图片缩放Dialog"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+</LinearLayout>

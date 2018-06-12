@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="heart_anim_bezier_factor">6</integer>
+    <integer name="anim_duration">3000</integer>
+
+</resources>

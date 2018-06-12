@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/linLayoutSmall"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="#00000000"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:paddingLeft="2dp"
+              android:paddingRight="2dp">
+
+    <TextView
+        android:id="@+id/tvSum"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="实时网速"
+        android:textColor="#ffffff"
+        android:textSize="13sp"/>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/rlLayoutBig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#00000000"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:visibility="gone">
+
+        <TextView
+            android:id="@+id/MobileTx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M↑:"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/tvMobileTx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/MobileTx"
+            android:layout_toRightOf="@+id/MobileTx"
+            android:text="0KB/s"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/MobileRx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/MobileTx"
+            android:text="M↓:"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/tvMobileRx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMobileTx"
+            android:layout_toEndOf="@+id/MobileRx"
+            android:layout_toRightOf="@+id/MobileRx"
+            android:text="0KB/s"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/WlanTx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/MobileRx"
+            android:text="W↑:"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/tvWlanTx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMobileRx"
+            android:layout_toEndOf="@+id/WlanTx"
+            android:layout_toRightOf="@+id/WlanTx"
+            android:text="0KB/s"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/WlanRx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/WlanTx"
+            android:text="W↓:"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+        <TextView
+            android:id="@+id/tvWlanRx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvWlanTx"
+            android:layout_toEndOf="@+id/WlanRx"
+            android:layout_toRightOf="@+id/WlanRx"
+            android:text="0KB/s"
+            android:textColor="#ffffff"
+            android:textSize="9sp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
