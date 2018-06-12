@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.vondear.rxtools.RxImageTool;
+import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxui.R;
 import com.vondear.rxui.view.colorpicker.ColorPickerView;
 import com.vondear.rxui.view.colorpicker.OnColorChangedListener;
@@ -259,7 +259,7 @@ public class ColorPickerDialogBuilder {
                         break;
                     }
                     LinearLayout colorLayout = (LinearLayout) View.inflate(context, R.layout.color_selector, null);
-                    ImageView colorImage = (ImageView) colorLayout.findViewById(R.id.image_preview);
+                    ImageView colorImage = colorLayout.findViewById(R.id.image_preview);
                     colorImage.setImageDrawable(new ColorDrawable(initialColor[i]));
                     colorPreview.addView(colorLayout);
                 }

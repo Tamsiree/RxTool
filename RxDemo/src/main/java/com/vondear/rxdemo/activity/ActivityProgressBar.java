@@ -9,8 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxBarTool;
-import com.vondear.rxtools.RxDataTool;
+import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxDataTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxProgressBar;
 import com.vondear.rxui.view.RxRoundProgress;

@@ -9,8 +9,8 @@ import android.widget.LinearLayout;
 
 import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.adapter.AdapterStackTest;
-import com.vondear.rxtools.RxTool;
-import com.vondear.rxtools.interfaces.OnSimpleListener;
+import com.vondear.rxtool.RxTool;
+import com.vondear.rxtool.interfaces.OnSimpleListener;
 import com.vondear.rxui.view.cardstack.RxCardStackView;
 import com.vondear.rxui.view.cardstack.tools.RxAdapterAllMoveDownAnimator;
 import com.vondear.rxui.view.cardstack.tools.RxAdapterUpDownAnimator;

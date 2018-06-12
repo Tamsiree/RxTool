@@ -8,12 +8,12 @@ import com.orhanobut.logger.Logger;
 import com.vondear.rxdemo.interfaces.OnRxCamera;
 import com.vondear.rxfeature.module.RxMagic.OnCompressListener;
 import com.vondear.rxfeature.module.RxMagic.RxMagic;
-import com.vondear.rxtools.RxExifTool;
-import com.vondear.rxtools.RxFileTool;
-import com.vondear.rxtools.RxTool;
-import com.vondear.rxtools.RxVibrateTool;
-import com.vondear.rxtools.interfaces.OnSimpleListener;
-import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtool.RxExifTool;
+import com.vondear.rxtool.RxFileTool;
+import com.vondear.rxtool.RxTool;
+import com.vondear.rxtool.RxVibrateTool;
+import com.vondear.rxtool.interfaces.OnSimpleListener;
+import com.vondear.rxtool.view.RxToast;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
-import com.vondear.rxtools.RxTool;
+import com.vondear.rxtool.RxTool;
 
 /**
  * @author vonde

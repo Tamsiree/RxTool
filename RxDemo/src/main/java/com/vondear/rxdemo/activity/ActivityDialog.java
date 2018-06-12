@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 import com.vondear.rxui.view.dialog.RxDialog;
@@ -115,7 +115,7 @@ public class ActivityDialog extends ActivityBase {
             case R.id.button_tran:
                 RxDialog rxDialog = new RxDialog(mContext, R.style.tran_dialog);
                 View view1 = LayoutInflater.from(mContext).inflate(R.layout.image, null);
-                ImageView pageItem = (ImageView) view1.findViewById(R.id.page_item);
+                ImageView pageItem = view1.findViewById(R.id.page_item);
                 pageItem.setImageResource(R.drawable.coin);
                 rxDialog.setContentView(view1);
                 rxDialog.show();

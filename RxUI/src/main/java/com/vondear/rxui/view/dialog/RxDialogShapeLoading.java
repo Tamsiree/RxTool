@@ -5,7 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.R;
 import com.vondear.rxui.view.dialog.shapeloadingview.RxShapeLoadingView;
 
@@ -46,7 +46,7 @@ public class RxDialogShapeLoading extends RxDialog {
 
     private void initView(Context context) {
         mDialogContentView = LayoutInflater.from(context).inflate(R.layout.dialog_shape_loading_view, null);
-        mLoadingView = (RxShapeLoadingView) mDialogContentView.findViewById(R.id.loadView);
+        mLoadingView = mDialogContentView.findViewById(R.id.loadView);
         setContentView(mDialogContentView);
     }
 

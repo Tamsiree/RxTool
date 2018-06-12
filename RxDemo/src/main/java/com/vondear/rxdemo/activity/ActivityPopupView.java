@@ -15,8 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.model.ActionItem;
-import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtool.model.ActionItem;
+import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 import com.vondear.rxui.view.popupwindows.RxPopupImply;

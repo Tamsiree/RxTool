@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.vondear.rxtools.RxImageTool;
+import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxui.R;
 import com.vondear.rxui.view.colorpicker.builder.ColorWheelRendererBuilder;
 import com.vondear.rxui.view.colorpicker.builder.PaintBuilder;
@@ -508,7 +508,7 @@ public class ColorPickerView extends View {
             if (i == selectedColor) {
                 childLayout.setBackgroundColor(Color.WHITE);
             }
-            ImageView childImage = (ImageView) childLayout.findViewById(R.id.image_preview);
+            ImageView childImage = childLayout.findViewById(R.id.image_preview);
             childImage.setClickable(true);
             childImage.setTag(i);
             childImage.setOnClickListener(new OnClickListener() {
@@ -562,7 +562,7 @@ public class ColorPickerView extends View {
             return;
         }
         LinearLayout childLayout = (LinearLayout) childView;
-        ImageView childImage = (ImageView) childLayout.findViewById(R.id.image_preview);
+        ImageView childImage = childLayout.findViewById(R.id.image_preview);
         childImage.setImageDrawable(new CircleColorDrawable(newColor));
     }
 

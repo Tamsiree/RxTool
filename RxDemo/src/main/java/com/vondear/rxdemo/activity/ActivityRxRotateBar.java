@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxImageTool;
+import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxRotateBar;
 import com.vondear.rxui.view.RxRotateBarBasic;

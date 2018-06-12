@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxActivityTool;
+import com.vondear.rxtool.RxActivityTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 

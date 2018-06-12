@@ -13,9 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxDataTool;
-import com.vondear.rxtools.RxImageTool;
-import com.vondear.rxtools.RxKeyboardTool;
+import com.vondear.rxtool.RxDataTool;
+import com.vondear.rxtool.RxImageTool;
+import com.vondear.rxtool.RxKeyboardTool;
 import com.vondear.rxui.R;
 
 /**
@@ -89,14 +89,14 @@ public class RxTitle extends FrameLayout {
     private void initView(final Context context, AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.include_rx_title, this);
 
-        mRootLayout = (RelativeLayout) findViewById(R.id.root_layout);
-        mTvTitle = (RxTextAutoZoom) findViewById(R.id.tv_rx_title);
-        mLlLeft = (LinearLayout) findViewById(R.id.ll_left);
-        mIvLeft = (ImageView) findViewById(R.id.iv_left);
-        mIvRight = (ImageView) findViewById(R.id.iv_right);
-        mLlRight = (LinearLayout) findViewById(R.id.ll_right);
-        mTvLeft = (TextView) findViewById(R.id.tv_left);
-        mTvRight = (TextView) findViewById(R.id.tv_right);
+        mRootLayout = findViewById(R.id.root_layout);
+        mTvTitle = findViewById(R.id.tv_rx_title);
+        mLlLeft = findViewById(R.id.ll_left);
+        mIvLeft = findViewById(R.id.iv_left);
+        mIvRight = findViewById(R.id.iv_right);
+        mLlRight = findViewById(R.id.ll_right);
+        mTvLeft = findViewById(R.id.tv_left);
+        mTvRight = findViewById(R.id.tv_right);
 
         //获得这个控件对应的属性。
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.RxTitle);

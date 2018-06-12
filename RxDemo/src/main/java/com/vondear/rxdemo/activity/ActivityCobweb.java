@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.widget.SeekBar;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxBarTool;
-import com.vondear.rxtools.model.ModelSpider;
+import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.model.ModelSpider;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxCobwebView;
 import com.vondear.rxui.view.RxTitle;

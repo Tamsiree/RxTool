@@ -13,12 +13,12 @@ import com.google.android.cameraview.CameraView;
 import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.interfaces.OnRxCamera;
 import com.vondear.rxdemo.tools.RxCameraTool;
-import com.vondear.rxtools.RxBarTool;
-import com.vondear.rxtools.RxFileTool;
-import com.vondear.rxtools.RxLocationTool;
-import com.vondear.rxtools.RxPermissionsTool;
-import com.vondear.rxtools.RxTimeTool;
-import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxFileTool;
+import com.vondear.rxtool.RxLocationTool;
+import com.vondear.rxtool.RxPermissionsTool;
+import com.vondear.rxtool.RxTimeTool;
+import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBaseLocation;
 import com.vondear.rxui.view.dialog.RxDialogScaleView;
 

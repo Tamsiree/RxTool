@@ -19,8 +19,8 @@ import android.widget.SlidingDrawer;
 import android.widget.TextView;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxBarTool;
-import com.vondear.rxtools.RxConstants;
+import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxConstants;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 

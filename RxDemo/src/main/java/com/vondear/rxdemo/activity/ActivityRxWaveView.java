@@ -10,7 +10,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxImageTool;
+import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxui.view.colorpicker.ColorPickerView;
 import com.vondear.rxui.view.colorpicker.OnColorChangedListener;
 import com.vondear.rxui.view.colorpicker.OnColorSelectedListener;

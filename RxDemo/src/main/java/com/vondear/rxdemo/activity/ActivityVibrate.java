@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxVibrateTool;
+import com.vondear.rxtool.RxVibrateTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 

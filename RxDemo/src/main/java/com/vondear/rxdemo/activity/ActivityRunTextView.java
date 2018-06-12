@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxRunTextView;
 import com.vondear.rxui.view.RxTextViewVertical;
@@ -80,8 +80,8 @@ public class ActivityRunTextView extends ActivityBase {
             //设置滚动的单个布局
             LinearLayout moreView = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.item_view, null);
             //初始化布局的控件
-            TextView tv1 = (TextView) moreView.findViewById(R.id.tv1);
-            TextView tv2 = (TextView) moreView.findViewById(R.id.tv2);
+            TextView tv1 = moreView.findViewById(R.id.tv1);
+            TextView tv2 = moreView.findViewById(R.id.tv2);
 
             /**
              * 设置监听

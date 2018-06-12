@@ -3,7 +3,7 @@ package com.vondear.rxdemo.activity;
 import android.os.Bundle;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxui.activity.ActivityBase;
 
 /**

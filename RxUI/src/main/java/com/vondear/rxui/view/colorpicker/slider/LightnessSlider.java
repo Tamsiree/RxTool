@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 
-import com.vondear.rxtools.RxImageTool;
+import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxui.view.colorpicker.ColorPickerView;
 import com.vondear.rxui.view.colorpicker.builder.PaintBuilder;
 

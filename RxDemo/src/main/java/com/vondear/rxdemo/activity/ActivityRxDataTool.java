@@ -7,7 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxDataTool;
+import com.vondear.rxtool.RxDataTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 

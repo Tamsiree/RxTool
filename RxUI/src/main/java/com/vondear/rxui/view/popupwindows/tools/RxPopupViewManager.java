@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxAnimationTool;
+import com.vondear.rxtool.RxAnimationTool;
 
 import java.util.HashMap;
 import java.util.Map;

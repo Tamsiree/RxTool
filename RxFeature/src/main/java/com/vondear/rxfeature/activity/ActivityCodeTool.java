@@ -10,18 +10,18 @@ import android.widget.LinearLayout;
 import com.vondear.rxfeature.R;
 import com.vondear.rxfeature.tool.RxBarCode;
 import com.vondear.rxfeature.tool.RxQRCode;
-import com.vondear.rxtools.RxActivityTool;
-import com.vondear.rxtools.RxBarTool;
-import com.vondear.rxtools.RxDataTool;
-import com.vondear.rxtools.RxSPTool;
-import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtool.RxActivityTool;
+import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxDataTool;
+import com.vondear.rxtool.RxSPTool;
+import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 import com.vondear.rxui.view.ticker.RxTickerUtils;
 import com.vondear.rxui.view.ticker.RxTickerView;
 
-import static com.vondear.rxtools.RxConstants.SP_MADE_CODE;
-import static com.vondear.rxtools.RxConstants.SP_SCAN_CODE;
+import static com.vondear.rxtool.RxConstants.SP_MADE_CODE;
+import static com.vondear.rxtool.RxConstants.SP_SCAN_CODE;
 
 /**
  * @author vondear

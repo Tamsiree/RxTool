@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxRegTool;
-import com.vondear.rxtools.RxTextTool;
+import com.vondear.rxtool.RxRegTool;
+import com.vondear.rxtool.RxTextTool;
 import com.vondear.rxui.R;
 
 
@@ -90,13 +90,13 @@ public class RxDialogSure extends RxDialog {
 
     private void initView() {
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_sure, null);
-        mTvSure = (TextView) dialogView.findViewById(R.id.tv_sure);
-        mTvTitle = (TextView) dialogView.findViewById(R.id.tv_title);
+        mTvSure = dialogView.findViewById(R.id.tv_sure);
+        mTvTitle = dialogView.findViewById(R.id.tv_title);
         mTvTitle.setTextIsSelectable(true);
-        mTvContent = (TextView) dialogView.findViewById(R.id.tv_content);
+        mTvContent = dialogView.findViewById(R.id.tv_content);
         mTvContent.setMovementMethod(ScrollingMovementMethod.getInstance());
         mTvContent.setTextIsSelectable(true);
-        mIvLogo = (ImageView) dialogView.findViewById(R.id.iv_logo);
+        mIvLogo = dialogView.findViewById(R.id.iv_logo);
         setContentView(dialogView);
     }
 

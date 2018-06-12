@@ -23,9 +23,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxAnimationTool;
-import com.vondear.rxtools.RxBarTool;
-import com.vondear.rxtools.RxKeyboardTool;
+import com.vondear.rxtool.RxAnimationTool;
+import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxKeyboardTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.activity.AndroidBug5497Workaround;
 

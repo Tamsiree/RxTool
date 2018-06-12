@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxSeatMovie;
 import com.vondear.rxui.view.RxTitle;

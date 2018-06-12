@@ -10,7 +10,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.vondear.rxtools.RxDataTool;
+import com.vondear.rxtool.RxDataTool;
 import com.vondear.rxui.R;
 
 

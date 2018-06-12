@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 
 import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.activity.ActivityLoadingDetail;
-import com.vondear.rxtools.RxImageTool;
-import com.vondear.rxtools.RxRecyclerViewDividerTool;
+import com.vondear.rxtool.RxImageTool;
+import com.vondear.rxtool.RxRecyclerViewDividerTool;
 import com.vondear.rxui.view.progressing.SpinKitView;
 import com.vondear.rxui.view.progressing.SpriteFactory;
 import com.vondear.rxui.view.progressing.Style;
@@ -46,7 +46,7 @@ public class FragmentLoadingWay extends Fragment  {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        RecyclerView recyclerView = view.findViewById(R.id.list);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -76,7 +76,7 @@ public class FragmentLoadingWay extends Fragment  {
 
         public Holder(View itemView) {
             super(itemView);
-            spinKitView = (SpinKitView) itemView.findViewById(R.id.spin_kit);
+            spinKitView = itemView.findViewById(R.id.spin_kit);
         }
 
         public void bind(int position) {

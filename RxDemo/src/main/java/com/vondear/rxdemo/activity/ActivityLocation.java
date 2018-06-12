@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxLocationTool;
+import com.vondear.rxtool.RxLocationTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 

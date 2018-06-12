@@ -7,8 +7,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxActivityTool;
-import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtool.RxActivityTool;
+import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxui.activity.ActivityBase;
 
 import butterknife.BindView;

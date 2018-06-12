@@ -10,9 +10,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxBarTool;
-import com.vondear.rxtools.RxDeviceTool;
-import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxDeviceTool;
+import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.dialog.RxDialogSureCancel;
 
@@ -81,9 +81,9 @@ public class ActivitySplash extends ActivityBase {
     }
 
     private void initView() {
-        pg = (ProgressBar) findViewById(R.id.pg);
-        tv_update_info = (TextView) findViewById(R.id.tv_update_info);
-        tv_splash_version = (TextView) findViewById(R.id.tv_splash_version);
+        pg = findViewById(R.id.pg);
+        tv_update_info = findViewById(R.id.tv_update_info);
+        tv_splash_version = findViewById(R.id.tv_splash_version);
         appVersionName = RxDeviceTool.getAppVersionName(context);
         tv_splash_version.setText("版本号 "+appVersionName);
     }

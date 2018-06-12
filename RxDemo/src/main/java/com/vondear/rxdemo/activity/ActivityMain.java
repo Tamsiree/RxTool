@@ -12,9 +12,9 @@ import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.adapter.AdapterRecyclerViewMain;
 import com.vondear.rxdemo.model.ModelMainItem;
 import com.vondear.rxfeature.activity.ActivityCodeTool;
-import com.vondear.rxtools.RxImageTool;
-import com.vondear.rxtools.RxPermissionsTool;
-import com.vondear.rxtools.RxRecyclerViewDividerTool;
+import com.vondear.rxtool.RxImageTool;
+import com.vondear.rxtool.RxPermissionsTool;
+import com.vondear.rxtool.RxRecyclerViewDividerTool;
 import com.vondear.rxui.activity.ActivityWebView;
 
 import java.util.ArrayList;

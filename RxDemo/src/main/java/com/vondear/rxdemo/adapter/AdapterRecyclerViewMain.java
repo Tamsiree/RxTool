@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.model.ModelMainItem;
-import com.vondear.rxtools.RxActivityTool;
+import com.vondear.rxtool.RxActivityTool;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.R;
 import com.vondear.rxui.view.progressing.SpinKitView;
 
@@ -48,8 +48,8 @@ public class RxDialogLoading extends RxDialog {
 
     private void initView(Context context) {
         mDialogContentView = LayoutInflater.from(context).inflate(R.layout.dialog_loading_spinkit, null);
-        mLoadingView = (SpinKitView) mDialogContentView.findViewById(R.id.spin_kit);
-        mTextView = (TextView) mDialogContentView.findViewById(R.id.name);
+        mLoadingView = mDialogContentView.findViewById(R.id.spin_kit);
+        mTextView = mDialogContentView.findViewById(R.id.name);
         setContentView(mDialogContentView);
     }
 

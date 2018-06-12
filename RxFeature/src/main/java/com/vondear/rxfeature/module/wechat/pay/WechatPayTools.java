@@ -6,8 +6,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
-import com.vondear.rxtools.interfaces.OnSuccessAndErrorListener;
-import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtool.interfaces.OnSuccessAndErrorListener;
+import com.vondear.rxtool.view.RxToast;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -32,7 +32,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import static com.vondear.rxtools.RxConstants.WX_TOTAL_ORDER;
+import static com.vondear.rxtool.RxConstants.WX_TOTAL_ORDER;
 
 /**
  *

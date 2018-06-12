@@ -15,8 +15,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Scroller;
 
-import com.vondear.rxtools.RxImageTool;
-import com.vondear.rxtools.model.ModelSpider;
+import com.vondear.rxtool.RxImageTool;
+import com.vondear.rxtool.model.ModelSpider;
 import com.vondear.rxui.R;
 
 import java.util.ArrayList;

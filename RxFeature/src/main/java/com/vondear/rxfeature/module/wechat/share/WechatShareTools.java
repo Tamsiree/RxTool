@@ -13,7 +13,7 @@ import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.vondear.rxfeature.module.wechat.pay.WechatPayTools;
-import com.vondear.rxtools.RxImageTool;
+import com.vondear.rxtool.RxImageTool;
 
 /**
  * @author Vondear

@@ -16,9 +16,9 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxDeviceTool;
-import com.vondear.rxtools.RxImageTool;
-import com.vondear.rxtools.model.ActionItem;
+import com.vondear.rxtool.RxDeviceTool;
+import com.vondear.rxtool.RxImageTool;
+import com.vondear.rxtool.model.ActionItem;
 import com.vondear.rxui.R;
 
 import java.util.ArrayList;
@@ -117,7 +117,7 @@ public class RxPopupSingleView extends PopupWindow {
      * 初始化弹窗列表
      */
     private void initUI() {
-        mListView = (ListView) getContentView().findViewById(R.id.title_list);
+        mListView = getContentView().findViewById(R.id.title_list);
 
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -193,8 +193,8 @@ public class RxPopupSingleView extends PopupWindow {
                 if (convertView == null) {
                     convertView = LayoutInflater.from(mContext).inflate(R.layout.item_listview_popup, null);
                 }
-                tv_itpop = (TextView) convertView.findViewById(R.id.tv_itpop);
-                iv_itpop = (ImageView) convertView.findViewById(R.id.iv_itpop);
+                tv_itpop = convertView.findViewById(R.id.tv_itpop);
+                iv_itpop = convertView.findViewById(R.id.iv_itpop);
                 if (colorItemText == 0) {
                     colorItemText = mContext.getResources().getColor(android.R.color.white);
                 }

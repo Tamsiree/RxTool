@@ -11,16 +11,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtools.RxTextTool;
-import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtool.RxTextTool;
+import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.vondear.rxtools.RxBarTool.setTransparentStatusBar;
-import static com.vondear.rxtools.RxConstants.URL_VONTOOLS;
+import static com.vondear.rxtool.RxBarTool.setTransparentStatusBar;
+import static com.vondear.rxtool.RxConstants.URL_VONTOOLS;
 
 /**
  * @author vondear

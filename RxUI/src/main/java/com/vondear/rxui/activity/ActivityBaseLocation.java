@@ -9,10 +9,10 @@ import android.location.LocationProvider;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 
-import com.vondear.rxtools.RxLocationTool;
-import com.vondear.rxtools.RxVibrateTool;
-import com.vondear.rxtools.model.Gps;
-import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtool.RxLocationTool;
+import com.vondear.rxtool.RxVibrateTool;
+import com.vondear.rxtool.model.Gps;
+import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.view.dialog.RxDialogGPSCheck;
 import com.vondear.rxui.view.dialog.RxDialogTool;
 

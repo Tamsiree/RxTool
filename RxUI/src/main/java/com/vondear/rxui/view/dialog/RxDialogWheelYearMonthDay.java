@@ -12,7 +12,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxTimeTool;
+import com.vondear.rxtool.RxTimeTool;
 import com.vondear.rxui.R;
 import com.vondear.rxui.view.dialog.wheel.DateArrayAdapter;
 import com.vondear.rxui.view.dialog.wheel.NumericWheelAdapter;

@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.vondear.rxtools.RxPhotoTool;
+import com.vondear.rxtool.RxPhotoTool;
 import com.vondear.rxui.R;
 
 

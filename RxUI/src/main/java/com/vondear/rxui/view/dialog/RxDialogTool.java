@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.vondear.rxtools.RxIntentTool;
+import com.vondear.rxtool.RxIntentTool;
 import com.vondear.rxui.R;
 
 /**
@@ -170,7 +170,7 @@ public class RxDialogTool {
                 rxDialog.cancel();
             }
         });
-        ImageView imageView = (ImageView) view.findViewById(R.id.page_item);
+        ImageView imageView = view.findViewById(R.id.page_item);
 
         imageView.setImageURI(uri);
 
