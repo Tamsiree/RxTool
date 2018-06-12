@@ -45,9 +45,10 @@ public class RxMapTool {
 
     /**
      * 跳转到高德地图 并 导航到目的地
-     * @param mContext 实体
-     * @param gpsFrom 起点经纬度信息
-     * @param gpsTo 终点经纬度信息
+     *
+     * @param mContext  实体
+     * @param gpsFrom   起点经纬度信息
+     * @param gpsTo     终点经纬度信息
      * @param storeName 目的地名称
      */
     public static void openGaodeMapToGuide(Context mContext, Gps gpsFrom, Gps gpsTo, String storeName) {
@@ -76,8 +77,9 @@ public class RxMapTool {
 
     /**
      * 跳转到百度地图 并 导航到目的地
-     * @param mContext 实体
-     * @param gps 目的地经纬度信息
+     *
+     * @param mContext  实体
+     * @param gps       目的地经纬度信息
      * @param storeName 目的地名称
      */
     public static void openBaiduMapToGuide(Context mContext, Gps gps, String storeName) {
@@ -100,8 +102,9 @@ public class RxMapTool {
 
     /**
      * 跳转到网页版高德地图 并 导航到目的地
-     * @param mContext 实体
-     * @param gpsFrom 目的地经纬度信息
+     *
+     * @param mContext  实体
+     * @param gpsFrom   目的地经纬度信息
      * @param storeName 目的地名称
      */
     public static void openBrowserToGuide(Context mContext, Gps gpsFrom, String storeName) {
@@ -127,8 +130,7 @@ public class RxMapTool {
      * @param context
      * @return
      */
-    public static double metreToScreenPixel(double distance, double currScale,
-                                            Context context) {
+    public static double metreToScreenPixel(double distance, double currScale, Context context) {
         float dpi = context.getResources().getDisplayMetrics().densityDpi;
         // 当前地图范围内1像素代表多少地图单位的实际距离
         double resolution = (25.39999918 / dpi)
@@ -144,8 +146,7 @@ public class RxMapTool {
      * @param context
      * @return
      */
-    public static double screenPixelToMetre(double pxlength, double currScale,
-                                            Context context) {
+    public static double screenPixelToMetre(double pxlength, double currScale, Context context) {
         float dpi = context.getResources().getDisplayMetrics().densityDpi;
         double resolution = (25.39999918 / dpi)
                 * currScale / 1000;
