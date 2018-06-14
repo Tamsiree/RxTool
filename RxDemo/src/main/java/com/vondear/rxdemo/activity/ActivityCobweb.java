@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.widget.SeekBar;
 
 import com.vondear.rxdemo.R;
-import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxtool.model.ModelSpider;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxCobwebView;
@@ -59,7 +58,7 @@ public class ActivityCobweb extends ActivityBase implements SeekBar.OnSeekBarCha
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxBarTool.setTransparentStatusBar(mContext);
+//        RxBarTool.setTransparentStatusBar(mContext);
         setContentView(R.layout.activity_cobweb);
         ButterKnife.bind(this);
         mRxTitle.setLeftFinish(mContext);
