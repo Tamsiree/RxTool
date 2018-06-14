@@ -1,6 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'yaoyao'
+            keyPassword '521003'
+
+            storeFile file('F:/WorkSpace/SVN/groupCollectApp/RxKeyStore.jks')
+            storePassword '521003'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.vondear.rxdemo"
@@ -14,21 +23,22 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
-
 }
 
 dependencies {
     implementation project(':RxKit')
     implementation project(':RxUI')
     implementation project(':RxFeature')
-    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-
+    compileOnly fileTree(include: ['*.jar'], dir: 'libs')
     //cardView包
     //appcompat包
     //recyclerview包
-
     //流式布局
     //动画向下版本兼容 nineold包
     //noinspection GradleCompatible
@@ -37,7 +47,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.android.support:support-annotations:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
     implementation 'com.google.android:flexbox:0.3.2'
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.nineoldandroids:library:2.4.0'
@@ -54,7 +64,6 @@ dependencies {
     implementation 'com.github.google:cameraview:3eaeac09a7'
     implementation 'com.orhanobut:logger:2.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
     configurations.all {
         exclude group: 'com.android.support', module: 'support-v13'
     }
