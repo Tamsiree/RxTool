@@ -10,8 +10,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-                     tools:ignore="ProtectedPermissions"/>
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions"/>
 
     <application
         android:name=".ApplicationRxTools"
@@ -38,7 +39,6 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.ActivityDialog"/>
         <activity android:name=".activity.ActivityTextTool"/>
-
         <activity android:name=".activity.ActivitySlidingDrawerSingle"/>
         <activity android:name=".activity.ActivityProgressBar"/>
         <activity android:name=".activity.ActivityWheelHorizontal"/>
@@ -95,6 +95,8 @@
         <activity android:name=".activity.ActivityRxWaveView">
         </activity>
         <activity android:name=".activity.ActivityXmlParse">
+        </activity>
+        <activity android:name=".activity.ActivityAliPay">
         </activity>
     </application>
 
