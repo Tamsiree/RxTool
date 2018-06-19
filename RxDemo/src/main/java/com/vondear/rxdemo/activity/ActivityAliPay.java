@@ -40,6 +40,7 @@ public class ActivityAliPay extends ActivityBase {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.payV2:
+                //需要填写APPID 与 私钥
                 AliPayTools.aliPay(mContext, SelfInfo.ALIPAY_APPID, true, SelfInfo.ALIPAY_RSA2_PRIVATE, new AliPayModel(RxTimeTool.date2String(RxTimeTool.getCurTimeDate()), "0.01", "爱心", "一份爱心"), new OnSuccessAndErrorListener() {
                     @Override
                     public void onSuccess(String s) {
