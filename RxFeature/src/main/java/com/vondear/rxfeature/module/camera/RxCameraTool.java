@@ -1,11 +1,9 @@
-package com.vondear.rxdemo.tools;
+package com.vondear.rxfeature.module.camera;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.google.android.cameraview.CameraView;
-import com.orhanobut.logger.Logger;
-import com.vondear.rxdemo.interfaces.OnRxCamera;
 import com.vondear.rxfeature.module.RxMagic.OnCompressListener;
 import com.vondear.rxfeature.module.RxMagic.RxMagic;
 import com.vondear.rxtool.RxExifTool;
@@ -19,7 +17,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-
 
 
 /**
@@ -54,18 +51,18 @@ public class RxCameraTool {
                                     mCameraView.takePicture();
                                 }
                             }catch (Exception e) {
-                                Logger.d(e);
+//                                Logger.d(e);
                             }
                         }
                     });
                 }
             } catch (Exception e) {
-                Logger.d(e);
+//                Logger.d(e);
             }
         }
     }
 
-    public static void initCameraEvent(final Context mContext, final CameraView mCameraView, final byte[] data, final String fileDir, final String picName, final double mLongitude, final double mLatitude, final boolean isEconomize,final OnRxCamera OnRxCamera) {
+    public static void initCameraEvent(final Context mContext, final CameraView mCameraView, final byte[] data, final String fileDir, final String picName, final double mLongitude, final double mLatitude, final boolean isEconomize, final OnRxCamera OnRxCamera) {
         OnRxCamera.onBefore();
         RxTool.getBackgroundHandler().post(new Runnable() {
             @Override
@@ -113,7 +110,7 @@ public class RxCameraTool {
                                 @Override
                                 public void onError(Throwable e) {
                                     Log.d("图片压缩", "压缩异常");
-                                    Logger.d(e);
+//                                    Logger.d(e);
                                 }
                             }).launch();
 
