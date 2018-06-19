@@ -13,7 +13,7 @@ import android.util.FloatProperty;
 import android.util.IntProperty;
 import android.util.Property;
 
-import com.vondear.rxui.view.progressing.animation.AnimationUtils;
+import com.vondear.rxtool.RxAnimationTool;
 
 
 /**
@@ -311,7 +311,7 @@ public abstract class Sprite extends Drawable implements
 
     @Override
     public void start() {
-        if (AnimationUtils.isStarted(animator)) {
+        if (RxAnimationTool.isStarted(animator)) {
             return;
         }
 
@@ -320,7 +320,7 @@ public abstract class Sprite extends Drawable implements
             return;
         }
 
-        AnimationUtils.start(animator);
+        RxAnimationTool.start(animator);
         invalidateSelf();
     }
 
@@ -337,7 +337,7 @@ public abstract class Sprite extends Drawable implements
 
     @Override
     public void stop() {
-        if (AnimationUtils.isStarted(animator)) {
+        if (RxAnimationTool.isStarted(animator)) {
             animator.removeAllUpdateListeners();
             animator.end();
             reset();
@@ -359,7 +359,7 @@ public abstract class Sprite extends Drawable implements
 
     @Override
     public boolean isRunning() {
-        return AnimationUtils.isRunning(animator);
+        return RxAnimationTool.isRunning(animator);
     }
 
     @Override

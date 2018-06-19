@@ -1,5 +1,6 @@
 package com.vondear.rxui.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
@@ -72,6 +73,7 @@ public class RxTextViewVertical extends TextSwitcher implements ViewSwitcher.Vie
      *
      * @param time
      */
+    @SuppressLint("HandlerLeak")
     public void setTextStillTime(final long time) {
         handler = new Handler() {
             @Override
@@ -86,6 +88,8 @@ public class RxTextViewVertical extends TextSwitcher implements ViewSwitcher.Vie
                         break;
                     case FLAG_STOP_AUTO_SCROLL:
                         handler.removeMessages(FLAG_START_AUTO_SCROLL);
+                        break;
+                    default:
                         break;
                 }
             }

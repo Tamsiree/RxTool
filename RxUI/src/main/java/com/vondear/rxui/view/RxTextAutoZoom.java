@@ -64,9 +64,10 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
         _minTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
                 12, getResources().getDisplayMetrics());
         _maxTextSize = getTextSize();
-        if (_maxLines == 0)
+        if (_maxLines == 0){
             // no value was assigned during construction
             _maxLines = NO_LINE_LIMIT;
+        }
         // prepare size tester:
         _sizeTester = new SizeTester() {
             final RectF textRect = new RectF();
@@ -86,19 +87,23 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
                             _widthLimit, Layout.Alignment.ALIGN_NORMAL, _spacingMult,
                             _spacingAdd, true);
                     if (getMaxLines() != NO_LINE_LIMIT
-                            && layout.getLineCount() > getMaxLines())
+                            && layout.getLineCount() > getMaxLines()) {
                         return 1;
+                    }
                     textRect.bottom = layout.getHeight();
                     int maxWidth = -1;
-                    for (int i = 0; i < layout.getLineCount(); i++)
-                        if (maxWidth < layout.getLineWidth(i))
+                    for (int i = 0; i < layout.getLineCount(); i++) {
+                        if (maxWidth < layout.getLineWidth(i)) {
                             maxWidth = (int) layout.getLineWidth(i);
+                        }
+                    }
                     textRect.right = maxWidth;
                 }
                 textRect.offsetTo(0, 0);
-                if (availableSPace.contains(textRect))
+                if (availableSPace.contains(textRect)){
                     // may be too small, don't worry we will find the best match
                     return -1;
+                }
                 // else, too big
                 return 1;
             }
@@ -108,8 +113,9 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
 
     @Override
     public void setTypeface(final Typeface tf) {
-        if (paint == null)
+        if (paint == null) {
             paint = new TextPaint(getPaint());
+        }
         paint.setTypeface(tf);
         super.setTypeface(tf);
     }
@@ -143,10 +149,11 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
     @Override
     public void setSingleLine(final boolean singleLine) {
         super.setSingleLine(singleLine);
-        if (singleLine)
+        if (singleLine) {
             _maxLines = 1;
-        else
+        } else {
             _maxLines = NO_LINE_LIMIT;
+        }
         reAdjust();
     }
 
@@ -161,10 +168,11 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
     public void setTextSize(final int unit, final float size) {
         final Context c = getContext();
         Resources r;
-        if (c == null)
+        if (c == null) {
             r = Resources.getSystem();
-        else
+        } else {
             r = c.getResources();
+        }
         _maxTextSize = TypedValue.applyDimension(unit, size,
                 r.getDisplayMetrics());
         _textCachedSizes.clear();
@@ -197,15 +205,17 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
     }
 
     private void adjustTextSize() {
-        if (!_initiallized)
+        if (!_initiallized) {
             return;
+        }
         final int startSize = Math.round(_minTextSize);
         final int heightLimit = getMeasuredHeight()
                 - getCompoundPaddingBottom() - getCompoundPaddingTop();
         _widthLimit = getMeasuredWidth() - getCompoundPaddingLeft()
                 - getCompoundPaddingRight();
-        if (_widthLimit <= 0)
+        if (_widthLimit <= 0) {
             return;
+        }
         _availableSpaceRect.right = _widthLimit;
         _availableSpaceRect.bottom = heightLimit;
         super.setTextSize(
@@ -230,13 +240,15 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
 
     private int efficientTextSizeSearch(final int start, final int end,
                                         final SizeTester sizeTester, final RectF availableSpace) {
-        if (!_enableSizeCache)
+        if (!_enableSizeCache) {
             return binarySearch(start, end, sizeTester, availableSpace);
+        }
         final String text = getText().toString();
         final int key = text == null ? 0 : text.length();
         int size = _textCachedSizes.get(key);
-        if (size != 0)
+        if (size != 0) {
             return size;
+        }
         size = binarySearch(start, end, sizeTester, availableSpace);
         _textCachedSizes.put(key, size);
         return size;
@@ -257,8 +269,9 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
             } else if (midValCmp > 0) {
                 hi = mid - 1;
                 lastBest = hi;
-            } else
+            } else {
                 return mid;
+            }
         }
         // make sure to return last best
         // this is what should always be returned
@@ -277,8 +290,9 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
                                  final int oldwidth, final int oldheight) {
         _textCachedSizes.clear();
         super.onSizeChanged(width, height, oldwidth, oldheight);
-        if (width != oldwidth || height != oldheight)
+        if (width != oldwidth || height != oldheight) {
             reAdjust();
+        }
     }
 
 
@@ -319,7 +333,8 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
         InputMethodManager inputMethodManager = (InputMethodManager) a
                 .getSystemService(Activity.INPUT_METHOD_SERVICE);
         if (a.getCurrentFocus() != null
-                && a.getCurrentFocus().getWindowToken() != null)
+                && a.getCurrentFocus().getWindowToken() != null) {
             inputMethodManager.hideSoftInputFromWindow(a.getCurrentFocus().getWindowToken(), 0);
+        }
     }
 }

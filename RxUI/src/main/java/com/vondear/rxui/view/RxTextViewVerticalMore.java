@@ -36,10 +36,14 @@ public class RxTextViewVerticalMore extends ViewFlipper {
         this.mContext = context;
         setFlipInterval(interval);
         Animation animIn = AnimationUtils.loadAnimation(mContext, R.anim.anim_marquee_in);
-        if (isSetAnimDuration) animIn.setDuration(animDuration);
+        if (isSetAnimDuration) {
+            animIn.setDuration(animDuration);
+        }
         setInAnimation(animIn);
         Animation animOut = AnimationUtils.loadAnimation(mContext, R.anim.anim_marquee_out);
-        if (isSetAnimDuration) animOut.setDuration(animDuration);
+        if (isSetAnimDuration) {
+            animOut.setDuration(animDuration);
+        }
         setOutAnimation(animOut);
     }
 
@@ -50,7 +54,9 @@ public class RxTextViewVerticalMore extends ViewFlipper {
      * @param views
      */
     public void setViews(final List<View> views) {
-        if (views == null || views.size() == 0) return;
+        if (views == null || views.size() == 0) {
+            return;
+        }
         removeAllViews();
         for ( int i = 0; i < views.size(); i++) {
             final int position=i;

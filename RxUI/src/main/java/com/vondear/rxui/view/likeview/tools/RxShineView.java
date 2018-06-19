@@ -10,6 +10,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.vondear.rxui.animation.RxShineAnimator;
 import com.vondear.rxui.view.likeview.RxShineButton;
 import com.vondear.rxui.view.likeview.tools.ei.RxEase;
 import com.vondear.rxui.view.likeview.tools.ei.RxEasingInterpolator;

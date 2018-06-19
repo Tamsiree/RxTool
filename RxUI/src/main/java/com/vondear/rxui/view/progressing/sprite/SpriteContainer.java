@@ -4,8 +4,6 @@ import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.vondear.rxui.view.progressing.animation.AnimationUtils;
-
 
 /**
  * @author vondear
@@ -87,18 +85,18 @@ public abstract class SpriteContainer extends Sprite {
     @Override
     public void start() {
         super.start();
-        AnimationUtils.start(sprites);
+        start(sprites);
     }
 
     @Override
     public void stop() {
         super.stop();
-        AnimationUtils.stop(sprites);
+        stop(sprites);
     }
 
     @Override
     public boolean isRunning() {
-        return AnimationUtils.isRunning(sprites) || super.isRunning();
+        return isRunning(sprites) || super.isRunning();
     }
 
     public abstract Sprite[] onCreateChild();
@@ -106,5 +104,26 @@ public abstract class SpriteContainer extends Sprite {
     @Override
     public ValueAnimator onCreateAnimation() {
         return null;
+    }
+
+    public static void start(Sprite... sprites) {
+        for (Sprite sprite : sprites) {
+            sprite.start();
+        }
+    }
+
+    public static void stop(Sprite... sprites) {
+        for (Sprite sprite : sprites) {
+            sprite.stop();
+        }
+    }
+
+    public static boolean isRunning(Sprite... sprites) {
+        for (Sprite sprite : sprites) {
+            if (sprite.isRunning()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -21,9 +21,8 @@ import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
 import com.vondear.rxui.R;
-import com.vondear.rxui.view.heart.tools.RxAbstractPathAnimator;
-import com.vondear.rxui.view.heart.tools.RxHeartView;
-import com.vondear.rxui.view.heart.tools.RxPathAnimator;
+import com.vondear.rxui.animation.RxAbstractPathAnimator;
+import com.vondear.rxui.animation.RxPathAnimator;
 
 /**
  * @author vondear

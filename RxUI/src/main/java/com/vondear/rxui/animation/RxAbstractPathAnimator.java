@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.vondear.rxui.view.heart.tools;
+package com.vondear.rxui.animation;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -102,10 +102,6 @@ public abstract class RxAbstractPathAnimator {
                     res.getInteger(R.integer.anim_duration));
             return config;
         }
-
-
     }
-
-
 }
 

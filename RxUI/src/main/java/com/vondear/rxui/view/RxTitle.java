@@ -25,55 +25,79 @@ import com.vondear.rxui.R;
 
 public class RxTitle extends FrameLayout {
     //*******************************************控件start******************************************
-    private RelativeLayout mRootLayout;//根布局
+    //根布局
+    private RelativeLayout mRootLayout;
 
-    private RxTextAutoZoom mTvTitle;//Title的TextView控件
+    //Title的TextView控件
+    private RxTextAutoZoom mTvTitle;
 
-    private LinearLayout mLlLeft;//左边布局
+    //左边布局
+    private LinearLayout mLlLeft;
 
-    private ImageView mIvLeft;//左边ImageView控件
+    //左边ImageView控件
+    private ImageView mIvLeft;
 
-    private TextView mTvLeft;//左边TextView控件
+    //左边TextView控件
+    private TextView mTvLeft;
 
-    private LinearLayout mLlRight;//右边布局
+    //右边布局
+    private LinearLayout mLlRight;
 
-    private ImageView mIvRight;//右边ImageView控件
+    //右边ImageView控件
+    private ImageView mIvRight;
 
-    private TextView mTvRight;//右边TextView控件
+    //右边TextView控件
+    private TextView mTvRight;
     //===========================================控件end=============================================
 
     //*******************************************属性start*******************************************
-    private String mTitle;//Title文字
+    //Title文字
+    private String mTitle;
 
-    private int mTitleColor;//Title字体颜色
+    //Title字体颜色
+    private int mTitleColor;
 
-    private int mTitleSize;//Title字体大小
+    //Title字体大小
+    private int mTitleSize;
 
-    private boolean mTitleVisibility;//Title是否显示
+    //Title是否显示
+    private boolean mTitleVisibility;
 
-    private int mLeftIcon;//左边 ICON 引用的资源ID
+    //左边 ICON 引用的资源ID
+    private int mLeftIcon;
 
-    private int mRightIcon;//右边 ICON 引用的资源ID
+    //右边 ICON 引用的资源ID
+    private int mRightIcon;
 
-    private boolean mLeftIconVisibility;//左边 ICON 是否显示
+    //左边 ICON 是否显示
+    private boolean mLeftIconVisibility;
 
-    private boolean mRightIconVisibility;//右边 ICON 是否显示
+    //右边 ICON 是否显示
+    private boolean mRightIconVisibility;
 
-    private String mLeftText;//左边文字
+    //左边文字
+    private String mLeftText;
 
-    private int mLeftTextColor;//左边字体颜色
+    //左边字体颜色
+    private int mLeftTextColor;
 
-    private int mLeftTextSize;//左边字体大小
+    //左边字体大小
+    private int mLeftTextSize;
 
-    private boolean mLeftTextVisibility;//左边文字是否显示
+    //左边文字是否显示
+    private boolean mLeftTextVisibility;
 
-    private String mRightText;//右边文字
+    //右边文字
+    private String mRightText;
 
-    private int mRightTextColor;//右边字体颜色
+    //右边字体颜色
+    private int mRightTextColor;
 
-    private int mRightTextSize;//右边字体大小
+    //右边字体大小
+    private int mRightTextSize;
 
-    private boolean mRightTextVisibility;//右边文字是否显示
+    //右边文字是否显示
+    private boolean mRightTextVisibility;
     //===========================================属性end=============================================
 
     public RxTitle(Context context) {

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.vondear.rxui.view.heart.tools;
+package com.vondear.rxui.view.heart;
 
 import android.content.Context;
 import android.graphics.Bitmap;

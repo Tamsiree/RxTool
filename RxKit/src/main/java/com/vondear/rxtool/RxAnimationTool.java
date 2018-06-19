@@ -27,6 +27,26 @@ import com.vondear.rxtool.interfaces.OnDoIntListener;
 
 public class RxAnimationTool {
 
+    public static void start(Animator animator) {
+        if (animator != null && !animator.isStarted()) {
+            animator.start();
+        }
+    }
+
+    public static void stop(Animator animator) {
+        if (animator != null && !animator.isRunning()) {
+            animator.end();
+        }
+    }
+
+    public static boolean isRunning(ValueAnimator animator) {
+        return animator != null && animator.isRunning();
+    }
+
+    public static boolean isStarted(ValueAnimator animator) {
+        return animator != null && animator.isStarted();
+    }
+
     /**
      * 颜色渐变动画
      *
