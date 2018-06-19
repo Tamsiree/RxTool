@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.google.android.cameraview.CameraView;
 import com.vondear.rxdemo.R;
-import com.vondear.rxdemo.interfaces.OnRxCamera;
-import com.vondear.rxdemo.tools.RxCameraTool;
+import com.vondear.rxfeature.module.camera.OnRxCamera;
+import com.vondear.rxfeature.module.camera.RxCameraTool;
 import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxtool.RxFileTool;
 import com.vondear.rxtool.RxLocationTool;

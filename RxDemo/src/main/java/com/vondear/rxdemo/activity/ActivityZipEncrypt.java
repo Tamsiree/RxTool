@@ -14,6 +14,8 @@ import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,8 +34,16 @@ public class ActivityZipEncrypt extends ActivityBase {
     TextView mTvState;
     @BindView(R.id.rx_title)
     RxTitle mRxTitle;
+    @BindView(R.id.btn_upzip)
+    Button mBtnUpzip;
 
     private File fileDir;
+    private File unZipDirFile;
+    private File fileZip;
+
+    private String zipPath;
+    private String zipParentPath;
+    private String unzipPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +51,34 @@ public class ActivityZipEncrypt extends ActivityBase {
         setContentView(R.layout.activity_zip_encrypt);
         ButterKnife.bind(this);
         mRxTitle.setLeftFinish(mContext);
+        zipParentPath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxTool";
+        unzipPath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxToolUnZip";
+        zipPath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "Rxtool.zip";
+
+        unZipDirFile = new File(unzipPath);
+        if (!unZipDirFile.exists()) {
+            unZipDirFile.mkdirs();
+        }
     }
 
-    @OnClick({R.id.btn_create_folder, R.id.btn_zip})
+    @OnClick({R.id.btn_create_folder, R.id.btn_zip, R.id.btn_upzip})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_create_folder:
-                fileDir = new File(RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxTools");
+                fileDir = new File(zipParentPath);
                 if (!fileDir.exists()) {
                     fileDir.mkdirs();
                 }
-                mTvState.setText("文件夹 RxTools 创建成功,文件夹位于在根目录");
+
+                try {
+                    File file = File.createTempFile("RxTool_Temp", ".txt", fileDir);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                mTvState.setText("文件夹 RxTool 创建成功,文件夹位于在根目录");
                 break;
             case R.id.btn_zip:
-                File fileZip = new File(RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxTools.zip");
+                fileZip = new File(zipPath);
                 if (fileZip.exists()) {
                     RxFileTool.deleteFile(fileZip);
                     Logger.d("导出文件已存在，将之删除");
@@ -69,6 +93,18 @@ public class ActivityZipEncrypt extends ActivityBase {
                     }
                 } else {
                     RxToast.error("导出的文件不存在");
+                }
+                break;
+            case R.id.btn_upzip:
+                try {
+                    List<File> zipFiles = RxZipTool.unzipFileByKeyword(fileZip, unZipDirFile, "123456");
+                    String str = "导出文件列表\n";
+                    for (File zipFile : zipFiles) {
+                        str += zipFile.getAbsolutePath() + "\n";
+                    }
+                    mTvState.setText(str);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 break;
             default:

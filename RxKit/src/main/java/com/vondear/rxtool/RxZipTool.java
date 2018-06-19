@@ -316,7 +316,8 @@ public class RxZipTool {
         Enumeration<?> entries = zf.entries();
         while (entries.hasMoreElements()) {
             ZipEntry entry = ((ZipEntry) entries.nextElement());
-            String entryName = entry.getName();
+            //String entryName = entry.getName();
+            String entryName = entry.getName().replace("\\", File.separator);
             if (RxDataTool.isNullString(keyword) || RxFileTool.getFileName(entryName).toLowerCase().contains(keyword.toLowerCase())) {
                 String filePath = destDir + File.separator + entryName;
                 File file = new File(filePath);

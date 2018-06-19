@@ -38,8 +38,21 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="21dp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_create_folder"/>
+
+    <Button
+        android:id="@+id/btn_upzip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击解压缩"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="71dp"
         app:layout_constraintTop_toBottomOf="@+id/btn_create_folder"/>
+
 
     <TextView
         android:id="@+id/tv_state"
