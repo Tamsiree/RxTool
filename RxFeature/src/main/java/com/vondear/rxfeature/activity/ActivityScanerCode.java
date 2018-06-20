@@ -11,6 +11,8 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -23,11 +25,16 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.DecodeHintType;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
+import com.google.zxing.common.HybridBinarizer;
 import com.vondear.rxfeature.R;
 import com.vondear.rxfeature.module.scaner.CameraManager;
-import com.vondear.rxfeature.module.scaner.CaptureActivityHandler;
 import com.vondear.rxfeature.module.scaner.OnRxScanerListener;
+import com.vondear.rxfeature.module.scaner.PlanarYUVLuminanceSource;
 import com.vondear.rxfeature.module.scaner.decoding.InactivityTimer;
 import com.vondear.rxfeature.tool.RxQrBarTool;
 import com.vondear.rxtool.RxAnimationTool;
@@ -42,7 +49,12 @@ import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.dialog.RxDialogSure;
 
 import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Vector;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * @author vondear
@@ -266,7 +278,7 @@ public class ActivityScanerCode extends ActivityBase {
             return;
         }
         if (handler == null) {
-            handler = new CaptureActivityHandler(ActivityScanerCode.this);
+            handler = new CaptureActivityHandler();
         }
     }
     //========================================打开本地图片识别二维码 end=================================
@@ -361,7 +373,185 @@ public class ActivityScanerCode extends ActivityBase {
         }
     }
 
-    public Handler getHandler() {
-        return handler;
+    final class CaptureActivityHandler extends Handler {
+
+        DecodeThread decodeThread = null;
+        private State state;
+
+        public CaptureActivityHandler() {
+            decodeThread = new DecodeThread();
+            decodeThread.start();
+            state = State.SUCCESS;
+            CameraManager.get().startPreview();
+            restartPreviewAndDecode();
+        }
+
+        @Override
+        public void handleMessage(Message message) {
+            if (message.what == R.id.auto_focus) {
+                if (state == State.PREVIEW) {
+                    CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
+                }
+            } else if (message.what == R.id.restart_preview) {
+                restartPreviewAndDecode();
+            } else if (message.what == R.id.decode_succeeded) {
+                state = State.SUCCESS;
+                handleDecode((Result) message.obj);// 解析成功，回调
+            } else if (message.what == R.id.decode_failed) {
+                state = State.PREVIEW;
+                CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
+            }
+        }
+
+        public void quitSynchronously() {
+            state = State.DONE;
+            CameraManager.get().stopPreview();
+            removeMessages(R.id.decode_succeeded);
+            removeMessages(R.id.decode_failed);
+            removeMessages(R.id.decode);
+            removeMessages(R.id.auto_focus);
+        }
+
+        private void restartPreviewAndDecode() {
+            if (state == State.SUCCESS) {
+                state = State.PREVIEW;
+                CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
+                CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
+            }
+        }
+
+
+
+    }
+
+    final class DecodeThread extends Thread {
+
+        private final CountDownLatch handlerInitLatch;
+        private Handler handler;
+
+        DecodeThread() {
+            handlerInitLatch = new CountDownLatch(1);
+        }
+
+        Handler getHandler() {
+            try {
+                handlerInitLatch.await();
+            } catch (InterruptedException ie) {
+                // continue?
+            }
+            return handler;
+        }
+
+        @Override
+        public void run() {
+            Looper.prepare();
+            handler = new DecodeHandler();
+            handlerInitLatch.countDown();
+            Looper.loop();
+        }
+
+    }
+
+    final class DecodeHandler extends Handler {
+
+        private final MultiFormatReader multiFormatReader;
+
+        DecodeHandler() {
+            multiFormatReader = new MultiFormatReader();
+
+            // 解码的参数
+            Hashtable<DecodeHintType, Object> hints = new Hashtable<DecodeHintType, Object>(2);
+            // 可以解析的编码类型
+            Vector<BarcodeFormat> decodeFormats = new Vector<BarcodeFormat>();
+            if (decodeFormats == null || decodeFormats.isEmpty()) {
+                decodeFormats = new Vector<BarcodeFormat>();
+
+                Vector<BarcodeFormat> PRODUCT_FORMATS = new Vector<BarcodeFormat>(5);
+                PRODUCT_FORMATS.add(BarcodeFormat.UPC_A);
+                PRODUCT_FORMATS.add(BarcodeFormat.UPC_E);
+                PRODUCT_FORMATS.add(BarcodeFormat.EAN_13);
+                PRODUCT_FORMATS.add(BarcodeFormat.EAN_8);
+                // PRODUCT_FORMATS.add(BarcodeFormat.RSS14);
+                Vector<BarcodeFormat> ONE_D_FORMATS = new Vector<BarcodeFormat>(PRODUCT_FORMATS.size() + 4);
+                ONE_D_FORMATS.addAll(PRODUCT_FORMATS);
+                ONE_D_FORMATS.add(BarcodeFormat.CODE_39);
+                ONE_D_FORMATS.add(BarcodeFormat.CODE_93);
+                ONE_D_FORMATS.add(BarcodeFormat.CODE_128);
+                ONE_D_FORMATS.add(BarcodeFormat.ITF);
+                Vector<BarcodeFormat> QR_CODE_FORMATS = new Vector<BarcodeFormat>(1);
+                QR_CODE_FORMATS.add(BarcodeFormat.QR_CODE);
+                Vector<BarcodeFormat> DATA_MATRIX_FORMATS = new Vector<BarcodeFormat>(1);
+                DATA_MATRIX_FORMATS.add(BarcodeFormat.DATA_MATRIX);
+
+                // 这里设置可扫描的类型，我这里选择了都支持
+                decodeFormats.addAll(ONE_D_FORMATS);
+                decodeFormats.addAll(QR_CODE_FORMATS);
+                decodeFormats.addAll(DATA_MATRIX_FORMATS);
+            }
+            hints.put(DecodeHintType.POSSIBLE_FORMATS, decodeFormats);
+
+            multiFormatReader.setHints(hints);
+        }
+
+
+        @Override
+        public void handleMessage(Message message) {
+            if (message.what == R.id.decode) {
+                decode((byte[]) message.obj, message.arg1, message.arg2);
+            } else if (message.what == R.id.quit) {
+                Looper.myLooper().quit();
+            }
+        }
+
+        private void decode(byte[] data, int width, int height) {
+            long start = System.currentTimeMillis();
+            Result rawResult = null;
+
+            //modify here
+            byte[] rotatedData = new byte[data.length];
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    rotatedData[x * height + height - y - 1] = data[x + y * width];
+                }
+            }
+            // Here we are swapping, that's the difference to #11
+            int tmp = width;
+            width = height;
+            height = tmp;
+
+            PlanarYUVLuminanceSource source = CameraManager.get().buildLuminanceSource(rotatedData, width, height);
+            BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+            try {
+                rawResult = multiFormatReader.decodeWithState(bitmap);
+            } catch (ReaderException e) {
+                // continue
+            } finally {
+                multiFormatReader.reset();
+            }
+
+            if (rawResult != null) {
+                long end = System.currentTimeMillis();
+                Log.d(TAG, "Found barcode (" + (end - start) + " ms):\n" + rawResult.toString());
+                Message message = Message.obtain(handler, R.id.decode_succeeded, rawResult);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("barcode_bitmap", source.renderCroppedGreyscaleBitmap());
+                message.setData(bundle);
+                //Log.d(TAG, "Sending decode succeeded message...");
+                message.sendToTarget();
+            } else {
+                Message message = Message.obtain(handler, R.id.decode_failed);
+                message.sendToTarget();
+            }
+        }
+
+    }
+
+    private enum State {
+        //预览
+        PREVIEW,
+        //成功
+        SUCCESS,
+        //完成
+        DONE
     }
 }
