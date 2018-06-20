@@ -40,5 +40,4 @@ public class RxShineAnimator extends ValueAnimator {
         this.canvas = canvas;
     }
 
-
 }
