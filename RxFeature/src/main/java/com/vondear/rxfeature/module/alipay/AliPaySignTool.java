@@ -7,7 +7,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 /**
  * @author vondear
  */
-public class AliPaySignUtils {
+public class AliPaySignTool {
 
     private static final String ALGORITHM = "RSA";
 

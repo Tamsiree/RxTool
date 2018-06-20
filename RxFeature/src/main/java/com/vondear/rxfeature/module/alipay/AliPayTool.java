@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * @author vondear
  */
-public class AliPayTools {
+public class AliPayTool {
 
     private static final int SDK_PAY_FLAG = 1;
 
@@ -50,12 +50,12 @@ public class AliPayTools {
 
     public static void aliPay(final Activity activity, String appid, boolean isRsa2, String alipay_rsa_private, AliPayModel aliPayModel, OnSuccessAndErrorListener onRxHttp1) {
         sOnSuccessAndErrorListener = onRxHttp1;
-        Map<String, String> params = AliPayOrderInfoUtil.buildOrderParamMap(appid, isRsa2, aliPayModel.getOut_trade_no(), aliPayModel.getName(), aliPayModel.getMoney(), aliPayModel.getDetail());
-        String orderParam = AliPayOrderInfoUtil.buildOrderParam(params);
+        Map<String, String> params = AliPayOrderTool.buildOrderParamMap(appid, isRsa2, aliPayModel.getOutTradeNo(), aliPayModel.getName(), aliPayModel.getMoney(), aliPayModel.getDetail());
+        String orderParam = AliPayOrderTool.buildOrderParam(params);
 
         String privateKey = alipay_rsa_private;
 
-        String sign = AliPayOrderInfoUtil.getSign(params, privateKey, isRsa2);
+        String sign = AliPayOrderTool.getSign(params, privateKey, isRsa2);
         final String orderInfo = orderParam + "&" + sign;
 
         Runnable payRunnable = new Runnable() {

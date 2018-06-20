@@ -6,24 +6,24 @@ package com.vondear.rxfeature.module.alipay;
  */
 
 public class AliPayModel {
-    private String out_trade_no;
+    private String outTradeNo;
     private String money;
     private String name;
     private String detail;
 
-    public AliPayModel(String out_trade_no, String money, String name, String detail) {
-        this.out_trade_no = out_trade_no;
+    public AliPayModel(String outTradeNo, String money, String name, String detail) {
+        this.outTradeNo = outTradeNo;
         this.money = money;
         this.name = name;
         this.detail = detail;
     }
 
-    public String getOut_trade_no() {
-        return out_trade_no;
+    public String getOutTradeNo() {
+        return outTradeNo;
     }
 
-    public void setOut_trade_no(String out_trade_no) {
-        this.out_trade_no = out_trade_no;
+    public void setOutTradeNo(String outTradeNo) {
+        this.outTradeNo = outTradeNo;
     }
 
     public String getMoney() {

@@ -15,7 +15,7 @@ import java.util.Random;
 /**
  * @author vondear
  */
-public class AliPayOrderInfoUtil {
+public class AliPayOrderTool {
 
     /**
      * 构造授权参数列表
@@ -165,7 +165,7 @@ public class AliPayOrderInfoUtil {
         String tailValue = map.get(tailKey);
         authInfo.append(buildKeyValue(tailKey, tailValue, false));
 
-        String oriSign = AliPaySignUtils.sign(authInfo.toString(), rsaKey, rsa2);
+        String oriSign = AliPaySignTool.sign(authInfo.toString(), rsaKey, rsa2);
         String encodedSign = "";
 
         try {
