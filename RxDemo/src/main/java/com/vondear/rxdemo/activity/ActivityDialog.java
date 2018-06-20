@@ -70,7 +70,7 @@ public class ActivityDialog extends ActivityBase {
 
     private void initWheelYearMonthDayDialog() {
         // ------------------------------------------------------------------选择日期开始
-        mRxDialogWheelYearMonthDay = new RxDialogWheelYearMonthDay(this, 1994, 2017);
+        mRxDialogWheelYearMonthDay = new RxDialogWheelYearMonthDay(this, 1994, 2018);
         mRxDialogWheelYearMonthDay.getSureView().setOnClickListener(
                 new View.OnClickListener() {
 
