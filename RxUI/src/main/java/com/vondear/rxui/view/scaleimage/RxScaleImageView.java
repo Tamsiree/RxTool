@@ -881,6 +881,8 @@ public class RxScaleImageView extends View {
                     maxTouchCount = 0;
                 }
                 return true;
+            default:
+                break;
         }
         return false;
     }
@@ -1221,25 +1223,20 @@ public class RxScaleImageView extends View {
         }
 
         if (fullImageSampleSize == 1 && sRegion == null && sWidth() < maxTileDimensions.x && sHeight() < maxTileDimensions.y) {
-
             // Whole image is required at native resolution, and is smaller than the canvas max bitmap size.
             // Use BitmapDecoder for better image support.
             decoder.recycle();
             decoder = null;
             BitmapLoadTask task = new BitmapLoadTask(this, getContext(), bitmapDecoderFactory, uri, false);
             execute(task);
-
         } else {
-
             initialiseTileMap(maxTileDimensions);
-
             List<Tile> baseGrid = tileMap.get(fullImageSampleSize);
             for (Tile baseTile : baseGrid) {
                 TileLoadTask task = new TileLoadTask(this, decoder, baseTile);
                 execute(task);
             }
             refreshRequiredTiles(true);
-
         }
 
     }
@@ -1347,11 +1344,9 @@ public class RxScaleImageView extends View {
         }
 
         if (sHeight() > reqHeight || sWidth() > reqWidth) {
-
             // Calculate ratios of height and width to requested height and width
             final int heightRatio = Math.round((float) sHeight() / (float) reqHeight);
             final int widthRatio = Math.round((float) sWidth() / (float) reqWidth);
-
             // Choose the smallest ratio as inSampleSize value, this will guarantee
             // a final image with both dimensions larger than or equal to the
             // requested height and width.
@@ -2847,19 +2842,32 @@ public class RxScaleImageView extends View {
 
     private static class Anim {
 
-        private float scaleStart; // Scale at start of anim
-        private float scaleEnd; // Scale at end of anim (target)
-        private PointF sCenterStart; // Source center point at start
-        private PointF sCenterEnd; // Source center point at end, adjusted for pan limits
-        private PointF sCenterEndRequested; // Source center point that was requested, without adjustment
-        private PointF vFocusStart; // View point that was double tapped
-        private PointF vFocusEnd; // Where the view focal point should be moved to during the anim
-        private long duration = 500; // How long the anim takes
-        private boolean interruptible = true; // Whether the anim can be interrupted by a touch
-        private int easing = EASE_IN_OUT_QUAD; // Easing style
-        private int origin = ORIGIN_ANIM; // Animation origin (API, double tap or fling)
-        private long time = System.currentTimeMillis(); // Start time
-        private OnAnimationEventListener listener; // Event listener
+        // Scale at start of anim
+        private float scaleStart;
+        // Scale at end of anim (target)
+        private float scaleEnd;
+        // Source center point at start
+        private PointF sCenterStart;
+        // Source center point at end, adjusted for pan limits
+        private PointF sCenterEnd;
+        // Source center point that was requested, without adjustment
+        private PointF sCenterEndRequested;
+        // View point that was double tapped
+        private PointF vFocusStart;
+        // Where the view focal point should be moved to during the anim
+        private PointF vFocusEnd;
+        // How long the anim takes
+        private long duration = 500;
+        // Whether the anim can be interrupted by a touch
+        private boolean interruptible = true;
+        // Easing style
+        private int easing = EASE_IN_OUT_QUAD;
+        // Animation origin (API, double tap or fling)
+        private int origin = ORIGIN_ANIM;
+        // Start time
+        private long time = System.currentTimeMillis();
+        // Event listener
+        private OnAnimationEventListener listener;
 
     }
 
@@ -3092,7 +3100,6 @@ public class RxScaleImageView extends View {
                         vFocus.y + (satEnd.vTranslate.y - vTranslateYEnd)
                 );
             }
-
             invalidate();
         }
 

@@ -11,7 +11,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.NinePatch;
 import android.graphics.Paint;
 import android.graphics.RadialGradient;
 import android.graphics.Rect;
@@ -25,6 +24,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxui.R;
 
 
@@ -37,7 +37,7 @@ public class RxSeekBar extends View {
     private static final float DEFAULT_RADIUS = 0.5f;
 
     //default seekbar's padding left and right
-    private int DEFAULT_PADDING_LEFT_AND_RIGHT;
+    private int defaultPaddingLeftAndRight;
 
     private int defaultPaddingTop;
     //进度提示的背景 The background of the progress
@@ -169,13 +169,13 @@ public class RxSeekBar extends View {
         mTextArray = t.getTextArray(R.styleable.RxSeekBar_markTextArray);
         mHideProgressHint = t.getBoolean(R.styleable.RxSeekBar_hideProgressHint, false);
         mIsHintHolder = t.getBoolean(R.styleable.RxSeekBar_isHintHolder, false);
-        textPadding = (int) t.getDimension(R.styleable.RxSeekBar_textPadding, dp2px(context, 7));
-        mTextSize = (int) t.getDimension(R.styleable.RxSeekBar_textSize2, dp2px(context, 12));
+        textPadding = (int) t.getDimension(R.styleable.RxSeekBar_textPadding, RxImageTool.dp2px(7f));
+        mTextSize = (int) t.getDimension(R.styleable.RxSeekBar_textSize2, RxImageTool.dp2px(12f));
         mHintBGHeight = t.getDimension(R.styleable.RxSeekBar_hintBGHeight, 0);
         mHintBGWith = t.getDimension(R.styleable.RxSeekBar_hintBGWith, 0);
-        mSeekBarHeight = (int) t.getDimension(R.styleable.RxSeekBar_seekBarHeight, dp2px(context, 2));
+        mSeekBarHeight = (int) t.getDimension(R.styleable.RxSeekBar_seekBarHeight, RxImageTool.dp2px(2f));
         mHintBGPadding = (int) t.getDimension(R.styleable.RxSeekBar_hintBGPadding, 0);
-        mThumbSize = (int) t.getDimension(R.styleable.RxSeekBar_thumbSize, dp2px(context, 26));
+        mThumbSize = (int) t.getDimension(R.styleable.RxSeekBar_thumbSize, RxImageTool.dp2px(26f));
         mCellMode = t.getInt(R.styleable.RxSeekBar_cellMode, 0);
         mSeekBarMode = t.getInt(R.styleable.RxSeekBar_seekBarMode, 2);
 
@@ -188,9 +188,9 @@ public class RxSeekBar extends View {
 
         // if you don't set the mHintBGWith or the mHintBGWith < default value, if will use default value
         if (mHintBGWith == 0) {
-            DEFAULT_PADDING_LEFT_AND_RIGHT = dp2px(context, 25);
+            defaultPaddingLeftAndRight = RxImageTool.dp2px(25f);
         } else {
-            DEFAULT_PADDING_LEFT_AND_RIGHT = Math.max((int) (mHintBGWith / 2 + dp2px(context, 5)), dp2px(context, 25));
+            defaultPaddingLeftAndRight = Math.max((int) (mHintBGWith / 2 + RxImageTool.dp2px(5f)), RxImageTool.dp2px(25f));
 
         }
 
@@ -239,7 +239,7 @@ public class RxSeekBar extends View {
         // Calculates the position of the progress bar and initializes the positions of
         // the two buttons based on it
 
-        lineLeft = DEFAULT_PADDING_LEFT_AND_RIGHT + getPaddingLeft();
+        lineLeft = defaultPaddingLeftAndRight + getPaddingLeft();
         lineRight = w - lineLeft - getPaddingRight();
         lineTop = (int) mHintBGHeight + mThumbSize / 2 - mSeekBarHeight / 2;
         lineBottom = lineTop + mSeekBarHeight;
@@ -375,10 +375,10 @@ public class RxSeekBar extends View {
          * 计算每个按钮的位置和尺寸
          * Calculates the position and size of each button
          *
-         * @param x
-         * @param y
-         * @param hSize
-         * @param parentLineWidth
+         * @param x               在屏幕上的X的位置
+         * @param y               在屏幕上的Y的位置
+         * @param hSize           高度大小
+         * @param parentLineWidth 父类线宽度
          * @param cellsMode
          * @param bmpResId
          * @param context
@@ -456,10 +456,12 @@ public class RxSeekBar extends View {
                 }
 
                 hintH = (int) mHintBGHeight;
-                hintW = (int) (mHintBGWith == 0 ? (mCursorPaint.measureText(text2Draw) + DEFAULT_PADDING_LEFT_AND_RIGHT)
+                hintW = (int) (mHintBGWith == 0 ? (mCursorPaint.measureText(text2Draw) + defaultPaddingLeftAndRight)
                         : mHintBGWith);
 
-                if (hintW < 1.5f * hintH) hintW = (int) (1.5f * hintH);
+                if (hintW < 1.5f * hintH) {
+                    hintW = (int) (1.5f * hintH);
+                }
             }
 
 
@@ -472,7 +474,7 @@ public class RxSeekBar extends View {
                     rect.top = bottom - hintH - bmp.getHeight();
                     rect.right = rect.left + hintW;
                     rect.bottom = rect.top + hintH;
-                    drawNinePath(canvas, mProgressHintBG, rect);
+                    RxImageTool.drawNinePath(canvas, mProgressHintBG, rect);
                     mCursorPaint.setColor(Color.WHITE);
 
                     int x = (int) (left + (bmp.getWidth() / 2) - mCursorPaint.measureText(text2Draw) / 2);
@@ -487,7 +489,7 @@ public class RxSeekBar extends View {
                     rect.top = defaultPaddingTop;
                     rect.right = rect.left + hintW;
                     rect.bottom = rect.top + hintH;
-                    drawNinePath(canvas, mProgressHintBG, rect);
+                    RxImageTool.drawNinePath(canvas, mProgressHintBG, rect);
 
                     mCursorPaint.setColor(Color.WHITE);
 
@@ -506,17 +508,6 @@ public class RxSeekBar extends View {
             canvas.restore();
         }
 
-        /**
-         * 绘制 9Path
-         *
-         * @param c
-         * @param bmp
-         * @param rect
-         */
-        public void drawNinePath(Canvas c, Bitmap bmp, Rect rect) {
-            NinePatch patch = new NinePatch(bmp, bmp.getNinePatchChunk(), null);
-            patch.draw(c, rect);
-        }
 
         /**
          * 如果没有图片资源，则绘制默认按钮
@@ -577,7 +568,7 @@ public class RxSeekBar extends View {
         /**
          * 拖动检测
          *
-         * @param event
+         * @param event 拖动事件
          * @return
          */
         protected boolean collide(MotionEvent event) {
@@ -589,14 +580,19 @@ public class RxSeekBar extends View {
         }
 
         private void slide(float percent) {
-            if (percent < 0) percent = 0;
-            else if (percent > 1) percent = 1;
+            if (percent < 0) {
+                percent = 0;
+            } else if (percent > 1) {
+                percent = 1;
+            }
             currPercent = percent;
         }
 
 
         private void materialRestore() {
-            if (anim != null) anim.cancel();
+            if (anim != null) {
+                anim.cancel();
+            }
             anim = ValueAnimator.ofFloat(material, 0);
             anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -832,7 +828,9 @@ public class RxSeekBar extends View {
 
                         while (touchLeftCellsValue > currRightCellsValue - reserveCount) {
                             touchLeftCellsValue--;
-                            if (touchLeftCellsValue < 0) break;
+                            if (touchLeftCellsValue < 0) {
+                                break;
+                            }
                             percent = touchLeftCellsValue * cellsPercent;
                         }
                     } else {
@@ -871,7 +869,9 @@ public class RxSeekBar extends View {
 
                         while (touchRightCellsValue < currLeftCellsValue + reserveCount) {
                             touchRightCellsValue++;
-                            if (touchRightCellsValue > maxValue - minValue) break;
+                            if (touchRightCellsValue > maxValue - minValue) {
+                                break;
+                            }
                             percent = touchRightCellsValue * cellsPercent;
                         }
                     } else {
@@ -938,6 +938,8 @@ public class RxSeekBar extends View {
                     getParent().requestDisallowInterceptTouchEvent(true);
                 }
                 break;
+            default:
+                break;
         }
         return super.onTouchEvent(event);
     }
@@ -1002,14 +1004,6 @@ public class RxSeekBar extends View {
             out.writeFloat(currSelectedMin);
             out.writeFloat(currSelectedMax);
         }
-    }
-
-    /**
-     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
-     */
-    private int dp2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
     }
 
     /**

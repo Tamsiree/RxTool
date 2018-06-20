@@ -10,7 +10,6 @@ import android.text.TextPaint;
 import java.util.ArrayList;
 
 /**
- *
  * @author Vondear
  * @date 12/24/15
  */
@@ -85,9 +84,11 @@ public class RxRotateBarBasic {
         // outline : 1/3 of shadow
         outlineWidth = shadowWidth / 3;
 
-        int outlineRadius = mRadius - (textWidth / 2); // outline include text and outline, radius is base on textWidth
+        // outline include text and outline, radius is base on textWidth
+        int outlineRadius = mRadius - (textWidth / 2);
 
-        int paddingRadius = outlineRadius - (textWidth / 2); // padding space draw nothing, radius is base on textWidth
+        // padding space draw nothing, radius is base on textWidth
+        int paddingRadius = outlineRadius - (textWidth / 2);
 
         int ratingBarRadius = paddingRadius - (textWidth / 2) - (ratingBarWidth / 2);
 

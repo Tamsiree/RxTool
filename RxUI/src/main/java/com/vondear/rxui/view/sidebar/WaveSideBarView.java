@@ -20,6 +20,7 @@ import java.util.List;
 
 /**
  * 波浪侧边栏
+ *
  * @author vondear
  */
 public class WaveSideBarView extends View {
@@ -137,7 +138,6 @@ public class WaveSideBarView extends View {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-
                 if (x < mWidth - 2 * mRadius) {
                     return false;
                 }
@@ -158,7 +158,6 @@ public class WaveSideBarView extends View {
                 break;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-
                 startAnimator(mRatio, 0f);
                 mChoose = -1;
                 break;
@@ -195,7 +194,6 @@ public class WaveSideBarView extends View {
     }
 
     private void drawLetters(Canvas canvas) {
-
         RectF rectF = new RectF();
         rectF.left = mPosX - mTextSize;
         rectF.right = mPosX + mTextSize;
@@ -281,9 +279,7 @@ public class WaveSideBarView extends View {
         int endBottomX = endTopX;
         int endBottomY = (int) (controlBottomY - mRadius * Math.cos(ANGLE));
         mWavePath.quadTo(controlCenterX, controlCenterY, endBottomX, endBottomY);
-
         mWavePath.quadTo(mWidth, controlBottomY, mWidth, controlBottomY + mRadius);
-
         mWavePath.close();
         canvas.drawPath(mWavePath, mWavePaint);
     }
@@ -291,13 +287,11 @@ public class WaveSideBarView extends View {
     private void drawBallPath(Canvas canvas) {
         //x轴的移动路径
         mBallCentreX = (mWidth + mBallRadius) - (2.0f * mRadius + 2.0f * mBallRadius) * mRatio;
-
         mBallPath.reset();
         mBallPath.addCircle(mBallCentreX, mCenterY, mBallRadius, Path.Direction.CW);
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mBallPath.op(mWavePath, Path.Op.DIFFERENCE);
         }
-
         mBallPath.close();
         canvas.drawPath(mBallPath, mWavePaint);
 

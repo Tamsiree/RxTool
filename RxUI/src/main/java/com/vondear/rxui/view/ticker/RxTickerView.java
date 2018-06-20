@@ -30,12 +30,12 @@ import com.vondear.rxui.R;
  * current text to a given text. The scrolling behavior is defined by
  * {@link #setCharacterList(char[])} which dictates what characters come in between the starting
  * and ending characters.
- *
+ * <p>
  * <p>This class primarily handles the drawing customization of the ticker view, for example
  * setting animation duration, interpolator, colors, etc. It ensures that the canvas is properly
  * positioned, and then it delegates the drawing of each column of text to
  * {@link RxTickerColumnManager}.
- *
+ * <p>
  * <p>This class's API should behave similarly to that of a {@link android.widget.TextView}.
  * However, I chose to extend from {@link View} instead of {@link android.widget.TextView}
  * because it allows me full flexibility in customizing the drawing and also support different
@@ -92,14 +92,14 @@ public class RxTickerView extends View {
     /**
      * We currently only support the following set of XML attributes:
      * <ul>
-     *     <li>app:textColor
-     *     <li>app:textSize
+     * <li>app:textColor
+     * <li>app:textSize
      * </ul>
      *
-     * @param context context from constructor
-     * @param attrs attrs from constructor
+     * @param context      context from constructor
+     * @param attrs        attrs from constructor
      * @param defStyleAttr defStyleAttr from constructor
-     * @param defStyleRes defStyleRes from constructor
+     * @param defStyleRes  defStyleRes from constructor
      */
     protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         final Resources res = context.getResources();
@@ -110,7 +110,7 @@ public class RxTickerView extends View {
         int gravity = DEFAULT_GRAVITY;
 
         // Set the view attributes from XML or from default values defined in this class
-        final TypedArray arr = context.obtainStyledAttributes(attrs,R.styleable.ticker_TickerView,
+        final TypedArray arr = context.obtainStyledAttributes(attrs, R.styleable.ticker_TickerView,
                 defStyleAttr, defStyleRes);
 
         final int textAppearanceResId = arr.getResourceId(
@@ -120,7 +120,7 @@ public class RxTickerView extends View {
         if (textAppearanceResId != -1) {
             final TypedArray textAppearanceArr = context.obtainStyledAttributes(
                     textAppearanceResId,
-                    new int[] {
+                    new int[]{
                             // TODO: having textColor first here does not work, why?
                             android.R.attr.textSize,
                             android.R.attr.textColor,
@@ -174,13 +174,13 @@ public class RxTickerView extends View {
      * This is the primary API that the view uses to determine how to animate from one character
      * to another. The provided character array dictates what characters will appear between
      * the start and end characters.
-     *
+     * <p>
      * <p>For example, given the list [a,b,c,d,e], if the view wants to animate from 'd' to 'a',
      * it will know that it has to go from 'd' to 'c' to 'b' to 'a', and these are the characters
      * that show up during the animation scroll.
-     *
+     * <p>
      * <p>You can find some helpful character list generators in {@link RxTickerUtils}.
-     *
+     * <p>
      * <p>Special note: the character list must contain {@link RxTickerUtils#EMPTY_CHAR} because the
      * ticker needs to know how to animate from empty to another character (e.g. when the length
      * of the string changes).
@@ -218,7 +218,7 @@ public class RxTickerView extends View {
      * Similar to {@link #setText(String)} but provides the optional argument of whether to
      * animate to the provided text or not.
      *
-     * @param text the text to display.
+     * @param text    the text to display.
      * @param animate whether to animate to text.
      */
     public synchronized void setText(String text, boolean animate) {
@@ -343,7 +343,7 @@ public class RxTickerView extends View {
 
     /**
      * @return the current text gravity used to align the text. Should be one of the values defined
-     *         in {@link Gravity}.
+     * in {@link Gravity}.
      */
     public int getGravity() {
         return gravity;
@@ -368,10 +368,10 @@ public class RxTickerView extends View {
      * measured width animated along with the text width. However, a side effect of this is that
      * the entering/exiting character might get truncated by the view's view bounds as the width
      * shrinks or expands.
-     *
+     * <p>
      * <p>Warning: using this feature may degrade performance as it will force a re-measure and
      * re-layout during each animation frame.
-     *
+     * <p>
      * <p>This flag is disabled by default.
      *
      * @param animateMeasurementChange whether or not to animate measurement changes.
@@ -462,6 +462,8 @@ public class RxTickerView extends View {
             case MeasureSpec.UNSPECIFIED:
                 desiredWidth = lastMeasuredDesiredWidth;
                 break;
+            default:
+                break;
         }
 
         switch (heightMode) {
@@ -472,6 +474,8 @@ public class RxTickerView extends View {
                 break;
             case MeasureSpec.UNSPECIFIED:
                 desiredHeight = lastMeasuredDesiredHeight;
+                break;
+            default:
                 break;
         }
 
@@ -509,7 +513,7 @@ public class RxTickerView extends View {
 
     // VisibleForTesting
     static void realignAndClipCanvasForGravity(Canvas canvas, int gravity, Rect viewBounds,
-            float currentWidth, float currentHeight) {
+                                               float currentWidth, float currentHeight) {
         final int availableWidth = viewBounds.width();
         final int availableHeight = viewBounds.height();
 
@@ -534,7 +538,7 @@ public class RxTickerView extends View {
             translationX = viewBounds.left + (availableWidth - currentWidth);
         }
 
-        canvas.translate(translationX ,translationY);
+        canvas.translate(translationX, translationY);
         canvas.clipRect(0f, 0f, currentWidth, currentHeight);
     }
 }

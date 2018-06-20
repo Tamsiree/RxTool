@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author vondear
  * @date 2016/7/20
- *
+ * <p>
  * 仿淘宝首页的 淘宝头条滚动的自定义View
  */
 public class RxTextViewVerticalMore extends ViewFlipper {
@@ -58,8 +58,8 @@ public class RxTextViewVerticalMore extends ViewFlipper {
             return;
         }
         removeAllViews();
-        for ( int i = 0; i < views.size(); i++) {
-            final int position=i;
+        for (int i = 0; i < views.size(); i++) {
+            final int position = i;
             //设置监听回调
             views.get(i).setOnClickListener(new OnClickListener() {
                 @Override
@@ -81,6 +81,7 @@ public class RxTextViewVerticalMore extends ViewFlipper {
 
     /**
      * 设置监听接口
+     *
      * @param onItemClickListener
      */
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {

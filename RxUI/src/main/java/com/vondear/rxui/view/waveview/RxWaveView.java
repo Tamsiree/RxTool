@@ -56,7 +56,9 @@ public class RxWaveView extends View {
     public static final ShapeType DEFAULT_WAVE_SHAPE = ShapeType.CIRCLE;
 
     public enum ShapeType {
+        //圆形
         CIRCLE,
+        //矩形
         SQUARE
     }
 

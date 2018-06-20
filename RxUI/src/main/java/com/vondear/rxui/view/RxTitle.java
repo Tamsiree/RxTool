@@ -128,25 +128,36 @@ public class RxTitle extends FrameLayout {
         try {
             //获得属性值
             //getColor(R.styleable.RxTitle_RxBackground, getResources().getColor(R.color.transparent))
-            mTitle = a.getString(R.styleable.RxTitle_title);//标题
-            mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, getResources().getColor(R.color.white));//标题颜色
-            mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, RxImageTool.dip2px(20));//标题字体大小
+            //标题
+            mTitle = a.getString(R.styleable.RxTitle_title);
+            //标题颜色
+            mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, getResources().getColor(R.color.white));
+            //标题字体大小
+            mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, RxImageTool.dip2px(20));
             //TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
             mTitleVisibility = a.getBoolean(R.styleable.RxTitle_titleVisibility, true);
 
-            mLeftIcon = a.getResourceId(R.styleable.RxTitle_leftIcon, R.drawable.previous_icon);//左边图标
-            mRightIcon = a.getResourceId(R.styleable.RxTitle_rightIcon, R.drawable.set);//右边图标
-            mLeftIconVisibility = a.getBoolean(R.styleable.RxTitle_leftIconVisibility, true);//左边图标是否显示
-            mRightIconVisibility = a.getBoolean(R.styleable.RxTitle_rightIconVisibility, false);//右边图标是否显示
+            //左边图标
+            mLeftIcon = a.getResourceId(R.styleable.RxTitle_leftIcon, R.drawable.previous_icon);
+            //右边图标
+            mRightIcon = a.getResourceId(R.styleable.RxTitle_rightIcon, R.drawable.set);
+            //左边图标是否显示
+            mLeftIconVisibility = a.getBoolean(R.styleable.RxTitle_leftIconVisibility, true);
+            //右边图标是否显示
+            mRightIconVisibility = a.getBoolean(R.styleable.RxTitle_rightIconVisibility, false);
 
             mLeftText = a.getString(R.styleable.RxTitle_leftText);
-            mLeftTextColor = a.getColor(R.styleable.RxTitle_leftTextColor, getResources().getColor(R.color.white));//左边字体颜色
-            mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, RxImageTool.dip2px(8));//标题字体大小
+            //左边字体颜色
+            mLeftTextColor = a.getColor(R.styleable.RxTitle_leftTextColor, getResources().getColor(R.color.white));
+            //标题字体大小
+            mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, RxImageTool.dip2px(8));
             mLeftTextVisibility = a.getBoolean(R.styleable.RxTitle_leftTextVisibility, false);
 
             mRightText = a.getString(R.styleable.RxTitle_rightText);
-            mRightTextColor = a.getColor(R.styleable.RxTitle_rightTextColor, getResources().getColor(R.color.white));//右边字体颜色
-            mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, RxImageTool.dip2px(8));//标题字体大小
+            //右边字体颜色
+            mRightTextColor = a.getColor(R.styleable.RxTitle_rightTextColor, getResources().getColor(R.color.white));
+            //标题字体大小
+            mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, RxImageTool.dip2px(8));
             mRightTextVisibility = a.getBoolean(R.styleable.RxTitle_rightTextVisibility, false);
 
         } finally {

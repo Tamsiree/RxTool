@@ -27,6 +27,7 @@ public class WheelRecycler {
 
     /**
      * Constructor
+     *
      * @param wheel the spinnerwheel view
      */
     public WheelRecycler(AbstractWheel wheel) {
@@ -38,14 +39,14 @@ public class WheelRecycler {
      * There are saved only items not included to specified range.
      * All the cached items are removed from original layout.
      *
-     * @param layout the layout containing items to be cached
+     * @param layout    the layout containing items to be cached
      * @param firstItem the number of first item in layout
-     * @param range the range of current spinnerwheel items
+     * @param range     the range of current spinnerwheel items
      * @return the new value of first item number
      */
     public int recycleItems(LinearLayout layout, int firstItem, ItemsRange range) {
         int index = firstItem;
-        for (int i = 0; i < layout.getChildCount();) {
+        for (int i = 0; i < layout.getChildCount(); ) {
             if (!range.contains(index)) {
                 recycleView(layout.getChildAt(i), index);
                 layout.removeViewAt(i);
@@ -62,6 +63,7 @@ public class WheelRecycler {
 
     /**
      * Gets item view
+     *
      * @return the cached view
      */
     public View getItem() {
@@ -70,6 +72,7 @@ public class WheelRecycler {
 
     /**
      * Gets empty item view
+     *
      * @return the cached empty view
      */
     public View getEmptyItem() {
@@ -90,7 +93,8 @@ public class WheelRecycler {
 
     /**
      * Adds view to specified cache. Creates a cache list if it is null.
-     * @param view the view to be cached
+     *
+     * @param view  the view to be cached
      * @param cache the cache list
      * @return the cache list
      */
@@ -105,7 +109,8 @@ public class WheelRecycler {
 
     /**
      * Adds view to cache. Determines view type (item view or empty one) by index.
-     * @param view the view to be cached
+     *
+     * @param view  the view to be cached
      * @param index the index of view
      */
     private void recycleView(View view, int index) {
@@ -125,6 +130,7 @@ public class WheelRecycler {
 
     /**
      * Gets view from specified cache.
+     *
      * @param cache the cache
      * @return the first view from cache.
      */

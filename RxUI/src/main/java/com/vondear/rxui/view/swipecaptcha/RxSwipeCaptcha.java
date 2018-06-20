@@ -72,10 +72,12 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
     //验证成功的白光一闪动画
     private boolean isShowSuccessAnim;
     private ValueAnimator mSuccessAnim;
-    private Paint mSuccessPaint;//画笔
-    private int mSuccessAnimOffset;//动画的offset
-    private Path mSuccessPath;//成功动画 平行四边形Path
-
+    //画笔
+    private Paint mSuccessPaint;
+    //动画的offset
+    private int mSuccessAnimOffset;
+    //成功动画 平行四边形Path
+    private Path mSuccessPath;
 
     public RxSwipeCaptcha(Context context) {
         this(context, null);
@@ -109,7 +111,6 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
         }
         ta.recycle();
 
-
         mRandom = new Random(System.nanoTime());
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
         mPaint.setColor(0x77000000);
@@ -124,7 +125,7 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
         // 实例化阴影画笔
         mMaskShadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
         mMaskShadowPaint.setColor(Color.BLACK);
-/*        mMaskShadowPaint.setStrokeWidth(50);
+        /*mMaskShadowPaint.setStrokeWidth(50);
         mMaskShadowPaint.setTextSize(50);
         mMaskShadowPaint.setStyle(Paint.Style.FILL_AND_STROKE);*/
         mMaskShadowPaint.setMaskFilter(new BlurMaskFilter(10, BlurMaskFilter.Blur.SOLID));
@@ -215,7 +216,9 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
         mSuccessPath.close();
     }
 
-    /**生成验证码区域*/
+    /**
+     * 生成验证码区域
+     */
     public void createCaptcha() {
         if (getDrawable() != null) {
             resetFlags();
@@ -225,12 +228,16 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
         }
     }
 
-    /**重置一些flasg， 开启验证模式*/
+    /**
+     * 重置一些flasg， 开启验证模式
+     */
     private void resetFlags() {
         isMatchMode = true;
     }
 
-    /**生成验证码Path*/
+    /**
+     * 生成验证码Path
+     */
     private void createCaptchaPath() {
         //原本打算随机生成gap，后来发现 宽度/3 效果比较好，
         int gap = mRandom.nextInt(mCaptchaWidth / 2);
@@ -288,7 +295,7 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
 
         mCaptchaPath.close();
 
-/*        RectF oval = new RectF(mCaptchaX + gap, mCaptchaY - (r), mCaptchaX + gap + r * 2, mCaptchaY + (r));
+        /*RectF oval = new RectF(mCaptchaX + gap, mCaptchaY - (r), mCaptchaX + gap + r * 2, mCaptchaY + (r));
         mCaptchaPath.addArc(oval, 180,180);
         mCaptchaPath.lineTo(mCaptchaX + mCaptchaWidth, mCaptchaY);
         //凹的话，麻烦一点，要利用多次move
@@ -331,7 +338,7 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
         //mMaskPaint.setShadowLayer(5, 3, 3, 0xFF0000FF);
 
         // 设置光源的方向
-        float[] direction = new float[]{ 1, 1, 1 };
+        float[] direction = new float[]{1, 1, 1};
         //设置环境光亮度
         float light = 1f;
         // 选择要应用的反射等级
@@ -389,11 +396,8 @@ public class RxSwipeCaptcha extends android.support.v7.widget.AppCompatImageView
                 //matchSuccess();
                 //成功的动画
                 mSuccessAnim.start();
-
-
             } else {
                 Log.e(TAG, "matchCaptcha() false: mDragerOffset:" + mDragerOffset + ", mCaptchaX:" + mCaptchaX);
-
                 mFailAnim.start();
                 //matchFailed();
             }

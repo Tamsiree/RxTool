@@ -5,27 +5,28 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
+ * @param <T> the element type
  * @author vondear
  * The simple Array spinnerwheel adapter
- * @param <T> the element type
  */
 public class ArrayWheelAdapter<T> extends AbstractWheelTextAdapter {
-    
+
     // items
     private T items[];
 
     /**
      * Constructor
+     *
      * @param context the current context
-     * @param items the items
+     * @param items   the items
      */
     public ArrayWheelAdapter(Context context, T items[]) {
         super(context);
-        
+
         //setEmptyItemResource(TEXT_VIEW_ITEM_RESOURCE);
         this.items = items;
     }
-    
+
     @Override
     public CharSequence getItemText(int index) {
         if (index >= 0 && index < items.length) {
@@ -40,10 +41,10 @@ public class ArrayWheelAdapter<T> extends AbstractWheelTextAdapter {
 
     @Override
     public View getItem(int index, View convertView, ViewGroup parent) {
-    	// TODO Auto-generated method stub
-    	return super.getItem(index, convertView, parent);
+        // TODO Auto-generated method stub
+        return super.getItem(index, convertView, parent);
     }
-    
+
     @Override
     public int getItemsCount() {
         return items.length;

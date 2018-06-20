@@ -279,6 +279,8 @@ public class RxShoppingView extends View {
                 }
 
                 return true;
+            default:
+                break;
         }
         return super.onTouchEvent(event);
     }

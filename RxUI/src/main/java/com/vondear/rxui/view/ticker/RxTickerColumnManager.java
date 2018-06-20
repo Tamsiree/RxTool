@@ -14,7 +14,6 @@ import java.util.Map;
  * by scrolling the column vertically. The {@link RxTickerColumnManager} is then a
  * manager/convenience class for handling a list of {@link RxTickerColumn} which then combines into
  * the entire string we are rendering.
- *
  */
 class RxTickerColumnManager {
     final ArrayList<RxTickerColumn> mRxTickerColumns = new ArrayList<>();
@@ -43,7 +42,7 @@ class RxTickerColumnManager {
 
     /**
      * @return whether or not {@param text} should be debounced because it's the same as the
-     *         current target text of this column manager.
+     * current target text of this column manager.
      */
     boolean shouldDebounceText(char[] text) {
         final int newTextSize = text.length;

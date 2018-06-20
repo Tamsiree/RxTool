@@ -19,10 +19,8 @@ import com.vondear.rxui.R;
 import java.util.ArrayList;
 
 /**
- *
  * @author Vondear
  * @date 2017/10/9
- *
  */
 public class RxRotateBar extends FrameLayout {
 
@@ -45,7 +43,8 @@ public class RxRotateBar extends FrameLayout {
     private ArrayList<RxRotateBarBasic> mRatingBars;
     private ValueAnimator rotateAnimator, ratingAnimator, titleAnimator;
     private Paint mCenterTextPaint;
-    private int mCenterTextColor; // 蛛网等级填充的颜色
+    // 蛛网等级填充的颜色
+    private int mCenterTextColor;
     private int mCenterTextSize = 40;
     private String mCenterText = "";
     private boolean isShowCenterTitle = false;
@@ -70,8 +69,10 @@ public class RxRotateBar extends FrameLayout {
     private void initAttrs(Context context, AttributeSet attrs) {
         //load styled attributes.
         final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.RxRotateBar, 0, 0);
-        mCenterText = attributes.getString(R.styleable.RxRotateBar_ratingCenterTitle);//中心标题
-        mCenterTextSize = attributes.getDimensionPixelSize(R.styleable.RxRotateBar_centerTitleSize, RxImageTool.dip2px(20));//标题字体大小
+        //中心标题
+        mCenterText = attributes.getString(R.styleable.RxRotateBar_ratingCenterTitle);
+        //标题字体大小
+        mCenterTextSize = attributes.getDimensionPixelSize(R.styleable.RxRotateBar_centerTitleSize, RxImageTool.dip2px(20));
         mRatedColor = attributes.getColor(R.styleable.RxRotateBar_ratingRatedColor, 0);
         mUnratedColor = attributes.getColor(R.styleable.RxRotateBar_ratingUnratedColor, 0);
         mTitleColor = attributes.getColor(R.styleable.RxRotateBar_ratingTitleColor, 0);
@@ -180,7 +181,6 @@ public class RxRotateBar extends FrameLayout {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-
         mCenterX = w / 2;
         mCenterY = h / 2;
         initRatingBar();

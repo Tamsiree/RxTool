@@ -179,8 +179,11 @@ public class RxRulerWheelView extends View implements GestureDetector.OnGestureL
             case MeasureSpec.EXACTLY:
                 result = measureSize;
                 break;
+            case MeasureSpec.UNSPECIFIED:
+                break;
             default:
                 break;
+
         }
         return result;
     }
@@ -564,10 +567,12 @@ public class RxRulerWheelView extends View implements GestureDetector.OnGestureL
     static class SavedState extends BaseSavedState {
         public static final Parcelable.Creator<SavedState> CREATOR
                 = new Parcelable.Creator<SavedState>() {
+            @Override
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);
             }
 
+            @Override
             public SavedState[] newArray(int size) {
                 return new SavedState[size];
             }

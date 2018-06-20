@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
+import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxui.R;
 
 import java.util.ArrayList;
@@ -36,16 +37,17 @@ import java.util.Collections;
  * @date 16/6/16
  */
 public class RxSeatMovie extends View {
-    private final boolean DBG = false;
+    private final boolean deBug = false;
 
     Paint paint = new Paint();
-    Paint overviewPaint=new Paint();
+    Paint overviewPaint = new Paint();
     Paint lineNumberPaint;
     float lineNumberTxtHeight;
 
     /**
      * 设置行号 默认显示 1,2,3....数字
-     * @param lineNumbers
+     *
+     * @param lineNumbers 行号
      */
     public void setLineNumbers(ArrayList<String> lineNumbers) {
         this.lineNumbers = lineNumbers;
@@ -211,9 +213,9 @@ public class RxSeatMovie extends View {
      */
     boolean isDrawOverviewBitmap = true;
 
-    int overview_checked;
-    int overview_sold;
-    int txt_color;
+    int overviewChecked;
+    int overviewSold;
+    int txtColor;
     int seatCheckedResID;
     int seatSoldResID;
     int seatAvailableResID;
@@ -283,14 +285,14 @@ public class RxSeatMovie extends View {
 
     public RxSeatMovie(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context,attrs);
+        init(context, attrs);
     }
 
-    private void init(Context context, AttributeSet attrs){
+    private void init(Context context, AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SeatTableView);
-        overview_checked = typedArray.getColor(R.styleable.SeatTableView_overview_checked, Color.parseColor("#5A9E64"));
-        overview_sold = typedArray.getColor(R.styleable.SeatTableView_overview_sold, Color.RED);
-        txt_color=typedArray.getColor(R.styleable.SeatTableView_txt_color, Color.WHITE);
+        overviewChecked = typedArray.getColor(R.styleable.SeatTableView_overview_checked, Color.parseColor("#5A9E64"));
+        overviewSold = typedArray.getColor(R.styleable.SeatTableView_overview_sold, Color.RED);
+        txtColor = typedArray.getColor(R.styleable.SeatTableView_txt_color, Color.WHITE);
         seatCheckedResID = typedArray.getResourceId(R.styleable.SeatTableView_seat_checked, R.drawable.seat_green);
         seatSoldResID = typedArray.getResourceId(R.styleable.SeatTableView_overview_sold, R.drawable.seat_sold);
         seatAvailableResID = typedArray.getResourceId(R.styleable.SeatTableView_seat_available, R.drawable.seat_gray);
@@ -299,7 +301,7 @@ public class RxSeatMovie extends View {
 
     public RxSeatMovie(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context,attrs);
+        init(context, attrs);
     }
 
 
@@ -312,9 +314,9 @@ public class RxSeatMovie extends View {
     float yScale1 = 1;
 
     private void init() {
-        spacing = (int) dip2Px(5);
-        verSpacing = (int) dip2Px(10);
-        defaultScreenWidth = (int) dip2Px(80);
+        spacing = (int) RxImageTool.dip2px(5);
+        verSpacing = (int) RxImageTool.dip2px(10);
+        defaultScreenWidth = (int) RxImageTool.dip2px(80);
 
         seatBitmap = BitmapFactory.decodeResource(getResources(), seatAvailableResID);
 
@@ -323,19 +325,19 @@ public class RxSeatMovie extends View {
         xScale1 = scaleX;
         yScale1 = scaleY;
 
-        seatHeight= (int) (seatBitmap.getHeight()*yScale1);
-        seatWidth= (int) (seatBitmap.getWidth()*xScale1);
+        seatHeight = (int) (seatBitmap.getHeight() * yScale1);
+        seatWidth = (int) (seatBitmap.getWidth() * xScale1);
 
         checkedSeatBitmap = BitmapFactory.decodeResource(getResources(), seatCheckedResID);
         seatSoldBitmap = BitmapFactory.decodeResource(getResources(), seatSoldResID);
 
-        seatBitmapWidth = (int) (column * seatBitmap.getWidth()*xScale1 + (column - 1) * spacing);
-        seatBitmapHeight = (int) (row * seatBitmap.getHeight()*yScale1 + (row - 1) * verSpacing);
+        seatBitmapWidth = (int) (column * seatBitmap.getWidth() * xScale1 + (column - 1) * spacing);
+        seatBitmapHeight = (int) (row * seatBitmap.getHeight() * yScale1 + (row - 1) * verSpacing);
         paint.setColor(Color.RED);
-        numberWidth = (int) dip2Px(20);
+        numberWidth = (int) RxImageTool.dip2px(20);
 
-        screenHeight = dip2Px(20);
-        headHeight = dip2Px(30);
+        screenHeight = RxImageTool.dip2px(20);
+        headHeight = RxImageTool.dip2px(30);
 
         headPaint = new Paint();
         headPaint.setStyle(Paint.Style.FILL);
@@ -371,9 +373,9 @@ public class RxSeatMovie extends View {
         lineNumberPaintFontMetrics = lineNumberPaint.getFontMetrics();
         lineNumberPaint.setTextAlign(Paint.Align.CENTER);
 
-        if(lineNumbers==null){
-            lineNumbers=new ArrayList<>();
-        }else if(lineNumbers.size()<=0) {
+        if (lineNumbers == null) {
+            lineNumbers = new ArrayList<>();
+        } else if (lineNumbers.size() <= 0) {
             for (int i = 0; i < row; i++) {
                 lineNumbers.add((i + 1) + "");
             }
@@ -411,7 +413,7 @@ public class RxSeatMovie extends View {
             Log.d("drawTime", "OverviewDrawTime:" + (System.currentTimeMillis() - s));
         }
 
-        if (DBG) {
+        if (deBug) {
             long drawTime = System.currentTimeMillis() - startTime;
             Log.d("drawTime", "totalDrawTime:" + drawTime);
         }
@@ -462,6 +464,8 @@ public class RxSeatMovie extends View {
                 }
 
                 break;
+            default:
+                break;
         }
         isOnClick = false;
         lastY = y;
@@ -482,8 +486,8 @@ public class RxSeatMovie extends View {
         String txt = "已售";
         float txtY = getBaseLine(headPaint, 0, headHeight);
         int txtWidth = (int) headPaint.measureText(txt);
-        float spacing = dip2Px(10);
-        float spacing1 = dip2Px(5);
+        float spacing = RxImageTool.dip2px(10);
+        float spacing1 = RxImageTool.dip2px(5);
         float y = (headHeight - seatBitmap.getHeight()) / 2;
 
         float width = seatBitmap.getWidth() + spacing1 + txtWidth + spacing + seatSoldBitmap.getWidth() + txtWidth + spacing1 + spacing + checkedSeatBitmap.getHeight() + spacing1 + txtWidth;
@@ -496,20 +500,20 @@ public class RxSeatMovie extends View {
         headPaint.setColor(Color.BLACK);
 
         float startX = (getWidth() - width) / 2;
-        tempMatrix.setScale(xScale1,yScale1);
-        tempMatrix.postTranslate(startX,(headHeight - seatHeight) / 2);
+        tempMatrix.setScale(xScale1, yScale1);
+        tempMatrix.postTranslate(startX, (headHeight - seatHeight) / 2);
         canvas.drawBitmap(seatBitmap, tempMatrix, headPaint);
         canvas.drawText("可选", startX + seatWidth + spacing1, txtY, headPaint);
 
         float soldSeatBitmapY = startX + seatBitmap.getWidth() + spacing1 + txtWidth + spacing;
-        tempMatrix.setScale(xScale1,yScale1);
-        tempMatrix.postTranslate(soldSeatBitmapY,(headHeight - seatHeight) / 2);
+        tempMatrix.setScale(xScale1, yScale1);
+        tempMatrix.postTranslate(soldSeatBitmapY, (headHeight - seatHeight) / 2);
         canvas.drawBitmap(seatSoldBitmap, tempMatrix, headPaint);
         canvas.drawText("已售", soldSeatBitmapY + seatWidth + spacing1, txtY, headPaint);
 
         float checkedSeatBitmapX = soldSeatBitmapY + seatSoldBitmap.getWidth() + spacing1 + txtWidth + spacing;
-        tempMatrix.setScale(xScale1,yScale1);
-        tempMatrix.postTranslate(checkedSeatBitmapX,y);
+        tempMatrix.setScale(xScale1, yScale1);
+        tempMatrix.postTranslate(checkedSeatBitmapX, y);
         canvas.drawBitmap(checkedSeatBitmap, tempMatrix, headPaint);
         canvas.drawText("已选", checkedSeatBitmapX + spacing1 + seatWidth, txtY, headPaint);
 
@@ -594,12 +598,14 @@ public class RxSeatMovie extends View {
                     case SEAT_TYPE_SOLD:
                         canvas.drawBitmap(seatSoldBitmap, tempMatrix, paint);
                         break;
+                    default:
+                        break;
                 }
 
             }
         }
 
-        if (DBG) {
+        if (deBug) {
             long drawTime = System.currentTimeMillis() - startTime;
             Log.d("drawTime", "seatDrawTime:" + drawTime);
         }
@@ -629,29 +635,29 @@ public class RxSeatMovie extends View {
     /**
      * 绘制选中座位的行号列号
      *
-     * @param row
-     * @param column
+     * @param row    多少排
+     * @param column 多少座
      */
     private void drawText(Canvas canvas, int row, int column, float top, float left) {
 
         String txt = (row + 1) + "排";
         String txt1 = (column + 1) + "座";
 
-        if(seatChecker!=null){
+        if (seatChecker != null) {
             String[] strings = seatChecker.checkedSeatTxt(row, column);
-            if(strings!=null&&strings.length>0){
-                if(strings.length>=2){
-                    txt=strings[0];
-                    txt1=strings[1];
-                }else {
-                    txt=strings[0];
-                    txt1=null;
+            if (strings != null && strings.length > 0) {
+                if (strings.length >= 2) {
+                    txt = strings[0];
+                    txt1 = strings[1];
+                } else {
+                    txt = strings[0];
+                    txt1 = null;
                 }
             }
         }
 
         TextPaint txtPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
-        txtPaint.setColor(txt_color);
+        txtPaint.setColor(txtColor);
         txtPaint.setTypeface(Typeface.DEFAULT_BOLD);
         float seatHeight = this.seatHeight * getMatrixScaleX();
         float seatWidth = this.seatWidth * getMatrixScaleX();
@@ -663,14 +669,14 @@ public class RxSeatMovie extends View {
         float startX = left + seatWidth / 2 - txtWidth / 2;
 
         //只绘制一行文字
-        if(txt1==null){
+        if (txt1 == null) {
             canvas.drawText(txt, startX, getBaseLine(txtPaint, top, top + seatHeight), txtPaint);
-        }else {
+        } else {
             canvas.drawText(txt, startX, getBaseLine(txtPaint, top, top + center), txtPaint);
             canvas.drawText(txt1, startX, getBaseLine(txtPaint, top + center, top + center + seatHeight / 2), txtPaint);
         }
 
-        if (DBG) {
+        if (deBug) {
             Log.d("drawTest:", "top:" + top);
         }
     }
@@ -696,14 +702,14 @@ public class RxSeatMovie extends View {
 
         for (int i = 0; i < row; i++) {
 
-            float top = (i *seatHeight + i * verSpacing) * scaleY + translateY;
+            float top = (i * seatHeight + i * verSpacing) * scaleY + translateY;
             float bottom = (i * seatHeight + i * verSpacing + seatHeight) * scaleY + translateY;
             float baseline = (bottom + top - lineNumberPaintFontMetrics.bottom - lineNumberPaintFontMetrics.top) / 2;
 
             canvas.drawText(lineNumbers.get(i), numberWidth / 2, baseline, lineNumberPaint);
         }
 
-        if (DBG) {
+        if (deBug) {
             long drawTime = System.currentTimeMillis() - startTime;
             Log.d("drawTime", "drawNumberTime:" + drawTime);
         }
@@ -776,10 +782,12 @@ public class RxSeatMovie extends View {
                     case SEAT_TYPE_NOT_AVAILABLE:
                         continue;
                     case SEAT_TYPE_SELECTED:
-                        overviewPaint.setColor(overview_checked);
+                        overviewPaint.setColor(overviewChecked);
                         break;
                     case SEAT_TYPE_SOLD:
-                        overviewPaint.setColor(overview_sold);
+                        overviewPaint.setColor(overviewSold);
+                        break;
+                    default:
                         break;
                 }
 
@@ -841,7 +849,7 @@ public class RxSeatMovie extends View {
         float startYPosition = screenHeight * getMatrixScaleY() + verSpacing * getMatrixScaleY() + headHeight + borderHeight;
 
         //处理上下滑动
-        if (currentSeatBitmapHeight+headHeight < getHeight()) {
+        if (currentSeatBitmapHeight + headHeight < getHeight()) {
 
             if (getTranslateY() < startYPosition) {
                 moveYLength = startYPosition - getTranslateY();
@@ -888,12 +896,12 @@ public class RxSeatMovie extends View {
 
     ArrayList<Integer> selects = new ArrayList<>();
 
-    public ArrayList<String> getSelectedSeat(){
-        ArrayList<String> results=new ArrayList<>();
-        for(int i=0;i<this.row;i++){
-            for(int j=0;j<this.column;j++){
-                if(isHave(getID(i,j))>=0){
-                    results.add(i+","+j);
+    public ArrayList<String> getSelectedSeat() {
+        ArrayList<String> results = new ArrayList<>();
+        for (int i = 0; i < this.row; i++) {
+            for (int j = 0; j < this.column; j++) {
+                if (isHave(getID(i, j)) >= 0) {
+                    results.add(i + "," + j);
                 }
             }
         }
@@ -928,10 +936,6 @@ public class RxSeatMovie extends View {
     private float getMatrixScaleX() {
         matrix.getValues(m);
         return m[Matrix.MSCALE_X];
-    }
-
-    private float dip2Px(float value) {
-        return getResources().getDisplayMetrics().density * value;
     }
 
     private float getBaseLine(Paint p, float top, float bottom) {
@@ -1003,7 +1007,7 @@ public class RxSeatMovie extends View {
             zoom = (Float) animation.getAnimatedValue();
             zoom(zoom);
 
-            if (DBG) {
+            if (deBug) {
                 Log.d("zoomTest", "zoom:" + zoom);
             }
         }
@@ -1161,9 +1165,10 @@ public class RxSeatMovie extends View {
 
         /**
          * 获取选中后座位上显示的文字
+         *
          * @param row
          * @param column
-         * @return 返回2个元素的数组,第一个元素是第一行的文字,第二个元素是第二行文字,如果只返回一个元素则会绘制到座位图的中间位置
+         * @return 返回2个元素的数组, 第一个元素是第一行的文字, 第二个元素是第二行文字, 如果只返回一个元素则会绘制到座位图的中间位置
          */
         String[] checkedSeatTxt(int row, int column);
 
@@ -1182,20 +1187,20 @@ public class RxSeatMovie extends View {
         invalidate();
     }
 
-    private int getRowNumber(int row){
-        int result=row;
-        if(seatChecker==null){
+    private int getRowNumber(int row) {
+        int result = row;
+        if (seatChecker == null) {
             return -1;
         }
 
-        for(int i=0;i<row;i++){
-            for (int j=0;j<column;j++){
-                if(seatChecker.isValidSeat(i,j)){
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                if (seatChecker.isValidSeat(i, j)) {
                     break;
                 }
 
-                if(j==column-1){
-                    if(i==row){
+                if (j == column - 1) {
+                    if (i == row) {
                         return -1;
                     }
                     result--;
@@ -1205,17 +1210,17 @@ public class RxSeatMovie extends View {
         return result;
     }
 
-    private int getColumnNumber(int row,int column){
-        int result=column;
-        if(seatChecker==null){
+    private int getColumnNumber(int row, int column) {
+        int result = column;
+        if (seatChecker == null) {
             return -1;
         }
 
-        for(int i=row;i<=row;i++){
-            for (int j=0;j<column;j++){
+        for (int i = row; i <= row; i++) {
+            for (int j = 0; j < column; j++) {
 
-                if(!seatChecker.isValidSeat(i,j)){
-                    if(j==column){
+                if (!seatChecker.isValidSeat(i, j)) {
+                    if (j == column) {
                         return -1;
                     }
                     result--;

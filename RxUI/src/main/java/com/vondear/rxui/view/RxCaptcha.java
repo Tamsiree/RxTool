@@ -17,7 +17,7 @@ import java.util.Random;
  * int code=RxCaptcha.getInstance().getCode();
  * <p>
  * 只需生成验证码值 String
- *
+ * <p>
  * <p/>
  * RxCaptcha
  * 2015年2月10日 上午11:32:34
@@ -53,8 +53,13 @@ public class RxCaptcha {
 
     private TYPE type = TYPE.CHARS;
 
-    public enum TYPE{
-        NUMBER,LETTER,CHARS
+    public enum TYPE {
+        //数字
+        NUMBER,
+        //字母
+        LETTER,
+        //数字 加 字母
+        CHARS
     }
 
     private RxCaptcha() {
@@ -72,17 +77,27 @@ public class RxCaptcha {
         return rxCaptcha;
     }
 
-    // default settings
-    private static final int DEFAULT_CODE_LENGTH = 4;// 验证码的长度 这里是4位
-    private static final int DEFAULT_FONT_SIZE = 60;// 字体大小
-    private static final int DEFAULT_LINE_NUMBER = 0;// 多少条干扰线
-    private static final int BASE_PADDING_LEFT = 20; // 左边距
-    private static final int RANGE_PADDING_LEFT = 20;// 左边距范围值
-    private static final int BASE_PADDING_TOP = 42;// 上边距
-    private static final int RANGE_PADDING_TOP = 15;// 上边距范围值
-    private static int DEFAULT_WIDTH = 200;// 默认宽度.图片的总宽
-    private static int DEFAULT_HEIGHT = 70;// 默认高度.图片的总高
-    private int DEFAULT_COLOR = 0xdf;// 默认背景颜色值
+    //default settings
+    //验证码的长度 这里是4位
+    private static final int DEFAULT_CODE_LENGTH = 4;
+    //字体大小
+    private static final int DEFAULT_FONT_SIZE = 60;
+    //多少条干扰线
+    private static final int DEFAULT_LINE_NUMBER = 0;
+    //左边距
+    private static final int BASE_PADDING_LEFT = 20;
+    //左边距范围值
+    private static final int RANGE_PADDING_LEFT = 20;
+    //上边距
+    private static final int BASE_PADDING_TOP = 42;
+    //上边距范围值
+    private static final int RANGE_PADDING_TOP = 15;
+    //默认宽度.图片的总宽
+    private static int DEFAULT_WIDTH = 200;
+    //默认高度.图片的总高
+    private static int DEFAULT_HEIGHT = 70;
+    //默认背景颜色值
+    private int defaultColor = 0xdf;
 
     // settings decided by the layout xml
     // canvas width and height
@@ -90,19 +105,20 @@ public class RxCaptcha {
     private int height = DEFAULT_HEIGHT;
 
     // random word space and pading_top
-    private int base_padding_left = BASE_PADDING_LEFT;
-    private int range_padding_left = RANGE_PADDING_LEFT;
-    private int base_padding_top = BASE_PADDING_TOP;
-    private int range_padding_top = RANGE_PADDING_TOP;
+    private int basePaddingLeft = BASE_PADDING_LEFT;
+    private int rangePaddingLeft = RANGE_PADDING_LEFT;
+    private int basePaddingTop = BASE_PADDING_TOP;
+    private int rangePaddingTop = RANGE_PADDING_TOP;
 
     // number of chars, lines; font size
     private int codeLength = DEFAULT_CODE_LENGTH;
-    private int line_number = DEFAULT_LINE_NUMBER;
-    private int font_size = DEFAULT_FONT_SIZE;
+    private int lineNumber = DEFAULT_LINE_NUMBER;
+    private int fontSize = DEFAULT_FONT_SIZE;
 
     // variables
-    private String code;// 保存生成的验证码
-    private int padding_left, padding_top;
+    // 保存生成的验证码
+    private String code;
+    private int paddingLeft, paddingTop;
     private Random random = new Random();
 
     /**
@@ -119,7 +135,7 @@ public class RxCaptcha {
      * @return
      */
     public RxCaptcha fontSize(int size) {
-        font_size = size;
+        fontSize = size;
         return rxCaptcha;
     }
 
@@ -128,7 +144,7 @@ public class RxCaptcha {
      * @return
      */
     public RxCaptcha lineNumber(int number) {
-        line_number = number;
+        lineNumber = number;
         return rxCaptcha;
     }
 
@@ -136,7 +152,7 @@ public class RxCaptcha {
      * @return 背景颜色值
      */
     public RxCaptcha backColor(int colorInt) {
-        DEFAULT_COLOR = colorInt;
+        defaultColor = colorInt;
         return rxCaptcha;
     }
 
@@ -152,28 +168,29 @@ public class RxCaptcha {
     }
 
     private Bitmap makeBitmap() {
-        padding_left = 0;
+        paddingLeft = 0;
 
         Bitmap bp = Bitmap.createBitmap(width, height, Config.ARGB_8888);
         Canvas c = new Canvas(bp);
 
         code = makeCode();
 
-        c.drawColor(Color.rgb(DEFAULT_COLOR, DEFAULT_COLOR, DEFAULT_COLOR));
+        c.drawColor(Color.rgb(defaultColor, defaultColor, defaultColor));
         Paint paint = new Paint();
-        paint.setTextSize(font_size);
+        paint.setTextSize(fontSize);
 
         for (int i = 0; i < code.length(); i++) {
             randomTextStyle(paint);
             randomPadding();
-            c.drawText(code.charAt(i) + "", padding_left, padding_top, paint);
+            c.drawText(code.charAt(i) + "", paddingLeft, paddingTop, paint);
         }
 
-        for (int i = 0; i < line_number; i++) {
+        for (int i = 0; i < lineNumber; i++) {
             drawLine(c, paint);
         }
 
-        c.save(Canvas.ALL_SAVE_FLAG);// 保存
+        // 保存
+        c.save(Canvas.ALL_SAVE_FLAG);
         c.restore();//
         return bp;
     }
@@ -182,7 +199,7 @@ public class RxCaptcha {
         return code.toLowerCase();
     }
 
-    public Bitmap into(ImageView imageView){
+    public Bitmap into(ImageView imageView) {
         Bitmap bitmap = createBitmap();
         if (imageView != null) {
             imageView.setImageBitmap(bitmap);
@@ -254,7 +271,8 @@ public class RxCaptcha {
     private void randomTextStyle(Paint paint) {
         int color = randomColor();
         paint.setColor(color);
-        paint.setFakeBoldText(random.nextBoolean()); // true为粗体，false为非粗体
+        // true为粗体，false为非粗体
+        paint.setFakeBoldText(random.nextBoolean());
         float skewX = random.nextInt(11) / 10;
         skewX = random.nextBoolean() ? skewX : -skewX;
         // paint.setTextSkewX(skewX); // float类型参数，负数表示右斜，整数左斜
@@ -263,7 +281,7 @@ public class RxCaptcha {
     }
 
     private void randomPadding() {
-        padding_left += base_padding_left + random.nextInt(range_padding_left);
-        padding_top = base_padding_top + random.nextInt(range_padding_top);
+        paddingLeft += basePaddingLeft + random.nextInt(rangePaddingLeft);
+        paddingTop = basePaddingTop + random.nextInt(rangePaddingTop);
     }
 }

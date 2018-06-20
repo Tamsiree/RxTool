@@ -13,6 +13,7 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
+import android.graphics.NinePatch;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
@@ -54,8 +55,6 @@ import java.net.URL;
  */
 
 public class RxImageTool {
-
-
 
     /**
      * dip转px
@@ -1897,5 +1896,17 @@ public class RxImageTool {
             return null;
         }
         return BitmapFactory.decodeByteArray(data, offset, data.length);
+    }
+
+    /**
+     * 绘制 9Path
+     *
+     * @param c
+     * @param bmp
+     * @param rect
+     */
+    public static void drawNinePath(Canvas c, Bitmap bmp, Rect rect) {
+        NinePatch patch = new NinePatch(bmp, bmp.getNinePatchChunk(), null);
+        patch.draw(c, rect);
     }
 }

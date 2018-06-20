@@ -52,7 +52,7 @@ public class WheelVerticalView extends AbstractWheelView {
      * Create a new wheel vertical view.
      *
      * @param context The application environment.
-     * @param attrs A collection of attributes.
+     * @param attrs   A collection of attributes.
      */
     public WheelVerticalView(Context context, AttributeSet attrs) {
         this(context, attrs, R.attr.abstractWheelViewStyle);
@@ -61,8 +61,8 @@ public class WheelVerticalView extends AbstractWheelView {
     /**
      * Create a new wheel vertical view.
      *
-     * @param context the application environment.
-     * @param attrs a collection of attributes.
+     * @param context  the application environment.
+     * @param attrs    a collection of attributes.
      * @param defStyle The default style to apply to this view.
      */
     public WheelVerticalView(Context context, AttributeSet attrs, int defStyle) {
@@ -91,31 +91,31 @@ public class WheelVerticalView extends AbstractWheelView {
 
         int h = getMeasuredHeight();
         int ih = getItemDimension();
-        float p1 = (1 - ih/(float) h)/2;
-        float p2 = (1 + ih/(float) h)/2;
+        float p1 = (1 - ih / (float) h) / 2;
+        float p2 = (1 + ih / (float) h) / 2;
         float z = mItemsDimmedAlpha * (1 - coeff);
         float c1f = z + 255 * coeff;
 
         if (mVisibleItems == 2) {
-            int c1 = Math.round( c1f ) << 24;
-            int c2 = Math.round( z ) << 24;
-            int[] colors =      {c2, c1, 0xff000000, 0xff000000, c1, c2};
-            float[] positions = { 0, p1,     p1,         p2,     p2,  1};
+            int c1 = Math.round(c1f) << 24;
+            int c2 = Math.round(z) << 24;
+            int[] colors = {c2, c1, 0xff000000, 0xff000000, c1, c2};
+            float[] positions = {0, p1, p1, p2, p2, 1};
             shader = new LinearGradient(0, 0, 0, h, colors, positions, Shader.TileMode.CLAMP);
         } else {
-            float p3 = (1 - ih*3/(float) h)/2;
-            float p4 = (1 + ih*3/(float) h)/2;
+            float p3 = (1 - ih * 3 / (float) h) / 2;
+            float p4 = (1 + ih * 3 / (float) h) / 2;
 
-            float s = 255 * p3/p1;
-            float c3f = s * coeff ; // here goes some optimized stuff
+            float s = 255 * p3 / p1;
+            float c3f = s * coeff; // here goes some optimized stuff
             float c2f = z + c3f;
 
-            int c1 = Math.round( c1f ) << 24;
-            int c2 = Math.round( c2f ) << 24;
-            int c3 = Math.round( c3f ) << 24;
+            int c1 = Math.round(c1f) << 24;
+            int c2 = Math.round(c2f) << 24;
+            int c3 = Math.round(c3f) << 24;
 
-            int[] colors =      {0, c3, c2, c1, 0xff000000, 0xff000000, c1, c2, c3, 0};
-            float[] positions = {0, p3, p3, p1,     p1,         p2,     p2, p4, p4, 1};
+            int[] colors = {0, c3, c2, c1, 0xff000000, 0xff000000, c1, c2, c3, 0};
+            float[] positions = {0, p3, p3, p1, p1, p2, p2, p4, p4, 1};
             shader = new LinearGradient(0, 0, 0, h, colors, positions, Shader.TileMode.CLAMP);
         }
         mSelectorWheelPaint.setShader(shader);
@@ -153,6 +153,7 @@ public class WheelVerticalView extends AbstractWheelView {
 
     /**
      * Returns height of the spinnerwheel
+     *
      * @return the item height
      */
     @Override
@@ -200,7 +201,7 @@ public class WheelVerticalView extends AbstractWheelView {
                 MeasureSpec.makeMeasureSpec(getWidth() - 2 * mItemsPadding, MeasureSpec.EXACTLY),
                 MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
         );
-        
+
     }
 
 
@@ -234,8 +235,9 @@ public class WheelVerticalView extends AbstractWheelView {
 
     /**
      * Calculates control width
+     *
      * @param widthSize the input layout width
-     * @param mode the layout mode
+     * @param mode      the layout mode
      * @return the calculated control width
      */
     private int calculateLayoutWidth(int widthSize, int mode) {
@@ -288,7 +290,7 @@ public class WheelVerticalView extends AbstractWheelView {
         Canvas cSpin = new Canvas(mSpinBitmap);
 
         int top = (mCurrentItemIdx - mFirstItemIdx) * ih + (ih - getHeight()) / 2;
-        c.translate(mItemsPadding, - top + mScrollingOffset);
+        c.translate(mItemsPadding, -top + mScrollingOffset);
         mItemsLayout.draw(c);
 
         mSeparatorsBitmap.eraseColor(0);
@@ -302,7 +304,7 @@ public class WheelVerticalView extends AbstractWheelView {
             mSelectionDivider.draw(cSeparators);
 
             // draw the bottom divider
-            int topOfBottomDivider =  topOfTopDivider + ih;
+            int topOfBottomDivider = topOfTopDivider + ih;
             int bottomOfBottomDivider = bottomOfTopDivider + ih;
             mSelectionDivider.setBounds(0, topOfBottomDivider, w, bottomOfBottomDivider);
             mSelectionDivider.draw(cSeparators);

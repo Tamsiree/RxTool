@@ -47,8 +47,9 @@ public class RxRotateTool {
     }
 
     public static double getNormalizedAngle(double angle) {
-        while (angle < 0)
+        while (angle < 0) {
             angle += CIRCLE_ANGLE;
+        }
         return angle % CIRCLE_ANGLE;
     }
 }

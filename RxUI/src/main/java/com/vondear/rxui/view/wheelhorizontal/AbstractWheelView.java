@@ -41,7 +41,7 @@ public abstract class AbstractWheelView extends AbstractWheel {
     protected static final int DEF_ITEM_OFFSET_PERCENT = 10;
 
     protected static final int DEF_ITEM_PADDING = 10;
-    
+
     protected static final int DEF_SELECTION_DIVIDER_SIZE = 2;
 
     //----------------------------------
@@ -50,22 +50,34 @@ public abstract class AbstractWheelView extends AbstractWheel {
 
     // configurable properties
 
-    /** The alpha of the selector spinnerwheel when it is dimmed. */
+    /**
+     * The alpha of the selector spinnerwheel when it is dimmed.
+     */
     protected int mItemsDimmedAlpha;
 
-    /** The alpha of separators spinnerwheel when they are shown. */
+    /**
+     * The alpha of separators spinnerwheel when they are shown.
+     */
     protected int mSelectionDividerActiveAlpha;
 
-    /** The alpha of separators when they are is dimmed. */
+    /**
+     * The alpha of separators when they are is dimmed.
+     */
     protected int mSelectionDividerDimmedAlpha;
 
-    /** Top and bottom items offset */
+    /**
+     * Top and bottom items offset
+     */
     protected int mItemOffsetPercent;
 
-    /** Left and right padding value */
+    /**
+     * Left and right padding value
+     */
     protected int mItemsPadding;
 
-    /** Divider for showing item to be selected while scrolling */
+    /**
+     * Divider for showing item to be selected while scrolling
+     */
     protected Drawable mSelectionDivider;
 
     // the rest
@@ -81,12 +93,12 @@ public abstract class AbstractWheelView extends AbstractWheel {
     protected Paint mSeparatorsPaint;
 
     /**
-     *  for dimming the selector spinnerwheel.
+     * for dimming the selector spinnerwheel.
      */
     protected Animator mDimSelectorWheelAnimator;
 
     /**
-     *  for dimming the selector spinnerwheel.
+     * for dimming the selector spinnerwheel.
      */
     protected Animator mDimSeparatorsAnimator;
 
@@ -124,7 +136,7 @@ public abstract class AbstractWheelView extends AbstractWheel {
     @Override
     protected void initAttributes(AttributeSet attrs, int defStyle) {
         super.initAttributes(attrs, defStyle);
-        
+
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.AbstractWheelView, defStyle, 0);
         mItemsDimmedAlpha = a.getInt(R.styleable.AbstractWheelView_itemsDimmedAlpha, DEF_ITEMS_DIMMED_ALPHA);
         mSelectionDividerActiveAlpha = a.getInt(R.styleable.AbstractWheelView_selectionDividerActiveAlpha, DEF_SELECTION_DIVIDER_ACTIVE_ALPHA);
@@ -158,7 +170,7 @@ public abstract class AbstractWheelView extends AbstractWheel {
     /**
      * Recreates assets (like bitmaps) when layout size has been changed
      *
-     * @param width New spinnerwheel width
+     * @param width  New spinnerwheel width
      * @param height New spinnerwheel height
      */
     @Override
@@ -171,6 +183,7 @@ public abstract class AbstractWheelView extends AbstractWheel {
     /**
      * Sets the <code>alpha</code> of the {@link Paint} for drawing separators
      * spinnerwheel.
+     *
      * @param alpha alpha value from 0 to 255
      */
     @SuppressWarnings("unused")  // Called via reflection

@@ -5,13 +5,14 @@ import android.view.MotionEvent;
 
 /**
  * @author vondear
- * Scroller class handles scrolling events and updates the 
+ * Scroller class handles scrolling events and updates the
  */
 public class WheelVerticalScroller extends WheelScroller {
 
     /**
      * Constructor
-     * @param context the current context
+     *
+     * @param context  the current context
      * @param listener the scrolling listener
      */
     public WheelVerticalScroller(Context context, ScrollingListener listener) {

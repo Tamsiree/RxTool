@@ -23,17 +23,17 @@ import android.view.inputmethod.InputMethodManager;
  */
 public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText {
     private static final int NO_LINE_LIMIT = -1;
-    private final RectF _availableSpaceRect = new RectF();
-    private final SparseIntArray _textCachedSizes = new SparseIntArray();
-    private final SizeTester _sizeTester;
-    private float _maxTextSize;
-    private float _spacingMult = 1.0f;
-    private float _spacingAdd = 0.0f;
-    private Float _minTextSize;
-    private int _widthLimit;
-    private int _maxLines;
-    private boolean _enableSizeCache = true;
-    private boolean _initiallized = false;
+    private final RectF availableSpaceRect = new RectF();
+    private final SparseIntArray textCachedSizes = new SparseIntArray();
+    private final SizeTester sizeTester;
+    private float maxTextSize;
+    private float spacingMult = 1.0f;
+    private float spacingAdd = 0.0f;
+    private Float minTextSize;
+    private int widthLimit;
+    private int maxLines;
+    private boolean enableSizeCache = true;
+    private boolean initiallized = false;
     private TextPaint paint;
 
     private interface SizeTester {
@@ -61,15 +61,15 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
                           final int defStyle) {
         super(context, attrs, defStyle);
         // using the minimal recommended font size
-        _minTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+        minTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
                 12, getResources().getDisplayMetrics());
-        _maxTextSize = getTextSize();
-        if (_maxLines == 0){
+        maxTextSize = getTextSize();
+        if (maxLines == 0) {
             // no value was assigned during construction
-            _maxLines = NO_LINE_LIMIT;
+            maxLines = NO_LINE_LIMIT;
         }
         // prepare size tester:
-        _sizeTester = new SizeTester() {
+        sizeTester = new SizeTester() {
             final RectF textRect = new RectF();
 
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -84,8 +84,8 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
                     textRect.right = paint.measureText(text);
                 } else {
                     final StaticLayout layout = new StaticLayout(text, paint,
-                            _widthLimit, Layout.Alignment.ALIGN_NORMAL, _spacingMult,
-                            _spacingAdd, true);
+                            widthLimit, Layout.Alignment.ALIGN_NORMAL, spacingMult,
+                            spacingAdd, true);
                     if (getMaxLines() != NO_LINE_LIMIT
                             && layout.getLineCount() > getMaxLines()) {
                         return 1;
@@ -100,7 +100,7 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
                     textRect.right = maxWidth;
                 }
                 textRect.offsetTo(0, 0);
-                if (availableSPace.contains(textRect)){
+                if (availableSPace.contains(textRect)) {
                     // may be too small, don't worry we will find the best match
                     return -1;
                 }
@@ -108,7 +108,7 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
                 return 1;
             }
         };
-        _initiallized = true;
+        initiallized = true;
     }
 
     @Override
@@ -122,27 +122,27 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
 
     @Override
     public void setTextSize(final float size) {
-        _maxTextSize = size;
-        _textCachedSizes.clear();
+        maxTextSize = size;
+        textCachedSizes.clear();
         adjustTextSize();
     }
 
     @Override
     public void setMaxLines(final int maxlines) {
         super.setMaxLines(maxlines);
-        _maxLines = maxlines;
+        maxLines = maxlines;
         reAdjust();
     }
 
     @Override
     public int getMaxLines() {
-        return _maxLines;
+        return maxLines;
     }
 
     @Override
     public void setSingleLine() {
         super.setSingleLine();
-        _maxLines = 1;
+        maxLines = 1;
         reAdjust();
     }
 
@@ -150,9 +150,9 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
     public void setSingleLine(final boolean singleLine) {
         super.setSingleLine(singleLine);
         if (singleLine) {
-            _maxLines = 1;
+            maxLines = 1;
         } else {
-            _maxLines = NO_LINE_LIMIT;
+            maxLines = NO_LINE_LIMIT;
         }
         reAdjust();
     }
@@ -160,7 +160,7 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
     @Override
     public void setLines(final int lines) {
         super.setLines(lines);
-        _maxLines = lines;
+        maxLines = lines;
         reAdjust();
     }
 
@@ -173,17 +173,17 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
         } else {
             r = c.getResources();
         }
-        _maxTextSize = TypedValue.applyDimension(unit, size,
+        maxTextSize = TypedValue.applyDimension(unit, size,
                 r.getDisplayMetrics());
-        _textCachedSizes.clear();
+        textCachedSizes.clear();
         adjustTextSize();
     }
 
     @Override
     public void setLineSpacing(final float add, final float mult) {
         super.setLineSpacing(add, mult);
-        _spacingMult = mult;
-        _spacingAdd = add;
+        spacingMult = mult;
+        spacingAdd = add;
     }
 
     /**
@@ -192,12 +192,12 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
      * @param
      */
     public void setMinTextSize(final Float minTextSize) {
-        _minTextSize = minTextSize;
+        this.minTextSize = minTextSize;
         reAdjust();
     }
 
-    public Float get_minTextSize() {
-        return _minTextSize;
+    public Float getMinTextSize() {
+        return minTextSize;
     }
 
     private void reAdjust() {
@@ -205,23 +205,23 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
     }
 
     private void adjustTextSize() {
-        if (!_initiallized) {
+        if (!initiallized) {
             return;
         }
-        final int startSize = Math.round(_minTextSize);
+        final int startSize = Math.round(minTextSize);
         final int heightLimit = getMeasuredHeight()
                 - getCompoundPaddingBottom() - getCompoundPaddingTop();
-        _widthLimit = getMeasuredWidth() - getCompoundPaddingLeft()
+        widthLimit = getMeasuredWidth() - getCompoundPaddingLeft()
                 - getCompoundPaddingRight();
-        if (_widthLimit <= 0) {
+        if (widthLimit <= 0) {
             return;
         }
-        _availableSpaceRect.right = _widthLimit;
-        _availableSpaceRect.bottom = heightLimit;
+        availableSpaceRect.right = widthLimit;
+        availableSpaceRect.bottom = heightLimit;
         super.setTextSize(
                 TypedValue.COMPLEX_UNIT_PX,
-                efficientTextSizeSearch(startSize, (int) _maxTextSize,
-                        _sizeTester, _availableSpaceRect));
+                efficientTextSizeSearch(startSize, (int) maxTextSize,
+                        sizeTester, availableSpaceRect));
     }
 
     /**
@@ -233,24 +233,24 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
      * @param enable enable font size caching
      */
     public void setEnableSizeCache(final boolean enable) {
-        _enableSizeCache = enable;
-        _textCachedSizes.clear();
+        enableSizeCache = enable;
+        textCachedSizes.clear();
         adjustTextSize();
     }
 
     private int efficientTextSizeSearch(final int start, final int end,
                                         final SizeTester sizeTester, final RectF availableSpace) {
-        if (!_enableSizeCache) {
+        if (!enableSizeCache) {
             return binarySearch(start, end, sizeTester, availableSpace);
         }
         final String text = getText().toString();
         final int key = text == null ? 0 : text.length();
-        int size = _textCachedSizes.get(key);
+        int size = textCachedSizes.get(key);
         if (size != 0) {
             return size;
         }
         size = binarySearch(start, end, sizeTester, availableSpace);
-        _textCachedSizes.put(key, size);
+        textCachedSizes.put(key, size);
         return size;
     }
 
@@ -288,7 +288,7 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
     @Override
     protected void onSizeChanged(final int width, final int height,
                                  final int oldwidth, final int oldheight) {
-        _textCachedSizes.clear();
+        textCachedSizes.clear();
         super.onSizeChanged(width, height, oldwidth, oldheight);
         if (width != oldwidth || height != oldheight) {
             reAdjust();
@@ -307,7 +307,7 @@ public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText 
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     hideSoftKeyboard(a);
-                    if (aText.get_minTextSize() != null && aText.getTextSize() < aText.get_minTextSize()) {
+                    if (aText.getMinTextSize() != null && aText.getTextSize() < aText.getMinTextSize()) {
                         // you can define your minSize, in this case is 50f
                         // trim all the new lines and set the text as it was
                         // before

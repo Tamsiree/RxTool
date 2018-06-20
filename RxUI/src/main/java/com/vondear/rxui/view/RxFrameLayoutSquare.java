@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
  * @author vondear
  */
 public class RxFrameLayoutSquare extends FrameLayout {
+
     public RxFrameLayoutSquare(Context context) {
         super(context);
     }

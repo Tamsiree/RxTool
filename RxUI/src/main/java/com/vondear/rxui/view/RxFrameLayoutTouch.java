@@ -15,14 +15,13 @@ public class RxFrameLayoutTouch extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-            getParent().requestDisallowInterceptTouchEvent(true);//拦截父类事件
+            //拦截父类事件
+            getParent().requestDisallowInterceptTouchEvent(true);
 
         } else if (ev.getAction() == MotionEvent.ACTION_UP) {
             getParent().requestDisallowInterceptTouchEvent(false);
         }
-
         return super.dispatchTouchEvent(ev);
     }
 

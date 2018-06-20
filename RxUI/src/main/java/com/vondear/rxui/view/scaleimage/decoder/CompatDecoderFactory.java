@@ -3,10 +3,10 @@ package com.vondear.rxui.view.scaleimage.decoder;
 import android.support.annotation.NonNull;
 
 /**
- * @author vondear
  * @param <T> The base type of the decoder this factory will produce.
- *
- * Compatibility factory to instantiate decoders with empty public constructors.
+ *            <p>
+ *            Compatibility factory to instantiate decoders with empty public constructors.
+ * @author vondear
  */
 public class CompatDecoderFactory<T> implements DecoderFactory<T> {
     private Class<? extends T> clazz;

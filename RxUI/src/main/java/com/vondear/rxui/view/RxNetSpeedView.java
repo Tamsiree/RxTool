@@ -29,12 +29,12 @@ public class RxNetSpeedView extends FrameLayout {
     private TextView tvWlanRx;
     private TextView tvSum;
 
-    private TextView MobileTx;
-    private TextView MobileRx;
-    private TextView WlanTx;
-    private TextView WlanRx;
+    private TextView mobileTx;
+    private TextView mobileRx;
+    private TextView wlanTx;
+    private TextView wlanRx;
 
-    double TIME_SPAN = 2000d;
+    double timeSpan = 2000d;
     private long rxtxTotal = 0;
     private long mobileRecvSum = 0;
     private long mobileSendSum = 0;
@@ -63,17 +63,17 @@ public class RxNetSpeedView extends FrameLayout {
 
     private void initView(Context context, AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.rx_netspeed_view, this);
-        rlLayoutBig = (RelativeLayout) findViewById(R.id.rlLayoutBig);
-        tvMobileTx = (TextView) findViewById(R.id.tvMobileTx);
-        tvMobileRx = (TextView) findViewById(R.id.tvMobileRx);
-        tvWlanTx = (TextView) findViewById(R.id.tvWlanTx);
-        tvWlanRx = (TextView) findViewById(R.id.tvWlanRx);
-        tvSum = (TextView) findViewById(R.id.tvSum);
+        rlLayoutBig = findViewById(R.id.rlLayoutBig);
+        tvMobileTx = findViewById(R.id.tvMobileTx);
+        tvMobileRx = findViewById(R.id.tvMobileRx);
+        tvWlanTx = findViewById(R.id.tvWlanTx);
+        tvWlanRx = findViewById(R.id.tvWlanRx);
+        tvSum = findViewById(R.id.tvSum);
 
-        MobileTx = (TextView) findViewById(R.id.MobileTx);
-        MobileRx = (TextView) findViewById(R.id.MobileRx);
-        WlanTx = (TextView) findViewById(R.id.WlanTx);
-        WlanRx = (TextView) findViewById(R.id.WlanRx);
+        mobileTx = findViewById(R.id.MobileTx);
+        mobileRx = findViewById(R.id.MobileRx);
+        wlanTx = findViewById(R.id.WlanTx);
+        wlanRx = findViewById(R.id.WlanRx);
 
         //获得这个控件对应的属性。
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.RxNetSpeedView);
@@ -81,7 +81,8 @@ public class RxNetSpeedView extends FrameLayout {
         try {
             //获得属性值
             mTextColor = a.getColor(R.styleable.RxNetSpeedView_RxTextColor, getResources().getColor(R.color.white));
-            mTextSize = a.getDimensionPixelSize(R.styleable.RxNetSpeedView_RxTextSize, 12);//TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
+            //TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
+            mTextSize = a.getDimensionPixelSize(R.styleable.RxNetSpeedView_RxTextSize, 12);
             isMulti = a.getBoolean(R.styleable.RxNetSpeedView_isMulti, false);
         } finally {
             //回收这个对象
@@ -94,7 +95,8 @@ public class RxNetSpeedView extends FrameLayout {
 
         setMulti(isMulti);
 
-        handler.postDelayed(task, timeInterval);//延迟调用
+        //延迟调用
+        handler.postDelayed(task, timeInterval);
     }
 
     public void setTextSize(int textSize) {
@@ -105,10 +107,10 @@ public class RxNetSpeedView extends FrameLayout {
             tvWlanRx.setTextSize(textSize);
             tvSum.setTextSize(textSize);
 
-            MobileTx.setTextSize(textSize);
-            MobileRx.setTextSize(textSize);
-            WlanTx.setTextSize(textSize);
-            WlanRx.setTextSize(textSize);
+            mobileTx.setTextSize(textSize);
+            mobileRx.setTextSize(textSize);
+            wlanTx.setTextSize(textSize);
+            wlanRx.setTextSize(textSize);
 
         }
     }
@@ -121,10 +123,10 @@ public class RxNetSpeedView extends FrameLayout {
             tvWlanRx.setTextColor(textColor);
             tvSum.setTextColor(textColor);
 
-            MobileTx.setTextColor(textColor);
-            MobileRx.setTextColor(textColor);
-            WlanTx.setTextColor(textColor);
-            WlanRx.setTextColor(textColor);
+            mobileTx.setTextColor(textColor);
+            mobileRx.setTextColor(textColor);
+            wlanTx.setTextColor(textColor);
+            wlanRx.setTextColor(textColor);
         }
     }
 
@@ -137,7 +139,7 @@ public class RxNetSpeedView extends FrameLayout {
         long tempSum = TrafficStats.getTotalRxBytes()
                 + TrafficStats.getTotalTxBytes();
         long rxtxLast = tempSum - rxtxTotal;
-        double totalSpeed = rxtxLast * 1000 / TIME_SPAN;
+        double totalSpeed = rxtxLast * 1000 / timeSpan;
         rxtxTotal = tempSum;
         long tempMobileRx = TrafficStats.getMobileRxBytes();
         long tempMobileTx = TrafficStats.getMobileTxBytes();
@@ -147,10 +149,10 @@ public class RxNetSpeedView extends FrameLayout {
         long mobileLastSend = tempMobileTx - mobileSendSum;
         long wlanLastRecv = tempWlanRx - wlanRecvSum;
         long wlanLastSend = tempWlanTx - wlanSendSum;
-        double mobileRecvSpeed = mobileLastRecv * 1000 / TIME_SPAN;
-        double mobileSendSpeed = mobileLastSend * 1000 / TIME_SPAN;
-        double wlanRecvSpeed = wlanLastRecv * 1000 / TIME_SPAN;
-        double wlanSendSpeed = wlanLastSend * 1000 / TIME_SPAN;
+        double mobileRecvSpeed = mobileLastRecv * 1000 / timeSpan;
+        double mobileSendSpeed = mobileLastSend * 1000 / timeSpan;
+        double wlanRecvSpeed = wlanLastRecv * 1000 / timeSpan;
+        double wlanSendSpeed = wlanLastSend * 1000 / timeSpan;
         mobileRecvSum = tempMobileRx;
         mobileSendSum = tempMobileTx;
         wlanRecvSum = tempWlanRx;
@@ -191,9 +193,10 @@ public class RxNetSpeedView extends FrameLayout {
     private Handler handler = new Handler();
 
     private Runnable task = new Runnable() {
+        @Override
         public void run() {
-            // TODOAuto-generated method stub
-            handler.postDelayed(this, timeInterval);//设置延迟时间，此处是5秒
+            //设置延迟时间，此处是5秒
+            handler.postDelayed(this, timeInterval);
             updateViewData();
             //需要执行的代码
         }

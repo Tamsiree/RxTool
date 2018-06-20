@@ -10,7 +10,8 @@ public class WheelHorizontalScroller extends WheelScroller {
 
     /**
      * Constructor
-     * @param context the current context
+     *
+     * @param context  the current context
      * @param listener the scrolling listener
      */
     public WheelHorizontalScroller(Context context, ScrollingListener listener) {
