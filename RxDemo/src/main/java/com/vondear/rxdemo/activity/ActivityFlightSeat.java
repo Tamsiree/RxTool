@@ -112,6 +112,8 @@ public class ActivityFlightSeat extends ActivityBase {
             case R.id.btn_goto:
                 gotoposition(view);
                 break;
+            default:
+                break;
         }
     }
 }

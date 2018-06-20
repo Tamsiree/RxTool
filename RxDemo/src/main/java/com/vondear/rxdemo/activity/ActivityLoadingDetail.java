@@ -49,7 +49,7 @@ public class ActivityLoadingDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_detail);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setOffscreenPageLimit(0);
         viewPager.setAdapter(new PagerAdapter() {
             @Override
@@ -66,8 +66,8 @@ public class ActivityLoadingDetail extends AppCompatActivity {
             public Object instantiateItem(ViewGroup container, int position) {
                 @SuppressLint("InflateParams") View view = LayoutInflater.from(container.getContext()).inflate(R.layout.item_pager, null);
 
-                SpinKitView spinKitView = (SpinKitView) view.findViewById(R.id.spin_kit);
-                TextView name = (TextView) view.findViewById(R.id.name);
+                SpinKitView spinKitView = view.findViewById(R.id.spin_kit);
+                TextView name = view.findViewById(R.id.name);
                 Style style = Style.values()[position];
                 name.setText(style.name());
                 Sprite drawable = SpriteFactory.create(style);

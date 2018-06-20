@@ -121,7 +121,8 @@ public class ActivityDialog extends ActivityBase {
                 rxDialog.show();
                 break;
             case R.id.button_DialogSure:
-                final RxDialogSure rxDialogSure = new RxDialogSure(mContext);//提示弹窗
+                //提示弹窗
+                final RxDialogSure rxDialogSure = new RxDialogSure(mContext);
                 rxDialogSure.getLogoView().setImageResource(R.drawable.logo);
                 rxDialogSure.getSureView().setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -132,7 +133,8 @@ public class ActivityDialog extends ActivityBase {
                 rxDialogSure.show();
                 break;
             case R.id.button_DialogSureCancle:
-                final RxDialogSureCancel rxDialogSureCancel = new RxDialogSureCancel(mContext);//提示弹窗
+                //提示弹窗
+                final RxDialogSureCancel rxDialogSureCancel = new RxDialogSureCancel(mContext);
                 rxDialogSureCancel.getTitleView().setBackgroundResource(R.drawable.logo);
                 rxDialogSureCancel.getSureView().setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -149,7 +151,8 @@ public class ActivityDialog extends ActivityBase {
                 rxDialogSureCancel.show();
                 break;
             case R.id.button_DialogEditTextSureCancle:
-                final RxDialogEditSureCancel rxDialogEditSureCancel = new RxDialogEditSureCancel(mContext);//提示弹窗
+                //提示弹窗
+                final RxDialogEditSureCancel rxDialogEditSureCancel = new RxDialogEditSureCancel(mContext);
                 rxDialogEditSureCancel.getTitleView().setBackgroundResource(R.drawable.logo);
                 rxDialogEditSureCancel.getSureView().setOnClickListener(new View.OnClickListener() {
                     @Override
