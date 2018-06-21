@@ -225,6 +225,7 @@ public class ActivityScanerCode extends ActivityBase {
         super.onPause();
         if (handler != null) {
             handler.quitSynchronously();
+            handler.removeCallbacksAndMessages(null);
             handler = null;
         }
         CameraManager.get().closeDriver();
@@ -234,7 +235,6 @@ public class ActivityScanerCode extends ActivityBase {
     protected void onDestroy() {
         inactivityTimer.shutdown();
         mScanerListener = null;
-        handler.removeCallbacksAndMessages(null);
         super.onDestroy();
     }
 
@@ -446,6 +446,7 @@ public class ActivityScanerCode extends ActivityBase {
 
         public void quitSynchronously() {
             state = State.DONE;
+            decodeThread.interrupt();
             CameraManager.get().stopPreview();
             removeMessages(R.id.decode_succeeded);
             removeMessages(R.id.decode_failed);
