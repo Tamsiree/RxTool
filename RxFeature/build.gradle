@@ -39,4 +39,5 @@ dependencies {
     compileOnly 'com.github.google:cameraview:3eaeac09a7'
     implementation project(':RxKit')
     implementation project(':RxUI')
+//    implementation project(':RxCamera')
 }
