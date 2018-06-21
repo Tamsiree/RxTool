@@ -488,11 +488,9 @@ public class ActivityScanerCode extends ActivityBase {
             handlerInitLatch.countDown();
             Looper.loop();
         }
-
     }
 
     final class DecodeHandler extends Handler {
-
         DecodeHandler() {
         }
 
@@ -504,7 +502,6 @@ public class ActivityScanerCode extends ActivityBase {
                 Looper.myLooper().quit();
             }
         }
-
     }
 
     private MultiFormatReader multiFormatReader;
