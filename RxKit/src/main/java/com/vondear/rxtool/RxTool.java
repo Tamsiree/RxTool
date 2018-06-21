@@ -183,7 +183,7 @@ public class RxTool {
      * @return
      */
     public final static int getResIdByName(Context context, String name, String defType) {
-        return context.getResources().getIdentifier("ic_launcher", "drawable", context.getPackageName());
+        return context.getResources().getIdentifier(name, defType, context.getPackageName());
     }
 
     public static boolean isFastClick(int millisecond) {
@@ -208,6 +208,7 @@ public class RxTool {
     }
 
     /**
+     * 只允许数字和汉字
      * @param editText
      */
     public static void setEdType(final EditText editText) {
