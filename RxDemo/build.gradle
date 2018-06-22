@@ -35,7 +35,7 @@ dependencies {
     implementation project(':RxKit')
     implementation project(':RxUI')
     implementation project(':RxFeature')
-//    implementation project(':RxCamera')
+    //    implementation project(':RxCamera')
     compileOnly fileTree(include: ['*.jar'], dir: 'libs')
     //cardView包
     //appcompat包

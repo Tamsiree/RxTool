@@ -12,7 +12,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -25,7 +24,6 @@ import java.util.zip.ZipOutputStream;
 import static com.vondear.rxtool.RxConstTool.KB;
 
 /**
- *
  * @author vondear
  * @date 2016/1/24
  * 压缩相关工具类
@@ -230,8 +228,7 @@ public class RxZipTool {
      * @return {@code true}: 解压成功<br>{@code false}: 解压失败
      * @throws IOException IO错误时抛出
      */
-    public static boolean unzipFiles(Collection<File> zipFiles, String destDirPath)
-            throws IOException {
+    public static boolean unzipFiles(Collection<File> zipFiles, String destDirPath) {
         return unzipFiles(zipFiles, RxFileTool.getFileByPath(destDirPath));
     }
 
@@ -243,8 +240,7 @@ public class RxZipTool {
      * @return {@code true}: 解压成功<br>{@code false}: 解压失败
      * @throws IOException IO错误时抛出
      */
-    public static boolean unzipFiles(Collection<File> zipFiles, File destDir)
-            throws IOException {
+    public static boolean unzipFiles(Collection<File> zipFiles, File destDir) {
         if (zipFiles == null || destDir == null) {
             return false;
         }
@@ -264,8 +260,7 @@ public class RxZipTool {
      * @return {@code true}: 解压成功<br>{@code false}: 解压失败
      * @throws IOException IO错误时抛出
      */
-    public static boolean unzipFile(String zipFilePath, String destDirPath)
-            throws IOException {
+    public static boolean unzipFile(String zipFilePath, String destDirPath){
         return unzipFile(RxFileTool.getFileByPath(zipFilePath), RxFileTool.getFileByPath(destDirPath));
     }
 
@@ -277,8 +272,7 @@ public class RxZipTool {
      * @return {@code true}: 解压成功<br>{@code false}: 解压失败
      * @throws IOException IO错误时抛出
      */
-    public static boolean unzipFile(File zipFile, File destDir)
-            throws IOException {
+    public static boolean unzipFile(File zipFile, File destDir) {
         return unzipFileByKeyword(zipFile, destDir, null) != null;
     }
 
@@ -291,62 +285,62 @@ public class RxZipTool {
      * @return 返回带有关键字的文件链表
      * @throws IOException IO错误时抛出
      */
-    public static List<File> unzipFileByKeyword(String zipFilePath, String destDirPath, String keyword)
-            throws IOException {
+    public static List<File> unzipFileByKeyword(String zipFilePath, String destDirPath, String keyword){
         return unzipFileByKeyword(RxFileTool.getFileByPath(zipFilePath),
                 RxFileTool.getFileByPath(destDirPath), keyword);
     }
 
+
     /**
-     * 解压带有关键字的文件
+     * 根据所给密码解压zip压缩包到指定目录
+     * <p>
+     * 如果指定目录不存在,可以自动创建,不合法的路径将导致异常被抛出
      *
-     * @param zipFile 待解压文件
-     * @param destDir 目标目录
-     * @param keyword 关键字
-     * @return 返回带有关键字的文件链表
-     * @throws IOException IO错误时抛出
+     * @param zipFile zip压缩包绝对路径
+     * @param destDir 指定解压文件夹位置
+     * @param passwd  密码(可为空)
+     * @return 解压后的文件数组
+     * @throws ZipException
      */
-    public static List<File> unzipFileByKeyword(File zipFile, File destDir, String keyword)
-            throws IOException {
-        if (zipFile == null || destDir == null) {
-            return null;
-        }
-        List<File> files = new ArrayList<>();
-        ZipFile zf = new ZipFile(zipFile);
-        Enumeration<?> entries = zf.entries();
-        while (entries.hasMoreElements()) {
-            ZipEntry entry = ((ZipEntry) entries.nextElement());
-            //String entryName = entry.getName();
-            String entryName = entry.getName().replace("\\", File.separator);
-            if (RxDataTool.isNullString(keyword) || RxFileTool.getFileName(entryName).toLowerCase().contains(keyword.toLowerCase())) {
-                String filePath = destDir + File.separator + entryName;
-                File file = new File(filePath);
-                files.add(file);
-                if (entry.isDirectory()) {
-                    if (!RxFileTool.createOrExistsDir(file)) {
-                        return null;
-                    }
-                } else {
-                    if (!RxFileTool.createOrExistsFile(file)) {
-                        return null;
-                    }
-                    InputStream in = null;
-                    OutputStream out = null;
-                    try {
-                        in = new BufferedInputStream(zf.getInputStream(entry));
-                        out = new BufferedOutputStream(new FileOutputStream(file));
-                        byte buffer[] = new byte[KB];
-                        int len;
-                        while ((len = in.read(buffer)) != -1) {
-                            out.write(buffer, 0, len);
-                        }
-                    } finally {
-                        RxFileTool.closeIO(in, out);
-                    }
+    @SuppressWarnings("unchecked")
+    public static List<File> unzipFileByKeyword(File zipFile, File destDir, String passwd){
+        try {
+            //1.判断指定目录是否存在
+            if (zipFile == null) {
+                throw new ZipException("压缩文件不存在.");
+            }
+            if (destDir == null) {
+                throw new ZipException("解压缩路径不存在.");
+            }
+
+            if (destDir.isDirectory() && !destDir.exists()) {
+                destDir.mkdir();
+            }
+
+            //2.初始化zip工具
+            net.lingala.zip4j.core.ZipFile zFile = new net.lingala.zip4j.core.ZipFile(zipFile);
+            zFile.setFileNameCharset("UTF-8");
+            if (!zFile.isValidZipFile()) {
+                throw new ZipException("压缩文件不合法,可能被损坏.");
+            }
+            //3.判断是否已加密
+            if (zFile.isEncrypted()) {
+                zFile.setPassword(passwd.toCharArray());
+            }
+            //4.解压所有文件
+            zFile.extractAll(destDir.getAbsolutePath());
+            List<FileHeader> headerList = zFile.getFileHeaders();
+            List<File> extractedFileList = new ArrayList<File>();
+            for (FileHeader fileHeader : headerList) {
+                if (!fileHeader.isDirectory()) {
+                    extractedFileList.add(new File(destDir, fileHeader.getFileName()));
                 }
             }
+            return extractedFileList;
+        } catch (net.lingala.zip4j.exception.ZipException e) {
+            e.printStackTrace();
+            return null;
         }
-        return files;
     }
 
     /**

@@ -96,16 +96,12 @@ public class ActivityZipEncrypt extends ActivityBase {
                 }
                 break;
             case R.id.btn_upzip:
-                try {
-                    List<File> zipFiles = RxZipTool.unzipFileByKeyword(fileZip, unZipDirFile, "123456");
-                    String str = "导出文件列表\n";
-                    for (File zipFile : zipFiles) {
-                        str += zipFile.getAbsolutePath() + "\n";
-                    }
-                    mTvState.setText(str);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                List<File> zipFiles = RxZipTool.unzipFileByKeyword(fileZip, unZipDirFile, "123456");
+                String str = "导出文件列表\n";
+                for (File zipFile : zipFiles) {
+                    str += zipFile.getAbsolutePath() + "\n";
                 }
+                mTvState.setText(str);
                 break;
             default:
                 break;
