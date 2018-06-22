@@ -57,7 +57,7 @@ public class ActivityZipEncrypt extends ActivityBase {
         mRxTitle.setLeftFinish(mContext);
         zipParentPath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxTool";
         zipTempDeletePath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxTool" + File.separator + "RxTempTool";
-        unzipPath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxToolUnZip";
+        unzipPath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "解压缩文件夹";
         zipPath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "Rxtool.zip";
 
         unZipDirFile = new File(unzipPath);
@@ -81,12 +81,12 @@ public class ActivityZipEncrypt extends ActivityBase {
                 }
 
                 try {
-                    File file = File.createTempFile("RxTool_Temp", ".txt", fileDir);
-                    File file1 = File.createTempFile("RxTool_Temp", ".txt", fileTempDir);
+                    File file = File.createTempFile("被压缩文件ŐεŐ", ".txt", fileDir);
+                    File file1 = File.createTempFile("待删除文件o(╥﹏╥)o", ".txt", fileTempDir);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                mTvState.setText("文件夹 RxTool 创建成功,文件夹位于在根目录");
+                mTvState.setText("临时文件 创建成功,文件位于根目录的RxTool里(✺ω✺)");
                 break;
             case R.id.btn_zip:
                 fileZip = new File(zipPath);
@@ -108,10 +108,10 @@ public class ActivityZipEncrypt extends ActivityBase {
                 break;
             case R.id.btn_upzip:
                 List<File> zipFiles = RxZipTool.unzipFileByKeyword(fileZip, unZipDirFile, "123456");
-                String str = "导出文件列表\n";
+                String str = "导出文件列表(*▽*)\n";
                 if (zipFiles != null) {
                     for (File zipFile : zipFiles) {
-                        str += zipFile.getAbsolutePath() + "\n";
+                        str += zipFile.getAbsolutePath() + "\n\n";
                     }
                 }
                 mTvState.setText(str);
