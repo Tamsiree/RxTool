@@ -1,8 +1,12 @@
 package com.vondear.rxdemo.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
@@ -15,7 +19,6 @@ import com.vondear.rxui.view.RxTitle;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +41,8 @@ public class ActivityZipEncrypt extends ActivityBase {
     Button mBtnUpzip;
     @BindView(R.id.btn_zip_delete_dir)
     Button mBtnZipDeleteDir;
+    @BindView(R.id.Progress)
+    ProgressBar mProgress;
 
     private File fileDir;
     private File fileTempDir;
@@ -107,14 +112,18 @@ public class ActivityZipEncrypt extends ActivityBase {
                 }
                 break;
             case R.id.btn_upzip:
-                List<File> zipFiles = RxZipTool.unzipFileByKeyword(fileZip, unZipDirFile, "123456");
+                /*List<File> zipFiles = RxZipTool.unzipFileByKeyword(fileZip, unZipDirFile, "123456");
                 String str = "导出文件列表(*▽*)\n";
                 if (zipFiles != null) {
                     for (File zipFile : zipFiles) {
                         str += zipFile.getAbsolutePath() + "\n\n";
                     }
                 }
-                mTvState.setText(str);
+                mTvState.setText(str);*/
+
+                RxZipTool.Unzip(fileZip, unZipDirFile.getAbsolutePath(), "123456", "GBK", _handler, false);
+
+
                 break;
             case R.id.btn_zip_delete_dir:
                 if (RxZipTool.removeDirFromZipArchive(zipPath, "RxTool" + File.separator + "RxTempTool")) {
@@ -127,4 +136,38 @@ public class ActivityZipEncrypt extends ActivityBase {
                 break;
         }
     }
+
+    @SuppressLint("HandlerLeak")
+    private Handler _handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case RxZipTool.CompressStatus.START: {
+                    mTvState.setText("Start...");
+                    mProgress.setVisibility(View.VISIBLE);
+                    break;
+                }
+                case RxZipTool.CompressStatus.HANDLING: {
+                    Bundle bundle = msg.getData();
+                    int percent = bundle.getInt(RxZipTool.CompressKeys.PERCENT);
+                    mTvState.setText(percent + "%");
+                    mProgress.setProgress(percent);
+                    break;
+                }
+                case RxZipTool.CompressStatus.ERROR: {
+                    Bundle bundle = msg.getData();
+                    String error = bundle.getString(RxZipTool.CompressKeys.ERROR);
+                    mTvState.setText(error);
+                    break;
+                }
+                case RxZipTool.CompressStatus.COMPLETED: {
+                    mTvState.setText("Completed");
+                    mProgress.setVisibility(View.INVISIBLE);
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    };
 }
