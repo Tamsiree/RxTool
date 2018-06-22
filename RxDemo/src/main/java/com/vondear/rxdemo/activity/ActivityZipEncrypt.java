@@ -19,6 +19,7 @@ import com.vondear.rxui.view.RxTitle;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -112,16 +113,16 @@ public class ActivityZipEncrypt extends ActivityBase {
                 }
                 break;
             case R.id.btn_upzip:
-                /*List<File> zipFiles = RxZipTool.unzipFileByKeyword(fileZip, unZipDirFile, "123456");
+                List<File> zipFiles = RxZipTool.unzipFileByKeyword(fileZip, unZipDirFile, "123456");
                 String str = "导出文件列表(*▽*)\n";
                 if (zipFiles != null) {
                     for (File zipFile : zipFiles) {
                         str += zipFile.getAbsolutePath() + "\n\n";
                     }
                 }
-                mTvState.setText(str);*/
+                mTvState.setText(str);
 
-                RxZipTool.Unzip(fileZip, unZipDirFile.getAbsolutePath(), "123456", "GBK", _handler, false);
+//                RxZipTool.Unzip(fileZip, unZipDirFile.getAbsolutePath(), "123456", "GBK", _handler, false);
 
 
                 break;
