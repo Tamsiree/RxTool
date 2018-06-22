@@ -33,8 +33,11 @@ import java.util.Locale;
  */
 public class RxLocationTool {
 
+    //圆周率
     public static double pi = 3.1415926535897932384626;
+    //Krasovsky 1940 (北京54)椭球长半轴
     public static double a = 6378245.0;
+    //椭球的偏心率
     public static double ee = 0.00669342162296594323;
     private static OnLocationChangeListener mListener;
     private static MyLocationListener myLocationListener;
@@ -85,7 +88,9 @@ public class RxLocationTool {
      * @return {@code true}: 初始化成功<br>{@code false}: 初始化失败
      */
     public static boolean registerLocation(Context context, long minTime, long minDistance, OnLocationChangeListener listener) {
-        if (listener == null) return false;
+        if (listener == null) {
+            return false;
+        }
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -100,8 +105,12 @@ public class RxLocationTool {
         String provider = mLocationManager.getBestProvider(getCriteria(), true);
 
         Location location = mLocationManager.getLastKnownLocation(provider);
-        if (location != null) listener.getLastKnownLocation(location);
-        if (myLocationListener == null) myLocationListener = new MyLocationListener();
+        if (location != null) {
+            listener.getLastKnownLocation(location);
+        }
+        if (myLocationListener == null) {
+            myLocationListener = new MyLocationListener();
+        }
         mLocationManager.requestLocationUpdates(provider, minTime, minDistance, myLocationListener);
         return true;
     }
@@ -129,13 +138,13 @@ public class RxLocationTool {
         //设置定位精确度 Criteria.ACCURACY_COARSE比较粗略，Criteria.ACCURACY_FINE则比较精细
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
         //设置是否要求速度
-        criteria.setSpeedRequired(false);
+        criteria.setSpeedRequired(true);
         // 设置是否允许运营商收费
-        criteria.setCostAllowed(false);
+        criteria.setCostAllowed(true);
         //设置是否需要方位信息
-        criteria.setBearingRequired(false);
+        criteria.setBearingRequired(true);
         //设置是否需要海拔信息
-        criteria.setAltitudeRequired(false);
+        criteria.setAltitudeRequired(true);
         // 设置对电源的需求
         criteria.setPowerRequirement(Criteria.POWER_LOW);
         return criteria;
@@ -153,7 +162,9 @@ public class RxLocationTool {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addresses.size() > 0) return addresses.get(0);
+            if (addresses.size() > 0) {
+                return addresses.get(0);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -265,16 +276,16 @@ public class RxLocationTool {
      * 转换成
      * 百度坐标系 (BD-09)
      *
-     * @param gg_lon 经度
-     * @param gg_lat 纬度
+     * @param ggLon 经度
+     * @param ggLat 纬度
      */
-    public static Gps GCJ02ToBD09(double gg_lon, double gg_lat) {
-        double x = gg_lon, y = gg_lat;
+    public static Gps GCJ02ToBD09(double ggLon, double ggLat) {
+        double x = ggLon, y = ggLat;
         double z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * pi);
         double theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * pi);
-        double bd_lon = z * Math.cos(theta) + 0.0065;
-        double bd_lat = z * Math.sin(theta) + 0.006;
-        return new Gps(bd_lon, bd_lat);
+        double bdLon = z * Math.cos(theta) + 0.0065;
+        double bdLat = z * Math.sin(theta) + 0.006;
+        return new Gps(bdLon, bdLat);
     }
 
     /**
@@ -282,17 +293,17 @@ public class RxLocationTool {
      * 转换成
      * 火星坐标系 (GCJ-02)
      *
-     * @param bd_lon 百度*经度
-     * @param bd_lat 百度*纬度
+     * @param bdLon 百度*经度
+     * @param bdLat 百度*纬度
      * @return GPS实体类
      */
-    public static Gps BD09ToGCJ02(double bd_lon, double bd_lat) {
-        double x = bd_lon - 0.0065, y = bd_lat - 0.006;
+    public static Gps BD09ToGCJ02(double bdLon, double bdLat) {
+        double x = bdLon - 0.0065, y = bdLat - 0.006;
         double z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * pi);
         double theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * pi);
-        double gg_lon = z * Math.cos(theta);
-        double gg_lat = z * Math.sin(theta);
-        return new Gps(gg_lon, gg_lat);
+        double ggLon = z * Math.cos(theta);
+        double ggLat = z * Math.sin(theta);
+        return new Gps(ggLon, ggLat);
     }
 
     /**
@@ -300,15 +311,30 @@ public class RxLocationTool {
      * 转换成
      * 国际 GPS84 坐标系
      *
-     * @param bd_lon 百度*经度
-     * @param bd_lat 百度*纬度
+     * @param bdLon 百度*经度
+     * @param bdLat 百度*纬度
      * @return GPS实体类
      */
-    public static Gps BD09ToGPS84(double bd_lon, double bd_lat) {
-        Gps gcj02 = BD09ToGCJ02(bd_lon, bd_lat);
+    public static Gps BD09ToGPS84(double bdLon, double bdLat) {
+        Gps gcj02 = BD09ToGCJ02(bdLon, bdLat);
         Gps map84 = GCJ02ToGPS84(gcj02.getLongitude(), gcj02.getLatitude());
         return map84;
 
+    }
+
+    /**
+     * 国际 GPS84 坐标系
+     * 转换成
+     * 百度坐标系 (BD-09)
+     *
+     * @param gpsLon  国际 GPS84 坐标系下 的经度
+     * @param gpsLat  国际 GPS84 坐标系下 的纬度
+     * @return 百度GPS坐标
+     */
+    public static Gps GPS84ToBD09(double gpsLon, double gpsLat) {
+        Gps gcj02 = GPS84ToGCJ02(gpsLon, gpsLat);
+        Gps bd09 = GCJ02ToBD09(gcj02.getLongitude(), gcj02.getLatitude());
+        return bd09;
     }
 
     /**
@@ -319,19 +345,17 @@ public class RxLocationTool {
      * @return boolean值
      */
     public static boolean outOfChina(double lon, double lat) {
-        if (lon < 72.004 || lon > 137.8347)
-            return true;
-        return lat < 0.8293 || lat > 55.8271;
+        return lon < 72.004 || lon > 137.8347 || lat < 0.8293 || lat > 55.8271;
     }
 
     /**
      * 转化算法
      *
-     * @param lon
-     * @param lat
-     * @return
+     * @param lon 经度
+     * @param lat 纬度
+     * @return  GPS信息
      */
-    public static Gps transform(double lon, double lat) {
+    private static Gps transform(double lon, double lat) {
         if (outOfChina(lon, lat)) {
             return new Gps(lon, lat);
         }
@@ -351,13 +375,12 @@ public class RxLocationTool {
     /**
      * 纬度转化算法
      *
-     * @param x
-     * @param y
-     * @return
+     * @param x x坐标
+     * @param y y坐标
+     * @return  纬度
      */
     private static double transformLat(double x, double y) {
-        double ret = -100.0 + 2.0 * x + 3.0 * y + 0.2 * y * y + 0.1 * x * y
-                + 0.2 * Math.sqrt(Math.abs(x));
+        double ret = -100.0 + 2.0 * x + 3.0 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * Math.sqrt(Math.abs(x));
         ret += (20.0 * Math.sin(6.0 * x * pi) + 20.0 * Math.sin(2.0 * x * pi)) * 2.0 / 3.0;
         ret += (20.0 * Math.sin(y * pi) + 40.0 * Math.sin(y / 3.0 * pi)) * 2.0 / 3.0;
         ret += (160.0 * Math.sin(y / 12.0 * pi) + 320 * Math.sin(y * pi / 30.0)) * 2.0 / 3.0;
@@ -367,17 +390,16 @@ public class RxLocationTool {
     /**
      * 经度转化算法
      *
-     * @param x
-     * @param y
-     * @return
+     * @param x  x坐标
+     * @param y  y坐标
+     * @return 经度
      */
     private static double transformLon(double x, double y) {
         double ret = 300.0 + x + 2.0 * y + 0.1 * x * x + 0.1 * x * y + 0.1
                 * Math.sqrt(Math.abs(x));
         ret += (20.0 * Math.sin(6.0 * x * pi) + 20.0 * Math.sin(2.0 * x * pi)) * 2.0 / 3.0;
         ret += (20.0 * Math.sin(x * pi) + 40.0 * Math.sin(x / 3.0 * pi)) * 2.0 / 3.0;
-        ret += (150.0 * Math.sin(x / 12.0 * pi) + 300.0 * Math.sin(x / 30.0
-                * pi)) * 2.0 / 3.0;
+        ret += (150.0 * Math.sin(x / 12.0 * pi) + 300.0 * Math.sin(x / 30.0 * pi)) * 2.0 / 3.0;
         return ret;
     }
 
@@ -407,8 +429,7 @@ public class RxLocationTool {
         void onStatusChanged(String provider, int status, Bundle extras);//位置状态发生改变
     }
 
-    private static class MyLocationListener
-            implements LocationListener {
+    private static class MyLocationListener implements LocationListener {
         /**
          * 当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
          *
@@ -442,6 +463,8 @@ public class RxLocationTool {
                     break;
                 case LocationProvider.TEMPORARILY_UNAVAILABLE:
                     Log.d("onStatusChanged", "当前GPS状态为暂停服务状态");
+                    break;
+                default:
                     break;
             }
         }
