@@ -1,15 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'yaoyao'
-            keyPassword '521003'
 
-            storeFile file('F:/WorkSpace/SVN/groupCollectApp/RxKeyStore.jks')
-            storePassword '521003'
-        }
-    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.vondear.rxdemo"
@@ -23,10 +15,8 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
         }
         debug {
-            signingConfig signingConfigs.config
         }
     }
 }
