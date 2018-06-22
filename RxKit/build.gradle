@@ -48,6 +48,6 @@ dependencies {
     compileOnly 'com.orhanobut:logger:2.2.0'
 
     //压缩与加密
-    implementation files('libs/zip4j_1.3.2.jar')
+    implementation 'net.lingala.zip4j:zip4j:1.3.2'
 
 }
