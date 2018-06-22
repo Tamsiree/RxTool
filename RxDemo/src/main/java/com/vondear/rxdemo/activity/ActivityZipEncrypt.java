@@ -36,13 +36,17 @@ public class ActivityZipEncrypt extends ActivityBase {
     RxTitle mRxTitle;
     @BindView(R.id.btn_upzip)
     Button mBtnUpzip;
+    @BindView(R.id.btn_zip_delete_dir)
+    Button mBtnZipDeleteDir;
 
     private File fileDir;
+    private File fileTempDir;
     private File unZipDirFile;
     private File fileZip;
 
     private String zipPath;
     private String zipParentPath;
+    private String zipTempDeletePath;
     private String unzipPath;
 
     @Override
@@ -52,6 +56,7 @@ public class ActivityZipEncrypt extends ActivityBase {
         ButterKnife.bind(this);
         mRxTitle.setLeftFinish(mContext);
         zipParentPath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxTool";
+        zipTempDeletePath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxTool" + File.separator + "RxTempTool";
         unzipPath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxToolUnZip";
         zipPath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "Rxtool.zip";
 
@@ -61,17 +66,23 @@ public class ActivityZipEncrypt extends ActivityBase {
         }
     }
 
-    @OnClick({R.id.btn_create_folder, R.id.btn_zip, R.id.btn_upzip})
+    @OnClick({R.id.btn_create_folder, R.id.btn_zip, R.id.btn_upzip, R.id.btn_zip_delete_dir})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_create_folder:
                 fileDir = new File(zipParentPath);
+                fileTempDir = new File(zipTempDeletePath);
                 if (!fileDir.exists()) {
                     fileDir.mkdirs();
                 }
 
+                if (!fileTempDir.exists()) {
+                    fileTempDir.mkdirs();
+                }
+
                 try {
                     File file = File.createTempFile("RxTool_Temp", ".txt", fileDir);
+                    File file1 = File.createTempFile("RxTool_Temp", ".txt", fileTempDir);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -98,10 +109,19 @@ public class ActivityZipEncrypt extends ActivityBase {
             case R.id.btn_upzip:
                 List<File> zipFiles = RxZipTool.unzipFileByKeyword(fileZip, unZipDirFile, "123456");
                 String str = "导出文件列表\n";
-                for (File zipFile : zipFiles) {
-                    str += zipFile.getAbsolutePath() + "\n";
+                if (zipFiles != null) {
+                    for (File zipFile : zipFiles) {
+                        str += zipFile.getAbsolutePath() + "\n";
+                    }
                 }
                 mTvState.setText(str);
+                break;
+            case R.id.btn_zip_delete_dir:
+                if (RxZipTool.removeDirFromZipArchive(zipPath, "RxTool" + File.separator + "RxTempTool")) {
+                    mTvState.setText("RxTempTool 删除成功");
+                } else {
+                    mTvState.setText("RxTempTool 删除失败");
+                }
                 break;
             default:
                 break;

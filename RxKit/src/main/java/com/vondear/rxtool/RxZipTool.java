@@ -260,7 +260,7 @@ public class RxZipTool {
      * @return {@code true}: 解压成功<br>{@code false}: 解压失败
      * @throws IOException IO错误时抛出
      */
-    public static boolean unzipFile(String zipFilePath, String destDirPath){
+    public static boolean unzipFile(String zipFilePath, String destDirPath) {
         return unzipFile(RxFileTool.getFileByPath(zipFilePath), RxFileTool.getFileByPath(destDirPath));
     }
 
@@ -285,7 +285,7 @@ public class RxZipTool {
      * @return 返回带有关键字的文件链表
      * @throws IOException IO错误时抛出
      */
-    public static List<File> unzipFileByKeyword(String zipFilePath, String destDirPath, String keyword){
+    public static List<File> unzipFileByKeyword(String zipFilePath, String destDirPath, String keyword) {
         return unzipFileByKeyword(RxFileTool.getFileByPath(zipFilePath),
                 RxFileTool.getFileByPath(destDirPath), keyword);
     }
@@ -303,7 +303,7 @@ public class RxZipTool {
      * @throws ZipException
      */
     @SuppressWarnings("unchecked")
-    public static List<File> unzipFileByKeyword(File zipFile, File destDir, String passwd){
+    public static List<File> unzipFileByKeyword(File zipFile, File destDir, String passwd) {
         try {
             //1.判断指定目录是否存在
             if (zipFile == null) {
@@ -646,5 +646,52 @@ public class RxZipTool {
         }
         double size = zipCompressedSize / 1.0 / 1024;//转换为kb
         return size;
+    }
+
+    /**
+     * 删除ZIP文件内的文件夹
+     *
+     * @param file
+     * @param removeDir
+     */
+    public static boolean removeDirFromZipArchive(String file, String removeDir) {
+        try {
+            // 创建ZipFile并设置编码
+            net.lingala.zip4j.core.ZipFile zipFile = new net.lingala.zip4j.core.ZipFile(file);
+            zipFile.setFileNameCharset("GBK");
+
+            // 给要删除的目录加上路径分隔符
+            if (!removeDir.endsWith(File.separator)) {
+                removeDir += File.separator;
+            }
+
+            // 如果目录不存在, 直接返回
+            FileHeader dirHeader = zipFile.getFileHeader(removeDir);
+
+            if (null == dirHeader) {
+                return false;
+            }
+
+            // 遍历压缩文件中所有的FileHeader, 将指定删除目录下的子文件名保存起来
+            List headersList = zipFile.getFileHeaders();
+            List<String> removeHeaderNames = new ArrayList<String>();
+            for (int i = 0, len = headersList.size(); i < len; i++) {
+                FileHeader subHeader = (FileHeader) headersList.get(i);
+                if (subHeader.getFileName().startsWith(dirHeader.getFileName())
+                        && !subHeader.getFileName().equals(dirHeader.getFileName())) {
+                    removeHeaderNames.add(subHeader.getFileName());
+                }
+            }
+            // 遍历删除指定目录下的所有子文件, 最后删除指定目录(此时已为空目录)
+            for (String headerNameString : removeHeaderNames) {
+                zipFile.removeFile(headerNameString);
+            }
+            zipFile.removeFile(dirHeader);
+            return true;
+        } catch (ZipException e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 }
