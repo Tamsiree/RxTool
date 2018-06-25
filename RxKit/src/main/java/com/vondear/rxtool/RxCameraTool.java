@@ -101,7 +101,15 @@ public class RxCameraTool {
         }
     }
 
-    public static void initCameraEvent(final Context mContext, final CameraView mCameraView, final byte[] data, final String fileDir, final String picName, final double mLongitude, final double mLatitude, final boolean isEconomize, final OnRxCamera OnRxCamera) {
+    public static void initCameraEvent(final Context mContext,
+                                       final CameraView mCameraView,
+                                       final byte[] data,
+                                       final String fileDir,
+                                       final String picName,
+                                       final double mLongitude,
+                                       final double mLatitude,
+                                       final boolean isEconomize,
+                                       final OnRxCamera OnRxCamera) {
         OnRxCamera.onBefore();
         RxTool.getBackgroundHandler().post(new Runnable() {
             @Override
