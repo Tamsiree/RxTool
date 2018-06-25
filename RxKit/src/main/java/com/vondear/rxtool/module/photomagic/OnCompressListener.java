@@ -1,4 +1,4 @@
-package com.vondear.rxfeature.module.RxMagic;
+package com.vondear.rxtool.module.photomagic;
 
 import java.io.File;
 

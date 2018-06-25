@@ -4,7 +4,11 @@ import android.content.Context;
 import android.hardware.Camera;
 import android.util.Log;
 
+import com.google.android.cameraview.CameraView;
+import com.vondear.rxtool.interfaces.OnRxCamera;
 import com.vondear.rxtool.interfaces.OnSimpleListener;
+import com.vondear.rxtool.module.photomagic.OnCompressListener;
+import com.vondear.rxtool.module.photomagic.RxMagic;
 import com.vondear.rxtool.view.RxToast;
 
 import java.io.File;

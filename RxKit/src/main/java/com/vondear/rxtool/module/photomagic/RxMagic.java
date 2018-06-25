@@ -1,4 +1,4 @@
-package com.vondear.rxfeature.module.RxMagic;
+package com.vondear.rxtool.module.photomagic;
 
 import android.content.Context;
 import android.os.AsyncTask;

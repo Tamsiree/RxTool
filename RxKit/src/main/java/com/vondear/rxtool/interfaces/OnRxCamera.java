@@ -1,4 +1,4 @@
-package com.vondear.rxfeature.module.camera;
+package com.vondear.rxtool.interfaces;
 
 import java.io.File;
 
