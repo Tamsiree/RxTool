@@ -18,6 +18,7 @@ import com.esri.arcgisruntime.layers.ArcGISTiledLayer;
 import com.esri.arcgisruntime.layers.ArcGISVectorTiledLayer;
 import com.esri.arcgisruntime.loadable.LoadStatus;
 import com.esri.arcgisruntime.mapping.ArcGISMap;
+import com.esri.arcgisruntime.mapping.Basemap;
 import com.esri.arcgisruntime.mapping.LayerList;
 import com.esri.arcgisruntime.mapping.MobileMapPackage;
 import com.esri.arcgisruntime.mapping.Viewpoint;
@@ -45,6 +46,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Logger;
 
 /**
  * Created by Vondear on 2017/8/9.
@@ -185,11 +187,14 @@ public class RxArcGisMapTool {
 
     public static void addMapLocalVTPK(MapView mMapView, String vtpk) {
         if (new File(vtpk).exists()) {
-            //尝试叠加的代码
             ArcGISVectorTiledLayer mVectorTiledLayer = new ArcGISVectorTiledLayer(vtpk);
             ArcGISMap arcGISMap = mMapView.getMap();
-            LayerList layers = arcGISMap.getBasemap().getBaseLayers();
-            layers.add(layers.size(), mVectorTiledLayer);
+            if (arcGISMap == null) {
+                arcGISMap = new ArcGISMap(new Basemap(mVectorTiledLayer));
+            } else {
+                LayerList layers = arcGISMap.getBasemap().getBaseLayers();
+                layers.add(layers.size(), mVectorTiledLayer);
+            }
             Viewpoint vp = new Viewpoint(27.6699, 111.8236, 8000000);
             arcGISMap.setInitialViewpoint(vp);
             //将离线地图加载到MapView中
