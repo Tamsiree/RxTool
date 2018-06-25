@@ -123,8 +123,6 @@ public class ActivityZipEncrypt extends ActivityBase {
                 mTvState.setText(str);
 
 //                RxZipTool.Unzip(fileZip, unZipDirFile.getAbsolutePath(), "123456", "GBK", _handler, false);
-
-
                 break;
             case R.id.btn_zip_delete_dir:
                 if (RxZipTool.removeDirFromZipArchive(zipPath, "RxTool" + File.separator + "RxTempTool")) {

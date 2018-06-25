@@ -36,7 +36,6 @@ dependencies {
     compileOnly 'com.google.code.gson:gson:2.8.2'
     //Zxing核心包
     implementation 'com.google.zxing:core:3.3.0'
-    compileOnly 'com.github.google:cameraview:3eaeac09a7'
     implementation project(':RxKit')
     implementation project(':RxUI')
 //    implementation project(':RxCamera')
