@@ -392,6 +392,10 @@ public class RxDeviceTool {
         return serial;
     }
 
+    public static String getAppPackageName() {
+        return RxTool.getContext().getPackageName();
+    }
+
     /**
      * 获取App版本名称
      *
