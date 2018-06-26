@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'org.greenrobot.greendao'
 //apply plugin: 'com.github.dcendents.android-maven'
 //apply plugin: 'com.jfrog.bintray'
 
@@ -51,4 +52,6 @@ dependencies {
     implementation 'net.lingala.zip4j:zip4j:1.3.2'
 
     compileOnly 'com.github.google:cameraview:3eaeac09a7'
+
+    compileOnly 'org.greenrobot:greendao:3.2.2'
 }
