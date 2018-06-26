@@ -1909,4 +1909,66 @@ public class RxImageTool {
         NinePatch patch = new NinePatch(bmp, bmp.getNinePatchChunk(), null);
         patch.draw(c, rect);
     }
+
+    /**
+     * 创建的包含文字的图片，背景为透明
+     * @param source 图片
+     * @param txtSize 文字大小
+     * @param innerTxt 显示的文字
+     * @param textColor 文字颜色Color.BLUE
+     * @param textBackgroundColor 文字背景板颜色 Color.parseColor("#FFD700")
+     * @return
+     */
+    public static Bitmap createTextImage(Bitmap source, int txtSize, String innerTxt,int textColor,int textBackgroundColor) {
+        int bitmapWidth = source.getWidth();
+        int bitmapHeight = source.getHeight();
+
+        int textWidth = txtSize * innerTxt.length();
+        int textHeight = txtSize;
+
+        int width;
+
+
+        if (bitmapWidth > textWidth) {
+            width = bitmapWidth + txtSize * innerTxt.length();
+        } else {
+            width = txtSize * innerTxt.length();
+        }
+        int height = bitmapHeight + txtSize;
+
+        //若使背景为透明，必须设置为Bitmap.Config.ARGB_4444
+        Bitmap bm = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
+        Canvas canvas = new Canvas(bm);
+        //把图片画上来
+        Paint bitmapPaint = new Paint();
+        canvas.drawBitmap(source, (width - bitmapWidth) / 2, 0, bitmapPaint);
+
+
+        Paint paint = new Paint();
+        paint.setColor(textBackgroundColor);
+        paint.setTextSize(txtSize);
+        paint.setAntiAlias(true);
+
+
+        //计算得出文字的绘制起始x、y坐标
+        int posX = (width - txtSize * innerTxt.length()) / 2;
+        int posY = height / 2;
+
+        int textX = posX + txtSize * innerTxt.length() / 4;
+
+        Paint paint1 = new Paint();
+        paint1.setColor(textColor);
+        paint1.setStrokeWidth(3);
+        paint1.setStyle(Paint.Style.FILL_AND_STROKE);
+
+        RectF r1 = new RectF();
+        r1.left = posX;
+        r1.right = posX + txtSize * innerTxt.length();
+        r1.top = posY;
+        r1.bottom = posY + txtSize;
+        canvas.drawRoundRect(r1, 10, 10, paint1);
+        canvas.drawText(innerTxt, textX, posY + txtSize-2, paint);
+
+        return bm;
+    }
 }
