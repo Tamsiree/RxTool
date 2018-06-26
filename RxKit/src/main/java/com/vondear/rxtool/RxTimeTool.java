@@ -20,7 +20,6 @@ import static com.vondear.rxtool.RxDataTool.isNullString;
 import static com.vondear.rxtool.RxDataTool.stringToInt;
 
 /**
- *
  * @author vondear
  * @date 2016/1/24
  * 时间相关工具类
@@ -184,7 +183,7 @@ public class RxTimeTool {
      * EEEE 'DATE('yyyy-MM-dd')' 'TIME('HH:mm:ss')' zzzz    星期五 DATE(2016-08-12) TIME(15:44:40) 中国标准时间
      * </pre>
      */
-    public static final SimpleDateFormat DEFAULT_SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+    public static final SimpleDateFormat DEFAULT_SDF = new SimpleDateFormat(RxConstants.DATE_FORMAT_DETACH, Locale.getDefault());
 
 
     /**
@@ -329,6 +328,8 @@ public class RxTimeTool {
                 return milliseconds / HOUR;
             case DAY:
                 return milliseconds / DAY;
+            default:
+                break;
         }
         return -1;
     }
@@ -377,8 +378,8 @@ public class RxTimeTool {
      * 获取两个时间差（单位：unit）
      * <p>time1和time2都为Date类型</p>
      *
-     * @param time0 Date类型时间1
-     * @param time1 Date类型时间2
+     * @param time1 Date类型时间1
+     * @param time2 Date类型时间2
      * @param unit  <ul>
      *              <li>{@link TimeUnit#MSEC}: 毫秒</li>
      *              <li>{@link TimeUnit#SEC }: 秒</li>
@@ -388,9 +389,9 @@ public class RxTimeTool {
      *              </ul>
      * @return unit时间戳
      */
-    public static long getIntervalTime(Date time0, Date time1, TimeUnit unit) {
-        return Math.abs(milliseconds2Unit(date2Milliseconds(time1)
-                - date2Milliseconds(time0), unit));
+    public static long getIntervalTime(Date time1, Date time2, TimeUnit unit) {
+        return Math.abs(milliseconds2Unit(date2Milliseconds(time2)
+                - date2Milliseconds(time1), unit));
     }
 
     /**
@@ -492,7 +493,8 @@ public class RxTimeTool {
      * 判断闰年
      *
      * @param year 年份
-     * @return {@code true}: 闰年<br>{@code false}: 平年
+     * @return {@code true}: 闰年<br>
+     *          {@code false}: 平年
      */
     public static boolean isLeapYear(int year) {
         return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
@@ -507,7 +509,7 @@ public class RxTimeTool {
      */
     public static String simpleDateFormat(String format, Date date) {
         if (isNullString(format)) {
-            format = "yyyy-MM-dd HH:mm:ss";
+            format = RxConstants.DATE_FORMAT_DETACH_SSS;
         }
         String content = new SimpleDateFormat(format).format(date);
         return content;
@@ -600,7 +602,7 @@ public class RxTimeTool {
      * @return
      */
     public static String formatTime(long milliseconds) {
-        String format = "mm:ss";
+        String format = RxConstants.DATE_FORMAT_MM_SS;
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+0"));
         String video_time = sdf.format(milliseconds);
@@ -614,7 +616,7 @@ public class RxTimeTool {
      * @return
      */
     public static long formatSeconds(String time) {
-        String format = "mm:ss";
+        String format = RxConstants.DATE_FORMAT_MM_SS;
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+0"));
         Date date;
