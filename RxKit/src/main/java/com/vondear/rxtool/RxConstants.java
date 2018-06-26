@@ -1,9 +1,10 @@
 package com.vondear.rxtool;
 
+import java.io.File;
 import java.text.DecimalFormat;
+import java.util.Random;
 
 /**
- *
  * @author vondear
  * @date 2017/1/13
  */
@@ -84,6 +85,32 @@ public class RxConstants {
      */
     public static final DecimalFormat FORMAT_THREE = new DecimalFormat("#.###");
 
+    //默认保存下载文件目录
+    public static final String DOWNLOAD_DIR = RxFileTool.getRootPath() + File.separator + "Download" + File.separator + RxDeviceTool.getAppPackageName() + File.separator;
 
+    //图片原始路径
+    public static final String PICTURE_ORIGIN_PATH = RxFileTool.getRootPath() + File.separator + RxDeviceTool.getAppPackageName() + File.separator + "Picture" + File.separator+ "Origin" + File.separator;
 
+    //图片压缩路径
+    public static final String PICTURE_COMPRESS_PATH = RxFileTool.getRootPath() + File.separator + RxDeviceTool.getAppPackageName() + File.separator + "Picture" + File.separator+ "Compress" + File.separator;
+
+    //默认导出文件目录
+    public static final String EXPORT_FILE_PATH = RxFileTool.getRootPath() + File.separator + RxDeviceTool.getAppPackageName() + File.separator + "ExportFile" + File.separator;
+
+    //图片名称
+    public static final String getPictureName() {
+        return RxTimeTool.getCurrentDateTime(DATE_FORMAT_LINK) + "_" + new Random().nextInt(1000) + ".jpg";
+    }
+
+    //Date格式
+    public static final String DATE_FORMAT_LINK = "yyyyMMddHHmmssSSS";
+
+    //Date格式 常用
+    public static final String DATE_FORMAT_DETACH = "yyyy-MM-dd HH:mm:ss";
+
+    //Date格式 带毫秒
+    public static final String DATE_FORMAT_DETACH_SSS = "yyyy-MM-dd HH:mm:ss SSS";
+
+    //时间格式 分钟：秒钟 一般用于视频时间显示
+    public static final String DATE_FORMAT_MM_SS = "mm:ss";
 }
