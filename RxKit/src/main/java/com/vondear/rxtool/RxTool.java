@@ -16,7 +16,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.vondear.rxtool.interfaces.OnDoListener;
 import com.vondear.rxtool.interfaces.OnSimpleListener;
+import com.vondear.rxtool.view.RxToast;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -349,5 +351,15 @@ public class RxTool {
         HandlerThread thread = new HandlerThread("background");
         thread.start();
         return new Handler(thread.getLooper());
+    }
+
+    public static void initFastClickAndVibrate(Context mContext, OnDoListener onRxSimple) {
+        if (RxTool.isFastClick(RxConstants.FAST_CLICK_TIME)) {
+            RxToast.normal("请不要重复点击");
+            return;
+        } else {
+            RxVibrateTool.vibrateOnce(mContext, RxConstants.VIBRATE_TIME);
+            onRxSimple.doSomething();
+        }
     }
 }

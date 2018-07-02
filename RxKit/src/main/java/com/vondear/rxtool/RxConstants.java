@@ -10,6 +10,11 @@ import java.util.Random;
  */
 
 public class RxConstants {
+
+    public final static int FAST_CLICK_TIME = 100;
+
+    public final static int VIBRATE_TIME = 100;
+
     //----------------------------------------------------常用链接- start ------------------------------------------------------------
 
     /**
