@@ -34,6 +34,7 @@ import com.esri.arcgisruntime.tasks.geocode.LocatorTask;
 import com.esri.arcgisruntime.tasks.networkanalysis.RouteParameters;
 import com.esri.arcgisruntime.tasks.networkanalysis.RouteTask;
 import com.vondear.rxarcgiskit.model.MapPreview;
+import com.vondear.rxarcgiskit.view.RxMapScaleView;
 import com.vondear.rxtool.RxDataTool;
 import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxtool.RxLocationTool;
@@ -66,6 +67,17 @@ public class RxArcGisMapTool {
             public void mapScaleChanged(MapScaleChangedEvent mapScaleChangedEvent) {
                 double s = (int) RxMapTool.screenPixelToMetre(RxImageTool.dp2px(30) * 1.5, mapScaleChangedEvent.getSource().getMapScale(), mContext);
                 mTvPlottingScale.setText(RxDataTool.changeDistance(s));
+            }
+        });
+    }
+
+    public static void initAcrMap(final Context mContext, final MapView mMapView, final RxMapScaleView mScaleView) {
+        ArcGISRuntimeEnvironment.setLicense("runtimelite,1000,rud5954166547,none,2K0RJAY3FLGP9KB10136");
+
+        mMapView.addMapScaleChangedListener(new MapScaleChangedListener() {
+            @Override
+            public void mapScaleChanged(MapScaleChangedEvent mapScaleChangedEvent) {
+                mScaleView.refreshScaleView();
             }
         });
     }
