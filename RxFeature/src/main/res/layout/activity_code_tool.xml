@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:background="@color/mi_green"
+        android:background="@color/green_xiaomi"
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
         android:orientation="vertical">
@@ -22,7 +22,7 @@
             android:id="@+id/rx_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/mi_green"
+            android:background="@color/green_xiaomi"
             app:leftIconVisibility="true"
             app:rightIcon="@drawable/set"
             app:rightIconVisibility="false"

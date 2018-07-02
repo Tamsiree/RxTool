@@ -20,6 +20,6 @@
         android:layout_height="wrap_content"
         android:text="正在加载数据..."
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/hot_pink" />
+        android:textColor="@color/pink_acfun" />
 
 </LinearLayout>

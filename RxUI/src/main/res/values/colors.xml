@@ -1,60 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="BD">#BDBDBD</color>
+    <color name="transparent">#00000000</color><!-- 透明 黑色 -->
+    <color name="transparent_blank_5">#55000000</color><!-- 半透明 黑色 -->
+    <color name="black">#FF000000</color><!-- 全黑 -->
 
-    <color name="white">#FFFFFFFF</color>
-    <color name="whiteTrans66">#66FFFFFF</color>
-    <color name="black">#FF000000</color>
-    <color name="orange">#f8b62d</color>
-    <color name="yellow">#e6ff00</color>
-    <color name="red">#ff0006</color>
-    <color name="hot_pink">#FD4C5B</color><!-- Acfun主题色 -->
-    <color name="baby_blue">#89CFF0</color>
-    <color name="blue">#3F51B5</color>
-    <color name="dark_blue_03">#000333</color>
+    <color name="gray_80_25">#25808080</color>
+    <color name="gray_80_80">#80808080</color>
 
-    <color name="ERROR_COLOR">#FD4C5B</color>
-    <color name="SUCCESS_COLOR">#388E3C</color>
-    <color name="INFO_COLOR">#3F51B5</color>
-    <color name="WARNING_COLOR">#FFA900</color>
+    <color name="round_corner_progress_bar_background_default">#5f5f5f</color>
+    <color name="round_corner_progress_bar_progress_default">#7f7f7f</color>
+    <color name="round_corner_progress_bar_secondary_progress_default">@android:color/transparent
+    </color>
 
-    <color name="mi_green">#52BA97</color>
-    <color name="system_dark">#303030</color>
+    <color name="background_dark">#ff363636</color>
+    <color name="background_content">#ff454344</color>
 
-    <color name="f0">#f0f0f0</color>
-    <color name="e">#EEEEEE</color>
-    <color name="c">#CCCCCC</color>
-    <color name="_8c">#8c8c8c</color>
-    <color name="a5">#A5A5A5</color>
+    <color name="custom_progress_background">#ff3c3a3b</color>
 
-    <color name="brown">#7a583e</color>
-    <color name="brown1">#766156</color>
-    <color name="brown2">#b19282</color>
-    <color name="brown3">#eac1ac</color>
-
-    <color name="transparent">#00000000</color><!-- 透明色 -->
-    <color name="transparentBlank_5">#55000000</color><!-- 半透明 -->
-
-    <color name="shadow25">#25808080</color>
-    <color name="shadow80">#80808080</color>
-
-    <color name="shadowBlue80">#803F51B5</color>
-    <color name="shadowBlue50">#503F51B5</color>
-
-    <color name="shadowPink50">#50FD4C5B</color>
-
-    <color name="triangle">#aa72d572</color>
-    <color name="circle">#aa738ffe</color>
-    <color name="rect">#aae84e40</color>
-
-
-    <color name="darkgray">#A9A9A9</color>
-    <color name="green">#008000</color>
-
+    <color name="white">#FFFFFFFF</color><!-- 全白 -->
+    <color name="white_66">#66FFFFFF</color><!-- 透明白 66 -->
     <color name="ivory">#FFFFF0</color><!-- 象牙色 -->
-    <color name="lightyellow">#FFFFE0</color><!--亮黄色 -->
-    <color name="yellow1">#FFFF00</color><!--黄色 -->
+    <color name="f6">#f6f6f6</color>
+    <color name="f0">#f0f0f0</color>
+    <color name="ef">#efefef</color>
+    <color name="e">#EEEEEE</color>
+    <color name="gray1">#e7e4e4</color>
+    <color name="c">#CCCCCC</color>
+    <color name="bd">#BDBDBD</color>
+    <color name="a5">#A5A5A5</color>
+    <color name="a9">#A9A9A9</color>
+    <color name="deep_gray">#afaeae</color>
+    <color name="_9">#999999</color>
+    <color name="_8c">#8c8c8c</color>
+    <color name="deep_gray_2">#636262</color>
+    <color name="_6">#666666</color>
+    <color name="light_black">#fd383838</color>
+    <color name="_30">#303030</color><!-- system dark -->
+
     <color name="snow">#FFFAFA</color><!--雪白色 -->
     <color name="floralwhite">#FFFAF0</color><!--花白色 -->
     <color name="lemonchiffon">#FFFACD</color><!--柠檬绸色 -->
@@ -67,22 +50,62 @@
     <color name="bisque">#FFE4C4</color><!--桔黄色 -->
     <color name="moccasin">#FFE4B5</color><!--鹿皮色 -->
 
+    <color name="lightyellow">#FFFFE0</color><!--亮黄色 -->
+    <color name="yellow">#e6ff00</color>
+    <color name="yellow1">#FFFF00</color><!--黄色 -->
+    <color name="orange">#f8b62d</color>
+    <color name="WARNING_COLOR">#FFA900</color>
+
+    <color name="custom_progress_red_progress">#ffff4444</color>
+    <color name="red">#ff0006</color>
+    <color name="red1">#FF0000</color><!--红色 -->
+    <color name="rect">#aae84e40</color>
+    <color name="custom_progress_red_progress_half">#7fff4444</color>
+    <color name="custom_progress_red_header">#ffcc0000</color>
+
+    <color name="pink">#FFC0CB</color><!--粉红色 -->
+    <color name="pink_light">#FFB6C1</color><!--亮粉红色 -->
+    <color name="pink_hot">#FF69B4</color><!--热粉红色 -->
+    <color name="pink_deep">#FF1493</color><!--深粉红色 -->
+    <color name="colorBackground">#FF4081</color>
+    <color name="pink_acfun">#FD4C5B</color><!-- Acfun主题色 -->
+    <color name="pink_50">#50FD4C5B</color>
+
+    <color name="blue_powder">#B0E0E6</color><!--粉蓝色 -->
+    <color name="blue_light_steel">#B0C4DE</color><!--亮钢兰色-->
+    <color name="blue_baby">#89CFF0</color>
+    <color name="blue_2196F3">#2196F3</color>
+    <color name="circle">#aa738ffe</color>
+    <color name="blue">#3F51B5</color>
+    <color name="blue_shadow_80">#803F51B5</color>
+    <color name="blue_shadow_50">#503F51B5</color>
+    <color name="blue_dark_03">#000333</color>
+
+    <color name="green_xiaomi">#52BA97</color>
+    <color name="triangle">#aa72d572</color>
+    <color name="green_388e3c">#388E3C</color>
+    <color name="green">#008000</color>
+
+    <color name="brown3">#eac1ac</color>
+    <color name="brown2">#b19282</color>
+    <color name="brown1">#766156</color>
+    <color name="brown">#7a583e</color>
+
     <color name="navajowhite">#FFDEAD</color><!--纳瓦白 -->
     <color name="peachpuff">#FFDAB9</color><!--桃色 -->
     <color name="gold">#FFD700</color><!--金色 -->
-    <color name="pink">#FFC0CB</color><!--粉红色 -->
-    <color name="lightpink">#FFB6C1</color><!--亮粉红色 -->
+
     <color name="orange1">#FFA500</color><!--橙色 -->
     <color name="lightsalmon">#FFA07A</color><!--亮肉色 -->
     <color name="darkorange">#FF8C00</color><!--暗桔黄色 -->
     <color name="coral">#FF7F50</color><!--珊瑚色 -->
-    <color name="hotpink">#FF69B4</color><!--热粉红色 -->
+
     <color name="tomato">#FF6347</color><!--西红柿色 -->
     <color name="orangered">#FF4500</color><!--红橙色 -->
-    <color name="deeppink">#FF1493</color><!--深粉红色 -->
+
     <color name="fuchsia">#FF00FF</color><!--紫红色 -->
     <color name="magenta">#FF00FF</color><!--红紫色 -->
-    <color name="red1">#FF0000</color><!--红色 -->
+
     <color name="oldlace">#FDF5E6</color><!--老花色 -->
     <color name="lightgoldenrodyellow">#FAFAD2</color><!--亮金黄色 -->
     <color name="linen">#FAF0E6</color><!--亚麻色 -->
@@ -126,8 +149,7 @@
     <color name="mediumorchid">#BA55D3</color><!--中粉紫色 -->
     <color name="darkgoldenrod">#B8860B</color><!--暗金黄色 -->
     <color name="firebrick">#B22222</color><!--火砖色 -->
-    <color name="powderblue">#B0E0E6</color><!--粉蓝色 -->
-    <color name="lightsteelblue">#B0C4DE</color><!--亮钢兰色-->
+
     <color name="paleturquoise">#AFEEEE</color><!--苍宝石绿 -->
     <color name="greenyellow">#ADFF2F</color><!--黄绿色 -->
     <color name="lightblue">#ADD8E6</color><!--亮蓝色 -->
@@ -194,15 +216,7 @@
     <color name="darkblue">#00008B</color><!--暗蓝色 -->
     <color name="navy">#000080</color><!--海军色 -->
 
-    <color name="round_corner_progress_bar_background_default">#5f5f5f</color>
-    <color name="round_corner_progress_bar_progress_default">#7f7f7f</color>
-    <color name="round_corner_progress_bar_secondary_progress_default">@android:color/transparent
-    </color>
 
-    <color name="background_dark">#ff363636</color>
-    <color name="background_content">#ff454344</color>
-
-    <color name="custom_progress_background">#ff3c3a3b</color>
 
     <color name="custom_progress_green_header">#ff99cc00</color>
     <color name="custom_progress_green_progress">#ff669900</color>
@@ -220,19 +234,6 @@
     <color name="custom_progress_purple_progress">#ff9933cc</color>
     <color name="custom_progress_purple_progress_half">#7f9933cc</color>
 
-    <color name="custom_progress_red_header">#ffcc0000</color>
-    <color name="custom_progress_red_progress">#ffff4444</color>
-    <color name="custom_progress_red_progress_half">#7fff4444</color>
 
-    <color name="deep_gray">#afaeae</color>
-    <color name="deep_gray_2">#636262</color>
-    <color name="light_black">#fd383838</color>
-    <color name="light_gray">#efefef</color>
-    <color name="f6">#f6f6f6</color>
-    <color name="_6">#666666</color>
-    <color name="_9">#999999</color>
-    <color name="gray1">#e7e4e4</color>
 
-    <color name="colorBackground">#FF4081</color>
-    <color name="colorText">#FFFFFF</color>
 </resources>

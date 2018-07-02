@@ -71,7 +71,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="取消"
-            android:textColor="@color/hot_pink"
+            android:textColor="@color/pink_acfun"
             android:textSize="16dp"/>
     </LinearLayout>
 </LinearLayout>

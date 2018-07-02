@@ -7,10 +7,19 @@ import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.vondear.rxtool.RxIntentTool;
+import com.vondear.rxtool.RxVibrateTool;
+import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.R;
+import com.vondear.rxui.adapter.AdapterCardViewModelPicture;
+import com.vondear.rxui.model.ModelPicture;
+import com.vondear.rxui.view.cardstack.RxCardStackView;
+
+import java.util.List;
 
 /**
  * @author vondear
@@ -142,7 +151,7 @@ public class RxDialogTool {
         rxDialogSure.getTitleView().setVisibility(View.GONE);
         rxDialogSure.setContent(str);
         rxDialogSure.getContentView().setTextSize(20);
-        rxDialogSure.getContentView().setTextColor(ContextCompat.getColor(mContext, R.color.SUCCESS_COLOR));
+        rxDialogSure.getContentView().setTextColor(ContextCompat.getColor(mContext, R.color.green_388e3c));
         rxDialogSure.getContentView().setGravity(Gravity.CENTER);
         rxDialogSure.setCanceledOnTouchOutside(false);
         rxDialogSure.setSureListener(new View.OnClickListener() {
@@ -178,4 +187,90 @@ public class RxDialogTool {
         rxDialog.show();
         rxDialog.setFullScreen();
     }
+
+    /**
+     * 提示框
+     *
+     * @param hint 提示的内容
+     */
+    public static void initDialogExport(final Context mContext, final String hint) {
+        RxVibrateTool.vibrateOnce(mContext, 150);
+        final RxDialogSureCancel mDialogExport = new RxDialogSureCancel(mContext, R.style.PushUpInDialogThem);
+        mDialogExport.getTitleView().setBackground(null);
+        mDialogExport.getTitleView().setText("数据导出目录");
+        mDialogExport.setContent(hint);
+        mDialogExport.getContentView().setTextSize(13f);
+        mDialogExport.getSureView().setVisibility(View.GONE);
+        mDialogExport.setCancel("确定");
+        mDialogExport.setCancelListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RxVibrateTool.vibrateOnce(mContext, 150);
+                mDialogExport.cancel();
+            }
+        });
+        mDialogExport.setCancelable(false);
+        mDialogExport.show();
+    }
+
+    public static void initDialogShowPicture(Context mContext,final List<ModelPicture> modelList) {
+        final RxDialog mDialogShowPicture = new RxDialog(mContext);
+        View dialogView = LayoutInflater.from(mContext).inflate(R.layout.dialog_show_picture, null);
+        final RxCardStackView mStackView = dialogView.findViewById(R.id.stackview_main);
+        final LinearLayout mButtonContainer = dialogView.findViewById(R.id.button_container);
+        Button btnPre = dialogView.findViewById(R.id.btn_Pre);
+        Button btnNext = dialogView.findViewById(R.id.btn_next);
+        mStackView.setItemExpendListener(new RxCardStackView.ItemExpendListener() {
+            @Override
+            public void onItemExpend(boolean expend) {
+                mButtonContainer.setVisibility(expend ? View.VISIBLE : View.INVISIBLE);
+            }
+        });
+        AdapterCardViewModelPicture testStackAdapter = new AdapterCardViewModelPicture(mContext);
+        mStackView.setAdapter(testStackAdapter);
+
+        testStackAdapter.updateData(modelList);
+
+        mDialogShowPicture.setContentView(dialogView);
+        mDialogShowPicture.setFullScreen();
+
+        if (modelList.size() > 1) {
+            btnPre.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mStackView.getSelectPosition() == 0) {
+                        RxToast.info("当前为第一张");
+                    } else {
+                        mStackView.pre();
+                    }
+                }
+            });
+            btnNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mStackView.getSelectPosition() == modelList.size() - 1) {
+                        RxToast.info("当前为最后一张");
+                    } else {
+                        mStackView.next();
+                    }
+                }
+            });
+            btnPre.setText("上一张");
+            btnNext.setVisibility(View.VISIBLE);
+            btnPre.setVisibility(View.VISIBLE);
+        } else {
+            btnPre.setText("确定");
+            btnPre.setVisibility(View.VISIBLE);
+            btnPre.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mDialogShowPicture.cancel();
+                }
+            });
+            btnNext.setVisibility(View.GONE);
+        }
+        testStackAdapter.updateData(modelList);
+        mDialogShowPicture.show();
+    }
+
 }
