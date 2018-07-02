@@ -6,7 +6,7 @@
     android:id="@+id/activity_popup_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/shadowBlue50"
+    android:background="@color/blue_shadow_50"
     android:orientation="vertical"
     tools:context="com.vondear.rxdemo.activity.ActivityPopupView">
 

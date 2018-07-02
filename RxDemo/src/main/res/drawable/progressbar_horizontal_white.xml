@@ -12,7 +12,7 @@
                 android:angle="0"
                 android:centerY="0.75"
                 android:endColor="#8000ffbf"
-                android:startColor="@color/baby_blue" />
+                android:startColor="@color/blue_baby" />
         </shape>
     </item>
     <!-- progress -->

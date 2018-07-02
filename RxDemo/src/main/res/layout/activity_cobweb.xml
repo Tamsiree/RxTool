@@ -10,7 +10,7 @@
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/mi_green"
+        android:background="@color/green_xiaomi"
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
         app:title="蛛网等级Demo"/>
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="蛛网层级"
-                android:textColor="@color/mi_green"/>
+                android:textColor="@color/green_xiaomi"/>
 
             <SeekBar
                 android:id="@+id/seekbar_level"
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="蛛网层级"
-                android:textColor="@color/mi_green"/>
+                android:textColor="@color/green_xiaomi"/>
 
             <SeekBar
                 android:id="@+id/seekbar_spider_number"
@@ -97,7 +97,7 @@
                     android:gravity="center"
                     android:padding="7dp"
                     android:text="蛛网填充颜色"
-                    android:textColor="@color/mi_green"/>
+                    android:textColor="@color/green_xiaomi"/>
 
                 <com.vondear.rxui.view.colorpicker.ColorPickerView
                     android:id="@+id/color_picker_view"
@@ -134,7 +134,7 @@
                     android:gravity="center"
                     android:padding="7dp"
                     android:text="蛛网等级颜色"
-                    android:textColor="@color/mi_green"/>
+                    android:textColor="@color/green_xiaomi"/>
 
                 <com.vondear.rxui.view.colorpicker.ColorPickerView
                     android:id="@+id/color_picker_view_level"

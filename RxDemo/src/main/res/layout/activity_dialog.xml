@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@color/shadowBlue50"
+            android:background="@color/blue_shadow_50"
             android:text="透明的弹窗"
             android:textAllCaps="false"/>
 
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@color/shadowPink50"
+            android:background="@color/pink_50"
             android:text="确定的弹窗"
             android:textAllCaps="false"/>
 
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@color/shadowBlue50"
+            android:background="@color/blue_shadow_50"
             android:text="确认取消的弹窗"
             android:textAllCaps="false"/>
 
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@color/shadowPink50"
+            android:background="@color/pink_50"
             android:text="输入框的弹窗"
             android:textAllCaps="false"/>
 
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@color/shadowBlue50"
+            android:background="@color/blue_shadow_50"
             android:text="可选择年月(日)"
             android:textAllCaps="false"/>
 
@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@color/shadowPink50"
+            android:background="@color/pink_50"
             android:text="三种形状的跳跃变换"
             android:textAllCaps="false"/>
 
@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@color/shadowBlue50"
+            android:background="@color/blue_shadow_50"
             android:text="一只可爱的A站舰娘在拼命的奔跑"
             android:textAllCaps="false"/>
 
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@color/shadowPink50"
+            android:background="@color/pink_50"
             android:text="一个常用加载Dialog"
             android:textAllCaps="false"/>
 
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@color/shadowBlue50"
+            android:background="@color/blue_shadow_50"
             android:text="一个图片缩放Dialog"
             android:textAllCaps="false"/>
 

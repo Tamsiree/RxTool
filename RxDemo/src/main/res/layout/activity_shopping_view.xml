@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginTop="10dp"
-        app:sv_bg_color="@color/SUCCESS_COLOR"
+        app:sv_bg_color="@color/green_388e3c"
         app:sv_duration="200"
         app:sv_text="SHOPPING"
         app:sv_text_size="22sp"/>

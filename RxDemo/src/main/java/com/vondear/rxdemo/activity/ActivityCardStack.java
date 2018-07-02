@@ -43,16 +43,16 @@ public class ActivityCardStack extends AppCompatActivity implements RxCardStackV
             R.color.custom_progress_red_progress,
             R.color.coral,
             R.color.WARNING_COLOR,
-            R.color.INFO_COLOR,
-            R.color.SUCCESS_COLOR,
-            R.color.ERROR_COLOR,
-            R.color.mi_green,
+            R.color.aqua,
+            R.color.blue_shadow_50,
+            R.color.cadetblue,
+            R.color.custom_progress_red_progress_half,
             R.color.brown,
             R.color.brown1,
             R.color.brown2,
             R.color.brown3,
             R.color.orange,
-            R.color.baby_blue
+            R.color.custom_progress_orange_progress_half
     };
     @BindView(R.id.stackview_main)
     RxCardStackView mStackView;

@@ -22,7 +22,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkgray"
+        android:background="@color/a9"
         android:orientation="vertical">
 
         <com.vondear.rxui.view.RxSeatAirplane

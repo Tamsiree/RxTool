@@ -3,7 +3,7 @@
               android:id="@+id/right_menu_item"
               android:layout_width="match_parent"
               android:layout_height="30dp"
-              android:background="@color/light_gray"
+              android:background="@color/ef"
               android:gravity="center_vertical"
               android:orientation="horizontal">
 

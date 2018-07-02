@@ -39,7 +39,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_margin="5dp"
-            android:background="@color/hot_pink"
+            android:background="@color/pink_acfun"
             android:text="错误的提示"/>
 
         <Button
@@ -52,7 +52,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/button_error_toast"
             android:layout_margin="5dp"
-            android:background="@color/SUCCESS_COLOR"
+            android:background="@color/green_388e3c"
             android:text="成功的提示"/>
 
         <Button
@@ -65,7 +65,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/button_success_toast"
             android:layout_margin="5dp"
-            android:background="@color/INFO_COLOR"
+            android:background="@color/blue"
             android:text="信息的提示"/>
 
         <Button

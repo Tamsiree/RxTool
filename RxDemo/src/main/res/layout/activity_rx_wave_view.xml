@@ -102,7 +102,7 @@
                 android:gravity="center"
                 android:padding="7dp"
                 android:text="填充颜色"
-                android:textColor="@color/mi_green"/>
+                android:textColor="@color/green_xiaomi"/>
 
             <com.vondear.rxui.view.colorpicker.ColorPickerView
                 android:id="@+id/color_picker_view"
