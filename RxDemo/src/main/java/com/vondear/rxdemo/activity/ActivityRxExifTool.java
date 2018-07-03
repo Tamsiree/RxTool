@@ -9,10 +9,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.cameraview.CameraView;
+import com.vondear.camera.RxCameraView;
+import com.vondear.camera.tool.RxCameraTool;
 import com.vondear.rxdemo.R;
 import com.vondear.rxtool.RxBarTool;
-import com.vondear.rxtool.RxCameraTool;
 import com.vondear.rxtool.RxFileTool;
 import com.vondear.rxtool.RxLocationTool;
 import com.vondear.rxtool.RxPermissionsTool;
@@ -35,7 +35,7 @@ import butterknife.OnClick;
 public class ActivityRxExifTool extends ActivityBaseLocation {
 
     @BindView(R.id.camera)
-    CameraView mCameraView;
+    RxCameraView mCameraView;
     @BindView(R.id.btn_take_camera)
     Button mBtnTakeCamera;
     @BindView(R.id.tv_gps)
@@ -73,19 +73,19 @@ public class ActivityRxExifTool extends ActivityBaseLocation {
     }
 
     private void initCamera() {
-        mCameraView.addCallback(new CameraView.Callback() {
+        mCameraView.addCallback(new RxCameraView.Callback() {
             @Override
-            public void onCameraOpened(CameraView cameraView) {
+            public void onCameraOpened(RxCameraView cameraView) {
                 super.onCameraOpened(cameraView);
             }
 
             @Override
-            public void onCameraClosed(CameraView cameraView) {
+            public void onCameraClosed(RxCameraView cameraView) {
                 super.onCameraClosed(cameraView);
             }
 
             @Override
-            public void onPictureTaken(CameraView cameraView, final byte[] data) {
+            public void onPictureTaken(RxCameraView cameraView, final byte[] data) {
                 super.onPictureTaken(cameraView, data);
                 initCameraEvent(data);
             }
