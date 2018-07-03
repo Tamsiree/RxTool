@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CameraView">
+    <declare-styleable name="RxCameraView">
         <!--
           Set this to true if you want the CameraView to adjust its bounds to preserve the aspect
           ratio of its camera preview.

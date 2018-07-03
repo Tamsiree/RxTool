@@ -1,10 +1,14 @@
-package com.vondear.rxtool;
+package com.vondear.camera.tool;
 
 import android.content.Context;
 import android.hardware.Camera;
 import android.util.Log;
 
-import com.google.android.cameraview.CameraView;
+import com.vondear.camera.RxCameraView;
+import com.vondear.rxtool.RxExifTool;
+import com.vondear.rxtool.RxFileTool;
+import com.vondear.rxtool.RxTool;
+import com.vondear.rxtool.RxVibrateTool;
 import com.vondear.rxtool.interfaces.OnRxCamera;
 import com.vondear.rxtool.interfaces.OnSimpleListener;
 import com.vondear.rxtool.module.photomagic.OnCompressListener;
@@ -66,7 +70,7 @@ public class RxCameraTool {
         }
     }
 
-    public static void takePic(Context mContext, final CameraView mCameraView) {
+    public static void takePic(Context mContext, final RxCameraView mCameraView) {
         if (RxTool.isFastClick(1000)) {
             RxToast.normal("请不要重复点击拍照按钮");
             return;
@@ -102,7 +106,7 @@ public class RxCameraTool {
     }
 
     public static void initCameraEvent(final Context mContext,
-                                       final CameraView mCameraView,
+                                       final RxCameraView mCameraView,
                                        final byte[] data,
                                        final String fileDir,
                                        final String picName,
@@ -161,7 +165,6 @@ public class RxCameraTool {
                                 }
                             }).launch();
 
-
                 } catch (IOException e) {
                     Log.w("onPictureTaken", "Cannot write to " + compressFile, e);
                 } finally {
@@ -179,5 +182,4 @@ public class RxCameraTool {
             }
         });
     }
-
 }

@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class CameraView extends FrameLayout {
+public class RxCameraView extends FrameLayout {
 
     private static final String TAG = "CameraView";
 
@@ -90,18 +90,18 @@ public class CameraView extends FrameLayout {
 
     private final DisplayOrientationDetector mDisplayOrientationDetector;
 
-    public CameraView(Context context) {
+    public RxCameraView(Context context) {
         this(context, null);
     }
 
-    public CameraView(Context context, AttributeSet attrs) {
+    public RxCameraView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
     Camera1 camera1;
 
     @SuppressWarnings("WrongConstant")
-    public CameraView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxCameraView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         if (isInEditMode()) {
             mCallbacks = null;
@@ -124,18 +124,18 @@ public class CameraView extends FrameLayout {
         // TODO: 2018/7/3  
        
         // Attributes
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CameraView, defStyleAttr,
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RxCameraView, defStyleAttr,
                 R.style.Widget_CameraView);
         mAdjustViewBounds = a.getBoolean(R.styleable.CameraView_android_adjustViewBounds, false);
-        setFacing(a.getInt(R.styleable.CameraView_facing, FACING_BACK));
-        String aspectRatio = a.getString(R.styleable.CameraView_aspectRatio);
+        setFacing(a.getInt(R.styleable.RxCameraView_facing, FACING_BACK));
+        String aspectRatio = a.getString(R.styleable.RxCameraView_aspectRatio);
         if (aspectRatio != null) {
             setAspectRatio(AspectRatio.parse(aspectRatio));
         } else {
             setAspectRatio(Constants.DEFAULT_ASPECT_RATIO);
         }
-        setAutoFocus(a.getBoolean(R.styleable.CameraView_autoFocus, true));
-        setFlash(a.getInt(R.styleable.CameraView_flash, Constants.FLASH_AUTO));
+        setAutoFocus(a.getBoolean(R.styleable.RxCameraView_autoFocus, true));
+        setFlash(a.getInt(R.styleable.RxCameraView_flash, Constants.FLASH_AUTO));
         a.recycle();
         // Display orientation detector
         mDisplayOrientationDetector = new DisplayOrientationDetector(context) {
@@ -421,7 +421,7 @@ public class CameraView extends FrameLayout {
 
     /**
      * Take a picture. The result will be returned to
-     * {@link Callback#onPictureTaken(CameraView, byte[])}.
+     * {@link Callback#onPictureTaken(RxCameraView, byte[])}.
      */
     public void takePicture() {
         mImpl.takePicture();
@@ -451,21 +451,21 @@ public class CameraView extends FrameLayout {
                 requestLayout();
             }
             for (Callback callback : mCallbacks) {
-                callback.onCameraOpened(CameraView.this);
+                callback.onCameraOpened(RxCameraView.this);
             }
         }
 
         @Override
         public void onCameraClosed() {
             for (Callback callback : mCallbacks) {
-                callback.onCameraClosed(CameraView.this);
+                callback.onCameraClosed(RxCameraView.this);
             }
         }
 
         @Override
         public void onPictureTaken(byte[] data) {
             for (Callback callback : mCallbacks) {
-                callback.onPictureTaken(CameraView.this, data);
+                callback.onPictureTaken(RxCameraView.this, data);
             }
         }
 
@@ -526,7 +526,7 @@ public class CameraView extends FrameLayout {
     }
 
     /**
-     * Callback for monitoring events about {@link CameraView}.
+     * Callback for monitoring events about {@link RxCameraView}.
      */
     @SuppressWarnings("UnusedParameters")
     public abstract static class Callback {
@@ -534,26 +534,26 @@ public class CameraView extends FrameLayout {
         /**
          * Called when camera is opened.
          *
-         * @param cameraView The associated {@link CameraView}.
+         * @param rxCameraView The associated {@link RxCameraView}.
          */
-        public void onCameraOpened(CameraView cameraView) {
+        public void onCameraOpened(RxCameraView rxCameraView) {
         }
 
         /**
          * Called when camera is closed.
          *
-         * @param cameraView The associated {@link CameraView}.
+         * @param rxCameraView The associated {@link RxCameraView}.
          */
-        public void onCameraClosed(CameraView cameraView) {
+        public void onCameraClosed(RxCameraView rxCameraView) {
         }
 
         /**
          * Called when a picture is taken.
          *
-         * @param cameraView The associated {@link CameraView}.
+         * @param rxCameraView The associated {@link RxCameraView}.
          * @param data       JPEG data.
          */
-        public void onPictureTaken(CameraView cameraView, byte[] data) {
+        public void onPictureTaken(RxCameraView rxCameraView, byte[] data) {
         }
     }
 
