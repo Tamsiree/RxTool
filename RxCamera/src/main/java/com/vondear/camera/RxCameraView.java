@@ -126,7 +126,7 @@ public class RxCameraView extends FrameLayout {
         // Attributes
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RxCameraView, defStyleAttr,
                 R.style.Widget_CameraView);
-        mAdjustViewBounds = a.getBoolean(R.styleable.CameraView_android_adjustViewBounds, false);
+        mAdjustViewBounds = a.getBoolean(R.styleable.RxCameraView_android_adjustViewBounds, false);
         setFacing(a.getInt(R.styleable.RxCameraView_facing, FACING_BACK));
         String aspectRatio = a.getString(R.styleable.RxCameraView_aspectRatio);
         if (aspectRatio != null) {
