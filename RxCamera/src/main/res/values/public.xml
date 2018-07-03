@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public name="facing" type="attr"/>
+    <public name="aspectRatio" type="attr"/>
+    <public name="autoFocus" type="attr"/>
+    <public name="flash" type="attr"/>
+    <public name="Widget.CameraView" type="style"/>
+</resources>
