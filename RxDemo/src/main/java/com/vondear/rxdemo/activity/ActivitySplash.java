@@ -105,6 +105,7 @@ public class ActivitySplash extends ActivityBase {
      */
     private void CheckUpdate() {
         new Thread() {
+            @Override
             public void run() {
                 Message msg = checkhandler.obtainMessage();
                 checkhandler.sendMessage(msg);

@@ -6,7 +6,9 @@ import android.os.Message;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.jaredrummler.android.widget.AnimatedSvgView;
 import com.vondear.rxdemo.R;
+import com.vondear.rxdemo.model.ModelSVG;
 import com.vondear.rxtool.RxActivityTool;
 import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxui.activity.ActivityBase;
@@ -19,8 +21,8 @@ import butterknife.ButterKnife;
  */
 public class ActivitySVG extends ActivityBase {
 
-/*    @BindView(R.id.animated_svg_view)
-    AnimatedSvgView mSvgView;*/
+    @BindView(R.id.animated_svg_view)
+    AnimatedSvgView mSvgView;
     @BindView(R.id.activity_svg)
     RelativeLayout mActivitySvg;
     @BindView(R.id.app_name)
@@ -38,11 +40,11 @@ public class ActivitySVG extends ActivityBase {
         RxBarTool.hideStatusBar(this);
         setContentView(R.layout.activity_svg);
         ButterKnife.bind(this);
-//        setSvg(ModelSVG.values()[4]);
+        setSvg(ModelSVG.values()[4]);
         CheckUpdate();
     }
 
-/*    private void setSvg(ModelSVG modelSvg) {
+    private void setSvg(ModelSVG modelSvg) {
         mSvgView.setGlyphStrings(modelSvg.glyphs);
         mSvgView.setFillColors(modelSvg.colors);
         mSvgView.setViewportSize(modelSvg.width, modelSvg.height);
@@ -50,7 +52,7 @@ public class ActivitySVG extends ActivityBase {
         mSvgView.setTraceColors(modelSvg.colors);
         mSvgView.rebuildGlyphData();
         mSvgView.start();
-    }*/
+    }
 
     /**
      * 检查是否有新版本，如果有就升级

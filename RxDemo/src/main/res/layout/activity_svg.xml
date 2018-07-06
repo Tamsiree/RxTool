@@ -25,7 +25,6 @@
         android:gravity="center"
         android:orientation="vertical">
 
-<!--
         <com.jaredrummler.android.widget.AnimatedSvgView
             android:id="@+id/animated_svg_view"
             android:layout_width="wrap_content"
@@ -40,7 +39,6 @@
             app:animatedSvgImageSizeY="400"
             app:animatedSvgTraceTime="2000"
             app:animatedSvgTraceTimePerGlyph="1000"/>
--->
 
         <ImageView
             android:id="@+id/app_name"
