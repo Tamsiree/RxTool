@@ -5,6 +5,7 @@ import android.hardware.Camera;
 import android.util.Log;
 
 import com.vondear.camera.RxCameraView;
+import com.vondear.rxtool.RxConstants;
 import com.vondear.rxtool.RxExifTool;
 import com.vondear.rxtool.RxFileTool;
 import com.vondear.rxtool.RxTool;
@@ -21,7 +22,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- *
  * @author Vondear
  * @date 2017/9/22
  */
@@ -71,37 +71,28 @@ public class RxCameraTool {
     }
 
     public static void takePic(Context mContext, final RxCameraView mCameraView) {
-        if (RxTool.isFastClick(1000)) {
-            RxToast.normal("请不要重复点击拍照按钮");
-            return;
-        } else {
-            try {
-                if (mCameraView.isCameraOpened()) {
-                    RxVibrateTool.vibrateOnce(mContext, 150);
-                    RxToast.normal("正在拍照..");
-                    if (mCameraView != null) {
-                        mCameraView.takePicture();
-                    }
-                } else {
-                    mCameraView.start();
-                    RxVibrateTool.vibrateOnce(mContext, 150);
-                    RxToast.normal("正在拍照..");
-                    RxTool.delayToDo(500, new OnSimpleListener() {
-                        @Override
-                        public void doSomething() {
-                            try {
-                                if (mCameraView != null) {
-                                    mCameraView.takePicture();
-                                }
-                            }catch (Exception e) {
-//                                Logger.d(e);
-                            }
+        try {
+            if (mCameraView.isCameraOpened()) {
+                RxVibrateTool.vibrateOnce(mContext, 150);
+                RxToast.normal("正在拍照..");
+                mCameraView.takePicture();
+            } else {
+                mCameraView.start();
+                RxVibrateTool.vibrateOnce(mContext, 150);
+                RxToast.normal("正在拍照..");
+                RxTool.delayToDo(500L, new OnSimpleListener() {
+                    @Override
+                    public void doSomething() {
+                        try {
+                            mCameraView.takePicture();
+                        } catch (Exception var2) {
+                            RxToast.normal("你碰到问题咯");
                         }
-                    });
-                }
-            } catch (Exception e) {
-//                Logger.d(e);
+                    }
+                });
             }
+        } catch (Exception var3) {
+            RxToast.normal("你碰到了问题咯");
         }
     }
 
@@ -113,13 +104,13 @@ public class RxCameraTool {
                                        final double mLongitude,
                                        final double mLatitude,
                                        final boolean isEconomize,
-                                       final OnRxCamera OnRxCamera) {
-        OnRxCamera.onBefore();
+                                       final OnRxCamera onRxCamera) {
+        onRxCamera.onBefore();
         RxTool.getBackgroundHandler().post(new Runnable() {
             @Override
             public void run() {
                 File fileParent = new File(fileDir);
-                File cacheParent = new File(RxFileTool.getCecheFolder(mContext) + File.separator + "cache" + File.separator + "picture");
+                File cacheParent = new File(RxConstants.PICTURE_CACHE_PATH);
                 if (!cacheParent.exists()) {
                     cacheParent.mkdirs();
                 }
@@ -147,10 +138,10 @@ public class RxCameraTool {
                                 public void onSuccess(File file) {
                                     if (RxFileTool.copyOrMoveFile(file, compressFile, true)) {
                                         Log.d("图片压缩", "压缩完成");
-                                        OnRxCamera.onSuccessCompress(compressFile);
+                                        onRxCamera.onSuccessCompress(compressFile);
                                         if (mLongitude != 0 || mLatitude != 0) {
                                             RxExifTool.writeLatLonIntoJpeg(compressFile.getAbsolutePath(), mLatitude, mLongitude);
-                                            OnRxCamera.onSuccessExif(compressFile);
+                                            onRxCamera.onSuccessExif(compressFile);
                                             RxToast.normal("拍照成功");
                                         } else {
                                             RxToast.error("请先获取定位信息");
@@ -168,12 +159,12 @@ public class RxCameraTool {
                 } catch (IOException e) {
                     Log.w("onPictureTaken", "Cannot write to " + compressFile, e);
                 } finally {
-                    if (isEconomize) {
-                        mCameraView.stop();
-                    }
                     if (os != null) {
                         try {
                             os.close();
+                            if (isEconomize) {
+                                mCameraView.stop();
+                            }
                         } catch (IOException e) {
                             // Ignore
                         }

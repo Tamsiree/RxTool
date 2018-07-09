@@ -17,6 +17,7 @@ import com.vondear.rxtool.RxFileTool;
 import com.vondear.rxtool.RxLocationTool;
 import com.vondear.rxtool.RxPermissionsTool;
 import com.vondear.rxtool.RxTimeTool;
+import com.vondear.rxtool.RxTool;
 import com.vondear.rxtool.interfaces.OnRxCamera;
 import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBaseLocation;
@@ -143,7 +144,12 @@ public class ActivityRxExifTool extends ActivityBaseLocation {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_take_camera:
-                RxCameraTool.takePic(mContext, mCameraView);
+                if (RxTool.isFastClick(1000)) {
+                    RxToast.normal("请不要重复点击拍照按钮");
+                    return;
+                } else {
+                    RxCameraTool.takePic(mContext, mCameraView);
+                }
                 break;
             case R.id.iv_pic:
                 if (photo == null) {

@@ -92,7 +92,7 @@ public class RxFileTool {
      *
      * @return
      */
-    public static File getCecheFolder(Context context) {
+    public static File getCacheFolder(Context context) {
         File folder = new File(context.getCacheDir(), "IMAGECACHE");
         if (!folder.exists()) {
             folder.mkdir();

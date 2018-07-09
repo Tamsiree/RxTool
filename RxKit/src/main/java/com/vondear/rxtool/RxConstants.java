@@ -93,6 +93,9 @@ public class RxConstants {
     //默认保存下载文件目录
     public static final String DOWNLOAD_DIR = RxFileTool.getRootPath() + File.separator + "Download" + File.separator + RxDeviceTool.getAppPackageName() + File.separator;
 
+    //图片缓存路径
+    public static final String PICTURE_CACHE_PATH = RxFileTool.getCacheFolder(RxTool.getContext()) + File.separator + "Picture" + File.separator + "Cache" + File.separator;
+
     //图片原始路径
     public static final String PICTURE_ORIGIN_PATH = RxFileTool.getRootPath() + File.separator + RxDeviceTool.getAppPackageName() + File.separator + "Picture" + File.separator+ "Origin" + File.separator;
 
