@@ -1945,7 +1945,7 @@ public class RxImageTool {
 
 
         Paint paint = new Paint();
-        paint.setColor(textBackgroundColor);
+        paint.setColor(textColor);
         paint.setTextSize(txtSize);
         paint.setAntiAlias(true);
 
@@ -1957,7 +1957,7 @@ public class RxImageTool {
         int textX = posX + txtSize * innerTxt.length() / 4;
 
         Paint paint1 = new Paint();
-        paint1.setColor(textColor);
+        paint1.setColor(textBackgroundColor);
         paint1.setStrokeWidth(3);
         paint1.setStyle(Paint.Style.FILL_AND_STROKE);
 
