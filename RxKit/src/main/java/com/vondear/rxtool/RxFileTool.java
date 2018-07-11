@@ -2167,7 +2167,34 @@ public class RxFileTool {
             }
         }
     }
+
+
+    public static void exportDb2Sdcard(Context context, String path,String realDBName, String exportDBName) {
+        String filePath = context.getDatabasePath(realDBName).getAbsolutePath();
+        byte[] buffer = new byte[1024];
+
+        try {
+            FileInputStream input = new FileInputStream(new File(filePath));
+            FileOutputStream output = new FileOutputStream(path + File.separator + exportDBName);
+
+            int length;
+            while ((length = input.read(buffer)) > 0) {
+                output.write(buffer, 0, length);
+            }
+
+            output.flush();
+            output.close();
+            input.close();
+            Log.i("TAG", "mv success!");
+        } catch (IOException var8) {
+            Log.e("TAG", var8.toString());
+        }
+
+    }
+
 }
+
+
 
 
 //----------------------------------------m3u8 ts 操作----------------------------------------------
