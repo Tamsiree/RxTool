@@ -66,7 +66,7 @@ public class RxArcGisMapTool {
             @Override
             public void mapScaleChanged(MapScaleChangedEvent mapScaleChangedEvent) {
                 double s = (int) RxMapTool.screenPixelToMetre(RxImageTool.dp2px(30) * 1.5, mapScaleChangedEvent.getSource().getMapScale(), mContext);
-                mTvPlottingScale.setText(RxDataTool.changeDistance(s));
+                mTvPlottingScale.setText(RxDataTool.changeDistance(s,false));
             }
         });
     }
