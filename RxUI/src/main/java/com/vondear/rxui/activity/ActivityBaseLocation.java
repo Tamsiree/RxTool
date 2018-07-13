@@ -28,6 +28,7 @@ public abstract class ActivityBaseLocation extends ActivityBase {
     //纬度
     public double mLatitude = 0;
 
+    //GPS信息
     public Gps mGps;
 
     public LocationManager mLocationManager;
