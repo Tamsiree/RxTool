@@ -18,7 +18,7 @@ public class RxConstants {
     //----------------------------------------------------常用链接- start ------------------------------------------------------------
 
     /**
-     * RxTools的Github地址
+     * RxTool的Github地址
      */
     public static final String URL_VONTOOLS = "https://github.com/vondear/RxTool";
 
