@@ -75,11 +75,12 @@ public abstract class ActivityBaseLocation extends ActivityBase {
                 mLongitude = location.getLongitude();
                 mLatitude = location.getLatitude();
                 mGps = new Gps(mLongitude, mLatitude);
-                boolean isMove = false;
+                boolean isMove;
                 if (isFirstLocation) {
+                    isMove = true;
                     isFirstLocation = false;
                 } else {
-                    isMove = RxLocationTool.isMove(location, mLocationManager.getLastKnownLocation("fused"));
+                    isMove = RxLocationTool.isMove(location, mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
                 }
                 setGpsInfo(location, isMove);
             }
@@ -119,7 +120,7 @@ public abstract class ActivityBaseLocation extends ActivityBase {
             }
         };
 
-        mLocationManager.requestLocationUpdates("fused", 1000, 0, mLocationListener);
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, mLocationListener);
     }
 
     @Override
