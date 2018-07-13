@@ -1,6 +1,7 @@
 package com.vondear.rxui.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -32,13 +33,15 @@ public abstract class ActivityBaseLocation extends ActivityBase {
     public LocationManager mLocationManager;
     private LocationListener mLocationListener;
 
-    public abstract void setGpsInfo(Location location);
+    public abstract void setGpsInfo(Location location, boolean isMove);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initGPS();//初始化GPS
-        gpsCheck();//GPS开启状态检测
+        //初始化GPS
+        initGPS();
+        //GPS开启状态检测
+        gpsCheck();
     }
 
     private void initGPS() {
@@ -56,6 +59,9 @@ public abstract class ActivityBaseLocation extends ActivityBase {
     }
     //==============================================================================================检测GPS是否已打开 end
 
+    boolean isFirstLocation = true;
+
+    @SuppressLint("MissingPermission")
     private void getLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(mContext, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -63,12 +69,19 @@ public abstract class ActivityBaseLocation extends ActivityBase {
             return;
         }
         mLocationListener = new LocationListener() {
+            @SuppressLint("MissingPermission")
             @Override
             public void onLocationChanged(Location location) {
                 mLongitude = location.getLongitude();
                 mLatitude = location.getLatitude();
                 mGps = new Gps(mLongitude, mLatitude);
-                setGpsInfo(location);
+                boolean isMove = false;
+                if (isFirstLocation) {
+                    isFirstLocation = false;
+                } else {
+                    isMove = RxLocationTool.isMove(location, mLocationManager.getLastKnownLocation("fused"));
+                }
+                setGpsInfo(location, isMove);
             }
 
             @Override
@@ -76,7 +89,7 @@ public abstract class ActivityBaseLocation extends ActivityBase {
                 switch (status) {
                     //GPS状态为可见时
                     case LocationProvider.AVAILABLE:
-
+                        RxToast.normal("当前GPS服务已恢复");
                         break;
                     //GPS状态为服务区外时
                     case LocationProvider.OUT_OF_SERVICE:
@@ -85,7 +98,7 @@ public abstract class ActivityBaseLocation extends ActivityBase {
                         break;
                     //GPS状态为暂停服务时
                     case LocationProvider.TEMPORARILY_UNAVAILABLE:
-
+                        RxToast.normal("当前GPS已暂停服务");
                         break;
                     default:
                         break;
@@ -105,7 +118,8 @@ public abstract class ActivityBaseLocation extends ActivityBase {
                 gpsCheck();
             }
         };
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0, mLocationListener);
+
+        mLocationManager.requestLocationUpdates("fused", 1000, 0, mLocationListener);
     }
 
     @Override
