@@ -33,7 +33,7 @@ public abstract class ActivityBaseLocation extends ActivityBase {
     public LocationManager mLocationManager;
     private LocationListener mLocationListener;
 
-    public abstract void setGpsInfo(Location location, boolean isMove);
+    public abstract void setGpsInfo(Location location);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +59,6 @@ public abstract class ActivityBaseLocation extends ActivityBase {
     }
     //==============================================================================================检测GPS是否已打开 end
 
-    boolean isFirstLocation = true;
-
     @SuppressLint("MissingPermission")
     private void getLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -75,14 +73,7 @@ public abstract class ActivityBaseLocation extends ActivityBase {
                 mLongitude = location.getLongitude();
                 mLatitude = location.getLatitude();
                 mGps = new Gps(mLongitude, mLatitude);
-                boolean isMove;
-                if (isFirstLocation) {
-                    isMove = true;
-                    isFirstLocation = false;
-                } else {
-                    isMove = RxLocationTool.isMove(location, mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
-                }
-                setGpsInfo(location, isMove);
+                setGpsInfo(location);
             }
 
             @Override
@@ -90,7 +81,7 @@ public abstract class ActivityBaseLocation extends ActivityBase {
                 switch (status) {
                     //GPS状态为可见时
                     case LocationProvider.AVAILABLE:
-                        RxToast.normal("当前GPS服务已恢复");
+//                        RxToast.normal("当前GPS服务已恢复");
                         break;
                     //GPS状态为服务区外时
                     case LocationProvider.OUT_OF_SERVICE:
