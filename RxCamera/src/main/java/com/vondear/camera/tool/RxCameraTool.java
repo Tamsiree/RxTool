@@ -2,16 +2,16 @@ package com.vondear.camera.tool;
 
 import android.content.Context;
 import android.hardware.Camera;
+import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.vondear.camera.RxCameraView;
 import com.vondear.rxtool.RxConstants;
 import com.vondear.rxtool.RxExifTool;
 import com.vondear.rxtool.RxFileTool;
-import com.vondear.rxtool.RxTool;
 import com.vondear.rxtool.RxVibrateTool;
 import com.vondear.rxtool.interfaces.OnRxCamera;
-import com.vondear.rxtool.interfaces.OnSimpleListener;
 import com.vondear.rxtool.module.photomagic.OnCompressListener;
 import com.vondear.rxtool.module.photomagic.RxMagic;
 import com.vondear.rxtool.view.RxToast;
@@ -20,6 +20,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Vondear
@@ -80,16 +88,51 @@ public class RxCameraTool {
                 mCameraView.start();
                 RxVibrateTool.vibrateOnce(mContext, 150);
                 RxToast.normal("正在拍照..");
-                RxTool.delayToDo(500L, new OnSimpleListener() {
+                Observable.create(new ObservableOnSubscribe<Integer>() {
                     @Override
-                    public void doSomething() {
-                        try {
-                            mCameraView.takePicture();
-                        } catch (Exception var2) {
-                            RxToast.normal("你碰到问题咯");
-                        }
+                    public void subscribe(@NonNull ObservableEmitter<Integer> e) {
+                        //延时
+                        SystemClock.sleep(500);
+                        e.onNext(1);
                     }
-                });
+                }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                        // 第三步：订阅
+                        .subscribe(new Observer<Integer>() {
+
+                            // 第二步：初始化Observer
+                            private Disposable mDisposable;
+
+                            @Override
+                            public void onSubscribe(@NonNull Disposable d) {
+                                mDisposable = d;
+                            }
+
+                            @Override
+                            public void onNext(@NonNull Integer integer) {
+                                switch (integer) {
+                                    case 1:
+                                        try {
+                                            mCameraView.takePicture();
+                                        } catch (Exception var2) {
+                                            RxToast.normal("你碰到问题咯");
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                }
+
+                            }
+
+                            @Override
+                            public void onError(@NonNull Throwable e) {
+
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
             }
         } catch (Exception var3) {
             RxToast.normal("你碰到了问题咯");
@@ -106,9 +149,10 @@ public class RxCameraTool {
                                        final boolean isEconomize,
                                        final OnRxCamera onRxCamera) {
         onRxCamera.onBefore();
-        RxTool.getBackgroundHandler().post(new Runnable() {
+        Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void run() {
+            public void subscribe(@NonNull final ObservableEmitter<Integer> e) {
+
                 File fileParent = new File(fileDir);
                 File cacheParent = new File(RxConstants.PICTURE_CACHE_PATH);
                 if (!cacheParent.exists()) {
@@ -142,9 +186,9 @@ public class RxCameraTool {
                                         if (mLongitude != 0 || mLatitude != 0) {
                                             RxExifTool.writeLatLonIntoJpeg(compressFile.getAbsolutePath(), mLatitude, mLongitude);
                                             onRxCamera.onSuccessExif(compressFile);
-                                            RxToast.normal("拍照成功");
+                                            e.onNext(2);
                                         } else {
-                                            RxToast.error("请先获取定位信息");
+                                            e.onNext(3);
                                         }
                                     }
                                 }
@@ -156,21 +200,64 @@ public class RxCameraTool {
                                 }
                             }).launch();
 
-                } catch (IOException e) {
-                    Log.w("onPictureTaken", "Cannot write to " + compressFile, e);
+                } catch (IOException e1) {
+                    Log.w("onPictureTaken", "Cannot write to " + compressFile, e1);
                 } finally {
                     if (os != null) {
                         try {
                             os.close();
-                            if (isEconomize) {
-                                mCameraView.stop();
-                            }
-                        } catch (IOException e) {
+                            e.onNext(1);
+                        } catch (IOException e2) {
                             // Ignore
                         }
                     }
                 }
             }
-        });
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                // 第三步：订阅
+                .subscribe(new Observer<Integer>() {
+
+                    // 第二步：初始化Observer
+                    private Disposable mDisposable;
+
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        mDisposable = d;
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Integer integer) {
+                        switch (integer) {
+                            case 1:
+                                try {
+                                    if (isEconomize) {
+                                        mCameraView.stop();
+                                    }
+                                } catch (Exception e) {
+
+                                }
+                                break;
+                            case 2:
+                                RxToast.normal("拍照成功");
+                                break;
+                            case 3:
+                                RxToast.error("请先获取定位信息");
+                                break;
+                            default:
+                                break;
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }
