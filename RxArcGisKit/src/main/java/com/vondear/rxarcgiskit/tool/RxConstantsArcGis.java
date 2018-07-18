@@ -31,6 +31,7 @@ public class RxConstantsArcGis {
 
     public static final String ARGGIS_MAP_SERVICE_HUNAN_4 =
             "http://www.dzmap.cn/OneMapServer/rest/services/img_ant/MapServer";
+
     /*============================================================================================*/
 
 }
