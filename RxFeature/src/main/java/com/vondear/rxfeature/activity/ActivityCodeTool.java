@@ -114,8 +114,8 @@ public class ActivityCodeTool extends ActivityBase {
 
                     //二维码生成方式一  推荐此方法
                     RxQRCode.builder(str).
-                            backColor(getResources().getColor(R.color.white)).
-                            codeColor(getResources().getColor(R.color.black)).
+                            backColor(0xFFFFFFFF).
+                            codeColor(0xFF000000).
                             codeSide(600).
                             into(mIvQrCode);
 
@@ -146,8 +146,8 @@ public class ActivityCodeTool extends ActivityBase {
 
                     //条形码生成方式一  推荐此方法
                     RxBarCode.builder(str1).
-                            backColor(getResources().getColor(R.color.transparent)).
-                            codeColor(getResources().getColor(R.color.black)).
+                            backColor(0x00000000).
+                            codeColor(0xFF000000).
                             codeWidth(1000).
                             codeHeight(300).
                             into(mIvBarCode);

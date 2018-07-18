@@ -28,5 +28,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compileOnly 'com.esri.arcgisruntime:arcgis-android:100.3.0'
-    implementation project(':RxKit')
+    compileOnly project(':RxKit')
 }
