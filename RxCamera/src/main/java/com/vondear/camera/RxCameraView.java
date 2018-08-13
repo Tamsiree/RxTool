@@ -564,7 +564,9 @@ public class RxCameraView extends FrameLayout {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getPointerCount() == 1) {
-            handleFocusMetering(event, camera);
+            if (camera != null) {
+                handleFocusMetering(event, camera);
+            }
         } else {
             switch (event.getAction() & MotionEvent.ACTION_MASK) {
                 case MotionEvent.ACTION_POINTER_DOWN:
