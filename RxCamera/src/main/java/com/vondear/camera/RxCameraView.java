@@ -113,14 +113,15 @@ public class RxCameraView extends FrameLayout {
         mCallbacks = new CallbackBridge();
 
         // TODO: 2018/7/3
-        //if (Build.VERSION.SDK_INT < 21) {
+        if (Build.VERSION.SDK_INT < 21) {
             camera1 = new Camera1(mCallbacks, preview);
             mImpl = camera1;
-       /* } else if (Build.VERSION.SDK_INT < 23) {
+        } else if (Build.VERSION.SDK_INT < 23) {
             mImpl = new Camera2(mCallbacks, preview, context);
         } else {
             mImpl = new Camera2Api23(mCallbacks, preview, context);
-        }*/
+//            camera1 = new Camera1(mCallbacks, preview);
+        }
         // TODO: 2018/7/3  
        
         // Attributes
