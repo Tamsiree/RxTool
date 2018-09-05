@@ -112,8 +112,11 @@ public class RxCameraView extends FrameLayout {
         final PreviewImpl preview = createPreviewImpl(context);
         mCallbacks = new CallbackBridge();
 
+
+        camera1 = new Camera1(mCallbacks, preview);
+        mImpl = camera1;
         // TODO: 2018/7/3
-        if (Build.VERSION.SDK_INT < 21) {
+       /* if (Build.VERSION.SDK_INT < 21) {
             camera1 = new Camera1(mCallbacks, preview);
             mImpl = camera1;
         } else if (Build.VERSION.SDK_INT < 23) {
@@ -121,7 +124,7 @@ public class RxCameraView extends FrameLayout {
         } else {
             mImpl = new Camera2Api23(mCallbacks, preview, context);
 //            camera1 = new Camera1(mCallbacks, preview);
-        }
+        }*/
         // TODO: 2018/7/3  
        
         // Attributes
