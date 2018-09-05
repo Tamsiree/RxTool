@@ -28,4 +28,8 @@
     <dimen name="default_preview_height">40dp</dimen>
     <dimen name="default_preview_image_height">36dp</dimen>
     <dimen name="default_slider_margin_btw_title">20dp</dimen>
+
+    <dimen name="rxauto_imageview_left">-100dp</dimen>
+    <dimen name="rxauto_imageview_Right">-300dp</dimen>
+
 </resources>
