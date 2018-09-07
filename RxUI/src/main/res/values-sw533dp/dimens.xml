@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<dimen name="activity_horizontal_margin">23.6889dp</dimen>
+	<dimen name="activity_vertical_margin">23.6889dp</dimen>
+	<dimen name="heart_anim_bezier_x_rand">59.2222dp</dimen>
+	<dimen name="heart_anim_init_x">74.0278dp</dimen>
+	<dimen name="heart_anim_init_y">37.0139dp</dimen>
+	<dimen name="heart_anim_length">148.0556dp</dimen>
+	<dimen name="heart_anim_length_rand">222.0833dp</dimen>
+	<dimen name="heart_anim_x_point_factor">44.4167dp</dimen>
+	<dimen name="heart_size_height">40.4192dp</dimen>
+	<dimen name="heart_size_width">48.1181dp</dimen>
+	<dimen name="textSize_sidebar">14.8056sp</dimen>
+	<dimen name="large_textSize_sidebar">47.3778sp</dimen>
+	<dimen name="textSize_sidebar_choose">17.7667sp</dimen>
+	<dimen name="textSize_sidebar_padding">29.6111sp</dimen>
+	<dimen name="radius_sidebar">29.6111dp</dimen>
+	<dimen name="ball_radius_sidebar">35.5333dp</dimen>
+	<dimen name="default_slider_height">53.3000dp</dimen>
+	<dimen name="default_slider_margin">35.5333dp</dimen>
+	<dimen name="default_slider_bar_height">5.9222dp</dimen>
+	<dimen name="default_slider_handler_radius">14.8056dp</dimen>
+	<dimen name="default_padding_side">35.5333dp</dimen>
+	<dimen name="default_preview_height">59.2222dp</dimen>
+	<dimen name="default_preview_image_height">53.3000dp</dimen>
+	<dimen name="default_slider_margin_btw_title">29.6111dp</dimen>
+	<dimen name="rxauto_imageview_left">-148.0556dp</dimen>
+	<dimen name="rxauto_imageview_Right">-444.1667dp</dimen>
+</resources>
