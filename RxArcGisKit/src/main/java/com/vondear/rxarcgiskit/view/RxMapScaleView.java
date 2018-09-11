@@ -21,7 +21,7 @@ import com.vondear.rxarcgiskit.R;
 
 
 /**
- * Created by Administrator on 2017/11/5.
+ * Created by Vondear on 2017/11/5.
  */
 
 public class RxMapScaleView extends View {
