@@ -39,7 +39,7 @@ dependencies {
     //recyclerview包
     compileOnly 'com.android.support:recyclerview-v7:27.1.1'
     compileOnly 'com.android.support:support-annotations:27.1.1'
-    compileOnly 'com.android.support.constraint:constraint-layout:1.1.2'
+    compileOnly 'com.android.support.constraint:constraint-layout:1.1.3'
     //流式布局
     compileOnly 'com.google.android:flexbox:0.3.2'
     //沉浸式
