@@ -569,8 +569,8 @@ public class RxCameraView extends FrameLayout {
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getPointerCount() == 1) {
             if (camera != null) {
-                camera.release();
-                handleFocusMetering(event, camera);
+                /*camera.startPreview();
+                handleFocusMetering(event, camera);*/
             }
         } else {
             switch (event.getAction() & MotionEvent.ACTION_MASK) {
