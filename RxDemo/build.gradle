@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
 
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.vondear.rxdemo"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
         multiDexEnabled true
@@ -15,10 +15,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
+            signingConfig signingConfigs.config
         }
         debug {
-
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -36,12 +36,12 @@ dependencies {
     //流式布局
     //动画向下版本兼容 nineold包
     //noinspection GradleCompatible
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-    implementation 'com.android.support:support-annotations:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:support-annotations:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.google.android:flexbox:0.3.2'
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.nineoldandroids:library:2.4.0'
