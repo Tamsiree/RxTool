@@ -3,6 +3,7 @@ package com.vondear.rxui.view.sidebar;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.Region;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
@@ -57,7 +58,13 @@ public class PinnedHeaderDecoration extends RecyclerView.ItemDecoration {
         if (mPinnedHeaderView != null) {
             c.save();
             mClipBounds.top = 0;
-            c.clipRect(mClipBounds, Region.Op.UNION);
+
+            if(Build.VERSION.SDK_INT >= 26){
+                c.clipRect(mClipBounds);
+            }else {
+                c.clipRect(mClipBounds, Region.Op.UNION);
+            }
+
             c.translate(0, mPinnedHeaderTop);
             mPinnedHeaderView.draw(c);
             c.restore();
