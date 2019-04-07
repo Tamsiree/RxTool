@@ -1,4 +1,4 @@
-package com.vondear.rxtool;
+package com.vondear.rxui.fragment;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
@@ -19,7 +19,6 @@ public class RxFragmentTool {
     /*    <fragment
             android:layout_below="@id/id_fragment_title"
             android:id="@+id/id_fragment_content"
-            android:name="com.zhy.zhy_fragments.ContentFragment"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />*/
 
@@ -62,4 +61,24 @@ public class RxFragmentTool {
     }
 
     //==============================================================================================Fragment的动态使用 start
+
+    /**
+     * v4包下的使用
+     * 动态的使用Fragment
+     *
+     * 在布局文件中使用 FrameLayout 标签
+     *
+     * @param fragmentActivity
+     * @param fragmentLazy
+     * @param r_id_fragment    <FrameLayout android:id="@+id/r_id_fragment"/>
+     */
+    public static void showFragmentLazy(FragmentActivity fragmentActivity, FragmentLazy fragmentLazy, int r_id_fragment) {
+        FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(r_id_fragment, fragmentLazy);
+        fragmentTransaction.commit();
+        fragmentLazy.onHiddenChanged(true);
+        fragmentLazy.onHiddenChanged(false);
+    }
+
 }
