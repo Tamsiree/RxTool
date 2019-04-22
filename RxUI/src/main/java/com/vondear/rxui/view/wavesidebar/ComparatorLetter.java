@@ -6,7 +6,10 @@ import com.vondear.rxui.model.ModelContactCity;
 import java.util.Comparator;
 
 
-public class LetterComparator implements Comparator<ModelContactCity> {
+/**
+ * @author vondear
+ */
+public class ComparatorLetter implements Comparator<ModelContactCity> {
 
     @Override
     public int compare(ModelContactCity l, ModelContactCity r) {
