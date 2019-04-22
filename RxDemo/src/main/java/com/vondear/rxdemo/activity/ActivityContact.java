@@ -7,13 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.vondear.rxdemo.R;
-import com.vondear.rxdemo.adapter.AdapterContactCity;
-import com.vondear.rxdemo.model.ModelContactCity;
-import com.vondear.rxdemo.tools.ComparatorLetter;
+import com.vondear.rxui.view.wavesidebar.adapter.AdapterContactCity;
+import com.vondear.rxui.model.ModelContactCity;
+import com.vondear.rxui.view.wavesidebar.ComparatorLetter;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
-import com.vondear.rxui.view.sidebar.PinnedHeaderDecoration;
-import com.vondear.rxui.view.sidebar.WaveSideBarView;
+import com.vondear.rxui.view.wavesidebar.PinnedHeaderDecoration;
+import com.vondear.rxui.view.wavesidebar.WaveSideBarView;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

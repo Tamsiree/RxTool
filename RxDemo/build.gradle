@@ -51,7 +51,6 @@ dependencies {
     implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
     implementation 'com.github.yalantis:ucrop:2.2.2-native'
     implementation 'com.jaredrummler:animated-svg-view:1.0.5'
-    implementation 'cc.solart:turbo-recyclerview-helper:1.0.3-beta'
     implementation 'com.afollestad.material-dialogs:core:0.9.3.0'
 //    implementation 'com.github.google:cameraview:3eaeac09a7'
     implementation 'com.orhanobut:logger:2.2.0'

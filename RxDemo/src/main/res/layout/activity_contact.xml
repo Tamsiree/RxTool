@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             />
 
-        <com.vondear.rxui.view.sidebar.WaveSideBarView
+        <com.vondear.rxui.view.wavesidebar.WaveSideBarView
             android:id="@+id/side_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
