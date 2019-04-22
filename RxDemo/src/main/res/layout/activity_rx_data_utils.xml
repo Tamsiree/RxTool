@@ -593,7 +593,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="首字母大写"/>
+                            android:text="首字母小写"/>
 
                         <TextView
                             android:id="@+id/tv_lowerFirstLetter"
@@ -734,6 +734,28 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="Ping"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_getPYAllFirstLetter"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="获得所有汉字首字母" />
+
+                        <TextView
+                            android:id="@+id/tv_getPYAllFirstLetter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="Ping" />
 
                     </LinearLayout>
 
