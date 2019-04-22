@@ -57,7 +57,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/pikachu_sit" />
+                    android:src="@drawable/ic_mobile_flag" />
 
                 <TextView
                     android:layout_width="wrap_content"

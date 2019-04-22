@@ -1,4 +1,4 @@
-package com.vondear.rxdemo.model;
+package com.vondear.rxui.model;
 
 /**
  * @author vondear

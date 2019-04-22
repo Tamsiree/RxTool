@@ -1,4 +1,4 @@
-package com.vondear.rxui.view.sidebar;
+package com.vondear.rxui.view.wavesidebar;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class WaveSideBarView extends View {
 
-    private static final String TAG = "WaveSlideBarView";
+    private static final String TAG = "WaveSideBarView";
 
     // 计算波浪贝塞尔曲线的角弧长值
     private static final double ANGLE = Math.PI * 45 / 180;

@@ -1,4 +1,4 @@
-package com.vondear.rxui.view.sidebar;
+package com.vondear.rxui.view.wavesidebar;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 /**
  * @author vondear
  */
+
 public class PinnedHeaderDecoration extends RecyclerView.ItemDecoration {
     private int mHeaderPosition;
     private int mPinnedHeaderTop;
@@ -37,6 +38,7 @@ public class PinnedHeaderDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         createPinnedHeader(parent);
+
         if (mPinnedHeaderView != null) {
             int headerEndAt = mPinnedHeaderView.getTop() + mPinnedHeaderView.getHeight();
             View v = parent.findChildViewUnder(c.getWidth() / 2, headerEndAt + 1);
@@ -59,9 +61,9 @@ public class PinnedHeaderDecoration extends RecyclerView.ItemDecoration {
             c.save();
             mClipBounds.top = 0;
 
-            if(Build.VERSION.SDK_INT >= 26){
+            if (Build.VERSION.SDK_INT >= 27) {
                 c.clipRect(mClipBounds);
-            }else {
+            } else {
                 c.clipRect(mClipBounds, Region.Op.UNION);
             }
 
@@ -73,33 +75,41 @@ public class PinnedHeaderDecoration extends RecyclerView.ItemDecoration {
 
     private void createPinnedHeader(RecyclerView parent) {
         updatePinnedHeader(parent);
+
         RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
         if (layoutManager == null || layoutManager.getChildCount() <= 0) {
             return;
         }
         int firstVisiblePosition = ((RecyclerView.LayoutParams) layoutManager.getChildAt(0).getLayoutParams()).getViewAdapterPosition();
         int headerPosition = findPinnedHeaderPosition(parent, firstVisiblePosition);
+
         if (headerPosition >= 0 && mHeaderPosition != headerPosition) {
             mHeaderPosition = headerPosition;
             int viewType = mAdapter.getItemViewType(headerPosition);
+
             RecyclerView.ViewHolder pinnedViewHolder = mAdapter.createViewHolder(parent, viewType);
             mAdapter.bindViewHolder(pinnedViewHolder, headerPosition);
             mPinnedHeaderView = pinnedViewHolder.itemView;
+
             // read layout parameters
             ViewGroup.LayoutParams layoutParams = mPinnedHeaderView.getLayoutParams();
             if (layoutParams == null) {
                 layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 mPinnedHeaderView.setLayoutParams(layoutParams);
             }
+
             int heightMode = View.MeasureSpec.getMode(layoutParams.height);
             int heightSize = View.MeasureSpec.getSize(layoutParams.height);
+
             if (heightMode == View.MeasureSpec.UNSPECIFIED) {
                 heightMode = View.MeasureSpec.EXACTLY;
             }
+
             int maxHeight = parent.getHeight() - parent.getPaddingTop() - parent.getPaddingBottom();
             if (heightSize > maxHeight) {
                 heightSize = maxHeight;
             }
+
             // measure & layout
             int ws = View.MeasureSpec.makeMeasureSpec(parent.getWidth() - parent.getPaddingLeft() - parent.getPaddingRight(), View.MeasureSpec.EXACTLY);
             int hs = View.MeasureSpec.makeMeasureSpec(heightSize, heightMode);
@@ -112,17 +122,20 @@ public class PinnedHeaderDecoration extends RecyclerView.ItemDecoration {
         if (fromPosition > mAdapter.getItemCount() || fromPosition < 0) {
             return -1;
         }
+
         for (int position = fromPosition; position >= 0; position--) {
             final int viewType = mAdapter.getItemViewType(position);
             if (isPinnedViewType(parent, position, viewType)) {
                 return position;
             }
         }
+
         return -1;
     }
 
     private boolean isPinnedViewType(RecyclerView parent, int adapterPosition, int viewType) {
-        PinnedHeaderCreator pinnedHeaderCreator =  mTypePinnedHeaderFactories.get(viewType);
+        PinnedHeaderCreator pinnedHeaderCreator = mTypePinnedHeaderFactories.get(viewType);
+
         return pinnedHeaderCreator != null && pinnedHeaderCreator.create(parent, adapterPosition);
     }
 
@@ -131,6 +144,7 @@ public class PinnedHeaderDecoration extends RecyclerView.ItemDecoration {
         if (position == RecyclerView.NO_POSITION) {
             return false;
         }
+
         return isPinnedViewType(parent, position, mAdapter.getItemViewType(position));
     }
 
@@ -141,6 +155,7 @@ public class PinnedHeaderDecoration extends RecyclerView.ItemDecoration {
             if (mAdapter != null) {
                 mAdapter.unregisterAdapterDataObserver(mAdapterDataObserver);
             }
+
             mAdapter = adapter;
             if (mAdapter != null) {
                 mAdapter.registerAdapterDataObserver(mAdapterDataObserver);
@@ -161,3 +176,4 @@ public class PinnedHeaderDecoration extends RecyclerView.ItemDecoration {
         boolean create(RecyclerView parent, int adapterPosition);
     }
 }
+

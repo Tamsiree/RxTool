@@ -1,4 +1,4 @@
-package com.vondear.rxdemo.adapter;
+package com.vondear.rxui.view.wavesidebar.adapter;
 
 
 import android.content.Context;
@@ -6,19 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.vondear.rxdemo.R;
-import com.vondear.rxdemo.model.ModelContactCity;
+import com.vondear.rxui.R;
+import com.vondear.rxui.model.ModelContactCity;
 
 import java.util.List;
-
-import cc.solart.turbo.BaseTurboAdapter;
-import cc.solart.turbo.BaseViewHolder;
 
 
 /**
  * @author vondear
  */
-public class AdapterContactCity extends BaseTurboAdapter<ModelContactCity, BaseViewHolder> {
+public class AdapterContactCity extends BaseWaveSideAdapter<ModelContactCity, BaseViewHolder> {
 
     public AdapterContactCity(Context context) {
         super(context);
