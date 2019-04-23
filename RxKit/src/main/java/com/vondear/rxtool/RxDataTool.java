@@ -143,7 +143,7 @@ public class RxDataTool {
      * @return
      */
     public static String getAstro(int month, int day) {
-        String[] starArr = {"魔羯座", "水瓶座", "双鱼座", "牡羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座"};
+        String[] starArr = {"魔羯座", "水瓶座", "双鱼座", "白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座"};
         int[] DayArr = {22, 20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22};  // 两个星座分割日
 
         if (month <= 0 || day <= 0) {
@@ -160,6 +160,18 @@ public class RxDataTool {
         // 返回索引指向的星座string
         return starArr[index];
     }
+
+    /**
+     * 年份判断生肖
+     * @param year
+     * @return
+     */
+    private String getAnimalYearName(int year) {//---------计算生肖方法-------------
+        String[] animalYear = new String[]{"猴", "鸡", "狗", "猪", "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊"};
+        String name = animalYear[(year) % 12];
+        return name;
+    }
+
 
     /**
      * 隐藏手机中间4位号码
