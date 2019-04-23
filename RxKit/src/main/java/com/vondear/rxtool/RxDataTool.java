@@ -158,7 +158,7 @@ public class RxDataTool {
             index = index - 1;
         }
         // 返回索引指向的星座string
-        return starArr[index];
+        return starArr[index % 12];
     }
 
     /**
