@@ -163,10 +163,11 @@ public class RxDataTool {
 
     /**
      * 年份判断生肖
+     *
      * @param year
      * @return
      */
-    private String getAnimalYearName(int year) {//---------计算生肖方法-------------
+    public static String getAnimalYearName(int year) {//---------计算生肖方法-------------
         String[] animalYear = new String[]{"猴", "鸡", "狗", "猪", "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊"};
         String name = animalYear[(year) % 12];
         return name;
