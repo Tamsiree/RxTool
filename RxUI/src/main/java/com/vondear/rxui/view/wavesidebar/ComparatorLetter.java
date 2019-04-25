@@ -7,6 +7,8 @@ import java.util.Comparator;
 
 
 /**
+ * 首字母排序
+ * 此类经供参考
  * @author vondear
  */
 public class ComparatorLetter implements Comparator<ModelContactCity> {
