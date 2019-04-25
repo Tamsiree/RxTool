@@ -13,7 +13,7 @@ import java.util.List;
 
 
 /**
- * 此适配性仅供参考借鉴
+ * 此适配器仅供参考借鉴
  * @author vondear
  */
 public class AdapterContactCity extends BaseWaveSideAdapter<ModelContactCity, BaseViewHolder> {
