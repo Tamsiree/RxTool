@@ -224,7 +224,7 @@
                         android:id="@+id/iv_create_qr_code"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/next" />
+                        android:src="@drawable/next_code_tool" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -241,7 +241,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/transparent_bg"
+                        android:src="@drawable/transparent_bg_code_tool"
                         android:visibility="gone" />
 
                     <TextView
@@ -258,7 +258,7 @@
                 android:id="@+id/ll_bar_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/c"
+                android:background="#cccccc"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingTop="10dp"
@@ -278,7 +278,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:digits="@string/number_letter"
+                        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:gravity="center"
                         android:hint="请输入条形码文字内容"
                         android:padding="10dp"
@@ -293,7 +293,7 @@
                         android:id="@+id/iv_create_bar_code"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/next" />
+                        android:src="@drawable/next_code_tool" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -312,7 +312,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="30dp"
                         android:layout_marginBottom="30dp"
-                        android:src="@drawable/transparent_bg"
+                        android:src="@drawable/transparent_bg_code_tool"
                         android:visibility="gone" />
 
                     <TextView
