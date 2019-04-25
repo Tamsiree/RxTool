@@ -1,5 +1,6 @@
 package com.vondear.rxfeature.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.vondear.rxfeature.tool.RxQRCode;
 import com.vondear.rxtool.RxActivityTool;
 import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxtool.RxDataTool;
+import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxtool.RxSPTool;
 import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBase;
@@ -101,7 +103,12 @@ public class ActivityCodeTool extends ActivityBase {
     }
 
     private void initEvent() {
+        mRxTitle.setLeftIconVisibility(true);
+        mRxTitle.setTitleColor(Color.WHITE);
+        mRxTitle.setTitleSize(RxImageTool.dp2px(20));
         mRxTitle.setLeftFinish(mContext);
+
+        mRxTickerViewScan.setAnimationDuration(500);
 
         mIvCreateQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
