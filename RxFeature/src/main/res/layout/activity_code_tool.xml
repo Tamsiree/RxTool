@@ -269,7 +269,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="@drawable/shape_small_round_blue1"
+                    android:background="@drawable/shape_small_round_blue1_code_tool"
                     android:gravity="center"
                     android:orientation="vertical">
 
