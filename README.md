@@ -1,6 +1,4 @@
-<br>
-<center><font face="微软雅黑" size=10>RxTool</font></center>
-<br>
+#RxTool
 
 <center>
   
