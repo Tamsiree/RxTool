@@ -14,7 +14,7 @@
 
 ## Step 1.先在 build.gradle(Project:XXXX) 的 repositories 添加:
 
-```Java
+```gradle
 allprojects {
 	repositories {
 		...
@@ -23,29 +23,31 @@ allprojects {
 }
 ```
 
-> Step 2. 然后在 build.gradle(Module:app) 的 dependencies 添加:
+## Step 2. 然后在 build.gradle(Module:app) 的 dependencies 添加:
 
-	dependencies {
-	       //基础工具库
-           implementation "com.github.tamsiree.RxTool:RxKit:2.3.9"
+```gradle
+dependencies {
+	//基础工具库
+	implementation "com.github.tamsiree.RxTool:RxKit:2.3.9"
 
-	       //UI库
-	       implementation "com.github.tamsiree.RxTool:RxUI:2.3.9"
+	//UI库
+	implementation "com.github.tamsiree.RxTool:RxUI:2.3.9"
 
-	       //相机库
-	       implementation "com.github.tamsiree.RxTool:RxCamera:2.3.9"
+	//相机库
+	implementation "com.github.tamsiree.RxTool:RxCamera:2.3.9"
 
-	       //功能库（Zxing扫描与生成二维码条形码 支付宝 微信）
-           implementation "com.github.tamsiree.RxTool:RxFeature:2.3.9"
+	//功能库（Zxing扫描与生成二维码条形码 支付宝 微信）
+        implementation "com.github.tamsiree.RxTool:RxFeature:2.3.9"
 
-           //ArcGis For Android工具库（API：100.1以上版本）
-           implementation "com.github.tamsiree.RxTool:RxArcGisKit:2.3.9"
-	}
+        //ArcGis For Android工具库（API：100.1以上版本）
+        implementation "com.github.tamsiree.RxTool:RxArcGisKit:2.3.9"
+}
+```
 
-    使用方法:
-        在Application中初始化 RxTool.init(this);
-
-    注：v2.0.0以后版本是分多模块的版本
+## Step 3.在Application中初始化 (注：v2.0.0以后版本是分多模块的版本)
+```java
+RxTool.init(this);
+```
 
 # 文档
 ## 可以参考文档来调用相对应的API，欢迎指教
