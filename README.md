@@ -1,23 +1,28 @@
 # RxTool
-  
-[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)  [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)  [![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-14%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![RxTool](https://jitpack.io/v/tamsiree/RxTool.svg)](https://jitpack.io/#tamsiree/RxTool)  [![Gradle-4.10.1](https://img.shields.io/badge/Gradle-4.10.1-brightgreen.svg)](https://img.shields.io/badge/Gradle-4.10.1-brightgreen.svg)  [![Stars](https://badgen.net/github/stars/tamsiree/RxTool)](https://ghbtns.com/github-btn.html?user=tamsiree&repo=rxtool&type=star)
+
+[![Gradle-4.10.1](https://img.shields.io/badge/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2-Tamsiree-brightgreen.svg)](https://tamsiree.github.io/)  [![Stars](https://badgen.net/github/stars/tamsiree/RxTool)](https://ghbtns.com/github-btn.html?user=tamsiree&repo=rxtool&type=star)
+
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)  [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)  [![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-14%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![RxTool](https://jitpack.io/v/tamsiree/RxTool.svg)](https://jitpack.io/#tamsiree/RxTool)  [![Gradle-4.10.1](https://img.shields.io/badge/Gradle-4.10.1-brightgreen.svg)](https://img.shields.io/badge/Gradle-4.10.1-brightgreen.svg)  
   
 ![image](https://github.com/tamsiree/RxTool/raw/master/miku.png)
 
 	所谓：工欲善其事必先利其器！
-	RxTool 是 Android开发过程经常需要用到各式各样的工具类集合，虽然大部分只需谷歌/百度一下就能找到。
+	`RxTool` 是 `Android` 开发过程经常需要用到各式各样的工具类集合，虽然大部分只需谷歌/百度一下就能找到。
 	但是有时候急需使用却苦苦搜寻不到，于是整理了自己平常用到的工具类，以便以后的使用。
 
 # 如何使用它
 
-> Step 1.先在 build.gradle(Project:XXXX) 的 repositories 添加:
+## Step 1.先在 build.gradle(Project:XXXX) 的 repositories 添加:
 
-	allprojects {
-		repositories {
-			...
-			maven { url "https://jitpack.io" }
-		}
+```Java
+allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
 	}
+}
+```
+
 > Step 2. 然后在 build.gradle(Module:app) 的 dependencies 添加:
 
 	dependencies {
@@ -50,36 +55,36 @@
 
 # 近期更新日志(因为自己用的关系，更新的频率可能有点快)
 
-| VERSION | Description |
-| ---------- | ------------- |
-| v2.2.7     | 新增适配dimens文件<br>适配平板等各种屏幕大小的设备 |
-| v2.2.6     | 更新RxMapScaleView及资源文件 |
-| v2.2.5     | 更新RxCameraView<br>修复部分设备不支持16:9分辨率崩溃问题 |
-| v2.2.4     | 更新数据处理工具 |
-| v2.2.3     | 调整相机分辨率大小 |
-| v2.2.2     | 整理配置文件 |
-| v2.2.1     | 增加若干Shape资源 |
-| v2.2.0     | 增加ArcGis坐标系换算方法(投影坐标系、GPS坐标系、设备屏幕坐标系) |
-| v2.1.9     | 更新RxAutoImageView的屏幕适配大小 |
-| v2.1.8     | 更新RxCameraView的参数与算法 |
-| v2.1.7     | 新增ArcGis关于地图精准定位与行程轨迹的实现方法 |
-| v2.1.6     | 更新zip4j压缩算法 |
-| v2.1.5     | RxLocationTool 新增 GPS坐标转百度坐标 方法 |
-| v2.1.4     | 新增ArcGis若干工具 |
-| v2.1.3     | 更新Gps移动定位算法 |
-| v2.1.2     | 优化ArcGis工具类 |
-| v2.1.1     | 更新GPS定位工具类<br>更新配置文件 |
-| v2.1.0     | 更新绘制文字与图片工具 |
-| v2.0.9     | 调整安卓各版本下的相机适配 |
-| v2.0.8     | 优化相机控件模块 |
-| v2.0.7     | 新增相机控件模块 |
-| v2.0.6     | 更新ArcGis工具<br>更新颜色资源 |
-| v2.0.5     | 新增ArcGis地图比例尺控件<br>相机工具的优化 |
-| v2.0.4     | 降低模块之间的耦合性<br>ArcGisMap工具的优化 |
-| v2.0.3     | 更新扫描二维码Demo<br>更新日期选择Dialog |
-| v2.0.2     | 更新支付宝SDK，新增支付宝支付DEMO<br>更新相机工具 |
-| v2.0.1     | 新增(高德/百度)地图导航工具<br>新增ArcGis工具类 |
-| v2.0.0     | 重构成多模块 |
+|  VERSION  |  Description  |
+| :-------: | ------------- |
+|   2.2.7   | 新增适配dimens文件<br>适配平板等各种屏幕大小的设备 |
+|   2.2.6   | 更新RxMapScaleView及资源文件 |
+|   2.2.5   | 更新RxCameraView<br>修复部分设备不支持16:9分辨率崩溃问题 |
+|   2.2.4   | 更新数据处理工具 |
+|   2.2.3   | 调整相机分辨率大小 |
+|   2.2.2   | 整理配置文件 |
+|   2.2.1   | 增加若干Shape资源 |
+|   2.2.0   | 增加ArcGis坐标系换算方法(投影坐标系、GPS坐标系、设备屏幕坐标系) |
+|   2.1.9   | 更新RxAutoImageView的屏幕适配大小 |
+|   2.1.8   | 更新RxCameraView的参数与算法 |
+|   2.1.7   | 新增ArcGis关于地图精准定位与行程轨迹的实现方法 |
+|   2.1.6   | 更新zip4j压缩算法 |
+|   2.1.5   | RxLocationTool 新增 GPS坐标转百度坐标 方法 |
+|   2.1.4   | 新增ArcGis若干工具 |
+|   2.1.3   | 更新Gps移动定位算法 |
+|   2.1.2   | 优化ArcGis工具类 |
+|   2.1.1   | 更新GPS定位工具类<br>更新配置文件 |
+|   2.1.0   | 更新绘制文字与图片工具 |
+|   2.0.9   | 调整安卓各版本下的相机适配 |
+|   2.0.8   | 优化相机控件模块 |
+|   2.0.7   | 新增相机控件模块 |
+|   2.0.6   | 更新ArcGis工具<br>更新颜色资源 |
+|   2.0.5   | 新增ArcGis地图比例尺控件<br>相机工具的优化 |
+|   2.0.4   | 降低模块之间的耦合性<br>ArcGisMap工具的优化 |
+|   2.0.3   | 更新扫描二维码Demo<br>更新日期选择Dialog |
+|   2.0.2   | 更新支付宝SDK，新增支付宝支付DEMO<br>更新相机工具 |
+|   2.0.1   | 新增(高德/百度)地图导航工具<br>新增ArcGis工具类 |
+| __2.0.0__ | 重构成多模块 |
 
 # Demo介绍
 
