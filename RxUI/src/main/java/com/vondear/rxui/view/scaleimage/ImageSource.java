@@ -151,7 +151,7 @@ public final class ImageSource {
      * @return this instance for chaining.
      */
     public ImageSource tilingEnabled() {
-        return tiling(true);
+        return setTiling(true);
     }
 
     /**
@@ -161,7 +161,7 @@ public final class ImageSource {
      * @return this instance for chaining.
      */
     public ImageSource tilingDisabled() {
-        return tiling(false);
+        return setTiling(false);
     }
 
     /**
@@ -170,7 +170,7 @@ public final class ImageSource {
      *
      * @return this instance for chaining.
      */
-    public ImageSource tiling(boolean tile) {
+    public ImageSource setTiling(boolean tile) {
         this.tile = tile;
         return this;
     }
