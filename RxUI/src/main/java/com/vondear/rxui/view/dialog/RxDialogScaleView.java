@@ -102,7 +102,7 @@ public class RxDialogScaleView extends RxDialog {
 
     public void setImage(int resId) {
         this.resId = resId;
-        mRxScaleImageView.setImage(ImageSource.resource(resId));
+        mRxScaleImageView.setImage(ImageSource.newImageResource(resId));
     }
 
     public void setImage(Bitmap bitmap) {

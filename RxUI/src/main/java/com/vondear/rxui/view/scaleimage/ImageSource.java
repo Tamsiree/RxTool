@@ -71,7 +71,7 @@ public final class ImageSource {
      *
      * @param resId resource ID.
      */
-    public static ImageSource resource(int resId) {
+    public static ImageSource newImageResource(int resId) {
         return new ImageSource(resId);
     }
 
