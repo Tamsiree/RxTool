@@ -51,9 +51,9 @@ RxTool.init(this);
 
 # 文档
 ## 可以参考文档来调用相对应的API，欢迎指教
-- [点我看文档](https://github.com/tamsiree/RxTool/wiki/RxTool-Wiki)
-- [点我看文档](https://github.com/tamsiree/RxTool/wiki/RxTool-Wiki)
-- [点我看文档](https://github.com/tamsiree/RxTool/wiki/RxTool-Wiki)
+- [点我看文档](https://tamsiree.github.io/Technical-Research/Android/RxTool/Wiki/RxTool-Wiki)
+- [点我看文档](https://tamsiree.github.io/Technical-Research/Android/RxTool/Wiki/RxTool-Wiki)
+- 备选[点我看文档](https://github.com/tamsiree/RxTool/wiki/RxTool-Wiki)
 
 # 近期更新日志(因为自己用的关系，更新的频率可能有点快)
 
