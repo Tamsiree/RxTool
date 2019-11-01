@@ -4,7 +4,7 @@
 
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)  [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)  [![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-14%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![Gradle-4.10.1](https://img.shields.io/badge/Gradle-4.10.1-brightgreen.svg)](https://img.shields.io/badge/Gradle-4.10.1-brightgreen.svg)  
   
-![image](https://github.com/tamsiree/RxTool/raw/master/miku.png)
+![image](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/DeskTop/miku.png)
 
 	所谓：工欲善其事必先利其器！
 	`RxTool` 是 `Android` 开发过程经常需要用到各式各样的工具类集合，虽然大部分只需谷歌/百度一下就能找到。
