@@ -95,47 +95,48 @@ RxTool.init(this);
 
 | 展示头像 | 选择头像 | 裁剪头像 |
 | ---------- | ------------- | ------------- |
-| <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_1.jpg"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_8.jpg"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_9.jpg"> |
+| <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_1.jpg"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_8.jpg"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_9.jpg"> |
 
 ## 二维码与条形码的扫描与生成
 
 | 扫描二维码 | 生成二维码 | 扫描条形码 |
 | ---------- | ------------- | ------------- |
-| <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_2.jpg"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_3.jpg"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_10.jpg"> |
+| <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_2.jpg"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_3.jpg"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_10.jpg"> |
 
 
 ## 常用的Dialog展示
 
 | 确认弹窗 | 确认取消弹窗 | 输入框弹窗 |
 | :----------: | :-------------: | :-------------: |
-| <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_5.png"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_6.png"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_7.png"> |
+| <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_5.png"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_6.png"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_7.png"> |
 | 选择日期弹窗 | 形状加载弹窗 | Acfun加载弹窗 |
-| <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_11.png"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_12.png"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_13.png"> |
+| <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_11.png"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_12.png"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_13.png"> |
 
 
 ## 其他功能展示
 
 | WebView的封装（可播放视频） | RxTextTool操作Demo | RxToast的展示使用 |
 | :----------: | :-------------: | :-------------:|
-| <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_14.png"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_15.png"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_18.png">|
+| <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_14.png"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_15.png"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_18.png">|
 | 进度条的艺术 | 网速控件 | 联系人侧边栏快速导航 |
-| <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_16.png"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_17.png"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_22.png">|
+| <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_16.png"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_17.png"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_22.png">|
 | 图片的缩放艺术 | 蛛网控件 | 仿斗鱼验证码控件 |
-| <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_19.png"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_20.png"> | <img src="https://github.com/tamsiree/RxTool/raw/master/screenshot/screenshot_21.png">|
+| <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_19.png"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_20.png"> | <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_21.png">|
 
 ## DEMO 与 打赏
 
 | Demo |
 | :----------: |
-| [![RxTool](https://github.com/tamsiree/RxTool/raw/master/qrcode_apk.png)](https://github.com/tamsiree/RxTool/raw/master/RxTool.apk) |
+| [![RxTool](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Function/qrcode_apk.png)](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Apk/RxTool.apk) |
 | 扫描二维码 or 点击二维码 <br> 下载|
 
 
 | 微信打赏 | 支付宝打赏 |
 | :----------: | :----------: |
 |  如果你帮助到了你<br>可以点右上角"Star"支持一下 谢谢！^_^<br>你也还可以扫描下面的二维码打赏鼓励一下~ <br>请作者喝一杯咖啡。| 如果在捐赠留言中备注名称<br>将会被记录到列表中~ <br>如果你也是github开源作者<br>捐赠时可以留下github项目地址或者个人主页地址<br>链接将会被添加到列表中起到互相推广的作用 |
-|  <img src="https://github.com/tamsiree/RxTool/raw/master/pay_qr_code.jpg"> |   <img src="https://github.com/tamsiree/RxTool/raw/master/qrcode_alipay.jpg"> |
+|  <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Function/pay_qr_code.jpg"> |   <img src="https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Function/qrcode_alipay.jpg"> |
 | <br>[捐赠列表](Contributor.md) | 闲聊群 <br><br>  [![技术的深度探索与论证](https://img.shields.io/badge/QQ%E7%BE%A4-435644020-brightgreen.svg)](https://shang.qq.com/wpa/qunwpa?idkey=a14a650c50413f43d5bb0399f5b6617a2cd09866ae09c5a1d7f3e0ba33962bae)<br>
+
 
 
 
