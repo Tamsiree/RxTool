@@ -42,6 +42,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.lang.reflect.Method;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -562,26 +564,40 @@ public class RxDeviceTool {
 
     /**
      * 获取设备MAC地址
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>}</p>
+     * <p>需添加权限 {@code <uses-permission android:name="android.permission.INTERNET"/>}</p>
      *
      * @return MAC地址
      */
-
     public static String getMacAddress() {
-        String macAddress = null;
-        LineNumberReader lnr = null;
-        InputStreamReader isr = null;
+        String macAddress = "";
+        NetworkInterface networkInterface = null;
+
         try {
-            Process pp = Runtime.getRuntime().exec("cat /sys/class/net/wlan0/address");
-            isr = new InputStreamReader(pp.getInputStream());
-            lnr = new LineNumberReader(isr);
-            macAddress = lnr.readLine().replace(":", "");
-        } catch (IOException e) {
+            if (NetworkInterface.getByName("eth0") != null) {
+                networkInterface = NetworkInterface.getByName("eth0");
+            } else if (NetworkInterface.getByName("wlan0") != null) {
+                networkInterface = NetworkInterface.getByName("wlan0");
+            }
+        } catch (SocketException e) {
             e.printStackTrace();
-        } finally {
-            RxFileTool.closeIO(lnr, isr);
         }
-        return macAddress == null ? "" : macAddress;
+        if (networkInterface == null) {
+            return macAddress;
+        }
+        byte[] macArr = new byte[0];
+        try {
+            macArr = networkInterface.getHardwareAddress();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        StringBuilder buf = new StringBuilder();
+        for (byte b : macArr) {
+            buf.append(String.format("%02X", b));
+        }
+        macAddress = buf.toString();
+        Log.d("mac", "interfaceName=" + networkInterface.getName() + ", mac=" + macAddress);
+        macAddress = macAddress.replace(":", "");
+        return macAddress;
     }
 
 
