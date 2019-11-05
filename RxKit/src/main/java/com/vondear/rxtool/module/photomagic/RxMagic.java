@@ -40,7 +40,7 @@ public class RxMagic implements Handler.Callback {
         mHandler = new Handler(Looper.getMainLooper(), this);
     }
 
-    public static Builder with(Context context) {
+    public static Builder createBuilder(Context context) {
         return new Builder(context);
     }
 

@@ -310,7 +310,7 @@ public class RxScaleImageView extends View {
             if (typedAttr.hasValue(R.styleable.RxScaleImageView_src)) {
                 int resId = typedAttr.getResourceId(R.styleable.RxScaleImageView_src, 0);
                 if (resId > 0) {
-                    setImage(ImageSource.resource(resId).tilingEnabled());
+                    setImage(ImageSource.newImageResource(resId).tilingEnabled());
                 }
             }
             if (typedAttr.hasValue(R.styleable.RxScaleImageView_panEnabled)) {

@@ -170,7 +170,7 @@ public class RxCameraTool {
                     os.write(data);
                     os.close();
 
-                    RxMagic.with(mContext).
+                    RxMagic.createBuilder(mContext).
                             load(cachefile).
                             setCompressListener(new OnCompressListener() {
                                 @Override
