@@ -1899,6 +1899,12 @@ public class RxImageTool {
         return BitmapFactory.decodeByteArray(data, offset, data.length);
     }
 
+
+    /**
+     * 从网络上加载Bitmap
+     * @param imgUrl
+     * @return
+     */
     public static Bitmap getBitmapFromNet(String imgUrl) {
         InputStream inputStream=null;
         ByteArrayOutputStream outputStream=null;
