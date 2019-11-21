@@ -10,43 +10,45 @@
 	`RxTool` 是 `Android` 开发过程经常需要用到各式各样的工具类集合，虽然大部分只需谷歌/百度一下就能找到。
 	但是有时候急需使用却苦苦搜寻不到，于是整理了自己平常用到的工具类，以便以后的使用。
 
+
 # 如何使用它
 
 
 ## Step 1.先在 build.gradle(Project:XXXX) 的 repositories 添加:
 
 ```gradle
-allprojects {
-	repositories {
-		...
-		maven { url "https://jitpack.io" }
+	allprojects {
+		repositories {
+			...
+			maven { url "https://jitpack.io" }
+		}
 	}
-}
 ```
 
 ## Step 2.然后在 build.gradle(Module:app) 的 dependencies 添加:
 ```gradle
 dependencies {
-	//基础工具库
-	implementation "com.github.tamsiree.RxTool:RxKit:2.3.9"
-	//UI库
-	implementation "com.github.tamsiree.RxTool:RxUI:2.3.9"
-	//相机库
-	implementation "com.github.tamsiree.RxTool:RxCamera:2.3.9"
-	//功能库（Zxing扫描与生成二维码条形码 支付宝 微信）
-	implementation "com.github.tamsiree.RxTool:RxFeature:2.3.9"
-	//ArcGis For Android工具库（API：100.1以上版本）
-	implementation "com.github.tamsiree.RxTool:RxArcGisKit:2.3.9"
+  //基础工具库
+  implementation "com.github.tamsiree.RxTool:RxKit:2.3.9"
+  //UI库
+  implementation "com.github.tamsiree.RxTool:RxUI:2.3.9"
+  //相机库
+  implementation "com.github.tamsiree.RxTool:RxCamera:2.3.9"
+  //功能库（Zxing扫描与生成二维码条形码 支付宝 微信）
+  implementation "com.github.tamsiree.RxTool:RxFeature:2.3.9"
+  //ArcGis For Android工具库（API：100.1以上版本）
+  implementation "com.github.tamsiree.RxTool:RxArcGisKit:2.3.9"
 }
 ```
 
-## Step 3.在Application中初始化 (注：v2.0.0以后版本是分多模块的版本)
+## Step 3.在Application中初始化 
+(注：v2.0.0以后版本是分多模块的版本)
 ```java
 RxTool.init(this);
 ```
 
 
-# 文档
+# API使用文档
 
 ## 可以参考文档来调用相对应的API，欢迎指教
 - [**[点我看文档]**](https://tamsiree.github.io/Technical-Research/Android/RxTool/Wiki/RxTool-Wiki)
@@ -55,11 +57,12 @@ RxTool.init(this);
 
 
 
-# 近期更新日志(因为自己用的关系，更新的频率可能有点快)
+# 更新日志
+> (因为自己用的关系，更新的频率可能有点快)
 
 |  VERSION  |  Description  |
 | :-------: | ------------- |
-|   2.3.8   | 完善 RxFeature 模块  |
+|   2.3.9   | 完善 RxFeature 模块  |
 |   2.3.8   | 优化 RxFeature 模块  |
 |   2.3.7   | 更新 RxFeature 模块  |
 |   2.3.6   | 更新 RxFeature 模块，优化 RxUI 模块  |
@@ -102,44 +105,44 @@ RxTool.init(this);
 
 # Demo介绍
 
-## RxPhotoTool操作UCrop裁剪图片
+## RxPhotoTool 操作 UCrop 裁剪图片
 
 | 展示头像 | 选择头像 | 裁剪头像 |
 | :----------: | :-------------: | :-------------: |
-| ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_1.jpg) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_8.jpg) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_9.jpg) |
+| ![展示头像](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_1.jpg) | ![选择头像](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_8.jpg) | ![裁剪头像](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_9.jpg) |
 
 ## 二维码与条形码的扫描与生成
 
 | 扫描二维码 | 生成二维码 | 扫描条形码 |
 | ---------- | ------------- | ------------- |
-| ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_2.jpg) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_3.jpg) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_10.jpg) |
+| ![扫描二维码](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_2.jpg) | ![生成二维码](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_3.jpg) | ![扫描条形码](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_10.jpg) |
 
 
 ## 常用的Dialog展示
 
 | 确认弹窗 | 确认取消弹窗 | 输入框弹窗 |
 | :----------: | :-------------: | :-------------: |
-| ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_5.png) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_6.png) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_7.png) |
+| ![确认弹窗](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_5.png) | ![确认取消弹窗](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_6.png) | ![输入框弹窗](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_7.png) |
 | 选择日期弹窗 | 形状加载弹窗 | Acfun加载弹窗 |
-| ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_11.png) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_12.png) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_13.png) |
+| ![选择日期弹窗](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_11.png) | ![形状加载弹窗](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_12.png) | ![Acfun加载弹窗](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_13.png) |
 
 ## 其他功能展示
 
 | WebView的封装（可播放视频） | RxTextTool操作Demo | RxToast的展示使用 |
 | :----------: | :-------------: | :-------------:|
-| ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_14.png) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_15.png) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_18.png)|
+| ![WebView的封装（可播放视频）](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_14.png) | ![RxTextTool操作Demo](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_15.png) | ![RxToast的展示使用](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_18.png)|
 | 进度条的艺术 | 网速控件 | 联系人侧边栏快速导航 |
-| ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_16.png) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_17.png) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_22.png)|
+| ![进度条的艺术](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_16.png) | ![网速控件](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_17.png) | ![联系人侧边栏快速导航](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_22.png)|
 | 图片的缩放艺术 | 蛛网控件 | 仿斗鱼验证码控件 |
-| ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_19.png) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_20.png) | ![](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_21.png)|
+| ![图片的缩放艺术](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_19.png) | ![蛛网控件](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_20.png) | ![仿斗鱼验证码控件](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Picture/RxTool/screenshot_21.png)|
 
 ## DEMO 与 打赏
 
-| Demo | 微信打赏 | 支付宝打赏 |
+| Demo | 微信赞助 | 支付宝赞助 |
 | :----------: | :----------: | :----------: |
-| 快下载Demo运行试试吧<br>只展示了部分UI功能<br>功能性功能去源码里探索吧|  如果你帮助到了你<br>可以点右上角"Star"支持一下 谢谢！^_^<br>你也还可以扫描下面的二维码打赏鼓励一下~ <br>请作者喝一杯咖啡。| 如果在捐赠留言中备注名称<br>将会被记录到列表中~ <br>如果你也是github开源作者<br>捐赠时可以留下github项目地址或者个人主页地址<br>链接将会被添加到列表中起到互相推广的作用 |
+| 快下载Demo运行试试吧<br>只展示了部分UI功能<br>功能性功能去源码里探索吧|  如果你帮助到了你<br>可以点右上角"Star"支持一下<br> 谢谢！^_^<br>你也还可以扫描下面的二维码打赏鼓励一下~ <br>请作者喝一杯咖啡。| 如果在捐赠留言中备注名称<br>将会被记录到列表中~ <br>如果你也是github开源作者<br>捐赠时可以留下github项目地址或者个人主页地址<br>链接将会被添加到列表中起到互相推广的作用 |
 | ![RxTool](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Function/qrcode_apk.png) |  ![微信](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Function/pay_qr_code.jpg) |   ![支付宝](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Function/qrcode_alipay.jpg) |
-|扫描二维码 <br> [点击下载](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Apk/RxTool.apk) | <br>[捐赠列表](https://github.com/Tamsiree/RxTool/blob/master/Contributor.md) | 闲聊群 <br><br>  ![技术的深度探索与论证](https://img.shields.io/badge/QQ%E7%BE%A4-435644020-brightgreen.svg) <br>[点击入群](https://shang.qq.com/wpa/qunwpa?idkey=a14a650c50413f43d5bb0399f5b6617a2cd09866ae09c5a1d7f3e0ba33962bae)<br>
+|扫描二维码 <br> 或者 <br> [点击下载](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Apk/RxTool.apk) |[捐赠列表](https://github.com/Tamsiree/RxTool/blob/master/Contributor.md) | 闲聊群 <br><br>  ![技术的深度探索与论证](https://img.shields.io/badge/QQ%E7%BE%A4-435644020-brightgreen.svg) <br>[点击入群](https://shang.qq.com/wpa/qunwpa?idkey=a14a650c50413f43d5bb0399f5b6617a2cd09866ae09c5a1d7f3e0ba33962bae)<br>
 
 
 ---
@@ -196,10 +199,12 @@ LICENSED WORK OR THE USE OR OTHER DEALINGS IN THE LICENSED WORK.
 
 1. 个人或法人实体必须在许可作品的每个再散布或衍生副本上包含以上版权声明和本许可证，不得自行修
 改。
+
 2. 个人或法人实体必须严格遵守与个人实际所在地或个人出生地或归化地、或法人实体注册地或经营地（
 以较严格者为准）的司法管辖区所有适用的与劳动和就业相关法律、法规、规则和标准。如果该司法管辖区
 没有此类法律、法规、规章和标准或其法律、法规、规章和标准不可执行，则个人或法人实体必须遵守国际
 劳工标准的核心公约。
+
 3. 个人或法人不得以任何方式诱导、暗示或强迫其全职或兼职员工或其独立承包人以口头或书面形式同意
 直接或间接限制、削弱或放弃其所拥有的，受相关与劳动和就业有关的法律、法规、规则和标准保护的权利
 或补救措施，无论该等书面或口头协议是否被该司法管辖区的法律所承认，该等个人或法人实体也不得以任
