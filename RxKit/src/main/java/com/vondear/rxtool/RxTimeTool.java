@@ -316,7 +316,7 @@ public class RxTimeTool {
      *                     </ul>
      * @return unit时间戳
      */
-    private static long milliseconds2Unit(long milliseconds, TimeUnit unit) {
+    public static long milliseconds2Unit(long milliseconds, TimeUnit unit) {
         switch (unit) {
             case MSEC:
                 return milliseconds / MSEC;
