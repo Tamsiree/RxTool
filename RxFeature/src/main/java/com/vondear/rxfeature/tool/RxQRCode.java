@@ -41,6 +41,8 @@ public class RxQRCode {
 
         private int codeSide = 800;
 
+        private int codeBorder = 1;
+
         private CharSequence content;
 
         private Bitmap bitmapLogo;
@@ -70,12 +72,17 @@ public class RxQRCode {
             return this;
         }
 
+        public Builder codeBorder(int codeBorder){
+            this.codeBorder = codeBorder;
+            return this;
+        }
+
         public Builder(@NonNull CharSequence text) {
             this.content = text;
         }
 
         public Bitmap into(ImageView imageView) {
-            Bitmap bitmap = RxQRCode.creatQRCode(content, codeSide, codeSide, backgroundColor, codeColor,bitmapLogo);
+            Bitmap bitmap = RxQRCode.creatQRCode(content, codeSide, codeSide, codeBorder,backgroundColor, codeColor,bitmapLogo);
             if (imageView != null) {
                 imageView.setImageBitmap(bitmap);
             }
@@ -85,7 +92,7 @@ public class RxQRCode {
 
     //----------------------------------------------------------------------------------------------以下为生成二维码算法
 
-    public static Bitmap creatQRCode(CharSequence content, int QR_WIDTH, int QR_HEIGHT, int backgroundColor, int codeColor) {
+    public static Bitmap creatQRCode(CharSequence content, int QR_WIDTH, int QR_HEIGHT, int border,int backgroundColor, int codeColor) {
         Bitmap bitmap = null;
         try {
             // 判断URL合法性
@@ -94,6 +101,7 @@ public class RxQRCode {
             }
             Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
+            hints.put(EncodeHintType.MARGIN, border+"");
             // 图像数据转换，使用了矩阵转换
             BitMatrix bitMatrix = new QRCodeWriter().encode(content + "", BarcodeFormat.QR_CODE, QR_WIDTH, QR_HEIGHT, hints);
             int[] pixels = new int[QR_WIDTH * QR_HEIGHT];
@@ -118,7 +126,7 @@ public class RxQRCode {
     }
 
     public static Bitmap creatQRCode(CharSequence content, int QR_WIDTH, int QR_HEIGHT) {
-        return creatQRCode(content, QR_WIDTH, QR_HEIGHT, 0xffffffff, 0xff000000);
+        return creatQRCode(content, QR_WIDTH, QR_HEIGHT, 1,0xffffffff, 0xff000000);
     }
 
     public static Bitmap creatQRCode(CharSequence content) {
@@ -126,13 +134,13 @@ public class RxQRCode {
     }
 
     public static Bitmap creatQRCode(CharSequence content, Bitmap logo) {
-        return creatQRCode(content, 800, 800,0xffffffff, 0xff000000, logo);
+        return creatQRCode(content, 800, 800,1,0xffffffff, 0xff000000, logo);
     }
 
     //==============================================================================================二维码算法结束
 
 
-    public static Bitmap creatQRCode(CharSequence content, int QR_WIDTH, int QR_HEIGHT, int backgroundColor, int codeColor, Bitmap logo) {
+    public static Bitmap creatQRCode(CharSequence content, int QR_WIDTH, int QR_HEIGHT, int border,int backgroundColor, int codeColor, Bitmap logo) {
         try {
             // 判断URL合法性
             if (content == null || "".equals(content) || content.length() < 1) {
@@ -154,10 +162,10 @@ public class RxQRCode {
             }
             Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
+            //设置空白边距的宽度
+            hints.put(EncodeHintType.MARGIN, border);
             //容错级别
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-            //设置空白边距的宽度
-            hints.put(EncodeHintType.MARGIN, 0);
             BitMatrix bitMatrix = new QRCodeWriter().encode(content.toString(), BarcodeFormat.QR_CODE, QR_WIDTH, QR_HEIGHT, hints);
             int[] pixels = new int[QR_WIDTH * QR_HEIGHT];
             for (int y = 0; y < QR_HEIGHT; y++) {
