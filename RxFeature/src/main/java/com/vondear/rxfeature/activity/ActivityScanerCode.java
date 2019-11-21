@@ -448,10 +448,19 @@ public class ActivityScanerCode extends ActivityBase {
             state = State.DONE;
             decodeThread.interrupt();
             CameraManager.get().stopPreview();
-            removeMessages(R.id.decode_succeeded);
-            removeMessages(R.id.decode_failed);
-            removeMessages(R.id.decode);
-            removeMessages(R.id.auto_focus);
+            Message quit = Message.obtain(decodeThread.getHandler(), R.id.quit);
+            quit.sendToTarget();
+            try {
+                decodeThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }finally {
+                removeMessages(R.id.decode_succeeded);
+                removeMessages(R.id.decode_failed);
+                removeMessages(R.id.decode);
+                removeMessages(R.id.auto_focus);
+            }
+
         }
 
         private void restartPreviewAndDecode() {
