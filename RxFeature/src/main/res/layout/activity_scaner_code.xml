@@ -120,10 +120,23 @@
             android:layout_below="@+id/ll_scan_help"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:text="将二维码图片对准扫描框即可自动扫描"
             android:textColor="@android:color/white"
             android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_scan_help"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="bottom"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:text="RxTool"
+            android:textColor="#84FFFFFF"
+            android:textSize="@dimen/text_12" />
+
 
         <LinearLayout
             android:id="@+id/ll_scan_help"
