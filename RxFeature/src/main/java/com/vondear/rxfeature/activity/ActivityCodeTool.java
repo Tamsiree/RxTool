@@ -124,6 +124,7 @@ public class ActivityCodeTool extends ActivityBase {
                             backColor(0xFFFFFFFF).
                             codeColor(0xFF000000).
                             codeSide(600).
+                            codeLogo(getResources().getDrawable(R.drawable.faviconhandsome)).
                             into(mIvQrCode);
 
                     //二维码生成方式二 默认宽和高都为800 背景为白色 二维码为黑色
