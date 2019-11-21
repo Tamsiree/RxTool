@@ -1,5 +1,7 @@
 package com.vondear.rxfeature.module.alipay;
 
+import com.vondear.rxtool.RxTimeTool;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -87,7 +89,7 @@ public class AliPayOrderTool {
 
         keyValues.put("sign_type", rsa2 ? "RSA2" : "RSA");
 
-        keyValues.put("timestamp", "2016-07-29 16:55:53");
+        keyValues.put("timestamp", RxTimeTool.getCurrentDateTime("yyyy-MM-dd- HH:mm:ss"));
 
         keyValues.put("version", "1.0");
 
@@ -98,7 +100,7 @@ public class AliPayOrderTool {
      * 构造支付订单参数信息
      *
      * @param map 支付订单参数
-     * @return
+     * @return s
      */
     public static String buildOrderParam(Map<String, String> map) {
         List<String> keys = new ArrayList<String>(map.keySet());
@@ -124,7 +126,7 @@ public class AliPayOrderTool {
      * @param key
      * @param value
      * @param isEncode
-     * @return
+     * @return s
      */
     private static String buildKeyValue(String key, String value, boolean isEncode) {
         StringBuilder sb = new StringBuilder();
