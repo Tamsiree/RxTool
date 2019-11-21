@@ -561,7 +561,7 @@ public class RxTimeTool {
 
     /**
      * 获取当前日期时间 / 得到今天的日期
-     * str yyyyMMddhhMMss 之类的
+     * str yyyy-MM-dd HH:mm:ss 之类的
      *
      * @return
      */
