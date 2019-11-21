@@ -77,6 +77,8 @@ public class ActivityRxToast extends ActivityBase {
                 Drawable icon = getResources().getDrawable(R.drawable.set);
                 RxToast.normal(mContext, "这是一个普通的包含ICON的Toast", icon).show();
                 break;
+            default:
+                break;
         }
     }
 }
