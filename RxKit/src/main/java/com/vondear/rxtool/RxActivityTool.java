@@ -47,7 +47,7 @@ public class RxActivityTool {
      */
     public static void finishActivity() {
         Activity activity = activityStack.lastElement();
-
+        activity.finish();
     }
 
     /**
