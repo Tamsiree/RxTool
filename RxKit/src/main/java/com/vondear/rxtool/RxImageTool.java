@@ -45,6 +45,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
@@ -1877,7 +1878,7 @@ public class RxImageTool {
      * @param is 输入流
      * @return bitmap
      */
-    public Bitmap getBitmap(InputStream is) {
+    public static Bitmap getBitmap(InputStream is) {
         if (is == null) {
             return null;
         }
@@ -1891,12 +1892,61 @@ public class RxImageTool {
      * @param offset 偏移量
      * @return bitmap
      */
-    public Bitmap getBitmap(byte[] data, int offset) {
+    public static Bitmap getBitmap(byte[] data, int offset) {
         if (data.length == 0) {
             return null;
         }
         return BitmapFactory.decodeByteArray(data, offset, data.length);
     }
+
+    public static Bitmap getBitmapFromNet(String imgUrl) {
+        InputStream inputStream=null;
+        ByteArrayOutputStream outputStream=null;
+        URL url = null;
+        try {
+            url=new URL(imgUrl);
+            HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setReadTimeout(2000);
+            httpURLConnection.connect();
+            if(httpURLConnection.getResponseCode()==200) {
+                //网络连接成功
+                inputStream = httpURLConnection.getInputStream();
+                outputStream = new ByteArrayOutputStream();
+                byte buffer[] = new byte[1024 * 8];
+                int len = -1;
+                while ((len = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, len);
+                }
+                byte[] bu = outputStream.toByteArray();
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bu, 0, bu.length);
+                return bitmap;
+            }else {
+                RxLogTool.d("网络连接失败----"+httpURLConnection.getResponseCode());
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }finally{
+            if(inputStream!=null){
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            if(outputStream!=null){
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
 
     /**
      * 绘制 9Path
