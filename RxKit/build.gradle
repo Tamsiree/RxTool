@@ -12,8 +12,13 @@ android {
         versionCode 1
         versionName "1.2.3"
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -29,17 +34,17 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //design包
-    compileOnly 'com.android.support:design:28.0.0'
+    compileOnly 'com.google.android.material:material:1.0.0'
 
     //appcompat包
-    compileOnly 'com.android.support:appcompat-v7:28.0.0'
+    compileOnly 'androidx.appcompat:appcompat:1.0.0'
 
     //cardView包
-    compileOnly 'com.android.support:cardview-v7:28.0.0'
+    compileOnly 'androidx.cardview:cardview:1.0.0'
     //recyclerview包
-    compileOnly 'com.android.support:recyclerview-v7:28.0.0'
-    compileOnly 'com.android.support:support-annotations:28.0.0'
-    compileOnly 'com.android.support.constraint:constraint-layout:1.1.3'
+    compileOnly 'androidx.recyclerview:recyclerview:1.0.0'
+    compileOnly 'androidx.annotation:annotation:1.0.0'
+    compileOnly 'androidx.constraintlayout:constraintlayout:1.1.3'
     //流式布局
     compileOnly 'com.google.android:flexbox:0.3.2'
     //沉浸式

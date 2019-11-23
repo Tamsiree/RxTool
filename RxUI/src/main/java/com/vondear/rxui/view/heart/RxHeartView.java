@@ -25,13 +25,15 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import com.vondear.rxui.R;
 
 
 /**
  * @author vondear
  */
-public class RxHeartView extends android.support.v7.widget.AppCompatImageView {
+public class RxHeartView extends AppCompatImageView {
 
     private static final Paint sPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
     private static final Canvas sCanvas = new Canvas();

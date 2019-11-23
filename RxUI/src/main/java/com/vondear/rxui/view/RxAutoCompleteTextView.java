@@ -3,6 +3,8 @@ package com.vondear.rxui.view;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+
 /**
  * @author vondear
  * @date 2018/2/2
@@ -10,7 +12,7 @@ import android.util.AttributeSet;
  * 解决没有输入内容时也能展示筛选内容的需求
  */
 
-public class RxAutoCompleteTextView extends android.support.v7.widget.AppCompatAutoCompleteTextView {
+public class RxAutoCompleteTextView extends AppCompatAutoCompleteTextView {
 
     public RxAutoCompleteTextView(Context context) {
         super(context);

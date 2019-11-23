@@ -4,11 +4,13 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewDebug;
 
+import androidx.appcompat.widget.AppCompatTextView;
+
 /**
  * @author vondear
  * @date 2016/6/28
  */
-public class RxRunTextView extends android.support.v7.widget.AppCompatTextView {
+public class RxRunTextView extends AppCompatTextView {
     public RxRunTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }

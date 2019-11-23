@@ -2,7 +2,7 @@ package com.vondear.rxfeature.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.widget.NestedScrollView;
+import androidx.core.widget.NestedScrollView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;

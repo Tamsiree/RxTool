@@ -3,7 +3,7 @@ package com.vondear.rxdemo.activity;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.widget.NestedScrollView;
+import androidx.core.widget.NestedScrollView;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;

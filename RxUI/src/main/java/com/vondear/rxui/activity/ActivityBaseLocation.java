@@ -8,7 +8,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 
 import com.vondear.rxtool.RxLocationTool;
 import com.vondear.rxtool.RxVibrateTool;

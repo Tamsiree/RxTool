@@ -4,8 +4,9 @@ import android.annotation.SuppressLint;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.os.Build;
-import android.support.v4.util.SparseArrayCompat;
 import android.view.SurfaceHolder;
+
+import androidx.collection.SparseArrayCompat;
 
 import java.io.IOException;
 import java.util.List;

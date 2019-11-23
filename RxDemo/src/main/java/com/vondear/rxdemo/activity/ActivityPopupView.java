@@ -1,8 +1,6 @@
 package com.vondear.rxdemo.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +12,8 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.vondear.rxdemo.R;
 import com.vondear.rxtool.model.ActionItem;
 import com.vondear.rxtool.view.RxToast;

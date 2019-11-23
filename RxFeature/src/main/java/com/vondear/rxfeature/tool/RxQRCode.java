@@ -3,8 +3,9 @@ package com.vondear.rxfeature.tool;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;

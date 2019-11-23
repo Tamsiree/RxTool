@@ -3,7 +3,6 @@ package com.vondear.camera.tool;
 import android.content.Context;
 import android.hardware.Camera;
 import android.os.SystemClock;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.vondear.camera.RxCameraView;
@@ -26,6 +25,7 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -40,8 +40,6 @@ public class RxCameraTool {
 
     /**
      * 打开闪光灯
-     *
-     * @return
      */
     public static void openFlashLight() {
         try {
@@ -60,7 +58,6 @@ public class RxCameraTool {
     /**
      * 关闭闪光灯
      *
-     * @return
      */
     public static void closeFlashLight() {
         try {
@@ -83,7 +80,11 @@ public class RxCameraTool {
             if (mCameraView.isCameraOpened()) {
                 RxVibrateTool.vibrateOnce(mContext, 150);
                 RxToast.normal("正在拍照..");
-                mCameraView.takePicture();
+                try {
+                    mCameraView.takePicture();
+                } catch (Exception var2) {
+                    RxToast.normal("你碰到问题咯");
+                }
             } else {
                 mCameraView.start();
                 RxVibrateTool.vibrateOnce(mContext, 150);

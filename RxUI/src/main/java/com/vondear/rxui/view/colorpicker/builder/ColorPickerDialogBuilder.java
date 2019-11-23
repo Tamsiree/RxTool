@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
 import android.view.Gravity;
 import android.view.View;
@@ -12,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxui.R;

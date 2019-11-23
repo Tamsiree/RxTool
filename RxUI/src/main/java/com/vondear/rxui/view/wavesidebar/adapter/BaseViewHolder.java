@@ -1,8 +1,9 @@
 package com.vondear.rxui.view.wavesidebar.adapter;
 
-import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class BaseViewHolder extends RecyclerView.ViewHolder {
 

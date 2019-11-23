@@ -6,11 +6,12 @@ import android.annotation.SuppressLint;
 import android.graphics.Outline;
 import android.graphics.Point;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.vondear.rxtool.RxAnimationTool;
 

@@ -1,6 +1,7 @@
 package com.vondear.rxui.view.scaleimage.decoder;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 /**
  * @param <T> The base type of the decoder this factory will produce.

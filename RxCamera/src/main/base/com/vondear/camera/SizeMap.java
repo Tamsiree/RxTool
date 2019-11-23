@@ -1,6 +1,7 @@
 package com.vondear.camera;
 
-import android.support.v4.util.ArrayMap;
+
+import androidx.collection.ArrayMap;
 
 import java.util.Set;
 import java.util.SortedSet;

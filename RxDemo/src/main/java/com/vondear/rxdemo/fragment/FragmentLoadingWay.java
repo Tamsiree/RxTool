@@ -2,13 +2,14 @@ package com.vondear.rxdemo.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.activity.ActivityLoadingDetail;
@@ -24,7 +25,7 @@ import com.vondear.rxui.view.progressing.sprite.Sprite;
  * Created by Vondear.
  * @author vondear
  */
-public class FragmentLoadingWay extends Fragment  {
+public class FragmentLoadingWay extends Fragment {
 
     int[] colors = new int[]{
             android.graphics.Color.parseColor("#99CCFF"),

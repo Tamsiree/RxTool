@@ -7,7 +7,9 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Looper;
-import android.support.annotation.Nullable;
+
+
+import androidx.annotation.Nullable;
 
 import com.vondear.rxtool.RxLocationTool;
 import com.vondear.rxtool.view.RxToast;

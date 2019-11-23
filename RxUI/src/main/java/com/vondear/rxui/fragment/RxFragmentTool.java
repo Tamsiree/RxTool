@@ -1,10 +1,12 @@
 package com.vondear.rxui.fragment;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 
 /**
  *
@@ -32,8 +34,8 @@ public class RxFragmentTool {
      *
      * 在布局文件中使用 FrameLayout 标签
      *
-     * @param fragmentActivity
-     * @param fragment
+     * @param fragmentActivity fragmentActivity
+     * @param fragment fragment
      * @param r_id_fragment    <FrameLayout android:id="@+id/r_id_fragment"/>
      */
     public static void showFragment(FragmentActivity fragmentActivity, Fragment fragment, int r_id_fragment) {
@@ -49,8 +51,8 @@ public class RxFragmentTool {
      *
      * 在布局文件中使用 FrameLayout 标签
      *
-     * @param activity
-     * @param fragment
+     * @param activity activity
+     * @param fragment fragment
      * @param r_id_fragment <FrameLayout android:id="@+id/r_id_fragment"/>
      */
     public static void showFragment(Activity activity, android.app.Fragment fragment, int r_id_fragment) {
@@ -68,8 +70,8 @@ public class RxFragmentTool {
      *
      * 在布局文件中使用 FrameLayout 标签
      *
-     * @param fragmentActivity
-     * @param fragmentLazy
+     * @param fragmentActivity fragmentActivity
+     * @param fragmentLazy fragmentLazy
      * @param r_id_fragment    <FrameLayout android:id="@+id/r_id_fragment"/>
      */
     public static void showFragmentLazy(FragmentActivity fragmentActivity, FragmentLazy fragmentLazy, int r_id_fragment) {

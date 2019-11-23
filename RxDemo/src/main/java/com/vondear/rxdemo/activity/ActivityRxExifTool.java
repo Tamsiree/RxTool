@@ -3,11 +3,12 @@ package com.vondear.rxdemo.activity;
 import android.Manifest;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.vondear.camera.RxCameraView;
 import com.vondear.camera.tool.RxCameraTool;

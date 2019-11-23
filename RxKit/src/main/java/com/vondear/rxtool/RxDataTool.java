@@ -1,11 +1,12 @@
 package com.vondear.rxtool;
 
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
 import android.util.SparseLongArray;
+
+import androidx.annotation.Nullable;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

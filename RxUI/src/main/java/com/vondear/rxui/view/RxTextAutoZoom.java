@@ -18,10 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.appcompat.widget.AppCompatEditText;
+
 /**
  * @author vondear
  */
-public class RxTextAutoZoom extends android.support.v7.widget.AppCompatEditText {
+public class RxTextAutoZoom extends AppCompatEditText {
     private static final int NO_LINE_LIMIT = -1;
     private final RectF availableSpaceRect = new RectF();
     private final SparseIntArray textCachedSizes = new SparseIntArray();

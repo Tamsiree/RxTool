@@ -1,6 +1,7 @@
 package com.vondear.rxui.view.wavesidebar.adapter;
 
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public interface OnItemClickListener {
 
