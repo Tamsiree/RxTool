@@ -11,6 +11,21 @@
 	但是有时候急需使用却苦苦搜寻不到，于是整理了自己平常用到的工具类，以便以后的使用。
 
 
+---
+
+# 我的运行环境
+> Android Studio 3.5.2  
+> Build #AI-191.8026.42.35.5977832, built on October 31, 2019  
+> JRE: 1.8.0_202-release-1483-b49-5587405 amd64  
+> JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o  
+> Linux 5.3.11-1-MANJARO  
+>
+> targetSdkVersion 28  
+> [gradle-wrapper.properties文件内] distributionUrl 5.4.1  
+> [build.gradle文件内] gradle 3.5.2
+
+---
+
 # 如何使用它
 
 
