@@ -2,7 +2,7 @@
 
 [![Gradle-4.10.1](https://img.shields.io/badge/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2-Tamsiree-brightgreen.svg)](https://tamsiree.github.io/)  [![Stars](https://badgen.net/github/stars/tamsiree/RxTool)](https://ghbtns.com/github-btn.html?user=tamsiree&repo=rxtool&type=star)  [![RxTool](https://jitpack.io/v/tamsiree/RxTool.svg)](https://jitpack.io/#tamsiree/RxTool)  
 
-[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)  [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)  [![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-14%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![Gradle-4.10.1](https://img.shields.io/badge/Gradle-4.10.1-brightgreen.svg)](https://img.shields.io/badge/Gradle-4.10.1-brightgreen.svg)  
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)  [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)  [![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-17%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=17)  [![Gradle-5.4.1](https://img.shields.io/badge/Gradle-5.4.1-brightgreen.svg)](https://img.shields.io/badge/Gradle-5.4.1-brightgreen.svg)  
   
 ![image](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/DeskTop/miku.png)
 
@@ -19,7 +19,6 @@
 ```gradle
 allprojects {
     repositories {
-        ...
         maven { url "https://jitpack.io" }
     }
 }
@@ -29,15 +28,17 @@ allprojects {
 ```gradle
 dependencies {
   //基础工具库
-  implementation "com.github.tamsiree.RxTool:RxKit:2.4.0"
+  implementation "com.github.tamsiree.RxTool:RxKit:v2.4.1"
   //UI库
-  implementation "com.github.tamsiree.RxTool:RxUI:2.4.0"
+  implementation "com.github.tamsiree.RxTool:RxUI:v2.4.1"
+  //(依赖RxUI库时，需要额外依赖 cardview 库)
+      implementation 'com.android.support:cardview-v7:27.1.1'
   //相机库
-  implementation "com.github.tamsiree.RxTool:RxCamera:2.4.0"
+  implementation "com.github.tamsiree.RxTool:RxCamera:v2.4.1"
   //功能库（Zxing扫描与生成二维码条形码 支付宝 微信）
-  implementation "com.github.tamsiree.RxTool:RxFeature:2.4.0"
+  implementation "com.github.tamsiree.RxTool:RxFeature:v2.4.1"
   //ArcGis For Android工具库（API：100.1以上版本）
-  implementation "com.github.tamsiree.RxTool:RxArcGisKit:2.4.0"
+  implementation "com.github.tamsiree.RxTool:RxArcGisKit:v2.4.1"
 }
 ```
 
@@ -62,6 +63,7 @@ RxTool.init(this);
 
 |  VERSION  |  Description  |
 | :-------: | ------------- |
+|   2.4.1   | 完善 RxArcGisKit 模块  |
 |   **2.4.0**   | **`全面升级到 Android X`**:<br>修复 RxToast 在 Android 9 上,连点只弹出一次的问题<br>修复 二维码扫描框的焦点偏离 问题<br>添加 生成二维码LOGO 功能<br>添加 RxQRCode 的空白边界设置方法<br>更新若干工具类  |
 |   2.3.9   | 完善 RxFeature 模块  |
 |   2.3.8   | 优化 RxFeature 模块  |
