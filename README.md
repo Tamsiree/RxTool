@@ -29,15 +29,15 @@ allprojects {
 ```gradle
 dependencies {
   //基础工具库
-  implementation "com.github.tamsiree.RxTool:RxKit:2.3.9"
+  implementation "com.github.tamsiree.RxTool:RxKit:2.4.0"
   //UI库
-  implementation "com.github.tamsiree.RxTool:RxUI:2.3.9"
+  implementation "com.github.tamsiree.RxTool:RxUI:2.4.0"
   //相机库
-  implementation "com.github.tamsiree.RxTool:RxCamera:2.3.9"
+  implementation "com.github.tamsiree.RxTool:RxCamera:2.4.0"
   //功能库（Zxing扫描与生成二维码条形码 支付宝 微信）
-  implementation "com.github.tamsiree.RxTool:RxFeature:2.3.9"
+  implementation "com.github.tamsiree.RxTool:RxFeature:2.4.0"
   //ArcGis For Android工具库（API：100.1以上版本）
-  implementation "com.github.tamsiree.RxTool:RxArcGisKit:2.3.9"
+  implementation "com.github.tamsiree.RxTool:RxArcGisKit:2.4.0"
 }
 ```
 
@@ -62,6 +62,7 @@ RxTool.init(this);
 
 |  VERSION  |  Description  |
 | :-------: | ------------- |
+|   **2.4.0**   | **`全面升级到 Android X`**:<br>修复 RxToast 在 Android 9 上,连点只弹出一次的问题<br>修复 二维码扫描框的焦点偏离 问题<br>添加 生成二维码LOGO 功能<br>添加 RxQRCode 的空白边界设置方法<br>更新若干工具类  |
 |   2.3.9   | 完善 RxFeature 模块  |
 |   2.3.8   | 优化 RxFeature 模块  |
 |   2.3.7   | 更新 RxFeature 模块  |
