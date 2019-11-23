@@ -11,10 +11,11 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.esri.arcgisruntime.mapping.view.MapView;
 import com.vondear.rxarcgiskit.R;
