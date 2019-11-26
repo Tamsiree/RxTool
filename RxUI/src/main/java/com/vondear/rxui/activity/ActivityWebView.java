@@ -1,6 +1,7 @@
 package com.vondear.rxui.activity;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -33,7 +34,10 @@ import com.vondear.rxui.view.RxTextAutoZoom;
  */
 public class ActivityWebView extends ActivityBase {
 
-    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    /**
+     * milliseconds, desired time passed between two back presses.
+     */
+    private static final int TIME_INTERVAL = 2000;
     ProgressBar pbWebBase;
     TextView tvTitle;
     WebView webBase;
@@ -42,6 +46,7 @@ public class ActivityWebView extends ActivityBase {
     LinearLayout llIncludeTitle;
     private String webPath = "";
     private long mBackPressed;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,28 +99,38 @@ public class ActivityWebView extends ActivityBase {
         RxKeyboardTool.hideSoftInput(this);
     }
 
+    @SuppressLint({"SetJavaScriptEnabled", "ObsoleteSdkInt"})
     private void initData() {
-        pbWebBase.setMax(100);//设置加载进度最大值
+        //设置加载进度最大值
+        pbWebBase.setMax(100);
+
 //        webPath = getIntent().getStringExtra("URL");
-        webPath = RxConstants.URL_BAIDU_SEARCH;//加载的URL
+
+        //加载的URL
+        webPath = RxConstants.URL_BAIDU_SEARCH;
         if (webPath.equals("")) {
             webPath = "http://www.baidu.com";
         }
         WebSettings webSettings = webBase.getSettings();
         if (Build.VERSION.SDK_INT >= 19) {
-            webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);//加载缓存否则网络
+            //加载缓存否则网络
+            webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         }
 
         if (Build.VERSION.SDK_INT >= 19) {
-            webSettings.setLoadsImagesAutomatically(true);//图片自动缩放 打开
+            //图片自动缩放 打开
+            webSettings.setLoadsImagesAutomatically(true);
         } else {
-            webSettings.setLoadsImagesAutomatically(false);//图片自动缩放 关闭
+            //图片自动缩放 关闭
+            webSettings.setLoadsImagesAutomatically(false);
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            webBase.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//软件解码
+            //软件解码
+            webBase.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
-        webBase.setLayerType(View.LAYER_TYPE_HARDWARE, null);//硬件解码
+        //硬件解码
+        webBase.setLayerType(View.LAYER_TYPE_HARDWARE, null);
 
 //        webSettings.setAllowContentAccess(true);
 //        webSettings.setAllowFileAccessFromFileURLs(true);
@@ -127,20 +142,30 @@ public class ActivityWebView extends ActivityBase {
 
         // setMediaPlaybackRequiresUserGesture(boolean require) //是否需要用户手势来播放Media，默认true
 
-        webSettings.setJavaScriptEnabled(true); // 设置支持javascript脚本
+        // 设置支持javascript脚本
+        webSettings.setJavaScriptEnabled(true);
+
 //        webSettings.setPluginState(WebSettings.PluginState.ON);
-        webSettings.setSupportZoom(true);// 设置可以支持缩放
-        webSettings.setBuiltInZoomControls(true);// 设置出现缩放工具 是否使用WebView内置的缩放组件，由浮动在窗口上的缩放控制和手势缩放控制组成，默认false
 
-        webSettings.setDisplayZoomControls(false);//隐藏缩放工具
-        webSettings.setUseWideViewPort(true);// 扩大比例的缩放
+        // 设置可以支持缩放
+        webSettings.setSupportZoom(true);
+        // 设置出现缩放工具 是否使用WebView内置的缩放组件，由浮动在窗口上的缩放控制和手势缩放控制组成，默认false
+        webSettings.setBuiltInZoomControls(true);
 
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);//自适应屏幕
+        //隐藏缩放工具
+        webSettings.setDisplayZoomControls(false);
+        // 扩大比例的缩放
+        webSettings.setUseWideViewPort(true);
+
+        //自适应屏幕
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webSettings.setLoadWithOverviewMode(true);
 
-        webSettings.setDatabaseEnabled(true);//
-        webSettings.setSavePassword(true);//保存密码
-        webSettings.setDomStorageEnabled(true);//是否开启本地DOM存储  鉴于它的安全特性（任何人都能读取到它，尽管有相应的限制，将敏感数据存储在这里依然不是明智之举），Android 默认是关闭该功能的。
+        webSettings.setDatabaseEnabled(true);
+        //保存密码
+        webSettings.setSavePassword(true);
+        //是否开启本地DOM存储  鉴于它的安全特性（任何人都能读取到它，尽管有相应的限制，将敏感数据存储在这里依然不是明智之举），Android 默认是关闭该功能的。
+        webSettings.setDomStorageEnabled(true);
         webBase.setSaveEnabled(true);
         webBase.setKeepScreenOn(true);
 
@@ -212,6 +237,12 @@ public class ActivityWebView extends ActivityBase {
 //        webBase.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,webBase.getHeight()));
     }
 
+    public void setWebPath(String url) {
+        webPath = url;
+        webBase.loadUrl(webPath);
+        Log.v("设置新的URL：", webPath);
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle paramBundle) {
         super.onSaveInstanceState(paramBundle);
@@ -228,6 +259,7 @@ public class ActivityWebView extends ActivityBase {
                 Log.v("Himi", "onConfigurationChanged_ORIENTATION_PORTRAIT");
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
