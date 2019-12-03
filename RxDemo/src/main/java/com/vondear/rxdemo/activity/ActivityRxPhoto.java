@@ -20,6 +20,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.vondear.rxdemo.R;
 import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxPhotoTool;
 import com.vondear.rxtool.RxSPTool;
 import com.vondear.rxui.activity.ActivityBase;
@@ -84,6 +85,7 @@ public class ActivityRxPhoto extends ActivityBase {
         RxBarTool.noTitle(this);
         setContentView(R.layout.activity_von_photo);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         initView();
     }
 

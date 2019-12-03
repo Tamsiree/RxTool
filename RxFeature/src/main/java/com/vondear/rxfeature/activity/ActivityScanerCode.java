@@ -14,8 +14,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.provider.MediaStore;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -23,6 +21,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.BinaryBitmap;
@@ -42,6 +43,7 @@ import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxtool.RxBeepTool;
 import com.vondear.rxtool.RxConstants;
 import com.vondear.rxtool.RxDataTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxPhotoTool;
 import com.vondear.rxtool.RxSPTool;
 import com.vondear.rxtool.view.RxToast;
@@ -136,6 +138,7 @@ public class ActivityScanerCode extends ActivityBase {
         RxBarTool.setNoTitle(this);
         setContentView(R.layout.activity_scaner_code);
         RxBarTool.setTransparentStatusBar(this);
+        RxDeviceTool.setPortrait(this);
         //界面控件初始化
         initDecode();
         initView();

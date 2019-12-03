@@ -2,11 +2,12 @@ package com.vondear.rxfeature.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.core.widget.NestedScrollView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.core.widget.NestedScrollView;
 
 import com.vondear.rxfeature.R;
 import com.vondear.rxfeature.tool.RxBarCode;
@@ -14,6 +15,7 @@ import com.vondear.rxfeature.tool.RxQRCode;
 import com.vondear.rxtool.RxActivityTool;
 import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxtool.RxDataTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxtool.RxSPTool;
 import com.vondear.rxtool.view.RxToast;
@@ -56,6 +58,7 @@ public class ActivityCodeTool extends ActivityBase {
         RxBarTool.noTitle(this);
         RxBarTool.setTransparentStatusBar(this);
         setContentView(R.layout.activity_code_tool);
+        RxDeviceTool.setPortrait(this);
         initView();
         initEvent();
     }

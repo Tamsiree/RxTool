@@ -5,6 +5,7 @@ import android.widget.LinearLayout;
 
 import com.vondear.rxdemo.R;
 import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxSeatMovie;
 import com.vondear.rxui.view.RxTitle;
@@ -31,6 +32,7 @@ public class ActivityMovieSeat extends ActivityBase {
         RxBarTool.setTransparentStatusBar(this);
         setContentView(R.layout.activity_movie_seat);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         initView();
     }
 

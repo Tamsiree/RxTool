@@ -52,7 +52,11 @@ public class PinnedHeaderDecoration extends RecyclerView.ItemDecoration {
 
             mClipBounds = c.getClipBounds();
             mClipBounds.top = mPinnedHeaderTop + mPinnedHeaderView.getHeight();
-            c.clipRect(mClipBounds);
+            if (Build.VERSION.SDK_INT >= 27) {
+                c.clipRect(mClipBounds);
+            } else {
+                c.clipRect(mClipBounds, Region.Op.UNION);
+            }
         }
     }
 

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.model.ActionItem;
 import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBase;
@@ -85,6 +86,7 @@ public class ActivityPopupView extends ActivityBase implements RxPopupViewManage
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup_view);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         initView();
     }
 

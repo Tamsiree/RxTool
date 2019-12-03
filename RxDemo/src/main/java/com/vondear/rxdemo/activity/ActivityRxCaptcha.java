@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxCaptcha;
@@ -58,6 +59,7 @@ public class ActivityRxCaptcha extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_captcha);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         initView();
     }
 

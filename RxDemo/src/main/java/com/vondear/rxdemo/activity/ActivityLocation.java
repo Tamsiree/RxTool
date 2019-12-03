@@ -18,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxLocationTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
@@ -51,6 +52,7 @@ public class ActivityLocation extends ActivityBase implements LocationListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         mRxTitle.setLeftFinish(mContext);
         initLocation();
         gpsCheck();

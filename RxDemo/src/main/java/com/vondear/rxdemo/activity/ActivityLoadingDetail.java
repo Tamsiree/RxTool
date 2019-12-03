@@ -15,6 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.tools.EvaluatorARGB;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.view.progressing.SpinKitView;
 import com.vondear.rxui.view.progressing.SpriteFactory;
 import com.vondear.rxui.view.progressing.Style;
@@ -49,7 +50,7 @@ public class ActivityLoadingDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_detail);
-
+        RxDeviceTool.setPortrait(this);
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setOffscreenPageLimit(0);
         viewPager.setAdapter(new PagerAdapter() {

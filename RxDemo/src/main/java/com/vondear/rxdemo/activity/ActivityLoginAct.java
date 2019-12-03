@@ -3,7 +3,6 @@ package com.vondear.rxdemo.activity;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Bundle;
-import androidx.core.widget.NestedScrollView;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -22,9 +21,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.widget.NestedScrollView;
+
 import com.vondear.rxdemo.R;
 import com.vondear.rxtool.RxAnimationTool;
 import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxKeyboardTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.activity.AndroidBug5497Workaround;
@@ -78,6 +80,7 @@ public class ActivityLoginAct extends ActivityBase {
         RxBarTool.setTransparentStatusBar(this);//状态栏透明化
         RxBarTool.StatusBarLightMode(mContext);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
 
         if (isFullScreen(this)) {
             AndroidBug5497Workaround.assistActivity(this);

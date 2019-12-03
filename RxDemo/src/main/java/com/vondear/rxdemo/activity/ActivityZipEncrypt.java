@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxFileTool;
 import com.vondear.rxtool.RxZipTool;
 import com.vondear.rxtool.view.RxToast;
@@ -60,6 +61,7 @@ public class ActivityZipEncrypt extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zip_encrypt);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         mRxTitle.setLeftFinish(mContext);
         zipParentPath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxTool";
         zipTempDeletePath = RxFileTool.getRootPath().getAbsolutePath() + File.separator + "RxTool" + File.separator + "RxTempTool";

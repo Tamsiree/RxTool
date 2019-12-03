@@ -13,6 +13,7 @@ import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.adapter.AdapterRecyclerViewMain;
 import com.vondear.rxdemo.model.ModelMainItem;
 import com.vondear.rxfeature.activity.ActivityCodeTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxtool.RxPermissionsTool;
 import com.vondear.rxtool.RxRecyclerViewDividerTool;
@@ -44,6 +45,7 @@ public class ActivityMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         mContext = this;
         initData();
         initView();

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.model.ModelContactCity;
 import com.vondear.rxui.view.RxTitle;
@@ -43,6 +44,7 @@ public class ActivityContact extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         initView();
     }
 

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.view.RxPinView;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 import com.vondear.rxui.view.scaleimage.ImageSource;
@@ -32,7 +33,7 @@ public class ActivityRxScaleImageView extends ActivityBase implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_scale_image_view);
-
+        RxDeviceTool.setPortrait(this);
         RxTitle rxTitle = (RxTitle) findViewById(R.id.rx_title);
         rxTitle.setLeftFinish(mContext);
 

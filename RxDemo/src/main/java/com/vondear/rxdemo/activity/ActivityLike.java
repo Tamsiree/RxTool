@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 import com.vondear.rxui.view.heart.RxHeartLayout;
@@ -59,6 +60,7 @@ public class ActivityLike extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         mRxTitle.setLeftFinish(mContext);
 
         mRxShineButton.init(this);

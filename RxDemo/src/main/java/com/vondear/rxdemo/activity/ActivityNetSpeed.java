@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxNetSpeedView;
 import com.vondear.rxui.view.RxTitle;
@@ -36,6 +37,7 @@ public class ActivityNetSpeed extends ActivityBase {
         setContentView(R.layout.activity_net_speed);
         ButterKnife.bind(this);
         mRxTitle.setLeftFinish(mContext);
+        RxDeviceTool.setPortrait(this);
     }
 
     @OnClick({R.id.button2, R.id.button3})

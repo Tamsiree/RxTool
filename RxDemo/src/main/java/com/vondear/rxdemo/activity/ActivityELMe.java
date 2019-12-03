@@ -30,6 +30,7 @@ import com.vondear.rxdemo.model.ModelShopCart;
 import com.vondear.rxdemo.view.RxDialogShopCart;
 import com.vondear.rxdemo.view.RxFakeAddImageView;
 import com.vondear.rxdemo.view.RxPointFTypeEvaluator;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 
@@ -77,6 +78,7 @@ public class ActivityELMe extends ActivityBase implements AdapterLeftMenu.onItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elme);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         mRxTitle.setLeftFinish(mContext);
         initData();
         initView();
