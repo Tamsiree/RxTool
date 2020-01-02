@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import com.vondear.rxdemo.R;
 import com.vondear.rxtool.RxActivityTool;
 import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxShoppingView;
 import com.vondear.rxui.view.RxTitle;
@@ -37,6 +38,7 @@ public class ActivityShoppingView extends ActivityBase {
         RxBarTool.noTitle(this);
         setContentView(R.layout.activity_shopping_view);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         mRxTitle.setLeftFinish(mContext);
 
     }

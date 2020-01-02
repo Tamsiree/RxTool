@@ -9,6 +9,7 @@ import android.widget.EditText;
 import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.model.CityModel;
 import com.vondear.rxdemo.tools.RxPullXml;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 
 import java.io.IOException;
@@ -39,6 +40,7 @@ public class ActivityXmlParse extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xml_parse);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
     }
 
     @OnClick(R.id.btn_parse_xml)

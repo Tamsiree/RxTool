@@ -88,6 +88,7 @@ public class ActivityDeviceInfo extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_info);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         mRxTitle.setLeftFinish(mContext);
     }
 

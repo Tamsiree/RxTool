@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
@@ -43,6 +44,7 @@ public class ActivityRxToast extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_toast);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         initView();
     }
 
@@ -76,6 +78,8 @@ public class ActivityRxToast extends ActivityBase {
             case R.id.button_normal_toast_w_icon:
                 Drawable icon = getResources().getDrawable(R.drawable.set);
                 RxToast.normal(mContext, "这是一个普通的包含ICON的Toast", icon).show();
+                break;
+            default:
                 break;
         }
     }

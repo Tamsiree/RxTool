@@ -37,8 +37,6 @@ import android.os.Build.VERSION;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
-import android.support.annotation.AnyThread;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -47,6 +45,9 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
+
+import androidx.annotation.AnyThread;
+import androidx.annotation.NonNull;
 
 import com.vondear.rxui.R;
 import com.vondear.rxui.view.scaleimage.decoder.CompatDecoderFactory;
@@ -310,7 +311,7 @@ public class RxScaleImageView extends View {
             if (typedAttr.hasValue(R.styleable.RxScaleImageView_src)) {
                 int resId = typedAttr.getResourceId(R.styleable.RxScaleImageView_src, 0);
                 if (resId > 0) {
-                    setImage(ImageSource.resource(resId).tilingEnabled());
+                    setImage(ImageSource.newImageResource(resId).tilingEnabled());
                 }
             }
             if (typedAttr.hasValue(R.styleable.RxScaleImageView_panEnabled)) {

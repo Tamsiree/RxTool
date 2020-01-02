@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 
 import com.vondear.rxdemo.R;
 import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxSeatAirplane;
 import com.vondear.rxui.view.RxTitle;
@@ -40,6 +41,7 @@ public class ActivityFlightSeat extends ActivityBase {
         RxBarTool.setTransparentStatusBar(this);
         setContentView(R.layout.activity_flight_seat);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         mRxTitle.setLeftFinish(mContext);
         initView();
 

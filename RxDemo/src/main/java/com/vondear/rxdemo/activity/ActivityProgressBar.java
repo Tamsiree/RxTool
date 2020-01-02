@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.vondear.rxdemo.R;
 import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxtool.RxDataTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxProgressBar;
 import com.vondear.rxui.view.RxRoundProgress;
@@ -140,6 +141,7 @@ public class ActivityProgressBar extends ActivityBase {
         RxBarTool.noTitle(this);
         setContentView(R.layout.activity_progress_bar);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         initView();
         initRoundProgress();
         initLineProgress();

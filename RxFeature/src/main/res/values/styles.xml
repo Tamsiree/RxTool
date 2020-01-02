@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TickerTextAppearanceCodeTool">
+        <item name="android:textColor">#f0f0f0</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+
+</resources>

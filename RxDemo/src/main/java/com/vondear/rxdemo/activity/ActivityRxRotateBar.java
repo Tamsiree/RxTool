@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxRotateBar;
@@ -42,7 +43,7 @@ public class ActivityRxRotateBar extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_rotate_bar);
         ButterKnife.bind(this);
-
+        RxDeviceTool.setPortrait(this);
         initView();
     }
 

@@ -3,16 +3,18 @@ package com.vondear.rxdemo.activity;
 import android.Manifest;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.vondear.camera.RxCameraView;
 import com.vondear.camera.tool.RxCameraTool;
 import com.vondear.rxdemo.R;
 import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxFileTool;
 import com.vondear.rxtool.RxLocationTool;
 import com.vondear.rxtool.RxPermissionsTool;
@@ -60,6 +62,7 @@ public class ActivityRxExifTool extends ActivityBaseLocation {
         RxBarTool.setTransparentStatusBar(this);
         setContentView(R.layout.activity_rx_exif_tool);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
 
         RxPermissionsTool.
                 with(mContext).

@@ -8,11 +8,12 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.preference.Preference;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
 
 import com.vondear.rxui.R;
 import com.vondear.rxui.view.colorpicker.builder.ColorPickerClickListener;

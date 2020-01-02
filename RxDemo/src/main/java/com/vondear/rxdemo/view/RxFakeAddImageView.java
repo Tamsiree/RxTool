@@ -4,10 +4,12 @@ import android.content.Context;
 import android.graphics.PointF;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 /**
  * @author vondear
  */
-public class RxFakeAddImageView extends android.support.v7.widget.AppCompatImageView {
+public class RxFakeAddImageView extends AppCompatImageView {
     private PointF mPointF;
 
     public RxFakeAddImageView(Context context) {

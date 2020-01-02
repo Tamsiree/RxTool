@@ -9,6 +9,7 @@ import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.SelfInfo;
 import com.vondear.rxfeature.module.alipay.AliPayModel;
 import com.vondear.rxfeature.module.alipay.AliPayTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxTimeTool;
 import com.vondear.rxtool.interfaces.OnSuccessAndErrorListener;
 import com.vondear.rxtool.view.RxToast;
@@ -34,6 +35,7 @@ public class ActivityAliPay extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ali_pay);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
     }
 
     @OnClick({R.id.payV2, R.id.authV2, R.id.h5pay})

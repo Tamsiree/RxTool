@@ -11,6 +11,7 @@ import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.model.ModelSVG;
 import com.vondear.rxtool.RxActivityTool;
 import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 
 import butterknife.BindView;
@@ -40,6 +41,7 @@ public class ActivitySVG extends ActivityBase {
         RxBarTool.hideStatusBar(this);
         setContentView(R.layout.activity_svg);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         setSvg(ModelSVG.values()[4]);
         CheckUpdate();
     }

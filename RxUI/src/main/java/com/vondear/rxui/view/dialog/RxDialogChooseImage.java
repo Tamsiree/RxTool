@@ -1,11 +1,12 @@
 package com.vondear.rxui.view.dialog;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.vondear.rxtool.RxPhotoTool;
 import com.vondear.rxui.R;

@@ -9,15 +9,16 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
-import android.support.annotation.CheckResult;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.CheckResult;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 
 import com.vondear.rxtool.R;
 import com.vondear.rxtool.RxTool;
@@ -231,10 +232,14 @@ public class RxToast {
     public static Toast custom(@NonNull Context context, @NonNull String message, Drawable icon, @ColorInt int textColor, @ColorInt int tintColor, int duration, boolean withIcon, boolean shouldTint) {
         if (currentToast == null) {
             currentToast = new Toast(context);
+        } else {
+            currentToast.cancel();
+            currentToast = null;
+            currentToast = new Toast(context);
         }
         final View toastLayout = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.toast_layout, null);
-        final ImageView toastIcon =  toastLayout.findViewById(R.id.toast_icon);
-        final TextView toastTextView =  toastLayout.findViewById(R.id.toast_text);
+        final ImageView toastIcon = toastLayout.findViewById(R.id.toast_icon);
+        final TextView toastTextView = toastLayout.findViewById(R.id.toast_text);
         Drawable drawableFrame;
 
         if (shouldTint) {
@@ -350,6 +355,7 @@ public class RxToast {
      *
      * @param resId String资源ID
      */
+    @SuppressLint("ShowToast")
     public static void showToast(int resId) {
         if (mToast == null) {
             mToast = Toast.makeText(RxTool.getContext(), RxTool.getContext().getString(resId), Toast.LENGTH_LONG);

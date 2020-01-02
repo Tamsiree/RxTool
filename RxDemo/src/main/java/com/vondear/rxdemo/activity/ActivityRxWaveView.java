@@ -2,14 +2,16 @@ package com.vondear.rxdemo.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxui.view.colorpicker.ColorPickerView;
 import com.vondear.rxui.view.colorpicker.OnColorChangedListener;
@@ -58,7 +60,7 @@ public class ActivityRxWaveView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_wave_view);
         ButterKnife.bind(this);
-
+        RxDeviceTool.setPortrait(this);
         mWave.setBorder(mBorderWidth, mBorderColor);
         mWaveHelper = new RxWaveHelper(mWave);
 

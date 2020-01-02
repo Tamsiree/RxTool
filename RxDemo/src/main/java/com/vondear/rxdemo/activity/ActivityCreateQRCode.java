@@ -13,6 +13,7 @@ import com.vondear.rxdemo.R;
 import com.vondear.rxfeature.tool.RxBarCode;
 import com.vondear.rxfeature.tool.RxQRCode;
 import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 
@@ -65,6 +66,7 @@ public class ActivityCreateQRCode extends ActivityBase implements View.OnClickLi
         setContentView(R.layout.activity_create_qrcode);
         RxBarTool.setTransparentStatusBar(mContext);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         initView();
         initData();
         AuthCode(mTvTimeSecond, second);

@@ -2,8 +2,6 @@ package com.vondear.rxdemo.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +9,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.vondear.rxdemo.R;
 import com.vondear.rxui.view.progressing.style.Circle;
@@ -22,7 +23,7 @@ import com.vondear.rxui.view.progressing.style.Wave;
  * Created by Vondear.
  * @author vondear
  */
-public class FragmentLoadingDemo extends Fragment{
+public class FragmentLoadingDemo extends Fragment {
 
     int[] colors = new int[]{
             android.graphics.Color.parseColor("#89CFF0"),

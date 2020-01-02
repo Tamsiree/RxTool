@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxTextTool;
 import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBase;
@@ -37,6 +38,7 @@ public class ActivityTextTool extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_utils);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         setTransparentStatusBar(this);
         mContext = this;
         initView();

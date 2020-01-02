@@ -5,11 +5,12 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.annotation.Nullable;
-import android.support.annotation.UiThread;
-import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.UiThread;
+import androidx.annotation.WorkerThread;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class RxMagic implements Handler.Callback {
         mHandler = new Handler(Looper.getMainLooper(), this);
     }
 
-    public static Builder with(Context context) {
+    public static Builder createBuilder(Context context) {
         return new Builder(context);
     }
 

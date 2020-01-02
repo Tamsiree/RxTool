@@ -74,6 +74,7 @@ public class ActivitySplash extends ActivityBase {
         super.onCreate(savedInstanceState);
         RxBarTool.hideStatusBar(this);//隐藏状态栏 并 全屏
         setContentView(R.layout.activity_splash);
+        RxDeviceTool.setPortrait(this);
         context = this;
         initView();
         CheckUpdate();

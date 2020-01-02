@@ -5,6 +5,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxSeekBar;
 import com.vondear.rxui.view.RxTitle;
@@ -43,7 +44,7 @@ public class ActivitySeekBar extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seek_bar);
         ButterKnife.bind(this);
-
+        RxDeviceTool.setPortrait(this);
         mRxTitle.setLeftFinish(mContext);
 
         mSeekbar1.setValue(10);

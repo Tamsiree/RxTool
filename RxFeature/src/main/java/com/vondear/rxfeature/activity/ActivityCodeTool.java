@@ -1,11 +1,13 @@
 package com.vondear.rxfeature.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.core.widget.NestedScrollView;
 
 import com.vondear.rxfeature.R;
 import com.vondear.rxfeature.tool.RxBarCode;
@@ -13,6 +15,8 @@ import com.vondear.rxfeature.tool.RxQRCode;
 import com.vondear.rxtool.RxActivityTool;
 import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxtool.RxDataTool;
+import com.vondear.rxtool.RxDeviceTool;
+import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxtool.RxSPTool;
 import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBase;
@@ -54,6 +58,7 @@ public class ActivityCodeTool extends ActivityBase {
         RxBarTool.noTitle(this);
         RxBarTool.setTransparentStatusBar(this);
         setContentView(R.layout.activity_code_tool);
+        RxDeviceTool.setPortrait(this);
         initView();
         initEvent();
     }
@@ -101,7 +106,12 @@ public class ActivityCodeTool extends ActivityBase {
     }
 
     private void initEvent() {
+        mRxTitle.setLeftIconVisibility(true);
+        mRxTitle.setTitleColor(Color.WHITE);
+        mRxTitle.setTitleSize(RxImageTool.dp2px(20));
         mRxTitle.setLeftFinish(mContext);
+
+        mRxTickerViewScan.setAnimationDuration(500);
 
         mIvCreateQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +127,8 @@ public class ActivityCodeTool extends ActivityBase {
                             backColor(0xFFFFFFFF).
                             codeColor(0xFF000000).
                             codeSide(600).
+                            codeLogo(getResources().getDrawable(R.drawable.faviconhandsome)).
+                            codeBorder(1).
                             into(mIvQrCode);
 
                     //二维码生成方式二 默认宽和高都为800 背景为白色 二维码为黑色

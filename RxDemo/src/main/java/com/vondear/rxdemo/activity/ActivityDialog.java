@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.vondear.rxdemo.R;
 import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 import com.vondear.rxui.view.dialog.RxDialog;
@@ -61,6 +62,7 @@ public class ActivityDialog extends ActivityBase {
         setContentView(R.layout.activity_dialog);
         RxBarTool.setTransparentStatusBar(this);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         initView();
     }
 

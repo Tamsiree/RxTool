@@ -1,10 +1,11 @@
 package com.vondear.rxui.view.popupwindows.tools;
 
 import android.content.Context;
-import android.support.annotation.IntDef;
 import android.text.Spannable;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.IntDef;
 
 import com.vondear.rxui.R;
 

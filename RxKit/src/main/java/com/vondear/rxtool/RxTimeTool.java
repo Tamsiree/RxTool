@@ -316,7 +316,7 @@ public class RxTimeTool {
      *                     </ul>
      * @return unit时间戳
      */
-    private static long milliseconds2Unit(long milliseconds, TimeUnit unit) {
+    public static long milliseconds2Unit(long milliseconds, TimeUnit unit) {
         switch (unit) {
             case MSEC:
                 return milliseconds / MSEC;
@@ -561,7 +561,7 @@ public class RxTimeTool {
 
     /**
      * 获取当前日期时间 / 得到今天的日期
-     * str yyyyMMddhhMMss 之类的
+     * str yyyy-MM-dd HH:mm:ss 之类的
      *
      * @return
      */

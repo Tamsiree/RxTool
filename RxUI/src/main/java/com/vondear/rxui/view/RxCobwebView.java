@@ -8,12 +8,13 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Scroller;
+
+import androidx.annotation.NonNull;
 
 import com.vondear.rxtool.RxImageTool;
 import com.vondear.rxtool.model.ModelSpider;

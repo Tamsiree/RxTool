@@ -231,7 +231,7 @@ public class RxProgressBar extends View implements Runnable {
         pgPaint.setColor(progressColor);
 
         float right = (progress / maxProgress) * getMeasuredWidth();
-        pgCanvas.save(Canvas.CLIP_SAVE_FLAG);
+        pgCanvas.save();//Canvas.CLIP_SAVE_FLAG
         pgCanvas.clipRect(0, 0, right, getMeasuredHeight());
         pgCanvas.drawColor(progressColor);
         pgCanvas.restore();
@@ -278,7 +278,7 @@ public class RxProgressBar extends View implements Runnable {
         float yCoordinate = (getMeasuredHeight() + tHeight) / 2;
         float progressWidth = (progress / maxProgress) * getMeasuredWidth();
         if (progressWidth > xCoordinate) {
-            canvas.save(Canvas.CLIP_SAVE_FLAG);
+            canvas.save();//Canvas.CLIP_SAVE_FLAG
             float right = Math.min(progressWidth, xCoordinate + tWidth * 1.1f);
             canvas.clipRect(xCoordinate, 0, right, getMeasuredHeight());
             canvas.drawText(progressText, xCoordinate, yCoordinate, textPaint);

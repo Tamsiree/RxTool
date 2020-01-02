@@ -1,14 +1,16 @@
 package com.vondear.rxdemo.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.vondear.rxdemo.R;
 import com.vondear.rxdemo.adapter.AdapterStackTest;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.RxTool;
 import com.vondear.rxtool.interfaces.OnSimpleListener;
 import com.vondear.rxui.view.cardstack.RxCardStackView;
@@ -65,7 +67,7 @@ public class ActivityCardStack extends AppCompatActivity implements RxCardStackV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_stack);
         ButterKnife.bind(this);
-
+        RxDeviceTool.setPortrait(this);
         mStackView.setItemExpendListener(this);
         mTestStackAdapter = new AdapterStackTest(this);
         mStackView.setAdapter(mTestStackAdapter);

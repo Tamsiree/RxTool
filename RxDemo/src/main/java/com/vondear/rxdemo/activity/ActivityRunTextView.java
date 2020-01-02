@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.view.RxToast;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxRunTextView;
@@ -44,6 +45,7 @@ public class ActivityRunTextView extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_text_view);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         initView();
     }
 

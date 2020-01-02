@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.vondear.rxdemo.R;
 import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxtool.RxDataTool;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxRulerWheelView;
 import com.vondear.rxui.view.RxTitle;
@@ -64,6 +65,7 @@ public class ActivityWheelHorizontal extends ActivityBase {
         RxBarTool.noTitle(this);
         setContentView(R.layout.activity_wheel_horizontal);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         initView();
         initData();
 

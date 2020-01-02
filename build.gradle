@@ -2,14 +2,17 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        jcenter() {
+            url "http://jcenter.bintray.com/"
+        }
         mavenCentral()
         maven { url "https://jitpack.io" }
         maven { url 'https://esri.bintray.com/arcgis' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.android.tools.build:gradle:3.5.2'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 //        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.2'
@@ -20,7 +23,9 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        jcenter() {
+            url "http://jcenter.bintray.com/"
+        }
         mavenCentral()
         maven { url "https://jitpack.io" }
         maven { url 'https://esri.bintray.com/arcgis' }

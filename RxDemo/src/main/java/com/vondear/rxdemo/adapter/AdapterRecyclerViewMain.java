@@ -1,12 +1,13 @@
 package com.vondear.rxdemo.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.vondear.rxdemo.R;
@@ -23,8 +24,9 @@ import butterknife.ButterKnife;
  * @date 2016/11/13
  */
 
-public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecyclerViewMain.ViewHolder> {
 
+
+public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecyclerViewMain.ViewHolder> {
     private int mScreenWidth, mItemWidth, mItemHeight;
     private Context context;
     private List<ModelMainItem> mValues;

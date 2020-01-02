@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.vondear.rxdemo.R;
 import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxtool.RxConstants;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxTitle;
 
@@ -71,7 +72,7 @@ public class ActivitySlidingDrawerSingle extends ActivityBase {
         setContentView(R.layout.activity_sliding_drawer_single);
         RxBarTool.setTransparentStatusBar(this);
         ButterKnife.bind(this);
-
+        RxDeviceTool.setPortrait(this);
         mRxTitle.setLeftFinish(mContext);
 
         initData();

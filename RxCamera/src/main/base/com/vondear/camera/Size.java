@@ -1,6 +1,7 @@
 package com.vondear.camera;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 /**
  * Immutable class for describing width and height dimensions in pixels.

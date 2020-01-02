@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.SeekBar;
 
 import com.vondear.rxdemo.R;
+import com.vondear.rxtool.RxDeviceTool;
 import com.vondear.rxtool.model.ModelSpider;
 import com.vondear.rxui.activity.ActivityBase;
 import com.vondear.rxui.view.RxCobwebView;
@@ -61,6 +62,7 @@ public class ActivityCobweb extends ActivityBase implements SeekBar.OnSeekBarCha
 //        RxBarTool.setTransparentStatusBar(mContext);
         setContentView(R.layout.activity_cobweb);
         ButterKnife.bind(this);
+        RxDeviceTool.setPortrait(this);
         mRxTitle.setLeftFinish(mContext);
         mSeekbarLevel.setOnSeekBarChangeListener(this);
         mSeekbarSpiderNumber.setOnSeekBarChangeListener(this);
