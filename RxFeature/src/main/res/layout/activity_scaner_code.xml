@@ -135,7 +135,7 @@
             android:layout_marginBottom="@dimen/dp_10"
             android:text="RxTool"
             android:textColor="#84FFFFFF"
-            android:textSize="@dimen/text_12" />
+            android:textSize="@dimen/sp_12" />
 
 
         <LinearLayout
