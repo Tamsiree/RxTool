@@ -6,7 +6,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-    <com.vondear.rxui.view.RxTextAutoZoom
+    <com.tamsiree.rxui.view.RxTextAutoZoom
         android:id="@+id/tv_rx_title"
         android:layout_width="200dp"
         android:layout_height="match_parent"

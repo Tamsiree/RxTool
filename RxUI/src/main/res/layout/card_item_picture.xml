@@ -34,7 +34,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"/>
 
-                <com.vondear.rxui.view.RxTextAutoZoom
+                <com.tamsiree.rxui.view.RxTextAutoZoom
                     android:id="@+id/tv_number"
                     android:layout_width="70dp"
                     android:layout_height="70dp"

@@ -5,7 +5,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <com.vondear.rxui.view.RxTitle
+    <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

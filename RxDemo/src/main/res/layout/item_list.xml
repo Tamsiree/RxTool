@@ -7,13 +7,13 @@
     app:cardCornerRadius="4dp"
     app:cardElevation="3dp">
 
-    <com.vondear.rxui.view.RxFrameLayoutSquare
+    <com.tamsiree.rxui.view.RxFrameLayoutSquare
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"
         android:orientation="vertical">
 
-        <com.vondear.rxui.view.progressing.SpinKitView
+        <com.tamsiree.rxui.view.progressing.SpinKitView
             android:id="@+id/spin_kit"
             style="@style/SpinKitView"
             android:layout_width="wrap_content"
@@ -21,6 +21,6 @@
             android:layout_gravity="center"
             android:padding="10dp"/>
 
-    </com.vondear.rxui.view.RxFrameLayoutSquare>
+    </com.tamsiree.rxui.view.RxFrameLayoutSquare>
 
 </androidx.cardview.widget.CardView>

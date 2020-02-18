@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.vondear.rxdemo.activity.ActivityRxExifTool">
+    tools:context="com.tamsiree.rxdemo.activity.ActivityRxExifTool">
 
-    <com.vondear.camera.RxCameraView
+    <com.tamsiree.camera.RxCameraView
         android:id="@+id/camera"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-    </com.vondear.camera.RxCameraView>
+    </com.tamsiree.camera.RxCameraView>
 
     <LinearLayout
         android:layout_width="0dp"

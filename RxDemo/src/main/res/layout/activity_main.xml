@@ -7,7 +7,7 @@
               android:background="@color/e"
               android:gravity="center_horizontal"
               android:orientation="vertical"
-              tools:context="com.vondear.rxdemo.activity.ActivityMain">
+              tools:context="com.tamsiree.rxdemo.activity.ActivityMain">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"

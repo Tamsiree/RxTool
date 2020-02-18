@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.vondear.rxdemo.activity.ActivityRxRotateBar">
+    tools:context="com.tamsiree.rxdemo.activity.ActivityRxRotateBar">
 
-    <com.vondear.rxui.view.RxTitle
+    <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.vondear.rxui.view.RxRotateBar
+        <com.tamsiree.rxui.view.RxRotateBar
             android:id="@+id/rating_view"
             android:layout_width="200dp"
             android:layout_height="200dp"

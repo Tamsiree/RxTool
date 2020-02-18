@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.vondear.rxdemo.activity.ActivityLike">
+    tools:context="com.tamsiree.rxdemo.activity.ActivityLike">
 
-    <com.vondear.rxui.view.RxTitle
+    <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.vondear.tools.activity.ActivityLike">
+        tools:context="com.tamsiree.tools.activity.ActivityLike">
 
         <LinearLayout
             android:id="@+id/ll_top"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-                <com.vondear.rxui.view.likeview.RxShineButton
+                <com.tamsiree.rxui.view.likeview.RxShineButton
                     android:id="@+id/po_image1"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-                <com.vondear.rxui.view.likeview.RxShineButton
+                <com.tamsiree.rxui.view.likeview.RxShineButton
                     android:id="@+id/po_image2"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-                <com.vondear.rxui.view.likeview.RxShineButton
+                <com.tamsiree.rxui.view.likeview.RxShineButton
                     android:id="@+id/po_image3"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -120,7 +120,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp">
 
-                <com.vondear.rxui.view.likeview.RxShineButton
+                <com.tamsiree.rxui.view.likeview.RxShineButton
                     android:id="@+id/po_image0"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -132,7 +132,7 @@
             </RelativeLayout>
 
 
-            <com.vondear.rxui.view.likeview.RxShineButton
+            <com.tamsiree.rxui.view.likeview.RxShineButton
                 android:id="@+id/po_image8"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -175,7 +175,7 @@
 
         </LinearLayout>
 
-        <com.vondear.rxui.view.heart.RxHeartLayout
+        <com.tamsiree.rxui.view.heart.RxHeartLayout
             android:id="@+id/heart_layout"
             android:layout_width="100dp"
             android:layout_height="match_parent"

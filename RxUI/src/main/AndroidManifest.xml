@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.vondear.rxui">
+          package="com.tamsiree.rxui">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application>
         <activity
-            android:name="com.vondear.rxui.activity.ActivityWebView"
+            android:name="com.tamsiree.rxui.activity.ActivityWebView"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
     </application>
 

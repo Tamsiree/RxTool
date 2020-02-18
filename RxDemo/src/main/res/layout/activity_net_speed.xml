@@ -5,9 +5,9 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="com.vondear.rxdemo.activity.ActivityNetSpeed">
+              tools:context="com.tamsiree.rxdemo.activity.ActivityNetSpeed">
 
-    <com.vondear.rxui.view.RxTitle
+    <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,9 +25,9 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.vondear.tools.activity.ActivityNetSpeed">
+        tools:context="com.tamsiree.tools.activity.ActivityNetSpeed">
 
-        <com.vondear.rxui.view.RxNetSpeedView
+        <com.tamsiree.rxui.view.RxNetSpeedView
             android:id="@+id/rx_net_speed_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

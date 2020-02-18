@@ -28,7 +28,7 @@
                 android:padding="5dp"
                 android:src="@drawable/previous_icon" />
 
-            <com.vondear.rxui.view.RxTextAutoZoom
+            <com.tamsiree.rxui.view.RxTextAutoZoom
                 android:id="@+id/afet_tv_title"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

@@ -14,7 +14,7 @@
         android:background="@color/brown1"
         android:orientation="vertical" >
 
-        <com.vondear.rxui.view.RxTitle
+        <com.tamsiree.rxui.view.RxTitle
             android:id="@+id/rx_title"
             android:layout_width="match_parent"
             android:layout_height="55dp"

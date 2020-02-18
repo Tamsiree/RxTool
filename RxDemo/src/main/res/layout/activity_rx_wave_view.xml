@@ -12,9 +12,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.vondear.rxdemo.activity.ActivityRxWaveView">
+    tools:context="com.tamsiree.rxdemo.activity.ActivityRxWaveView">
 
-    <com.vondear.rxui.view.waveview.RxWaveView
+    <com.tamsiree.rxui.view.waveview.RxWaveView
         android:id="@+id/wave"
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -104,7 +104,7 @@
                 android:text="填充颜色"
                 android:textColor="@color/green_xiaomi"/>
 
-            <com.vondear.rxui.view.colorpicker.ColorPickerView
+            <com.tamsiree.rxui.view.colorpicker.ColorPickerView
                 android:id="@+id/color_picker_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,12 +115,12 @@
                 app:lightnessSliderView="@+id/v_lightness_slider"
                 app:wheelType="FLOWER"/>
 
-            <com.vondear.rxui.view.colorpicker.slider.LightnessSlider
+            <com.tamsiree.rxui.view.colorpicker.slider.LightnessSlider
                 android:id="@+id/v_lightness_slider"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"/>
 
-            <com.vondear.rxui.view.colorpicker.slider.AlphaSlider
+            <com.tamsiree.rxui.view.colorpicker.slider.AlphaSlider
                 android:id="@+id/v_alpha_slider"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"/>

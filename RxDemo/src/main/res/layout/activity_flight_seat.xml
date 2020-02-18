@@ -6,9 +6,9 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="com.vondear.rxdemo.activity.ActivityFlightSeat">
+              tools:context="com.tamsiree.rxdemo.activity.ActivityFlightSeat">
 
-    <com.vondear.rxui.view.RxTitle
+    <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         android:background="@color/a9"
         android:orientation="vertical">
 
-        <com.vondear.rxui.view.RxSeatAirplane
+        <com.tamsiree.rxui.view.RxSeatAirplane
             android:id="@+id/fsv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

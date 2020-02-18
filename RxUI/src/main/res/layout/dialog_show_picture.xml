@@ -6,7 +6,7 @@
               android:gravity="center"
               android:orientation="vertical">
 
-    <com.vondear.rxui.view.cardstack.RxCardStackView
+    <com.tamsiree.rxui.view.cardstack.RxCardStackView
         android:id="@+id/stackview_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"

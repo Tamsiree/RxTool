@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.vondear.rxfeature">
+          package="com.tamsiree.rxfeature">
 
     <application>
-        <activity android:name=".activity.ActivityScanerCode">
+        <activity android:name="com.tamsiree.rxfeature.activity.ActivityScanerCode">
         </activity>
 
-        <activity android:name=".activity.ActivityCodeTool">
+        <activity android:name="com.tamsiree.rxfeature.activity.ActivityCodeTool">
         </activity>
     </application>
 

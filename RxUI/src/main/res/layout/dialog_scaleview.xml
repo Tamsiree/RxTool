@@ -5,7 +5,7 @@
                 android:background="@color/black"
                 android:orientation="vertical">
 
-    <com.vondear.rxui.view.scaleimage.RxScaleImageView
+    <com.tamsiree.rxui.view.scaleimage.RxScaleImageView
         android:id="@+id/rx_scale_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

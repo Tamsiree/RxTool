@@ -6,9 +6,9 @@
     android:id="@+id/activity_auto_image_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.vondear.rxdemo.activity.ActivityAutoImageView">
+    tools:context="com.tamsiree.rxdemo.activity.ActivityAutoImageView">
 
-    <com.vondear.rxui.view.RxAutoImageView
+    <com.tamsiree.rxui.view.RxAutoImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:ImageSrc="@drawable/ova"/>

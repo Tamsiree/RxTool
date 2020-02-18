@@ -9,9 +9,9 @@
               android:clipToPadding="true"
               android:fitsSystemWindows="true"
               android:orientation="vertical"
-              tools:context="com.vondear.rxdemo.activity.ActivityMovieSeat">
+              tools:context="com.tamsiree.rxdemo.activity.ActivityMovieSeat">
 
-    <com.vondear.rxui.view.RxTitle
+    <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -53,7 +53,7 @@
         android:layout_marginLeft="50dp"
         android:background="@color/gray1"/>
 
-    <com.vondear.rxui.view.RxSeatMovie
+    <com.tamsiree.rxui.view.RxSeatMovie
         android:id="@+id/seatView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

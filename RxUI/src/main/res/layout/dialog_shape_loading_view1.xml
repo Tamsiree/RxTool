@@ -31,7 +31,7 @@
             android:textSize="14sp"
             android:visibility="gone" />
 
-        <com.vondear.rxui.view.dialog.shapeloadingview.RxShapeView
+        <com.tamsiree.rxui.view.dialog.shapeloadingview.RxShapeView
             android:id="@+id/shapeLoadingView"
             android:layout_width="24dp"
             android:layout_height="24dp"

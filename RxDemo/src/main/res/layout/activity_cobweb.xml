@@ -6,7 +6,7 @@
               android:background="@color/e"
               android:orientation="vertical">
 
-    <com.vondear.rxui.view.RxTitle
+    <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:fitsSystemWindows="true"
         app:title="蛛网等级Demo"/>
 
-    <com.vondear.rxui.view.RxCobwebView
+    <com.tamsiree.rxui.view.RxCobwebView
         android:id="@+id/cobweb_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                     android:text="蛛网填充颜色"
                     android:textColor="@color/green_xiaomi"/>
 
-                <com.vondear.rxui.view.colorpicker.ColorPickerView
+                <com.tamsiree.rxui.view.colorpicker.ColorPickerView
                     android:id="@+id/color_picker_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -110,12 +110,12 @@
                     app:lightnessSliderView="@+id/v_lightness_slider"
                     app:wheelType="FLOWER"/>
 
-                <com.vondear.rxui.view.colorpicker.slider.LightnessSlider
+                <com.tamsiree.rxui.view.colorpicker.slider.LightnessSlider
                     android:id="@+id/v_lightness_slider"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"/>
 
-                <com.vondear.rxui.view.colorpicker.slider.AlphaSlider
+                <com.tamsiree.rxui.view.colorpicker.slider.AlphaSlider
                     android:id="@+id/v_alpha_slider"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"/>
@@ -136,7 +136,7 @@
                     android:text="蛛网等级颜色"
                     android:textColor="@color/green_xiaomi"/>
 
-                <com.vondear.rxui.view.colorpicker.ColorPickerView
+                <com.tamsiree.rxui.view.colorpicker.ColorPickerView
                     android:id="@+id/color_picker_view_level"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -147,12 +147,12 @@
                     app:lightnessSliderView="@+id/v_lightness_slider_level"
                     app:wheelType="FLOWER"/>
 
-                <com.vondear.rxui.view.colorpicker.slider.LightnessSlider
+                <com.tamsiree.rxui.view.colorpicker.slider.LightnessSlider
                     android:id="@+id/v_lightness_slider_level"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"/>
 
-                <com.vondear.rxui.view.colorpicker.slider.AlphaSlider
+                <com.tamsiree.rxui.view.colorpicker.slider.AlphaSlider
                     android:id="@+id/v_alpha_slider_level"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"/>

@@ -5,7 +5,7 @@ android {
 
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.vondear.rxdemo"
+        applicationId "com.tamsiree.rxdemo"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1

@@ -8,14 +8,14 @@
     android:background="@color/e"
     android:orientation="vertical">
 
-    <com.vondear.rxui.view.RxTitle
+    <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/blue"
         app:title="RxSeekBar"/>
 
-    <com.vondear.rxui.view.RxSeekBar
+    <com.tamsiree.rxui.view.RxSeekBar
         android:id="@+id/seekbar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:layout_height="40dp"
         android:gravity="center"/>
 
-    <com.vondear.rxui.view.RxSeekBar
+    <com.tamsiree.rxui.view.RxSeekBar
         android:id="@+id/seekbar2"
         android:layout_width="match_parent"
         android:layout_height="90dp"
@@ -54,7 +54,7 @@
         app:thumbSecondaryColor="@color/colorAccent"
         app:thumbSize="20dp"/>
 
-    <com.vondear.rxui.view.RxSeekBar
+    <com.tamsiree.rxui.view.RxSeekBar
         android:id="@+id/seekbar3"
         android:layout_width="match_parent"
         android:layout_height="120dp"
@@ -73,7 +73,7 @@
         app:textSize="16sp"
         app:thumbSize="26dp"/>
 
-    <com.vondear.rxui.view.RxSeekBar
+    <com.tamsiree.rxui.view.RxSeekBar
         android:id="@+id/seekbar4"
         android:layout_width="match_parent"
         android:layout_height="80dp"

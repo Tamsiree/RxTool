@@ -17,7 +17,7 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
-        <com.vondear.rxui.view.RxTitle
+        <com.tamsiree.rxui.view.RxTitle
             android:id="@+id/rx_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                     android:text="扫码次数"
                     android:textColor="#aaf8f8f8" />
 
-                <com.vondear.rxui.view.ticker.RxTickerView
+                <com.tamsiree.rxui.view.ticker.RxTickerView
                     android:id="@+id/ticker_scan_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                     android:text="生成码次数"
                     android:textColor="#aaf8f8f8" />
 
-                <com.vondear.rxui.view.ticker.RxTickerView
+                <com.tamsiree.rxui.view.ticker.RxTickerView
                     android:id="@+id/ticker_made_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
