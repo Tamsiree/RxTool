@@ -4,7 +4,7 @@ apply plugin: 'org.greenrobot.greendao'
 //apply plugin: 'com.jfrog.bintray'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 16
@@ -27,6 +27,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildToolsVersion = '29.0.2'
 
 }
 

@@ -3,7 +3,7 @@ apply plugin: 'com.jakewharton.butterknife'
 
 android {
 
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.vondear.rxdemo"
         minSdkVersion 16
@@ -26,6 +26,7 @@ android {
         debug {
         }
     }
+    buildToolsVersion = '29.0.2'
 }
 
 dependencies {

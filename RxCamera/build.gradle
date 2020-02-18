@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 15
@@ -31,6 +31,7 @@ android {
         main.java.srcDirs += 'src/main/api21'
         main.java.srcDirs += 'src/main/api23'
     }
+    buildToolsVersion = '29.0.2'
 }
 
 dependencies {

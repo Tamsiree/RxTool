@@ -37,23 +37,21 @@ public class RxKeyboardTool {
     /**
      * 点击隐藏软键盘
      *
-     * @param activity
      * @param view
      */
-    public static void hideKeyboard(Activity activity, View view) {
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+    public static void hideKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     /**
      * 动态隐藏软键盘
      *
-     * @param context 上下文
      * @param edit    输入框
      */
-    public static void hideSoftInput(Context context, EditText edit) {
+    public static void hideSoftInput(EditText edit) {
         edit.clearFocus();
-        InputMethodManager inputmanger = (InputMethodManager) context
+        InputMethodManager inputmanger = (InputMethodManager) edit.getContext()
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
         inputmanger.hideSoftInputFromWindow(edit.getWindowToken(), 0);
     }
