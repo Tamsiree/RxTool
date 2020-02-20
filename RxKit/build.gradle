@@ -27,7 +27,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion = '29.0.2'
+    buildToolsVersion = '29.0.3'
 
 }
 
@@ -35,16 +35,16 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //design包
-    compileOnly 'com.google.android.material:material:1.0.0'
+    compileOnly 'com.google.android.material:material:1.1.0'
 
     //appcompat包
-    compileOnly 'androidx.appcompat:appcompat:1.0.0'
+    compileOnly 'androidx.appcompat:appcompat:1.1.0'
 
     //cardView包
     compileOnly 'androidx.cardview:cardview:1.0.0'
     //recyclerview包
-    compileOnly 'androidx.recyclerview:recyclerview:1.0.0'
-    compileOnly 'androidx.annotation:annotation:1.0.0'
+    compileOnly 'androidx.recyclerview:recyclerview:1.1.0'
+    compileOnly 'androidx.annotation:annotation:1.1.0'
     compileOnly 'androidx.constraintlayout:constraintlayout:1.1.3'
     //流式布局
     compileOnly 'com.google.android:flexbox:0.3.2'
