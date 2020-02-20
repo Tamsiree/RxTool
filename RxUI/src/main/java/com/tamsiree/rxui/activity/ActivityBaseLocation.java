@@ -18,6 +18,9 @@ import com.tamsiree.rxui.view.dialog.RxDialogGPSCheck;
 import com.tamsiree.rxui.view.dialog.RxDialogTool;
 
 
+import static android.content.Context.LOCATION_SERVICE;
+
+
 /**
  * @author tamsiree
  */
@@ -46,7 +49,7 @@ public abstract class ActivityBaseLocation extends ActivityBase {
     }
 
     private void initGPS() {
-        mLocationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+        mLocationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
     }
 
     //----------------------------------------------------------------------------------------------检测GPS是否已打开 start

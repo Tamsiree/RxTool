@@ -253,9 +253,9 @@ public class ActivityWebView extends ActivityBase {
     public void onConfigurationChanged(Configuration newConfig) {
         try {
             super.onConfigurationChanged(newConfig);
-            if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            if (mContext.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 Log.v("Himi", "onConfigurationChanged_ORIENTATION_LANDSCAPE");
-            } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            } else if (mContext.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 Log.v("Himi", "onConfigurationChanged_ORIENTATION_PORTRAIT");
             }
         } catch (Exception ex) {

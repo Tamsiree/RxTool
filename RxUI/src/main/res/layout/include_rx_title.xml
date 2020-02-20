@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/root_layout"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
-    <com.tamsiree.rxui.view.RxTextAutoZoom
-        android:id="@+id/tv_rx_title"
-        android:layout_width="200dp"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:hint="标题"
-        android:inputType="textMultiLine|textNoSuggestions"
-        android:isScrollContainer="false"
-        android:maxLength="240"
-        android:text="个人资料"
-        android:textColor="@color/white"
-        android:textColorHint="@android:color/white"
-        android:textSize="20sp"/>
+    <View
+        android:layout_width="0.1dp"
+        android:layout_height="@dimen/dp_55"
+        android:visibility="invisible" />
 
     <LinearLayout
         android:id="@+id/ll_left"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:layout_weight="1.5"
+        android:gravity="center_vertical">
 
-        <ImageView
-            android:id="@+id/iv_left"
+        <LinearLayout
+            android:id="@+id/ll_icon_left_bg"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/previous_icon"/>
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_left"
+                android:layout_width="@dimen/dp_55"
+                android:layout_height="match_parent"
+                android:src="@drawable/previous_icon" />
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/tv_left"
@@ -41,35 +40,66 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="left"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ll_right"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
+        android:layout_weight="4"
         android:gravity="center"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_right"
+        <com.tamsiree.rxui.view.RxTextAutoZoom
+            android:id="@+id/tv_rx_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="10dp"
-            android:text="right"
-            android:textColor="@color/white"/>
+
+            android:gravity="center"
+            android:hint="标题"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:isScrollContainer="false"
+            android:maxLength="240"
+            android:text="个人资料"
+            android:textColor="@color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_right"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/ll_icon_right_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:text="right"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/iv_right"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/set"/>
+            android:src="@drawable/set" />
 
     </LinearLayout>
 
-</RelativeLayout>
+
+</LinearLayout>

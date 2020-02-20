@@ -38,7 +38,7 @@ public class RxTextAutoZoom extends AppCompatEditText {
     private boolean initiallized = false;
     private TextPaint paint;
 
-    private interface SizeTester {
+    public interface SizeTester {
         /**
          * AutoFitEditText
          *

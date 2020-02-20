@@ -3,6 +3,7 @@ package com.tamsiree.rxui.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -12,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.tamsiree.rxtool.RxDataTool;
 import com.tamsiree.rxtool.RxImageTool;
@@ -26,13 +30,16 @@ import com.tamsiree.rxui.R;
 public class RxTitle extends FrameLayout {
     //*******************************************控件start******************************************
     //根布局
-    private RelativeLayout mRootLayout;
+    private LinearLayout mRootLayout;
 
     //Title的TextView控件
     private RxTextAutoZoom mTvTitle;
 
     //左边布局
     private LinearLayout mLlLeft;
+
+    //左边ImageView控件的背景
+    private LinearLayout mllIconLeftBg;
 
     //左边ImageView控件
     private ImageView mIvLeft;
@@ -42,6 +49,9 @@ public class RxTitle extends FrameLayout {
 
     //右边布局
     private LinearLayout mLlRight;
+
+    //左边ImageView控件的背景
+    private LinearLayout mllIconRightBg;
 
     //右边ImageView控件
     private ImageView mIvRight;
@@ -63,17 +73,13 @@ public class RxTitle extends FrameLayout {
     //Title是否显示
     private boolean mTitleVisibility;
 
+    //------------------------------------------左侧布局---------------------------------------------
+
     //左边 ICON 引用的资源ID
     private int mLeftIcon;
 
-    //右边 ICON 引用的资源ID
-    private int mRightIcon;
-
     //左边 ICON 是否显示
     private boolean mLeftIconVisibility;
-
-    //右边 ICON 是否显示
-    private boolean mRightIconVisibility;
 
     //左边文字
     private String mLeftText;
@@ -87,8 +93,16 @@ public class RxTitle extends FrameLayout {
     //左边文字是否显示
     private boolean mLeftTextVisibility;
 
+    //--------------------------------------------右侧布局-------------------------------------------
+
+    //右边 ICON 引用的资源ID
+    private int mRightIcon;
+
     //右边文字
     private String mRightText;
+
+    //右边 ICON 是否显示
+    private boolean mRightIconVisibility;
 
     //右边字体颜色
     private int mRightTextColor;
@@ -98,10 +112,12 @@ public class RxTitle extends FrameLayout {
 
     //右边文字是否显示
     private boolean mRightTextVisibility;
+
     //===========================================属性end=============================================
 
     public RxTitle(Context context) {
         super(context);
+        initView(context, null);
     }
 
     public RxTitle(Context context, AttributeSet attrs) {
@@ -110,12 +126,29 @@ public class RxTitle extends FrameLayout {
         initView(context, attrs);
     }
 
+    public RxTitle(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initView(context, attrs);
+    }
+
+    public RxTitle(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        initView(context, attrs);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
     private void initView(final Context context, AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.include_rx_title, this);
 
         mRootLayout = findViewById(R.id.root_layout);
         mTvTitle = findViewById(R.id.tv_rx_title);
         mLlLeft = findViewById(R.id.ll_left);
+        mllIconLeftBg = findViewById(R.id.ll_icon_left_bg);
+        mllIconRightBg = findViewById(R.id.ll_icon_right_bg);
         mIvLeft = findViewById(R.id.iv_left);
         mIvRight = findViewById(R.id.iv_right);
         mLlRight = findViewById(R.id.ll_right);
@@ -138,7 +171,7 @@ public class RxTitle extends FrameLayout {
             mTitleVisibility = a.getBoolean(R.styleable.RxTitle_titleVisibility, true);
 
             //左边图标
-            mLeftIcon = a.getResourceId(R.styleable.RxTitle_leftIcon, R.drawable.previous_icon);
+            mLeftIcon = a.getResourceId(R.styleable.RxTitle_leftIcon, R.drawable.ic_back);
             //右边图标
             mRightIcon = a.getResourceId(R.styleable.RxTitle_rightIcon, R.drawable.set);
             //左边图标是否显示
@@ -159,6 +192,7 @@ public class RxTitle extends FrameLayout {
             //标题字体大小
             mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, RxImageTool.dip2px(8));
             mRightTextVisibility = a.getBoolean(R.styleable.RxTitle_rightTextVisibility, false);
+
 
         } finally {
             //回收这个对象
@@ -234,7 +268,7 @@ public class RxTitle extends FrameLayout {
 
     //**********************************************************************************************以下为get方法
 
-    public RelativeLayout getRootLayout() {
+    public LinearLayout getRootLayout() {
         return mRootLayout;
     }
 
@@ -268,6 +302,14 @@ public class RxTitle extends FrameLayout {
 
     public boolean isTitleVisibility() {
         return mTitleVisibility;
+    }
+
+    public LinearLayout getMllIconLeftBg() {
+        return mllIconLeftBg;
+    }
+
+    public LinearLayout getMllIconRightBg() {
+        return mllIconRightBg;
     }
 
     public void setTitleVisibility(boolean titleVisibility) {
@@ -478,5 +520,6 @@ public class RxTitle extends FrameLayout {
         mIvRight.setOnClickListener(onClickListener);
     }
     //==============================================================================================以上为set方法
+
 
 }
