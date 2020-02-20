@@ -23,16 +23,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion = '29.0.2'
+    buildToolsVersion = '29.0.3'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compileOnly 'androidx.appcompat:appcompat:1.0.0'
+    compileOnly 'androidx.appcompat:appcompat:1.1.0'
     compileOnly 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //支付宝 支付包
     compileOnly files('libs/alipaySdk-20180403.jar')
     //微信登录，支付，分享包
@@ -40,7 +40,7 @@ dependencies {
     //okgo 网络请求框架包
     compileOnly 'com.lzy.net:okgo:3.0.4'
     //gson json工具类 google解析Json的库
-    compileOnly 'com.google.code.gson:gson:2.8.2'
+    compileOnly 'com.google.code.gson:gson:2.8.5'
     //Zxing核心包
     implementation 'com.google.zxing:core:3.3.0'
     compileOnly project(':RxKit')

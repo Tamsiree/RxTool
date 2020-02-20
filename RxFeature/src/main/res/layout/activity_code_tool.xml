@@ -20,7 +20,7 @@
         <com.tamsiree.rxui.view.RxTitle
             android:id="@+id/rx_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp_55"
             android:background="#52BA97"
             app:title="扫码工具" />
 
