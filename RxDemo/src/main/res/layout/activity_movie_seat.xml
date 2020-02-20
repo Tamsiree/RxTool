@@ -14,7 +14,7 @@
     <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="@dimen/dp_55"
         android:background="@color/google_green"
         app:title="仙剑奇侠传：电影版"
         app:titleColor="@color/white"/>

@@ -73,7 +73,7 @@
 
     <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:title="图片的缩放艺术"/>

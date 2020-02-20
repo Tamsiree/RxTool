@@ -23,6 +23,7 @@ import com.tamsiree.rxtool.RxBarTool;
 import com.tamsiree.rxtool.RxDeviceTool;
 import com.tamsiree.rxtool.RxPhotoTool;
 import com.tamsiree.rxtool.RxSPTool;
+
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxTitle;
 import com.tamsiree.rxui.view.dialog.RxDialogChooseImage;
@@ -83,7 +84,7 @@ public class ActivityRxPhoto extends ActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         RxBarTool.noTitle(this);
-        setContentView(R.layout.activity_von_photo);
+        setContentView(R.layout.activity_rxphototool);
         ButterKnife.bind(this);
         RxDeviceTool.setPortrait(this);
         initView();

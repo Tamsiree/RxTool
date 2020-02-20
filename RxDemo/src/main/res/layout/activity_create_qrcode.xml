@@ -17,7 +17,7 @@
         <com.tamsiree.rxui.view.RxTitle
             android:id="@+id/rx_title"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="@dimen/dp_55"
             android:background="@color/blue"
             app:title="动态生成码"
             app:titleColor="@color/white"/>

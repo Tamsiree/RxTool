@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_popup_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_shadow_50"
-    android:orientation="vertical"
-    tools:context="com.tamsiree.rxdemo.activity.ActivityPopupView">
+    android:orientation="vertical">
 
     <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_55"
         android:background="@color/blue"
-        app:title="PopupView的使用"/>
+        app:title="PopupView的使用" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,35 +27,35 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="点我"/>
+            android:text="点我" />
 
         <TextView
             android:id="@+id/tv_definition"
             android:layout_width="50dp"
             android:layout_height="40dp"
             android:layout_margin="16dp"
-            android:layout_marginBottom="9dp"
             android:layout_marginTop="29dp"
+            android:layout_marginBottom="9dp"
             android:background="@drawable/shape_round_gray_bored"
             android:gravity="center"
-            android:paddingBottom="2dp"
             android:paddingLeft="7dp"
-            android:paddingRight="7dp"
             android:paddingTop="2dp"
+            android:paddingRight="7dp"
+            android:paddingBottom="2dp"
             android:text="标清"
             android:textColor="#ffffff"
-            android:textSize="12dp"/>
+            android:textSize="12dp" />
 
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/root_layout"
+        android:id="@+id/root_layout_s"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout"
@@ -70,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Tip message"
                 android:inputType="text"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +79,7 @@
             android:layout_above="@+id/linear_layout_buttons_above_below"
             android:gravity="center"
             android:text="点击更改提示位置和对齐方式"
-            tools:ignore="HardcodedText"/>
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:id="@+id/linear_layout_buttons_above_below"
@@ -97,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="上方"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText" />
 
             <Button
                 android:id="@+id/button_below"
@@ -106,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="下方"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText" />
 
             <Button
                 android:id="@+id/button_left_to"
@@ -115,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="左方"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText" />
 
             <Button
                 android:id="@+id/button_right_to"
@@ -124,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="右方"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
@@ -135,10 +133,10 @@
             android:layout_alignParentBottom="true"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingStart="16dp">
+            android:paddingEnd="16dp"
+            android:paddingRight="16dp">
 
             <RadioButton
                 android:id="@+id/button_align_left"
@@ -146,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="偏左"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText" />
 
             <RadioButton
                 android:id="@+id/button_align_center"
@@ -154,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="居中"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText" />
 
             <RadioButton
                 android:id="@+id/button_align_right"
@@ -162,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="偏右"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText" />
 
         </RadioGroup>
 
@@ -184,7 +182,7 @@
                 android:text="看我干啥\n点下面的按钮"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText" />
 
         </RelativeLayout>
 

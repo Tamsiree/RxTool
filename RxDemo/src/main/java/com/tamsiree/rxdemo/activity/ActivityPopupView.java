@@ -37,6 +37,11 @@ public class ActivityPopupView extends ActivityBase implements RxPopupViewManage
 
     public static final String TIP_TEXT = "Tip";
     private static final String TAG = ActivityPopupView.class.getSimpleName();
+
+
+    RxPopupViewManager mRxPopupViewManager;
+    @RxPopupView.Align
+    int mAlign = RxPopupView.ALIGN_CENTER;
     @BindView(R.id.rx_title)
     RxTitle mRxTitle;
     @BindView(R.id.tv_imply)
@@ -71,13 +76,12 @@ public class ActivityPopupView extends ActivityBase implements RxPopupViewManage
     TextView mTextView;
     @BindView(R.id.parent_layout)
     RelativeLayout mParentLayout;
-    @BindView(R.id.root_layout)
-    RelativeLayout mRootLayout;
+
     @BindView(R.id.activity_popup_view)
     LinearLayout mActivityPopupView;
-    RxPopupViewManager mRxPopupViewManager;
-    @RxPopupView.Align
-    int mAlign = RxPopupView.ALIGN_CENTER;
+    @BindView(R.id.root_layout_s)
+    RelativeLayout mRootLayoutS;
+
     private RxPopupSingleView titlePopup;
     private RxPopupImply popupImply;//提示  一小时后有惊喜
 
@@ -184,7 +188,7 @@ public class ActivityPopupView extends ActivityBase implements RxPopupViewManage
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        RxPopupView.Builder builder = new RxPopupView.Builder(this, mTextView, mRootLayout, TIP_TEXT, RxPopupView.POSITION_ABOVE);
+        RxPopupView.Builder builder = new RxPopupView.Builder(this, mTextView, mRootLayoutS, TIP_TEXT, RxPopupView.POSITION_ABOVE);
         builder.setAlign(mAlign);
         mRxPopupViewManager.show(builder.build());
     }
