@@ -76,6 +76,14 @@
         android:layout_weight="1.5"
         android:gravity="center">
 
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:text="right"
+            android:textColor="@color/white" />
+
         <LinearLayout
             android:id="@+id/ll_icon_right_bg"
             android:layout_width="wrap_content"
@@ -83,21 +91,14 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="10dp"
-                android:text="right"
-                android:textColor="@color/white" />
+            <ImageView
+                android:id="@+id/iv_right"
+                android:layout_width="@dimen/dp_55"
+                android:layout_height="match_parent"
+                android:src="@drawable/previous_icon" />
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/iv_right"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/set" />
 
     </LinearLayout>
 

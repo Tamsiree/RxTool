@@ -304,11 +304,11 @@ public class RxTitle extends FrameLayout {
         return mTitleVisibility;
     }
 
-    public LinearLayout getMllIconLeftBg() {
+    public LinearLayout getLlIconLeftBg() {
         return mllIconLeftBg;
     }
 
-    public LinearLayout getMllIconRightBg() {
+    public LinearLayout getLlIconRightBg() {
         return mllIconRightBg;
     }
 
