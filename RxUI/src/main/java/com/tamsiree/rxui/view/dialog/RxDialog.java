@@ -2,13 +2,14 @@ package com.tamsiree.rxui.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.os.Build;
 import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 
 import com.tamsiree.rxui.R;
+
+import java.util.Objects;
 
 
 /**
@@ -41,7 +42,7 @@ public class RxDialog extends Dialog {
 
     private void initView(Context context) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setBackgroundDrawableResource(R.drawable.transparent_bg);
+        Objects.requireNonNull(this.getWindow()).setBackgroundDrawableResource(R.drawable.transparent_bg);
         mContext = context;
         Window window = this.getWindow();
         mLayoutParams = window.getAttributes();
@@ -54,7 +55,7 @@ public class RxDialog extends Dialog {
     }
 
     /**
-     * @param context
+     * @param context 实体
      * @param alpha   透明度 0.0f--1f(不透明)
      * @param gravity 方向(Gravity.BOTTOM,Gravity.TOP,Gravity.LEFT,Gravity.RIGHT)
      */
@@ -62,7 +63,7 @@ public class RxDialog extends Dialog {
         super(context);
         // TODO Auto-generated constructor stub
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setBackgroundDrawableResource(R.drawable.transparent_bg);
+        Objects.requireNonNull(this.getWindow()).setBackgroundDrawableResource(R.drawable.transparent_bg);
         mContext = context;
         Window window = this.getWindow();
         mLayoutParams = window.getAttributes();
@@ -78,10 +79,7 @@ public class RxDialog extends Dialog {
      * 隐藏头部导航栏状态栏
      */
     public void skipTools() {
-        if (Build.VERSION.SDK_INT < 19) {
-            return;
-        }
-        getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
+        Objects.requireNonNull(getWindow()).setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
     }
 
     /**
@@ -89,6 +87,7 @@ public class RxDialog extends Dialog {
      */
     public void setFullScreen() {
         Window window = getWindow();
+        assert window != null;
         window.getDecorView().setPadding(0, 0, 0, 0);
         LayoutParams lp = window.getAttributes();
         lp.width = WindowManager.LayoutParams.FILL_PARENT;
@@ -101,6 +100,7 @@ public class RxDialog extends Dialog {
      */
     public void setFullScreenWidth() {
         Window window = getWindow();
+        assert window != null;
         window.getDecorView().setPadding(0, 0, 0, 0);
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = WindowManager.LayoutParams.FILL_PARENT;
@@ -113,6 +113,7 @@ public class RxDialog extends Dialog {
      */
     public void setFullScreenHeight() {
         Window window = getWindow();
+        assert window != null;
         window.getDecorView().setPadding(0, 0, 0, 0);
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
@@ -121,6 +122,6 @@ public class RxDialog extends Dialog {
     }
 
     public void setOnWhole() {
-        getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        Objects.requireNonNull(getWindow()).setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
     }
 }

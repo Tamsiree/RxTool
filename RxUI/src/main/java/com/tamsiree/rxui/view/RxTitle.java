@@ -7,11 +7,9 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -272,31 +270,31 @@ public class RxTitle extends FrameLayout {
         return mRootLayout;
     }
 
-    public RxTextAutoZoom getTvTitle() {
+    public RxTextAutoZoom getTitleTextView() {
         return mTvTitle;
     }
 
-    public LinearLayout getLlLeft() {
+    public LinearLayout getLeftLayout() {
         return mLlLeft;
     }
 
-    public ImageView getIvLeft() {
+    public ImageView getLeftImageView() {
         return mIvLeft;
     }
 
-    public TextView getTvLeft() {
+    public TextView getLeftTextView() {
         return mTvLeft;
     }
 
-    public LinearLayout getLlRight() {
+    public LinearLayout getRightLayout() {
         return mLlRight;
     }
 
-    public ImageView getIvRight() {
+    public ImageView getRightImageView() {
         return mIvRight;
     }
 
-    public TextView getTvRight() {
+    public TextView getRightTextView() {
         return mTvRight;
     }
 
@@ -304,11 +302,11 @@ public class RxTitle extends FrameLayout {
         return mTitleVisibility;
     }
 
-    public LinearLayout getLlIconLeftBg() {
+    public LinearLayout getLeftIconBg() {
         return mllIconLeftBg;
     }
 
-    public LinearLayout getLlIconRightBg() {
+    public LinearLayout getRightIconBg() {
         return mllIconRightBg;
     }
 
@@ -487,12 +485,7 @@ public class RxTitle extends FrameLayout {
     }
 
     public void setLeftFinish(final Activity activity) {
-        mLlLeft.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.finish();
-            }
-        });
+        mLlLeft.setOnClickListener(v -> activity.finish());
     }
 
     public void setLeftOnClickListener(OnClickListener onClickListener) {

@@ -43,17 +43,17 @@ allprojects {
 ```gradle
 dependencies {
   //基础工具库
-  implementation "com.github.tamsiree.RxTool:RxKit:v2.4.1"
+  implementation 'com.github.tamsiree.RxTool:RxKit:2.4.3'
   //UI库
-  implementation "com.github.tamsiree.RxTool:RxUI:v2.4.1"
+  implementation 'com.github.tamsiree.RxTool:RxUI:2.4.3'
   //(依赖RxUI库时，需要额外依赖 cardview 库)
-      implementation 'com.android.support:cardview-v7:27.1.1'
+      implementation 'com.android.support:cardview-v7:29.0.0'
   //相机库
-  implementation "com.github.tamsiree.RxTool:RxCamera:v2.4.1"
+  implementation 'com.github.tamsiree.RxTool:RxCamera:v2.4.3'
   //功能库（Zxing扫描与生成二维码条形码 支付宝 微信）
-  implementation "com.github.tamsiree.RxTool:RxFeature:v2.4.1"
+  implementation 'com.github.tamsiree.RxTool:RxFeature:v2.4.3'
   //ArcGis For Android工具库（API：100.1以上版本）
-  implementation "com.github.tamsiree.RxTool:RxArcGisKit:v2.4.1"
+  implementation 'com.github.tamsiree.RxTool:RxArcGisKit:v2.4.3'
 }
 ```
 
@@ -78,6 +78,8 @@ RxTool.init(this);
 
 |  VERSION  |  Description  |
 | :-------: | ------------- |
+|   2.4.3   | 优化 RxTitle 控件  |
+|   2.4.2   | 更改库的包名，完善若干已知BUG  |
 |   2.4.1   | 完善 RxArcGisKit 模块  |
 |   **2.4.0**   | **`全面升级到 Android X`**:<br>修复 RxToast 在 Android 9 上,连点只弹出一次的问题<br>修复 二维码扫描框的焦点偏离 问题<br>添加 生成二维码LOGO 功能<br>添加 RxQRCode 的空白边界设置方法<br>更新若干工具类  |
 |   2.3.9   | 完善 RxFeature 模块  |

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tamsiree.rxtool.RxDataTool;
 import com.tamsiree.rxtool.RxRegTool;
 import com.tamsiree.rxtool.RxTextTool;
 import com.tamsiree.rxui.R;
@@ -24,6 +25,9 @@ public class RxDialogSure extends RxDialog {
     private TextView mTvTitle;
     private TextView mTvContent;
     private TextView mTvSure;
+
+    private String title;
+    private int logoIcon = -1;
 
     public RxDialogSure(Context context, int themeResId) {
         super(context, themeResId);
@@ -65,14 +69,6 @@ public class RxDialogSure extends RxDialog {
         return mTvContent;
     }
 
-    public void setLogo(int resId) {
-        mIvLogo.setImageResource(resId);
-    }
-
-    public void setTitle(String title) {
-        mTvTitle.setText(title);
-    }
-
     public void setSure(String content) {
         mTvSure.setText(content);
     }
@@ -97,7 +93,38 @@ public class RxDialogSure extends RxDialog {
         mTvContent.setMovementMethod(ScrollingMovementMethod.getInstance());
         mTvContent.setTextIsSelectable(true);
         mIvLogo = dialogView.findViewById(R.id.iv_logo);
+
+
+        if (RxDataTool.isNullString(title)) {
+            mTvTitle.setVisibility(View.GONE);
+        }
+
+        if (logoIcon == -1) {
+            mIvLogo.setVisibility(View.GONE);
+        }
+
         setContentView(dialogView);
+
+    }
+
+    public void setLogo(int resId) {
+        logoIcon = resId;
+        if (logoIcon == -1) {
+            mIvLogo.setVisibility(View.GONE);
+            return;
+        }
+        mIvLogo.setVisibility(View.VISIBLE);
+        mIvLogo.setImageResource(logoIcon);
+    }
+
+    public void setTitle(String titleStr) {
+        this.title = titleStr;
+        if (RxDataTool.isNullString(title)) {
+            mTvTitle.setVisibility(View.GONE);
+            return;
+        }
+        mTvTitle.setVisibility(View.VISIBLE);
+        mTvTitle.setText(title);
     }
 
 }

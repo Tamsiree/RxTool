@@ -23,7 +23,6 @@ import com.tamsiree.rxtool.RxBarTool;
 import com.tamsiree.rxtool.RxDeviceTool;
 import com.tamsiree.rxtool.RxPhotoTool;
 import com.tamsiree.rxtool.RxSPTool;
-
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxTitle;
 import com.tamsiree.rxui.view.dialog.RxDialogChooseImage;
@@ -41,7 +40,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.tamsiree.rxui.view.dialog.RxDialogChooseImage.LayoutType.TITLE;
+import static com.tamsiree.rxui.view.dialog.RxDialogChooseImage.LayoutType.NO_TITLE;
 
 
 /**
@@ -118,7 +117,7 @@ public class ActivityRxPhoto extends ActivityBase {
     }
 
     private void initDialogChooseImage() {
-        RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(mContext, TITLE);
+        RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(mContext, NO_TITLE);
         dialogChooseImage.show();
     }
 

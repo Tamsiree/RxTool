@@ -22,13 +22,12 @@ public class RxDialogAcfunVideoLoading extends RxDialog {
 
     public RxDialogAcfunVideoLoading(Context context) {
         super(context);
-        // TODO Auto-generated constructor stub
         View dialogView = LayoutInflater.from(context).inflate(
                 R.layout.dialog_loading_progress_acfun_video, null);
-        loading_progressBar = (ProgressBar) dialogView.findViewById(R.id.loading_progressBar);
+        loading_progressBar = dialogView.findViewById(R.id.loading_progressBar);
         Random random = new Random();
         int number = Math.abs(random.nextInt() % loadingText.length);
-        tv_reminder = (TextView) dialogView.findViewById(R.id.tv_reminder);
+        tv_reminder = dialogView.findViewById(R.id.tv_reminder);
         tv_reminder.setText(loadingText[number]);
         setContentView(dialogView);
         getLayoutParams().gravity = Gravity.CENTER;

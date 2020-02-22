@@ -148,6 +148,7 @@ public class RxDialogChooseImage extends RxDialog {
         });
         setContentView(dialogView);
         mLayoutParams.gravity = Gravity.BOTTOM;
+        mLayoutParams.width = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
     }
 
     private void initView(final Fragment fragment) {
@@ -163,9 +164,9 @@ public class RxDialogChooseImage extends RxDialog {
                 break;
         }
 
-        mTvCamera =  dialogView.findViewById(R.id.tv_camera);
-        mTvFile =  dialogView.findViewById(R.id.tv_file);
-        mTvCancel =  dialogView.findViewById(R.id.tv_cancel);
+        mTvCamera = dialogView.findViewById(R.id.tv_camera);
+        mTvFile = dialogView.findViewById(R.id.tv_file);
+        mTvCancel = dialogView.findViewById(R.id.tv_cancel);
         mTvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -192,6 +193,7 @@ public class RxDialogChooseImage extends RxDialog {
 
         setContentView(dialogView);
         mLayoutParams.gravity = Gravity.BOTTOM;
+        mLayoutParams.width = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
     }
 
     public enum LayoutType {

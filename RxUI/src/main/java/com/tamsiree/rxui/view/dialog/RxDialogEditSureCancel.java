@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tamsiree.rxtool.RxDataTool;
 import com.tamsiree.rxui.R;
 
 
@@ -23,6 +24,9 @@ public class RxDialogEditSureCancel extends RxDialog {
     private TextView mTvCancel;
     private EditText editText;
     private TextView mTvTitle;
+
+    private String title;
+    private int logoIcon = -1;
 
     public RxDialogEditSureCancel(Context context, int themeResId) {
         super(context, themeResId);
@@ -53,10 +57,6 @@ public class RxDialogEditSureCancel extends RxDialog {
         return mIvLogo;
     }
 
-    public void setTitle(String title) {
-        mTvTitle.setText(title);
-    }
-
     public TextView getTitleView() {
         return mTvTitle;
     }
@@ -83,11 +83,41 @@ public class RxDialogEditSureCancel extends RxDialog {
 
     private void initView() {
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_edittext_sure_false, null);
-        mIvLogo = (ImageView) dialogView.findViewById(R.id.iv_logo);
-        mTvTitle = (TextView) dialogView.findViewById(R.id.tv_title);
-        mTvSure = (TextView) dialogView.findViewById(R.id.tv_sure);
-        mTvCancel = (TextView) dialogView.findViewById(R.id.tv_cancle);
-        editText = (EditText) dialogView.findViewById(R.id.editText);
+        mIvLogo = dialogView.findViewById(R.id.iv_logo);
+        mTvTitle = dialogView.findViewById(R.id.tv_title);
+        mTvSure = dialogView.findViewById(R.id.tv_sure);
+        mTvCancel = dialogView.findViewById(R.id.tv_cancle);
+        editText = dialogView.findViewById(R.id.editText);
+
+        if (RxDataTool.isNullString(title)) {
+            mTvTitle.setVisibility(View.GONE);
+        }
+
+        if (logoIcon == -1) {
+            mIvLogo.setVisibility(View.GONE);
+        }
+
         setContentView(dialogView);
     }
+
+    public void setLogo(int LOGOIcon) {
+        logoIcon = LOGOIcon;
+        if (logoIcon == -1) {
+            mIvLogo.setVisibility(View.GONE);
+            return;
+        }
+        mIvLogo.setVisibility(View.VISIBLE);
+        mIvLogo.setImageResource(logoIcon);
+    }
+
+    public void setTitle(String titleStr) {
+        this.title = titleStr;
+        if (RxDataTool.isNullString(title)) {
+            mTvTitle.setVisibility(View.GONE);
+            return;
+        }
+        mTvTitle.setVisibility(View.VISIBLE);
+        mTvTitle.setText(title);
+    }
+
 }
