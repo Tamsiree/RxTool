@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.model.ModelMainItem;
-import com.tamsiree.rxtool.RxActivityTool;
+import com.tamsiree.rxkit.RxActivityTool;
 
 import java.util.List;
 

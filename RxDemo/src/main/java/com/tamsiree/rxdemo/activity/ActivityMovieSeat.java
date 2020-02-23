@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.tamsiree.rxdemo.R;
-import com.tamsiree.rxtool.RxBarTool;
-import com.tamsiree.rxtool.RxDeviceTool;
+import com.tamsiree.rxkit.RxBarTool;
+import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxSeatMovie;
 import com.tamsiree.rxui.view.RxTitle;

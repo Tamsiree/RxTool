@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.tamsiree.rxdemo.R;
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.RxFileTool;
-import com.tamsiree.rxtool.RxZipTool;
-import com.tamsiree.rxtool.view.RxToast;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.RxFileTool;
+import com.tamsiree.rxkit.RxZipTool;
+import com.tamsiree.rxkit.view.RxToast;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxTitle;
 

@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tamsiree.rxdemo.R;
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.RxImageTool;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxui.view.colorpicker.ColorPickerView;
 import com.tamsiree.rxui.view.colorpicker.OnColorChangedListener;
 import com.tamsiree.rxui.view.colorpicker.OnColorSelectedListener;

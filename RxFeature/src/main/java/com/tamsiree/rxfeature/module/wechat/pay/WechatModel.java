@@ -2,7 +2,7 @@ package com.tamsiree.rxfeature.module.wechat.pay;
 
 /**
  *
- * @author Vondear
+ * @author Tamsiree
  * @date 2017/4/18
  */
 

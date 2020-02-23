@@ -2,7 +2,7 @@ package com.tamsiree.rxui.model;
 
 /**
  * 图片实体类
- * @author Vondear
+ * @author Tamsiree
  * @date : 2017/6/12 ${time}
  */
 

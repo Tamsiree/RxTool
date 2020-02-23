@@ -3,7 +3,7 @@ package com.tamsiree.rxui.view.popupwindows.tools;
 import java.util.Locale;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  */
 class RxPopupViewTool {
 

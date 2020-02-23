@@ -13,7 +13,7 @@ import android.util.FloatProperty;
 import android.util.IntProperty;
 import android.util.Property;
 
-import com.tamsiree.rxtool.RxAnimationTool;
+import com.tamsiree.rxkit.RxAnimationTool;
 
 
 /**

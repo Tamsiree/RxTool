@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.tamsiree.rxtool.RxActivityTool;
+import com.tamsiree.rxkit.RxActivityTool;
 
 /**
  * @author tamsiree
@@ -19,7 +19,7 @@ public class ActivityBase extends FragmentActivity {
         super.onCreate(savedInstanceState);
         mContext = this;
         RxActivityTool.addActivity(this);
-//        DragAndDropPermissionsCompat
+
     }
 
     @Override

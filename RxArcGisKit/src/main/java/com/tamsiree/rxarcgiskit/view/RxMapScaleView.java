@@ -22,7 +22,7 @@ import com.tamsiree.rxarcgiskit.R;
 
 
 /**
- * Created by Vondear on 2017/11/5.
+ * Created by Tamsiree on 2017/11/5.
  */
 
 public class RxMapScaleView extends View {

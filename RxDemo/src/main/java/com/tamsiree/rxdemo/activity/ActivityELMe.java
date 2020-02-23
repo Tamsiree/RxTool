@@ -30,7 +30,7 @@ import com.tamsiree.rxdemo.model.ModelShopCart;
 import com.tamsiree.rxdemo.view.RxDialogShopCart;
 import com.tamsiree.rxdemo.view.RxFakeAddImageView;
 import com.tamsiree.rxdemo.view.RxPointFTypeEvaluator;
-import com.tamsiree.rxtool.RxDeviceTool;
+import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxTitle;
 

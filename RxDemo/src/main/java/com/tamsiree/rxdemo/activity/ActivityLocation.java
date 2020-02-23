@@ -18,8 +18,8 @@ import androidx.core.app.ActivityCompat;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.tamsiree.rxdemo.R;
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.RxLocationTool;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.RxLocationTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxTitle;
 

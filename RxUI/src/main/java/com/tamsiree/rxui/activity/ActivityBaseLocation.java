@@ -8,17 +8,15 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
+
 import androidx.core.app.ActivityCompat;
 
-import com.tamsiree.rxtool.RxLocationTool;
-import com.tamsiree.rxtool.RxVibrateTool;
-import com.tamsiree.rxtool.model.Gps;
-import com.tamsiree.rxtool.view.RxToast;
+import com.tamsiree.rxkit.RxLocationTool;
+import com.tamsiree.rxkit.RxVibrateTool;
+import com.tamsiree.rxkit.model.Gps;
+import com.tamsiree.rxkit.view.RxToast;
 import com.tamsiree.rxui.view.dialog.RxDialogGPSCheck;
 import com.tamsiree.rxui.view.dialog.RxDialogTool;
-
-
-import static android.content.Context.LOCATION_SERVICE;
 
 
 /**

@@ -24,10 +24,10 @@ import android.widget.Toast;
 import androidx.core.widget.NestedScrollView;
 
 import com.tamsiree.rxdemo.R;
-import com.tamsiree.rxtool.RxAnimationTool;
-import com.tamsiree.rxtool.RxBarTool;
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.RxKeyboardTool;
+import com.tamsiree.rxkit.RxAnimationTool;
+import com.tamsiree.rxkit.RxBarTool;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.RxKeyboardTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.activity.AndroidBug5497Workaround;
 

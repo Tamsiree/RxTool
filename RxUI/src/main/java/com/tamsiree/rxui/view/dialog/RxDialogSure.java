@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tamsiree.rxtool.RxDataTool;
-import com.tamsiree.rxtool.RxRegTool;
-import com.tamsiree.rxtool.RxTextTool;
+import com.tamsiree.rxkit.RxDataTool;
+import com.tamsiree.rxkit.RxRegTool;
+import com.tamsiree.rxkit.RxTextTool;
 import com.tamsiree.rxui.R;
 
 

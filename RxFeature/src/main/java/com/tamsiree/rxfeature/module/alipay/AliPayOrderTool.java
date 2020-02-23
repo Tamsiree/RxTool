@@ -1,6 +1,6 @@
 package com.tamsiree.rxfeature.module.alipay;
 
-import com.tamsiree.rxtool.RxTimeTool;
+import com.tamsiree.rxkit.RxTimeTool;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

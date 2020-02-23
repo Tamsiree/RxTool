@@ -1,7 +1,7 @@
 package com.tamsiree.rxarcgiskit.tool;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 2018/6/26
  */
 public class RxConstantsArcGis {

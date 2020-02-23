@@ -10,7 +10,7 @@ import com.tamsiree.rxui.R;
 
 
 /**
- * @author Vondear
+ * @author Tamsiree
  */
 class RxPopupViewBackgroundConstructor {
 

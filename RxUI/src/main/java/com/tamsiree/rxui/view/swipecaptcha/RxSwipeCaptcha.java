@@ -30,7 +30,7 @@ import com.tamsiree.rxui.R;
 import java.util.Random;
 
 /**
- * @author Vondear.
+ * @author Tamsiree.
  * 介绍：仿斗鱼滑动验证码View
  * @date 更新时间： 2017/08/24.
  */
@@ -172,11 +172,7 @@ public class RxSwipeCaptcha extends AppCompatImageView {
             public void onAnimationUpdate(ValueAnimator animation) {
                 float animatedValue = (float) animation.getAnimatedValue();
                 Log.d(TAG, "onAnimationUpdate: " + animatedValue);
-                if (animatedValue < 0.5f) {
-                    isDrawMask = false;
-                } else {
-                    isDrawMask = true;
-                }
+                isDrawMask = !(animatedValue < 0.5f);
                 invalidate();
             }
         });
@@ -484,7 +480,7 @@ public class RxSwipeCaptcha extends AppCompatImageView {
             //绘制竖直方向的
 
             //是否是从上到下
-            boolean topToBottom = end.y - start.y > 0 ? true : false;
+            boolean topToBottom = end.y - start.y > 0;
             //以下是我写出了所有的计算公式后推的，不要问我过程，只可意会。
             int flag;//旋转系数
             if (topToBottom) {
@@ -513,7 +509,7 @@ public class RxSwipeCaptcha extends AppCompatImageView {
             //绘制水平方向的
 
             //是否是从左到右
-            boolean leftToRight = end.x - start.x > 0 ? true : false;
+            boolean leftToRight = end.x - start.x > 0;
             //以下是我写出了所有的计算公式后推的，不要问我过程，只可意会。
             int flag;//旋转系数
             if (leftToRight) {

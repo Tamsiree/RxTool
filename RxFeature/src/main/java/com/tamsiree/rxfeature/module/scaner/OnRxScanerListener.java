@@ -4,7 +4,7 @@ package com.tamsiree.rxfeature.module.scaner;
 import com.google.zxing.Result;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 2017/9/22
  */
 

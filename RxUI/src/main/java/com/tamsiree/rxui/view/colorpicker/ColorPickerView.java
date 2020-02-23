@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.tamsiree.rxtool.RxImageTool;
+import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxui.R;
 import com.tamsiree.rxui.view.colorpicker.builder.ColorWheelRendererBuilder;
 import com.tamsiree.rxui.view.colorpicker.builder.PaintBuilder;
@@ -43,7 +43,7 @@ public class ColorPickerView extends View {
     private float alpha = 1;
     private int backgroundColor = 0x00000000;
 
-    private Integer initialColors[] = new Integer[]{null, null, null, null, null};
+    private Integer[] initialColors = new Integer[]{null, null, null, null, null};
     private int colorSelection = 0;
     private Integer initialColor;
     private Integer pickerTextColor;
@@ -138,10 +138,10 @@ public class ColorPickerView extends View {
         super.onLayout(changed, left, top, right, bottom);
 
         if (alphaSliderViewId != 0) {
-            setAlphaSlider((AlphaSlider) getRootView().findViewById(alphaSliderViewId));
+            setAlphaSlider(getRootView().findViewById(alphaSliderViewId));
         }
         if (lightnessSliderViewId != 0) {
-            setLightnessSlider((LightnessSlider) getRootView().findViewById(lightnessSliderViewId));
+            setLightnessSlider(getRootView().findViewById(lightnessSliderViewId));
         }
 
         updateColorWheel();

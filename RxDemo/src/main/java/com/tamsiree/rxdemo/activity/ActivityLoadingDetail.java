@@ -15,7 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.tools.EvaluatorARGB;
-import com.tamsiree.rxtool.RxDeviceTool;
+import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxui.view.progressing.SpinKitView;
 import com.tamsiree.rxui.view.progressing.SpriteFactory;
 import com.tamsiree.rxui.view.progressing.Style;

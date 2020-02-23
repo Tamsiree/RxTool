@@ -9,7 +9,7 @@ import android.widget.EditText;
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.model.CityModel;
 import com.tamsiree.rxdemo.tools.RxPullXml;
-import com.tamsiree.rxtool.RxDeviceTool;
+import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 
 import java.io.IOException;

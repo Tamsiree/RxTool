@@ -13,10 +13,10 @@ import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.adapter.AdapterRecyclerViewMain;
 import com.tamsiree.rxdemo.model.ModelMainItem;
 import com.tamsiree.rxfeature.activity.ActivityCodeTool;
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.RxImageTool;
-import com.tamsiree.rxtool.RxPermissionsTool;
-import com.tamsiree.rxtool.RxRecyclerViewDividerTool;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.RxImageTool;
+import com.tamsiree.rxkit.RxPermissionsTool;
+import com.tamsiree.rxkit.RxRecyclerViewDividerTool;
 import com.tamsiree.rxui.activity.ActivityWebView;
 
 import java.util.ArrayList;

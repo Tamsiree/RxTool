@@ -6,8 +6,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
-import com.tamsiree.rxtool.interfaces.OnSuccessAndErrorListener;
-import com.tamsiree.rxtool.view.RxToast;
+import com.tamsiree.rxkit.interfaces.OnSuccessAndErrorListener;
+import com.tamsiree.rxkit.view.RxToast;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -32,11 +32,11 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import static com.tamsiree.rxtool.RxConstants.WX_TOTAL_ORDER;
+import static com.tamsiree.rxkit.RxConstants.WX_TOTAL_ORDER;
 
 /**
  *
- * @author Vondear
+ * @author Tamsiree
  * @date 2017/4/17
  */
 
@@ -54,7 +54,7 @@ public class WechatPayTools {
         String total_fee = wechatModel.getMoney();//总金额 分
         String time_start = getCurrTime();//交易起始时间(订单生成时间非必须)
         String trade_type = "APP";//App支付
-        String notify_url = "https://github.com/vondear/RxTools";//"http://" + "域名" + "/" + "项目名" + "回调地址.do";//回调函数
+        String notify_url = "https://github.com/tamsiree/RxTools";//"http://" + "域名" + "/" + "项目名" + "回调地址.do";//回调函数
         SortedMap<String, String> params = new TreeMap<String, String>();
         params.put("appid", appid);
         params.put("mch_id", mch_id);

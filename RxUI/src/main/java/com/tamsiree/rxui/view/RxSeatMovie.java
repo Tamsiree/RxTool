@@ -26,14 +26,14 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
-import com.tamsiree.rxtool.RxImageTool;
+import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxui.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 16/6/16
  */
 public class RxSeatMovie extends View {
@@ -314,9 +314,9 @@ public class RxSeatMovie extends View {
     float yScale1 = 1;
 
     private void init() {
-        spacing = (int) RxImageTool.dip2px(5);
-        verSpacing = (int) RxImageTool.dip2px(10);
-        defaultScreenWidth = (int) RxImageTool.dip2px(80);
+        spacing = RxImageTool.dip2px(5);
+        verSpacing = RxImageTool.dip2px(10);
+        defaultScreenWidth = RxImageTool.dip2px(80);
 
         seatBitmap = BitmapFactory.decodeResource(getResources(), seatAvailableResID);
 
@@ -334,7 +334,7 @@ public class RxSeatMovie extends View {
         seatBitmapWidth = (int) (column * seatBitmap.getWidth() * xScale1 + (column - 1) * spacing);
         seatBitmapHeight = (int) (row * seatBitmap.getHeight() * yScale1 + (row - 1) * verSpacing);
         paint.setColor(Color.RED);
-        numberWidth = (int) RxImageTool.dip2px(20);
+        numberWidth = RxImageTool.dip2px(20);
 
         screenHeight = RxImageTool.dip2px(20);
         headHeight = RxImageTool.dip2px(30);

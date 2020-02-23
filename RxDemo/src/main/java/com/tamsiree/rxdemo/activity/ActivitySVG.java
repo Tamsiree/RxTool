@@ -9,9 +9,9 @@ import android.widget.RelativeLayout;
 import com.jaredrummler.android.widget.AnimatedSvgView;
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.model.ModelSVG;
-import com.tamsiree.rxtool.RxActivityTool;
-import com.tamsiree.rxtool.RxBarTool;
-import com.tamsiree.rxtool.RxDeviceTool;
+import com.tamsiree.rxkit.RxActivityTool;
+import com.tamsiree.rxkit.RxBarTool;
+import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 
 import butterknife.BindView;

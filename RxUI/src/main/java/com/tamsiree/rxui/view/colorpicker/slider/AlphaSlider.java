@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 
-import com.tamsiree.rxtool.RxImageTool;
+import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxui.view.colorpicker.ColorPickerView;
 import com.tamsiree.rxui.view.colorpicker.builder.PaintBuilder;
 

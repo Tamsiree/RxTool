@@ -13,13 +13,13 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 
-import com.tamsiree.rxtool.RxImageTool;
+import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxui.R;
 
 import java.util.ArrayList;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 2017/10/9
  */
 public class RxRotateBar extends FrameLayout {

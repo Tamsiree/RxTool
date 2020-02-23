@@ -11,17 +11,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.tamsiree.rxdemo.R;
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.RxTextTool;
-import com.tamsiree.rxtool.view.RxToast;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.RxTextTool;
+import com.tamsiree.rxkit.view.RxToast;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxTitle;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.tamsiree.rxtool.RxBarTool.setTransparentStatusBar;
-import static com.tamsiree.rxtool.RxConstants.URL_VONTOOLS;
+import static com.tamsiree.rxkit.RxBarTool.setTransparentStatusBar;
+import static com.tamsiree.rxkit.RxConstants.URL_VONTOOLS;
 
 /**
  * @author tamsiree

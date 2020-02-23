@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.tamsiree.rxtool.RxImageTool;
+import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxui.R;
 import com.tamsiree.rxui.view.colorpicker.ColorPickerView;
 import com.tamsiree.rxui.view.colorpicker.OnColorChangedListener;

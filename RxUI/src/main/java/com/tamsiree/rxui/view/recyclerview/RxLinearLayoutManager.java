@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 2017/6/8
  * 官方的BUG
  * 解决 IndexOutOfBoundsException: Inconsistency detected. Invalid view holder adapter

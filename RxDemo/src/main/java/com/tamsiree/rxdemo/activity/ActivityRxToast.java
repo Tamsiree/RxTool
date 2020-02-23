@@ -8,8 +8,8 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.tamsiree.rxdemo.R;
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.view.RxToast;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.view.RxToast;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxTitle;
 

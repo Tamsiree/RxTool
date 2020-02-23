@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.tamsiree.rxtool.RxAnimationTool;
+import com.tamsiree.rxkit.RxAnimationTool;
 
 import java.util.HashMap;
 import java.util.Map;

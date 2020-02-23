@@ -3,7 +3,6 @@ package com.tamsiree.rxui.view.dialog;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
-import androidx.core.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +10,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.tamsiree.rxtool.RxIntentTool;
-import com.tamsiree.rxtool.RxVibrateTool;
-import com.tamsiree.rxtool.view.RxToast;
+import androidx.core.content.ContextCompat;
+
+import com.tamsiree.rxkit.RxIntentTool;
+import com.tamsiree.rxkit.RxVibrateTool;
+import com.tamsiree.rxkit.view.RxToast;
 import com.tamsiree.rxui.R;
 import com.tamsiree.rxui.adapter.AdapterCardViewModelPicture;
 import com.tamsiree.rxui.model.ModelPicture;

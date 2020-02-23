@@ -15,9 +15,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.tamsiree.rxtool.RxDataTool;
-import com.tamsiree.rxtool.RxImageTool;
-import com.tamsiree.rxtool.RxKeyboardTool;
+import com.tamsiree.rxkit.RxDataTool;
+import com.tamsiree.rxkit.RxImageTool;
+import com.tamsiree.rxkit.RxKeyboardTool;
 import com.tamsiree.rxui.R;
 
 /**

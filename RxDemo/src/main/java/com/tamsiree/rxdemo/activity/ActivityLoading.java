@@ -10,7 +10,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.fragment.FragmentLoadingDemo;
 import com.tamsiree.rxdemo.fragment.FragmentLoadingWay;
-import com.tamsiree.rxtool.RxDeviceTool;
+import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxTitle;
 

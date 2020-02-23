@@ -25,7 +25,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Toast;
 
-import com.tamsiree.rxtool.RxImageTool;
+import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxui.R;
 
 import java.io.ByteArrayOutputStream;
@@ -81,7 +81,7 @@ public class RxSeatAirplane extends View {
     private float moveY = 0;
 
     private String getSeatKeyName(int row, int column) {
-        return String.valueOf(row + "#" + column);
+        return row + "#" + column;
     }
 
     public void setSeatSelected(int row, int column) {
@@ -664,7 +664,7 @@ public class RxSeatAirplane extends View {
         int column = 7;
         mSeats.clear();
 
-        float seatWH = (float) (rectFCabin.width() / 9.0f);
+        float seatWH = rectFCabin.width() / 9.0f;
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
                 if (i >= 0 && j < 2) {
@@ -753,7 +753,7 @@ public class RxSeatAirplane extends View {
         int row = 3;
         int column = 8;
 
-        float seatWH2 = (float) (rectFCabin.width() / 10.0f);
+        float seatWH2 = rectFCabin.width() / 10.0f;
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
                 if (i >= 0 && j < 2) {
@@ -792,7 +792,7 @@ public class RxSeatAirplane extends View {
                 + seatWH * 13
                 + rectFCabin.width() / 2 +
                 seatWH + (row + 1) * (seatWH2) + seatWH2 / 2
-                + ((int) (RxImageTool.dip2px(2) * mAnimatedValue < 1 ? 1 : (int) (RxImageTool.dip2px(2) * mAnimatedValue)));
+                + (RxImageTool.dip2px(2) * mAnimatedValue < 1 ? 1 : (int) (RxImageTool.dip2px(2) * mAnimatedValue));
         canvas.drawRoundRect(rectFWall, RxImageTool.dip2px(1), RxImageTool.dip2px(1), mPaintOther);
         rectFWall.top = rectFCabin.top
                 + seatWH * 13
@@ -806,7 +806,7 @@ public class RxSeatAirplane extends View {
                 + seatWH * 13
                 + rectFCabin.width() / 2 +
                 seatWH + (row + 1) * (seatWH2) + seatWH2 / 2
-                + ((int) (RxImageTool.dip2px(2) * mAnimatedValue < 1 ? 1 : (int) (RxImageTool.dip2px(2) * mAnimatedValue)));
+                + (RxImageTool.dip2px(2) * mAnimatedValue < 1 ? 1 : (int) (RxImageTool.dip2px(2) * mAnimatedValue));
         canvas.drawRoundRect(rectFWall, RxImageTool.dip2px(1), RxImageTool.dip2px(1), mPaintOther);
 
     }

@@ -11,8 +11,8 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.model.ActionItem;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.model.ActionItem;
 import com.tamsiree.rxui.R;
 
 import java.util.ArrayList;

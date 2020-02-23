@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 2018/6/11 11:36:40 整合修改
  */
 public class RxCardStackView extends ViewGroup implements RxScrollDelegate {

@@ -19,7 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  *
  * Numeric wheel view.
  */

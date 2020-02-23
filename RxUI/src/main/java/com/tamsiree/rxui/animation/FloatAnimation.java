@@ -8,7 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 2018/6/19
  */
 public class FloatAnimation extends Animation {

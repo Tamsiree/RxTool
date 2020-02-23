@@ -9,8 +9,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.core.view.GestureDetectorCompat;
-import androidx.core.view.ViewCompat;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -20,13 +18,16 @@ import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.OverScroller;
 
+import androidx.core.view.GestureDetectorCompat;
+import androidx.core.view.ViewCompat;
+
 import com.tamsiree.rxui.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 15/11/9
  */
 public class RxRulerWheelView extends View implements GestureDetector.OnGestureListener {

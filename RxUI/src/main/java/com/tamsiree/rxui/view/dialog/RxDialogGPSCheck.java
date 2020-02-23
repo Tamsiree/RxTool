@@ -5,7 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 
-import com.tamsiree.rxtool.RxLocationTool;
+import com.tamsiree.rxkit.RxLocationTool;
 
 
 /**

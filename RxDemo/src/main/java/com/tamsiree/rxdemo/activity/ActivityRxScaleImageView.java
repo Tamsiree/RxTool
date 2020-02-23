@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.view.RxPinView;
-import com.tamsiree.rxtool.RxDeviceTool;
+import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxTitle;
 import com.tamsiree.rxui.view.scaleimage.ImageSource;
@@ -34,7 +34,7 @@ public class ActivityRxScaleImageView extends ActivityBase implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_scale_image_view);
         RxDeviceTool.setPortrait(this);
-        RxTitle rxTitle = (RxTitle) findViewById(R.id.rx_title);
+        RxTitle rxTitle = findViewById(R.id.rx_title);
         rxTitle.setLeftFinish(mContext);
 
         findViewById(R.id.next).setOnClickListener(this);
@@ -69,7 +69,7 @@ public class ActivityRxScaleImageView extends ActivityBase implements View.OnCli
             position--;
             updateNotes();
         } else if (view.getId() == R.id.play) {
-            RxPinView rxPinView = (RxPinView) findViewById(R.id.imageView);
+            RxPinView rxPinView = findViewById(R.id.imageView);
             Random random = new Random();
             if (rxPinView.isReady()) {
                 float maxScale = rxPinView.getMaxScale();
@@ -94,7 +94,7 @@ public class ActivityRxScaleImageView extends ActivityBase implements View.OnCli
     }
 
     private void initialiseImage() {
-        RxScaleImageView imageView = (RxScaleImageView) findViewById(R.id.imageView);
+        RxScaleImageView imageView = findViewById(R.id.imageView);
         imageView.setImage(ImageSource.asset("squirrel.jpg"));
     }
 
@@ -106,7 +106,7 @@ public class ActivityRxScaleImageView extends ActivityBase implements View.OnCli
         findViewById(R.id.next).setVisibility(position >= notes.size() - 1 ? View.INVISIBLE : View.VISIBLE);
         findViewById(R.id.previous).setVisibility(position <= 0 ? View.INVISIBLE : View.VISIBLE);
 
-        RxScaleImageView imageView = (RxScaleImageView) findViewById(R.id.imageView);
+        RxScaleImageView imageView = findViewById(R.id.imageView);
         if (position == 2) {
             imageView.setPanLimit(RxScaleImageView.PAN_LIMIT_CENTER);
         } else {

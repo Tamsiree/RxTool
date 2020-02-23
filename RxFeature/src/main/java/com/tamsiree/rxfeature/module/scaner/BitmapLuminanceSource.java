@@ -5,13 +5,13 @@ import android.graphics.Bitmap;
 import com.google.zxing.LuminanceSource;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 16/7/27
  * 自定义解析Bitmap LuminanceSource
  */
 public class BitmapLuminanceSource extends LuminanceSource {
 
-    private byte bitmapPixels[];
+    private byte[] bitmapPixels;
 
     public BitmapLuminanceSource(Bitmap bitmap) {
         super(bitmap.getWidth(), bitmap.getHeight());

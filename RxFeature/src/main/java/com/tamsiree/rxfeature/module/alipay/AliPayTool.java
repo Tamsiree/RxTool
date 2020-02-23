@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.alipay.sdk.app.PayTask;
-import com.tamsiree.rxtool.interfaces.OnSuccessAndErrorListener;
+import com.tamsiree.rxkit.interfaces.OnSuccessAndErrorListener;
 
 import java.util.Map;
 

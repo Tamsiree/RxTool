@@ -12,7 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 16/6/1
  */
 public class WechatPay {

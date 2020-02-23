@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.widget.SeekBar;
 
 import com.tamsiree.rxdemo.R;
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.model.ModelSpider;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.model.ModelSpider;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxCobwebView;
 import com.tamsiree.rxui.view.RxTitle;

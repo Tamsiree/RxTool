@@ -19,12 +19,13 @@ import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.tamsiree.rxtool.RxImageTool;
+import androidx.core.content.ContextCompat;
+
+import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxui.R;
 
 
@@ -364,11 +365,7 @@ public class RxSeekBar extends View {
 
 
         public SeekBar(int position) {
-            if (position < 0) {
-                isLeft = true;
-            } else {
-                isLeft = false;
-            }
+            isLeft = position < 0;
         }
 
         /**

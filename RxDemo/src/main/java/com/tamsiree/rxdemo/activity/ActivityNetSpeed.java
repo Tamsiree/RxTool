@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.tamsiree.rxdemo.R;
-import com.tamsiree.rxtool.RxDeviceTool;
+import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxNetSpeedView;
 import com.tamsiree.rxui.view.RxTitle;

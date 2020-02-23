@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  */
 class RxPopupViewCoordinatesFinder {
 

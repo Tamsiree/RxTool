@@ -11,11 +11,12 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.core.content.ContextCompat;
 
 import com.tamsiree.rxui.R;
 
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 2016/7/10 17:59:00
  */
 public class RxShoppingView extends View {

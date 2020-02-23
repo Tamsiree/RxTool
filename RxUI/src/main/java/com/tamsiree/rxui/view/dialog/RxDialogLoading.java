@@ -6,12 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.tamsiree.rxtool.view.RxToast;
+import com.tamsiree.rxkit.view.RxToast;
 import com.tamsiree.rxui.R;
 import com.tamsiree.rxui.view.progressing.SpinKitView;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 2017/3/16
  */
 

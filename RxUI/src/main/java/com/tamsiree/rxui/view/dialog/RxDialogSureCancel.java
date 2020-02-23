@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tamsiree.rxtool.RxDataTool;
+import com.tamsiree.rxkit.RxDataTool;
 import com.tamsiree.rxui.R;
 
 

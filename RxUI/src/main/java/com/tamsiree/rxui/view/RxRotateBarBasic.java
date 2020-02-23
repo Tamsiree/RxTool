@@ -10,7 +10,7 @@ import android.text.TextPaint;
 import java.util.ArrayList;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 12/24/15
  */
 public class RxRotateBarBasic {

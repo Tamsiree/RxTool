@@ -16,8 +16,8 @@ import android.widget.Scroller;
 
 import androidx.annotation.NonNull;
 
-import com.tamsiree.rxtool.RxImageTool;
-import com.tamsiree.rxtool.model.ModelSpider;
+import com.tamsiree.rxkit.RxImageTool;
+import com.tamsiree.rxkit.model.ModelSpider;
 import com.tamsiree.rxui.R;
 
 import java.util.ArrayList;

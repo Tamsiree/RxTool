@@ -36,13 +36,13 @@ import com.esri.arcgisruntime.tasks.networkanalysis.RouteParameters;
 import com.esri.arcgisruntime.tasks.networkanalysis.RouteTask;
 import com.tamsiree.rxarcgiskit.model.MapPreview;
 import com.tamsiree.rxarcgiskit.view.RxMapScaleView;
-import com.tamsiree.rxtool.RxDataTool;
-import com.tamsiree.rxtool.RxImageTool;
-import com.tamsiree.rxtool.RxLocationTool;
-import com.tamsiree.rxtool.RxMapTool;
-import com.tamsiree.rxtool.RxSPTool;
-import com.tamsiree.rxtool.model.Gps;
-import com.tamsiree.rxtool.view.RxToast;
+import com.tamsiree.rxkit.RxDataTool;
+import com.tamsiree.rxkit.RxImageTool;
+import com.tamsiree.rxkit.RxLocationTool;
+import com.tamsiree.rxkit.RxMapTool;
+import com.tamsiree.rxkit.RxSPTool;
+import com.tamsiree.rxkit.model.Gps;
+import com.tamsiree.rxkit.view.RxToast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Created by Vondear on 2017/8/9.
+ * Created by Tamsiree on 2017/8/9.
  */
 
 public class RxArcGisMapTool {

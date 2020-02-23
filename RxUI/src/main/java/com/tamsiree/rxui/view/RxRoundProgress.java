@@ -10,14 +10,14 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.tamsiree.rxtool.RxDataTool;
+import com.tamsiree.rxkit.RxDataTool;
 import com.tamsiree.rxui.R;
 
 
 /**
  * 弧形进度条
  *
- * @author Vondear
+ * @author Tamsiree
  * @date 2015/12/03
  */
 public class RxRoundProgress extends View {

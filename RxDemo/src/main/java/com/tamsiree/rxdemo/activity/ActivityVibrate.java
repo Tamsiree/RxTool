@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.tamsiree.rxdemo.R;
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.RxVibrateTool;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.RxVibrateTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxTitle;
 

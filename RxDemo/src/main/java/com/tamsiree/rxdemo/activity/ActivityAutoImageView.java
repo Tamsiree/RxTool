@@ -3,8 +3,8 @@ package com.tamsiree.rxdemo.activity;
 import android.os.Bundle;
 
 import com.tamsiree.rxdemo.R;
-import com.tamsiree.rxtool.RxBarTool;
-import com.tamsiree.rxtool.RxDeviceTool;
+import com.tamsiree.rxkit.RxBarTool;
+import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 
 /**

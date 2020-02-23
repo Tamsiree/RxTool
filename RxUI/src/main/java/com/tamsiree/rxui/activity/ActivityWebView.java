@@ -22,10 +22,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tamsiree.rxtool.RxBarTool;
-import com.tamsiree.rxtool.RxConstants;
-import com.tamsiree.rxtool.RxImageTool;
-import com.tamsiree.rxtool.RxKeyboardTool;
+import com.tamsiree.rxkit.RxBarTool;
+import com.tamsiree.rxkit.RxConstants;
+import com.tamsiree.rxkit.RxImageTool;
+import com.tamsiree.rxkit.RxKeyboardTool;
 import com.tamsiree.rxui.R;
 import com.tamsiree.rxui.view.RxTextAutoZoom;
 

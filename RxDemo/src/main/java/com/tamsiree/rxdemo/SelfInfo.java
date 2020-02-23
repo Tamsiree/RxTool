@@ -1,7 +1,7 @@
 package com.tamsiree.rxdemo;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 2018/6/14
  */
 public class SelfInfo {

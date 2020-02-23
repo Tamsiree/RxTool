@@ -9,10 +9,10 @@ import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.SelfInfo;
 import com.tamsiree.rxfeature.module.alipay.AliPayModel;
 import com.tamsiree.rxfeature.module.alipay.AliPayTool;
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.RxTimeTool;
-import com.tamsiree.rxtool.interfaces.OnSuccessAndErrorListener;
-import com.tamsiree.rxtool.view.RxToast;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.RxTimeTool;
+import com.tamsiree.rxkit.interfaces.OnSuccessAndErrorListener;
+import com.tamsiree.rxkit.view.RxToast;
 import com.tamsiree.rxui.activity.ActivityBase;
 
 import butterknife.BindView;

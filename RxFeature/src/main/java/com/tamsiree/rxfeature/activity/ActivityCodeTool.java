@@ -12,20 +12,20 @@ import androidx.core.widget.NestedScrollView;
 import com.tamsiree.rxfeature.R;
 import com.tamsiree.rxfeature.tool.RxBarCode;
 import com.tamsiree.rxfeature.tool.RxQRCode;
-import com.tamsiree.rxtool.RxActivityTool;
-import com.tamsiree.rxtool.RxBarTool;
-import com.tamsiree.rxtool.RxDataTool;
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.RxImageTool;
-import com.tamsiree.rxtool.RxSPTool;
-import com.tamsiree.rxtool.view.RxToast;
+import com.tamsiree.rxkit.RxActivityTool;
+import com.tamsiree.rxkit.RxBarTool;
+import com.tamsiree.rxkit.RxDataTool;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.RxImageTool;
+import com.tamsiree.rxkit.RxSPTool;
+import com.tamsiree.rxkit.view.RxToast;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.RxTitle;
 import com.tamsiree.rxui.view.ticker.RxTickerUtils;
 import com.tamsiree.rxui.view.ticker.RxTickerView;
 
-import static com.tamsiree.rxtool.RxConstants.SP_MADE_CODE;
-import static com.tamsiree.rxtool.RxConstants.SP_SCAN_CODE;
+import static com.tamsiree.rxkit.RxConstants.SP_MADE_CODE;
+import static com.tamsiree.rxkit.RxConstants.SP_SCAN_CODE;
 
 /**
  * @author tamsiree

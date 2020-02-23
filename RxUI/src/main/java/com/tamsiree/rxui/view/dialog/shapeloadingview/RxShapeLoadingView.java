@@ -21,7 +21,7 @@ import com.tamsiree.rxui.R;
 
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 2015/4/6
  *       2018/6/11 11:36:40 整合修改
  */
@@ -90,10 +90,10 @@ public class RxShapeLoadingView extends FrameLayout {
 
         layoutParams.gravity = Gravity.CENTER;
 
-        mRxShapeView = (RxShapeView) view.findViewById(R.id.shapeLoadingView);
+        mRxShapeView = view.findViewById(R.id.shapeLoadingView);
 
-        mIndicationIm = (ImageView) view.findViewById(R.id.indication);
-        mLoadTextView = (TextView) view.findViewById(R.id.promptTV);
+        mIndicationIm = view.findViewById(R.id.indication);
+        mLoadTextView = view.findViewById(R.id.promptTV);
 
         if (mTextAppearance != -1) {
             mLoadTextView.setTextAppearance(getContext(), mTextAppearance);

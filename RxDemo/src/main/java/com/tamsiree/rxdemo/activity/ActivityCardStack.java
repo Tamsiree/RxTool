@@ -10,9 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.adapter.AdapterStackTest;
-import com.tamsiree.rxtool.RxDeviceTool;
-import com.tamsiree.rxtool.RxTool;
-import com.tamsiree.rxtool.interfaces.OnSimpleListener;
+import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.RxTool;
+import com.tamsiree.rxkit.interfaces.OnSimpleListener;
 import com.tamsiree.rxui.view.cardstack.RxCardStackView;
 import com.tamsiree.rxui.view.cardstack.tools.RxAdapterAllMoveDownAnimator;
 import com.tamsiree.rxui.view.cardstack.tools.RxAdapterUpDownAnimator;

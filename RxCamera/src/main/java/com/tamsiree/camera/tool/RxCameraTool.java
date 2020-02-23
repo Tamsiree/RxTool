@@ -6,14 +6,14 @@ import android.os.SystemClock;
 import android.util.Log;
 
 import com.tamsiree.camera.RxCameraView;
-import com.tamsiree.rxtool.RxConstants;
-import com.tamsiree.rxtool.RxExifTool;
-import com.tamsiree.rxtool.RxFileTool;
-import com.tamsiree.rxtool.RxVibrateTool;
-import com.tamsiree.rxtool.interfaces.OnRxCamera;
-import com.tamsiree.rxtool.module.photomagic.OnCompressListener;
-import com.tamsiree.rxtool.module.photomagic.RxMagic;
-import com.tamsiree.rxtool.view.RxToast;
+import com.tamsiree.rxkit.RxConstants;
+import com.tamsiree.rxkit.RxExifTool;
+import com.tamsiree.rxkit.RxFileTool;
+import com.tamsiree.rxkit.RxVibrateTool;
+import com.tamsiree.rxkit.interfaces.OnRxCamera;
+import com.tamsiree.rxkit.module.photomagic.OnCompressListener;
+import com.tamsiree.rxkit.module.photomagic.RxMagic;
+import com.tamsiree.rxkit.view.RxToast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,7 +30,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * @author Vondear
+ * @author Tamsiree
  * @date 2017/9/22
  */
 

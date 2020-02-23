@@ -20,7 +20,7 @@ import com.tamsiree.rxui.view.progressing.style.DoubleBounce;
 import com.tamsiree.rxui.view.progressing.style.Wave;
 
 /**
- * Created by Vondear.
+ * Created by Tamsiree.
  * @author tamsiree
  */
 public class FragmentLoadingDemo extends Fragment {
@@ -49,14 +49,14 @@ public class FragmentLoadingDemo extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //ProgressBar
-        ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progress);
+        ProgressBar progressBar = view.findViewById(R.id.progress);
         DoubleBounce doubleBounce = new DoubleBounce();
         doubleBounce.setBounds(0, 0, 100, 100);
         doubleBounce.setColor(colors[0]);
         progressBar.setIndeterminateDrawable(doubleBounce);
 
         //Button
-        Button button = (Button) view.findViewById(R.id.button);
+        Button button = view.findViewById(R.id.button);
         mWaveDrawable = new Wave();
         mWaveDrawable.setBounds(0, 0, 100, 100);
         //noinspection deprecation
@@ -64,7 +64,7 @@ public class FragmentLoadingDemo extends Fragment {
         button.setCompoundDrawables(mWaveDrawable, null, null, null);
 
         //TextView
-        TextView textView = (TextView) view.findViewById(R.id.text);
+        TextView textView = view.findViewById(R.id.text);
         mCircleDrawable = new Circle();
         mCircleDrawable.setBounds(0, 0, 100, 100);
         mCircleDrawable.setColor(Color.WHITE);
@@ -72,7 +72,7 @@ public class FragmentLoadingDemo extends Fragment {
         textView.setBackgroundColor(colors[0]);
 
         //ImageView
-        ImageView imageView = (ImageView) view.findViewById(R.id.image);
+        ImageView imageView = view.findViewById(R.id.image);
         mChasingDotsDrawable = new CubeGrid();
         mChasingDotsDrawable.setColor(Color.WHITE);
         imageView.setImageDrawable(mChasingDotsDrawable);
