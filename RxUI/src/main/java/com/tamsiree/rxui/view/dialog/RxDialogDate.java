@@ -83,11 +83,32 @@ public class RxDialogDate extends RxDialog {
     }
 
     public String getDateCN() {
-        return curYear + "年" + mMonths[curMonth] + "月" + mDays[curDay] + "日";
+        String dateCN;
+        switch (mDateFormat) {
+            case 年月:
+                dateCN = curYear + "年" + mMonths[curMonth] + "月";
+                break;
+            case 年月日:
+            default:
+                dateCN = curYear + "年" + mMonths[curMonth] + "月" + mDays[curDay] + "日";
+                break;
+        }
+
+        return dateCN;
     }
 
     public String getDateEN() {
-        return curYear + "-" + mMonths[curMonth] + "-" + mDays[curDay];
+        String dateCN;
+        switch (mDateFormat) {
+            case 年月:
+                dateCN = curYear + "-" + mMonths[curMonth];
+                break;
+            case 年月日:
+            default:
+                dateCN = curYear + "-" + mMonths[curMonth] + "-" + mDays[curDay];
+                break;
+        }
+        return dateCN;
     }
 
     public void setDateFormat(DateFormat dateFormat) {
@@ -104,17 +125,6 @@ public class RxDialogDate extends RxDialog {
         }
     }
 
-    public int getBeginYear() {
-        return beginYear;
-    }
-
-    public int getEndYear() {
-        return endYear;
-    }
-
-    public int getDivideYear() {
-        return divideYear;
-    }
 
     private void build() {
         mCalendar = Calendar.getInstance();
@@ -255,6 +265,18 @@ public class RxDialogDate extends RxDialog {
         return getDays()[getDayView().getCurrentItem()];
     }
 
+
+    public int getBeginYear() {
+        return beginYear;
+    }
+
+    public int getEndYear() {
+        return endYear;
+    }
+
+    public int getDivideYear() {
+        return divideYear;
+    }
 
     /**
      * Updates mDayView wheel. Sets max mDays according to selected mMonthView and mYearView
