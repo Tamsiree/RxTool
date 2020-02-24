@@ -116,6 +116,10 @@ public class RxConstants {
     //Date格式 常用
     public static final String DATE_FORMAT_DETACH = "yyyy-MM-dd HH:mm:ss";
 
+    public static final String DATE_FORMAT_DETACH_CN = "yyyy年MM月dd日 HH:mm:ss";
+
+    public static final String DATE_FORMAT_DETACH_CN_SSS = "yyyy年MM月dd日 HH:mm:ss SSS";
+
     //Date格式 带毫秒
     public static final String DATE_FORMAT_DETACH_SSS = "yyyy-MM-dd HH:mm:ss SSS";
 

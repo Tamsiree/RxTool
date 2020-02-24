@@ -24,7 +24,10 @@ import java.util.Calendar;
 /**
  * @author tamsiree
  */
-public class RxDialogWheelYearMonthDay extends RxDialog {
+public class RxDialogDate extends RxDialog {
+
+    private DateFormat mDateFormat = DateFormat.年月日;
+
     private WheelView mYearView;
     private WheelView mMonthView;
     private WheelView mDayView;
@@ -46,14 +49,14 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
     private int endYear = 0;
     private int divideYear = endYear - beginYear;
 
-    public RxDialogWheelYearMonthDay(Context mContext) {
+    public RxDialogDate(Context mContext) {
         super(mContext);
         // TODO Auto-generated constructor stub
         this.mContext = mContext;
         build();
     }
 
-    public RxDialogWheelYearMonthDay(Context mContext, int beginYear) {
+    public RxDialogDate(Context mContext, int beginYear) {
         super(mContext);
         // TODO Auto-generated constructor stub
         this.mContext = mContext;
@@ -61,7 +64,7 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
         build();
     }
 
-    public RxDialogWheelYearMonthDay(Context mContext, int beginYear, int endYear) {
+    public RxDialogDate(Context mContext, int beginYear, int endYear) {
         super(mContext);
         // TODO Auto-generated constructor stub
         this.mContext = mContext;
@@ -70,12 +73,35 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
         build();
     }
 
-    public RxDialogWheelYearMonthDay(Context mContext, TextView tvTime) {
+    public RxDialogDate(Context mContext, DateFormat dateFormat) {
         super(mContext);
         // TODO Auto-generated constructor stub
         this.mContext = mContext;
         build();
-        tvTime.setText(curYear + "年" + mMonths[curMonth] + "月");
+        this.mDateFormat = dateFormat;
+        setDateFormat(mDateFormat);
+    }
+
+    public String getDateCN() {
+        return curYear + "年" + mMonths[curMonth] + "月" + mDays[curDay] + "日";
+    }
+
+    public String getDateEN() {
+        return curYear + "-" + mMonths[curMonth] + "-" + mDays[curDay];
+    }
+
+    public void setDateFormat(DateFormat dateFormat) {
+        switch (dateFormat) {
+            case 年月:
+                llType.setVisibility(View.VISIBLE);
+                mCheckBoxDay.setChecked(true);
+                break;
+            case 年月日:
+            default:
+                llType.setVisibility(View.INVISIBLE);
+                mCheckBoxDay.setChecked(false);
+                break;
+        }
     }
 
     public int getBeginYear() {
@@ -88,16 +114,6 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
 
     public int getDivideYear() {
         return divideYear;
-    }
-
-    public void setMonthType(Boolean isTrue) {
-        if (isTrue) {
-            llType.setVisibility(View.INVISIBLE);
-        } else {
-            llType.setVisibility(View.VISIBLE);
-        }
-        mCheckBoxDay.setChecked(!isTrue);
-
     }
 
     private void build() {
@@ -113,7 +129,7 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
 
         curYear = mCalendar.get(Calendar.YEAR);
         if (beginYear == 0) {
-            beginYear = curYear - 5;
+            beginYear = curYear - 150;
         }
         if (endYear == 0) {
             endYear = curYear;
@@ -177,13 +193,20 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
         setContentView(dialogView1);
     }
 
+    private String[] getMonths() {
+        return mMonths;
+    }
+
+    private String[] getDays() {
+        return mDays;
+    }
+
+    public int getCurYear() {
+        return curYear;
+    }
 
     public WheelView getDayView() {
         return mDayView;
-    }
-
-    public int getCurDay() {
-        return curDay;
     }
 
     public CheckBox getCheckBoxDay() {
@@ -198,12 +221,17 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
         return mMonthView;
     }
 
-    private int getCurYear() {
-        return curYear;
+    public int getCurMonth() {
+        return curMonth;
     }
 
-    private int getCurMonth() {
-        return curMonth;
+    public int getCurDay() {
+        return curDay;
+    }
+
+    public enum DateFormat {
+        年月,
+        年月日
     }
 
     public TextView getSureView() {
@@ -214,13 +242,6 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
         return mTvCancle;
     }
 
-    private String[] getMonths() {
-        return mMonths;
-    }
-
-    private String[] getDays() {
-        return mDays;
-    }
 
     public int getSelectorYear() {
         return beginYear + getYearView().getCurrentItem();
@@ -233,6 +254,7 @@ public class RxDialogWheelYearMonthDay extends RxDialog {
     public String getSelectorDay() {
         return getDays()[getDayView().getCurrentItem()];
     }
+
 
     /**
      * Updates mDayView wheel. Sets max mDays according to selected mMonthView and mYearView
