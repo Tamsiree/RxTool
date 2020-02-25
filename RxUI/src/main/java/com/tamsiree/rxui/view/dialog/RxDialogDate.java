@@ -12,6 +12,8 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.tamsiree.rxkit.RxTimeTool;
 import com.tamsiree.rxui.R;
 import com.tamsiree.rxui.view.dialog.wheel.DateArrayAdapter;
@@ -276,6 +278,14 @@ public class RxDialogDate extends RxDialog {
 
     public int getDivideYear() {
         return divideYear;
+    }
+
+    public void setOnSureClick(@Nullable View.OnClickListener l) {
+        getSureView().setOnClickListener(l);
+    }
+
+    public void setOnCancelClick(@Nullable View.OnClickListener l) {
+        getCancleView().setOnClickListener(l);
     }
 
     /**
