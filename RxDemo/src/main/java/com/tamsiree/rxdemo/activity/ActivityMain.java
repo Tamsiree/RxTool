@@ -109,6 +109,7 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new ModelMainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
         mData.add(new ModelMainItem("PULL解析XML", R.mipmap.ic_launcher, ActivityXmlParse.class));
         mData.add(new ModelMainItem("支付宝支付Demo", R.drawable.circle_alipay, ActivityAliPay.class));
+        mData.add(new ModelMainItem("橙汁加载", R.drawable.circle_bar, ActivityOrangeJuice.class));
     }
 
     private void initView() {

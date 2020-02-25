@@ -1,104 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.tamsiree.rxdemo">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.tamsiree.rxdemo">
 
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-        tools:ignore="ProtectedPermissions"/>
+        tools:ignore="ProtectedPermissions" />
 
     <application
-        android:name="com.tamsiree.rxdemo.ApplicationRxTools"
+        android:name=".ApplicationRxTools"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activity.ActivityOrangeJuice"></activity>
         <activity
-            android:name="com.tamsiree.rxdemo.activity.ActivityMain"
-            android:screenOrientation="portrait"/>
+            android:name=".activity.ActivityMain"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.tamsiree.rxdemo.activity.ActivityRxPhoto"
-            android:screenOrientation="portrait"/>
+            android:name=".activity.ActivityRxPhoto"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.tamsiree.rxdemo.activity.ActivityCreateQRCode"
-            android:screenOrientation="portrait"/>
+            android:name=".activity.ActivityCreateQRCode"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.tamsiree.rxdemo.activity.ActivitySplash"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityDialog"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityTextTool"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivitySlidingDrawerSingle"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityProgressBar"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityWheelHorizontal"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityAutoImageView"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityPopupView"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityRunTextView"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityRxToast"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityNetSpeed"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityShoppingView"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityELMe"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityLike"/>
+            android:name=".activity.ActivitySplash"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.ActivityDialog" />
+        <activity android:name=".activity.ActivityTextTool" />
+        <activity android:name=".activity.ActivitySlidingDrawerSingle" />
+        <activity android:name=".activity.ActivityProgressBar" />
+        <activity android:name=".activity.ActivityWheelHorizontal" />
+        <activity android:name=".activity.ActivityAutoImageView" />
+        <activity android:name=".activity.ActivityPopupView" />
+        <activity android:name=".activity.ActivityRunTextView" />
+        <activity android:name=".activity.ActivityRxToast" />
+        <activity android:name=".activity.ActivityNetSpeed" />
+        <activity android:name=".activity.ActivityShoppingView" />
+        <activity android:name=".activity.ActivityELMe" />
+        <activity android:name=".activity.ActivityLike" />
         <activity
-            android:name="com.tamsiree.rxdemo.activity.ActivitySVG"
+            android:name=".activity.ActivitySVG"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityMovieSeat"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityFlightSeat"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivitySeat"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityCardStack"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityRxCaptcha"/>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityContact">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityLocation">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivitySeekBar">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityLoginAct">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityLoading">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityLoadingDetail">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityRxScaleImageView">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityVibrate">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityZipEncrypt">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityRxExifTool">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityRxDataTool">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityDeviceInfo">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityCobweb">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityRxRotateBar">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityRxWaveView">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityXmlParse">
-        </activity>
-        <activity android:name="com.tamsiree.rxdemo.activity.ActivityAliPay">
-        </activity>
+        <activity android:name=".activity.ActivityMovieSeat" />
+        <activity android:name=".activity.ActivityFlightSeat" />
+        <activity android:name=".activity.ActivitySeat" />
+        <activity android:name=".activity.ActivityCardStack" />
+        <activity android:name=".activity.ActivityRxCaptcha" />
+        <activity android:name=".activity.ActivityContact"></activity>
+        <activity android:name=".activity.ActivityLocation"></activity>
+        <activity android:name=".activity.ActivitySeekBar"></activity>
+        <activity android:name=".activity.ActivityLoginAct"></activity>
+        <activity android:name=".activity.ActivityLoading"></activity>
+        <activity android:name=".activity.ActivityLoadingDetail"></activity>
+        <activity android:name=".activity.ActivityRxScaleImageView"></activity>
+        <activity android:name=".activity.ActivityVibrate"></activity>
+        <activity android:name=".activity.ActivityZipEncrypt"></activity>
+        <activity android:name=".activity.ActivityRxExifTool"></activity>
+        <activity android:name=".activity.ActivityRxDataTool"></activity>
+        <activity android:name=".activity.ActivityDeviceInfo"></activity>
+        <activity android:name=".activity.ActivityCobweb"></activity>
+        <activity android:name=".activity.ActivityRxRotateBar"></activity>
+        <activity android:name=".activity.ActivityRxWaveView"></activity>
+        <activity android:name=".activity.ActivityXmlParse"></activity>
+        <activity android:name=".activity.ActivityAliPay"></activity>
     </application>
 
 </manifest>

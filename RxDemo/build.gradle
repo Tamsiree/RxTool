@@ -30,8 +30,6 @@ android {
 }
 
 
-
-
 dependencies {
     implementation project(':RxKit')
     implementation project(':RxUI')
