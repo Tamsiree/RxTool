@@ -22,7 +22,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.ActivityOrangeJuice"></activity>
+        <activity android:name=".activity.ActivityTSectionTabLayout"></activity>
+        <activity android:name=".activity.ActivityTGlideTabLayout" />
+        <activity android:name=".activity.ActivityTTabLayout" />
+        <activity android:name=".activity.ActivityTabLayout" />
+        <activity android:name=".activity.ActivityOrangeJuice" />
         <activity
             android:name=".activity.ActivityMain"
             android:screenOrientation="portrait" />
@@ -66,23 +70,23 @@
         <activity android:name=".activity.ActivitySeat" />
         <activity android:name=".activity.ActivityCardStack" />
         <activity android:name=".activity.ActivityRxCaptcha" />
-        <activity android:name=".activity.ActivityContact"></activity>
-        <activity android:name=".activity.ActivityLocation"></activity>
-        <activity android:name=".activity.ActivitySeekBar"></activity>
-        <activity android:name=".activity.ActivityLoginAct"></activity>
-        <activity android:name=".activity.ActivityLoading"></activity>
-        <activity android:name=".activity.ActivityLoadingDetail"></activity>
-        <activity android:name=".activity.ActivityRxScaleImageView"></activity>
-        <activity android:name=".activity.ActivityVibrate"></activity>
-        <activity android:name=".activity.ActivityZipEncrypt"></activity>
-        <activity android:name=".activity.ActivityRxExifTool"></activity>
-        <activity android:name=".activity.ActivityRxDataTool"></activity>
-        <activity android:name=".activity.ActivityDeviceInfo"></activity>
-        <activity android:name=".activity.ActivityCobweb"></activity>
-        <activity android:name=".activity.ActivityRxRotateBar"></activity>
-        <activity android:name=".activity.ActivityRxWaveView"></activity>
-        <activity android:name=".activity.ActivityXmlParse"></activity>
-        <activity android:name=".activity.ActivityAliPay"></activity>
+        <activity android:name=".activity.ActivityContact" />
+        <activity android:name=".activity.ActivityLocation" />
+        <activity android:name=".activity.ActivitySeekBar" />
+        <activity android:name=".activity.ActivityLoginAct" />
+        <activity android:name=".activity.ActivityLoading" />
+        <activity android:name=".activity.ActivityLoadingDetail" />
+        <activity android:name=".activity.ActivityRxScaleImageView" />
+        <activity android:name=".activity.ActivityVibrate" />
+        <activity android:name=".activity.ActivityZipEncrypt" />
+        <activity android:name=".activity.ActivityRxExifTool" />
+        <activity android:name=".activity.ActivityRxDataTool" />
+        <activity android:name=".activity.ActivityDeviceInfo" />
+        <activity android:name=".activity.ActivityCobweb" />
+        <activity android:name=".activity.ActivityRxRotateBar" />
+        <activity android:name=".activity.ActivityRxWaveView" />
+        <activity android:name=".activity.ActivityXmlParse" />
+        <activity android:name=".activity.ActivityAliPay" />
     </application>
 
 </manifest>

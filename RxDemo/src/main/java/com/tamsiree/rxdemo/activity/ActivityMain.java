@@ -4,7 +4,6 @@ import android.Manifest;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +16,7 @@ import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxkit.RxPermissionsTool;
 import com.tamsiree.rxkit.RxRecyclerViewDividerTool;
+import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.activity.ActivityWebView;
 
 import java.util.ArrayList;
@@ -28,11 +28,9 @@ import butterknife.ButterKnife;
 /**
  * @author tamsiree
  */
-public class ActivityMain extends AppCompatActivity {
+public class ActivityMain extends ActivityBase {
 
-    //双击返回键 退出
-    //----------------------------------------------------------------------------------------------
-    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
     private List<ModelMainItem> mData;
@@ -59,6 +57,23 @@ public class ActivityMain extends AppCompatActivity {
                 addPermission(Manifest.permission.CALL_PHONE).
                 addPermission(Manifest.permission.READ_PHONE_STATE).
                 initPermission();
+    }
+
+    //双击返回键 退出
+    //----------------------------------------------------------------------------------------------
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+
+    private void initView() {
+        if (mColumnCount <= 1) {
+            recyclerview.setLayoutManager(new LinearLayoutManager(mContext));
+        } else {
+            recyclerview.setLayoutManager(new GridLayoutManager(mContext, mColumnCount));
+        }
+
+        recyclerview.addItemDecoration(new RxRecyclerViewDividerTool(RxImageTool.dp2px(5f)));
+        AdapterRecyclerViewMain recyclerViewMain = new AdapterRecyclerViewMain(mData);
+
+        recyclerview.setAdapter(recyclerViewMain);
     }
 
     private void initData() {
@@ -110,19 +125,10 @@ public class ActivityMain extends AppCompatActivity {
         mData.add(new ModelMainItem("PULL解析XML", R.mipmap.ic_launcher, ActivityXmlParse.class));
         mData.add(new ModelMainItem("支付宝支付Demo", R.drawable.circle_alipay, ActivityAliPay.class));
         mData.add(new ModelMainItem("橙汁加载", R.drawable.circle_bar, ActivityOrangeJuice.class));
-    }
+        mData.add(new ModelMainItem("TabLayout", R.drawable.circle_bar, ActivityTabLayout.class));
+//        mData.add(new ModelMainItem("其他界面效果", R.drawable.circle_bar, ActivityOrangeJuice.class));
 
-    private void initView() {
-        if (mColumnCount <= 1) {
-            recyclerview.setLayoutManager(new LinearLayoutManager(mContext));
-        } else {
-            recyclerview.setLayoutManager(new GridLayoutManager(mContext, mColumnCount));
-        }
 
-        recyclerview.addItemDecoration(new RxRecyclerViewDividerTool(RxImageTool.dp2px(5f)));
-        AdapterRecyclerViewMain recyclerViewMain = new AdapterRecyclerViewMain(mData);
-
-        recyclerview.setAdapter(recyclerViewMain);
     }
 
     @Override
@@ -136,4 +142,5 @@ public class ActivityMain extends AppCompatActivity {
         mBackPressed = System.currentTimeMillis();
     }
     //==============================================================================================
+
 }

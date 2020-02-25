@@ -2,17 +2,22 @@
 buildscript {
     repositories {
         google()
-        maven{ url'http://maven.aliyun.com/nexus/content/groups/public/' }
+        // 添加阿里云 maven 地址
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
 
-        maven{ url'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
-        mavenCentral()
+        google()
+        jcenter()
         maven { url "https://jitpack.io" }
+        mavenCentral()
         maven { url 'https://esri.bintray.com/arcgis' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.0'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
-        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.0'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 //        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.2'
@@ -22,12 +27,16 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        maven{ url'http://maven.aliyun.com/nexus/content/groups/public/' }
+        // 添加阿里云 maven 地址
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
 
-        maven{ url'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
-        mavenCentral()
+        google()
+        jcenter()
         maven { url "https://jitpack.io" }
+        mavenCentral()
         maven { url 'https://esri.bintray.com/arcgis' }
     }
 }

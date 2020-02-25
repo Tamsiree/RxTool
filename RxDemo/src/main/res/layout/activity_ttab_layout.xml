@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ActivityTTabLayout">
+
+    <com.tamsiree.rxui.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        android:background="@color/colorPrimary"
+        app:title="TTabLayout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eeeeee"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.tamsiree.rxui.view.tablayout.TTabLayout
+                android:id="@+id/tl_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                app:tl_indicator_color="#2C97DE"
+                app:tl_textSelectColor="#2C97DE"
+                app:tl_textUnselectColor="#66000000"
+                app:tl_underline_color="#DDDDDD"
+                app:tl_underline_height="1dp" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vp_2"
+                android:layout_width="match_parent"
+                android:layout_height="84dp" />
+
+            <com.tamsiree.rxui.view.tablayout.TTabLayout
+                android:id="@+id/tl_2"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="#ffffff"
+                app:tl_iconHeight="23dp"
+                app:tl_iconWidth="23dp"
+                app:tl_indicator_color="#2C97DE"
+                app:tl_indicator_height="0dp"
+                app:tl_textSelectColor="#2C97DE"
+                app:tl_textUnselectColor="#66000000"
+                app:tl_textsize="12sp"
+                app:tl_underline_color="#DDDDDD"
+                app:tl_underline_height="1dp" />
+
+            <FrameLayout
+                android:id="@+id/fl_change"
+                android:layout_width="match_parent"
+                android:layout_height="84dp"></FrameLayout>
+
+            <com.tamsiree.rxui.view.tablayout.TTabLayout
+                android:id="@+id/tl_3"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#ffffff"
+                app:tl_iconGravity="LEFT"
+                app:tl_iconHeight="18dp"
+                app:tl_iconMargin="5dp"
+                app:tl_iconWidth="18dp"
+                app:tl_indicator_bounce_enable="false"
+                app:tl_indicator_color="#2C97DE"
+                app:tl_indicator_gravity="TOP"
+                app:tl_textSelectColor="#2C97DE"
+                app:tl_textUnselectColor="#66000000"
+                app:tl_textsize="15sp"
+                app:tl_underline_color="#DDDDDD"
+                app:tl_underline_gravity="TOP"
+                app:tl_underline_height="1dp" />
+
+            <com.tamsiree.rxui.view.tablayout.TTabLayout
+                android:id="@+id/tl_4"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#F6CE59"
+                app:tl_iconVisible="false"
+                app:tl_indicator_width="10dp"
+                app:tl_textBold="SELECT"
+                app:tl_textsize="14sp" />
+
+            <com.tamsiree.rxui.view.tablayout.TTabLayout
+                android:id="@+id/tl_5"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#EC7263"
+                app:tl_iconVisible="false"
+                app:tl_indicator_corner_radius="2dp"
+                app:tl_indicator_height="4dp"
+                app:tl_indicator_width="4dp"
+                app:tl_textBold="BOTH"
+                app:tl_textsize="14sp" />
+
+            <com.tamsiree.rxui.view.tablayout.TTabLayout
+                android:id="@+id/tl_6"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#57385C"
+                app:tl_iconVisible="false"
+                app:tl_indicator_corner_radius="1.5dp"
+                app:tl_indicator_height="3dp"
+                app:tl_indicator_width="10dp"
+                app:tl_textsize="14sp" />
+
+            <com.tamsiree.rxui.view.tablayout.TTabLayout
+                android:id="@+id/tl_7"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#E45171"
+                app:tl_iconVisible="false"
+                app:tl_indicator_color="#eeeeee"
+                app:tl_indicator_corner_radius="1.5dp"
+                app:tl_indicator_height="3dp"
+                app:tl_indicator_style="TRIANGLE"
+                app:tl_indicator_width="10dp"
+                app:tl_textsize="14sp" />
+
+            <com.tamsiree.rxui.view.tablayout.TTabLayout
+                android:id="@+id/tl_8"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#6D8FB0"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                app:tl_iconVisible="false"
+                app:tl_indicator_margin_left="5dp"
+                app:tl_indicator_margin_right="5dp"
+                app:tl_indicator_style="BLOCK"
+                app:tl_textsize="14sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

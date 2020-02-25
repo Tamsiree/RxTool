@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ActivityTSectionTabLayout">
+
+    <com.tamsiree.rxui.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        android:background="@color/colorPrimary"
+        app:title="TSectionTabLayout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eeeeee"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.tamsiree.rxui.view.tablayout.TSectionTabLayout
+                android:id="@+id/tl_1"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                app:tl_bar_color="#ffffff"
+                app:tl_indicator_color="#2C97DE"
+                app:tl_indicator_corner_radius="8dp"
+                app:tl_tab_padding="20dp" />
+
+            <com.tamsiree.rxui.view.tablayout.TSectionTabLayout
+                android:id="@+id/tl_2"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                app:tl_indicator_anim_enable="true"
+                app:tl_indicator_bounce_enable="false"
+                app:tl_indicator_color="#009688"
+                app:tl_tab_padding="20dp" />
+
+            <com.tamsiree.rxui.view.tablayout.TSectionTabLayout
+                android:id="@+id/tl_3"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                app:tl_bar_color="#ffffff"
+                app:tl_indicator_anim_enable="true"
+                app:tl_indicator_color="#F6CE59"
+                app:tl_indicator_margin_bottom="2dp"
+                app:tl_indicator_margin_left="2dp"
+                app:tl_indicator_margin_right="2dp"
+                app:tl_indicator_margin_top="2dp"
+                app:tl_textBold="SELECT" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vp_2"
+                android:layout_width="match_parent"
+                android:layout_height="84dp" />
+
+            <com.tamsiree.rxui.view.tablayout.TSectionTabLayout
+                android:id="@+id/tl_4"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                app:tl_bar_color="#ffffff"
+                app:tl_indicator_color="#EC7263"
+                app:tl_indicator_margin_bottom="2dp"
+                app:tl_indicator_margin_left="2dp"
+                app:tl_indicator_margin_right="2dp"
+                app:tl_indicator_margin_top="2dp"
+                app:tl_tab_width="80dp"
+                app:tl_textBold="BOTH" />
+
+            <FrameLayout
+                android:id="@+id/fl_change"
+                android:layout_width="match_parent"
+                android:layout_height="84dp" />
+
+            <com.tamsiree.rxui.view.tablayout.TSectionTabLayout
+                android:id="@+id/tl_5"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                app:tl_indicator_anim_enable="true"
+                app:tl_indicator_bounce_enable="false"
+                app:tl_indicator_margin_bottom="2dp"
+                app:tl_indicator_margin_left="2dp"
+                app:tl_indicator_margin_right="2dp"
+                app:tl_indicator_margin_top="2dp"
+                app:tl_tab_space_equal="true" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -2,25 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/e"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.tamsiree.rxdemo.activity.ActivityMain">
+    tools:context=".activity.ActivityTabLayout">
 
     <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
         android:background="@color/colorPrimary"
-        app:leftIconVisibility="false"
-        app:title="RxTool" />
+        app:title="TabLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
 </LinearLayout>
