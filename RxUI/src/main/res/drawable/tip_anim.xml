@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+    <item
+        android:drawable="@drawable/idp"
+        android:duration="300" />
+    <item
+        android:drawable="@drawable/idq"
+        android:duration="300" />
+    <item
+        android:drawable="@drawable/idr"
+        android:duration="300" />
+    <item
+        android:drawable="@drawable/ids"
+        android:duration="300" />
+    <item
+        android:drawable="@drawable/idt"
+        android:duration="300" />
+    <item
+        android:drawable="@android:color/transparent"
+        android:duration="300" />
+</animation-list>
