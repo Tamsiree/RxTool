@@ -3,7 +3,7 @@ package com.tamsiree.rxui.view.tablayout.listener;
 
 import androidx.annotation.DrawableRes;
 
-public interface CustomTabEntity {
+public interface TabLayoutModel {
     String getTabTitle();
 
     @DrawableRes

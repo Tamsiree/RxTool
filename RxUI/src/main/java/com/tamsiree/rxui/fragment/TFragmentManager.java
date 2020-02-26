@@ -1,4 +1,4 @@
-package com.tamsiree.rxui.view.tablayout.tool;
+package com.tamsiree.rxui.fragment;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
-public class FragmentChangeManager {
+public class TFragmentManager {
     private FragmentManager mFragmentManager;
     private int mContainerViewId;
     /**
@@ -18,7 +18,7 @@ public class FragmentChangeManager {
      */
     private int mCurrentTab;
 
-    public FragmentChangeManager(FragmentManager fm, int containerViewId, ArrayList<Fragment> fragments) {
+    public TFragmentManager(FragmentManager fm, int containerViewId, ArrayList<Fragment> fragments) {
         this.mFragmentManager = fm;
         this.mContainerViewId = containerViewId;
         this.mFragments = fragments;

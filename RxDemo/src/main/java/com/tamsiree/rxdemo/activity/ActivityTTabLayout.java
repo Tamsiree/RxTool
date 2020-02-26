@@ -12,14 +12,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.fragment.FragmentSimpleCard;
-import com.tamsiree.rxdemo.model.TabEntity;
+import com.tamsiree.rxdemo.model.TabLayoutModel;
 import com.tamsiree.rxdemo.tools.ViewFindTool;
 import com.tamsiree.rxui.activity.ActivityBase;
-import com.tamsiree.rxui.view.tablayout.TMsgView;
+import com.tamsiree.rxui.view.tablayout.TLayoutMsg;
 import com.tamsiree.rxui.view.tablayout.TTabLayout;
-import com.tamsiree.rxui.view.tablayout.listener.CustomTabEntity;
 import com.tamsiree.rxui.view.tablayout.listener.OnTabSelectListener;
-import com.tamsiree.rxui.view.tablayout.tool.UnreadMsgTool;
+import com.tamsiree.rxui.view.tablayout.tool.TLayoutMsgTool;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -36,7 +35,7 @@ public class ActivityTTabLayout extends ActivityBase {
     private int[] mIconSelectIds = {
             R.mipmap.tab_home_select, R.mipmap.tab_speech_select,
             R.mipmap.tab_contact_select, R.mipmap.tab_more_select};
-    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
+    private ArrayList<TabLayoutModel> mTabEntities = new ArrayList<>();
     private View mDecorView;
     private ViewPager mViewPager;
     private TTabLayout mTabLayout_1;
@@ -60,7 +59,7 @@ public class ActivityTTabLayout extends ActivityBase {
 
 
         for (int i = 0; i < mTitles.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+            mTabEntities.add(new TabLayoutModel(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
         }
 
         mDecorView = getWindow().getDecorView();
@@ -127,15 +126,15 @@ public class ActivityTTabLayout extends ActivityBase {
 
         //设置未读消息红点
         mTabLayout_2.showDot(2);
-        TMsgView rtv_2_2 = mTabLayout_2.getMsgView(2);
+        TLayoutMsg rtv_2_2 = mTabLayout_2.getMsgView(2);
         if (rtv_2_2 != null) {
-            UnreadMsgTool.setSize(rtv_2_2, dp2px(7.5f));
+            TLayoutMsgTool.setSize(rtv_2_2, dp2px(7.5f));
         }
 
         //设置未读消息背景
         mTabLayout_2.showMsg(3, 5);
         mTabLayout_2.setMsgMargin(3, 0, 5);
-        TMsgView rtv_2_3 = mTabLayout_2.getMsgView(3);
+        TLayoutMsg rtv_2_3 = mTabLayout_2.getMsgView(3);
         if (rtv_2_3 != null) {
             rtv_2_3.setBackgroundColor(Color.parseColor("#6D8FB0"));
         }

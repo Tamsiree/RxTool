@@ -29,7 +29,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.tamsiree.rxui.R;
 import com.tamsiree.rxui.view.tablayout.listener.OnTabSelectListener;
-import com.tamsiree.rxui.view.tablayout.tool.UnreadMsgTool;
+import com.tamsiree.rxui.view.tablayout.tool.TLayoutMsgTool;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -146,38 +146,38 @@ public class TGlideTabLayout extends HorizontalScrollView implements ViewPager.O
     }
 
     private void obtainAttributes(Context context, AttributeSet attrs) {
-        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingTabLayout);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TGlideTabLayout);
 
-        mIndicatorStyle = ta.getInt(R.styleable.SlidingTabLayout_tl_indicator_style, STYLE_NORMAL);
-        mIndicatorColor = ta.getColor(R.styleable.SlidingTabLayout_tl_indicator_color, Color.parseColor(mIndicatorStyle == STYLE_BLOCK ? "#4B6A87" : "#ffffff"));
-        mIndicatorHeight = ta.getDimension(R.styleable.SlidingTabLayout_tl_indicator_height,
+        mIndicatorStyle = ta.getInt(R.styleable.TGlideTabLayout_indicator_style, STYLE_NORMAL);
+        mIndicatorColor = ta.getColor(R.styleable.TGlideTabLayout_indicator_color, Color.parseColor(mIndicatorStyle == STYLE_BLOCK ? "#4B6A87" : "#ffffff"));
+        mIndicatorHeight = ta.getDimension(R.styleable.TGlideTabLayout_indicator_height,
                 dp2px(mIndicatorStyle == STYLE_TRIANGLE ? 4 : (mIndicatorStyle == STYLE_BLOCK ? -1 : 2)));
-        mIndicatorWidth = ta.getDimension(R.styleable.SlidingTabLayout_tl_indicator_width, dp2px(mIndicatorStyle == STYLE_TRIANGLE ? 10 : -1));
-        mIndicatorCornerRadius = ta.getDimension(R.styleable.SlidingTabLayout_tl_indicator_corner_radius, dp2px(mIndicatorStyle == STYLE_BLOCK ? -1 : 0));
-        mIndicatorMarginLeft = ta.getDimension(R.styleable.SlidingTabLayout_tl_indicator_margin_left, dp2px(0));
-        mIndicatorMarginTop = ta.getDimension(R.styleable.SlidingTabLayout_tl_indicator_margin_top, dp2px(mIndicatorStyle == STYLE_BLOCK ? 7 : 0));
-        mIndicatorMarginRight = ta.getDimension(R.styleable.SlidingTabLayout_tl_indicator_margin_right, dp2px(0));
-        mIndicatorMarginBottom = ta.getDimension(R.styleable.SlidingTabLayout_tl_indicator_margin_bottom, dp2px(mIndicatorStyle == STYLE_BLOCK ? 7 : 0));
-        mIndicatorGravity = ta.getInt(R.styleable.SlidingTabLayout_tl_indicator_gravity, Gravity.BOTTOM);
-        mIndicatorWidthEqualTitle = ta.getBoolean(R.styleable.SlidingTabLayout_tl_indicator_width_equal_title, false);
+        mIndicatorWidth = ta.getDimension(R.styleable.TGlideTabLayout_indicator_width, dp2px(mIndicatorStyle == STYLE_TRIANGLE ? 10 : -1));
+        mIndicatorCornerRadius = ta.getDimension(R.styleable.TGlideTabLayout_indicator_corner_radius, dp2px(mIndicatorStyle == STYLE_BLOCK ? -1 : 0));
+        mIndicatorMarginLeft = ta.getDimension(R.styleable.TGlideTabLayout_indicator_margin_left, dp2px(0));
+        mIndicatorMarginTop = ta.getDimension(R.styleable.TGlideTabLayout_indicator_margin_top, dp2px(mIndicatorStyle == STYLE_BLOCK ? 7 : 0));
+        mIndicatorMarginRight = ta.getDimension(R.styleable.TGlideTabLayout_indicator_margin_right, dp2px(0));
+        mIndicatorMarginBottom = ta.getDimension(R.styleable.TGlideTabLayout_indicator_margin_bottom, dp2px(mIndicatorStyle == STYLE_BLOCK ? 7 : 0));
+        mIndicatorGravity = ta.getInt(R.styleable.TGlideTabLayout_indicator_gravity, Gravity.BOTTOM);
+        mIndicatorWidthEqualTitle = ta.getBoolean(R.styleable.TGlideTabLayout_indicator_width_equal_title, false);
 
-        mUnderlineColor = ta.getColor(R.styleable.SlidingTabLayout_tl_underline_color, Color.parseColor("#ffffff"));
-        mUnderlineHeight = ta.getDimension(R.styleable.SlidingTabLayout_tl_underline_height, dp2px(0));
-        mUnderlineGravity = ta.getInt(R.styleable.SlidingTabLayout_tl_underline_gravity, Gravity.BOTTOM);
+        mUnderlineColor = ta.getColor(R.styleable.TGlideTabLayout_underline_color, Color.parseColor("#ffffff"));
+        mUnderlineHeight = ta.getDimension(R.styleable.TGlideTabLayout_underline_height, dp2px(0));
+        mUnderlineGravity = ta.getInt(R.styleable.TGlideTabLayout_underline_gravity, Gravity.BOTTOM);
 
-        mDividerColor = ta.getColor(R.styleable.SlidingTabLayout_tl_divider_color, Color.parseColor("#ffffff"));
-        mDividerWidth = ta.getDimension(R.styleable.SlidingTabLayout_tl_divider_width, dp2px(0));
-        mDividerPadding = ta.getDimension(R.styleable.SlidingTabLayout_tl_divider_padding, dp2px(12));
+        mDividerColor = ta.getColor(R.styleable.TGlideTabLayout_divider_color, Color.parseColor("#ffffff"));
+        mDividerWidth = ta.getDimension(R.styleable.TGlideTabLayout_divider_width, dp2px(0));
+        mDividerPadding = ta.getDimension(R.styleable.TGlideTabLayout_divider_padding, dp2px(12));
 
-        mTextsize = ta.getDimension(R.styleable.SlidingTabLayout_tl_textsize, sp2px(14));
-        mTextSelectColor = ta.getColor(R.styleable.SlidingTabLayout_tl_textSelectColor, Color.parseColor("#ffffff"));
-        mTextUnselectColor = ta.getColor(R.styleable.SlidingTabLayout_tl_textUnselectColor, Color.parseColor("#AAffffff"));
-        mTextBold = ta.getInt(R.styleable.SlidingTabLayout_tl_textBold, TEXT_BOLD_NONE);
-        mTextAllCaps = ta.getBoolean(R.styleable.SlidingTabLayout_tl_textAllCaps, false);
+        mTextsize = ta.getDimension(R.styleable.TGlideTabLayout_textSize, sp2px(14));
+        mTextSelectColor = ta.getColor(R.styleable.TGlideTabLayout_textSelectColor, Color.parseColor("#ffffff"));
+        mTextUnselectColor = ta.getColor(R.styleable.TGlideTabLayout_textUnSelectColor, Color.parseColor("#AAffffff"));
+        mTextBold = ta.getInt(R.styleable.TGlideTabLayout_textBold, TEXT_BOLD_NONE);
+        mTextAllCaps = ta.getBoolean(R.styleable.TGlideTabLayout_textAllCaps, false);
 
-        mTabSpaceEqual = ta.getBoolean(R.styleable.SlidingTabLayout_tl_tab_space_equal, false);
-        mTabWidth = ta.getDimension(R.styleable.SlidingTabLayout_tl_tab_width, dp2px(-1));
-        mTabPadding = ta.getDimension(R.styleable.SlidingTabLayout_tl_tab_padding, mTabSpaceEqual || mTabWidth > 0 ? dp2px(0) : dp2px(20));
+        mTabSpaceEqual = ta.getBoolean(R.styleable.TGlideTabLayout_tab_space_equal, false);
+        mTabWidth = ta.getDimension(R.styleable.TGlideTabLayout_tab_width, dp2px(-1));
+        mTabPadding = ta.getDimension(R.styleable.TGlideTabLayout_tab_padding, mTabSpaceEqual || mTabWidth > 0 ? dp2px(0) : dp2px(20));
 
         ta.recycle();
     }
@@ -793,9 +793,9 @@ public class TGlideTabLayout extends HorizontalScrollView implements ViewPager.O
         }
 
         View tabView = mTabsContainer.getChildAt(position);
-        TMsgView tipView = tabView.findViewById(R.id.rtv_msg_tip);
+        TLayoutMsg tipView = tabView.findViewById(R.id.rtv_msg_tip);
         if (tipView != null) {
-            UnreadMsgTool.show(tipView, num);
+            TLayoutMsgTool.show(tipView, num);
 
             if (mInitSetMap.get(position) != null && mInitSetMap.get(position)) {
                 return;
@@ -827,7 +827,7 @@ public class TGlideTabLayout extends HorizontalScrollView implements ViewPager.O
         }
 
         View tabView = mTabsContainer.getChildAt(position);
-        TMsgView tipView = tabView.findViewById(R.id.rtv_msg_tip);
+        TLayoutMsg tipView = tabView.findViewById(R.id.rtv_msg_tip);
         if (tipView != null) {
             tipView.setVisibility(View.GONE);
         }
@@ -841,7 +841,7 @@ public class TGlideTabLayout extends HorizontalScrollView implements ViewPager.O
             position = mTabCount - 1;
         }
         View tabView = mTabsContainer.getChildAt(position);
-        TMsgView tipView = tabView.findViewById(R.id.rtv_msg_tip);
+        TLayoutMsg tipView = tabView.findViewById(R.id.rtv_msg_tip);
         if (tipView != null) {
             TextView tv_tab_title = tabView.findViewById(R.id.tv_tab_title);
             mTextPaint.setTextSize(mTextsize);
@@ -857,12 +857,12 @@ public class TGlideTabLayout extends HorizontalScrollView implements ViewPager.O
     /**
      * 当前类只提供了少许设置未读消息属性的方法,可以通过该方法获取TMsgView对象从而各种设置
      */
-    public TMsgView getTMsgView(int position) {
+    public TLayoutMsg getTMsgView(int position) {
         if (position >= mTabCount) {
             position = mTabCount - 1;
         }
         View tabView = mTabsContainer.getChildAt(position);
-        TMsgView tipView = tabView.findViewById(R.id.rtv_msg_tip);
+        TLayoutMsg tipView = tabView.findViewById(R.id.rtv_msg_tip);
         return tipView;
     }
 

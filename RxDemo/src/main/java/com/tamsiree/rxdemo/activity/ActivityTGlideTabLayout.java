@@ -15,7 +15,7 @@ import com.tamsiree.rxdemo.fragment.FragmentSimpleCard;
 import com.tamsiree.rxdemo.tools.ViewFindTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.tablayout.TGlideTabLayout;
-import com.tamsiree.rxui.view.tablayout.TMsgView;
+import com.tamsiree.rxui.view.tablayout.TLayoutMsg;
 import com.tamsiree.rxui.view.tablayout.listener.OnTabSelectListener;
 
 import java.util.ArrayList;
@@ -84,7 +84,7 @@ public class ActivityTGlideTabLayout extends ActivityBase implements OnTabSelect
 
         tabLayout_2.showMsg(3, 5);
         tabLayout_2.setMsgMargin(3, 0, 10);
-        TMsgView rtv_2_3 = tabLayout_2.getTMsgView(3);
+        TLayoutMsg rtv_2_3 = tabLayout_2.getTMsgView(3);
         if (rtv_2_3 != null) {
             rtv_2_3.setBackgroundColor(Color.parseColor("#6D8FB0"));
         }

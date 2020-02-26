@@ -5,7 +5,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.tamsiree.rxui.view.tablayout.TMsgView;
+import com.tamsiree.rxui.view.tablayout.TLayoutMsg;
 
 
 /**
@@ -14,8 +14,8 @@ import com.tamsiree.rxui.view.tablayout.TMsgView;
  * 数字两位,圆角矩形,圆角是高度的一半
  * 数字超过两位,显示99+
  */
-public class UnreadMsgTool {
-    public static void show(TMsgView msgView, int num) {
+public class TLayoutMsgTool {
+    public static void show(TLayoutMsg msgView, int num) {
         if (msgView == null) {
             return;
         }
@@ -47,7 +47,7 @@ public class UnreadMsgTool {
         }
     }
 
-    public static void setSize(TMsgView rtv, int size) {
+    public static void setSize(TLayoutMsg rtv, int size) {
         if (rtv == null) {
             return;
         }

@@ -13,7 +13,7 @@ import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.fragment.FragmentSimpleCard;
 import com.tamsiree.rxdemo.tools.ViewFindTool;
 import com.tamsiree.rxui.activity.ActivityBase;
-import com.tamsiree.rxui.view.tablayout.TMsgView;
+import com.tamsiree.rxui.view.tablayout.TLayoutMsg;
 import com.tamsiree.rxui.view.tablayout.TSectionTabLayout;
 import com.tamsiree.rxui.view.tablayout.listener.OnTabSelectListener;
 
@@ -65,7 +65,7 @@ public class ActivityTSectionTabLayout extends ActivityBase {
 
         //设置未读消息红点
         mTabLayout_3.showDot(2);
-        TMsgView rtv_3_2 = mTabLayout_3.getMsgView(2);
+        TLayoutMsg rtv_3_2 = mTabLayout_3.getMsgView(2);
         if (rtv_3_2 != null) {
             rtv_3_2.setBackgroundColor(Color.parseColor("#6D8FB0"));
         }

@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 
 public class ActivityTabLayout extends ActivityBase {
 
-    private final String[] mItems = {"SlidingTabLayout", "CommonTabLayout", "SegmentTabLayout"};
+    private final String[] mItems = {"TGlideTabLayout", "CommonTabLayout", "TSectionTabLayout"};
     @BindView(R.id.rx_title)
     RxTitle mRxTitle;
     @BindView(R.id.recyclerview)

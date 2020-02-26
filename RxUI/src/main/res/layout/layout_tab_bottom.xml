@@ -27,7 +27,7 @@
 
     </LinearLayout>
 
-    <com.tamsiree.rxui.view.tablayout.TMsgView
+    <com.tamsiree.rxui.view.tablayout.TLayoutMsg
         android:id="@+id/rtv_msg_tip"
 
         android:layout_width="wrap_content"

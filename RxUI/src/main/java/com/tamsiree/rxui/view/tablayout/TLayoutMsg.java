@@ -17,7 +17,7 @@ import com.tamsiree.rxui.R;
  * 用于需要圆角矩形框背景的TextView的情况,减少直接使用TextView时引入的shape资源文件
  */
 @SuppressLint("AppCompatCustomView")
-public class TMsgView extends TextView {
+public class TLayoutMsg extends TextView {
     private Context context;
     private GradientDrawable gd_background = new GradientDrawable();
     private int backgroundColor;
@@ -27,15 +27,15 @@ public class TMsgView extends TextView {
     private boolean isRadiusHalfHeight;
     private boolean isWidthHeightEqual;
 
-    public TMsgView(Context context) {
+    public TLayoutMsg(Context context) {
         this(context, null);
     }
 
-    public TMsgView(Context context, AttributeSet attrs) {
+    public TLayoutMsg(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public TMsgView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public TLayoutMsg(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
         obtainAttributes(context, attrs);
