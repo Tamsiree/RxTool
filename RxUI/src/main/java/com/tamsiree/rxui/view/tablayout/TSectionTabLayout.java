@@ -157,7 +157,7 @@ public class TSectionTabLayout extends FrameLayout implements ValueAnimator.Anim
         mDividerWidth = ta.getDimension(R.styleable.TSectionTabLayout_divider_width, dp2px(1));
         mDividerPadding = ta.getDimension(R.styleable.TSectionTabLayout_divider_padding, 0);
 
-        mTextsize = ta.getDimension(R.styleable.TSectionTabLayout_textSize, sp2px(13f));
+        mTextsize = ta.getDimension(R.styleable.TSectionTabLayout_titlesize, sp2px(13f));
         mTextSelectColor = ta.getColor(R.styleable.TSectionTabLayout_textSelectColor, Color.parseColor("#ffffff"));
         mTextUnselectColor = ta.getColor(R.styleable.TSectionTabLayout_textUnSelectColor, mIndicatorColor);
         mTextBold = ta.getInt(R.styleable.TSectionTabLayout_textBold, TEXT_BOLD_NONE);

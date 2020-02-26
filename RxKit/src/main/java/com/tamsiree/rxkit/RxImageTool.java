@@ -1,6 +1,7 @@
 package com.tamsiree.rxkit;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -31,7 +32,9 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import java.io.BufferedInputStream;
@@ -2027,4 +2030,30 @@ public class RxImageTool {
 
         return bm;
     }
+
+    /**
+     * 获得屏幕的分辨率
+     *
+     * @param context
+     * @return
+     */
+    public static int[] getScreenResolution(Context context) {
+        int[] scrennResolution = new int[2];
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        android.view.Display display = wm.getDefaultDisplay();
+        display.getMetrics(dm);
+        scrennResolution[0] = dm.widthPixels;
+        scrennResolution[1] = dm.heightPixels;
+        return scrennResolution;
+    }
+
+    public static float getDensity(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        android.view.Display display = wm.getDefaultDisplay();
+        display.getMetrics(dm);
+        return dm.density;
+    }
+
 }

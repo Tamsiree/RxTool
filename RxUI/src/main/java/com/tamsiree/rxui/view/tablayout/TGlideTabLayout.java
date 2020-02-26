@@ -169,7 +169,7 @@ public class TGlideTabLayout extends HorizontalScrollView implements ViewPager.O
         mDividerWidth = ta.getDimension(R.styleable.TGlideTabLayout_divider_width, dp2px(0));
         mDividerPadding = ta.getDimension(R.styleable.TGlideTabLayout_divider_padding, dp2px(12));
 
-        mTextsize = ta.getDimension(R.styleable.TGlideTabLayout_textSize, sp2px(14));
+        mTextsize = ta.getDimension(R.styleable.TGlideTabLayout_titlesize, sp2px(14));
         mTextSelectColor = ta.getColor(R.styleable.TGlideTabLayout_textSelectColor, Color.parseColor("#ffffff"));
         mTextUnselectColor = ta.getColor(R.styleable.TGlideTabLayout_textUnSelectColor, Color.parseColor("#AAffffff"));
         mTextBold = ta.getInt(R.styleable.TGlideTabLayout_textBold, TEXT_BOLD_NONE);

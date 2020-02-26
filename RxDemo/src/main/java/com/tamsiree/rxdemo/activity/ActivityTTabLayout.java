@@ -12,19 +12,26 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.fragment.FragmentSimpleCard;
-import com.tamsiree.rxdemo.model.TabLayoutModel;
+import com.tamsiree.rxdemo.model.TabModel;
 import com.tamsiree.rxdemo.tools.ViewFindTool;
 import com.tamsiree.rxui.activity.ActivityBase;
+import com.tamsiree.rxui.view.RxTitle;
 import com.tamsiree.rxui.view.tablayout.TLayoutMsg;
 import com.tamsiree.rxui.view.tablayout.TTabLayout;
 import com.tamsiree.rxui.view.tablayout.listener.OnTabSelectListener;
+import com.tamsiree.rxui.view.tablayout.listener.TabLayoutModel;
 import com.tamsiree.rxui.view.tablayout.tool.TLayoutMsgTool;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ActivityTTabLayout extends ActivityBase {
     Random mRandom = new Random();
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
     private Context mContext = this;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private ArrayList<Fragment> mFragments2 = new ArrayList<>();
@@ -51,6 +58,9 @@ public class ActivityTTabLayout extends ActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ttab_layout);
+        ButterKnife.bind(this);
+
+        mRxTitle.setLeftFinish(this);
 
         for (String title : mTitles) {
             mFragments.add(FragmentSimpleCard.getInstance("Switch ViewPager " + title));
@@ -59,7 +69,7 @@ public class ActivityTTabLayout extends ActivityBase {
 
 
         for (int i = 0; i < mTitles.length; i++) {
-            mTabEntities.add(new TabLayoutModel(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+            mTabEntities.add(new TabModel(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
         }
 
         mDecorView = getWindow().getDecorView();

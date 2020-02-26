@@ -390,7 +390,7 @@
 
     <!-- title -->
     <!-- 设置字体大小 -->
-    <attr name="textSize" format="dimension" />
+    <attr name="titlesize" format="dimension" />
     <!-- 设置字体选中颜色 -->
     <attr name="textSelectColor" format="color" />
     <!-- 设置字体未选中颜色 -->
@@ -434,7 +434,7 @@
         <attr name="tab_width" />
 
         <!-- title -->
-        <attr name="textSize" />
+        <attr name="titlesize" />
         <attr name="textSelectColor" />
         <attr name="textUnSelectColor" />
         <attr name="textBold" />
@@ -474,7 +474,7 @@
         <attr name="tab_width" />
 
         <!-- title -->
-        <attr name="textSize" />
+        <attr name="titlesize" />
         <attr name="textSelectColor" />
         <attr name="textUnSelectColor" />
         <attr name="textBold" />
@@ -488,7 +488,7 @@
         <!-- 设置icon是否可见 -->
         <attr name="iconVisible" format="boolean" />
         <!-- 设置icon显示位置,对应Gravity中常量值 -->
-        <attr name="iconGravity" format="enum">
+        <attr name="icon_gravity" format="enum">
             <enum name="LEFT" value="3" />
             <enum name="TOP" value="48" />
             <enum name="RIGHT" value="5" />
@@ -523,7 +523,7 @@
         <attr name="tab_width" />
 
         <!-- title -->
-        <attr name="textSize" />
+        <attr name="titlesize" />
         <attr name="textSelectColor" />
         <attr name="textUnSelectColor" />
         <attr name="textBold" />
@@ -552,6 +552,23 @@
 
     <declare-styleable name="TCrossView">
         <attr name="lineColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="TimeRulerView">
+        <attr name="linesColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="TVideoTimeline">
+        <!--时间尺中间刻度条颜色-->
+        <attr name="middleCursorColor" format="color" />
+        <!--时间刻度文字颜色-->
+        <attr name="recordTextColor" format="color" />
+        <!--含有录像背景颜色-->
+        <attr name="recordBackgroundColor" format="color" />
+        <!--含有时间尺边框及刻度条颜色-->
+        <attr name="timebarColor" format="color" />
+
+
     </declare-styleable>
 
 </resources>

@@ -14,10 +14,27 @@
         android:background="@color/colorPrimary"
         app:title="其他特效" />
 
-    <com.tamsiree.rxui.view.TUnReadView
-        android:id="@+id/tunreadview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <com.tamsiree.rxui.view.TUnReadView
+            android:id="@+id/tunreadview"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:background="@android:color/transparent" />
+
+        <com.tamsiree.rxui.view.other.TCrossView
+            android:id="@+id/tcross_view"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp_10"
+            android:padding="20dp"
+            app:lineColor="@android:color/black" />
+
+    </LinearLayout>
 
 </LinearLayout>

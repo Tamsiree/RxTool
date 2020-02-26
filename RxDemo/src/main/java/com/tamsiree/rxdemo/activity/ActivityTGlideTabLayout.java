@@ -14,17 +14,23 @@ import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.fragment.FragmentSimpleCard;
 import com.tamsiree.rxdemo.tools.ViewFindTool;
 import com.tamsiree.rxui.activity.ActivityBase;
+import com.tamsiree.rxui.view.RxTitle;
 import com.tamsiree.rxui.view.tablayout.TGlideTabLayout;
 import com.tamsiree.rxui.view.tablayout.TLayoutMsg;
 import com.tamsiree.rxui.view.tablayout.listener.OnTabSelectListener;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ActivityTGlideTabLayout extends ActivityBase implements OnTabSelectListener {
     private final String[] mTitles = {
             "热门", "iOS", "Android"
             , "前端", "后端", "设计", "工具资源"
     };
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private MyPagerAdapter mAdapter;
 
@@ -32,6 +38,9 @@ public class ActivityTGlideTabLayout extends ActivityBase implements OnTabSelect
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tglide_tablayout);
+        ButterKnife.bind(this);
+
+        mRxTitle.setLeftFinish(this);
 
         for (String title : mTitles) {
             mFragments.add(FragmentSimpleCard.getInstance(title));

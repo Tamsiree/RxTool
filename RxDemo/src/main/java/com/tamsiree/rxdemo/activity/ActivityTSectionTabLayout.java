@@ -13,14 +13,20 @@ import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.fragment.FragmentSimpleCard;
 import com.tamsiree.rxdemo.tools.ViewFindTool;
 import com.tamsiree.rxui.activity.ActivityBase;
+import com.tamsiree.rxui.view.RxTitle;
 import com.tamsiree.rxui.view.tablayout.TLayoutMsg;
 import com.tamsiree.rxui.view.tablayout.TSectionTabLayout;
 import com.tamsiree.rxui.view.tablayout.listener.OnTabSelectListener;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ActivityTSectionTabLayout extends ActivityBase {
 
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private ArrayList<Fragment> mFragments2 = new ArrayList<>();
 
@@ -34,6 +40,9 @@ public class ActivityTSectionTabLayout extends ActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tsection_tablayout);
+        ButterKnife.bind(this);
+
+        mRxTitle.setLeftFinish(this);
 
         for (String title : mTitles_3) {
             mFragments.add(FragmentSimpleCard.getInstance("Switch ViewPager " + title));

@@ -189,14 +189,14 @@ public class TTabLayout extends FrameLayout implements ValueAnimator.AnimatorUpd
         mDividerWidth = ta.getDimension(R.styleable.TTabLayout_divider_width, dp2px(0));
         mDividerPadding = ta.getDimension(R.styleable.TTabLayout_divider_padding, dp2px(12));
 
-        mTextsize = ta.getDimension(R.styleable.TTabLayout_textSize, sp2px(13f));
+        mTextsize = ta.getDimension(R.styleable.TTabLayout_titlesize, sp2px(13f));
         mTextSelectColor = ta.getColor(R.styleable.TTabLayout_textSelectColor, Color.parseColor("#ffffff"));
         mTextUnselectColor = ta.getColor(R.styleable.TTabLayout_textUnSelectColor, Color.parseColor("#AAffffff"));
         mTextBold = ta.getInt(R.styleable.TTabLayout_textBold, TEXT_BOLD_NONE);
         mTextAllCaps = ta.getBoolean(R.styleable.TTabLayout_textAllCaps, false);
 
         mIconVisible = ta.getBoolean(R.styleable.TTabLayout_iconVisible, true);
-        mIconGravity = ta.getInt(R.styleable.TTabLayout_iconGravity, Gravity.TOP);
+        mIconGravity = ta.getInt(R.styleable.TTabLayout_icon_gravity, Gravity.TOP);
         mIconWidth = ta.getDimension(R.styleable.TTabLayout_iconWidth, dp2px(0));
         mIconHeight = ta.getDimension(R.styleable.TTabLayout_iconHeight, dp2px(0));
         mIconMargin = ta.getDimension(R.styleable.TTabLayout_iconMargin, dp2px(2.5f));

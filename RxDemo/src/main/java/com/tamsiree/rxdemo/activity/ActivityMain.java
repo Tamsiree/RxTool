@@ -92,6 +92,9 @@ public class ActivityMain extends ActivityBase {
     private void initData() {
         mDataFunction.clear();
         mDataUI.clear();
+
+        //----------------------------------------------------功能性 Demo---------------------------------------------------------------------------------
+
         mDataFunction.add(new ModelMainItem("RxPhotoTool操作UZrop裁剪图片", R.drawable.circle_elves_ball, ActivityRxPhoto.class));
         mDataFunction.add(new ModelMainItem("动态生成码", R.drawable.circle_qr_code, ActivityCreateQRCode.class));
 
@@ -108,6 +111,7 @@ public class ActivityMain extends ActivityBase {
 
         mDataFunction.add(new ModelMainItem("SlidingDrawerSingle使用", R.drawable.circle_up_down, ActivitySlidingDrawerSingle.class));
         mDataFunction.add(new ModelMainItem("RxSeekBar", R.drawable.circle_seek, ActivitySeekBar.class));
+        mDataFunction.add(new ModelMainItem("视频时间轴", R.drawable.circle_ebuddy, ActivityTVideoTimeline.class));
         mDataFunction.add(new ModelMainItem("PopupView的使用", R.drawable.circle_bullet, ActivityPopupView.class));
 
         mDataFunction.add(new ModelMainItem("选座控件", R.drawable.circle_seat, ActivitySeat.class));
@@ -119,6 +123,8 @@ public class ActivityMain extends ActivityBase {
         mDataFunction.add(new ModelMainItem("支付宝支付Demo", R.drawable.circle_alipay, ActivityAliPay.class));
 
         mDataFunction.add(new ModelMainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
+
+        //----------------------------------------------------UI Demo---------------------------------------------------------------------------------
 
         mDataUI.add(new ModelMainItem("RxDataTool操作Demo", R.drawable.circle_data, ActivityRxDataTool.class));
         mDataUI.add(new ModelMainItem("设备信息", R.drawable.circle_device_info, ActivityDeviceInfo.class));
