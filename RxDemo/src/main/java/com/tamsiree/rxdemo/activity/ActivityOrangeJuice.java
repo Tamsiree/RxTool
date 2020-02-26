@@ -14,14 +14,20 @@ import android.widget.TextView;
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxkit.RxAnimationTool;
 import com.tamsiree.rxui.activity.ActivityBase;
+import com.tamsiree.rxui.view.RxTitle;
 import com.tamsiree.rxui.view.progress.TOrangeJuice;
 
 import java.util.Random;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ActivityOrangeJuice extends ActivityBase implements SeekBar.OnSeekBarChangeListener,
         View.OnClickListener {
 
     private static final int REFRESH_PROGRESS = 0x10;
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
     private TOrangeJuice mLeafLoadingView;
     private SeekBar mAmpireSeekBar;
     private SeekBar mDistanceSeekBar;
@@ -68,12 +74,15 @@ public class ActivityOrangeJuice extends ActivityBase implements SeekBar.OnSeekB
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orange_juice);
+        ButterKnife.bind(this);
         initViews();
         mHandler.sendEmptyMessageDelayed(REFRESH_PROGRESS, 3000);
     }
 
     @SuppressLint("StringFormatMatches")
     private void initViews() {
+        mRxTitle.setLeftFinish(this);
+
         mFanView = findViewById(R.id.fan_pic);
         mProgressText = findViewById(R.id.text_progress);
         RotateAnimation rotateAnimation = RxAnimationTool.initRotateAnimation(false, 1500, true,

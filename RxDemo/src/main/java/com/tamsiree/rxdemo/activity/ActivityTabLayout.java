@@ -29,7 +29,7 @@ public class ActivityTabLayout extends ActivityBase {
     RecyclerView mRecyclerview;
 //    private final Class<?>[] mClasses = {SlidingTabActivity.class, CommonTabActivity.class, SegmentTabActivity.class};
 
-    private int mColumnCount = 1;
+    private int mColumnCount = 2;
     private List<ModelMainItem> mData;
 
     @Override
@@ -49,6 +49,8 @@ public class ActivityTabLayout extends ActivityBase {
     }
 
     private void initView() {
+        mRxTitle.setLeftFinish(this);
+
         if (mColumnCount <= 1) {
             mRecyclerview.setLayoutManager(new LinearLayoutManager(mContext));
         } else {

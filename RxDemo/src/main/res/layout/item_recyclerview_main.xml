@@ -3,15 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingEnd="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
     android:paddingStart="0dp"
+    android:paddingLeft="0dp"
+    android:paddingEnd="0dp"
+    android:paddingRight="0dp"
     app:cardCornerRadius="4dp"
     app:cardElevation="3dp">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -20,20 +19,22 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="80dp"
-            android:layout_margin="10dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            android:layout_margin="@dimen/dp_10"
+            android:padding="@dimen/dp_10"
             app:srcCompat="@drawable/pikachu_sit" />
 
         <TextView
-            android:textSize="10dp"
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_marginBottom="@dimen/dp_10"
             android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="TextView"
             android:textColor="@color/black"
-            android:text="TextView" />
+            android:textSize="@dimen/sp_12" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

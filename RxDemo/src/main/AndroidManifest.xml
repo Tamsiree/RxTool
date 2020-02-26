@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.ActivityTSectionTabLayout"></activity>
+        <activity android:name=".activity.ActivityOtherEffect"></activity>
+        <activity android:name=".activity.ActivityTSectionTabLayout" />
         <activity android:name=".activity.ActivityTGlideTabLayout" />
         <activity android:name=".activity.ActivityTTabLayout" />
         <activity android:name=".activity.ActivityTabLayout" />
