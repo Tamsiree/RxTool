@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ActivityOnCrash">
+
+    <com.tamsiree.rxui.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        android:background="@color/colorPrimary"
+        app:title="Hold住崩溃界面" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:text="@string/hello" />
+
+        <Button
+            android:id="@+id/button_crash_main_thread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/crash_main_thread" />
+
+        <Button
+            android:id="@+id/button_crash_bg_thread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/crash_background_thread" />
+
+        <Button
+            android:id="@+id/button_crash_with_delay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/crash_with_delay" />
+
+    </LinearLayout>
+
+</LinearLayout>

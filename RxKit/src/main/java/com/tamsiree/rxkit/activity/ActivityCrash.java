@@ -19,7 +19,8 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.tamsiree.rxkit.R;
-import com.tamsiree.rxkit.crash.CaocConfig;
+import com.tamsiree.rxkit.RxLogTool;
+import com.tamsiree.rxkit.crash.RxCrashConfig;
 import com.tamsiree.rxkit.crash.RxCrashTool;
 
 public class ActivityCrash extends FragmentActivity {
@@ -45,7 +46,7 @@ public class ActivityCrash extends FragmentActivity {
         //It is recommended that you follow this logic if implementing a custom error activity.
         Button restartButton = findViewById(R.id.crash_error_activity_restart_button);
 
-        final CaocConfig config = RxCrashTool.getConfigFromIntent(getIntent());
+        final RxCrashConfig config = RxCrashTool.getConfigFromIntent(getIntent());
 
         if (config == null) {
             //This should never happen - Just finish the activity to avoid a recursive crash.
@@ -69,6 +70,8 @@ public class ActivityCrash extends FragmentActivity {
                 }
             });
         }
+        String message = RxCrashTool.getAllErrorDetailsFromIntent(ActivityCrash.this, getIntent());
+        RxLogTool.e(message);
 
         Button moreInfoButton = findViewById(R.id.crash_error_activity_more_info_button);
 
@@ -78,9 +81,10 @@ public class ActivityCrash extends FragmentActivity {
                 public void onClick(View v) {
                     //We retrieve all the error data and show it
 
+
                     AlertDialog dialog = new AlertDialog.Builder(ActivityCrash.this)
                             .setTitle(R.string.crash_error_details_title)
-                            .setMessage(RxCrashTool.getAllErrorDetailsFromIntent(ActivityCrash.this, getIntent()))
+                            .setMessage(message)
                             .setPositiveButton(R.string.crash_error_details_close, null)
                             .setNeutralButton(R.string.crash_error_details_copy,
                                     new DialogInterface.OnClickListener() {

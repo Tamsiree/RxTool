@@ -29,7 +29,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Modifier;
 
 
-public class CaocConfig implements Serializable {
+public class RxCrashConfig implements Serializable {
 
     public static final int BACKGROUND_MODE_SILENT = 0;
     public static final int BACKGROUND_MODE_SHOW_CUSTOM = 1;
@@ -147,14 +147,14 @@ public class CaocConfig implements Serializable {
     }
 
     public static class Builder {
-        private CaocConfig config;
+        private RxCrashConfig config;
 
         @NonNull
         public static Builder create() {
             Builder builder = new Builder();
-            CaocConfig currentConfig = RxCrashTool.getConfig();
+            RxCrashConfig currentConfig = RxCrashTool.getConfig();
 
-            CaocConfig config = new CaocConfig();
+            RxCrashConfig config = new RxCrashConfig();
             config.backgroundMode = currentConfig.backgroundMode;
             config.enabled = currentConfig.enabled;
             config.showErrorDetails = currentConfig.showErrorDetails;
@@ -313,7 +313,7 @@ public class CaocConfig implements Serializable {
         }
 
         @NonNull
-        public CaocConfig get() {
+        public RxCrashConfig get() {
             return config;
         }
 

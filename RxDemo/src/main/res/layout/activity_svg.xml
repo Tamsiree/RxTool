@@ -27,8 +27,8 @@
 
         <com.jaredrummler.android.widget.AnimatedSvgView
             android:id="@+id/animated_svg_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             app:animatedSvgFillColors="@array/google_glyph_colors"

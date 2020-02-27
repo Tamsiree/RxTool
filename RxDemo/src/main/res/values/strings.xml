@@ -64,4 +64,18 @@
     <string name="current_float_time">修改移动速度，当前%1$s</string>
     <string name="current_rotate_time">修改旋转速度，当前%1$s</string>
 
+    <!-- Main activity strings -->
+    <string name="hello">你好!按下以下按钮之一，使应用程序崩溃</string>
+    <string name="crash_main_thread">崩溃主线程</string>
+    <string name="crash_background_thread">后台线程崩溃</string>
+    <string name="crash_with_delay">延迟 (5s) 后崩溃</string>
+
+    <!-- These strings are only for our CUSTOM error activity, if you are using the default activity, they are not needed! -->
+    <string name="error_title">情况不妙!</string>
+    <string name="error_occurred">发生了一个错误. 我们深感抱歉.</string>
+    <string name="error_details">错误详情:</string>
+    <string name="unknown_exception">未知错误</string>
+    <string name="restart_app">重启APP</string>
+    <string name="close_app">关闭APP</string>
+
 </resources>

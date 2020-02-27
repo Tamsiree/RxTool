@@ -6,5 +6,5 @@
     <!-- 线的宽度，颜色灰色 -->
     <stroke
         android:width="3dp"
-        android:color="@color/blue" />
+        android:color="@color/green_xiaomi" />
 </shape>  

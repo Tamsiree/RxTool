@@ -65,7 +65,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/customactivityoncrash_activity_vertical_margin"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/shape_round_green_5dp"
+        android:background="@drawable/shape_round_green_15dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:text="@string/crash_error_close_app"

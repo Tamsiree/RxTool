@@ -121,6 +121,7 @@ public class ActivityMain extends ActivityBase {
         mDataFunction.add(new ModelMainItem("压缩与加密的艺术", R.drawable.circle_zip, ActivityZipEncrypt.class));
         mDataFunction.add(new ModelMainItem("PULL解析XML", R.drawable.circle_swap_vert, ActivityXmlParse.class));
         mDataFunction.add(new ModelMainItem("支付宝支付Demo", R.drawable.circle_alipay, ActivityAliPay.class));
+        mDataFunction.add(new ModelMainItem("Hold住崩溃界面", R.drawable.circle_alipay, ActivityOnCrash.class));
 
         mDataFunction.add(new ModelMainItem("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
 

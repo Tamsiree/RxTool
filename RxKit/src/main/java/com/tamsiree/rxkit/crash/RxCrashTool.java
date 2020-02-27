@@ -66,7 +66,7 @@ public class RxCrashTool {
     //Internal variables
     @SuppressLint("StaticFieldLeak") //This is an application-wide component
     private static Application application;
-    private static CaocConfig config = new CaocConfig();
+    private static RxCrashConfig config = new RxCrashConfig();
     private static WeakReference<Activity> lastActivityCreated = new WeakReference<>(null);
     private static long lastActivityCreatedTimestamp = 0L;
     private static boolean isInBackground = true;
@@ -123,7 +123,7 @@ public class RxCrashTool {
                                             oldHandler.uncaughtException(thread, throwable);
                                             return;
                                         }
-                                    } else if (config.getBackgroundMode() == CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM || !isInBackground
+                                    } else if (config.getBackgroundMode() == RxCrashConfig.BACKGROUND_MODE_SHOW_CUSTOM || !isInBackground
                                             || (lastActivityCreatedTimestamp >= new Date().getTime() - TIME_TO_CONSIDER_FOREGROUND_MS)) {
 
                                         final Intent intent = new Intent(application, errorActivityClass);
@@ -162,7 +162,7 @@ public class RxCrashTool {
                                             config.getEventListener().onLaunchErrorActivity();
                                         }
                                         application.startActivity(intent);
-                                    } else if (config.getBackgroundMode() == CaocConfig.BACKGROUND_MODE_CRASH) {
+                                    } else if (config.getBackgroundMode() == RxCrashConfig.BACKGROUND_MODE_CRASH) {
                                         if (oldHandler != null) {
                                             oldHandler.uncaughtException(thread, throwable);
                                             return;
@@ -270,8 +270,8 @@ public class RxCrashTool {
      * @return The config, or null if not provided.
      */
     @Nullable
-    public static CaocConfig getConfigFromIntent(@NonNull Intent intent) {
-        CaocConfig config = (CaocConfig) intent.getSerializableExtra(RxCrashTool.EXTRA_CONFIG);
+    public static RxCrashConfig getConfigFromIntent(@NonNull Intent intent) {
+        RxCrashConfig config = (RxCrashConfig) intent.getSerializableExtra(RxCrashTool.EXTRA_CONFIG);
         if (config != null && config.isLogErrorOnRestart()) {
             String stackTrace = getStackTraceFromIntent(intent);
             if (stackTrace != null) {
@@ -348,7 +348,7 @@ public class RxCrashTool {
      * @param intent   The Intent. Must not be null.
      * @param config   The config object as obtained by calling getConfigFromIntent.
      */
-    public static void restartApplicationWithIntent(@NonNull Activity activity, @NonNull Intent intent, @NonNull CaocConfig config) {
+    public static void restartApplicationWithIntent(@NonNull Activity activity, @NonNull Intent intent, @NonNull RxCrashConfig config) {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         if (intent.getComponent() != null) {
             //If the class name has been set, we force it to simulate a Launcher launch.
@@ -367,7 +367,7 @@ public class RxCrashTool {
         killCurrentProcess();
     }
 
-    public static void restartApplication(@NonNull Activity activity, @NonNull CaocConfig config) {
+    public static void restartApplication(@NonNull Activity activity, @NonNull RxCrashConfig config) {
         Intent intent = new Intent(activity, config.getRestartActivityClass());
         restartApplicationWithIntent(activity, intent, config);
     }
@@ -380,7 +380,7 @@ public class RxCrashTool {
      * @param activity The current error activity. Must not be null.
      * @param config   The config object as obtained by calling getConfigFromIntent.
      */
-    public static void closeApplication(@NonNull Activity activity, @NonNull CaocConfig config) {
+    public static void closeApplication(@NonNull Activity activity, @NonNull RxCrashConfig config) {
         if (config.getEventListener() != null) {
             config.getEventListener().onCloseAppFromErrorActivity();
         }
@@ -398,7 +398,7 @@ public class RxCrashTool {
      */
     @RestrictTo(RestrictTo.Scope.LIBRARY)
     @NonNull
-    public static CaocConfig getConfig() {
+    public static RxCrashConfig getConfig() {
         return config;
     }
 
@@ -409,7 +409,7 @@ public class RxCrashTool {
      * @param config the configuration to use
      */
     @RestrictTo(RestrictTo.Scope.LIBRARY)
-    public static void setConfig(@NonNull CaocConfig config) {
+    public static void setConfig(@NonNull RxCrashConfig config) {
         RxCrashTool.config = config;
     }
 
