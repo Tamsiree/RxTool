@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="crash_error_occurred_explanation">发生意外错误.\n造成不便深感抱歉</string>
+    <string name="crash_error_restart_app">重新启动应用</string>
+    <string name="crash_error_close_app">关闭应用</string>
+    <string name="crash_error_details">错误详细资料</string>
+    <string name="crash_error_details_title">错误细节</string>
+    <string name="crash_error_details_close">关闭</string>
+    <string name="crash_error_details_copy">复制到剪贴板</string>
+    <string name="crash_error_details_copied">已复制到剪贴板</string>
+    <string name="crash_error_details_clipboard_label">错误信息</string>
+</resources>

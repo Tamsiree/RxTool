@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="crash_error_occurred_explanation">An unexpected error occurred.\nSorry for the inconvenience.</string>
+    <string name="crash_error_restart_app">Restart app</string>
+    <string name="crash_error_close_app">Close app</string>
+    <string name="crash_error_details">Error details</string>
+    <string name="crash_error_details_title">Error details</string>
+    <string name="crash_error_details_close">Close</string>
+    <string name="crash_error_details_copy">Copy to clipboard</string>
+    <string name="crash_error_details_copied">Copied to clipboard</string>
+    <string name="crash_error_details_clipboard_label">Error information</string>
+</resources>
