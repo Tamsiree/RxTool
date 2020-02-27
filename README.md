@@ -78,6 +78,7 @@ RxTool.init(this);
 
 |  VERSION  |  Description  |
 | :-------: | ------------- |
+|   2.4.6   | 更新 RxKit 模块，更新了RxCrashTool工具类，自定义崩溃模块 |
 |   2.4.5   | 更新 RxUI 模块，新增 TabLayout、TUnReadView 自定义View |
 |   2.4.4   | 更新 RxUI 模块，RxDialogWheelYearMonthDay 更名为 RxDialogDate  |
 |   2.4.3   | 优化 RxTitle 控件  |
