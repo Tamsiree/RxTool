@@ -54,6 +54,18 @@
             android:text="@string/crash_error_details"
             android:textColor="?colorPrimary" />
 
+        <TextView
+            android:id="@+id/crash_error_locate_more_info_button"
+            style="?borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/shape_round_black_tr_15dp"
+            android:padding="10dp"
+            android:text="@string/crash_error_file"
+            android:textColor="?colorPrimary" />
+
     </LinearLayout>
 
 

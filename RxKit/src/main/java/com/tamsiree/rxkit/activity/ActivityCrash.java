@@ -23,6 +23,8 @@ import com.tamsiree.rxkit.RxLogTool;
 import com.tamsiree.rxkit.crash.RxCrashConfig;
 import com.tamsiree.rxkit.crash.RxCrashTool;
 
+import java.io.File;
+
 public class ActivityCrash extends FragmentActivity {
 
     @SuppressLint("PrivateResource")
@@ -71,7 +73,10 @@ public class ActivityCrash extends FragmentActivity {
             });
         }
         String message = RxCrashTool.getAllErrorDetailsFromIntent(ActivityCrash.this, getIntent());
-        RxLogTool.e(message);
+        File file = RxLogTool.e(message);
+
+        TextView locateButton = findViewById(R.id.crash_error_locate_more_info_button);
+        locateButton.setText(locateButton.getText() + ":\n\n" + file.getAbsolutePath() + "\n");
 
         Button moreInfoButton = findViewById(R.id.crash_error_activity_more_info_button);
 

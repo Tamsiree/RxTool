@@ -3,6 +3,7 @@
     <string name="crash_error_restart_app">重新启动应用</string>
     <string name="crash_error_close_app">关闭应用</string>
     <string name="crash_error_details">错误详细资料</string>
+    <string name="crash_error_file">错误日志保存路径</string>
     <string name="crash_error_details_title">错误细节</string>
     <string name="crash_error_details_close">关闭</string>
     <string name="crash_error_details_copy">复制到剪贴板</string>

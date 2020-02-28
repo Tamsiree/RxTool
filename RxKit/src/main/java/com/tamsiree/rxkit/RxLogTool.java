@@ -20,7 +20,8 @@ import java.util.Date;
 public class RxLogTool {
 
     private final static SimpleDateFormat LOG_FORMAT = new SimpleDateFormat("yyyy年MM月dd日_HH点mm分ss秒");// 日志的输出格式
-    private final static SimpleDateFormat FILE_SUFFIX = new SimpleDateFormat("yyyy年MM月dd日_HH点mm分ss秒");// 日志文件格式
+    private final static SimpleDateFormat FILE_SUFFIX = new SimpleDateFormat("HH点mm分ss秒");// 日志文件格式
+    private final static SimpleDateFormat FILE_DIR = new SimpleDateFormat("yyyy年MM月dd日");// 日志文件格式
     private static Boolean LOG_SWITCH = true; // 日志文件总开关
     private static Boolean LOG_TO_FILE = true; // 日志写入文件开关
     private static String LOG_TAG = "RxLogTool"; // 默认的tag
@@ -37,76 +38,76 @@ public class RxLogTool {
     /****************************
      * Warn
      *********************************/
-    public static void w(Object msg) {
-        w(LOG_TAG, msg);
+    public static File w(Object msg) {
+        return w(LOG_TAG, msg);
     }
 
-    public static void w(String tag, Object msg) {
-        w(tag, msg, null);
+    public static File w(String tag, Object msg) {
+        return w(tag, msg, null);
     }
 
-    public static void w(String tag, Object msg, Throwable tr) {
-        log(tag, msg.toString(), tr, 'w');
+    public static File w(String tag, Object msg, Throwable tr) {
+        return log(tag, msg.toString(), tr, 'w');
     }
 
     /***************************
      * Error
      ********************************/
-    public static void e(Object msg) {
-        e(LOG_TAG, msg);
+    public static File e(Object msg) {
+        return e(LOG_TAG, msg);
     }
 
-    public static void e(String tag, Object msg) {
-        e(tag, msg, null);
+    public static File e(String tag, Object msg) {
+        return e(tag, msg, null);
     }
 
-    public static void e(String tag, Object msg, Throwable tr) {
-        log(tag, msg.toString(), tr, 'e');
+    public static File e(String tag, Object msg, Throwable tr) {
+        return log(tag, msg.toString(), tr, 'e');
     }
 
     /***************************
      * Debug
      ********************************/
-    public static void d(Object msg) {
-        d(LOG_TAG, msg);
+    public static File d(Object msg) {
+        return d(LOG_TAG, msg);
     }
 
-    public static void d(String tag, Object msg) {// 调试信息
-        d(tag, msg, null);
+    public static File d(String tag, Object msg) {// 调试信息
+        return d(tag, msg, null);
     }
 
-    public static void d(String tag, Object msg, Throwable tr) {
-        log(tag, msg.toString(), tr, 'd');
+    public static File d(String tag, Object msg, Throwable tr) {
+        return log(tag, msg.toString(), tr, 'd');
     }
 
     /****************************
      * Info
      *********************************/
-    public static void i(Object msg) {
-        i(LOG_TAG, msg);
+    public static File i(Object msg) {
+        return i(LOG_TAG, msg);
     }
 
-    public static void i(String tag, Object msg) {
-        i(tag, msg, null);
+    public static File i(String tag, Object msg) {
+        return i(tag, msg, null);
     }
 
-    public static void i(String tag, Object msg, Throwable tr) {
-        log(tag, msg.toString(), tr, 'i');
+    public static File i(String tag, Object msg, Throwable tr) {
+        return log(tag, msg.toString(), tr, 'i');
     }
 
     /**************************
      * Verbose
      ********************************/
-    public static void v(Object msg) {
-        v(LOG_TAG, msg);
+    public static File v(Object msg) {
+        return v(LOG_TAG, msg);
     }
 
-    public static void v(String tag, Object msg) {
-        v(tag, msg, null);
+    public static File v(String tag, Object msg) {
+        return v(tag, msg, null);
     }
 
-    public static void v(String tag, Object msg, Throwable tr) {
-        log(tag, msg.toString(), tr, 'v');
+    public static File v(String tag, Object msg, Throwable tr) {
+        return log(tag, msg.toString(), tr, 'v');
     }
 
     /**
@@ -116,7 +117,8 @@ public class RxLogTool {
      * @param msg
      * @param level
      */
-    private static void log(String tag, String msg, Throwable tr, char level) {
+    private static File log(String tag, String msg, Throwable tr, char level) {
+        File logFile = new File("");
         if (LOG_SWITCH) {
             if ('e' == level && ('e' == LOG_TYPE || 'v' == LOG_TYPE)) { // 输出错误信息
                 Log.e(tag, msg, tr);
@@ -139,10 +141,11 @@ public class RxLogTool {
                     content += Log.getStackTraceString(tr);
                 }
 
-                log2File(String.valueOf(level), tag, content);
-
+                logFile = log2File(String.valueOf(level), tag, content);
             }
         }
+
+        return logFile;
     }
 
     /**
@@ -150,15 +153,16 @@ public class RxLogTool {
      *
      * @return
      **/
-    private synchronized static void log2File(String mylogtype, String tag, String text) {
+    private synchronized static File log2File(String mylogtype, String tag, String text) {
         Date nowtime = new Date();
         String date = FILE_SUFFIX.format(nowtime);
         String dateLogContent = "Date:" + LOG_FORMAT.format(nowtime) + "\nLogType:" + mylogtype + "\nTag:" + tag + "\nContent:\n" + text; // 日志输出格式
-        File destDir = new File(LOG_FILE_PATH);
+        String path = LOG_FILE_PATH + File.separator + FILE_DIR.format(nowtime);
+        File destDir = new File(path);
         if (!destDir.exists()) {
             destDir.mkdirs();
         }
-        File file = new File(LOG_FILE_PATH, LOG_FILE_NAME + date + ".txt");
+        File file = new File(path, LOG_FILE_NAME + date + ".txt");
         try {
             FileWriter filerWriter = new FileWriter(file, true);
             BufferedWriter bufWriter = new BufferedWriter(filerWriter);
@@ -169,17 +173,15 @@ public class RxLogTool {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return file;
     }
 
     /**
      * 删除指定的日志文件
      */
-    public static void delFile() {// 删除日志文件
-        String needDelFiel = FILE_SUFFIX.format(getDateBefore());
-        File file = new File(LOG_FILE_PATH, needDelFiel + LOG_FILE_NAME);
-        if (file.exists()) {
-            file.delete();
-        }
+    public static void delAllLogFile() {// 删除日志文件
+//        String needDelFiel = FILE_SUFFIX.format(getDateBefore());
+        RxFileTool.deleteDir(LOG_FILE_PATH);
     }
 
     /**

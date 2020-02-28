@@ -9,4 +9,5 @@
     <string name="crash_error_details_copy">复制到剪贴板</string>
     <string name="crash_error_details_copied">已复制到剪贴板</string>
     <string name="crash_error_details_clipboard_label">错误信息</string>
+    <string name="crash_error_file">错误日志保存路径</string>
 </resources>
