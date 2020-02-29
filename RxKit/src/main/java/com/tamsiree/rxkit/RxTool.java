@@ -29,7 +29,7 @@ import java.util.regex.PatternSyntaxException;
 /**
  * @author tamsiree
  * @date 2016/1/24
- * RxTools的常用工具类
+ * RxTool的常用工具类
  * <p>
  * For the brave souls who get this far: You are the chosen ones,
  * the valiant knights of programming who toil away, without rest,
