@@ -3,7 +3,6 @@ package com.tamsiree.rxdemo.activity;
 import android.Manifest;
 import android.os.Bundle;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -14,6 +13,7 @@ import com.tamsiree.rxdemo.fragment.FragmentDemoType;
 import com.tamsiree.rxdemo.model.TabEntity;
 import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxkit.RxPermissionsTool;
+import com.tamsiree.rxkit.view.RxToast;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.fragment.FragmentPlaceholder;
 import com.tamsiree.rxui.view.RxTitle;
@@ -86,7 +86,6 @@ public class ActivityMain extends ActivityBase {
         }
 
         mViewPager.setAdapter(new AdapterFragmentViewPager(getSupportFragmentManager(), mTitles, mFragments));
-        //mTabLayout1.setViewPager(mViewPager);
         initTabLayout();
     }
 
@@ -134,7 +133,6 @@ public class ActivityMain extends ActivityBase {
             mFragments.add(FragmentPlaceholder.newInstance());
             mFragments.add(FragmentDemoType.newInstance());
             mFragments.add(FragmentPlaceholder.newInstance());
-
         }
         //==========================================================================================
 
@@ -146,7 +144,7 @@ public class ActivityMain extends ActivityBase {
             super.onBackPressed();
             return;
         } else {
-            Toast.makeText(getBaseContext(), "再次点击返回键退出", Toast.LENGTH_SHORT).show();
+            RxToast.info("再次点击返回键退出");
         }
         mBackPressed = System.currentTimeMillis();
     }
