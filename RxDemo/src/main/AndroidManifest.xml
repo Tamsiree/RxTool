@@ -15,14 +15,14 @@
         tools:ignore="ProtectedPermissions" />
 
     <application
-        android:name=".ApplicationRxTools"
+        android:name=".ApplicationRxTool"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.ActivityOnCrash"></activity>
+        <activity android:name=".activity.ActivityOnCrash" />
         <activity android:name=".activity.ActivityTVideoTimeline" />
         <activity android:name=".activity.ActivityOtherEffect" />
         <activity android:name=".activity.ActivityTSectionTabLayout" />

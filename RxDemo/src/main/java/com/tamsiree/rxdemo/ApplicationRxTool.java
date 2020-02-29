@@ -12,7 +12,7 @@ import com.tamsiree.rxkit.RxTool;
  * @date 2016/12/23
  */
 
-public class ApplicationRxTools extends Application {
+public class ApplicationRxTool extends Application {
 
     @Override
     protected void attachBaseContext(Context base) {

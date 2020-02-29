@@ -270,7 +270,7 @@
                 app:rcRadius="30dp"
                 app:rcSecondaryProgress="60"
                 app:rcSecondaryProgressColor="@color/custom_progress_green_progress_half"
-                app:rcTextProgress="RxTools"
+                app:rcTextProgress="RxTool"
                 app:rcTextProgressColor="@color/white"
                 app:rcTextProgressMargin="10dp"
                 app:rcTextProgressSize="14sp"/>

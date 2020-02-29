@@ -3,6 +3,14 @@ apply plugin: 'com.jakewharton.butterknife'
 
 android {
 
+    signingConfigs {
+        debug {
+            storeFile file('/home/tamsiree/Documents/TamDocuments/WorkSpace/Android/TamKey.jks')
+            storePassword 'Ls547817'
+            keyAlias = 'TamKey'
+            keyPassword 'Ls547817'
+        }
+    }
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.tamsiree.rxdemo"
@@ -31,12 +39,15 @@ android {
 
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation project(':RxKit')
     implementation project(':RxUI')
+    implementation project(':RxPay')
     implementation project(':RxCamera')
     implementation project(':RxFeature')
 
-    compileOnly fileTree(include: ['*.jar'], dir: 'libs')
+
     //cardView包
     //appcompat包
     //recyclerview包
@@ -51,7 +62,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.google.android:flexbox:0.3.2'
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.nineoldandroids:library:2.4.0'
 
     implementation 'com.github.bumptech.glide:glide:4.7.1'
@@ -68,11 +79,15 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
+    compileOnly 'com.alipay.sdk:alipay-sdk-java:4.9.28.ALL'
+
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 // Because RxAndroid releases are few and far between, it is recommended you also
 // explicitly depend on RxJava's latest version for bug fixes and new features.
 // (see https://github.com/ReactiveX/RxJava/releases for latest 2.x.x version)
     implementation 'io.reactivex.rxjava2:rxjava:2.2.14'
+
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
 
     configurations.all {
         exclude group: 'com.android.support', module: 'support-v13'

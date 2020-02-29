@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">RxTool</string>
     <string name="enter_app">进入RxTool</string>
 
@@ -70,7 +72,6 @@
     <string name="crash_background_thread">后台线程崩溃</string>
     <string name="crash_with_delay">延迟 (5s) 后崩溃</string>
 
-    <!-- These strings are only for our CUSTOM error activity, if you are using the default activity, they are not needed! -->
     <string name="error_title">情况不妙!</string>
     <string name="error_occurred">发生了一个错误. 我们深感抱歉.</string>
     <string name="error_details">错误详情:</string>
@@ -100,5 +101,4 @@
     <string name="error_missing_global_partner_seller_rsa_private">Error: Missing \"PARTNER\", \"SELLER\", or \"RSA_PRIVATE\\ in OrderUtils1_0_Global.</string>
     <string name="payment_inst_hk">Payer: HK</string>
     <string name="payment_inst_cn">Payer: CN</string>
-
 </resources>

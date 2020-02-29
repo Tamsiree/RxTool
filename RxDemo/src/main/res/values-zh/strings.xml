@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">RxTool</string>
     <string name="enter_app">进入RxTool</string>
 
@@ -70,7 +72,6 @@
     <string name="crash_background_thread">后台线程崩溃</string>
     <string name="crash_with_delay">延迟 (5s) 后崩溃</string>
 
-    <!-- These strings are only for our CUSTOM error activity, if you are using the default activity, they are not needed! -->
     <string name="error_title">情况不妙!</string>
     <string name="error_occurred">发生了一个错误. 我们深感抱歉.</string>
     <string name="error_details">错误详情:</string>
@@ -78,27 +79,26 @@
     <string name="restart_app">重启APP</string>
     <string name="close_app">关闭APP</string>
 
-    <string name="demo_info_text">Warning: \n\nFor demonstration purpose, the assembling and signing of the request parameters are done on the client side.\nHowever, in practice, both assembling and signing MUST BE carried out on the server side.</string>
-    <string name="pay_with_alipay">Pay with Alipay</string>
-    <string name="pay_with_alipay_hk">Pay with AlipayHK</string>
-    <string name="auth_with_alipay">Authenticate with Alipay</string>
-    <string name="web_to_native">Call Alipay from Web Content</string>
-    <string name="check_sdk_version">Alipay SDK Version</string>
-    <string name="pay_success">Payment success:</string>
-    <string name="auth_failed">Authentication failed:</string>
-    <string name="error_missing_appid_rsa_private">Error: Missing \"APPID\" or \"RSA_PRIVATE\" in PayDemoActivity.</string>
-    <string name="error_missing_hk_partner_seller_rsa_private">Error: Missing \"PARTNER\", \"SELLER\", or \"RSA_PRIVATE\\ in OrderUtils1_0_HK.</string>
-    <string name="pay_result">Payment result:</string>
-    <string name="error_auth_missing_partner_appid_rsa_private_target_id">Error: Missing \"PARTNER\", \"APP_ID\", \"RSA_PRIVATE\", or \"TARGET_ID\" in PayDemoActivity.</string>
-    <string name="confirm">Confirm</string>
-    <string name="pay_failed">Payment failed:</string>
-    <string name="auth_success">Authentication success:</string>
-    <string name="alipay_sdk_version_is">"Alipay SDK version: "</string>
-    <string name="error_missing_h5_pay_url">Missing URL to load. Please configure in PayDemoActivity.h5Pay()</string>
-    <string name="error">Error</string>
-    <string name="pay_cross_border">Cross-border Pay with Alipay</string>
-    <string name="error_missing_global_partner_seller_rsa_private">Error: Missing \"PARTNER\", \"SELLER\", or \"RSA_PRIVATE\\ in OrderUtils1_0_Global.</string>
-    <string name="payment_inst_hk">Payer: HK</string>
-    <string name="payment_inst_cn">Payer: CN</string>
-
+    <string name="demo_info_text">重要说明: \n\n本 Demo 为了方便向商户展示支付宝的支付流程，所以订单信息的加签过程放在客户端完成。\n在商户的真实App内，为了防止商户私密数据泄露，引发资金损失和身份冒用等各种安全风险，商户私钥 RSA_PRIVATE 等数据严禁放在客户端，订单信息的加签过程也务必放在服务端完成。\n若商户接入时不遵照此说明而造成损失，需自行承担。</string>
+    <string name="pay_with_alipay">支付宝支付 Demo</string>
+    <string name="pay_with_alipay_hk">HK 支付宝支付 Demo</string>
+    <string name="auth_with_alipay">支付宝授权 Demo</string>
+    <string name="web_to_native">网页支付转 native 支付 Demo</string>
+    <string name="check_sdk_version">支付宝 SDK 版本</string>
+    <string name="pay_success">支付成功:</string>
+    <string name="pay_failed">支付失败:</string>
+    <string name="auth_success">授权成功:</string>
+    <string name="auth_failed">授权失败:</string>
+    <string name="error_missing_appid_rsa_private">错误: 需要配置 PayDemoActivity 中的 APPID 和 RSA_PRIVATE</string>
+    <string name="error_missing_hk_partner_seller_rsa_private">错误：需要配置 OrderUtils1_0_HK 中的 PARTNER、SELLER 和 RSA_PRIVATE</string>
+    <string name="pay_result">支付结果:</string>
+    <string name="error_auth_missing_partner_appid_rsa_private_target_id">错误: 需要配置PARTNER |APP_ID| RSA_PRIVATE| TARGET_ID</string>
+    <string name="alipay_sdk_version_is">支付宝 SDK 版本:</string>
+    <string name="confirm">确定</string>
+    <string name="error_missing_h5_pay_url">必须配置需要打开的url 站点，请在PayDemoActivity类的h5Pay中配置</string>
+    <string name="error">错误</string>
+    <string name="pay_cross_border">境外收单支付 Demo</string>
+    <string name="error_missing_global_partner_seller_rsa_private">错误：需要配置 OrderUtils1_0_Global 中的 PARTNER、SELLER 和 RSA_PRIVATE</string>
+    <string name="payment_inst_hk">付款方: HK</string>
+    <string name="payment_inst_cn">付款方: CN</string>
 </resources>

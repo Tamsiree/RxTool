@@ -5,7 +5,7 @@ package com.tamsiree.rxdemo.model;
  * @date 2016/11/13
  */
 
-public class ModelMainItem {
+public class ModelDemo {
 
     private String name;
 
@@ -13,12 +13,12 @@ public class ModelMainItem {
 
     private Class activity;
 
-    public ModelMainItem(String name, int image) {
+    public ModelDemo(String name, int image) {
         this.name = name;
         this.image = image;
     }
 
-    public ModelMainItem(String name, int image, Class activity) {
+    public ModelDemo(String name, int image, Class activity) {
         this.name = name;
         this.image = image;
         this.activity = activity;

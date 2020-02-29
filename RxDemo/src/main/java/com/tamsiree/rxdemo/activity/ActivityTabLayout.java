@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.adapter.AdapterRecyclerViewMain;
-import com.tamsiree.rxdemo.model.ModelMainItem;
+import com.tamsiree.rxdemo.model.ModelDemo;
+import com.tamsiree.rxkit.RxActivityTool;
 import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxkit.RxRecyclerViewDividerTool;
 import com.tamsiree.rxui.activity.ActivityBase;
@@ -30,7 +31,7 @@ public class ActivityTabLayout extends ActivityBase {
 //    private final Class<?>[] mClasses = {SlidingTabActivity.class, CommonTabActivity.class, SegmentTabActivity.class};
 
     private int mColumnCount = 2;
-    private List<ModelMainItem> mData;
+    private List<ModelDemo> mData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +44,9 @@ public class ActivityTabLayout extends ActivityBase {
 
     private void initData() {
         mData = new ArrayList<>();
-        mData.add(new ModelMainItem("TTabLayout", R.drawable.circle_elves_ball, ActivityTTabLayout.class));
-        mData.add(new ModelMainItem("TGlideTabLayout", R.drawable.circle_elves_ball, ActivityTGlideTabLayout.class));
-        mData.add(new ModelMainItem("TSectionTabLayout", R.drawable.circle_elves_ball, ActivityTSectionTabLayout.class));
+        mData.add(new ModelDemo("TTabLayout", R.drawable.circle_elves_ball, ActivityTTabLayout.class));
+        mData.add(new ModelDemo("TGlideTabLayout", R.drawable.circle_elves_ball, ActivityTGlideTabLayout.class));
+        mData.add(new ModelDemo("TSectionTabLayout", R.drawable.circle_elves_ball, ActivityTSectionTabLayout.class));
     }
 
     private void initView() {
@@ -58,7 +59,12 @@ public class ActivityTabLayout extends ActivityBase {
         }
 
         mRecyclerview.addItemDecoration(new RxRecyclerViewDividerTool(RxImageTool.dp2px(5f)));
-        AdapterRecyclerViewMain recyclerViewMain = new AdapterRecyclerViewMain(mData);
+        AdapterRecyclerViewMain recyclerViewMain = new AdapterRecyclerViewMain(mData, new AdapterRecyclerViewMain.ContentListener() {
+            @Override
+            public void setListerer(int position) {
+                RxActivityTool.skipActivity(mContext, mData.get(position).getActivity());
+            }
+        });
 
         mRecyclerview.setAdapter(recyclerViewMain);
     }

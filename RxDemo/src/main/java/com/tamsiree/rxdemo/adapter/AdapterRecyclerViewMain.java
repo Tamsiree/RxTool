@@ -1,23 +1,14 @@
 package com.tamsiree.rxdemo.adapter;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.tamsiree.rxdemo.R;
-import com.tamsiree.rxdemo.model.ModelMainItem;
-import com.tamsiree.rxkit.RxActivityTool;
+import com.tamsiree.rxdemo.model.ModelDemo;
 
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * @author tamsiree
@@ -25,67 +16,32 @@ import butterknife.ButterKnife;
  */
 
 
+public class AdapterRecyclerViewMain extends BaseQuickAdapter<ModelDemo, BaseViewHolder> {
 
-public class AdapterRecyclerViewMain extends RecyclerView.Adapter<AdapterRecyclerViewMain.ViewHolder> {
-    private int mScreenWidth, mItemWidth, mItemHeight;
-    private Context context;
-    private List<ModelMainItem> mValues;
+    private ContentListener mOnClickListener;
 
-    public AdapterRecyclerViewMain(List<ModelMainItem> items) {
-        mValues = items;
+    public AdapterRecyclerViewMain(List<ModelDemo> data, ContentListener mOnClickListener) {
+        super(R.layout.item_recyclerview_main, data);
+        this.mOnClickListener = mOnClickListener;
     }
 
-    @Override
-    public AdapterRecyclerViewMain.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview_main, parent, false);
-        context = view.getContext();
-      /*  mScreenWidth = RxDeviceTool.getScreenWidth(context) > RxDeviceTool.getScreenHeight(context) ? RxDeviceTool.getScreenHeight(context) : RxDeviceTool.getScreenWidth(context);
-        mItemWidth = (mScreenWidth - 50) / 3;
-        mItemHeight = mItemWidth * 6 / 4;
-        GridLayoutManager.LayoutParams layoutParams = new GridLayoutManager.LayoutParams(mItemWidth, mItemHeight);
-        view.setLayoutParams(layoutParams);*/
-        return new ViewHolder(view);
-    }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    protected void convert(final BaseViewHolder helper, final ModelDemo item) {
+        helper.setText(R.id.tv_name, item.getName());
 
-        holder.mItem = mValues.get(position);
+        ImageView imageView = helper.getView(R.id.imageView);
 
-        holder.tvName.setText(holder.mItem.getName());
-
-        Glide.with(context).
-                load(holder.mItem.getImage()).
+        Glide.with(mContext).
+                load(item.getImage()).
                 thumbnail(0.5f).
-                into(holder.imageView);
+                into(imageView);
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RxActivityTool.skipActivity(context, holder.mItem.getActivity());
-            }
-        });
+        helper.setOnClickListener(R.id.ll_root, v -> mOnClickListener.setListerer(helper.getPosition()));
     }
 
-
-    @Override
-    public int getItemCount() {
-        return mValues.size();
+    public interface ContentListener {
+        void setListerer(int position);
     }
 
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public ModelMainItem mItem;
-        @BindView(R.id.imageView)
-        ImageView imageView;
-        @BindView(R.id.tv_name)
-        TextView tvName;
-
-        public ViewHolder(View view) {
-            super(view);
-            mView = view;
-            ButterKnife.bind(this, view);
-        }
-    }
 }
