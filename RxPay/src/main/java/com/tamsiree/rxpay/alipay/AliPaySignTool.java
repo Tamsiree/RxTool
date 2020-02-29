@@ -1,4 +1,4 @@
-package com.tamsiree.rxfeature.module.alipay;
+package com.tamsiree.rxpay.alipay;
 
 import java.security.KeyFactory;
 import java.security.PrivateKey;

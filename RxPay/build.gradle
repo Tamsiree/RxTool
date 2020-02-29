@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //支付宝 支付包
+    compileOnly (name: 'alipaySdk-15.7.3-20200217092932', ext: 'aar')
+//    compileOnly 'com.alipay.sdk:alipay-sdk-java:4.9.28.ALL'
+    //微信登录，支付，分享包
+    compileOnly 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.4.0'
+
+    //okgo 网络请求框架包
+    compileOnly 'com.lzy.net:okgo:3.0.4'
+    //gson json工具类 google解析Json的库
+    compileOnly 'com.google.code.gson:gson:2.8.6'
+
+    compileOnly project(':RxKit')
+    compileOnly project(':RxUI')
+
+}

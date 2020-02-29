@@ -1,4 +1,4 @@
-package com.tamsiree.rxfeature.module.wechat.pay;
+package com.tamsiree.rxpay.wechat.pay;
 
 import android.content.Context;
 import android.util.Log;
@@ -54,7 +54,7 @@ public class WechatPayTools {
         String total_fee = wechatModel.getMoney();//总金额 分
         String time_start = getCurrTime();//交易起始时间(订单生成时间非必须)
         String trade_type = "APP";//App支付
-        String notify_url = "https://github.com/tamsiree/RxTools";//"http://" + "域名" + "/" + "项目名" + "回调地址.do";//回调函数
+        String notify_url = "https://github.com/tamsiree/RxTool";//"http://" + "域名" + "/" + "项目名" + "回调地址.do";//回调函数
         SortedMap<String, String> params = new TreeMap<String, String>();
         params.put("appid", appid);
         params.put("mch_id", mch_id);

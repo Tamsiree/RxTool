@@ -1,10 +1,10 @@
-package com.tamsiree.rxfeature.module.wechat.share;
+package com.tamsiree.rxpay.wechat.share;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.tamsiree.rxfeature.module.wechat.pay.WechatPayTools;
 import com.tamsiree.rxkit.RxImageTool;
+import com.tamsiree.rxpay.wechat.pay.WechatPayTools;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXImageObject;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
@@ -205,7 +205,7 @@ public class WechatShareTools {
         if (iwxapi != null) {
             iwxapi.sendReq(req);
         } else {
-            throw new NullPointerException("请先调用WechatShare.init()方法");
+            throw new NullPointerException("请先调用 WechatShare.init()方法");
         }
     }
 

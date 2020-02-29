@@ -1,4 +1,4 @@
-package com.tamsiree.rxfeature.module.alipay;
+package com.tamsiree.rxpay.alipay;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

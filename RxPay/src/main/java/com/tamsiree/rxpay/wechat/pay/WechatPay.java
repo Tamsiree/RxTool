@@ -1,4 +1,4 @@
-package com.tamsiree.rxfeature.module.wechat.pay;
+package com.tamsiree.rxpay.wechat.pay;
 
 import android.content.Context;
 import android.text.TextUtils;

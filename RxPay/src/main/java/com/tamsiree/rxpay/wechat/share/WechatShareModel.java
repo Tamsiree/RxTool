@@ -1,4 +1,4 @@
-package com.tamsiree.rxfeature.module.wechat.share;
+package com.tamsiree.rxpay.wechat.share;
 
 /**
  *

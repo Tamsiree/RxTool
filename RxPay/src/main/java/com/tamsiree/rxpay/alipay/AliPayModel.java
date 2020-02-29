@@ -1,4 +1,4 @@
-package com.tamsiree.rxfeature.module.alipay;
+package com.tamsiree.rxpay.alipay;
 
 /**
  * @author Tamsiree

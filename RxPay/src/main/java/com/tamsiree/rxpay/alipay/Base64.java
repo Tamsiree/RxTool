@@ -1,4 +1,4 @@
-package com.tamsiree.rxfeature.module.alipay;
+package com.tamsiree.rxpay.alipay;
 
 /**
  * @author tamsiree
@@ -83,7 +83,7 @@ public final class Base64 {
         int numberTriplets = lengthDataBits / TWENTYFOURBITGROUP;
         int numberQuartet = fewerThan24bits != 0 ? numberTriplets + 1
                 : numberTriplets;
-        char encodedData[] = null;
+        char[] encodedData = null;
 
         encodedData = new char[numberQuartet * 4];
 
@@ -170,7 +170,7 @@ public final class Base64 {
             return new byte[0];
         }
 
-        byte decodedData[] = null;
+        byte[] decodedData = null;
         byte b1 = 0, b2 = 0, b3 = 0, b4 = 0;
         char d1 = 0, d2 = 0, d3 = 0, d4 = 0;
 
