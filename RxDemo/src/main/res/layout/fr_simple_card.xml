@@ -9,6 +9,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/background_card"
         android:gravity="center"
+        android:textColor="@color/black"
         android:textSize="18sp" />
 
 </RelativeLayout>

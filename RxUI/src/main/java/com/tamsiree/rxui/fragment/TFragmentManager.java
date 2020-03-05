@@ -12,10 +12,12 @@ import java.util.List;
 public class TFragmentManager {
     private FragmentManager mFragmentManager;
     private int mContainerViewId;
+
     /**
      * Fragment切换数组
      */
     private List<Fragment> mFragments;
+
     /**
      * 当前选中的Tab
      */
