@@ -8,3 +8,5 @@
 /build
 /captures
 .externalNativeBuild
+将删除 RxDemo/release/
+将删除 RxPay/src/main/res/
