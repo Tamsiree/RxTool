@@ -17,7 +17,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.6.1'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.1'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+//        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 //        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.2'
