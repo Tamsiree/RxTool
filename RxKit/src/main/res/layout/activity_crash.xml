@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="@drawable/grid_pattern"
     android:gravity="center_horizontal"
     android:orientation="vertical"
@@ -16,7 +17,7 @@
         android:gravity="center"
         android:text="RxCrashTool"
         android:textColor="#ffffff"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
 
@@ -36,16 +37,6 @@
             android:contentDescription="@null"
             android:src="@drawable/crash_logo" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/customactivityoncrash_activity_vertical_margin"
-            android:gravity="center"
-            android:text="@string/crash_error_occurred_explanation"
-            android:textColor="#707070"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
         <Button
             android:id="@+id/crash_error_activity_more_info_button"
             style="?borderlessButtonStyle"
@@ -53,6 +44,18 @@
             android:layout_height="wrap_content"
             android:text="@string/crash_error_details"
             android:textColor="?colorPrimary" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/customactivityoncrash_activity_vertical_margin"
+            android:gravity="center"
+            android:text="@string/crash_error_occurred_explanation"
+            android:textColor="#707070"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
 
         <TextView
             android:id="@+id/crash_error_locate_more_info_button"
@@ -76,11 +79,26 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/customactivityoncrash_activity_vertical_margin"
-        android:layout_marginBottom="50dp"
+
         android:background="@drawable/shape_round_green_15dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:text="@string/crash_error_close_app"
+        android:text="@string/crash_error_restart_app"
         android:textColor="#ffffff" />
+
+
+    <Button
+        android:id="@+id/crash_error_activity_close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/customactivityoncrash_activity_vertical_margin"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/shape_round_gray_15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/crash_error_close_app"
+        android:textColor="#4B4B4B" />
 
 </LinearLayout>

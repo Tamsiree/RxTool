@@ -8,27 +8,38 @@ import android.widget.Button;
 
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxui.activity.ActivityBase;
+import com.tamsiree.rxui.view.RxTitle;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ActivityOnCrash extends ActivityBase {
+
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
+    @BindView(R.id.button_crash_main_thread)
+    Button mButtonCrashMainThread;
+    @BindView(R.id.button_crash_bg_thread)
+    Button mButtonCrashBgThread;
+    @BindView(R.id.button_crash_with_delay)
+    Button mButtonCrashWithDelay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_crash);
+        ButterKnife.bind(this);
 
+        mRxTitle.setLeftFinish(mContext);
 
-        Button crashMainThreadButton = findViewById(R.id.button_crash_main_thread);
-        Button crashBgThreadButton = findViewById(R.id.button_crash_bg_thread);
-        Button crashWithDelayButton = findViewById(R.id.button_crash_with_delay);
-
-        crashMainThreadButton.setOnClickListener(new View.OnClickListener() {
+        mButtonCrashMainThread.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 throw new RuntimeException("I'm a cool exception and I crashed the main thread!");
             }
         });
 
-        crashBgThreadButton.setOnClickListener(new View.OnClickListener() {
+        mButtonCrashBgThread.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("StaticFieldLeak") //For demo purposes we don't care about leaks
             @Override
             public void onClick(View view) {
@@ -41,7 +52,7 @@ public class ActivityOnCrash extends ActivityBase {
             }
         });
 
-        crashWithDelayButton.setOnClickListener(new View.OnClickListener() {
+        mButtonCrashWithDelay.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("StaticFieldLeak") //For demo purposes we don't care about leaks
             @Override
             public void onClick(View view) {

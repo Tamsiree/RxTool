@@ -19,6 +19,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.tamsiree.rxkit.R;
+import com.tamsiree.rxkit.RxAppTool;
 import com.tamsiree.rxkit.RxLogTool;
 import com.tamsiree.rxkit.crash.RxCrashConfig;
 import com.tamsiree.rxkit.crash.RxCrashTool;
@@ -47,6 +48,8 @@ public class ActivityCrash extends FragmentActivity {
         //Else, use close and just finish the app.
         //It is recommended that you follow this logic if implementing a custom error activity.
         Button restartButton = findViewById(R.id.crash_error_activity_restart_button);
+        Button closeButton = findViewById(R.id.crash_error_activity_close_button);
+        TextView tvCrashTool = findViewById(R.id.rx_crash_tool);
 
         final RxCrashConfig config = RxCrashTool.getConfigFromIntent(getIntent());
 
@@ -64,19 +67,23 @@ public class ActivityCrash extends FragmentActivity {
                     RxCrashTool.restartApplication(ActivityCrash.this, config);
                 }
             });
-        } else {
-            restartButton.setOnClickListener(new View.OnClickListener() {
+            closeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     RxCrashTool.closeApplication(ActivityCrash.this, config);
                 }
             });
+        } else {
+            closeButton.setVisibility(View.GONE);
         }
         String message = RxCrashTool.getAllErrorDetailsFromIntent(ActivityCrash.this, getIntent());
         File file = RxLogTool.e(message);
 
+        String appName = RxAppTool.getAppName(this);
+        tvCrashTool.setText(appName);
+
         TextView locateButton = findViewById(R.id.crash_error_locate_more_info_button);
-        locateButton.setText(locateButton.getText() + ":\n\n" + file.getAbsolutePath() + "\n");
+        locateButton.setText(locateButton.getText() + "\n\n" + file.getAbsolutePath() + "\n");
 
         Button moreInfoButton = findViewById(R.id.crash_error_activity_more_info_button);
 

@@ -1,10 +1,10 @@
 package com.tamsiree.rxdemo.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.jaredrummler.android.widget.AnimatedSvgView;
 import com.tamsiree.rxdemo.R;
@@ -12,10 +12,13 @@ import com.tamsiree.rxdemo.model.ModelSVG;
 import com.tamsiree.rxkit.RxActivityTool;
 import com.tamsiree.rxkit.RxBarTool;
 import com.tamsiree.rxkit.RxDeviceTool;
+import com.tamsiree.rxkit.RxTool;
 import com.tamsiree.rxui.activity.ActivityBase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.jaredrummler.android.widget.AnimatedSvgView.STATE_FINISHED;
 
 /**
  * @author tamsiree
@@ -28,12 +31,13 @@ public class ActivitySVG extends ActivityBase {
     RelativeLayout mActivitySvg;
     @BindView(R.id.app_name)
     ImageView mAppName;
-    private Handler checkhandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-//            mAppName.setVisibility(View.VISIBLE);
-        }
-    };
+    @BindView(R.id.imageView2)
+    ImageView mImageView2;
+    @BindView(R.id.tv_app_name)
+    TextView mTvAppName;
+    @BindView(R.id.tv_version)
+    TextView mTvVersion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +46,8 @@ public class ActivitySVG extends ActivityBase {
         setContentView(R.layout.activity_svg);
         ButterKnife.bind(this);
         RxDeviceTool.setPortrait(this);
-        setSvg(ModelSVG.values()[4]);
-        CheckUpdate();
+        setSvg(ModelSVG.values()[0]);
+        mTvVersion.setText(String.format("VERSION %s", RxDeviceTool.getAppVersionName(mContext)));
     }
 
     private void setSvg(ModelSVG modelSvg) {
@@ -53,30 +57,21 @@ public class ActivitySVG extends ActivityBase {
         mSvgView.setTraceResidueColor(0x32000000);
         mSvgView.setTraceColors(modelSvg.colors);
         mSvgView.rebuildGlyphData();
-        mSvgView.start();
-    }
-
-    /**
-     * 检查是否有新版本，如果有就升级
-     */
-    private void CheckUpdate() {
-        new Thread() {
-            public void run() {
-                try {
-                    Thread.sleep(500);
-                    Message msg = checkhandler.obtainMessage();
-                    checkhandler.sendMessage(msg);
-                    Thread.sleep(2000);
-                    toMain();
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+        mSvgView.setOnStateChangeListener(state -> {
+            switch (state) {
+                case STATE_FINISHED:
+                    mTvAppName.setVisibility(View.VISIBLE);
+                    mTvVersion.setVisibility(View.VISIBLE);
+                    RxTool.delayToDo(2000, () -> {
+                        RxActivityTool.skipActivityAndFinish(mContext, ActivityMain.class);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    });
+                    break;
+                default:
+                    break;
             }
-        }.start();
-    }
+        });
 
-    public void toMain() {
-        RxActivityTool.skipActivityAndFinish(this, ActivityMain.class);
+        mSvgView.start();
     }
 }

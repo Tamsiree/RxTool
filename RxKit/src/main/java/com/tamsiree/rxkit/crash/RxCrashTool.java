@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 
+import com.tamsiree.rxkit.RxAppTool;
+import com.tamsiree.rxkit.RxDataTool;
 import com.tamsiree.rxkit.activity.ActivityCrash;
 
 import java.io.BufferedReader;
@@ -305,33 +307,36 @@ public class RxCrashTool {
         //I don't think that this needs localization because it's a development string...
 
         Date currentDate = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH点mm分ss秒", Locale.CHINA);
 
         //Get build date
         String buildDateAsString = getBuildDateAsString(context, dateFormat);
 
         //Get app version
         String versionName = getVersionName(context);
-
+        String appName = getAppName(context);
+        String packageName = getPackageName(context);
         String errorDetails = "";
 
-        errorDetails += "Build version: " + versionName + " \n";
+        errorDetails += "Build App Name : " + appName + " \n";
+        errorDetails += "Build version : " + versionName + " \n";
+        errorDetails += "Build Package Name : " + packageName + " \n";
         if (buildDateAsString != null) {
-            errorDetails += "Build date: " + buildDateAsString + " \n";
+            errorDetails += "Build date : " + buildDateAsString + " \n";
         }
-        errorDetails += "Current date: " + dateFormat.format(currentDate) + " \n";
+        errorDetails += "Current date : " + dateFormat.format(currentDate) + " \n";
         //Added a space between line feeds to fix #18.
         //Ideally, we should not use this method at all... It is only formatted this way because of coupling with the default error activity.
         //We should move it to a method that returns a bean, and let anyone format it as they wish.
-        errorDetails += "Device: " + getDeviceModelName() + " \n";
-        errorDetails += "OS version: Android " + Build.VERSION.RELEASE + " (SDK " + Build.VERSION.SDK_INT + ") \n \n";
-        errorDetails += "Stack trace:  \n";
+        errorDetails += "Device : " + getDeviceModelName() + " \n";
+        errorDetails += "OS version : Android " + Build.VERSION.RELEASE + " (SDK " + Build.VERSION.SDK_INT + ") \n \n";
+        errorDetails += "Stack trace :  \n";
         errorDetails += getStackTraceFromIntent(intent);
 
         String activityLog = getActivityLogFromIntent(intent);
 
         if (activityLog != null) {
-            errorDetails += "\nUser actions: \n";
+            errorDetails += "\nUser actions : \n";
             errorDetails += activityLog;
         }
         return errorDetails;
@@ -364,6 +369,7 @@ public class RxCrashTool {
         }
         activity.finish();
         activity.startActivity(intent);
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         killCurrentProcess();
     }
 
@@ -492,6 +498,25 @@ public class RxCrashTool {
             return packageInfo.versionName;
         } catch (Exception e) {
             return "Unknown";
+        }
+    }
+
+    public static String getAppName(Context context) {
+
+        String appName = RxAppTool.getAppName(context);
+        if (RxDataTool.isNullString(appName)) {
+            return "Unknown";
+        } else {
+            return appName;
+        }
+    }
+
+    private static String getPackageName(Context context) {
+        String appName = context.getPackageName();
+        if (RxDataTool.isNullString(appName)) {
+            return "Unknown";
+        } else {
+            return appName;
         }
     }
 

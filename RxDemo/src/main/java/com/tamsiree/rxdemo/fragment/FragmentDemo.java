@@ -125,7 +125,7 @@ public class FragmentDemo extends FragmentLazy implements SwipeRefreshLayout.OnR
                 RxActivityTool.skipActivity(mContext, mDemoList.get(position).getActivity());
             }
         });
-        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
+        mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         mAdapter.isFirstOnly(true);
         mAdapter.bindToRecyclerView(mRecyclerview);
     }
@@ -185,7 +185,7 @@ public class FragmentDemo extends FragmentLazy implements SwipeRefreshLayout.OnR
         mDemoList.add(new ModelDemo("压缩与加密的艺术", R.drawable.circle_zip, ActivityZipEncrypt.class));
         mDemoList.add(new ModelDemo("PULL解析XML", R.drawable.circle_swap_vert, ActivityXmlParse.class));
         mDemoList.add(new ModelDemo("支付宝支付Demo", R.drawable.circle_alipay, ActivityAliPay.class));
-        mDemoList.add(new ModelDemo("Hold住崩溃界面", R.drawable.circle_alipay, ActivityOnCrash.class));
+        mDemoList.add(new ModelDemo("Hold住崩溃界面", R.drawable.crash_logo, ActivityOnCrash.class));
 
         mDemoList.add(new ModelDemo("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash.class));
     }

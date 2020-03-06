@@ -13,12 +13,14 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:animateLayoutChanges="true"
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -37,6 +39,7 @@
                     android:background="@drawable/shape_round_black"
                     android:padding="@dimen/dp_20"
                     android:text="仅列出了部分 [工具类] 和 [UI效果] 的Demo展示效果,因为有些功能或者效果无法单独展示，需要特定的生产环境或者需要依赖其他条件才能完全展示,因此可以自己查阅源码,说不定能找到惊喜"
+                    android:textColor="@color/wheat"
                     android:textSize="@dimen/sp_10" />
 
             </LinearLayout>

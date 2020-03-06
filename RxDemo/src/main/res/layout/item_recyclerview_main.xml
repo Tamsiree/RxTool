@@ -24,14 +24,15 @@
             android:layout_height="@dimen/dp_80"
             android:layout_margin="@dimen/dp_10"
             android:padding="@dimen/dp_10"
-            app:srcCompat="@drawable/pikachu_sit" />
+            android:src="@drawable/pikachu_sit" />
 
         <TextView
             android:id="@+id/tv_name"
+            android:layout_height="0dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginBottom="@dimen/dp_10"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:padding="10dp"
             android:text="TextView"
             android:textColor="@color/black"

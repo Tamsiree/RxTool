@@ -25,7 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
-public class TwCrashProvider extends ContentProvider {
+public class TCrashProvider extends ContentProvider {
 
     public boolean onCreate() {
         RxCrashTool.install(getContext());
