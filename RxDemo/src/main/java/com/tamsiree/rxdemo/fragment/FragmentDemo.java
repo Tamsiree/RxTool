@@ -81,6 +81,9 @@ public class FragmentDemo extends FragmentLazy implements SwipeRefreshLayout.OnR
 
     private int mColumnCount = 2;
 
+    public FragmentDemo() {
+    }
+
     private FragmentDemo(int demo_type) {
         this.demo_type = demo_type;
     }

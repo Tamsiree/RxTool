@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/activity_flight_seat"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context="com.tamsiree.rxdemo.activity.ActivityFlightSeat">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_flight_seat"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tamsiree.rxdemo.activity.ActivityFlightSeat">
 
     <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
-        android:background="@color/darkcyan"
+        android:background="@color/colorPrimary"
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
         app:title="飞机票选座\n上海 - 长沙"
         app:titleColor="@color/white"
-        app:titleSize="12sp"/>
+        app:titleSize="12sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,29 +29,29 @@
             android:id="@+id/fsv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp" />
 
         <Button
             android:id="@+id/btn_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
             android:background="@android:color/transparent"
             android:onClick="clear"
             android:text="clear"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btn_zoom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:background="@android:color/transparent"
             android:onClick="zoom"
             android:text="ok"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btn_goto"
@@ -62,7 +62,7 @@
             android:background="@android:color/transparent"
             android:onClick="gotoposition"
             android:text="goto"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
 
     </RelativeLayout>
 

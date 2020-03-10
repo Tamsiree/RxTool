@@ -1,165 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/e"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/e"
+    android:orientation="vertical">
 
     <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
-        android:background="@color/green_xiaomi"
+        android:background="@color/colorPrimary"
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
-        app:title="蛛网等级Demo"/>
+        app:title="蛛网等级Demo" />
 
-    <com.tamsiree.rxui.view.RxCobwebView
-        android:id="@+id/cobweb_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="5dp"
-        app:spiderColor="@color/colorPrimaryDark"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+
+        <com.tamsiree.rxui.view.RxCobwebView
+            android:id="@+id/cobweb_view"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_260"
             android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="蛛网层级"
-                android:textColor="@color/green_xiaomi"/>
-
-            <SeekBar
-                android:id="@+id/seekbar_level"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:max="14"
-                android:progress="4"/>
-
-        </LinearLayout>
+            android:layout_marginTop="@dimen/dp_20"
+            android:padding="5dp"
+            app:spiderColor="@color/colorPrimaryDark" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="蛛网层级"
-                android:textColor="@color/green_xiaomi"/>
-
-            <SeekBar
-                android:id="@+id/seekbar_spider_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:max="23"
-                android:progress="6"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/brown"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="蛛网层级"
+                    android:textColor="@color/green_xiaomi" />
+
+                <SeekBar
+                    android:id="@+id/seekbar_level"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="蛛网填充颜色"
-                    android:textColor="@color/green_xiaomi"/>
-
-                <com.tamsiree.rxui.view.colorpicker.ColorPickerView
-                    android:id="@+id/color_picker_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:alphaSlider="true"
-                    app:alphaSliderView="@+id/v_alpha_slider"
-                    app:density="12"
-                    app:lightnessSlider="true"
-                    app:lightnessSliderView="@+id/v_lightness_slider"
-                    app:wheelType="FLOWER"/>
-
-                <com.tamsiree.rxui.view.colorpicker.slider.LightnessSlider
-                    android:id="@+id/v_lightness_slider"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"/>
-
-                <com.tamsiree.rxui.view.colorpicker.slider.AlphaSlider
-                    android:id="@+id/v_alpha_slider"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"/>
+                    android:layout_gravity="center_horizontal"
+                    android:max="14"
+                    android:progress="4" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="蛛网层级"
+                    android:textColor="@color/green_xiaomi" />
+
+                <SeekBar
+                    android:id="@+id/seekbar_spider_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="蛛网等级颜色"
-                    android:textColor="@color/green_xiaomi"/>
+                    android:layout_gravity="center_horizontal"
+                    android:max="23"
+                    android:progress="6" />
 
-                <com.tamsiree.rxui.view.colorpicker.ColorPickerView
-                    android:id="@+id/color_picker_view_level"
-                    android:layout_width="match_parent"
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/brown" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:alphaSlider="true"
-                    app:alphaSliderView="@+id/v_alpha_slider_level"
-                    app:density="12"
-                    app:lightnessSlider="true"
-                    app:lightnessSliderView="@+id/v_lightness_slider_level"
-                    app:wheelType="FLOWER"/>
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
 
-                <com.tamsiree.rxui.view.colorpicker.slider.LightnessSlider
-                    android:id="@+id/v_lightness_slider_level"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="7dp"
+                        android:text="蛛网填充颜色"
+                        android:textColor="@color/green_xiaomi" />
 
-                <com.tamsiree.rxui.view.colorpicker.slider.AlphaSlider
-                    android:id="@+id/v_alpha_slider_level"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"/>
+                    <com.tamsiree.rxui.view.colorpicker.ColorPickerView
+                        android:id="@+id/color_picker_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:alphaSlider="true"
+                        app:alphaSliderView="@+id/v_alpha_slider"
+                        app:density="12"
+                        app:lightnessSlider="true"
+                        app:lightnessSliderView="@+id/v_lightness_slider"
+                        app:wheelType="FLOWER" />
+
+                    <com.tamsiree.rxui.view.colorpicker.slider.LightnessSlider
+                        android:id="@+id/v_lightness_slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <com.tamsiree.rxui.view.colorpicker.slider.AlphaSlider
+                        android:id="@+id/v_alpha_slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="7dp"
+                        android:text="蛛网等级颜色"
+                        android:textColor="@color/green_xiaomi" />
+
+                    <com.tamsiree.rxui.view.colorpicker.ColorPickerView
+                        android:id="@+id/color_picker_view_level"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:alphaSlider="true"
+                        app:alphaSliderView="@+id/v_alpha_slider_level"
+                        app:density="12"
+                        app:lightnessSlider="true"
+                        app:lightnessSliderView="@+id/v_lightness_slider_level"
+                        app:wheelType="FLOWER" />
+
+                    <com.tamsiree.rxui.view.colorpicker.slider.LightnessSlider
+                        android:id="@+id/v_lightness_slider_level"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <com.tamsiree.rxui.view.colorpicker.slider.AlphaSlider
+                        android:id="@+id/v_alpha_slider_level"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>

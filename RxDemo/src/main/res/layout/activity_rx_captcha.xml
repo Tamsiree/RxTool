@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/activity_rx_captcha"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/e"
-              android:gravity="center_horizontal"
-              android:orientation="vertical"
-              tools:context="com.tamsiree.rxdemo.activity.ActivityRxCaptcha">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_rx_captcha"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/e"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.tamsiree.rxdemo.activity.ActivityRxCaptcha">
 
     <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
+        android:background="@color/colorPrimary"
         app:rightIconVisibility="false"
-        android:background="@color/blue"
         app:title="验证码工具的使用"
-        app:titleColor="@color/white"/>
+        app:titleColor="@color/white" />
 
 
     <LinearLayout
@@ -40,8 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="10dp"
-                android:paddingTop="15dp">
+                android:paddingTop="15dp"
+                android:paddingBottom="10dp">
 
                 <com.tamsiree.rxui.view.swipecaptcha.RxSwipeCaptcha
                     android:id="@+id/swipeCaptchaView"
@@ -52,7 +52,7 @@
                     android:scaleType="centerCrop"
                     app:captchaHeight="40dp"
                     app:captchaWidth="40dp"
-                    tools:src="@drawable/douyu"/>
+                    tools:src="@drawable/douyu" />
 
                 <SeekBar
                     android:id="@+id/dragBar"
@@ -62,7 +62,7 @@
                     android:progressDrawable="@drawable/dragbg"
                     android:splitTrack="false"
                     android:thumb="@drawable/thumb_bg"
-                    android:thumbOffset="0dip"/>
+                    android:thumbOffset="0dip" />
 
 
             </LinearLayout>
@@ -76,7 +76,8 @@
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/shape_round_orange"
-            android:text="重置"/>
+            android:text="重置"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
@@ -95,14 +96,14 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="Hell"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/iv_code"
             android:layout_width="100dp"
             android:layout_height="35dp"
             android:background="@color/_6"
-            android:src="@drawable/ic_check_white_48dp"/>
+            android:src="@drawable/ic_check_white_48dp" />
 
     </LinearLayout>
 
@@ -111,6 +112,6 @@
         android:id="@+id/btn_get_code"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:text="获取验证码"/>
+        android:text="获取验证码" />
 
 </LinearLayout>

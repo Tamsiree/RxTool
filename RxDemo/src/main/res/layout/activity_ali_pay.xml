@@ -24,8 +24,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/alipay_logo" />
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -66,13 +65,13 @@
                 android:textAllCaps="false" />
 
             <TextView
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:text="@string/demo_info_text"
                 android:textColor="#F4333C" />
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

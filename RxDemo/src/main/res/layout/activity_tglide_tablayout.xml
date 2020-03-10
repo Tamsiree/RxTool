@@ -14,7 +14,7 @@
         android:background="@color/colorPrimary"
         app:title="TGlideTabLayout" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#eeeeee"
@@ -144,6 +144,6 @@
                 android:layout_height="84dp" />
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

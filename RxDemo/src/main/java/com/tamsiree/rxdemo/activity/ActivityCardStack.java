@@ -6,13 +6,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxdemo.adapter.AdapterStackTest;
 import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxkit.RxTool;
 import com.tamsiree.rxkit.interfaces.OnSimpleListener;
+import com.tamsiree.rxui.activity.ActivityBase;
+import com.tamsiree.rxui.view.RxTitle;
 import com.tamsiree.rxui.view.cardstack.RxCardStackView;
 import com.tamsiree.rxui.view.cardstack.tools.RxAdapterAllMoveDownAnimator;
 import com.tamsiree.rxui.view.cardstack.tools.RxAdapterUpDownAnimator;
@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 /**
  * @author tamsiree
  */
-public class ActivityCardStack extends AppCompatActivity implements RxCardStackView.ItemExpendListener {
+public class ActivityCardStack extends ActivityBase implements RxCardStackView.ItemExpendListener {
 
     public static Integer[] TEST_DATAS = new Integer[]{
             R.color.custom_progress_green_header,
@@ -60,6 +60,10 @@ public class ActivityCardStack extends AppCompatActivity implements RxCardStackV
     RxCardStackView mStackView;
     @BindView(R.id.button_container)
     LinearLayout mButtonContainer;
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
+    @BindView(R.id.activity_card_stack)
+    LinearLayout mActivityCardStack;
     private AdapterStackTest mTestStackAdapter;
 
     @Override
@@ -68,6 +72,9 @@ public class ActivityCardStack extends AppCompatActivity implements RxCardStackV
         setContentView(R.layout.activity_card_stack);
         ButterKnife.bind(this);
         RxDeviceTool.setPortrait(this);
+
+        mRxTitle.setLeftFinish(this);
+
         mStackView.setItemExpendListener(this);
         mTestStackAdapter = new AdapterStackTest(this);
         mStackView.setAdapter(mTestStackAdapter);

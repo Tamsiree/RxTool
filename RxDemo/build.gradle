@@ -46,6 +46,7 @@ dependencies {
     implementation project(':RxPay')
     implementation project(':RxCamera')
     implementation project(':RxFeature')
+    implementation project(':RxArcGisKit')
 
 
     //cardView包

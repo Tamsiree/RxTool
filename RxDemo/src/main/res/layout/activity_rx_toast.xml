@@ -1,111 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context=".activity.ActivityRxToast">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ActivityRxToast">
 
     <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
-        android:background="@color/blue"
+        android:background="@color/colorPrimary"
         app:leftIconVisibility="true"
-        app:rightIcon="@drawable/set"
-        app:rightIconVisibility="false"
         app:title="RxToast的展示使用"
-        app:titleColor="@color/white"/>
+        app:titleColor="@color/white" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:id="@+id/activity_main"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/e"
-                    android:paddingBottom="@dimen/activity_vertical_margin"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:paddingTop="@dimen/activity_vertical_margin">
+    <RelativeLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ova"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
         <Button
             android:id="@+id/button_error_toast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_margin="5dp"
-            android:background="@color/pink_acfun"
-            android:text="错误的提示"/>
+            android:background="#ddFD4C5B"
+            android:text="错误的提示"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_success_toast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/button_error_toast"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_margin="5dp"
-            android:background="@color/green_388e3c"
-            android:text="成功的提示"/>
+            android:background="#dd52BA97"
+            android:text="成功的提示"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_info_toast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/button_success_toast"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_margin="5dp"
-            android:background="@color/blue"
-            android:text="信息的提示"/>
+            android:background="#dd2196F3"
+            android:text="信息的提示"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_warning_toast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/button_info_toast"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_margin="5dp"
-            android:background="@color/WARNING_COLOR"
-            android:text="警告的提示"/>
+            android:background="#ddFFA900"
+            android:text="警告的提示"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_normal_toast_wo_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/button_warning_toast"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_margin="5dp"
-            android:background="#666666"
-            android:text="普通的提示（没有ICON）"/>
+            android:background="#dd666666"
+            android:text="普通的提示（没有ICON）"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_normal_toast_w_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/button_normal_toast_wo_icon"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_margin="5dp"
-            android:background="#666666"
-            android:text="普通的提示（有ICON）"/>
+            android:background="#dd666666"
+            android:text="普通的提示（有ICON）"
+            android:textColor="@color/white" />
 
     </RelativeLayout>
 </LinearLayout>

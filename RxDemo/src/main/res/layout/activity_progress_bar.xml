@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/brown1"
-              android:gravity="center_horizontal"
-              android:orientation="vertical"
-              tools:context="com.tamsiree.rxdemo.activity.ActivityProgressBar">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/brown1"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.tamsiree.rxdemo.activity.ActivityProgressBar">
 
     <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
-        android:background="@color/blue"
-        app:title="进度条的艺术"/>
+        android:background="@color/colorPrimary"
+        app:title="进度条的艺术" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -24,36 +24,95 @@
             android:id="@+id/activity_round_progress_bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/brown1"
+            android:background="@color/gray1"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <com.tamsiree.rxui.view.RxProgressBar
-                android:id="@+id/flikerbar"
+            <RelativeLayout
+                android:id="@+id/ll_arc"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_margin="10dp"
-                app:loadingColor="#40c4ff"
-                app:stopColor="#ff9800"
-                app:textSize="12sp"/>
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryMiddle"
+                android:orientation="vertical">
 
-            <com.tamsiree.rxui.view.RxProgressBar
-                android:id="@+id/round_flikerbar"
+
+                <com.tamsiree.rxui.view.RxArcProgress
+                    android:id="@+id/roundProgressBar1"
+                    android:layout_width="270dp"
+                    android:layout_height="270dp"
+                    android:layout_centerInParent="true" />
+
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:paddingBottom="@dimen/dp_30"
+                    android:text="弧形进度条"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_margin="10dp"
-                app:loadingColor="#40c4ff"
-                app:radius="20dp"
-                app:stopColor="#ff9800"
-                app:textSize="12sp"/>
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_20">
 
-            <Button
+                <com.tamsiree.rxui.view.RxProgressBar
+                    android:id="@+id/flikerbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    app:loadingColor="#40c4ff"
+                    app:stopColor="#ff9800"
+                    app:textSize="12sp" />
+
+                <com.tamsiree.rxui.view.RxProgressBar
+                    android:id="@+id/round_flikerbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    app:loadingColor="#40c4ff"
+                    app:radius="20dp"
+                    app:stopColor="#ff9800"
+                    app:textSize="12sp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/shape_round_green_8dp"
+                    android:onClick="reLoad"
+                    android:text="重新下载"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="reLoad"
-                android:text="重新下载"/>
+                android:layout_marginTop="@dimen/dp_15"
+                android:layout_marginBottom="@dimen/dp_15"
+                android:text="渐变进度条" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgressBar
+            <ProgressBar
+                android:id="@+id/pb_line_of_credit"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:progress="40"
+                android:progressDrawable="@drawable/progressbar_horizontal_white" />
+
+
+            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgress
                 android:id="@+id/rx_round_pd1"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -63,12 +122,12 @@
                 app:rcMax="100"
                 app:rcProgress="50"
                 app:rcProgressColor="@color/custom_progress_orange_progress"
-                app:rcRadius="0dp"/>
+                app:rcRadius="0dp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgress
                 android:id="@+id/rx_round_pd2"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/dp_30"
                 android:layout_margin="10dp"
                 app:rcBackgroundColor="@color/custom_progress_background"
                 app:rcBackgroundPadding="2dp"
@@ -77,12 +136,12 @@
                 app:rcProgressColor="@color/custom_progress_green_progress"
                 app:rcRadius="10dp"
                 app:rcSecondaryProgress="60"
-                app:rcSecondaryProgressColor="@color/custom_progress_green_progress_half"/>
+                app:rcSecondaryProgressColor="@color/custom_progress_green_progress_half" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgress
                 android:id="@+id/rx_round_pd3"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/dp_30"
                 android:layout_margin="10dp"
                 app:rcBackgroundColor="@color/custom_progress_background"
                 app:rcBackgroundPadding="2dp"
@@ -92,57 +151,57 @@
                 app:rcRadius="10dp"
                 app:rcReverse="true"
                 app:rcSecondaryProgress="60"
-                app:rcSecondaryProgressColor="@color/custom_progress_red_progress_half"/>
+                app:rcSecondaryProgressColor="@color/custom_progress_red_progress_half" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgress
                 android:id="@+id/rx_round_pd4"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="@dimen/dp_20"
                 android:layout_margin="10dp"
                 app:rcBackgroundColor="@color/custom_progress_background"
                 app:rcBackgroundPadding="2dp"
                 app:rcMax="100"
                 app:rcProgress="90"
                 app:rcProgressColor="@color/custom_progress_blue_progress"
-                app:rcRadius="20dp"/>
+                app:rcRadius="20dp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgress
                 android:id="@+id/rx_round_pd5"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_30"
                 android:layout_margin="10dp"
                 app:rcBackgroundColor="@color/custom_progress_background"
                 app:rcBackgroundPadding="2dp"
                 app:rcMax="100"
                 app:rcProgress="45"
                 app:rcProgressColor="@color/custom_progress_green_progress"
-                app:rcRadius="5dp"/>
+                app:rcRadius="5dp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgress
                 android:id="@+id/rx_round_pd6"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_30"
                 android:layout_margin="10dp"
                 app:rcBackgroundColor="@color/custom_progress_background"
                 app:rcBackgroundPadding="5dp"
                 app:rcMax="100"
                 app:rcProgress="70"
                 app:rcProgressColor="@color/custom_progress_red_progress"
-                app:rcRadius="10dp"/>
+                app:rcRadius="10dp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgress
                 android:id="@+id/rx_round_pd7"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="@dimen/dp_50"
                 android:layout_margin="10dp"
                 app:rcBackgroundColor="@color/custom_progress_background"
                 app:rcBackgroundPadding="10dp"
                 app:rcMax="100"
                 app:rcProgress="10"
                 app:rcProgressColor="@color/custom_progress_purple_progress"
-                app:rcRadius="30dp"/>
+                app:rcRadius="30dp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgress
                 android:id="@+id/rx_round_pd8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -152,13 +211,13 @@
                 app:rcIconBackgroundColor="@color/custom_progress_red_header"
                 app:rcIconPadding="5dp"
                 app:rcIconSize="40dp"
-                app:rcIconSrc="@drawable/set"
+                app:rcIconSrc="@drawable/clover"
                 app:rcMax="150"
                 app:rcProgress="90"
                 app:rcProgressColor="@color/custom_progress_red_progress"
-                app:rcRadius="5dp"/>
+                app:rcRadius="5dp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgress
                 android:id="@+id/rx_round_pd9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -168,14 +227,14 @@
                 app:rcIconBackgroundColor="@color/custom_progress_blue_header"
                 app:rcIconPadding="5dp"
                 app:rcIconSize="40dp"
-                app:rcIconSrc="@drawable/set"
+                app:rcIconSrc="@drawable/clover"
                 app:rcMax="150"
                 app:rcProgress="90"
                 app:rcProgressColor="@color/custom_progress_blue_progress"
                 app:rcRadius="5dp"
-                app:rcReverse="true"/>
+                app:rcReverse="true" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgress
                 android:id="@+id/rx_round_pd10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -184,16 +243,16 @@
                 app:rcBackgroundPadding="5dp"
                 app:rcIconBackgroundColor="@color/custom_progress_orange_header"
                 app:rcIconPadding="5dp"
-                app:rcIconSize="25dp"
-                app:rcIconSrc="@drawable/set"
+                app:rcIconSize="35dp"
+                app:rcIconSrc="@drawable/clover"
                 app:rcMax="150"
                 app:rcProgress="50"
                 app:rcProgressColor="@color/custom_progress_orange_progress"
                 app:rcRadius="5dp"
                 app:rcSecondaryProgress="80"
-                app:rcSecondaryProgressColor="@color/custom_progress_orange_progress_half"/>
+                app:rcSecondaryProgressColor="@color/custom_progress_orange_progress_half" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgress
                 android:id="@+id/rx_round_pd11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -202,14 +261,14 @@
                 app:rcBackgroundPadding="10dp"
                 app:rcIconBackgroundColor="@color/custom_progress_blue_header"
                 app:rcIconPadding="5dp"
-                app:rcIconSize="70dp"
-                app:rcIconSrc="@drawable/set"
+                app:rcIconSize="50dp"
+                app:rcIconSrc="@drawable/clover"
                 app:rcMax="150"
                 app:rcProgress="40"
                 app:rcProgressColor="@color/custom_progress_blue_progress"
-                app:rcRadius="5dp"/>
+                app:rcRadius="5dp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgress
                 android:id="@+id/rx_round_pd12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -219,13 +278,13 @@
                 app:rcIconBackgroundColor="@color/custom_progress_green_header"
                 app:rcIconPadding="3dp"
                 app:rcIconSize="30dp"
-                app:rcIconSrc="@drawable/set"
+                app:rcIconSrc="@drawable/clover"
                 app:rcMax="150"
                 app:rcProgress="150"
                 app:rcProgressColor="@color/custom_progress_green_progress"
-                app:rcRadius="5dp"/>
+                app:rcRadius="5dp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgress
                 android:id="@+id/rx_round_pd13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -234,14 +293,14 @@
                 app:rcBackgroundPadding="10dp"
                 app:rcIconBackgroundColor="@color/custom_progress_purple_header"
                 app:rcIconPadding="3dp"
-                app:rcIconSize="50dp"
-                app:rcIconSrc="@drawable/set"
+                app:rcIconSize="30dp"
+                app:rcIconSrc="@drawable/clover"
                 app:rcMax="150"
                 app:rcProgress="5"
                 app:rcProgressColor="@color/custom_progress_purple_progress"
-                app:rcRadius="0dp"/>
+                app:rcRadius="0dp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgress
                 android:id="@+id/rx_round_pd14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -249,15 +308,14 @@
                 app:rcBackgroundColor="@color/custom_progress_background"
                 app:rcBackgroundPadding="5dp"
                 app:rcIconBackgroundColor="@color/custom_progress_orange_header"
-                app:rcIconPadding="10dp"
                 app:rcIconSize="20dp"
-                app:rcIconSrc="@drawable/set"
+                app:rcIconSrc="@drawable/clover"
                 app:rcMax="150"
                 app:rcProgress="100"
                 app:rcProgressColor="@color/custom_progress_orange_progress"
-                app:rcRadius="30dp"/>
+                app:rcRadius="30dp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxTextRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxTextRoundProgress
                 android:id="@+id/rx_round_pd15"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -273,9 +331,9 @@
                 app:rcTextProgress="RxTool"
                 app:rcTextProgressColor="@color/white"
                 app:rcTextProgressMargin="10dp"
-                app:rcTextProgressSize="14sp"/>
+                app:rcTextProgressSize="14sp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxTextRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxTextRoundProgress
                 android:id="@+id/rx_round_pd16"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -289,9 +347,9 @@
                 app:rcTextProgress="Von"
                 app:rcTextProgressColor="@color/white"
                 app:rcTextProgressMargin="10dp"
-                app:rcTextProgressSize="12sp"/>
+                app:rcTextProgressSize="12sp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxTextRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxTextRoundProgress
                 android:id="@+id/rx_round_pd17"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -306,27 +364,27 @@
                 app:rcTextProgress="o"
                 app:rcTextProgressColor="@color/white"
                 app:rcTextProgressMargin="5dp"
-                app:rcTextProgressSize="20sp"/>
+                app:rcTextProgressSize="20sp" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgress
                 android:id="@+id/progress_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:rcIconSize="30dp"
+                app:rcIconSize="20dp"
                 app:rcMax="10"
-                app:rcProgress="5"/>
+                app:rcProgress="5" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxRoundProgress
                 android:id="@+id/progress_two"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
                 app:rcMax="10"
                 app:rcProgress="5"
-                app:rcSecondaryProgress="7.5"/>
+                app:rcSecondaryProgress="7.5" />
 
-            <com.tamsiree.rxui.view.roundprogressbar.RxTextRoundProgressBar
+            <com.tamsiree.rxui.view.roundprogressbar.RxTextRoundProgress
                 android:id="@+id/progress_three"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -337,39 +395,11 @@
                 app:rcProgressColor="@color/custom_progress_red_progress"
                 app:rcReverse="true"
                 app:rcTextProgressColor="@color/white"
-                app:rcTextProgressMargin="10dp"/>
+                app:rcTextProgressMargin="10dp" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="渐变进度条"/>
-
-            <ProgressBar
-                android:id="@+id/pb_line_of_credit"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:progress="40"
-                android:progressDrawable="@drawable/progressbar_horizontal_white"/>
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="弧形进度条"/>
-
-            <com.tamsiree.rxui.view.RxRoundProgress
-                android:id="@+id/roundProgressBar1"
-                android:layout_width="270dp"
-                android:layout_height="270dp"/>
 
         </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
 
 

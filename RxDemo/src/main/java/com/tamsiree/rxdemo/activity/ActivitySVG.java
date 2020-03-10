@@ -25,19 +25,17 @@ import static com.jaredrummler.android.widget.AnimatedSvgView.STATE_FINISHED;
  */
 public class ActivitySVG extends ActivityBase {
 
+
     @BindView(R.id.animated_svg_view)
     AnimatedSvgView mSvgView;
-    @BindView(R.id.activity_svg)
-    RelativeLayout mActivitySvg;
     @BindView(R.id.app_name)
     ImageView mAppName;
-    @BindView(R.id.imageView2)
-    ImageView mImageView2;
     @BindView(R.id.tv_app_name)
     TextView mTvAppName;
     @BindView(R.id.tv_version)
     TextView mTvVersion;
-
+    @BindView(R.id.activity_svg)
+    RelativeLayout mActivitySvg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

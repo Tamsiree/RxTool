@@ -1,5 +1,6 @@
 package com.tamsiree.rxdemo.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,17 +9,19 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxkit.RxBarTool;
 import com.tamsiree.rxkit.RxDataTool;
 import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxui.activity.ActivityBase;
+import com.tamsiree.rxui.view.RxArcProgress;
 import com.tamsiree.rxui.view.RxProgressBar;
-import com.tamsiree.rxui.view.RxRoundProgress;
 import com.tamsiree.rxui.view.RxTitle;
-import com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgressBar;
-import com.tamsiree.rxui.view.roundprogressbar.RxRoundProgressBar;
-import com.tamsiree.rxui.view.roundprogressbar.RxTextRoundProgressBar;
+import com.tamsiree.rxui.view.roundprogressbar.RxIconRoundProgress;
+import com.tamsiree.rxui.view.roundprogressbar.RxRoundProgress;
+import com.tamsiree.rxui.view.roundprogressbar.RxTextRoundProgress;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,73 +30,21 @@ import butterknife.OnClick;
 /**
  * @author tamsiree
  */
+@SuppressLint("HandlerLeak")
 public class ActivityProgressBar extends ActivityBase {
 
 
-    @BindView(R.id.rx_title)
-    RxTitle mRxTitle;
-    @BindView(R.id.flikerbar)
-    RxProgressBar mFlikerbar;
-    @BindView(R.id.round_flikerbar)
-    RxProgressBar mRoundFlikerbar;
-    @BindView(R.id.rx_round_pd1)
-    RxRoundProgressBar mRxRoundPd1;
-    @BindView(R.id.rx_round_pd2)
-    RxRoundProgressBar mRxRoundPd2;
-    @BindView(R.id.rx_round_pd3)
-    RxRoundProgressBar mRxRoundPd3;
-    @BindView(R.id.rx_round_pd4)
-    RxRoundProgressBar mRxRoundPd4;
-    @BindView(R.id.rx_round_pd5)
-    RxRoundProgressBar mRxRoundPd5;
-    @BindView(R.id.rx_round_pd6)
-    RxRoundProgressBar mRxRoundPd6;
-    @BindView(R.id.rx_round_pd7)
-    RxRoundProgressBar mRxRoundPd7;
-    @BindView(R.id.rx_round_pd8)
-    RxIconRoundProgressBar mRxRoundPd8;
-    @BindView(R.id.rx_round_pd9)
-    RxIconRoundProgressBar mRxRoundPd9;
-    @BindView(R.id.rx_round_pd10)
-    RxIconRoundProgressBar mRxRoundPd10;
-    @BindView(R.id.rx_round_pd11)
-    RxIconRoundProgressBar mRxRoundPd11;
-    @BindView(R.id.rx_round_pd12)
-    RxIconRoundProgressBar mRxRoundPd12;
-    @BindView(R.id.rx_round_pd13)
-    RxIconRoundProgressBar mRxRoundPd13;
-    @BindView(R.id.rx_round_pd14)
-    RxIconRoundProgressBar mRxRoundPd14;
-    @BindView(R.id.rx_round_pd15)
-    RxTextRoundProgressBar mRxRoundPd15;
-    @BindView(R.id.rx_round_pd16)
-    RxTextRoundProgressBar mRxRoundPd16;
-    @BindView(R.id.rx_round_pd17)
-    RxTextRoundProgressBar mRxRoundPd17;
-    @BindView(R.id.progress_one)
-    RxIconRoundProgressBar mProgressOne;
-    @BindView(R.id.progress_two)
-    RxRoundProgressBar mProgressTwo;
-    @BindView(R.id.progress_three)
-    RxTextRoundProgressBar mProgressThree;
-    @BindView(R.id.textView)
-    TextView mTextView;
-    @BindView(R.id.pb_line_of_credit)
-    ProgressBar mPbLineOfCredit;
-    @BindView(R.id.textView5)
-    TextView mTextView5;
-    @BindView(R.id.roundProgressBar1)
-    RxRoundProgress mRxRoundProgress1;
-    @BindView(R.id.activity_round_progress_bar)
-    LinearLayout mActivityRoundProgressBar;
     double money = 1000;
     Thread downLoadThread;
     Thread downLoadThread1;
     Thread downLoadThread2;
     Thread downLoadRxRoundPdThread;
+
+
     Handler handler = new Handler() {
+
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             mFlikerbar.setProgress(msg.arg1);
             mRoundFlikerbar.setProgress(msg.arg1);
@@ -103,13 +54,70 @@ public class ActivityProgressBar extends ActivityBase {
             }
         }
     };
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
+    @BindView(R.id.flikerbar)
+    RxProgressBar mFlikerbar;
+    @BindView(R.id.round_flikerbar)
+    RxProgressBar mRoundFlikerbar;
+    @BindView(R.id.rx_round_pd1)
+    RxRoundProgress mRxRoundPd1;
+    @BindView(R.id.rx_round_pd2)
+    RxRoundProgress mRxRoundPd2;
+    @BindView(R.id.rx_round_pd3)
+    RxRoundProgress mRxRoundPd3;
+    @BindView(R.id.rx_round_pd4)
+    RxRoundProgress mRxRoundPd4;
+    @BindView(R.id.rx_round_pd5)
+    RxRoundProgress mRxRoundPd5;
+    @BindView(R.id.rx_round_pd6)
+    RxRoundProgress mRxRoundPd6;
+    @BindView(R.id.rx_round_pd7)
+    RxRoundProgress mRxRoundPd7;
+    @BindView(R.id.rx_round_pd8)
+    RxIconRoundProgress mRxRoundPd8;
+    @BindView(R.id.rx_round_pd9)
+    RxIconRoundProgress mRxRoundPd9;
+    @BindView(R.id.rx_round_pd10)
+    RxIconRoundProgress mRxRoundPd10;
+    @BindView(R.id.rx_round_pd11)
+    RxIconRoundProgress mRxRoundPd11;
+    @BindView(R.id.rx_round_pd12)
+    RxIconRoundProgress mRxRoundPd12;
+    @BindView(R.id.rx_round_pd13)
+    RxIconRoundProgress mRxRoundPd13;
+    @BindView(R.id.rx_round_pd14)
+    RxIconRoundProgress mRxRoundPd14;
+    @BindView(R.id.rx_round_pd15)
+    RxTextRoundProgress mRxRoundPd15;
+    @BindView(R.id.rx_round_pd16)
+    RxTextRoundProgress mRxRoundPd16;
+    @BindView(R.id.rx_round_pd17)
+    RxTextRoundProgress mRxRoundPd17;
+    @BindView(R.id.progress_one)
+    RxIconRoundProgress mProgressOne;
+    @BindView(R.id.progress_two)
+    RxRoundProgress mProgressTwo;
+    @BindView(R.id.progress_three)
+    RxTextRoundProgress mProgressThree;
+    @BindView(R.id.textView)
+    TextView mTextView;
+    @BindView(R.id.pb_line_of_credit)
+    ProgressBar mPbLineOfCredit;
+    @BindView(R.id.textView5)
+    TextView mTextView5;
+    @BindView(R.id.roundProgressBar1)
+    RxArcProgress mRoundProgressBar1;
+    @BindView(R.id.activity_round_progress_bar)
+    LinearLayout mActivityRoundProgressBar;
+
     private double progress;
     private int progress1;
     private int money1 = 10000;
     private int mRxRoundProgress;
     Handler mRxRoundPdHandler = new Handler() {
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             mRxRoundPd1.setProgress(mRxRoundProgress);
             mRxRoundPd2.setProgress(mRxRoundProgress);
@@ -176,8 +184,8 @@ public class ActivityProgressBar extends ActivityBase {
         // TODO Auto-generated method stub
         progress = 0;// 进度初始化
 
-        mRxRoundProgress1.setProgress(progress);
-        mRxRoundProgress1.setMax(getMax(money));
+        mRoundProgressBar1.setProgress(progress);
+        mRoundProgressBar1.setMax(getMax(money));
 
         downLoadThread2 = new Thread(new Runnable() {
 
@@ -186,17 +194,17 @@ public class ActivityProgressBar extends ActivityBase {
 
                 try {
                     while (!downLoadThread2.isInterrupted()) {
-                        while (progress < mRxRoundProgress1.getMax()) {
-                            progress += mRxRoundProgress1.getMax() * 0.01;
-                            if (progress < mRxRoundProgress1.getMax()) {
-                                mRxRoundProgress1.setProgress(progress);
+                        while (progress < mRoundProgressBar1.getMax()) {
+                            progress += mRoundProgressBar1.getMax() * 0.01;
+                            if (progress < mRoundProgressBar1.getMax()) {
+                                mRoundProgressBar1.setProgress(progress);
                             }
                             Thread.sleep(8);
                         }
                         while (progress > 0) {
-                            progress -= mRxRoundProgress1.getMax() * 0.01;
+                            progress -= mRoundProgressBar1.getMax() * 0.01;
                             if (progress > 0) {
-                                mRxRoundProgress1.setProgress(progress);
+                                mRoundProgressBar1.setProgress(progress);
                             }
                             Thread.sleep(8);
                         }
@@ -204,12 +212,12 @@ public class ActivityProgressBar extends ActivityBase {
                         if (money != 0) {
                             while (progress < money) {
                                 progress += money * 0.01;
-                                mRxRoundProgress1.setProgress(progress);
+                                mRoundProgressBar1.setProgress(progress);
                                 Thread.sleep(10);
                             }
                         }
 
-                        mRxRoundProgress1.setProgress(money);
+                        mRoundProgressBar1.setProgress(money);
                     }
                 } catch (InterruptedException e) {
                     // TODO Auto-generated catch block

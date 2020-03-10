@@ -34,6 +34,9 @@ public class FragmentLoadingDemo extends Fragment {
     private Circle mCircleDrawable;
     private CubeGrid mChasingDotsDrawable;
 
+    public FragmentLoadingDemo() {
+    }
+
     public static FragmentLoadingDemo newInstance() {
         return new FragmentLoadingDemo();
     }

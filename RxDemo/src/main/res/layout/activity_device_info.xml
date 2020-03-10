@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_margin="10dp"
-        android:background="@drawable/shape_small_round_blue1"
+        android:background="@drawable/shape_round_blue_tr_3dp"
         android:text="获取手机信息"
         android:textColor="@color/white"/>
 

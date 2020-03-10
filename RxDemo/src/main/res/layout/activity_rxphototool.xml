@@ -22,12 +22,13 @@
         android:id="@+id/rl_avatar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:paddingTop="@dimen/dp_10">
 
         <TextView
             android:id="@+id/tv_bg"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="@dimen/dp_40"
             android:layout_alignBottom="@+id/ll_anchor_left"
             android:background="@color/white" />
 
@@ -40,12 +41,12 @@
 
             <ImageView
                 android:id="@+id/iv_avatar"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_80"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/shape_circle_blue"
+                android:background="@drawable/shape_circle_border_theme"
                 android:padding="@dimen/dp_5"
                 android:src="@drawable/circle_elves_ball" />
         </LinearLayout>
@@ -232,7 +233,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/shape_round_hot_pink"
-            android:text="退出登录" />
+            android:text="退出登录"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

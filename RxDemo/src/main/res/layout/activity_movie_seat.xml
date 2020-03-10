@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/activity_movie_seat"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/google_green"
-              android:clipToPadding="true"
-              android:fitsSystemWindows="true"
-              android:orientation="vertical"
-              tools:context="com.tamsiree.rxdemo.activity.ActivityMovieSeat">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_movie_seat"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.tamsiree.rxdemo.activity.ActivityMovieSeat">
 
     <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
-        android:background="@color/google_green"
+        android:background="@color/colorPrimary"
         app:title="仙剑奇侠传：电影版"
-        app:titleColor="@color/white"/>
+        app:titleColor="@color/white" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray1"/>
+        android:background="@color/gray1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,13 +37,13 @@
             android:layout_marginBottom="5dp"
             android:text="上海电影院"
             android:textColor="@color/background_dark"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="今天 02-29 19:34 （原版3D）"
-            android:textColor="@color/red"/>
+            android:textColor="@color/red" />
 
     </LinearLayout>
 
@@ -51,12 +51,12 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="50dp"
-        android:background="@color/gray1"/>
+        android:background="@color/gray1" />
 
     <com.tamsiree.rxui.view.RxSeatMovie
         android:id="@+id/seatView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/e"/>
+        android:background="@color/e" />
 
 </LinearLayout>

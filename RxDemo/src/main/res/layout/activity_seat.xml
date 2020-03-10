@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_seat"
@@ -14,19 +13,29 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
         android:background="?colorPrimary"
-        app:title="选座控件"/>
+        app:title="选座控件" />
 
-    <Button
-        android:id="@+id/btn_movie"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="电影票选座"/>
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_flight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="飞机票选座"/>
+        <Button
+            android:id="@+id/btn_movie"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_100"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="电影票选座" />
+
+        <Button
+            android:id="@+id/btn_flight"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_100"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="飞机票选座" />
+    </LinearLayout>
+
+
 </LinearLayout>

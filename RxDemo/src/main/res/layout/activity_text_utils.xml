@@ -9,21 +9,20 @@
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_75"
-        android:background="@color/blue"
+        android:background="@color/colorPrimary"
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
         app:title="RxTextUtils展示" />
 
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/white"
-
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="8dp">
@@ -40,5 +39,5 @@
                 android:textSize="22dp" />
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

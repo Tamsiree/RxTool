@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_run_text_view"
@@ -15,8 +14,8 @@
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
-        android:background="@color/blue"
-        app:title="RunTextView"/>
+        android:background="@color/colorPrimary"
+        app:title="RunTextView" />
 
     <com.tamsiree.rxui.view.RxRunTextView
         android:id="@+id/tv_runtitle"
@@ -29,17 +28,17 @@
         android:scrollHorizontally="true"
         android:singleLine="true"
         android:text="邻家小萝莉干了什么坏事，妈妈生气不理她了。爸爸温柔地告诉萝莉：妈妈在等你认错呢，快去吧。萝莉就泪汪汪地过去对妈妈说：你……你是不是范冰冰？“啥？！”妈妈莫名其妙。萝莉继续泪汪汪：我认错了…"
-        android:textColor="@color/brown"/>
+        android:textColor="@color/brown" />
 
     <com.tamsiree.rxui.view.RxTextViewVertical
         android:id="@+id/text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <com.tamsiree.rxui.view.RxTextViewVerticalMore
         android:id="@+id/upview1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"/>
+        android:padding="10dp" />
 
 </LinearLayout>

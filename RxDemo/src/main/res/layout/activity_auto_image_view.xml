@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_auto_image_view"
@@ -8,9 +7,16 @@
     android:layout_height="match_parent"
     tools:context="com.tamsiree.rxdemo.activity.ActivityAutoImageView">
 
+
     <com.tamsiree.rxui.view.RxAutoImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:ImageSrc="@drawable/ova"/>
+        app:ImageSrc="@drawable/ova" />
+
+    <com.tamsiree.rxui.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        android:layout_marginTop="@dimen/dp_20" />
 
 </RelativeLayout>

@@ -30,6 +30,9 @@ public class FragmentDemoType extends FragmentLazy {
 
     private List<Fragment> mFragments = new ArrayList<>();
 
+    public FragmentDemoType() {
+    }
+
     public static FragmentDemoType newInstance() {
         return new FragmentDemoType();
     }

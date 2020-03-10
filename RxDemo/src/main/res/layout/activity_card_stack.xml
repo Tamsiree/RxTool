@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_card_stack"
     android:layout_width="match_parent"
@@ -8,6 +8,13 @@
     android:animateLayoutChanges="true"
     android:orientation="vertical"
     tools:context="com.tamsiree.rxdemo.activity.ActivityCardStack">
+
+    <com.tamsiree.rxui.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        android:background="@color/colorPrimary"
+        app:title="银行卡堆叠" />
 
     <LinearLayout
         android:id="@+id/button_container"
@@ -22,14 +29,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onPreClick"
-            android:text="上一张"/>
+            android:text="上一张" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onNextClick"
-            android:text="下一张"/>
+            android:text="下一张" />
 
     </LinearLayout>
 
@@ -40,7 +47,7 @@
         android:layout_weight="1"
         android:clipToPadding="false"
         android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingTop="12dp"/>
+        android:paddingTop="12dp"
+        android:paddingRight="12dp" />
 
 </LinearLayout>

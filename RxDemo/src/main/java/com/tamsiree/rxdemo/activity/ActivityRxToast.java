@@ -76,7 +76,7 @@ public class ActivityRxToast extends ActivityBase {
                 RxToast.normal(mContext, "这是一个普通的没有ICON的Toast").show();
                 break;
             case R.id.button_normal_toast_w_icon:
-                Drawable icon = getResources().getDrawable(R.drawable.set);
+                Drawable icon = getResources().getDrawable(R.drawable.clover);
                 RxToast.normal(mContext, "这是一个普通的包含ICON的Toast", icon).show();
                 break;
             default:

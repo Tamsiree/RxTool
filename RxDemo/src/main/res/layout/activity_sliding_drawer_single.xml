@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:background="@color/colorPrimary"
-              android:clipToPadding="true"
-              android:fitsSystemWindows="true"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/colorPrimary"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <com.tamsiree.rxui.view.RxTitle
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
-        android:background="@color/blue"
-        app:title="滑动式抽屉"/>
+        android:background="@color/colorPrimary"
+        app:title="滑动式抽屉" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/brown1"
-            android:orientation="vertical" >
+            android:background="@color/blue_baby"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:text="    SlidingDrawer（滑动式抽屉）隐藏屏外的内容，并允许用户拖拽一个handle以显示隐藏的内容。" />
 
             <TextView
@@ -62,11 +62,11 @@
         <SlidingDrawer
             android:id="@+id/slidingdrawer"
             android:layout_width="fill_parent"
-            android:layout_alignParentBottom="true"
             android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
             android:content="@+id/content"
             android:handle="@+id/handle"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@id/handle"
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:background="#dd707070"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/iv_slide"
@@ -104,12 +104,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:background="#dd707070"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <include
+                    layout="@layout/include_webview"
                     android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    layout="@layout/include_webview" />
+                    android:layout_height="match_parent" />
             </LinearLayout>
         </SlidingDrawer>
     </RelativeLayout>

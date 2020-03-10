@@ -14,6 +14,9 @@ import com.tamsiree.rxdemo.R;
 public class FragmentSimpleCard extends Fragment {
     private String mTitle;
 
+    public FragmentSimpleCard() {
+    }
+
     public static FragmentSimpleCard getInstance(String title) {
         FragmentSimpleCard sf = new FragmentSimpleCard();
         sf.mTitle = title;

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -12,30 +11,28 @@
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
-        android:background="@color/blue"
-        app:title="RxSeekBar"/>
+        android:background="@color/colorPrimary"
+        app:title="RxSeekBar" />
 
     <com.tamsiree.rxui.view.RxSeekBar
         android:id="@+id/seekbar1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/view1"
+        android:layout_height="@dimen/dp_90"
         app:cellMode="number"
         app:isHintHolder="true"
         app:lineColorEdge="@color/colorSeekBarDefault"
         app:lineColorSelected="@color/colorAccent"
         app:markTextArray="@array/markArray"
         app:seekBarMode="single"
-        app:seekBarResId="@drawable/seekbar_thumb"/>
+        app:seekBarResId="@drawable/seekbar_thumb" />
 
 
     <TextView
-        android:textColor="@color/gray"
         android:id="@+id/progress2_tv"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textColor="@color/gray" />
 
     <com.tamsiree.rxui.view.RxSeekBar
         android:id="@+id/seekbar2"
@@ -52,7 +49,7 @@
         app:textPadding="17dp"
         app:thumbPrimaryColor="@color/colorSeekBarDefault"
         app:thumbSecondaryColor="@color/colorAccent"
-        app:thumbSize="20dp"/>
+        app:thumbSize="20dp" />
 
     <com.tamsiree.rxui.view.RxSeekBar
         android:id="@+id/seekbar3"
@@ -71,7 +68,7 @@
         app:seekBarMode="range"
         app:textPadding="17dp"
         app:textSize="16sp"
-        app:thumbSize="26dp"/>
+        app:thumbSize="26dp" />
 
     <com.tamsiree.rxui.view.RxSeekBar
         android:id="@+id/seekbar4"
@@ -88,6 +85,6 @@
         app:seekBarMode="single"
         app:textPadding="17dp"
         app:textSize="12sp"
-        app:thumbSize="26dp"/>
+        app:thumbSize="26dp" />
 
 </LinearLayout>

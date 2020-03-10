@@ -32,6 +32,9 @@ public class FragmentLoadingWay extends Fragment {
             android.graphics.Color.parseColor("#34A853"),
     };
 
+    public FragmentLoadingWay() {
+    }
+
     public static FragmentLoadingWay newInstance() {
         return new FragmentLoadingWay();
     }

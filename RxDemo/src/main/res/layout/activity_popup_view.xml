@@ -12,7 +12,7 @@
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
-        android:background="@color/blue"
+        android:background="@color/colorPrimary"
         app:title="PopupView的使用" />
 
     <LinearLayout

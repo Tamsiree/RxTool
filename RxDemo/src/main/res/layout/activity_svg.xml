@@ -7,14 +7,10 @@
     android:layout_height="match_parent"
     tools:context="com.tamsiree.rxdemo.activity.ActivitySVG">
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <com.tamsiree.rxui.view.RxAutoImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:scaleType="centerCrop"
-        android:src="#FFFFFF" />
+        app:ImageSrc="@drawable/bg_friend" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,6 +25,7 @@
             android:layout_height="@dimen/dp_100"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dp_100"
+            android:alpha=".8"
             app:animatedSvgFillColors="@array/google_glyph_colors"
             app:animatedSvgFillStart="1200"
             app:animatedSvgFillTime="1000"
@@ -57,7 +54,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
         android:text="@string/app_name"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="gone" />
 
@@ -69,7 +66,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:text="VERSION 2.0"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="10sp"
         android:visibility="gone" />
 

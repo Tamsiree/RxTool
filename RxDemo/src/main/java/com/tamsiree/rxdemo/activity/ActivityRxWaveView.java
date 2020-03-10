@@ -8,17 +8,16 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.tamsiree.rxdemo.R;
 import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxkit.RxImageTool;
+import com.tamsiree.rxui.activity.ActivityBase;
+import com.tamsiree.rxui.view.RxTitle;
 import com.tamsiree.rxui.view.colorpicker.ColorPickerView;
 import com.tamsiree.rxui.view.colorpicker.OnColorChangedListener;
 import com.tamsiree.rxui.view.colorpicker.OnColorSelectedListener;
 import com.tamsiree.rxui.view.colorpicker.slider.AlphaSlider;
 import com.tamsiree.rxui.view.colorpicker.slider.LightnessSlider;
-import com.tamsiree.rxui.view.waveview.RxWaveHelper;
 import com.tamsiree.rxui.view.waveview.RxWaveView;
 
 import butterknife.BindView;
@@ -27,7 +26,7 @@ import butterknife.ButterKnife;
 /**
  * @author tamsiree
  */
-public class ActivityRxWaveView extends AppCompatActivity {
+public class ActivityRxWaveView extends ActivityBase {
 
 
     @BindView(R.id.wave)
@@ -50,7 +49,9 @@ public class ActivityRxWaveView extends AppCompatActivity {
     LightnessSlider mVLightnessSlider;
     @BindView(R.id.v_alpha_slider)
     AlphaSlider mVAlphaSlider;
-    private RxWaveHelper mWaveHelper;
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
+//    private RxWaveHelper mWaveHelper;
 
     private int mBorderColor = Color.parseColor("#4489CFF0");
     private int mBorderWidth = 10;
@@ -61,8 +62,11 @@ public class ActivityRxWaveView extends AppCompatActivity {
         setContentView(R.layout.activity_rx_wave_view);
         ButterKnife.bind(this);
         RxDeviceTool.setPortrait(this);
-        mWave.setBorder(mBorderWidth, mBorderColor);
-        mWaveHelper = new RxWaveHelper(mWave);
+
+        mRxTitle.setLeftFinish(this);
+
+//        mWave.setBorder(mBorderWidth, mBorderColor);
+//        mWaveHelper = new RxWaveHelper(mWave);
 
         ((RadioGroup) findViewById(R.id.shapeChoice))
                 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -86,7 +90,7 @@ public class ActivityRxWaveView extends AppCompatActivity {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                         mBorderWidth = i;
-                        mWave.setBorder(mBorderWidth, mBorderColor);
+                        mWave.setBorder(mBorderWidth, mWave.getBorderColor());
                     }
 
                     @Override
@@ -109,7 +113,7 @@ public class ActivityRxWaveView extends AppCompatActivity {
                 mWave.setWaveColor(RxImageTool.changeColorAlpha(selectedColor, 40),
                         RxImageTool.changeColorAlpha(selectedColor, 60));
                 mBorderColor = RxImageTool.changeColorAlpha(selectedColor, 68);
-                mWave.setBorder(mBorderWidth, mBorderColor);
+                mWave.setBorder(mWave.getBorderWidth(), mBorderColor);
 
 //                mCobwebView.setSpiderColor(selectedColor);
             }
@@ -125,12 +129,16 @@ public class ActivityRxWaveView extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mWaveHelper.cancel();
+        if (mWave != null) {
+            mWave.cancel();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mWaveHelper.start();
+        if (mWave != null) {
+            mWave.start();
+        }
     }
 }

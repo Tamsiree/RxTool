@@ -5,6 +5,7 @@
     android:id="@+id/activity_dialog"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ova"
     android:orientation="vertical"
     tools:context="com.tamsiree.rxdemo.activity.ActivityDialog">
 
@@ -12,7 +13,8 @@
         android:id="@+id/rx_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_75"
-        android:background="#FF528FBA"
+        android:alpha=".8"
+        android:background="@color/colorPrimary"
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
         app:title="RxDialog" />
@@ -20,7 +22,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ova"
         android:orientation="vertical"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
@@ -34,7 +35,8 @@
             android:layout_margin="5dp"
             android:background="@color/blue_shadow_50"
             android:text="透明的弹窗"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_DialogSure"
@@ -43,7 +45,8 @@
             android:layout_margin="5dp"
             android:background="@color/pink_50"
             android:text="确定的弹窗"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_DialogSureCancle"
@@ -52,7 +55,8 @@
             android:layout_margin="5dp"
             android:background="@color/blue_shadow_50"
             android:text="确认取消的弹窗"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_DialogEditTextSureCancle"
@@ -61,7 +65,8 @@
             android:layout_margin="5dp"
             android:background="@color/pink_50"
             android:text="输入框的弹窗"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_DialogWheelYearMonthDay"
@@ -70,7 +75,8 @@
             android:layout_margin="5dp"
             android:background="@color/blue_shadow_50"
             android:text="可选择年月(日)"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_DialogShapeLoading"
@@ -79,7 +85,8 @@
             android:layout_margin="5dp"
             android:background="@color/pink_50"
             android:text="三种形状的跳跃变换"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_DialogLoadingProgressAcfunVideo"
@@ -88,7 +95,8 @@
             android:layout_margin="5dp"
             android:background="@color/blue_shadow_50"
             android:text="一只可爱的A站舰娘在拼命的奔跑"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_DialogLoadingspinkit"
@@ -97,7 +105,8 @@
             android:layout_margin="5dp"
             android:background="@color/pink_50"
             android:text="一个常用加载Dialog"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_DialogScaleView"
@@ -106,7 +115,8 @@
             android:layout_margin="5dp"
             android:background="@color/blue_shadow_50"
             android:text="一个图片缩放Dialog"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
