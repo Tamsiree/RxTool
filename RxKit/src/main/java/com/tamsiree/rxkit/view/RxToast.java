@@ -39,10 +39,10 @@ public class RxToast {
     private static final int ERROR_COLOR = Color.parseColor("#FD4C5B");
 
     @ColorInt
-    private static final int INFO_COLOR = Color.parseColor("#3F51B5");
+    private static final int INFO_COLOR = Color.parseColor("#2196F3");
 
     @ColorInt
-    private static final int SUCCESS_COLOR = Color.parseColor("#388E3C");
+    private static final int SUCCESS_COLOR = Color.parseColor("#52BA97");
 
     @ColorInt
     private static final int WARNING_COLOR = Color.parseColor("#FFA900");

@@ -52,7 +52,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- *
  * @author tamsiree
  * @date 2016/1/24
  * 图像工具类
@@ -70,6 +69,10 @@ public class RxImageTool {
         return dp2px(dpValue);
     }
 
+    public static int dip2px(Context mContext, float dpValue) {
+        return dp2px(mContext, dpValue);
+    }
+
     /**
      * dp转px
      *
@@ -77,7 +80,12 @@ public class RxImageTool {
      * @return px值
      */
     public static int dp2px(float dpValue) {
-        final float scale = RxTool.getContext().getResources().getDisplayMetrics().density;
+        return dp2px(RxTool.getContext(), dpValue);
+    }
+
+
+    public static int dp2px(Context mContext, float dpValue) {
+        final float scale = mContext.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 
@@ -98,7 +106,11 @@ public class RxImageTool {
      * @return dp值
      */
     public static int px2dp(float pxValue) {
-        final float scale = RxTool.getContext().getResources().getDisplayMetrics().density;
+        return px2dp(RxTool.getContext(), pxValue);
+    }
+
+    public static int px2dp(Context mContext, float pxValue) {
+        final float scale = mContext.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
@@ -108,7 +120,7 @@ public class RxImageTool {
      * @param spValue sp值
      * @return px值
      */
-    public static int sp2px( float spValue) {
+    public static int sp2px(float spValue) {
         final float fontScale = RxTool.getContext().getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
@@ -119,7 +131,7 @@ public class RxImageTool {
      * @param pxValue px值
      * @return sp值
      */
-    public static int px2sp( float pxValue) {
+    public static int px2sp(float pxValue) {
         final float fontScale = RxTool.getContext().getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
@@ -460,10 +472,10 @@ public class RxImageTool {
     /**
      * 获取bitmap
      *
-     * @param resId   资源id
+     * @param resId 资源id
      * @return bitmap
      */
-    public static Bitmap getBitmap( int resId) {
+    public static Bitmap getBitmap(int resId) {
         if (RxTool.getContext() == null) {
             return null;
         }
@@ -879,12 +891,12 @@ public class RxImageTool {
      * 快速模糊
      * <p>先缩小原图，对小图进行模糊，再放大回原先尺寸</p>
      *
-     * @param src     源图片
-     * @param scale   缩小倍数(0...1)
-     * @param radius  模糊半径
+     * @param src    源图片
+     * @param scale  缩小倍数(0...1)
+     * @param radius 模糊半径
      * @return 模糊后的图片
      */
-    public static Bitmap fastBlur( Bitmap src, float scale, float radius) {
+    public static Bitmap fastBlur(Bitmap src, float scale, float radius) {
         return fastBlur(src, scale, radius, false);
     }
 
@@ -898,7 +910,7 @@ public class RxImageTool {
      * @param recycle 是否回收
      * @return 模糊后的图片
      */
-    public static Bitmap fastBlur( Bitmap src, float scale, float radius, boolean recycle) {
+    public static Bitmap fastBlur(Bitmap src, float scale, float radius, boolean recycle) {
         if (isEmptyBitmap(src)) {
             return null;
         }
@@ -939,12 +951,12 @@ public class RxImageTool {
      * renderScript模糊图片
      * <p>API大于17</p>
      *
-     * @param src     源图片
-     * @param radius  模糊度(0...25)
+     * @param src    源图片
+     * @param radius 模糊度(0...25)
      * @return 模糊后的图片
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static Bitmap renderScriptBlur( Bitmap src, float radius) {
+    public static Bitmap renderScriptBlur(Bitmap src, float radius) {
         if (isEmptyBitmap(src)) return null;
         RenderScript rs = null;
         try {
@@ -1861,7 +1873,7 @@ public class RxImageTool {
      * Resize the bitmap
      *
      * @param bitmap 图片引用
-     * @param width 宽度
+     * @param width  宽度
      * @param height 高度
      * @return 缩放之后的图片引用
      */
@@ -1905,20 +1917,21 @@ public class RxImageTool {
 
     /**
      * 从网络上加载Bitmap
+     *
      * @param imgUrl
      * @return
      */
     public static Bitmap getBitmapFromNet(String imgUrl) {
-        InputStream inputStream=null;
-        ByteArrayOutputStream outputStream=null;
+        InputStream inputStream = null;
+        ByteArrayOutputStream outputStream = null;
         URL url = null;
         try {
-            url=new URL(imgUrl);
-            HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
+            url = new URL(imgUrl);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setReadTimeout(2000);
             httpURLConnection.connect();
-            if(httpURLConnection.getResponseCode()==200) {
+            if (httpURLConnection.getResponseCode() == 200) {
                 //网络连接成功
                 inputStream = httpURLConnection.getInputStream();
                 outputStream = new ByteArrayOutputStream();
@@ -1930,13 +1943,13 @@ public class RxImageTool {
                 byte[] bu = outputStream.toByteArray();
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bu, 0, bu.length);
                 return bitmap;
-            }else {
-                RxLogTool.d("网络连接失败----"+httpURLConnection.getResponseCode());
+            } else {
+                RxLogTool.d("网络连接失败----" + httpURLConnection.getResponseCode());
             }
         } catch (Exception e) {
             // TODO: handle exception
-        }finally{
-            if(inputStream!=null){
+        } finally {
+            if (inputStream != null) {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
@@ -1944,7 +1957,7 @@ public class RxImageTool {
                     e.printStackTrace();
                 }
             }
-            if(outputStream!=null){
+            if (outputStream != null) {
                 try {
                     outputStream.close();
                 } catch (IOException e) {
@@ -1971,14 +1984,15 @@ public class RxImageTool {
 
     /**
      * 创建的包含文字的图片，背景为透明
-     * @param source 图片
-     * @param txtSize 文字大小
-     * @param innerTxt 显示的文字
-     * @param textColor 文字颜色Color.BLUE
+     *
+     * @param source              图片
+     * @param txtSize             文字大小
+     * @param innerTxt            显示的文字
+     * @param textColor           文字颜色Color.BLUE
      * @param textBackgroundColor 文字背景板颜色 Color.parseColor("#FFD700")
      * @return
      */
-    public static Bitmap createTextImage(Bitmap source, int txtSize, String innerTxt,int textColor,int textBackgroundColor) {
+    public static Bitmap createTextImage(Bitmap source, int txtSize, String innerTxt, int textColor, int textBackgroundColor) {
         int bitmapWidth = source.getWidth();
         int bitmapHeight = source.getHeight();
 
@@ -2026,7 +2040,7 @@ public class RxImageTool {
         r1.top = posY;
         r1.bottom = posY + txtSize;
         canvas.drawRoundRect(r1, 10, 10, paint1);
-        canvas.drawText(innerTxt, textX, posY + txtSize-2, paint);
+        canvas.drawText(innerTxt, textX, posY + txtSize - 2, paint);
 
         return bm;
     }

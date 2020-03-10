@@ -15,7 +15,7 @@ import java.util.Stack;
 /**
  * @author tamsiree
  * @date 2016/1/24
- *
+ * <p>
  * 封装Activity相关工具类
  */
 public class RxActivityTool {
@@ -252,4 +252,6 @@ public class RxActivityTool {
         }
         return "no " + packageName;
     }
+
+
 }
