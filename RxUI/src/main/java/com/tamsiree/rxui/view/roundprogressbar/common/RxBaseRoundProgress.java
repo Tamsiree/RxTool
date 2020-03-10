@@ -1,30 +1,29 @@
 package com.tamsiree.rxui.view.roundprogressbar.common;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
+import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxui.R;
 
 
 /**
  * @author tamsiree
  */
-public abstract class RxBaseRoundProgressBar extends LinearLayout {
+public abstract class RxBaseRoundProgress extends LinearLayout {
     protected final static int DEFAULT_MAX_PROGRESS = 100;
     protected final static int DEFAULT_PROGRESS = 0;
     protected final static int DEFAULT_SECONDARY_PROGRESS = 0;
@@ -51,35 +50,26 @@ public abstract class RxBaseRoundProgressBar extends LinearLayout {
 
     private OnProgressChangedListener progressChangedListener;
 
-    public RxBaseRoundProgressBar(Context context, AttributeSet attrs) {
+    public RxBaseRoundProgress(Context context) {
+        super(context);
+        setup(context, null);
+    }
+
+    public RxBaseRoundProgress(Context context, AttributeSet attrs) {
         super(context, attrs);
-        if (isInEditMode()) {
-            previewLayout(context);
-        } else {
-            setup(context, attrs);
-        }
+        setup(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public RxBaseRoundProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxBaseRoundProgress(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        if (isInEditMode()) {
-            previewLayout(context);
-        } else {
-            setup(context, attrs);
-        }
+        setup(context, attrs);
     }
 
-    private void previewLayout(Context context) {
-        setGravity(Gravity.CENTER);
-        TextView tv = new TextView(context);
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        tv.setLayoutParams(params);
-        tv.setGravity(Gravity.CENTER);
-        tv.setText(getClass().getSimpleName());
-        tv.setTextColor(Color.WHITE);
-        tv.setBackgroundColor(Color.GRAY);
-        addView(tv);
+    @TargetApi(21)
+    public RxBaseRoundProgress(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        setup(context, attrs);
     }
 
     // Setup a progress bar layout by sub class
@@ -105,32 +95,35 @@ public abstract class RxBaseRoundProgressBar extends LinearLayout {
         // Setup layout for sub class
         LayoutInflater.from(context).inflate(initLayout(), this);
         // Initial default view
-        layoutBackground = (LinearLayout) findViewById(R.id.layout_background);
-        layoutProgress = (LinearLayout) findViewById(R.id.layout_progress);
-        layoutSecondaryProgress = (LinearLayout) findViewById(R.id.layout_secondary_progress);
+        layoutBackground = findViewById(R.id.layout_background);
+        layoutProgress = findViewById(R.id.layout_progress);
+        layoutSecondaryProgress = findViewById(R.id.layout_secondary_progress);
 
         initView();
     }
 
     // Retrieve initial parameter from view attribute
     public void setupStyleable(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RoundCornerProgress);
 
-        radius = (int) typedArray.getDimension(R.styleable.RoundCornerProgress_rcRadius, dp2px(DEFAULT_PROGRESS_RADIUS));
-        padding = (int) typedArray.getDimension(R.styleable.RoundCornerProgress_rcBackgroundPadding, dp2px(DEFAULT_BACKGROUND_PADDING));
+        //获得这个控件对应的属性。
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RxBaseRoundProgress);
 
-        isReverse = typedArray.getBoolean(R.styleable.RoundCornerProgress_rcReverse, false);
+        radius = (int) typedArray.getDimension(R.styleable.RxBaseRoundProgress_rcRadius, RxImageTool.dp2px(context, DEFAULT_PROGRESS_RADIUS));
+        padding = (int) typedArray.getDimension(R.styleable.RxBaseRoundProgress_rcBackgroundPadding, RxImageTool.dp2px(context, DEFAULT_BACKGROUND_PADDING));
 
-        max = typedArray.getFloat(R.styleable.RoundCornerProgress_rcMax, DEFAULT_MAX_PROGRESS);
-        progress = typedArray.getFloat(R.styleable.RoundCornerProgress_rcProgress, DEFAULT_PROGRESS);
-        secondaryProgress = typedArray.getFloat(R.styleable.RoundCornerProgress_rcSecondaryProgress, DEFAULT_SECONDARY_PROGRESS);
+        isReverse = typedArray.getBoolean(R.styleable.RxBaseRoundProgress_rcReverse, false);
+
+        max = typedArray.getFloat(R.styleable.RxBaseRoundProgress_rcMax, DEFAULT_MAX_PROGRESS);
+        progress = typedArray.getFloat(R.styleable.RxBaseRoundProgress_rcProgress, DEFAULT_PROGRESS);
+        secondaryProgress = typedArray.getFloat(R.styleable.RxBaseRoundProgress_rcSecondaryProgress, DEFAULT_SECONDARY_PROGRESS);
 
         int colorBackgroundDefault = context.getResources().getColor(R.color.round_corner_progress_bar_background_default);
-        colorBackground = typedArray.getColor(R.styleable.RoundCornerProgress_rcBackgroundColor, colorBackgroundDefault);
+        colorBackground = typedArray.getColor(R.styleable.RxBaseRoundProgress_rcBackgroundColor, colorBackgroundDefault);
         int colorProgressDefault = context.getResources().getColor(R.color.round_corner_progress_bar_progress_default);
-        colorProgress = typedArray.getColor(R.styleable.RoundCornerProgress_rcProgressColor, colorProgressDefault);
+        colorProgress = typedArray.getColor(R.styleable.RxBaseRoundProgress_rcProgressColor, colorProgressDefault);
         int colorSecondaryProgressDefault = context.getResources().getColor(R.color.round_corner_progress_bar_secondary_progress_default);
-        colorSecondaryProgress = typedArray.getColor(R.styleable.RoundCornerProgress_rcSecondaryProgressColor, colorSecondaryProgressDefault);
+        colorSecondaryProgress = typedArray.getColor(R.styleable.RxBaseRoundProgress_rcSecondaryProgressColor, colorSecondaryProgressDefault);
+
         typedArray.recycle();
 
         initStyleable(context, attrs);
@@ -140,17 +133,12 @@ public abstract class RxBaseRoundProgressBar extends LinearLayout {
     @Override
     protected void onSizeChanged(int newWidth, int newHeight, int oldWidth, int oldHeight) {
         super.onSizeChanged(newWidth, newHeight, oldWidth, oldHeight);
-        if(!isInEditMode()) {
-            totalWidth = newWidth;
-            drawAll();
-            postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    drawPrimaryProgress();
-                    drawSecondaryProgress();
-                }
-            }, 5);
-        }
+        totalWidth = newWidth;
+        drawAll();
+        postDelayed(() -> {
+            drawPrimaryProgress();
+            drawSecondaryProgress();
+        }, 5);
     }
 
     // Redraw all view
@@ -164,16 +152,11 @@ public abstract class RxBaseRoundProgressBar extends LinearLayout {
     }
 
     // Draw progress background
-    @SuppressWarnings("deprecation")
     private void drawBackgroundProgress() {
         GradientDrawable backgroundDrawable = createGradientDrawable(colorBackground);
         int newRadius = radius - (padding / 2);
         backgroundDrawable.setCornerRadii(new float[]{newRadius, newRadius, newRadius, newRadius, newRadius, newRadius, newRadius, newRadius});
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            layoutBackground.setBackground(backgroundDrawable);
-        } else {
-            layoutBackground.setBackgroundDrawable(backgroundDrawable);
-        }
+        layoutBackground.setBackground(backgroundDrawable);
     }
 
     // Create an empty color rectangle gradient drawable
@@ -204,15 +187,11 @@ public abstract class RxBaseRoundProgressBar extends LinearLayout {
         if (isReverse) {
             progressParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             // For support with RTL on API 17 or more
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                progressParams.addRule(RelativeLayout.ALIGN_PARENT_END);
-            }
+            progressParams.addRule(RelativeLayout.ALIGN_PARENT_END);
         } else {
             progressParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
             // For support with RTL on API 17 or more
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                progressParams.addRule(RelativeLayout.ALIGN_PARENT_START);
-            }
+            progressParams.addRule(RelativeLayout.ALIGN_PARENT_START);
         }
         layoutProgress.setLayoutParams(progressParams);
     }
@@ -223,22 +202,17 @@ public abstract class RxBaseRoundProgressBar extends LinearLayout {
 
     // Remove all of relative align rule
     private void removeLayoutParamsRule(RelativeLayout.LayoutParams layoutParams) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_END);
-            layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_LEFT);
-            layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_START);
-        } else {
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 0);
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
-        }
+        layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_END);
+        layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_START);
     }
 
-    @SuppressLint("NewApi")
+/*    @SuppressLint("NewApi")
     protected float dp2px(float dp) {
         DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
-        return Math.round(dp * (displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-    }
+        return Math.round(dp * (displayMetrics.densityDpi / (DisplayMetrics.DENSITY_DEFAULT * 1.0f)));
+    }*/
 
     public boolean isReverse() {
         return isReverse;
@@ -303,13 +277,9 @@ public abstract class RxBaseRoundProgressBar extends LinearLayout {
     public void setProgress(float progress) {
         if (progress < 0) {
             this.progress = 0;
-        } else if (progress > max) {
-            this.progress = max;
-        } else {
-            this.progress = progress;
-        }
+        } else this.progress = Math.min(progress, max);
         drawPrimaryProgress();
-        if(progressChangedListener != null) {
+        if (progressChangedListener != null) {
             progressChangedListener.onProgressChanged(getId(), this.progress, true, false);
         }
     }
@@ -334,7 +304,7 @@ public abstract class RxBaseRoundProgressBar extends LinearLayout {
             this.secondaryProgress = secondaryProgress;
         }
         drawSecondaryProgress();
-        if(progressChangedListener != null) {
+        if (progressChangedListener != null) {
             progressChangedListener.onProgressChanged(getId(), this.secondaryProgress, false, true);
         }
     }
@@ -484,7 +454,23 @@ public abstract class RxBaseRoundProgressBar extends LinearLayout {
         };
     }
 
-    public interface OnProgressChangedListener {
-        public void onProgressChanged(int viewId, float progress, boolean isPrimaryProgress, boolean isSecondaryProgress);
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
     }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    public interface OnProgressChangedListener {
+        void onProgressChanged(int viewId, float progress, boolean isPrimaryProgress, boolean isSecondaryProgress);
+    }
+
 }

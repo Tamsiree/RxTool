@@ -15,7 +15,13 @@
  */
 package com.tamsiree.rxui.view.waveview;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -26,6 +32,17 @@ import android.graphics.Paint.Style;
 import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.tamsiree.rxkit.RxImageTool;
+import com.tamsiree.rxui.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author tamsiree
@@ -88,25 +105,30 @@ public class RxWaveView extends View {
     private int mFrontWaveColor = DEFAULT_FRONT_WAVE_COLOR;
     private ShapeType mShapeType = DEFAULT_WAVE_SHAPE;
 
+
+    private int mBorderWidth = 10;
+    private int mBorderColor = Color.parseColor("#4489CFF0");
+    private AnimatorSet mAnimatorSet;
+
     public RxWaveView(Context context) {
         super(context);
-        init();
+        init(context, null);
     }
 
     public RxWaveView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(context, attrs);
     }
 
     public RxWaveView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init();
+        init(context, attrs);
     }
 
-    private void init() {
-        mShaderMatrix = new Matrix();
-        mViewPaint = new Paint();
-        mViewPaint.setAntiAlias(true);
+    @TargetApi(21)
+    public RxWaveView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(context, attrs);
     }
 
     public float getWaveShiftRatio() {
@@ -182,16 +204,45 @@ public class RxWaveView extends View {
         mShowWave = showWave;
     }
 
-    public void setBorder(int width, int color) {
-        if (mBorderPaint == null) {
-            mBorderPaint = new Paint();
-            mBorderPaint.setAntiAlias(true);
-            mBorderPaint.setStyle(Style.STROKE);
-        }
-        mBorderPaint.setColor(color);
-        mBorderPaint.setStrokeWidth(width);
+    private void init(Context context, AttributeSet attrs) {
 
-        invalidate();
+        //获得这个控件对应的属性。
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.RxWaveView);
+
+        try {
+            //获得属性值
+
+            //标题颜色
+            mFrontWaveColor = a.getColor(R.styleable.RxWaveView_RxWaveColor, Color.parseColor("#89CFF0"));
+            mBehindWaveColor = RxImageTool.changeColorAlpha(mFrontWaveColor, 40);
+            mBorderColor = RxImageTool.changeColorAlpha(mFrontWaveColor, 68);
+            mBorderWidth = (int) a.getDimension(R.styleable.RxWaveView_RxWaveBorder, mBorderWidth * 1f);
+
+            int type = a.getInt(R.styleable.RxWaveView_RxWaveShapeType, 0);
+            switch (type) {
+                case 1:
+                    mShapeType = ShapeType.SQUARE;
+                    break;
+                case 0:
+                    mShapeType = ShapeType.CIRCLE;
+                default:
+                    break;
+            }
+
+        } finally {
+            //回收这个对象
+            a.recycle();
+        }
+
+
+        mShaderMatrix = new Matrix();
+        mViewPaint = new Paint();
+        mViewPaint.setAntiAlias(true);
+        setWaveColor(mBehindWaveColor, mFrontWaveColor);
+        setBorder(mBorderWidth, mBorderColor);
+
+        initAnimation();
+        start();
     }
 
     public void setWaveColor(int behindWaveColor, int frontWaveColor) {
@@ -315,4 +366,113 @@ public class RxWaveView extends View {
             mViewPaint.setShader(null);
         }
     }
+
+    public void setBorder(int width, int color) {
+        if (mBorderPaint == null) {
+            mBorderPaint = new Paint();
+            mBorderPaint.setAntiAlias(true);
+            mBorderPaint.setStyle(Style.STROKE);
+        }
+        mBorderColor = color;
+        mBorderWidth = width;
+        mBorderPaint.setColor(mBorderColor);
+        mBorderPaint.setStrokeWidth(mBorderWidth);
+
+        invalidate();
+    }
+
+    public int getBehindWaveColor() {
+        return mBehindWaveColor;
+    }
+
+    public void setBehindWaveColor(int behindWaveColor) {
+        mBehindWaveColor = behindWaveColor;
+    }
+
+    public int getFrontWaveColor() {
+        return mFrontWaveColor;
+    }
+
+    public void setFrontWaveColor(int frontWaveColor) {
+        mFrontWaveColor = frontWaveColor;
+    }
+
+    public ShapeType getShapeType() {
+        return mShapeType;
+    }
+
+    public int getBorderWidth() {
+        return mBorderWidth;
+    }
+
+    public void setBorderWidth(int borderWidth) {
+        mBorderWidth = borderWidth;
+    }
+
+    public int getBorderColor() {
+        return mBorderColor;
+    }
+
+    public void setBorderColor(int borderColor) {
+        mBorderColor = borderColor;
+    }
+
+    public void start() {
+        setShowWave(true);
+        if (mAnimatorSet != null) {
+            mAnimatorSet.start();
+        }
+    }
+
+    private void initAnimation() {
+        List<Animator> animators = new ArrayList<>();
+
+        // horizontal animation.
+        // wave waves infinitely.
+        ObjectAnimator waveShiftAnim = ObjectAnimator.ofFloat(
+                this, "waveShiftRatio", 0f, 1f);
+        waveShiftAnim.setRepeatCount(ValueAnimator.INFINITE);
+        waveShiftAnim.setDuration(1000);
+        waveShiftAnim.setInterpolator(new LinearInterpolator());
+        animators.add(waveShiftAnim);
+
+        // vertical animation.
+        // water level increases from 0 to center of RxWaveView
+        ObjectAnimator waterLevelAnim = ObjectAnimator.ofFloat(
+                this, "waterLevelRatio", 0f, 0.5f);
+        waterLevelAnim.setDuration(10000);
+        waterLevelAnim.setInterpolator(new DecelerateInterpolator());
+        animators.add(waterLevelAnim);
+
+        // amplitude animation.
+        // wave grows big then grows small, repeatedly
+        ObjectAnimator amplitudeAnim = ObjectAnimator.ofFloat(
+                this, "amplitudeRatio", 0.0001f, 0.05f);
+        amplitudeAnim.setRepeatCount(ValueAnimator.INFINITE);
+        amplitudeAnim.setRepeatMode(ValueAnimator.REVERSE);
+        amplitudeAnim.setDuration(5000);
+        amplitudeAnim.setInterpolator(new LinearInterpolator());
+        animators.add(amplitudeAnim);
+
+        mAnimatorSet = new AnimatorSet();
+        mAnimatorSet.playTogether(animators);
+    }
+
+    public void cancel() {
+        if (mAnimatorSet != null) {
+//            mAnimatorSet.cancel();
+            mAnimatorSet.end();
+        }
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
 }

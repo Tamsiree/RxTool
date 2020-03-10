@@ -18,28 +18,41 @@ limitations under the License.
 
 package com.tamsiree.rxui.view.roundprogressbar;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.tamsiree.rxui.R;
-import com.tamsiree.rxui.view.roundprogressbar.common.RxBaseRoundProgressBar;
+import com.tamsiree.rxui.view.roundprogressbar.common.RxBaseRoundProgress;
 
 
 /**
  * @author tamsiree
  */
-public class RxRoundProgressBar extends RxBaseRoundProgressBar {
+public class RxRoundProgress extends RxBaseRoundProgress {
 
-    public RxRoundProgressBar(Context context, AttributeSet attrs) {
+    public RxRoundProgress(Context context) {
+        super(context);
+    }
+
+    public RxRoundProgress(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public RxRoundProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxRoundProgress(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    @TargetApi(21)
+    public RxRoundProgress(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override
@@ -57,6 +70,7 @@ public class RxRoundProgressBar extends RxBaseRoundProgressBar {
 
     }
 
+
     @SuppressWarnings("deprecation")
     @Override
     protected void drawProgress(LinearLayout layoutProgress, float max, float progress, float totalWidth,
@@ -64,11 +78,7 @@ public class RxRoundProgressBar extends RxBaseRoundProgressBar {
         GradientDrawable backgroundDrawable = createGradientDrawable(colorProgress);
         int newRadius = radius - (padding / 2);
         backgroundDrawable.setCornerRadii(new float[]{newRadius, newRadius, newRadius, newRadius, newRadius, newRadius, newRadius, newRadius});
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            layoutProgress.setBackground(backgroundDrawable);
-        } else {
-            layoutProgress.setBackgroundDrawable(backgroundDrawable);
-        }
+        layoutProgress.setBackground(backgroundDrawable);
 
         float ratio = max / progress;
         int progressWidth = (int) ((totalWidth - (padding * 2)) / ratio);
@@ -80,6 +90,26 @@ public class RxRoundProgressBar extends RxBaseRoundProgressBar {
     @Override
     protected void onViewDraw() {
 
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
 }

@@ -25,13 +25,15 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxui.R;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -124,6 +126,29 @@ public class RxSeatAirplane extends View {
         initPaint();
     }
 
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+
+            Canvas c = (Canvas) msg.obj;
+
+            Bundle bundle = msg.getData();
+
+            if (bundle != null && c != null) {
+
+                float left = bundle.getFloat("left");
+                float top = bundle.getFloat("top");
+                byte[] bis = bundle.getByteArray("bitmap");
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bis, 0, bis.length);
+                if (bitmap != null) {
+                    c.drawBitmap(bitmap, left, top, mPaint);
+                }
+            }
+        }
+    };
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -133,14 +158,13 @@ public class RxSeatAirplane extends View {
         int heightSpecSize = MeasureSpec.getSize(heightMeasureSpec);
         if (widthSpecMode == MeasureSpec.AT_MOST
                 && heightSpecMode == MeasureSpec.AT_MOST) {
-            setMeasuredDimension(RxImageTool.dip2px(150), RxImageTool.dip2px(200));
+            setMeasuredDimension(RxImageTool.dp2px(getContext(), 150), RxImageTool.dp2px(getContext(), 200));
         } else if (widthSpecMode == MeasureSpec.AT_MOST) {
             setMeasuredDimension((int) (heightSpecSize * 0.75f), heightSpecSize);
         } else if (heightSpecMode == MeasureSpec.AT_MOST) {
             setMeasuredDimension(widthSpecSize, (int) (widthSpecSize / 0.75f));
         }
     }
-
 
     private void initPaint() {
         mPaint = new Paint();
@@ -168,10 +192,12 @@ public class RxSeatAirplane extends View {
         pathTail = new Path();
         pathTail.reset();
 
+        if (isInEditMode()) {
+            return;
+        }
         setOnTouchListener(new MoveListerner((Activity) getContext()) {
             @Override
             public void moveDirection(View v, int direction, float distanceX, float distanceY) {
-
 
             }
 
@@ -213,11 +239,9 @@ public class RxSeatAirplane extends View {
                     RectF selecting = new RectF();
 
 
-                    Iterator iter = mSeats.entrySet().iterator();
-                    while (iter.hasNext()) {
-                        Map.Entry entry = (Map.Entry) iter.next();
-                        String key = (String) entry.getKey();
-                        RectF val = (RectF) entry.getValue();
+                    for (Map.Entry<String, RectF> stringRectFEntry : mSeats.entrySet()) {
+                        String key = (String) ((Map.Entry) stringRectFEntry).getKey();
+                        RectF val = (RectF) ((Map.Entry) stringRectFEntry).getValue();
 //                        x=x-moveY;
 
 
@@ -285,6 +309,23 @@ public class RxSeatAirplane extends View {
         });
     }
 
+
+    public enum CabinPosition {
+        Top, Middle, Last
+    }
+
+    enum SeatType {
+        Left, Middle, Right
+    }
+
+    enum SeatState {
+        Normal, Selected, Selecting
+    }
+
+    enum CabinType {
+        Frist, Second, Tourist, Last
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -294,7 +335,9 @@ public class RxSeatAirplane extends View {
         scaleValue = scaleMaxValue * mAnimatedValue;
 
 
+        @SuppressLint("DrawAllocation")
         Matrix matrix = new Matrix();
+
         matrix.postScale(1 + scaleValue * 2f, 1 + scaleValue * 2f);
         matrix.postTranslate(getMeasuredWidth() * -1 * scaleValue,
                 scaleValue * 2f * (getMeasuredHeight() / 3f / 3f + getMeasuredWidth() / 8f) * -1 - moveY);
@@ -324,26 +367,7 @@ public class RxSeatAirplane extends View {
 
     }
 
-
-    public enum CabinPosition {
-        Top, Middle, Last
-    }
-
-    enum SeatType {
-        Left, Middle, Right
-    }
-
-    enum SeatState {
-        Normal, Selected, Selecting
-    }
-
-    enum CabinType {
-        Frist, Second, Tourist, Last
-    }
-
-
-    private void setSeat(int i, int j, Canvas canvas, float seatWH, SeatType type
-            , CabinType cabinType) {
+    private void setSeat(int i, int j, Canvas canvas, float seatWH, SeatType type, CabinType cabinType) {
         float top = 0f;
         float left = 0f;
         if (cabinType == CabinType.Frist) {
@@ -462,9 +486,7 @@ public class RxSeatAirplane extends View {
         }
 
 
-        RectF sRectF = new RectF();
-
-        sRectF = new RectF(left, top,
+        RectF sRectF = new RectF(left, top,
                 left + seatWH, top + seatWH);
         PointSeat point = null;
         if (cabinType == CabinType.Frist) {
@@ -536,17 +558,17 @@ public class RxSeatAirplane extends View {
             }
 
             if (sRectF.top > 0 && sRectF.bottom < getMeasuredHeight()) {
-                mSeats.put(getSeatKeyName(point.row, point.column), sRectF);
+                mSeats.put(getSeatKeyName(Objects.requireNonNull(point).row, point.column), sRectF);
             }
 
 
         }
 
 
-        if (mSeatSelected.containsKey(getSeatKeyName(point.row, point.column))) {
+        if (mSeatSelected.containsKey(getSeatKeyName(Objects.requireNonNull(point).row, point.column))) {
 
 
-            canvas.drawBitmap(getSeat(seatWH, mSeatSelected.get(getSeatKeyName(point.row, point.column)))
+            canvas.drawBitmap(Objects.requireNonNull(getSeat(seatWH, mSeatSelected.get(getSeatKeyName(point.row, point.column))))
                     , left
                     ,
                     top
@@ -556,7 +578,7 @@ public class RxSeatAirplane extends View {
         } else if (mSeatSelecting.containsKey(getSeatKeyName(point.row, point.column))) {
 //            System.out.println("-----" + point.row + "--" + point.column);
 
-            canvas.drawBitmap(getSeat(seatWH, mSeatSelecting.get(getSeatKeyName(point.row, point.column)))
+            canvas.drawBitmap(Objects.requireNonNull(getSeat(seatWH, mSeatSelecting.get(getSeatKeyName(point.row, point.column))))
                     , left
                     ,
                     top
@@ -581,19 +603,14 @@ public class RxSeatAirplane extends View {
                 }
             }
         } else {
-            canvas.drawBitmap(getSeat(seatWH, SeatState.Normal)
-                    , left
-                    ,
-                    top
-                    ,
-                    mPaint
-
-            );
+            if (isInEditMode()) {
+                return;
+            }
+            canvas.drawBitmap(Objects.requireNonNull(getSeat(seatWH, SeatState.Normal)), left, top, mPaint);
 
 
         }
     }
-
 
     private void drawSeatMap(Canvas canvas) {
         if (mAnimatedValue == 1) {
@@ -610,7 +627,6 @@ public class RxSeatAirplane extends View {
             mPaintMap.setStyle(Paint.Style.FILL);
             canvas.drawRect(rectFMap, mPaintMap);
 
-
             mapH = getHeight() / scaleMap;
 
             RectF rectFMapSee = new RectF(rectFCabin.left,
@@ -618,7 +634,7 @@ public class RxSeatAirplane extends View {
                     , rectFCabin.left + mapW,
                     rectFCabin.top + rectFCabin.width() * 0.8f + mapH + moveY + moveY / scaleMap);
             mPaintMap.setStyle(Paint.Style.STROKE);
-            mPaintMap.setStrokeWidth(RxImageTool.dip2px(0.75f));
+            mPaintMap.setStrokeWidth(RxImageTool.dp2px(getContext(), 0.75f));
             mPaintMap.setColor(Color.RED);
 
             canvas.drawRect(rectFMapSee, mPaintMap);
@@ -631,32 +647,21 @@ public class RxSeatAirplane extends View {
                 mPaintMap.setAlpha(80);
                 RectF r = new RectF();
 
-                Iterator iter = mSeatSelectingRectF.entrySet().iterator();
-                while (iter.hasNext()) {
-                    Map.Entry entry = (Map.Entry) iter.next();
-                    String key = (String) entry.getKey();
-                    RectF val = (RectF) entry.getValue();
-
+                for (Map.Entry<String, RectF> stringRectFEntry : mSeatSelectingRectF.entrySet()) {
+//                    String key = (String) ((Map.Entry) stringRectFEntry).getKey();
+                    RectF val = (RectF) ((Map.Entry) stringRectFEntry).getValue();
 
                     r.top = val.top + moveY;
                     r.bottom = val.bottom + moveY;
-                    r.left = val.left - RxImageTool.dip2px(0.5f);
-                    r.right = val.right - RxImageTool.dip2px(0.5f);
-
+                    r.left = val.left - RxImageTool.dp2px(getContext(), 0.5f);
+                    r.right = val.right - RxImageTool.dp2px(getContext(), 0.5f);
 
                     canvas.drawRect(r, mPaintMap);
-
-
                 }
-
-
             }
-
-
         }
 
     }
-
 
     private void drawSeatFirst(Canvas canvas) {
 
@@ -667,12 +672,12 @@ public class RxSeatAirplane extends View {
         float seatWH = rectFCabin.width() / 9.0f;
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
-                if (i >= 0 && j < 2) {
+                if (j < 2) {
 
                     setSeat(i, j, canvas, seatWH, SeatType.Left, CabinType.Frist);
 //                    setBitmap
 
-                } else if (j >= 2 && j < 5 && i < row - 1) {
+                } else if (j < 5 && i < row - 1) {
                     setSeat(i, j, canvas, seatWH, SeatType.Middle, CabinType.Frist);
 
 
@@ -748,7 +753,6 @@ public class RxSeatAirplane extends View {
 
     }
 
-
     private void drawSeatSecond(Canvas canvas, float seatWH) {
         int row = 3;
         int column = 8;
@@ -756,19 +760,19 @@ public class RxSeatAirplane extends View {
         float seatWH2 = rectFCabin.width() / 10.0f;
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
-                if (i >= 0 && j < 2) {
+                if (j < 2) {
 
 
                     setSeat(i, j, canvas, seatWH2, SeatType.Left, CabinType.Second);
 
 
-                } else if (j >= 2 && j < 6) {
+                } else if (j < 6) {
 
 
                     setSeat(i, j, canvas, seatWH2, SeatType.Middle, CabinType.Second);
 
 
-                } else if (j >= 6) {
+                } else {
 
                     setSeat(i, j, canvas, seatWH2, SeatType.Right, CabinType.Second);
 
@@ -792,8 +796,8 @@ public class RxSeatAirplane extends View {
                 + seatWH * 13
                 + rectFCabin.width() / 2 +
                 seatWH + (row + 1) * (seatWH2) + seatWH2 / 2
-                + (RxImageTool.dip2px(2) * mAnimatedValue < 1 ? 1 : (int) (RxImageTool.dip2px(2) * mAnimatedValue));
-        canvas.drawRoundRect(rectFWall, RxImageTool.dip2px(1), RxImageTool.dip2px(1), mPaintOther);
+                + (RxImageTool.dp2px(getContext(), 2) * mAnimatedValue < 1 ? 1 : (int) (RxImageTool.dp2px(getContext(), 2) * mAnimatedValue));
+        canvas.drawRoundRect(rectFWall, RxImageTool.dp2px(getContext(), 1), RxImageTool.dp2px(getContext(), 1), mPaintOther);
         rectFWall.top = rectFCabin.top
                 + seatWH * 13
                 + rectFCabin.width() / 2 +
@@ -806,11 +810,10 @@ public class RxSeatAirplane extends View {
                 + seatWH * 13
                 + rectFCabin.width() / 2 +
                 seatWH + (row + 1) * (seatWH2) + seatWH2 / 2
-                + (RxImageTool.dip2px(2) * mAnimatedValue < 1 ? 1 : (int) (RxImageTool.dip2px(2) * mAnimatedValue));
-        canvas.drawRoundRect(rectFWall, RxImageTool.dip2px(1), RxImageTool.dip2px(1), mPaintOther);
+                + (RxImageTool.dp2px(getContext(), 2) * mAnimatedValue < 1 ? 1 : (int) (RxImageTool.dp2px(getContext(), 2) * mAnimatedValue));
+        canvas.drawRoundRect(rectFWall, RxImageTool.dp2px(getContext(), 1), RxImageTool.dp2px(getContext(), 1), mPaintOther);
 
     }
-
 
     private void drawSeatTourist(Canvas canvas) {
         int row = 25;
@@ -820,18 +823,18 @@ public class RxSeatAirplane extends View {
             for (int j = 0; j < column; j++) {
 
 
-                if (j >= 0 && j < 3) {
+                if (j < 3) {
 
 
                     setSeat(i, j, canvas, seatWH, SeatType.Left, CabinType.Tourist);
 
 
-                } else if (j >= 3 && j < 7) {
+                } else if (j < 7) {
 
                     setSeat(i, j, canvas, seatWH, SeatType.Middle, CabinType.Tourist);
 
 
-                } else if (j >= 7) {
+                } else {
                     setSeat(i, j, canvas, seatWH, SeatType.Right, CabinType.Tourist);
 
                 }
@@ -849,8 +852,8 @@ public class RxSeatAirplane extends View {
         rectFWC.bottom = rectFWC.top + seatWH * 3;
 
 
-        rectFWC.left = rectFCabin.left + seatWH / 3;
-        rectFWC.right = rectFCabin.left + seatWH / 3 + seatWH * 3;
+        rectFWC.left = rectFCabin.left + seatWH / 3f;
+        rectFWC.right = rectFCabin.left + seatWH / 3f + seatWH * 3;
         mPaintOther.setStyle(Paint.Style.STROKE);
 
         canvas.drawRect(rectFWC, mPaintOther);
@@ -908,15 +911,15 @@ public class RxSeatAirplane extends View {
             for (int j = 0; j < column; j++) {
 
 
-                if (j >= 0 && j < 3) {
+                if (j < 3) {
 
                     setSeat(i, j, canvas, seatWH, SeatType.Left, CabinType.Last);
 
-                } else if (j >= 3 && j < 7) {
+                } else if (j < 7) {
 
                     setSeat(i, j, canvas, seatWH, SeatType.Middle, CabinType.Last);
 
-                } else if (j >= 7) {
+                } else {
 
                     setSeat(i, j, canvas, seatWH, SeatType.Right, CabinType.Last);
 
@@ -927,15 +930,6 @@ public class RxSeatAirplane extends View {
 
         }
 
-    }
-
-
-    private Bitmap setBitmapSize(int iconId, float w) {
-        Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), iconId);
-        float s = w * 1.0f / bitmap.getWidth();
-        bitmap = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * s),
-                (int) (bitmap.getHeight() * s), true);
-        return bitmap;
     }
 
 
@@ -976,9 +970,19 @@ public class RxSeatAirplane extends View {
         return null;
     }
 
+    private Bitmap setBitmapSize(int iconId, float w) {
+        Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), iconId);
+        if (bitmap == null) {
+            return null;
+        }
+        float s = w * 1.0f / bitmap.getWidth();
+        bitmap = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * s),
+                (int) (bitmap.getHeight() * s), true);
+        return bitmap;
+    }
 
     public Bitmap getBitmapFuselage(float rectFCabinWidth) {
-        Canvas canvas = null;
+        Canvas canvas;
 
         int w = getMeasuredWidth();
         int h = getMeasuredHeight();
@@ -987,7 +991,7 @@ public class RxSeatAirplane extends View {
         if (mBitmapFuselage == null) {
             mBitmapFuselage = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
             canvas = new Canvas(mBitmapFuselage);
-            pathFuselage.moveTo(w / 2f - rectFCabinWidth / 2f - RxImageTool.dip2px(2),
+            pathFuselage.moveTo(w / 2f - rectFCabinWidth / 2f - RxImageTool.dp2px(getContext(), 2),
                     rectFCabin.top + rectFCabinWidth / 2f);
             pathFuselage.cubicTo(
                     w / 2f - rectFCabinWidth / 4f,
@@ -995,13 +999,13 @@ public class RxSeatAirplane extends View {
                     rectFCabin.top - rectFCabinWidth * 1.2f,
                     w / 2f + rectFCabinWidth / 4f,
                     rectFCabin.top - rectFCabinWidth * 1.2f,
-                    w / 2f + rectFCabinWidth / 2f + RxImageTool.dip2px(2),
+                    w / 2f + rectFCabinWidth / 2f + RxImageTool.dp2px(getContext(), 2),
                     rectFCabin.top + rectFCabinWidth / 2f
             );
 
 
-            rectFCabin.top = rectFCabin.top + RxImageTool.dip2px(10);//机翼向下平移距离
-            pathFuselage.lineTo(w / 2f + rectFCabinWidth / 2f + RxImageTool.dip2px(2)
+            rectFCabin.top = rectFCabin.top + RxImageTool.dp2px(getContext(), 10);//机翼向下平移距离
+            pathFuselage.lineTo(w / 2f + rectFCabinWidth / 2f + RxImageTool.dp2px(getContext(), 2)
                     , rectFCabin.top + rectFCabin.height() / 3f);
 
             pathFuselage.lineTo(w
@@ -1013,10 +1017,10 @@ public class RxSeatAirplane extends View {
             pathFuselage.lineTo(rectFCabin.right + rectFCabin.width() / 2 * 1.5f
                     , rectFCabin.top + rectFCabin.height() / 2f + rectFCabin.height() / 6f / 2f);
 
-            pathFuselage.lineTo(w / 2f + rectFCabinWidth / 2f + RxImageTool.dip2px(2)
+            pathFuselage.lineTo(w / 2f + rectFCabinWidth / 2f + RxImageTool.dp2px(getContext(), 2)
                     , rectFCabin.top + rectFCabin.height() / 2f + rectFCabin.height() / 6f / 2f);
 //
-            pathFuselage.lineTo(w / 2f + rectFCabinWidth / 2f + RxImageTool.dip2px(2)
+            pathFuselage.lineTo(w / 2f + rectFCabinWidth / 2f + RxImageTool.dp2px(getContext(), 2)
                     , rectFCabin.bottom - rectFCabinWidth / 2f);
 
 
@@ -1026,11 +1030,11 @@ public class RxSeatAirplane extends View {
                     rectFCabin.bottom + rectFCabinWidth * 2.5f,
                     w / 2f - rectFCabinWidth / 4f,
                     rectFCabin.bottom + rectFCabinWidth * 2.5f,
-                    w / 2f - rectFCabinWidth / 2f - RxImageTool.dip2px(2)
+                    w / 2f - rectFCabinWidth / 2f - RxImageTool.dp2px(getContext(), 2)
                     , rectFCabin.bottom - rectFCabinWidth / 2f
             );
 
-            pathFuselage.lineTo(w / 2f - rectFCabinWidth / 2f - RxImageTool.dip2px(2)
+            pathFuselage.lineTo(w / 2f - rectFCabinWidth / 2f - RxImageTool.dp2px(getContext(), 2)
                     , rectFCabin.top + rectFCabin.height() / 2f + rectFCabin.height() / 6f / 2f);
             pathFuselage.lineTo(rectFCabin.left - rectFCabin.width() / 2 * 1.5f
                     , rectFCabin.top + rectFCabin.height() / 2f + rectFCabin.height() / 6f / 2f);
@@ -1040,7 +1044,7 @@ public class RxSeatAirplane extends View {
             pathFuselage.lineTo(0
                     , rectFCabin.top + rectFCabin.height() * 0.55f);
 
-            pathFuselage.lineTo(w / 2f - rectFCabinWidth / 2f - RxImageTool.dip2px(2)
+            pathFuselage.lineTo(w / 2f - rectFCabinWidth / 2f - RxImageTool.dp2px(getContext(), 2)
                     , rectFCabin.top + rectFCabin.height() / 3f);
             pathFuselage.close();
             mPaint.setColor(Color.WHITE);
@@ -1052,14 +1056,14 @@ public class RxSeatAirplane extends View {
     }
 
     private Bitmap getBitmapCabin() {
-        Canvas canvas = null;
+        Canvas canvas;
 
         if (mBitmapCabin == null) {
             mBitmapCabin = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
             canvas = new Canvas(mBitmapCabin);
             mPaint.setColor(Color.WHITE);
-            rectFCabin.top = rectFCabin.top - RxImageTool.dip2px(10);
-            rectFCabin.bottom = rectFCabin.bottom + RxImageTool.dip2px(5);
+            rectFCabin.top = rectFCabin.top - RxImageTool.dp2px(getContext(), 10);
+            rectFCabin.bottom = rectFCabin.bottom + RxImageTool.dp2px(getContext(), 5);
             canvas.drawRoundRect(rectFCabin, getMeasuredWidth() / 8f / 2f, getMeasuredWidth() / 8f / 2f, mPaint);
 
         }
@@ -1068,9 +1072,8 @@ public class RxSeatAirplane extends View {
 
     }
 
-
     public Bitmap getBitmapArrow() {
-        Canvas canvas = null;
+        Canvas canvas;
 
         if (mBitmapArrow == null) {
             mBitmapArrow = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
@@ -1148,53 +1151,6 @@ public class RxSeatAirplane extends View {
         }
 
         return mBitmapArrow;
-    }
-
-
-    private Bitmap getBitmapTail() {
-
-        Canvas canvas = null;
-
-        if (mBitmapTail == null) {
-            mBitmapTail = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-            canvas = new Canvas(mBitmapTail);
-            pathTail.reset();
-            rectFCabin.bottom = rectFCabin.bottom - RxImageTool.dip2px(5);
-            pathTail.moveTo(rectFCabin.centerX(),
-                    rectFCabin.bottom + rectFCabin.width() / 2);
-
-            pathTail.lineTo(rectFCabin.centerX() + rectFCabin.width() * 1.5f,
-                    rectFCabin.bottom + rectFCabin.width() * 1.5f);
-            pathTail.lineTo(rectFCabin.centerX() + rectFCabin.width() * 1.5f,
-                    rectFCabin.bottom + rectFCabin.width() * 2f);
-            pathTail.lineTo(rectFCabin.centerX(),
-                    rectFCabin.bottom + rectFCabin.width() * 1.5f);
-            pathTail.lineTo(rectFCabin.centerX() - rectFCabin.width() * 1.5f,
-                    rectFCabin.bottom + rectFCabin.width() * 2f);
-            pathTail.lineTo(rectFCabin.centerX() - rectFCabin.width() * 1.5f,
-                    rectFCabin.bottom + rectFCabin.width() * 1.5f);
-            pathTail.close();
-
-            canvas.drawPath(pathTail, mPaint);
-
-            pathTail.reset();
-            pathTail.moveTo(rectFCabin.centerX() - rectFCabin.width() / 2 * 0.1f,
-                    rectFCabin.bottom + rectFCabin.width() * 1.5f);
-            pathTail.quadTo(
-                    rectFCabin.centerX(),
-                    rectFCabin.bottom + rectFCabin.width() * 3f,
-                    rectFCabin.centerX() + rectFCabin.width() / 2 * 0.1f,
-                    rectFCabin.bottom + rectFCabin.width() * 1.5f);
-
-            pathTail.close();
-            mPaint.setColor(Color.WHITE);
-            mPaint.setAlpha(150);
-            canvas.drawPath(pathTail, mPaint);
-
-        }
-        return mBitmapTail;
-
-
     }
 
     public void startAnim(boolean zoomOut) {// false zoom in,true zoom out
@@ -1281,15 +1237,50 @@ public class RxSeatAirplane extends View {
 
     }
 
+    private Bitmap getBitmapTail() {
 
-    public class PointSeat {
-        public int row;
-        public int column;
+        Canvas canvas;
 
-        public PointSeat(int row, int column) {
-            this.row = row;
-            this.column = column;
+        if (mBitmapTail == null) {
+            mBitmapTail = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+            canvas = new Canvas(mBitmapTail);
+            pathTail.reset();
+            rectFCabin.bottom = rectFCabin.bottom - RxImageTool.dp2px(getContext(), 5);
+            pathTail.moveTo(rectFCabin.centerX(),
+                    rectFCabin.bottom + rectFCabin.width() / 2);
+
+            pathTail.lineTo(rectFCabin.centerX() + rectFCabin.width() * 1.5f,
+                    rectFCabin.bottom + rectFCabin.width() * 1.5f);
+            pathTail.lineTo(rectFCabin.centerX() + rectFCabin.width() * 1.5f,
+                    rectFCabin.bottom + rectFCabin.width() * 2f);
+            pathTail.lineTo(rectFCabin.centerX(),
+                    rectFCabin.bottom + rectFCabin.width() * 1.5f);
+            pathTail.lineTo(rectFCabin.centerX() - rectFCabin.width() * 1.5f,
+                    rectFCabin.bottom + rectFCabin.width() * 2f);
+            pathTail.lineTo(rectFCabin.centerX() - rectFCabin.width() * 1.5f,
+                    rectFCabin.bottom + rectFCabin.width() * 1.5f);
+            pathTail.close();
+
+            canvas.drawPath(pathTail, mPaint);
+
+            pathTail.reset();
+            pathTail.moveTo(rectFCabin.centerX() - rectFCabin.width() / 2 * 0.1f,
+                    rectFCabin.bottom + rectFCabin.width() * 1.5f);
+            pathTail.quadTo(
+                    rectFCabin.centerX(),
+                    rectFCabin.bottom + rectFCabin.width() * 3f,
+                    rectFCabin.centerX() + rectFCabin.width() / 2 * 0.1f,
+                    rectFCabin.bottom + rectFCabin.width() * 1.5f);
+
+            pathTail.close();
+            mPaint.setColor(Color.WHITE);
+            mPaint.setAlpha(150);
+            canvas.drawPath(pathTail, mPaint);
+
         }
+        return mBitmapTail;
+
+
     }
 
 
@@ -1307,10 +1298,9 @@ public class RxSeatAirplane extends View {
 
     }
 
-
     private void drawWifiLogo(RectF rectFWifi, Canvas canvas) {
         float signalRadius = rectFWifi.height() / 2 / 4;
-        RectF rect = null;
+        RectF rect;
         mPaintOther.setStrokeWidth(signalRadius / 4);
         mPaintOther.setAlpha(150);
         float marginTop = signalRadius * (3 + 0.5f) / 2f;
@@ -1390,29 +1380,15 @@ public class RxSeatAirplane extends View {
         });
     }
 
+    public static class PointSeat {
+        public int row;
+        public int column;
 
-    @SuppressLint("HandlerLeak")
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            Canvas c = (Canvas) msg.obj;
-
-            Bundle bundle = msg.getData();
-
-            if (bundle != null && c != null) {
-
-                float left = bundle.getFloat("left");
-                float top = bundle.getFloat("top");
-                byte[] bis = bundle.getByteArray("bitmap");
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bis, 0, bis.length);
-                if (bitmap != null) {
-                    c.drawBitmap(bitmap, left, top, mPaint);
-                }
-            }
+        PointSeat(int row, int column) {
+            this.row = row;
+            this.column = column;
         }
-    };
+    }
 
 
     public abstract class MoveListerner implements OnTouchListener,

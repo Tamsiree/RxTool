@@ -86,8 +86,8 @@ public class TOrangeJuice extends View {
     public TOrangeJuice(Context context, AttributeSet attrs) {
         super(context, attrs);
         mResources = getResources();
-        mLeftMargin = RxImageTool.dip2px(LEFT_MARGIN);
-        mRightMargin = RxImageTool.dip2px(RIGHT_MARGIN);
+        mLeftMargin = RxImageTool.dp2px(context, LEFT_MARGIN);
+        mRightMargin = RxImageTool.dp2px(context, RIGHT_MARGIN);
 
         mLeafFloatTime = LEAF_FLOAT_TIME;
         mLeafRotateTime = LEAF_ROTATE_TIME;

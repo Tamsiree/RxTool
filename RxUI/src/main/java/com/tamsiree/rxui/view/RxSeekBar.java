@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -23,6 +24,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.tamsiree.rxkit.RxImageTool;
@@ -42,21 +45,21 @@ public class RxSeekBar extends View {
 
     private int defaultPaddingTop;
     //进度提示的背景 The background of the progress
-    private final int mProgressHintBGId;
+    private int mProgressHintBGId;
 
     // 按钮的背景   The background of the Drag button
-    private final int mThumbResId;
+    private int mThumbResId;
 
     //刻度模式：number根据数字实际比例排列；other 均分排列
     //Scale mode:
     // number according to the actual proportion of the number of arranged;
     // other equally arranged
-    private final int mCellMode;
+    private int mCellMode;
 
     //single是Seekbar模式，range是RxSeekBar
     //single is Seekbar mode, range is angeSeekbar
     //single = 1; range = 2
-    private final int mSeekBarMode;
+    private int mSeekBarMode;
 
     //默认为1，当大于1时自动切回刻度模式
     //The default is 1, and when it is greater than 1,
@@ -122,7 +125,7 @@ public class RxSeekBar extends View {
 
     private boolean isEnable = true;
 
-    private final boolean mHideProgressHint;
+    private boolean mHideProgressHint;
 
     //刻度上显示的文字
     //The texts displayed on the scale
@@ -156,12 +159,28 @@ public class RxSeekBar extends View {
 
     public RxSeekBar(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initView(context, attrs);
+    }
+
+    public RxSeekBar(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initView(context, attrs);
+    }
+
+    @TargetApi(21)
+    public RxSeekBar(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        initView(context, attrs);
+    }
+
+
+    private void initView(Context context, AttributeSet attrs) {
         TypedArray t = context.obtainStyledAttributes(attrs, R.styleable.RxSeekBar);
         cellsCount = t.getInt(R.styleable.RxSeekBar_cells, 1);
         reserveValue = t.getFloat(R.styleable.RxSeekBar_reserve, 0);
         mMin = t.getFloat(R.styleable.RxSeekBar_minProgress, 0);
         mMax = t.getFloat(R.styleable.RxSeekBar_maxProgress, 100);
-        mThumbResId = t.getResourceId(R.styleable.RxSeekBar_seekBarResId, 0);
+        mThumbResId = t.getResourceId(R.styleable.RxSeekBar_seekBarResId, R.drawable.seekbar_thumb);
         mProgressHintBGId = t.getResourceId(R.styleable.RxSeekBar_progressHintResId, 0);
         colorLineSelected = t.getColor(R.styleable.RxSeekBar_lineColorSelected, 0xFF4BD962);
         colorLineEdge = t.getColor(R.styleable.RxSeekBar_lineColorEdge, 0xFFD7D7D7);
@@ -170,13 +189,13 @@ public class RxSeekBar extends View {
         mTextArray = t.getTextArray(R.styleable.RxSeekBar_markTextArray);
         mHideProgressHint = t.getBoolean(R.styleable.RxSeekBar_hideProgressHint, false);
         mIsHintHolder = t.getBoolean(R.styleable.RxSeekBar_isHintHolder, false);
-        textPadding = (int) t.getDimension(R.styleable.RxSeekBar_textPadding, RxImageTool.dp2px(7f));
-        mTextSize = (int) t.getDimension(R.styleable.RxSeekBar_textSize2, RxImageTool.dp2px(12f));
+        textPadding = (int) t.getDimension(R.styleable.RxSeekBar_textPadding, RxImageTool.dp2px(context, 7f));
+        mTextSize = (int) t.getDimension(R.styleable.RxSeekBar_textSize2, RxImageTool.dp2px(context, 12f));
         mHintBGHeight = t.getDimension(R.styleable.RxSeekBar_hintBGHeight, 0);
         mHintBGWith = t.getDimension(R.styleable.RxSeekBar_hintBGWith, 0);
-        mSeekBarHeight = (int) t.getDimension(R.styleable.RxSeekBar_seekBarHeight, RxImageTool.dp2px(2f));
+        mSeekBarHeight = (int) t.getDimension(R.styleable.RxSeekBar_seekBarHeight, RxImageTool.dp2px(context, 2f));
         mHintBGPadding = (int) t.getDimension(R.styleable.RxSeekBar_hintBGPadding, 0);
-        mThumbSize = (int) t.getDimension(R.styleable.RxSeekBar_thumbSize, RxImageTool.dp2px(26f));
+        mThumbSize = (int) t.getDimension(R.styleable.RxSeekBar_thumbSize, RxImageTool.dp2px(context, 26f));
         mCellMode = t.getInt(R.styleable.RxSeekBar_cellMode, 0);
         mSeekBarMode = t.getInt(R.styleable.RxSeekBar_seekBarMode, 2);
 
@@ -189,9 +208,9 @@ public class RxSeekBar extends View {
 
         // if you don't set the mHintBGWith or the mHintBGWith < default value, if will use default value
         if (mHintBGWith == 0) {
-            defaultPaddingLeftAndRight = RxImageTool.dp2px(25f);
+            defaultPaddingLeftAndRight = RxImageTool.dp2px(context, 25f);
         } else {
-            defaultPaddingLeftAndRight = Math.max((int) (mHintBGWith / 2 + RxImageTool.dp2px(5f)), RxImageTool.dp2px(25f));
+            defaultPaddingLeftAndRight = Math.max((int) (mHintBGWith / 2 + RxImageTool.dp2px(context, 5f)), RxImageTool.dp2px(context, 25f));
 
         }
 
@@ -402,7 +421,9 @@ public class RxSeekBar extends View {
                     float scaleHeight = mThumbSize * 1.0f / original.getHeight();
                     float scaleWidth = scaleHeight;
                     matrix.postScale(scaleWidth, scaleHeight);
-                    bmp = Bitmap.createBitmap(original, 0, 0, original.getWidth(), original.getHeight(), matrix, true);
+                    if (!isInEditMode()) {
+                        bmp = Bitmap.createBitmap(original, 0, 0, original.getWidth(), original.getHeight(), matrix, true);
+                    }
                 }
 
             } else {
@@ -519,6 +540,9 @@ public class RxSeekBar extends View {
             int centerY = lineBottom - mSeekBarHeight / 2;
             int radius = (int) (widthSize * DEFAULT_RADIUS);
             // draw shadow
+            if (defaultPaint == null) {
+                defaultPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            }
             defaultPaint.setStyle(Paint.Style.FILL);
             canvas.save();
             canvas.translate(0, radius * 0.25f);
@@ -1024,4 +1048,6 @@ public class RxSeekBar extends View {
             return 0;
         }
     }
+
+
 }

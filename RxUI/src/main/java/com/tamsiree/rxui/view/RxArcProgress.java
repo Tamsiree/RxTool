@@ -1,5 +1,6 @@
 package com.tamsiree.rxui.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -20,7 +21,7 @@ import com.tamsiree.rxui.R;
  * @author Tamsiree
  * @date 2015/12/03
  */
-public class RxRoundProgress extends View {
+public class RxArcProgress extends View {
     public static final int STROKE = 0;
     /**
      * 画笔对象的引用
@@ -66,15 +67,15 @@ public class RxRoundProgress extends View {
      */
     private int style;
 
-    public RxRoundProgress(Context context) {
+    public RxArcProgress(Context context) {
         this(context, null);
     }
 
-    public RxRoundProgress(Context context, AttributeSet attrs) {
+    public RxArcProgress(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RxRoundProgress(Context context, AttributeSet attrs, int defStyle) {
+    public RxArcProgress(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
         //进度条画笔
@@ -86,17 +87,17 @@ public class RxRoundProgress extends View {
         //文字画笔
         moneyDPaint = new Paint();
         TypedArray mTypedArray = context.obtainStyledAttributes(attrs,
-                R.styleable.RxRoundProgress);
+                R.styleable.RxArcProgress);
 
         //获取自定义属性和默认值
-        roundColor = mTypedArray.getColor(R.styleable.RxRoundProgress_roundColor, Color.WHITE);
-        roundProgressColor = mTypedArray.getColor(R.styleable.RxRoundProgress_roundProgressColor, Color.parseColor("#F6B141"));
-        textColor = mTypedArray.getColor(R.styleable.RxRoundProgress_textColor, Color.GREEN);
-        textSize = mTypedArray.getDimension(R.styleable.RxRoundProgress_textSize1, 15);
-        roundWidth = mTypedArray.getDimension(R.styleable.RxRoundProgress_roundWidth, 20);
-        max = mTypedArray.getInteger(R.styleable.RxRoundProgress_max, 100);
-        textIsDisplayable = mTypedArray.getBoolean(R.styleable.RxRoundProgress_textIsDisplayable, true);
-        style = mTypedArray.getInt(R.styleable.RxRoundProgress_style, 0);
+        roundColor = mTypedArray.getColor(R.styleable.RxArcProgress_roundColor, Color.WHITE);
+        roundProgressColor = mTypedArray.getColor(R.styleable.RxArcProgress_roundProgressColor, Color.parseColor("#F6B141"));
+        textColor = mTypedArray.getColor(R.styleable.RxArcProgress_textColor, Color.GREEN);
+        textSize = mTypedArray.getDimension(R.styleable.RxArcProgress_textSize1, 15);
+        roundWidth = mTypedArray.getDimension(R.styleable.RxArcProgress_roundWidth, 20);
+        max = mTypedArray.getInteger(R.styleable.RxArcProgress_max, 100);
+        textIsDisplayable = mTypedArray.getBoolean(R.styleable.RxArcProgress_textIsDisplayable, true);
+        style = mTypedArray.getInt(R.styleable.RxArcProgress_style, 0);
 
         mTypedArray.recycle();
     }
@@ -106,7 +107,7 @@ public class RxRoundProgress extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        /**
+        /*
          * 画最外层的大圆环
          */
         //获取圆心的x坐标
@@ -114,6 +115,7 @@ public class RxRoundProgress extends View {
         //圆环的半径
         int radius = (int) (centre - roundWidth / 2);
         //用于定义的圆弧的形状和大小的界限
+        @SuppressLint("DrawAllocation")
         RectF oval = new RectF(centre - radius + 90, centre - radius + 90, centre + radius + 90, centre + radius + 90);
         //设置圆环的颜色
         paint.setColor(roundColor);
@@ -136,9 +138,10 @@ public class RxRoundProgress extends View {
         moneyDPaint.setAntiAlias(true);
         moneyDPaint.setTextSize(48);
         //左边最小值
-        canvas.drawText("0元", (float) (radius - Math.sqrt(2) * (radius / 2) + 10), (float) (2 * radius - Math.sqrt(2) * (radius / 4) + 130), textPaint);
+        double v = 2 * radius - Math.sqrt(2) * (radius / 4f) + 130;
+        canvas.drawText("0元", (float) (radius - Math.sqrt(2) * (radius / 2) + 10), (float) v, textPaint);
         //右边最大值
-        canvas.drawText(getMax() + "元", (float) (radius + Math.sqrt(2) * (radius / 2) + 138), (float) (2 * radius - Math.sqrt(2) * (radius / 4) + 130), textPaint);
+        canvas.drawText(getMax() + "元", (float) (radius + Math.sqrt(2) * (radius / 2) + 138), (float) v, textPaint);
 		/*if(progress<50){
 			double money = progress*1+(Math.floor(Math.random()*getMax()));
 			canvas.drawText(money+"", (centre+90) - moneyPaint.measureText(money+"")/2-15, centre+165, moneyPaint);//右边最大值

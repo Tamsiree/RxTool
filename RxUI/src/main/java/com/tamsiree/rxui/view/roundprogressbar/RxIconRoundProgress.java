@@ -1,9 +1,10 @@
 package com.tamsiree.rxui.view.roundprogressbar;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -12,13 +13,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxui.R;
-import com.tamsiree.rxui.view.roundprogressbar.common.RxBaseRoundProgressBar;
+import com.tamsiree.rxui.view.roundprogressbar.common.RxBaseRoundProgress;
 
 /**
  * @author tamsiree
  */
-public class RxIconRoundProgressBar extends RxBaseRoundProgressBar implements View.OnClickListener {
+public class RxIconRoundProgress extends RxBaseRoundProgress implements View.OnClickListener {
 
     protected final static int DEFAULT_ICON_SIZE = 20;
     protected final static int DEFAULT_ICON_PADDING_LEFT = 0;
@@ -27,6 +32,7 @@ public class RxIconRoundProgressBar extends RxBaseRoundProgressBar implements Vi
     protected final static int DEFAULT_ICON_PADDING_BOTTOM = 0;
 
     private ImageView ivProgressIcon;
+    private LinearLayout llIcon;
     private int iconResource;
     private int iconSize;
     private int iconWidth;
@@ -40,12 +46,22 @@ public class RxIconRoundProgressBar extends RxBaseRoundProgressBar implements Vi
 
     private OnIconClickListener iconClickListener;
 
-    public RxIconRoundProgressBar(Context context, AttributeSet attrs) {
+
+    public RxIconRoundProgress(Context context) {
+        super(context);
+    }
+
+    public RxIconRoundProgress(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public RxIconRoundProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxIconRoundProgress(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    @TargetApi(21)
+    public RxIconRoundProgress(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override
@@ -55,28 +71,29 @@ public class RxIconRoundProgressBar extends RxBaseRoundProgressBar implements Vi
 
     @Override
     protected void initStyleable(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.IconRoundCornerProgress);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RxIconRoundProgress);
 
-        iconResource = typedArray.getResourceId(R.styleable.IconRoundCornerProgress_rcIconSrc, R.drawable.set);
+        iconResource = typedArray.getResourceId(R.styleable.RxIconRoundProgress_rcIconSrc, R.drawable.clover);
 
-        iconSize = (int) typedArray.getDimension(R.styleable.IconRoundCornerProgress_rcIconSize, -1);
-        iconWidth = (int) typedArray.getDimension(R.styleable.IconRoundCornerProgress_rcIconWidth, dp2px(DEFAULT_ICON_SIZE));
-        iconHeight = (int) typedArray.getDimension(R.styleable.IconRoundCornerProgress_rcIconHeight, dp2px(DEFAULT_ICON_SIZE));
-        iconPadding = (int) typedArray.getDimension(R.styleable.IconRoundCornerProgress_rcIconPadding, -1);
-        iconPaddingLeft = (int) typedArray.getDimension(R.styleable.IconRoundCornerProgress_rcIconPaddingLeft, dp2px(DEFAULT_ICON_PADDING_LEFT));
-        iconPaddingRight = (int) typedArray.getDimension(R.styleable.IconRoundCornerProgress_rcIconPaddingRight, dp2px(DEFAULT_ICON_PADDING_RIGHT));
-        iconPaddingTop = (int) typedArray.getDimension(R.styleable.IconRoundCornerProgress_rcIconPaddingTop, dp2px(DEFAULT_ICON_PADDING_TOP));
-        iconPaddingBottom = (int) typedArray.getDimension(R.styleable.IconRoundCornerProgress_rcIconPaddingBottom, dp2px(DEFAULT_ICON_PADDING_BOTTOM));
+        iconSize = (int) typedArray.getDimension(R.styleable.RxIconRoundProgress_rcIconSize, -1);
+        iconWidth = (int) typedArray.getDimension(R.styleable.RxIconRoundProgress_rcIconWidth, RxImageTool.dp2px(context, DEFAULT_ICON_SIZE));
+        iconHeight = (int) typedArray.getDimension(R.styleable.RxIconRoundProgress_rcIconHeight, RxImageTool.dp2px(context, DEFAULT_ICON_SIZE));
+        iconPadding = (int) typedArray.getDimension(R.styleable.RxIconRoundProgress_rcIconPadding, -1);
+        iconPaddingLeft = (int) typedArray.getDimension(R.styleable.RxIconRoundProgress_rcIconPaddingLeft, RxImageTool.dp2px(context, DEFAULT_ICON_PADDING_LEFT));
+        iconPaddingRight = (int) typedArray.getDimension(R.styleable.RxIconRoundProgress_rcIconPaddingRight, RxImageTool.dp2px(context, DEFAULT_ICON_PADDING_RIGHT));
+        iconPaddingTop = (int) typedArray.getDimension(R.styleable.RxIconRoundProgress_rcIconPaddingTop, RxImageTool.dp2px(context, DEFAULT_ICON_PADDING_TOP));
+        iconPaddingBottom = (int) typedArray.getDimension(R.styleable.RxIconRoundProgress_rcIconPaddingBottom, RxImageTool.dp2px(context, DEFAULT_ICON_PADDING_BOTTOM));
 
         int colorIconBackgroundDefault = context.getResources().getColor(R.color.round_corner_progress_bar_background_default);
-        colorIconBackground = typedArray.getColor(R.styleable.IconRoundCornerProgress_rcIconBackgroundColor, colorIconBackgroundDefault);
+        colorIconBackground = typedArray.getColor(R.styleable.RxIconRoundProgress_rcIconBackgroundColor, colorIconBackgroundDefault);
 
         typedArray.recycle();
     }
 
     @Override
     protected void initView() {
-        ivProgressIcon = (ImageView) findViewById(R.id.iv_progress_icon);
+        ivProgressIcon = findViewById(R.id.iv_progress_icon);
+        llIcon = findViewById(R.id.ll_icon);
         ivProgressIcon.setOnClickListener(this);
     }
 
@@ -92,7 +109,6 @@ public class RxIconRoundProgressBar extends RxBaseRoundProgressBar implements Vi
         iconClickListener = listener;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     protected void drawProgress(LinearLayout layoutProgress, float max, float progress, float totalWidth,
                                 int radius, int padding, int colorProgress, boolean isReverse) {
@@ -104,11 +120,7 @@ public class RxIconRoundProgressBar extends RxBaseRoundProgressBar implements Vi
             backgroundDrawable.setCornerRadii(new float[]{0, 0, newRadius, newRadius, newRadius, newRadius, 0, 0});
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            layoutProgress.setBackground(backgroundDrawable);
-        } else {
-            layoutProgress.setBackgroundDrawable(backgroundDrawable);
-        }
+        layoutProgress.setBackground(backgroundDrawable);
 
         float ratio = max / progress;
         int progressWidth = (int) ((totalWidth - ((padding * 2) + ivProgressIcon.getWidth())) / ratio);
@@ -146,16 +158,11 @@ public class RxIconRoundProgressBar extends RxBaseRoundProgressBar implements Vi
         ivProgressIcon.invalidate();
     }
 
-    @SuppressWarnings("deprecation")
     private void drawIconBackgroundColor() {
         GradientDrawable iconBackgroundDrawable = createGradientDrawable(colorIconBackground);
         int radius = getRadius() - (getPadding() / 2);
         iconBackgroundDrawable.setCornerRadii(new float[]{radius, radius, 0, 0, 0, 0, radius, radius});
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            ivProgressIcon.setBackground(iconBackgroundDrawable);
-        } else {
-            ivProgressIcon.setBackgroundDrawable(iconBackgroundDrawable);
-        }
+        llIcon.setBackground(iconBackgroundDrawable);
     }
 
     public int getIconImageResource() {
@@ -344,7 +351,29 @@ public class RxIconRoundProgressBar extends RxBaseRoundProgressBar implements Vi
         };
     }
 
-    public interface OnIconClickListener {
-        public void onIconClick();
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
     }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    public interface OnIconClickListener {
+        void onIconClick();
+    }
+
+
 }

@@ -91,7 +91,7 @@ public class TSectionTabLayout extends FrameLayout implements ValueAnimator.Anim
     private ValueAnimator mValueAnimator;
     private OvershootInterpolator mInterpolator = new OvershootInterpolator(0.8f);
 
-    private TFragmentManager mTFragmentManager;
+    private TFragmentManager mTFragmentManager1;
     private float[] mRadiusArr = new float[8];
     private boolean mIsFirstDraw = true;
     //setter and getter
@@ -188,7 +188,7 @@ public class TSectionTabLayout extends FrameLayout implements ValueAnimator.Anim
      * 关联数据支持同时切换fragments
      */
     public void setTabData(String[] titles, FragmentActivity fa, int containerViewId, ArrayList<Fragment> fragments) {
-        mTFragmentManager = new TFragmentManager(fa.getSupportFragmentManager(), containerViewId, fragments);
+        mTFragmentManager1 = new TFragmentManager(fa.getSupportFragmentManager(), containerViewId, fragments);
         setTabData(titles);
     }
 
@@ -440,8 +440,8 @@ public class TSectionTabLayout extends FrameLayout implements ValueAnimator.Anim
         mLastTab = this.mCurrentTab;
         this.mCurrentTab = currentTab;
         updateTabSelection(currentTab);
-        if (mTFragmentManager != null) {
-            mTFragmentManager.setFragments(currentTab);
+        if (mTFragmentManager1 != null) {
+            mTFragmentManager1.setFragments(currentTab);
         }
         if (mIndicatorAnimEnable) {
             calcOffset();

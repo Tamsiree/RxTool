@@ -103,7 +103,7 @@ public class RxCobwebView extends View {
     }
 
     private void initEvent() {
-        defalutSize = RxImageTool.dp2px(defalutSize);
+        defalutSize = RxImageTool.dp2px(mContext, defalutSize);
 
         mSpiderNames = new String[]{"金钱", "能力", "美貌", "智慧", "交际", "口才"};
         mSpiderLevels = new float[]{1, 1, 1, 1, 1, 1};
@@ -200,7 +200,7 @@ public class RxCobwebView extends View {
         //蛛网最大层级数
         mSpiderMaxLevel = a.getInteger(R.styleable.RxCobwebView_spiderMaxLevel, 4);
         //标题字体大小
-        mSpiderNameSize = a.getDimensionPixelSize(R.styleable.RxCobwebView_spiderNameSize, RxImageTool.dp2px(16));
+        mSpiderNameSize = a.getDimensionPixelSize(R.styleable.RxCobwebView_spiderNameSize, RxImageTool.dp2px(mContext, 16));
         a.recycle();
     }
 

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -16,14 +15,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxui.R;
-import com.tamsiree.rxui.view.roundprogressbar.common.RxBaseRoundProgressBar;
+import com.tamsiree.rxui.view.roundprogressbar.common.RxBaseRoundProgress;
 
 
 /**
  * @author tamsiree
  */
-public class RxTextRoundProgressBar extends RxBaseRoundProgressBar implements ViewTreeObserver.OnGlobalLayoutListener {
+public class RxTextRoundProgress extends RxBaseRoundProgress implements ViewTreeObserver.OnGlobalLayoutListener {
     protected final static int DEFAULT_TEXT_SIZE = 16;
     protected final static int DEFAULT_TEXT_MARGIN = 10;
 
@@ -33,11 +33,11 @@ public class RxTextRoundProgressBar extends RxBaseRoundProgressBar implements Vi
     private int textProgressMargin;
     private String textProgress;
 
-    public RxTextRoundProgressBar(Context context, AttributeSet attrs) {
+    public RxTextRoundProgress(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public RxTextRoundProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RxTextRoundProgress(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -48,21 +48,21 @@ public class RxTextRoundProgressBar extends RxBaseRoundProgressBar implements Vi
 
     @Override
     protected void initStyleable(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TextRoundCornerProgress);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RxTextRoundProgress);
 
-        colorTextProgress = typedArray.getColor(R.styleable.TextRoundCornerProgress_rcTextProgressColor, Color.WHITE);
+        colorTextProgress = typedArray.getColor(R.styleable.RxTextRoundProgress_rcTextProgressColor, Color.WHITE);
 
-        textProgressSize = (int) typedArray.getDimension(R.styleable.TextRoundCornerProgress_rcTextProgressSize, dp2px(DEFAULT_TEXT_SIZE));
-        textProgressMargin = (int) typedArray.getDimension(R.styleable.TextRoundCornerProgress_rcTextProgressMargin, dp2px(DEFAULT_TEXT_MARGIN));
+        textProgressSize = (int) typedArray.getDimension(R.styleable.RxTextRoundProgress_rcTextProgressSize, RxImageTool.dp2px(context, DEFAULT_TEXT_SIZE));
+        textProgressMargin = (int) typedArray.getDimension(R.styleable.RxTextRoundProgress_rcTextProgressMargin, RxImageTool.dp2px(context, DEFAULT_TEXT_MARGIN));
 
-        textProgress = typedArray.getString(R.styleable.TextRoundCornerProgress_rcTextProgress);
+        textProgress = typedArray.getString(R.styleable.RxTextRoundProgress_rcTextProgress);
 
         typedArray.recycle();
     }
 
     @Override
     protected void initView() {
-        tvProgress = (TextView) findViewById(R.id.tv_progress);
+        tvProgress = findViewById(R.id.tv_progress);
         tvProgress.getViewTreeObserver().addOnGlobalLayoutListener(this);
     }
 
@@ -72,11 +72,7 @@ public class RxTextRoundProgressBar extends RxBaseRoundProgressBar implements Vi
         GradientDrawable backgroundDrawable = createGradientDrawable(colorProgress);
         int newRadius = radius - (padding / 2);
         backgroundDrawable.setCornerRadii(new float[]{newRadius, newRadius, newRadius, newRadius, newRadius, newRadius, newRadius, newRadius});
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            layoutProgress.setBackground(backgroundDrawable);
-        } else {
-            layoutProgress.setBackgroundDrawable(backgroundDrawable);
-        }
+        layoutProgress.setBackground(backgroundDrawable);
 
         float ratio = max / progress;
         int progressWidth = (int) ((totalWidth - (padding * 2)) / ratio);
@@ -165,12 +161,10 @@ public class RxTextRoundProgressBar extends RxBaseRoundProgressBar implements Vi
         params.addRule(RelativeLayout.ALIGN_RIGHT, 0);
         params.addRule(RelativeLayout.LEFT_OF, 0);
         params.addRule(RelativeLayout.RIGHT_OF, 0);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            params.removeRule(RelativeLayout.START_OF);
-            params.removeRule(RelativeLayout.END_OF);
-            params.removeRule(RelativeLayout.ALIGN_START);
-            params.removeRule(RelativeLayout.ALIGN_END);
-        }
+        params.removeRule(RelativeLayout.START_OF);
+        params.removeRule(RelativeLayout.END_OF);
+        params.removeRule(RelativeLayout.ALIGN_START);
+        params.removeRule(RelativeLayout.ALIGN_END);
         tvProgress.setLayoutParams(params);
     }
 
@@ -178,14 +172,10 @@ public class RxTextRoundProgressBar extends RxBaseRoundProgressBar implements Vi
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvProgress.getLayoutParams();
         if (isReverse()) {
             params.addRule(RelativeLayout.ALIGN_LEFT, R.id.layout_progress);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                params.addRule(RelativeLayout.ALIGN_START, R.id.layout_progress);
-            }
+            params.addRule(RelativeLayout.ALIGN_START, R.id.layout_progress);
         } else {
             params.addRule(RelativeLayout.ALIGN_RIGHT, R.id.layout_progress);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                params.addRule(RelativeLayout.ALIGN_END, R.id.layout_progress);
-            }
+            params.addRule(RelativeLayout.ALIGN_END, R.id.layout_progress);
         }
         tvProgress.setLayoutParams(params);
     }
@@ -194,14 +184,10 @@ public class RxTextRoundProgressBar extends RxBaseRoundProgressBar implements Vi
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvProgress.getLayoutParams();
         if (isReverse()) {
             params.addRule(RelativeLayout.LEFT_OF, R.id.layout_progress);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                params.addRule(RelativeLayout.START_OF, R.id.layout_progress);
-            }
+            params.addRule(RelativeLayout.START_OF, R.id.layout_progress);
         } else {
             params.addRule(RelativeLayout.RIGHT_OF, R.id.layout_progress);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                params.addRule(RelativeLayout.END_OF, R.id.layout_progress);
-            }
+            params.addRule(RelativeLayout.END_OF, R.id.layout_progress);
         }
         tvProgress.setLayoutParams(params);
     }
@@ -253,11 +239,7 @@ public class RxTextRoundProgressBar extends RxBaseRoundProgressBar implements Vi
 
     @Override
     public void onGlobalLayout() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            tvProgress.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        } else {
-            tvProgress.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-        }
+        tvProgress.getViewTreeObserver().removeOnGlobalLayoutListener(this);
         drawTextProgressPosition();
     }
 

@@ -16,18 +16,14 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tamsiree.rxkit.RxBarTool;
 import com.tamsiree.rxkit.RxConstants;
-import com.tamsiree.rxkit.RxImageTool;
-import com.tamsiree.rxkit.RxKeyboardTool;
 import com.tamsiree.rxui.R;
-import com.tamsiree.rxui.view.RxTextAutoZoom;
+import com.tamsiree.rxui.view.RxTitle;
 
 /**
  * @author tamsiree
@@ -39,10 +35,8 @@ public class ActivityWebView extends ActivityBase {
      */
     private static final int TIME_INTERVAL = 2000;
     ProgressBar pbWebBase;
-    TextView tvTitle;
     WebView webBase;
-    ImageView ivFinish;
-    RxTextAutoZoom mRxTextAutoZoom;
+    RxTitle mRxTitle;
     LinearLayout llIncludeTitle;
     private String webPath = "";
     private long mBackPressed;
@@ -60,15 +54,13 @@ public class ActivityWebView extends ActivityBase {
 
     private void initView() {
         // TODO Auto-generated method stub
-        mRxTextAutoZoom = findViewById(R.id.afet_tv_title);
+        mRxTitle = findViewById(R.id.web_rx_title);
         llIncludeTitle = findViewById(R.id.ll_include_title);
-        tvTitle = findViewById(R.id.tv_title);
         pbWebBase = findViewById(R.id.pb_web_base);
         webBase = findViewById(R.id.web_base);
-        ivFinish = findViewById(R.id.iv_finish);
-        ivFinish.setOnClickListener(new View.OnClickListener() {
+        mRxTitle.setLeftOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 if (webBase.canGoBack()) {
                     webBase.goBack();
                 } else {
@@ -77,26 +69,6 @@ public class ActivityWebView extends ActivityBase {
             }
         });
 
-        initAutoFitEditText();
-    }
-
-    public void initAutoFitEditText() {
-
-        mRxTextAutoZoom.clearFocus();
-        mRxTextAutoZoom.setEnabled(false);
-        mRxTextAutoZoom.setFocusableInTouchMode(false);
-        mRxTextAutoZoom.setFocusable(false);
-        mRxTextAutoZoom.setEnableSizeCache(false);
-        //might cause crash on some devices
-        mRxTextAutoZoom.setMovementMethod(null);
-        // can be added after layout inflation;
-        mRxTextAutoZoom.setMaxHeight(RxImageTool.dip2px(55f));
-        //don't forget to add min text size programmatically
-        mRxTextAutoZoom.setMinTextSize(37f);
-
-        RxTextAutoZoom.setNormalization(this, llIncludeTitle, mRxTextAutoZoom);
-
-        RxKeyboardTool.hideSoftInput(this);
     }
 
     @SuppressLint({"SetJavaScriptEnabled", "ObsoleteSdkInt"})
@@ -175,7 +147,7 @@ public class ActivityWebView extends ActivityBase {
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-                mRxTextAutoZoom.setText(title);
+                mRxTitle.setTitle(title);
             }
 
             @Override

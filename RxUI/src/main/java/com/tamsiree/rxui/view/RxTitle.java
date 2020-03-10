@@ -1,5 +1,6 @@
 package com.tamsiree.rxui.view;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,6 +8,7 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +29,9 @@ import com.tamsiree.rxui.R;
 
 public class RxTitle extends FrameLayout {
     //*******************************************控件start******************************************
+
+    private View mRootView;
+
     //根布局
     private LinearLayout mRootLayout;
 
@@ -129,19 +134,14 @@ public class RxTitle extends FrameLayout {
         initView(context, attrs);
     }
 
+    @TargetApi(21)
     public RxTitle(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initView(context, attrs);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-    }
-
     private void initView(final Context context, AttributeSet attrs) {
-        LayoutInflater.from(context).inflate(R.layout.include_rx_title, this);
-
+        mRootView = LayoutInflater.from(context).inflate(R.layout.include_rx_title, this);
         mRootLayout = findViewById(R.id.root_layout);
         mTvTitle = findViewById(R.id.tv_rx_title);
         mLlLeft = findViewById(R.id.ll_left);
@@ -163,8 +163,9 @@ public class RxTitle extends FrameLayout {
             mTitle = a.getString(R.styleable.RxTitle_title);
             //标题颜色
             mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, getResources().getColor(R.color.white));
+
             //标题字体大小
-            mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, RxImageTool.dip2px(20));
+            mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, RxImageTool.dp2px(context, 20));
             //TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
             mTitleVisibility = a.getBoolean(R.styleable.RxTitle_titleVisibility, true);
 
@@ -180,15 +181,15 @@ public class RxTitle extends FrameLayout {
             mLeftText = a.getString(R.styleable.RxTitle_leftText);
             //左边字体颜色
             mLeftTextColor = a.getColor(R.styleable.RxTitle_leftTextColor, getResources().getColor(R.color.white));
-            //标题字体大小
-            mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, RxImageTool.dip2px(8));
+            //左侧标题字体大小
+            mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, RxImageTool.dp2px(context, 8));
             mLeftTextVisibility = a.getBoolean(R.styleable.RxTitle_leftTextVisibility, false);
 
             mRightText = a.getString(R.styleable.RxTitle_rightText);
             //右边字体颜色
             mRightTextColor = a.getColor(R.styleable.RxTitle_rightTextColor, getResources().getColor(R.color.white));
             //标题字体大小
-            mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, RxImageTool.dip2px(8));
+            mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, RxImageTool.dp2px(context, 8));
             mRightTextVisibility = a.getBoolean(R.styleable.RxTitle_rightTextVisibility, false);
 
 
@@ -240,11 +241,11 @@ public class RxTitle extends FrameLayout {
 
         setRightIconVisibility(mRightIconVisibility);
 
-        initAutoFitEditText();
+        initAutoFitEditText(context);
         //==========================================================================================以上为属性初始化
     }
 
-    private void initAutoFitEditText() {
+    private void initAutoFitEditText(Context context) {
         mTvTitle.clearFocus();
         mTvTitle.setEnabled(false);
         mTvTitle.setFocusableInTouchMode(false);
@@ -253,14 +254,14 @@ public class RxTitle extends FrameLayout {
         //might cause crash on some devices
         mTvTitle.setMovementMethod(null);
         // can be added after layout inflation;
-        mTvTitle.setMaxHeight(RxImageTool.dip2px(55f));
+        mTvTitle.setMaxHeight(RxImageTool.dp2px(context, 55f));
         //don't forget to add min text size programmatically
         mTvTitle.setMinTextSize(37f);
         try {
             RxTextAutoZoom.setNormalization((Activity) getContext(), mRootLayout, mTvTitle);
             RxKeyboardTool.hideSoftInput((Activity) getContext());
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -514,5 +515,24 @@ public class RxTitle extends FrameLayout {
     }
     //==============================================================================================以上为set方法
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
 
 }

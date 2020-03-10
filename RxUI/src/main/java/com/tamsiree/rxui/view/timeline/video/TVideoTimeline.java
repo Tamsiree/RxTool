@@ -44,12 +44,12 @@ public class TVideoTimeline extends View {
     private final int SMALL_TICK_HEIGHT_IN_DP = 12;
     private final int BIG_TICK_HALF_WIDTH_IN_DP = 2;
     private final int SMALL_TICK_HALF_WIDTH_IN_DP = 1;
-    private final int BIG_TICK_HALF_WIDTH = RxImageTool.dip2px(BIG_TICK_HALF_WIDTH_IN_DP);
+    private final int BIG_TICK_HALF_WIDTH = RxImageTool.dp2px(getContext(), BIG_TICK_HALF_WIDTH_IN_DP);
     private final int TRIANGLE_LENGTH = BIG_TICK_HALF_WIDTH * 4;
-    private final int BIG_TICK_HEIGHT = RxImageTool.dip2px(BIG_TICK_HEIGHT_IN_DP);
-    private final int SMALL_TICK_HALF_WIDTH = RxImageTool.dip2px(SMALL_TICK_HALF_WIDTH_IN_DP);
-    private final int SMALL_TICK_HEIGHT = RxImageTool.dip2px(SMALL_TICK_HEIGHT_IN_DP);
-    private final int KEY_TICK_TEXT_SIZE = RxImageTool.dip2px(KEY_TICK_TEXT_SIZE_IN_SP);
+    private final int BIG_TICK_HEIGHT = RxImageTool.dp2px(getContext(), BIG_TICK_HEIGHT_IN_DP);
+    private final int SMALL_TICK_HALF_WIDTH = RxImageTool.dp2px(getContext(), SMALL_TICK_HALF_WIDTH_IN_DP);
+    private final int SMALL_TICK_HEIGHT = RxImageTool.dp2px(getContext(), SMALL_TICK_HEIGHT_IN_DP);
+    private final int KEY_TICK_TEXT_SIZE = RxImageTool.dp2px(getContext(), KEY_TICK_TEXT_SIZE_IN_SP);
     int lastMmiddlecursor = 0;
     long firstTickToSeeInSecondUTC = -1;
     int zoneOffsetInSeconds;
@@ -533,7 +533,7 @@ public class TVideoTimeline extends View {
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
         if (heightMode == MeasureSpec.AT_MOST) {
-            VIEW_HEIGHT = RxImageTool.dip2px(VIEW_HEIGHT_IN_DP);
+            VIEW_HEIGHT = RxImageTool.dp2px(getContext(), VIEW_HEIGHT_IN_DP);
         } else {
             VIEW_HEIGHT = heightSize;
         }

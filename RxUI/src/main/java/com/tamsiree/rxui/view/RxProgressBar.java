@@ -122,6 +122,7 @@ public class RxProgressBar extends View implements Runnable {
     }
 
     private void initAttrs(AttributeSet attrs) {
+        @SuppressLint("CustomViewStyleable")
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.FlikerProgressBar);
         try {
             textSize = (int) ta.getDimension(R.styleable.FlikerProgressBar_textSize, 12);
