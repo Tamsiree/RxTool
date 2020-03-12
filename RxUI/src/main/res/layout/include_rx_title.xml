@@ -29,7 +29,8 @@
                 android:id="@+id/iv_left"
                 android:layout_width="@dimen/dp_55"
                 android:layout_height="match_parent"
-                android:src="@drawable/previous_icon" />
+                android:padding="@dimen/dp_15"
+                android:src="@drawable/ic_back" />
 
         </LinearLayout>
 
@@ -80,6 +81,7 @@
             android:id="@+id/tv_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:paddingRight="10dp"
             android:text="right"
             android:textColor="@color/white" />
@@ -95,7 +97,8 @@
                 android:id="@+id/iv_right"
                 android:layout_width="@dimen/dp_55"
                 android:layout_height="match_parent"
-                android:src="@drawable/previous_icon" />
+                android:padding="@dimen/dp_15"
+                android:src="@drawable/icon_menu" />
 
         </LinearLayout>
 

@@ -1,9 +1,11 @@
 package com.tamsiree.rxui.view;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -13,21 +15,22 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
 import android.util.TypedValue;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
-import androidx.appcompat.widget.AppCompatEditText;
+import java.util.Objects;
 
 /**
  * @author tamsiree
  */
-public class RxTextAutoZoom extends AppCompatEditText {
+@SuppressLint("AppCompatCustomView")
+public class RxTextAutoZoom extends EditText {
     private static final int NO_LINE_LIMIT = -1;
     private final RectF availableSpaceRect = new RectF();
     private final SparseIntArray textCachedSizes = new SparseIntArray();
-    private final SizeTester sizeTester;
+    private SizeTester sizeTester;
     private float maxTextSize;
     private float spacingMult = 1.0f;
     private float spacingAdd = 0.0f;
@@ -38,79 +41,64 @@ public class RxTextAutoZoom extends AppCompatEditText {
     private boolean initiallized = false;
     private TextPaint paint;
 
-    public interface SizeTester {
-        /**
-         * AutoFitEditText
-         *
-         * @param suggestedSize  Size of text to be tested
-         * @param availableSpace available space in which text must fit
-         * @return an integer < 0 if after applying {@code suggestedSize} to
-         * text, it takes less space than {@code availableSpace}, > 0
-         * otherwise
-         */
-        public int onTestSize(int suggestedSize, RectF availableSpace);
-    }
-
     public RxTextAutoZoom(final Context context) {
         this(context, null, 0);
+        initView();
     }
 
     public RxTextAutoZoom(final Context context, final AttributeSet attrs) {
         this(context, attrs, 0);
+        initView();
     }
 
     public RxTextAutoZoom(final Context context, final AttributeSet attrs,
                           final int defStyle) {
         super(context, attrs, defStyle);
-        // using the minimal recommended font size
-        minTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
-                12, getResources().getDisplayMetrics());
-        maxTextSize = getTextSize();
-        if (maxLines == 0) {
-            // no value was assigned during construction
-            maxLines = NO_LINE_LIMIT;
-        }
-        // prepare size tester:
-        sizeTester = new SizeTester() {
-            final RectF textRect = new RectF();
+        initView();
+    }
 
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-            @Override
-            public int onTestSize(final int suggestedSize,
-                                  final RectF availableSPace) {
-                paint.setTextSize(suggestedSize);
-                final String text = getText().toString();
-                final boolean singleline = getMaxLines() == 1;
-                if (singleline) {
-                    textRect.bottom = paint.getFontSpacing();
-                    textRect.right = paint.measureText(text);
-                } else {
-                    final StaticLayout layout = new StaticLayout(text, paint,
-                            widthLimit, Layout.Alignment.ALIGN_NORMAL, spacingMult,
-                            spacingAdd, true);
-                    if (getMaxLines() != NO_LINE_LIMIT
-                            && layout.getLineCount() > getMaxLines()) {
-                        return 1;
-                    }
-                    textRect.bottom = layout.getHeight();
-                    int maxWidth = -1;
-                    for (int i = 0; i < layout.getLineCount(); i++) {
-                        if (maxWidth < layout.getLineWidth(i)) {
-                            maxWidth = (int) layout.getLineWidth(i);
-                        }
-                    }
-                    textRect.right = maxWidth;
+    public RxTextAutoZoom(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        initView();
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    public static void setNormalization(final Activity a, View rootView, final RxTextAutoZoom aText) {
+
+        // if the view is not instance of AutoFitEditText
+        // i.e. if the user taps outside of the box
+        if (!(rootView instanceof RxTextAutoZoom)) {
+
+            rootView.setOnTouchListener((v, event) -> {
+                hideSoftKeyboard(a);
+                if (aText.getMinTextSize() != null && aText.getTextSize() < aText.getMinTextSize()) {
+                    // you can define your minSize, in this case is 50f
+                    // trim all the new lines and set the text as it was
+                    // before
+                    aText.setText(aText.getText().toString().replace("\n", ""));
+
+
                 }
-                textRect.offsetTo(0, 0);
-                if (availableSPace.contains(textRect)) {
-                    // may be too small, don't worry we will find the best match
-                    return -1;
-                }
-                // else, too big
-                return 1;
+                return false;
+            });
+        }
+
+        // If a layout container, iterate over children and seed recursion.
+        if (rootView instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) rootView).getChildCount(); i++) {
+                View innerView = ((ViewGroup) rootView).getChildAt(i);
+                setNormalization(a, innerView, aText);
             }
-        };
-        initiallized = true;
+        }
+    }
+
+    public static void hideSoftKeyboard(Activity a) {
+        InputMethodManager inputMethodManager = (InputMethodManager) a
+                .getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (a.getCurrentFocus() != null
+                && a.getCurrentFocus().getWindowToken() != null) {
+            Objects.requireNonNull(inputMethodManager).hideSoftInputFromWindow(a.getCurrentFocus().getWindowToken(), 0);
+        }
     }
 
     @Override
@@ -188,14 +176,59 @@ public class RxTextAutoZoom extends AppCompatEditText {
         spacingAdd = add;
     }
 
-    /**
-     * Set the lower text size limit and invalidate the view
-     *
-     * @param
-     */
-    public void setMinTextSize(final Float minTextSize) {
-        this.minTextSize = minTextSize;
-        reAdjust();
+    private void initView() {
+
+        //获得这个控件对应的属性。
+
+        // using the minimal recommended font size
+        minTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+                12, getResources().getDisplayMetrics());
+        maxTextSize = getTextSize();
+        if (maxLines == 0) {
+            // no value was assigned during construction
+            maxLines = NO_LINE_LIMIT;
+        }
+        // prepare size tester:
+        sizeTester = new SizeTester() {
+            final RectF textRect = new RectF();
+
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public int onTestSize(final int suggestedSize,
+                                  final RectF availableSPace) {
+                paint.setTextSize(suggestedSize);
+                final String text = getText().toString();
+                final boolean singleline = getMaxLines() == 1;
+                if (singleline) {
+                    textRect.bottom = paint.getFontSpacing();
+                    textRect.right = paint.measureText(text);
+                } else {
+                    final StaticLayout layout = new StaticLayout(text, paint,
+                            widthLimit, Layout.Alignment.ALIGN_NORMAL, spacingMult,
+                            spacingAdd, true);
+                    if (getMaxLines() != NO_LINE_LIMIT
+                            && layout.getLineCount() > getMaxLines()) {
+                        return 1;
+                    }
+                    textRect.bottom = layout.getHeight();
+                    int maxWidth = -1;
+                    for (int i = 0; i < layout.getLineCount(); i++) {
+                        if (maxWidth < layout.getLineWidth(i)) {
+                            maxWidth = (int) layout.getLineWidth(i);
+                        }
+                    }
+                    textRect.right = maxWidth;
+                }
+                textRect.offsetTo(0, 0);
+                if (availableSPace.contains(textRect)) {
+                    // may be too small, don't worry we will find the best match
+                    return -1;
+                }
+                // else, too big
+                return 1;
+            }
+        };
+        initiallized = true;
     }
 
     public Float getMinTextSize() {
@@ -240,13 +273,23 @@ public class RxTextAutoZoom extends AppCompatEditText {
         adjustTextSize();
     }
 
+    /**
+     * Set the lower text size limit and invalidate the view
+     *
+     * @param minTextSize 最小的文字大小
+     */
+    public void setMinTextSize(final Float minTextSize) {
+        this.minTextSize = minTextSize;
+        reAdjust();
+    }
+
     private int efficientTextSizeSearch(final int start, final int end,
                                         final SizeTester sizeTester, final RectF availableSpace) {
         if (!enableSizeCache) {
             return binarySearch(start, end, sizeTester, availableSpace);
         }
         final String text = getText().toString();
-        final int key = text == null ? 0 : text.length();
+        final int key = text.length();
         int size = textCachedSizes.get(key);
         if (size != 0) {
             return size;
@@ -254,30 +297,6 @@ public class RxTextAutoZoom extends AppCompatEditText {
         size = binarySearch(start, end, sizeTester, availableSpace);
         textCachedSizes.put(key, size);
         return size;
-    }
-
-    private int binarySearch(final int start, final int end,
-                             final SizeTester sizeTester, final RectF availableSpace) {
-        int lastBest = start;
-        int lo = start;
-        int hi = end - 1;
-        int mid = 0;
-        while (lo <= hi) {
-            mid = lo + hi >>> 1;
-            final int midValCmp = sizeTester.onTestSize(mid, availableSpace);
-            if (midValCmp < 0) {
-                lastBest = lo;
-                lo = mid + 1;
-            } else if (midValCmp > 0) {
-                hi = mid - 1;
-                lastBest = hi;
-            } else {
-                return mid;
-            }
-        }
-        // make sure to return last best
-        // this is what should always be returned
-        return lastBest;
     }
 
     @Override
@@ -297,46 +316,56 @@ public class RxTextAutoZoom extends AppCompatEditText {
         }
     }
 
-
-    public static void setNormalization(final Activity a, View rootView, final RxTextAutoZoom aText) {
-
-        // if the view is not instance of AutoFitEditText
-        // i.e. if the user taps outside of the box
-        if (!(rootView instanceof RxTextAutoZoom)) {
-
-            rootView.setOnTouchListener(new View.OnTouchListener() {
-
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    hideSoftKeyboard(a);
-                    if (aText.getMinTextSize() != null && aText.getTextSize() < aText.getMinTextSize()) {
-                        // you can define your minSize, in this case is 50f
-                        // trim all the new lines and set the text as it was
-                        // before
-                        aText.setText(aText.getText().toString().replace("\n", ""));
-
-
-                    }
-                    return false;
-                }
-            });
-        }
-
-        // If a layout container, iterate over children and seed recursion.
-        if (rootView instanceof ViewGroup) {
-            for (int i = 0; i < ((ViewGroup) rootView).getChildCount(); i++) {
-                View innerView = ((ViewGroup) rootView).getChildAt(i);
-                setNormalization(a, innerView, aText);
+    private int binarySearch(final int start, final int end,
+                             final SizeTester sizeTester, final RectF availableSpace) {
+        int lastBest = start;
+        int lo = start;
+        int hi = end - 1;
+        int mid;
+        while (lo <= hi) {
+            mid = lo + hi >>> 1;
+            final int midValCmp = sizeTester.onTestSize(mid, availableSpace);
+            if (midValCmp < 0) {
+                lastBest = lo;
+                lo = mid + 1;
+            } else if (midValCmp > 0) {
+                hi = mid - 1;
+                lastBest = hi;
+            } else {
+                return mid;
             }
         }
+        // make sure to return last best
+        // this is what should always be returned
+        return lastBest;
     }
 
-    public static void hideSoftKeyboard(Activity a) {
-        InputMethodManager inputMethodManager = (InputMethodManager) a
-                .getSystemService(Activity.INPUT_METHOD_SERVICE);
-        if (a.getCurrentFocus() != null
-                && a.getCurrentFocus().getWindowToken() != null) {
-            inputMethodManager.hideSoftInputFromWindow(a.getCurrentFocus().getWindowToken(), 0);
-        }
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
     }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    public interface SizeTester {
+        /**
+         * AutoFitEditText
+         *
+         * @param suggestedSize  Size of text to be tested
+         * @param availableSpace available space in which text must fit
+         * @return an integer < 0 if after applying {@code suggestedSize} to
+         * text, it takes less space than {@code availableSpace}, > 0
+         * otherwise
+         */
+        int onTestSize(int suggestedSize, RectF availableSpace);
+    }
+
 }
