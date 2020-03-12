@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -42,8 +43,10 @@ public abstract class FragmentLazy extends Fragment {
 
     public FragmentActivity mContext;
 
+    private View rootView;
+
     @Override
-    public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstanceState) {
         // 若 viewpager 不设置 setOffscreenPageLimit 或设置数量不够
         // 销毁的Fragment onCreateView 每次都会执行(但实体类没有从内存销毁)
         // 导致initData反复执行,所以这里注释掉
@@ -55,10 +58,10 @@ public abstract class FragmentLazy extends Fragment {
         mContext = getActivity();
 
         isFirstLoad = true;
-        View view = initViews(layoutInflater, viewGroup, savedInstanceState);
+        rootView = initViews(layoutInflater, viewGroup, savedInstanceState);
         isPrepared = true;
         lazyLoad();
-        return view;
+        return rootView;
     }
 
     /**
@@ -120,4 +123,8 @@ public abstract class FragmentLazy extends Fragment {
 
     protected abstract void initData();
 
+
+    public View getRootView() {
+        return rootView;
+    }
 }

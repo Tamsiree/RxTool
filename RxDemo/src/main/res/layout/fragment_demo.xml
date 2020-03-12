@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeLayout"
+        android:id="@+id/swipeLayoutDemo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -24,7 +24,7 @@
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview"
+                    android:id="@+id/recyclerViewDemo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_10"
@@ -32,6 +32,7 @@
                     android:padding="@dimen/dp_10" />
 
                 <TextView
+                    android:id="@+id/tvHint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dp_20"
@@ -40,7 +41,8 @@
                     android:padding="@dimen/dp_20"
                     android:text="仅列出了部分 [工具类] 和 [UI效果] 的Demo展示效果,因为有些功能或者效果无法单独展示，需要特定的生产环境或者需要依赖其他条件才能完全展示,因此可以自己查阅源码,说不定能找到惊喜"
                     android:textColor="@color/wheat"
-                    android:textSize="@dimen/sp_10" />
+                    android:textSize="@dimen/sp_10"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

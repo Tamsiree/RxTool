@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -71,10 +72,12 @@ import butterknife.ButterKnife;
 public class FragmentDemo extends FragmentLazy implements SwipeRefreshLayout.OnRefreshListener {
 
     List<ModelDemo> mDemoList = new ArrayList<>();
-    @BindView(R.id.recyclerview)
+    @BindView(R.id.recyclerViewDemo)
     RecyclerView mRecyclerview;
-    @BindView(R.id.swipeLayout)
+    @BindView(R.id.swipeLayoutDemo)
     SwipeRefreshLayout mSwipeLayout;
+    @BindView(R.id.tvHint)
+    TextView mTvHint;
 
     private AdapterRecyclerViewMain mAdapter;
 
@@ -108,6 +111,7 @@ public class FragmentDemo extends FragmentLazy implements SwipeRefreshLayout.OnR
 
     private void init() {
         initRecyclerView();
+        mTvHint.setVisibility(View.VISIBLE);
     }
 
     private void initRecyclerView() {
