@@ -8,7 +8,12 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
@@ -21,6 +26,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
+import android.widget.ImageView;
 
 import com.tamsiree.rxkit.interfaces.OnDoIntListener;
 
@@ -281,6 +287,37 @@ public class RxAnimationTool {
         Animation alphaAnimation = new AlphaAnimation(fromAlpha, toAlpha);
         alphaAnimation.setDuration(duration);
         return alphaAnimation;
+    }
+
+    /**
+     * 图片背景切换动画帮助类
+     * <p>
+     * Created by Tamsiree on 2020/3/11.
+     */
+    public static void startSwitchBackgroundAnim(ImageView view, Bitmap bitmap) {
+        Drawable oldDrawable = view.getDrawable();
+        Drawable oldBitmapDrawable;
+        TransitionDrawable oldTransitionDrawable = null;
+        if (oldDrawable instanceof TransitionDrawable) {
+            oldTransitionDrawable = (TransitionDrawable) oldDrawable;
+            oldBitmapDrawable = oldTransitionDrawable.findDrawableByLayerId(oldTransitionDrawable.getId(1));
+        } else if (oldDrawable instanceof BitmapDrawable) {
+            oldBitmapDrawable = oldDrawable;
+        } else {
+            oldBitmapDrawable = new ColorDrawable(0xffc2c2c2);
+        }
+
+        if (oldTransitionDrawable == null) {
+            oldTransitionDrawable = new TransitionDrawable(new Drawable[]{oldBitmapDrawable, new BitmapDrawable(bitmap)});
+            oldTransitionDrawable.setId(0, 0);
+            oldTransitionDrawable.setId(1, 1);
+            oldTransitionDrawable.setCrossFadeEnabled(true);
+            view.setImageDrawable(oldTransitionDrawable);
+        } else {
+            oldTransitionDrawable.setDrawableByLayerId(oldTransitionDrawable.getId(0), oldBitmapDrawable);
+            oldTransitionDrawable.setDrawableByLayerId(oldTransitionDrawable.getId(1), new BitmapDrawable(bitmap));
+        }
+        oldTransitionDrawable.startTransition(1000);
     }
 
 }

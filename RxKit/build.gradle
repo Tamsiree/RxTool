@@ -5,14 +5,19 @@ apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 29
+    buildToolsVersion = '29.0.3'
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.2.3"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //启用renderscript
+//        renderscriptTargetApi = 18
+//        renderscriptSupportModeEnabled = true
 
     }
 
@@ -27,7 +32,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion = '29.0.3'
+
 
 }
 

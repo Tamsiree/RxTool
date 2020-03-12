@@ -1,6 +1,5 @@
 package com.tamsiree.rxkit;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -18,7 +17,6 @@ import android.graphics.NinePatch;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -27,11 +25,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.media.ThumbnailUtils;
-import android.os.Build;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
@@ -343,6 +336,40 @@ public class RxImageTool {
         }
         return inSampleSize;
     }
+
+    /**
+     * 计算inSampleSize
+     *
+     * @param options
+     * @param reqWidth
+     * @param reqHeight
+     * @return
+     */
+    private static int calculateInSampleSize2(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        int height = options.outHeight;
+        int width = options.outWidth;
+        int MIN_WIDTH = 100;
+        int inSampleSize = 1;
+        if (width < MIN_WIDTH) {
+            return inSampleSize;
+        } else {
+            int heightRatio;
+            if (width > height && reqWidth < reqHeight || width < height && reqWidth > reqHeight) {
+                heightRatio = reqWidth;
+                reqWidth = reqHeight;
+                reqHeight = heightRatio;
+            }
+
+            if (height > reqHeight || width > reqWidth) {
+                heightRatio = Math.round((float) height / (float) reqHeight);
+                int widthRatio = Math.round((float) width / (float) reqWidth);
+                inSampleSize = Math.max(heightRatio, widthRatio);
+            }
+
+            return inSampleSize;
+        }
+    }
+
 
     /**
      * 获取bitmap
@@ -887,313 +914,13 @@ public class RxImageTool {
         return ret;
     }
 
-    /**
-     * 快速模糊
-     * <p>先缩小原图，对小图进行模糊，再放大回原先尺寸</p>
-     *
-     * @param src    源图片
-     * @param scale  缩小倍数(0...1)
-     * @param radius 模糊半径
-     * @return 模糊后的图片
-     */
-    public static Bitmap fastBlur(Bitmap src, float scale, float radius) {
-        return fastBlur(src, scale, radius, false);
-    }
 
-    /**
-     * 快速模糊
-     * <p>先缩小原图，对小图进行模糊，再放大回原先尺寸</p>
-     *
-     * @param src     源图片
-     * @param scale   缩小倍数(0...1)
-     * @param radius  模糊半径
-     * @param recycle 是否回收
-     * @return 模糊后的图片
-     */
-    public static Bitmap fastBlur(Bitmap src, float scale, float radius, boolean recycle) {
-        if (isEmptyBitmap(src)) {
-            return null;
-        }
-        int width = src.getWidth();
-        int height = src.getHeight();
-        int scaleWidth = (int) (width * scale + 0.5f);
-        int scaleHeight = (int) (height * scale + 0.5f);
-        if (scaleWidth == 0 || scaleHeight == 0) {
-            return null;
-        }
-        Bitmap scaleBitmap = Bitmap.createScaledBitmap(src, scaleWidth, scaleHeight, true);
-        Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
-        Canvas canvas = new Canvas();
-        PorterDuffColorFilter filter = new PorterDuffColorFilter(
-                Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
-        paint.setColorFilter(filter);
-        canvas.scale(scale, scale);
-        canvas.drawBitmap(scaleBitmap, 0, 0, paint);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            scaleBitmap = renderScriptBlur(scaleBitmap, radius);
-        } else {
-            scaleBitmap = stackBlur(scaleBitmap, (int) radius, true);
-        }
-        if (scale == 1) {
-            return scaleBitmap;
-        }
-        Bitmap ret = Bitmap.createScaledBitmap(scaleBitmap, width, height, true);
-        if (scaleBitmap != null && !scaleBitmap.isRecycled()) {
-            scaleBitmap.recycle();
-        }
-        if (recycle && !src.isRecycled()) {
-            src.recycle();
-        }
-        return ret;
-    }
 
-    /**
-     * renderScript模糊图片
-     * <p>API大于17</p>
-     *
-     * @param src    源图片
-     * @param radius 模糊度(0...25)
-     * @return 模糊后的图片
-     */
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static Bitmap renderScriptBlur(Bitmap src, float radius) {
-        if (isEmptyBitmap(src)) return null;
-        RenderScript rs = null;
-        try {
-            rs = RenderScript.create(RxTool.getContext());
-            rs.setMessageHandler(new RenderScript.RSMessageHandler());
-            Allocation input = Allocation.createFromBitmap(rs, src, Allocation.MipmapControl.MIPMAP_NONE, Allocation
-                    .USAGE_SCRIPT);
-            Allocation output = Allocation.createTyped(rs, input.getType());
-            ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
-            if (radius > 25) {
-                radius = 25.0f;
-            } else if (radius <= 0) {
-                radius = 1.0f;
-            }
-            blurScript.setInput(input);
-            blurScript.setRadius(radius);
-            blurScript.forEach(output);
-            output.copyTo(src);
-        } finally {
-            if (rs != null) {
-                rs.destroy();
-            }
-        }
-        return src;
-    }
 
-    /**
-     * stack模糊图片
-     *
-     * @param src     源图片
-     * @param radius  模糊半径
-     * @param recycle 是否回收
-     * @return stackBlur模糊图片
-     */
-    public static Bitmap stackBlur(Bitmap src, int radius, boolean recycle) {
-        Bitmap ret;
-        if (recycle) {
-            ret = src;
-        } else {
-            ret = src.copy(src.getConfig(), true);
-        }
 
-        if (radius < 1) {
-            return (null);
-        }
 
-        int w = ret.getWidth();
-        int h = ret.getHeight();
 
-        int[] pix = new int[w * h];
-        ret.getPixels(pix, 0, w, 0, 0, w, h);
 
-        int wm = w - 1;
-        int hm = h - 1;
-        int wh = w * h;
-        int div = radius + radius + 1;
-
-        int[] r = new int[wh];
-        int[] g = new int[wh];
-        int[] b = new int[wh];
-        int rsum, gsum, bsum, x, y, i, p, yp, yi, yw;
-        int[] vmin = new int[Math.max(w, h)];
-
-        int divsum = (div + 1) >> 1;
-        divsum *= divsum;
-        int[] dv = new int[256 * divsum];
-        for (i = 0; i < 256 * divsum; i++) {
-            dv[i] = (i / divsum);
-        }
-
-        yw = yi = 0;
-
-        int[][] stack = new int[div][3];
-        int stackpointer;
-        int stackstart;
-        int[] sir;
-        int rbs;
-        int r1 = radius + 1;
-        int routsum, goutsum, boutsum;
-        int rinsum, ginsum, binsum;
-
-        for (y = 0; y < h; y++) {
-            rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
-            for (i = -radius; i <= radius; i++) {
-                p = pix[yi + Math.min(wm, Math.max(i, 0))];
-                sir = stack[i + radius];
-                sir[0] = (p & 0xff0000) >> 16;
-                sir[1] = (p & 0x00ff00) >> 8;
-                sir[2] = (p & 0x0000ff);
-                rbs = r1 - Math.abs(i);
-                rsum += sir[0] * rbs;
-                gsum += sir[1] * rbs;
-                bsum += sir[2] * rbs;
-                if (i > 0) {
-                    rinsum += sir[0];
-                    ginsum += sir[1];
-                    binsum += sir[2];
-                } else {
-                    routsum += sir[0];
-                    goutsum += sir[1];
-                    boutsum += sir[2];
-                }
-            }
-            stackpointer = radius;
-
-            for (x = 0; x < w; x++) {
-
-                r[yi] = dv[rsum];
-                g[yi] = dv[gsum];
-                b[yi] = dv[bsum];
-
-                rsum -= routsum;
-                gsum -= goutsum;
-                bsum -= boutsum;
-
-                stackstart = stackpointer - radius + div;
-                sir = stack[stackstart % div];
-
-                routsum -= sir[0];
-                goutsum -= sir[1];
-                boutsum -= sir[2];
-
-                if (y == 0) {
-                    vmin[x] = Math.min(x + radius + 1, wm);
-                }
-                p = pix[yw + vmin[x]];
-
-                sir[0] = (p & 0xff0000) >> 16;
-                sir[1] = (p & 0x00ff00) >> 8;
-                sir[2] = (p & 0x0000ff);
-
-                rinsum += sir[0];
-                ginsum += sir[1];
-                binsum += sir[2];
-
-                rsum += rinsum;
-                gsum += ginsum;
-                bsum += binsum;
-
-                stackpointer = (stackpointer + 1) % div;
-                sir = stack[(stackpointer) % div];
-
-                routsum += sir[0];
-                goutsum += sir[1];
-                boutsum += sir[2];
-
-                rinsum -= sir[0];
-                ginsum -= sir[1];
-                binsum -= sir[2];
-
-                yi++;
-            }
-            yw += w;
-        }
-        for (x = 0; x < w; x++) {
-            rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
-            yp = -radius * w;
-            for (i = -radius; i <= radius; i++) {
-                yi = Math.max(0, yp) + x;
-
-                sir = stack[i + radius];
-
-                sir[0] = r[yi];
-                sir[1] = g[yi];
-                sir[2] = b[yi];
-
-                rbs = r1 - Math.abs(i);
-
-                rsum += r[yi] * rbs;
-                gsum += g[yi] * rbs;
-                bsum += b[yi] * rbs;
-
-                if (i > 0) {
-                    rinsum += sir[0];
-                    ginsum += sir[1];
-                    binsum += sir[2];
-                } else {
-                    routsum += sir[0];
-                    goutsum += sir[1];
-                    boutsum += sir[2];
-                }
-
-                if (i < hm) {
-                    yp += w;
-                }
-            }
-            yi = x;
-            stackpointer = radius;
-            for (y = 0; y < h; y++) {
-                // Preserve alpha channel: ( 0xff000000 & pix[yi] )
-                pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum];
-
-                rsum -= routsum;
-                gsum -= goutsum;
-                bsum -= boutsum;
-
-                stackstart = stackpointer - radius + div;
-                sir = stack[stackstart % div];
-
-                routsum -= sir[0];
-                goutsum -= sir[1];
-                boutsum -= sir[2];
-
-                if (x == 0) {
-                    vmin[y] = Math.min(y + r1, hm) * w;
-                }
-                p = x + vmin[y];
-
-                sir[0] = r[p];
-                sir[1] = g[p];
-                sir[2] = b[p];
-
-                rinsum += sir[0];
-                ginsum += sir[1];
-                binsum += sir[2];
-
-                rsum += rinsum;
-                gsum += ginsum;
-                bsum += binsum;
-
-                stackpointer = (stackpointer + 1) % div;
-                sir = stack[stackpointer];
-
-                routsum += sir[0];
-                goutsum += sir[1];
-                boutsum += sir[2];
-
-                rinsum -= sir[0];
-                ginsum -= sir[1];
-                binsum -= sir[2];
-
-                yi += w;
-            }
-        }
-        ret.setPixels(pix, 0, w, 0, 0, w, h);
-        return (ret);
-    }
 
     /**
      * 添加颜色边框
@@ -1641,19 +1368,19 @@ public class RxImageTool {
         return null;
     }
 
-    private static boolean isJPEG(byte[] b) {
+    public static boolean isJPEG(byte[] b) {
         return b.length >= 2
                 && (b[0] == (byte) 0xFF) && (b[1] == (byte) 0xD8);
     }
 
-    private static boolean isGIF(byte[] b) {
+    public static boolean isGIF(byte[] b) {
         return b.length >= 6
                 && b[0] == 'G' && b[1] == 'I'
                 && b[2] == 'F' && b[3] == '8'
                 && (b[4] == '7' || b[4] == '9') && b[5] == 'a';
     }
 
-    private static boolean isPNG(byte[] b) {
+    public static boolean isPNG(byte[] b) {
         return b.length >= 8
                 && (b[0] == (byte) 137 && b[1] == (byte) 80
                 && b[2] == (byte) 78 && b[3] == (byte) 71
@@ -1661,7 +1388,7 @@ public class RxImageTool {
                 && b[6] == (byte) 26 && b[7] == (byte) 10);
     }
 
-    private static boolean isBMP(byte[] b) {
+    public static boolean isBMP(byte[] b) {
         return b.length >= 2
                 && (b[0] == 0x42) && (b[1] == 0x4d);
     }
@@ -1672,7 +1399,7 @@ public class RxImageTool {
      * @param src 源图片
      * @return {@code true}: 是<br>{@code false}: 否
      */
-    private static boolean isEmptyBitmap(Bitmap src) {
+    public static boolean isEmptyBitmap(Bitmap src) {
         return src == null || src.getWidth() == 0 || src.getHeight() == 0;
     }
 
@@ -2069,5 +1796,25 @@ public class RxImageTool {
         display.getMetrics(dm);
         return dm.density;
     }
+
+    /**
+     * 按最大边按一定大小缩放图片
+     *
+     * @param resources
+     * @param resId
+     * @param maxSize   压缩后最大长度
+     * @return
+     */
+    public static Bitmap scaleImage(Resources resources, int resId, int maxSize) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(resources, resId, options);
+        options.inSampleSize = calculateInSampleSize2(options, maxSize, maxSize);
+        options.inJustDecodeBounds = false;
+
+        return BitmapFactory.decodeResource(resources, resId, options);
+    }
+
+
 
 }
