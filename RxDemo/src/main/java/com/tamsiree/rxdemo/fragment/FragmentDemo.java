@@ -45,6 +45,7 @@ import com.tamsiree.rxdemo.activity.ActivitySeekBar;
 import com.tamsiree.rxdemo.activity.ActivityShoppingView;
 import com.tamsiree.rxdemo.activity.ActivitySlidingDrawerSingle;
 import com.tamsiree.rxdemo.activity.ActivitySplash;
+import com.tamsiree.rxdemo.activity.ActivityTCardGallery;
 import com.tamsiree.rxdemo.activity.ActivityTVideoTimeline;
 import com.tamsiree.rxdemo.activity.ActivityTabLayout;
 import com.tamsiree.rxdemo.activity.ActivityTextTool;
@@ -224,6 +225,7 @@ public class FragmentDemo extends FragmentLazy implements SwipeRefreshLayout.OnR
 
 
         mDemoList.add(new ModelDemo("TabLayout", R.drawable.circle_pocket, ActivityTabLayout.class));
+        mDemoList.add(new ModelDemo("卡片画廊效果", R.drawable.circle_icecandy, ActivityTCardGallery.class));
         mDemoList.add(new ModelDemo("其他界面效果", R.drawable.circle_icecandy, ActivityOtherEffect.class));
     }
 
