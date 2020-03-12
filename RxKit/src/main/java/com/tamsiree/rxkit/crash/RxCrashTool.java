@@ -89,10 +89,10 @@ public class RxCrashTool {
                 final Thread.UncaughtExceptionHandler oldHandler = Thread.getDefaultUncaughtExceptionHandler();
 
                 if (oldHandler != null && oldHandler.getClass().getName().startsWith(CAOC_HANDLER_PACKAGE_NAME)) {
-                    Log.e(TAG, "CustomActivityOnCrash was already installed, doing nothing!");
+                    Log.e(TAG, "RxCrashTool was already installed, doing nothing!");
                 } else {
                     if (oldHandler != null && !oldHandler.getClass().getName().startsWith(DEFAULT_HANDLER_PACKAGE_NAME)) {
-                        Log.e(TAG, "IMPORTANT WARNING! You already have an UncaughtExceptionHandler, are you sure this is correct? If you use a custom UncaughtExceptionHandler, you must initialize it AFTER CustomActivityOnCrash! Installing anyway, but your original handler will not be called.");
+                        Log.e(TAG, "IMPORTANT WARNING! You already have an UncaughtExceptionHandler, are you sure this is correct? If you use a custom UncaughtExceptionHandler, you must initialize it AFTER RxCrashTool! Installing anyway, but your original handler will not be called.");
                     }
 
                     application = (Application) context.getApplicationContext();
@@ -102,7 +102,7 @@ public class RxCrashTool {
                         @Override
                         public void uncaughtException(@NonNull Thread thread, @NonNull final Throwable throwable) {
                             if (config.isEnabled()) {
-                                Log.e(TAG, "App has crashed, executing CustomActivityOnCrash's UncaughtExceptionHandler", throwable);
+                                Log.e(TAG, "App has crashed, executing RxCrashTool's UncaughtExceptionHandler", throwable);
 
                                 if (hasCrashedInTheLastSeconds(application)) {
                                     Log.e(TAG, "App already crashed recently, not starting custom error activity because we could enter a restart loop. Are you sure that your app does not crash directly on init?", throwable);
@@ -247,10 +247,10 @@ public class RxCrashTool {
                     });
                 }
 
-                Log.i(TAG, "CustomActivityOnCrash has been installed.");
+                Log.i(TAG, "RxCrashTool has been installed.");
             }
         } catch (Throwable t) {
-            Log.e(TAG, "An unknown error occurred while installing CustomActivityOnCrash, it may not have been properly initialized. Please report this as a bug if needed.", t);
+            Log.e(TAG, "An unknown error occurred while installing RxCrashTool, it may not have been properly initialized. Please report this as a bug if needed.", t);
         }
     }
 
