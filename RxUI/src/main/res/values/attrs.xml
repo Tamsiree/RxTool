@@ -580,4 +580,16 @@
 
     </declare-styleable>
 
+    <declare-styleable name="TIndicator">
+        <attr name="dotCount" format="integer" />
+        <attr name="fadingDotCount" format="integer" />
+        <attr name="dotRadius" format="dimension" />
+        <attr name="selectedDotRadius" format="dimension" />
+        <attr name="dotColor" format="color" />
+        <attr name="selectedDotColor" format="color" />
+        <attr name="dotSeparation" format="dimension" />
+        <attr name="supportRTL" format="boolean" />
+        <attr name="verticalSupport" format="boolean" />
+    </declare-styleable>
+
 </resources>

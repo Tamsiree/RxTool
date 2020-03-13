@@ -234,6 +234,11 @@
     <color name="custom_progress_purple_progress">#ff9933cc</color>
     <color name="custom_progress_purple_progress_half">#7f9933cc</color>
 
+    <color name="smallCircleColor">#FFDF8D81</color>
+    <color name="largeCircleColor">#FFAF3854</color>
+    <color name="outerCircleColor">#FF533456</color>
 
+    <color name="default_selected_dot_color">#ffffff</color>
+    <color name="default_dot_color">#e8e8e8</color>
 
 </resources>
