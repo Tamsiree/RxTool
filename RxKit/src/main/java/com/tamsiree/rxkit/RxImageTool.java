@@ -1815,6 +1815,4 @@ public class RxImageTool {
         return BitmapFactory.decodeResource(resources, resId, options);
     }
 
-
-
 }

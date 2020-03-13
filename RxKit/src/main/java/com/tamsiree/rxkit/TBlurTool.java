@@ -18,7 +18,7 @@ import android.widget.ImageView;
 
 /**
  * RenderScript图片高斯模糊
- * Created by jameson on 9/2/16.
+ * Created by Tamsiree on 9/2/16.
  */
 public class TBlurTool {
     /**
