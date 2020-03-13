@@ -10,7 +10,7 @@ import com.tamsiree.rxkit.view.RxToast
 import com.tamsiree.rxui.view.tcardgralleryview.CardAdapterHelper
 
 /**
- * Created by jameson on 8/30/16.
+ * Created by Tamsiree on 8/30/16.
  */
 internal class AdapterCardGallery(private var mList: MutableList<Int>) : RecyclerView.Adapter<AdapterCardGallery.ViewHolder>() {
     private val mCardAdapterHelper = CardAdapterHelper()
