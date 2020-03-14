@@ -2,7 +2,7 @@
 
 [![tamsiree.com](https://img.shields.io/badge/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2-Tamsiree-brightgreen.svg)](https://tamsiree.com/)  [![Stars](https://badgen.net/github/stars/tamsiree/RxTool)](https://ghbtns.com/github-btn.html?user=tamsiree&repo=rxtool&type=star)  [![RxTool](https://jitpack.io/v/tamsiree/RxTool.svg)](https://jitpack.io/#tamsiree/RxTool)  
 
-[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)  [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)  [![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-17%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=17)  [![Gradle-5.4.1](https://img.shields.io/badge/Gradle-5.4.1-brightgreen.svg)](https://img.shields.io/badge/Gradle-5.4.1-brightgreen.svg)  
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)  [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)  [![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)  [![Gradle-5.6.4](https://img.shields.io/badge/Gradle-5.6.4-brightgreen.svg)](https://img.shields.io/badge/Gradle-5.6.4-brightgreen.svg)
   
 ![image](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/DeskTop/miku.png)
 
@@ -14,15 +14,16 @@
 ---
 
 # 我的运行环境
-> Android Studio 3.5.2  
-> Build #AI-191.8026.42.35.5977832, built on October 31, 2019  
-> JRE: 1.8.0_202-release-1483-b49-5587405 amd64  
-> JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o  
-> Linux 5.3.11-1-MANJARO  
+
+> Android Studio 3.6
+> Build #AI-192.7142.36.36.6200805, built on February 12, 2020
+> Runtime version: 1.8.0_212-release-1586-b4-5784211 amd64
+> VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
+> Linux 5.4.23-1-MANJARO
 >
-> targetSdkVersion 28  
-> [gradle-wrapper.properties文件内] distributionUrl 5.4.1  
-> [build.gradle文件内] gradle 3.5.2
+> targetSdkVersion 29
+> [gradle-wrapper.properties文件内] distributionUrl 5.6.4
+> [build.gradle文件内] gradle 3.6.1
 
 ---
 
@@ -78,11 +79,17 @@ RxTool.init(this);
 
 |  VERSION  |  Description  |
 | :-------: | ------------- |
-|   2.4.6   | 更新 RxKit 模块，更新了RxCrashTool工具类，自定义崩溃模块 |
+|   2.5.2   | 更新 RxUI 模块，新增TIndicator指示器 |
+|   2.5.1   | 更新 RxUI 模块，新增若干自定义View |
+|   2.5.0   | 优化所有自定义View，增加可预览功能 |
+|   2.4.9   | 更新项目配置文件，模块添加kotlin支持 |
+|   2.4.8   | 更新 RxKit 模块，更新了 RxCrashTool 工具类 |
+|   2.4.7   | 更新 RxUI 模块，更新了 Fragment 工具类 |
+|   2.4.6   | 更新 RxKit 模块，更新了 RxCrashTool 工具类，自定义崩溃模块 |
 |   2.4.5   | 更新 RxUI 模块，新增 TabLayout、TUnReadView 自定义View |
 |   2.4.4   | 更新 RxUI 模块，RxDialogWheelYearMonthDay 更名为 RxDialogDate  |
-|   2.4.3   | 优化 RxTitle 控件  |
-|   2.4.2   | 更改库的包名，完善若干已知BUG  |
+|   2.4.3   | 优化 RxTitle 控件 |
+|   **2.4.2**   | 更改库的包名，完善若干已知BUG  |
 |   2.4.1   | 完善 RxArcGisKit 模块  |
 |   **2.4.0**   | **`全面升级到 Android X`**:<br>修复 RxToast 在 Android 9 上,连点只弹出一次的问题<br>修复 二维码扫描框的焦点偏离 问题<br>添加 生成二维码LOGO 功能<br>添加 RxQRCode 的空白边界设置方法<br>更新若干工具类  |
 |   2.3.9   | 完善 RxFeature 模块  |
