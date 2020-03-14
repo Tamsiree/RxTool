@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 控制fling速度的RecyclerView
- * <p>
- * Created by Tamsiree on 9/1/16.
+ *
+ * Created by Tamsiree on 2020/3/11.
  */
 public class TCardGalleryView extends RecyclerView {
     private static final float FLING_SCALE_DOWN_FACTOR = 0.5f; // 减速因子

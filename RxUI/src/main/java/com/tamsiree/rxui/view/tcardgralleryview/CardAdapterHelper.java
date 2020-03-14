@@ -10,7 +10,7 @@ import com.tamsiree.rxkit.RxImageTool;
 
 /**
  * adapter中调用onCreateViewHolder, onBindViewHolder
- * Created by tamsiree on 2020/3/11/.
+ * Created by tamsiree on 2020/3/11.
  */
 public class CardAdapterHelper {
     private int mPagePadding = 15;

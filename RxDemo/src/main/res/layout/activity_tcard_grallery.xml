@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,32 +7,57 @@
     android:orientation="vertical"
     tools:context=".activity.ActivityTCardGallery">
 
-    <ImageView
-        android:id="@+id/blurView"
+    <com.tamsiree.rxui.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        android:background="@color/colorPrimary"
+        app:title="卡片画廊效果" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#3f000000"
-        android:scaleType="centerCrop" />
+        android:orientation="vertical"
+        tools:context=".activity.ActivityTCardGallery">
 
-    <com.tamsiree.rxui.view.tcardgralleryview.TCardGalleryView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dp_150"
-        android:layout_marginBottom="@dimen/dp_150" />
+        <ImageView
+            android:id="@+id/blurView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#3f000000"
+            android:scaleType="centerCrop" />
 
-    <com.tamsiree.rxui.view.TIndicator
-        android:id="@+id/tIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_margin="24dp"
-        android:visibility="visible"
-        app:dotColor="@color/colorPrimaryDark"
-        app:selectedDotColor="@color/colorPrimary"
-        tools:background="@color/colorPrimary" />
+        <com.tamsiree.rxui.view.tcardgralleryview.TCardGalleryView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_100" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/shape_round_white_15dp"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_5">
 
-</RelativeLayout>
+            <com.tamsiree.rxui.view.indicator.TIndicator
+                android:id="@+id/tIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:dotColor="@color/colorPrimaryDark"
+                app:selectedDotColor="@color/colorPrimary"
+                tools:background="@color/colorPrimary" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

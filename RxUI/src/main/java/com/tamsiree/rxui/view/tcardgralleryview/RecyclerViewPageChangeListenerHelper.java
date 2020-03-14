@@ -2,14 +2,17 @@ package com.tamsiree.rxui.view.tcardgralleryview;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import java.util.Objects;
+
 /**
  * @ClassName RecyclerViewPageChangeListenerHelper
- * @Description 备注：RecyclerView实现类似ViewPager的PageChangeListener监听
- * @Author tamsiree
- * @Date 20-3-13 下午1:11
+ * @Description 备注：RecyclerView 实现类似 ViewPager 的 PageChangeListener 监听
+ * @Author Tamsiree
+ * @Date 2020-3-13 下午1:11
  * @Version 1.0
  */
 public class RecyclerViewPageChangeListenerHelper extends RecyclerView.OnScrollListener {
@@ -23,7 +26,7 @@ public class RecyclerViewPageChangeListenerHelper extends RecyclerView.OnScrollL
     }
 
     @Override
-    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
         if (onPageChangeListener != null) {
             onPageChangeListener.onScrolled(recyclerView, dx, dy);
@@ -31,7 +34,7 @@ public class RecyclerViewPageChangeListenerHelper extends RecyclerView.OnScrollL
     }
 
     @Override
-    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);
         int position = 0;
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
@@ -39,7 +42,7 @@ public class RecyclerViewPageChangeListenerHelper extends RecyclerView.OnScrollL
         View view = snapHelper.findSnapView(layoutManager);
         if (view != null) {
             //获取itemView的position
-            position = layoutManager.getPosition(view);
+            position = Objects.requireNonNull(layoutManager).getPosition(view);
         }
         if (onPageChangeListener != null) {
             onPageChangeListener.onScrollStateChanged(recyclerView, newState);

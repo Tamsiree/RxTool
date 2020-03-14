@@ -592,4 +592,40 @@
         <attr name="verticalSupport" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="TStepperIndicator" tools:ignore="ResourceName">
+        <attr name="stpi_stepCount" format="integer" />
+        <attr name="stpi_animDuration" format="integer" />
+
+        <attr name="stpi_circleColor" format="color" />
+        <attr name="stpi_circleRadius" format="dimension" />
+        <attr name="stpi_circleStrokeWidth" format="dimension" />
+
+        <attr name="stpi_indicatorColor" format="color" />
+        <attr name="stpi_indicatorRadius" format="dimension" />
+
+        <attr name="stpi_lineColor" format="color" />
+        <attr name="stpi_lineDoneColor" format="color" />
+        <attr name="stpi_lineStrokeWidth" format="dimension" />
+        <attr name="stpi_lineMargin" format="dimension" />
+
+        <attr name="stpi_showDoneIcon" format="boolean" />
+        <attr name="stpi_showStepNumberInstead" format="boolean" />
+        <attr name="stpi_doneIconDrawable" format="reference" />
+
+        <attr name="stpi_useBottomIndicator" format="boolean" />
+        <attr name="stpi_useBottomIndicatorWithStepColors" format="boolean" />
+        <attr name="stpi_bottomIndicatorHeight" format="dimension" />
+        <attr name="stpi_bottomIndicatorWidth" format="dimension" />
+        <attr name="stpi_bottomIndicatorMarginTop" format="dimension" />
+
+        <attr name="stpi_stepsCircleColors" format="reference" />
+        <attr name="stpi_stepsIndicatorColors" format="reference" />
+
+        <attr name="stpi_labels" format="reference" />
+        <attr name="stpi_showLabels" format="boolean" />
+        <attr name="stpi_labelMarginTop" format="dimension" />
+        <attr name="stpi_labelSize" format="dimension" />
+        <attr name="stpi_labelColor" format="color" />
+    </declare-styleable>
+
 </resources>

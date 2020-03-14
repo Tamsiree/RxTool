@@ -1,4 +1,4 @@
-package com.tamsiree.rxui.view
+package com.tamsiree.rxui.view.indicator
 
 import android.content.Context
 import android.graphics.Canvas

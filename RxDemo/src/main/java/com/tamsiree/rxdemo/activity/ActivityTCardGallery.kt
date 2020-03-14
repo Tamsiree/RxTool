@@ -1,10 +1,7 @@
 package com.tamsiree.rxdemo.activity
 
 import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.adapter.AdapterCardGallery
@@ -27,13 +24,13 @@ class ActivityTCardGallery : ActivityBase() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+/*        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val decorView = window.decorView
             val option = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
             decorView.systemUiVisibility = option
             window.statusBarColor = Color.TRANSPARENT
-        }
+        }*/
         setContentView(R.layout.activity_tcard_grallery)
 
         initData()
@@ -41,6 +38,8 @@ class ActivityTCardGallery : ActivityBase() {
     }
 
     private fun initView() {
+        rx_title.setLeftFinish(this)
+
         linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = AdapterCardGallery(mList)

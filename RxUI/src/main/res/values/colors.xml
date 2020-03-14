@@ -241,4 +241,9 @@
     <color name="default_selected_dot_color">#ffffff</color>
     <color name="default_dot_color">#e8e8e8</color>
 
+    <color name="stpi_default_circle_color">#b3bdc2</color>
+    <color name="stpi_default_primary_color">#00b47c</color>
+    <color name="stpi_default_line_color">#b3bdc2</color>
+    <color name="stpi_default_text_color">#000</color>
+
 </resources>

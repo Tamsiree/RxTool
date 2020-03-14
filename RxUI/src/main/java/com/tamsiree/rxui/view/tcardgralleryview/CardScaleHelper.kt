@@ -7,12 +7,12 @@ import com.tamsiree.rxkit.RxImageTool
 import com.tamsiree.rxkit.interfaces.OnDoIntListener
 
 /**
- * Created by Tamsiree on 8/30/16.
+ * Created by Tamsiree on 2020/3/14.
  */
 class CardScaleHelper {
     private var mRecyclerView: RecyclerView? = null
     private var mContext: Context? = null
-    private var mScale = 0.9f // 两边视图scale
+    private var mScale = 0.8f // 两边视图scale
     private var mPagePadding = 15 // 卡片的padding, 卡片间的距离等于2倍的mPagePadding
     private var mShowLeftCardWidth = 15 // 左边卡片显示大小
     private var mCardWidth = 0 // 卡片宽度 = 0

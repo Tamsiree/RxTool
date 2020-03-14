@@ -101,4 +101,11 @@
     <string name="payment_inst_hk">Payer: HK</string>
     <string name="payment_inst_cn">Payer: CN</string>
 
+    <string-array name="stepLabels">
+        <item>开启注册</item>
+        <item>处理数据</item>
+        <item>注册成功</item>
+        <item>准备登录</item>
+    </string-array>
+
 </resources>
