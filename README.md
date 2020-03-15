@@ -6,9 +6,9 @@
   
 ![image](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/DeskTop/miku.png)
 
-	所谓：工欲善其事必先利其器！
-	`RxTool` 是 `Android` 开发过程经常需要用到各式各样的工具类集合，虽然大部分只需谷歌/百度一下就能找到。
-	但是有时候急需使用却苦苦搜寻不到，于是整理了自己平常用到的工具类，以便以后的使用。
+>	所谓：工欲善其事必先利其器！
+>	`RxTool` 是 `Android` 开发过程经常需要用到各式各样的工具类集合，虽然大部分只需谷歌/百度一下就能找到。
+>	但是有时候急需使用却苦苦搜寻不到，于是整理了自己平常用到的工具类，以便以后的使用。
 
 
 ---
@@ -41,29 +41,34 @@ allprojects {
 ```
 
 ## Step 2.然后在 build.gradle(Module:app) 的 dependencies 添加:
+
 ```gradle
 dependencies {
   //基础工具库
-  implementation 'com.github.tamsiree.RxTool:RxKit:2.4.3'
+  implementation 'com.github.tamsiree.RxTool:RxKit:2.5.3'
   //UI库
-  implementation 'com.github.tamsiree.RxTool:RxUI:2.4.3'
-  //(依赖RxUI库时，需要额外依赖 cardview 库)
-      implementation 'com.android.support:cardview-v7:29.0.0'
+  implementation 'com.github.tamsiree.RxTool:RxUI:2.5.3'
   //相机库
-  implementation 'com.github.tamsiree.RxTool:RxCamera:v2.4.3'
-  //功能库（Zxing扫描与生成二维码条形码 支付宝 微信）
-  implementation 'com.github.tamsiree.RxTool:RxFeature:v2.4.3'
+  implementation 'com.github.tamsiree.RxTool:RxCamera:v2.5.3'
+  //功能库（Zxing扫描与生成二维码条形码）
+  implementation 'com.github.tamsiree.RxTool:RxFeature:v2.5.3'
   //ArcGis For Android工具库（API：100.1以上版本）
-  implementation 'com.github.tamsiree.RxTool:RxArcGisKit:v2.4.3'
+  implementation 'com.github.tamsiree.RxTool:RxArcGisKit:v2.5.3'
+  //支付模块(支付宝 微信)[暂为待优化模块，谨慎]
+  implementation 'com.github.tamsiree.RxTool:RxFeature:v2.5.3'
 }
 ```
 
-## Step 3.在Application中初始化 
-(注：v2.0.0以后版本是分多模块的版本)
+## Step 3.在Application中初始化
+
+
+> (注：2.0.0 以后版本是分多模块的版本)
+> (注：2.4.0 版本全面升级到 AndroidX)
+> (注：2.4.2 版本更改了库的包名)
+
 ```java
 RxTool.init(this);
 ```
-
 
 # API使用文档
 
@@ -72,13 +77,12 @@ RxTool.init(this);
 - [**[点我看文档]**](https://tamsiree.github.io/TechnicalResearch/Android/RxTool/Wiki/RxTool-Wiki)
 - 备选 [点我看文档](https://github.com/tamsiree/RxTool/wiki/RxTool-Wiki)
 
-
-
 # 更新日志
 > 因为自己用的关系，更新的频率可能有点快
 
 |  VERSION  |  Description  |
 | :-------: | ------------- |
+|   2.5.3   | 更新 RxUI 模块，新增TStepperIndicator步骤指示器，删除 CardView 依赖 |
 |   2.5.2   | 更新 RxUI 模块，新增TIndicator指示器 |
 |   2.5.1   | 更新 RxUI 模块，新增若干自定义View |
 |   2.5.0   | 优化所有自定义View，增加可预览功能 |
