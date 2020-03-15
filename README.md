@@ -16,13 +16,19 @@
 # 我的运行环境
 
 > Android Studio 3.6
+>
 > Build #AI-192.7142.36.36.6200805, built on February 12, 2020
+>
 > Runtime version: 1.8.0_212-release-1586-b4-5784211 amd64
+>
 > VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
+>
 > Linux 5.4.23-1-MANJARO
 >
 > targetSdkVersion 29
+>
 > [gradle-wrapper.properties文件内] distributionUrl 5.6.4
+>
 > [build.gradle文件内] gradle 3.6.1
 
 ---
