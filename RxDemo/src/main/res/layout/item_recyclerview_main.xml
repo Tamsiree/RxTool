@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/ll_root"
     android:paddingStart="0dp"
     android:paddingLeft="0dp"
     android:paddingEnd="0dp"
@@ -18,6 +18,15 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <!--        <com.tamsiree.rxui.view.loading.TImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="@dimen/dp_80"
+                    android:layout_height="@dimen/dp_80"
+                    android:padding="@dimen/dp_10"
+                    android:src="@drawable/pikachu_sit"
+                    app:corners="16"
+                    app:gradient="true" />-->
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="@dimen/dp_80"
@@ -26,17 +35,20 @@
             android:padding="@dimen/dp_10"
             android:src="@drawable/pikachu_sit" />
 
-        <TextView
+        <com.tamsiree.rxui.view.loading.TTextView
             android:id="@+id/tv_name"
-            android:layout_height="0dp"
             android:layout_width="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="0dp"
             android:layout_marginBottom="@dimen/dp_10"
+            android:layout_weight="1"
             android:gravity="center"
             android:padding="10dp"
-            android:text="TextView"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_12" />
+            android:textSize="@dimen/sp_12"
+            app:gradient="true"
+            app:height_weight="0.8"
+            app:width_weight="0.6" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

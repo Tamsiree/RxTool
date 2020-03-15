@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.tamsiree.rxui.view.RxTitle
+        android:id="@+id/rxTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        android:background="?colorPrimary"
+        app:title="加载中视图" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_20">
+
+        <com.tamsiree.rxui.view.loading.TImageView
+            android:id="@+id/image_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:corners="16"
+            app:gradient="true" />
+
+        <LinearLayout
+            android:id="@+id/container_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/image_icon"
+            android:layout_toRightOf="@id/image_icon"
+            android:orientation="vertical">
+
+            <com.tamsiree.rxui.view.loading.TTextView
+                android:id="@+id/txt_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:gradient="true"
+                app:height_weight="0.8"
+                app:width_weight="0.6" />
+
+            <com.tamsiree.rxui.view.loading.TTextView
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/sp_12"
+                app:corners="32"
+                app:height_weight="0.8"
+                app:width_weight="1.0" />
+
+            <com.tamsiree.rxui.view.loading.TTextView
+                android:id="@+id/txt_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:drawablePadding="8dp"
+                android:textSize="@dimen/sp_12"
+                app:corners="16"
+                app:height_weight="0.8"
+                app:width_weight="0.4" />
+
+            <com.tamsiree.rxui.view.loading.TTextView
+                android:id="@+id/txt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:drawablePadding="8dp"
+                android:textSize="@dimen/sp_12"
+                app:TLoadingColor="@color/blue_baby"
+                app:corners="8"
+                app:height_weight="0.8"
+                app:width_weight="0.9" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:background="@drawable/shape_round_theme"
+        android:text="重新加载"
+        android:textColor="@color/white" />
+
+</LinearLayout>
