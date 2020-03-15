@@ -10,7 +10,7 @@
     <com.tamsiree.rxui.view.RxAutoImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:ImageSrc="@drawable/bg_friend" />
+        app:ImageSrc="@drawable/bg_family" />
 
     <LinearLayout
         android:layout_width="match_parent"

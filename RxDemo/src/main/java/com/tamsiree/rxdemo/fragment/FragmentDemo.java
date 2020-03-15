@@ -226,7 +226,6 @@ public class FragmentDemo extends FragmentLazy implements SwipeRefreshLayout.OnR
 
         mDemoList.add(new ModelDemo("联系人侧边快速导航", R.drawable.circle_phone, ActivityContact.class));
 
-
         mDemoList.add(new ModelDemo("TabLayout", R.drawable.circle_pocket, ActivityTabLayout.class));
         mDemoList.add(new ModelDemo("卡片画廊效果", R.drawable.circle_outlook, ActivityTCardGallery.class));
         mDemoList.add(new ModelDemo("步骤指示器", R.drawable.circle_indicator, ActivityTStepperIndicator.class));
