@@ -246,4 +246,7 @@
     <color name="stpi_default_line_color">#b3bdc2</color>
     <color name="stpi_default_text_color">#000</color>
 
+    <color name="tloading_default_color">#D7D7D7</color>
+    <color name="tloading_darker_color">#B4B4B4</color>
+
 </resources>

@@ -628,4 +628,12 @@
         <attr name="stpi_labelColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="TLoadingView">
+        <attr name="width_weight" format="float" />
+        <attr name="height_weight" format="float" />
+        <attr name="gradient" format="boolean" />
+        <attr name="corners" format="integer" />
+        <attr name="TLoadingColor" format="color" />
+    </declare-styleable>
+
 </resources>
