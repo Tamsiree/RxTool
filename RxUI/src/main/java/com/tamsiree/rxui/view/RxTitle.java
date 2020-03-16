@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.tamsiree.rxkit.RxActivityTool;
 import com.tamsiree.rxkit.RxDataTool;
 import com.tamsiree.rxkit.RxImageTool;
 import com.tamsiree.rxkit.RxKeyboardTool;
@@ -487,6 +488,15 @@ public class RxTitle extends FrameLayout {
 
     public void setLeftFinish(final Activity activity) {
         mLlLeft.setOnClickListener(v -> activity.finish());
+    }
+
+    public void setLeftFinish(final Activity activity, boolean isFade, boolean isTransition) {
+        mLlLeft.setOnClickListener(v -> {
+            RxActivityTool.finishActivity(activity, isTransition);
+            if (isFade) {
+                RxActivityTool.fadeTransition(activity);
+            }
+        });
     }
 
     public void setLeftOnClickListener(OnClickListener onClickListener) {
