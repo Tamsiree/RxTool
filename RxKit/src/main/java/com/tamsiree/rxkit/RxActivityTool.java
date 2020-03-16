@@ -320,7 +320,7 @@ public class RxActivityTool {
         return "no " + packageName;
     }
 
-    private static void finishActivity(Context mContext, boolean isTransition) {
+    public static void finishActivity(Context mContext, boolean isTransition) {
         if (isTransition) {
             ((Activity) mContext).onBackPressed();
         } else {
