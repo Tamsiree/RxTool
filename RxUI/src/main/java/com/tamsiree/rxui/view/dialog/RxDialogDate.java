@@ -37,7 +37,7 @@ public class RxDialogDate extends RxDialog {
     private int curMonth;
     private int curDay;
     private TextView mTvSure;
-    private TextView mTvCancle;
+    private TextView mTvCancel;
     private CheckBox mCheckBoxDay;
     private Calendar mCalendar;
     private LinearLayout llType;
@@ -53,14 +53,12 @@ public class RxDialogDate extends RxDialog {
 
     public RxDialogDate(Context mContext) {
         super(mContext);
-        // TODO Auto-generated constructor stub
         this.mContext = mContext;
         build();
     }
 
     public RxDialogDate(Context mContext, int beginYear) {
         super(mContext);
-        // TODO Auto-generated constructor stub
         this.mContext = mContext;
         this.beginYear = beginYear;
         build();
@@ -68,7 +66,6 @@ public class RxDialogDate extends RxDialog {
 
     public RxDialogDate(Context mContext, int beginYear, int endYear) {
         super(mContext);
-        // TODO Auto-generated constructor stub
         this.mContext = mContext;
         this.beginYear = beginYear;
         this.endYear = endYear;
@@ -77,7 +74,6 @@ public class RxDialogDate extends RxDialog {
 
     public RxDialogDate(Context mContext, DateFormat dateFormat) {
         super(mContext);
-        // TODO Auto-generated constructor stub
         this.mContext = mContext;
         build();
         this.mDateFormat = dateFormat;
@@ -88,11 +84,11 @@ public class RxDialogDate extends RxDialog {
         String dateCN;
         switch (mDateFormat) {
             case 年月:
-                dateCN = curYear + "年" + mMonths[curMonth] + "月";
+                dateCN = getSelectorYear() + "年" + getSelectorMonth() + "月";
                 break;
             case 年月日:
             default:
-                dateCN = curYear + "年" + mMonths[curMonth] + "月" + mDays[curDay] + "日";
+                dateCN = getSelectorYear() + "年" + getSelectorMonth() + "月" + getSelectorDay() + "日";
                 break;
         }
 
@@ -117,12 +113,12 @@ public class RxDialogDate extends RxDialog {
         switch (dateFormat) {
             case 年月:
                 llType.setVisibility(View.VISIBLE);
-                mCheckBoxDay.setChecked(true);
+                mCheckBoxDay.setChecked(false);
                 break;
             case 年月日:
             default:
                 llType.setVisibility(View.INVISIBLE);
-                mCheckBoxDay.setChecked(false);
+                mCheckBoxDay.setChecked(true);
                 break;
         }
     }
@@ -185,7 +181,7 @@ public class RxDialogDate extends RxDialog {
         mDayView.setShadowColor(0xFFDADCDB, 0x88DADCDB, 0x00DADCDB);
 
         mTvSure = dialogView1.findViewById(R.id.tv_sure);
-        mTvCancle = dialogView1.findViewById(R.id.tv_cancel);
+        mTvCancel = dialogView1.findViewById(R.id.tv_cancel);
         llType = dialogView1.findViewById(R.id.ll_month_type);
 
         mCheckBoxDay = dialogView1.findViewById(R.id.checkBox_day);
@@ -251,7 +247,7 @@ public class RxDialogDate extends RxDialog {
     }
 
     public TextView getCancleView() {
-        return mTvCancle;
+        return mTvCancel;
     }
 
 
