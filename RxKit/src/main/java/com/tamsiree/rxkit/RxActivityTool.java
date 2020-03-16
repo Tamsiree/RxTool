@@ -2,11 +2,17 @@ package com.tamsiree.rxkit;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.util.Pair;
+import android.view.View;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 
 import java.util.List;
 import java.util.Stack;
@@ -25,7 +31,7 @@ public class RxActivityTool {
     /**
      * 添加Activity 到栈
      *
-     * @param activity
+     * @param activity Activity
      */
     public static void addActivity(Activity activity) {
         if (activityStack == null) {
@@ -38,8 +44,7 @@ public class RxActivityTool {
      * 获取当前的Activity（堆栈中最后一个压入的)
      */
     public static Activity currentActivity() {
-        Activity activity = activityStack.lastElement();
-        return activity;
+        return activityStack.lastElement();
     }
 
     /**
@@ -53,7 +58,7 @@ public class RxActivityTool {
     /**
      * 结束指定的Activity
      *
-     * @param activity
+     * @param activity Activity
      */
     public static void finishActivity(Activity activity) {
         if (activity != null) {
@@ -94,7 +99,7 @@ public class RxActivityTool {
             activityManager.restartPackage(context.getPackageName());
             System.exit(0);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -146,15 +151,20 @@ public class RxActivityTool {
      * Activity 跳转
      * 跳转后Finish之前所有的Activity
      *
-     * @param context
-     * @param goal
+     * @param context Context
+     * @param goal    Activity
      */
-    public static void skipActivityAndFinishAll(Context context, Class<?> goal, Bundle bundle) {
+    public static void skipActivityAndFinishAll(Context context, Class<?> goal, Bundle bundle, boolean isFade) {
         Intent intent = new Intent(context, goal);
-        intent.putExtras(bundle);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
-        ((Activity) context).finish();
+        finishActivity(context, false);
+        if (isFade) {
+            fadeTransition(context);
+        }
     }
 
     /**
@@ -162,75 +172,90 @@ public class RxActivityTool {
      * Activity 跳转
      * 跳转后Finish之前所有的Activity
      *
-     * @param context
-     * @param goal
+     * @param context Context
+     * @param goal    Activity
      */
-    public static void skipActivityAndFinishAll(Context context, Class<?> goal) {
-        Intent intent = new Intent(context, goal);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        context.startActivity(intent);
-        ((Activity) context).finish();
+    public static void skipActivityAndFinishAll(Context context, Class<?> goal, boolean isFade) {
+        skipActivityAndFinishAll(context, goal, null, isFade);
     }
 
 
     /**
      * Activity 跳转
      *
-     * @param context
-     * @param goal
+     * @param context Context
+     * @param goal    Activity
      */
-    public static void skipActivityAndFinish(Context context, Class<?> goal, Bundle bundle) {
-        Intent intent = new Intent(context, goal);
-        intent.putExtras(bundle);
-        context.startActivity(intent);
-        ((Activity) context).finish();
+    public static void skipActivityAndFinish(Context context, Class<?> goal, Bundle bundle, boolean isFade, boolean isTransition) {
+        skipActivity(context, goal, bundle, isFade);
+        finishActivity(context, isTransition);
     }
 
     /**
      * Activity 跳转
      *
-     * @param context
-     * @param goal
+     * @param context Context
+     * @param goal    Activity
      */
-    public static void skipActivityAndFinish(Context context, Class<?> goal) {
-        Intent intent = new Intent(context, goal);
-        context.startActivity(intent);
-        ((Activity) context).finish();
+    public static void skipActivityAndFinish(Context context, Class<?> goal, boolean isFade, boolean isTransition) {
+        skipActivity(context, goal, isFade);
+        finishActivity(context, isTransition);
     }
 
 
     /**
      * Activity 跳转
      *
-     * @param context
-     * @param goal
+     * @param context Context
+     * @param goal    Activity
      */
-    public static void skipActivity(Context context, Class<?> goal) {
-        Intent intent = new Intent(context, goal);
-        context.startActivity(intent);
+    public static void skipActivity(Context context, Class<?> goal, boolean isFade) {
+        skipActivity(context, goal, null, isFade);
     }
 
     /**
      * Activity 跳转
      *
-     * @param context
-     * @param goal
+     * @param context Context
+     * @param goal    Activity
      */
-    public static void skipActivity(Context context, Class<?> goal, Bundle bundle) {
+    public static void skipActivity(Context context, Class<?> goal, Bundle bundle, boolean isFade) {
         Intent intent = new Intent(context, goal);
-        intent.putExtras(bundle);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
         context.startActivity(intent);
+        if (isFade) {
+            fadeTransition(context);
+        }
     }
 
     public static void skipActivityForResult(Activity context, Class<?> goal, int requestCode) {
-        Intent intent = new Intent(context, goal);
-        context.startActivityForResult(intent, requestCode);
+        skipActivityForResult(context, goal, null, requestCode);
     }
 
     public static void skipActivityForResult(Activity context, Class<?> goal, Bundle bundle, int requestCode) {
         Intent intent = new Intent(context, goal);
-        intent.putExtras(bundle);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
         context.startActivityForResult(intent, requestCode);
+    }
+
+    public static void skipActivityOnTransitions(Context mContext, Class<?> goal, Bundle bundle, Pair<View, String>... pairs) {
+        Intent intent = new Intent(mContext, goal);
+        Bundle bundle1 = ActivityOptions.makeSceneTransitionAnimation((Activity) mContext, pairs).toBundle();
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        ActivityCompat.startActivity(mContext, intent, bundle1);
+    }
+
+    public static void skipActivityTransition(Context mContext, Class<?> goal, Bundle bundle, View view, String elementName) {
+        Intent intent = new Intent(mContext, goal);
+        Bundle bundle1 = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext, view, elementName).toBundle();
+        intent.putExtras(bundle);
+        mContext.startActivity(intent, bundle1);
     }
 
     /**
@@ -253,5 +278,16 @@ public class RxActivityTool {
         return "no " + packageName;
     }
 
+    private static void finishActivity(Context mContext, boolean isTransition) {
+        if (isTransition) {
+            ((Activity) mContext).onBackPressed();
+        } else {
+            ((Activity) mContext).finish();
+        }
+    }
+
+    public static void fadeTransition(Context mContext) {
+        ((Activity) mContext).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
 
 }
