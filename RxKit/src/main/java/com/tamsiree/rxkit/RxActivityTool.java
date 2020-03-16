@@ -179,6 +179,17 @@ public class RxActivityTool {
         skipActivityAndFinishAll(context, goal, null, isFade);
     }
 
+    /**
+     * 要求最低API为11
+     * Activity 跳转
+     * 跳转后Finish之前所有的Activity
+     *
+     * @param context Context
+     * @param goal    Activity
+     */
+    public static void skipActivityAndFinishAll(Context context, Class<?> goal) {
+        skipActivityAndFinishAll(context, goal, null, false);
+    }
 
     /**
      * Activity 跳转
@@ -197,11 +208,42 @@ public class RxActivityTool {
      * @param context Context
      * @param goal    Activity
      */
+    public static void skipActivityAndFinish(Context context, Class<?> goal, Bundle bundle) {
+        skipActivity(context, goal, bundle, false);
+        finishActivity(context, false);
+    }
+
+    /**
+     * Activity 跳转
+     *
+     * @param context Context
+     * @param goal    Activity
+     */
+    public static void skipActivityAndFinish(Context context, Class<?> goal) {
+        skipActivity(context, goal, null, false);
+        finishActivity(context, false);
+    }
+
+    /**
+     * Activity 跳转
+     *
+     * @param context Context
+     * @param goal    Activity
+     */
     public static void skipActivityAndFinish(Context context, Class<?> goal, boolean isFade, boolean isTransition) {
         skipActivity(context, goal, isFade);
         finishActivity(context, isTransition);
     }
 
+    /**
+     * Activity 跳转
+     *
+     * @param context Context
+     * @param goal    Activity
+     */
+    public static void skipActivity(Context context, Class<?> goal) {
+        skipActivity(context, goal, null, false);
+    }
 
     /**
      * Activity 跳转
