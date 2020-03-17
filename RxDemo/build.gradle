@@ -1,9 +1,13 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt' //kapt3插件
+//apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+
+    compileSdkVersion 29
+    buildToolsVersion = '29.0.3'
 
     signingConfigs {
         debug {
@@ -13,8 +17,7 @@ android {
             keyPassword 'Ls547817'
         }
     }
-    compileSdkVersion 29
-    buildToolsVersion = '29.0.3'
+
 
     defaultConfig {
         applicationId "com.tamsiree.rxdemo"
@@ -82,7 +85,8 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
 
     implementation 'com.jakewharton:butterknife:10.2.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+    kapt 'com.jakewharton:butterknife-compiler:10.2.1'
 
     compileOnly 'com.alipay.sdk:alipay-sdk-java:4.9.28.ALL'
 

@@ -61,8 +61,7 @@ public class ActivitySVG extends ActivityBase {
                     mTvAppName.setVisibility(View.VISIBLE);
                     mTvVersion.setVisibility(View.VISIBLE);
                     RxTool.delayToDo(2000, () -> {
-                        RxActivityTool.skipActivityAndFinish(mContext, ActivityMain.class);
-                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                        RxActivityTool.skipActivityAndFinish(mContext, ActivityMain.class, true);
                     });
                     break;
                 default:

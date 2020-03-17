@@ -146,6 +146,7 @@ public class RxActivityTool {
         context.startActivity(RxIntentTool.getComponentNameIntent(packageName, className, bundle));
     }
 
+
     /**
      * 要求最低API为11
      * Activity 跳转
@@ -154,17 +155,8 @@ public class RxActivityTool {
      * @param context Context
      * @param goal    Activity
      */
-    public static void skipActivityAndFinishAll(Context context, Class<?> goal, Bundle bundle, boolean isFade) {
-        Intent intent = new Intent(context, goal);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        context.startActivity(intent);
-        finishActivity(context, false);
-        if (isFade) {
-            fadeTransition(context);
-        }
+    public static void skipActivityAndFinishAll(Context context, Class<?> goal) {
+        skipActivityAndFinishAll(context, goal, null, false);
     }
 
     /**
@@ -187,30 +179,17 @@ public class RxActivityTool {
      * @param context Context
      * @param goal    Activity
      */
-    public static void skipActivityAndFinishAll(Context context, Class<?> goal) {
-        skipActivityAndFinishAll(context, goal, null, false);
-    }
-
-    /**
-     * Activity 跳转
-     *
-     * @param context Context
-     * @param goal    Activity
-     */
-    public static void skipActivityAndFinish(Context context, Class<?> goal, Bundle bundle, boolean isFade, boolean isTransition) {
-        skipActivity(context, goal, bundle, isFade);
-        finishActivity(context, isTransition);
-    }
-
-    /**
-     * Activity 跳转
-     *
-     * @param context Context
-     * @param goal    Activity
-     */
-    public static void skipActivityAndFinish(Context context, Class<?> goal, Bundle bundle) {
-        skipActivity(context, goal, bundle, false);
+    public static void skipActivityAndFinishAll(Context context, Class<?> goal, Bundle bundle, boolean isFade) {
+        Intent intent = new Intent(context, goal);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
         finishActivity(context, false);
+        if (isFade) {
+            fadeTransition(context);
+        }
     }
 
     /**
@@ -221,6 +200,28 @@ public class RxActivityTool {
      */
     public static void skipActivityAndFinish(Context context, Class<?> goal) {
         skipActivity(context, goal, null, false);
+        finishActivity(context, false);
+    }
+
+    /**
+     * Activity 跳转
+     *
+     * @param context Context
+     * @param goal    Activity
+     */
+    public static void skipActivityAndFinish(Context context, Class<?> goal, boolean isFade) {
+        skipActivity(context, goal, null, isFade);
+        finishActivity(context, false);
+    }
+
+    /**
+     * Activity 跳转
+     *
+     * @param context Context
+     * @param goal    Activity
+     */
+    public static void skipActivityAndFinish(Context context, Class<?> goal, Bundle bundle) {
+        skipActivity(context, goal, bundle, false);
         finishActivity(context, false);
     }
 
@@ -241,8 +242,34 @@ public class RxActivityTool {
      * @param context Context
      * @param goal    Activity
      */
+    public static void skipActivityAndFinish(Context context, Class<?> goal, Bundle bundle, boolean isFade, boolean isTransition) {
+        skipActivity(context, goal, bundle, isFade);
+        finishActivity(context, isTransition);
+    }
+
+
+    /**
+     * Activity 跳转
+     *
+     * @param context Context
+     * @param goal    Activity
+     */
     public static void skipActivity(Context context, Class<?> goal) {
         skipActivity(context, goal, null, false);
+    }
+
+    /**
+     * Activity 跳转
+     *
+     * @param context Context
+     * @param goal    Activity
+     */
+    public static void skipActivity(Context context, Class<?> goal, Bundle bundle) {
+        Intent intent = new Intent(context, goal);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        context.startActivity(intent);
     }
 
     /**

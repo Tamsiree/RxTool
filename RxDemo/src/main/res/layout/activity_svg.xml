@@ -5,6 +5,7 @@
     android:id="@+id/activity_svg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context="com.tamsiree.rxdemo.activity.ActivitySVG">
 
     <com.tamsiree.rxui.view.RxAutoImageView
