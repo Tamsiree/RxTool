@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt' //kapt3插件
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -43,7 +44,6 @@ dependencies {
     implementation 'com.google.zxing:core:3.3.0'
     compileOnly project(':RxKit')
     compileOnly project(':RxUI')
-//    implementation "androidx.core:core-ktx:1.2.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
 
 }

@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt' //kapt3插件
-//apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -55,13 +54,6 @@ dependencies {
     implementation project(':RxFeature')
     implementation project(':RxArcGisKit')
 
-
-    //cardView包
-    //appcompat包
-    //recyclerview包
-    //流式布局
-    //动画向下版本兼容 nineold包
-    //noinspection GradleCompatible
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -74,7 +66,7 @@ dependencies {
     implementation 'com.nineoldandroids:library:2.4.0'
 
     implementation 'com.github.bumptech.glide:glide:4.7.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    kapt 'com.github.bumptech.glide:compiler:4.7.1'
     implementation 'jp.wasabeef:glide-transformations:3.3.0'
     // If you want to use the GPU Filters
     implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
@@ -101,5 +93,4 @@ dependencies {
     configurations.all {
         exclude group: 'com.android.support', module: 'support-v13'
     }
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
