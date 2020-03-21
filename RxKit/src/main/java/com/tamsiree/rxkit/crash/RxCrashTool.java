@@ -98,92 +98,89 @@ public class RxCrashTool {
                     application = (Application) context.getApplicationContext();
 
                     //We define a default exception handler that does what we want so it can be called from Crashlytics/ACRA
-                    Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-                        @Override
-                        public void uncaughtException(@NonNull Thread thread, @NonNull final Throwable throwable) {
-                            if (config.isEnabled()) {
-                                Log.e(TAG, "App has crashed, executing RxCrashTool's UncaughtExceptionHandler", throwable);
+                    Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+                        if (config.isEnabled()) {
+                            Log.e(TAG, "App has crashed, executing RxCrashTool's UncaughtExceptionHandler", throwable);
 
-                                if (hasCrashedInTheLastSeconds(application)) {
-                                    Log.e(TAG, "App already crashed recently, not starting custom error activity because we could enter a restart loop. Are you sure that your app does not crash directly on init?", throwable);
+                            if (hasCrashedInTheLastSeconds(application)) {
+                                Log.e(TAG, "App already crashed recently, not starting custom error activity because we could enter a restart loop. Are you sure that your app does not crash directly on init?", throwable);
+                                if (oldHandler != null) {
+                                    oldHandler.uncaughtException(thread, throwable);
+                                    return;
+                                }
+                            } else {
+                                setLastCrashTimestamp(application, new Date().getTime());
+
+                                Class<? extends Activity> errorActivityClass = config.getErrorActivityClass();
+
+                                if (errorActivityClass == null) {
+                                    errorActivityClass = guessErrorActivityClass(application);
+                                }
+
+                                if (isStackTraceLikelyConflictive(throwable, errorActivityClass)) {
+                                    Log.e(TAG, "Your application class or your error activity have crashed, the custom activity will not be launched!");
                                     if (oldHandler != null) {
                                         oldHandler.uncaughtException(thread, throwable);
                                         return;
                                     }
-                                } else {
-                                    setLastCrashTimestamp(application, new Date().getTime());
+                                } else if (config.getBackgroundMode() == RxCrashConfig.BACKGROUND_MODE_SHOW_CUSTOM || !isInBackground
+                                        || (lastActivityCreatedTimestamp >= new Date().getTime() - TIME_TO_CONSIDER_FOREGROUND_MS)) {
 
-                                    Class<? extends Activity> errorActivityClass = config.getErrorActivityClass();
+                                    final Intent intent = new Intent(application, errorActivityClass);
+                                    StringWriter sw = new StringWriter();
+                                    PrintWriter pw = new PrintWriter(sw);
+                                    throwable.printStackTrace(pw);
+                                    String stackTraceString = sw.toString();
 
-                                    if (errorActivityClass == null) {
-                                        errorActivityClass = guessErrorActivityClass(application);
+                                    //Reduce data to 128KB so we don't get a TransactionTooLargeException when sending the intent.
+                                    //The limit is 1MB on Android but some devices seem to have it lower.
+                                    //See: http://developer.android.com/reference/android/os/TransactionTooLargeException.html
+                                    //And: http://stackoverflow.com/questions/11451393/what-to-do-on-transactiontoolargeexception#comment46697371_12809171
+                                    if (stackTraceString.length() > MAX_STACK_TRACE_SIZE) {
+                                        String disclaimer = " [stack trace too large]";
+                                        stackTraceString = stackTraceString.substring(0, MAX_STACK_TRACE_SIZE - disclaimer.length()) + disclaimer;
+                                    }
+                                    intent.putExtra(EXTRA_STACK_TRACE, stackTraceString);
+
+                                    if (config.isTrackActivities()) {
+                                        StringBuilder activityLogStringBuilder = new StringBuilder();
+                                        while (!activityLog.isEmpty()) {
+                                            activityLogStringBuilder.append(activityLog.poll());
+                                        }
+                                        intent.putExtra(EXTRA_ACTIVITY_LOG, activityLogStringBuilder.toString());
                                     }
 
-                                    if (isStackTraceLikelyConflictive(throwable, errorActivityClass)) {
-                                        Log.e(TAG, "Your application class or your error activity have crashed, the custom activity will not be launched!");
-                                        if (oldHandler != null) {
-                                            oldHandler.uncaughtException(thread, throwable);
-                                            return;
-                                        }
-                                    } else if (config.getBackgroundMode() == RxCrashConfig.BACKGROUND_MODE_SHOW_CUSTOM || !isInBackground
-                                            || (lastActivityCreatedTimestamp >= new Date().getTime() - TIME_TO_CONSIDER_FOREGROUND_MS)) {
-
-                                        final Intent intent = new Intent(application, errorActivityClass);
-                                        StringWriter sw = new StringWriter();
-                                        PrintWriter pw = new PrintWriter(sw);
-                                        throwable.printStackTrace(pw);
-                                        String stackTraceString = sw.toString();
-
-                                        //Reduce data to 128KB so we don't get a TransactionTooLargeException when sending the intent.
-                                        //The limit is 1MB on Android but some devices seem to have it lower.
-                                        //See: http://developer.android.com/reference/android/os/TransactionTooLargeException.html
-                                        //And: http://stackoverflow.com/questions/11451393/what-to-do-on-transactiontoolargeexception#comment46697371_12809171
-                                        if (stackTraceString.length() > MAX_STACK_TRACE_SIZE) {
-                                            String disclaimer = " [stack trace too large]";
-                                            stackTraceString = stackTraceString.substring(0, MAX_STACK_TRACE_SIZE - disclaimer.length()) + disclaimer;
-                                        }
-                                        intent.putExtra(EXTRA_STACK_TRACE, stackTraceString);
-
-                                        if (config.isTrackActivities()) {
-                                            StringBuilder activityLogStringBuilder = new StringBuilder();
-                                            while (!activityLog.isEmpty()) {
-                                                activityLogStringBuilder.append(activityLog.poll());
-                                            }
-                                            intent.putExtra(EXTRA_ACTIVITY_LOG, activityLogStringBuilder.toString());
-                                        }
-
-                                        if (config.isShowRestartButton() && config.getRestartActivityClass() == null) {
-                                            //We can set the restartActivityClass because the app will terminate right now,
-                                            //and when relaunched, will be null again by default.
-                                            config.setRestartActivityClass(guessRestartActivityClass(application));
-                                        }
-
-                                        intent.putExtra(EXTRA_CONFIG, config);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        if (config.getEventListener() != null) {
-                                            config.getEventListener().onLaunchErrorActivity();
-                                        }
-                                        application.startActivity(intent);
-                                    } else if (config.getBackgroundMode() == RxCrashConfig.BACKGROUND_MODE_CRASH) {
-                                        if (oldHandler != null) {
-                                            oldHandler.uncaughtException(thread, throwable);
-                                            return;
-                                        }
-                                        //If it is null (should not be), we let it continue and kill the process or it will be stuck
+                                    if (config.isShowRestartButton() && config.getRestartActivityClass() == null) {
+                                        //We can set the restartActivityClass because the app will terminate right now,
+                                        //and when relaunched, will be null again by default.
+                                        config.setRestartActivityClass(guessRestartActivityClass(application));
                                     }
-                                    //Else (BACKGROUND_MODE_SILENT): do nothing and let the following code kill the process
+
+                                    intent.putExtra(EXTRA_CONFIG, config);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    if (config.getEventListener() != null) {
+                                        config.getEventListener().onLaunchErrorActivity();
+                                    }
+                                    application.startActivity(intent);
+                                } else if (config.getBackgroundMode() == RxCrashConfig.BACKGROUND_MODE_CRASH) {
+                                    if (oldHandler != null) {
+                                        oldHandler.uncaughtException(thread, throwable);
+                                        return;
+                                    }
+                                    //If it is null (should not be), we let it continue and kill the process or it will be stuck
                                 }
-                                final Activity lastActivity = lastActivityCreated.get();
-                                if (lastActivity != null) {
-                                    //We finish the activity, this solves a bug which causes infinite recursion.
-                                    //See: https://github.com/ACRA/acra/issues/42
-                                    lastActivity.finish();
-                                    lastActivityCreated.clear();
-                                }
-                                killCurrentProcess();
-                            } else if (oldHandler != null) {
-                                oldHandler.uncaughtException(thread, throwable);
+                                //Else (BACKGROUND_MODE_SILENT): do nothing and let the following code kill the process
                             }
+                            final Activity lastActivity = lastActivityCreated.get();
+                            if (lastActivity != null) {
+                                //We finish the activity, this solves a bug which causes infinite recursion.
+                                //See: https://github.com/ACRA/acra/issues/42
+                                lastActivity.finish();
+                                lastActivityCreated.clear();
+                            }
+                            killCurrentProcess();
+                        } else if (oldHandler != null) {
+                            oldHandler.uncaughtException(thread, throwable);
                         }
                     });
                     application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {

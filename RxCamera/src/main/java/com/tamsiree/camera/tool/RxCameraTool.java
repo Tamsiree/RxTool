@@ -11,8 +11,8 @@ import com.tamsiree.rxkit.RxExifTool;
 import com.tamsiree.rxkit.RxFileTool;
 import com.tamsiree.rxkit.RxVibrateTool;
 import com.tamsiree.rxkit.interfaces.OnRxCamera;
-import com.tamsiree.rxkit.module.photomagic.OnCompressListener;
-import com.tamsiree.rxkit.module.photomagic.RxMagic;
+import com.tamsiree.rxkit.photomagic.OnCompressListener;
+import com.tamsiree.rxkit.photomagic.RxMagic;
 import com.tamsiree.rxkit.view.RxToast;
 
 import java.io.File;

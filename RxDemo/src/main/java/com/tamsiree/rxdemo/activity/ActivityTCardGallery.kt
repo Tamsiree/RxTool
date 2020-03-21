@@ -51,17 +51,19 @@ class ActivityTCardGallery : ActivityBase() {
         // mRecyclerView绑定scale效果
         mCardScaleHelper = CardScaleHelper()
         mCardScaleHelper!!.currentItemPos = 2
-        mCardScaleHelper!!.attachToRecyclerView(recyclerView, OnDoIntListener {
-            RxToast.normal("选中$it")
-            if (mLastPos == it) {
-                return@OnDoIntListener
-            } else if (mLastPos > it) {
+        mCardScaleHelper!!.attachToRecyclerView(recyclerView, object : OnDoIntListener {
+            override fun doSomething(intValue: Int) {
+                RxToast.normal("选中$intValue")
+                if (mLastPos == intValue) {
+                    return
+                } else if (mLastPos > intValue) {
 //                            tIndicator.moveToLeft()
-            } else if (mLastPos < it) {
+                } else if (mLastPos < intValue) {
 //                            tIndicator.moveToRight()
+                }
+                mLastPos = intValue
+                notifyBackgroundChange()
             }
-            mLastPos = it
-            notifyBackgroundChange()
         })
     }
 
