@@ -48,7 +48,7 @@ class RxServiceLocation : Service() {
             }
         }
 
-        override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
+        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
     }
 
     fun setOnGetLocationListener(onGetLocationListener: OnGetLocationListener?) {

@@ -11,7 +11,7 @@ import com.tamsiree.rxkit.interfaces.OnDoIntListener
  */
 class CardScaleHelper {
     private var mRecyclerView: RecyclerView? = null
-    private var mContext: Context? = null
+    private lateinit var mContext: Context
     private var mScale = 0.8f // 两边视图scale
     private var mPagePadding = 15 // 卡片的padding, 卡片间的距离等于2倍的mPagePadding
     private var mShowLeftCardWidth = 15 // 左边卡片显示大小

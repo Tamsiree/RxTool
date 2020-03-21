@@ -71,7 +71,7 @@ class ActivityRxExifTool : ActivityBaseLocation() {
     }
 
     private fun initCameraEvent(data: ByteArray) {
-        val fileDir = RxFileTool.getRootPath().absolutePath + File.separator + "RoadExcel" + File.separator + "picture"
+        val fileDir = RxFileTool.rootPath?.absolutePath + File.separator + "RoadExcel" + File.separator + "picture"
         val fileName = RxTimeTool.getCurrentDateTime("yyyyMMddHHmmss") + "_" + Random().nextInt(1000) + ".jpg"
         RxCameraTool.initCameraEvent(mContext, mCameraView, data, fileDir, fileName, mLongitude, mLatitude, false, object : OnRxCamera {
             override fun onBefore() {

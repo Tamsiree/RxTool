@@ -278,11 +278,7 @@ public class RxToast {
     //******************************************系统 Toast 替代方法***************************************
 
     public static final void setBackground(@NonNull View view, Drawable drawable) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            view.setBackground(drawable);
-        } else {
-            view.setBackgroundDrawable(drawable);
-        }
+        view.setBackground(drawable);
     }
 
     public static final Drawable getDrawable(@NonNull Context context, @DrawableRes int id) {

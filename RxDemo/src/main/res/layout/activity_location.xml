@@ -31,7 +31,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/white_circle_l_shape"
+                android:background="@drawable/shape_round_gray_15dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -50,26 +50,27 @@
                     android:layout_gravity="center_horizontal"
                     android:clickable="false"
                     android:text="0"
-                    android:textColor="@color/royalblue" />
+                    android:textColor="@color/colorPrimary" />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_about_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
 
             <LinearLayout
                 android:id="@+id/layer_change_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:alpha=".7"
+                android:layout_marginTop="@dimen/dp_50"
                 android:background="@drawable/map_button_background"
                 android:orientation="horizontal"
                 android:padding="6dp">
+
+                <TextView
+                    android:id="@+id/tv_about_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

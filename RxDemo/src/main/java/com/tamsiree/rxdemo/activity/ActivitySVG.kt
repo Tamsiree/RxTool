@@ -64,7 +64,7 @@ class ActivitySVG : ActivityBase() {
                     mTvVersion!!.visibility = View.VISIBLE
                     RxTool.delayToDo(2000, object : OnSimpleListener {
                         override fun doSomething() {
-                            RxActivityTool.skipActivityAndFinish(mContext, ActivityMain::class.java, true)
+                            mContext?.let { RxActivityTool.skipActivityAndFinish(it, ActivityMain::class.java, true) }
                         }
                     })
                 }
