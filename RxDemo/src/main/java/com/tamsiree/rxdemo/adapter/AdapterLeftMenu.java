@@ -27,7 +27,7 @@ public class AdapterLeftMenu extends RecyclerView.Adapter {
     private List<onItemSelectedListener> mSelectedListenerList;
 
     public interface onItemSelectedListener{
-        public void onLeftItemSelected(int postion, ModelDishMenu menu);
+        void onLeftItemSelected(int postion, ModelDishMenu menu);
     }
 
     public void addItemSelectedListener(onItemSelectedListener listener){
@@ -91,8 +91,8 @@ public class AdapterLeftMenu extends RecyclerView.Adapter {
 
         public LeftMenuViewHolder(final View itemView) {
             super(itemView);
-            menuName = (TextView)itemView.findViewById(R.id.left_menu_textview);
-            menuLayout = (LinearLayout)itemView.findViewById(R.id.left_menu_item);
+            menuName = itemView.findViewById(R.id.left_menu_textview);
+            menuLayout = itemView.findViewById(R.id.left_menu_item);
             menuLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

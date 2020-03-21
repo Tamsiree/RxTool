@@ -88,7 +88,7 @@ public class ActivityLoadingDetail extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                int color = (int) EvaluatorARGB.getInstance().evaluate(positionOffset,
+                int color = (int) EvaluatorARGB.Companion.getInstance().evaluate(positionOffset,
                         colors[position % colors.length],
                         colors[(position + 1) % colors.length]);
                 getWindow().getDecorView().setBackgroundColor(color);

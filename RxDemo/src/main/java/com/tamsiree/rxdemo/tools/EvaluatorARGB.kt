@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2010 The Android Open Source Project
  *
@@ -14,30 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.tamsiree.rxdemo.tools
 
-package com.tamsiree.rxdemo.tools;
-
-import android.animation.TypeEvaluator;
+import android.animation.TypeEvaluator
 
 /**
  * This evaluator can be used to perform type interpolation between integer
  * values that represent ARGB colors.
  * @author tamsiree
  */
-public class EvaluatorARGB implements TypeEvaluator {
-    private static final EvaluatorARGB sInstance = new EvaluatorARGB();
-
-    /**
-     * Returns an instance of <code>EvaluatorARGB</code> that may be used in
-     * {@link android.animation.ValueAnimator#setEvaluator(TypeEvaluator)}. The same instance may
-     * be used in multiple <code>Animator</code>s because it holds no state.
-     *
-     * @return An instance of <code>ArgbEvalutor</code>.
-     */
-    public static EvaluatorARGB getInstance() {
-        return sInstance;
-    }
-
+class EvaluatorARGB : TypeEvaluator<Any?> {
     /**
      * This function returns the calculated in-between value for a color
      * given integers that represent the start and end values in the four
@@ -46,28 +31,40 @@ public class EvaluatorARGB implements TypeEvaluator {
      *
      * @param fraction   The fraction from the starting to the ending values
      * @param startValue A 32-bit int value representing colors in the
-     *                   separate bytes of the parameter
+     * separate bytes of the parameter
      * @param endValue   A 32-bit int value representing colors in the
-     *                   separate bytes of the parameter
+     * separate bytes of the parameter
      * @return A value that is calculated to be the linearly interpolated
      * result, derived by separating the start and end values into separate
      * color channels and interpolating each one separately, recombining the
      * resulting values in the same way.
      */
-    public Object evaluate(float fraction, Object startValue, Object endValue) {
-        int startInt = (Integer) startValue;
-        int startA = (startInt >> 24) & 0xff;
-        int startR = (startInt >> 16) & 0xff;
-        int startG = (startInt >> 8) & 0xff;
-        int startB = startInt & 0xff;
-        int endInt = (Integer) endValue;
-        int endA = (endInt >> 24) & 0xff;
-        int endR = (endInt >> 16) & 0xff;
-        int endG = (endInt >> 8) & 0xff;
-        int endB = endInt & 0xff;
-        return (startA + (int) (fraction * (endA - startA))) << 24 |
-                (startR + (int) (fraction * (endR - startR))) << 16 |
-                (startG + (int) (fraction * (endG - startG))) << 8 |
-                (startB + (int) (fraction * (endB - startB)));
+    override fun evaluate(fraction: Float, startValue: Any?, endValue: Any?): Any? {
+        val startInt = startValue as Int
+        val startA = startInt shr 24 and 0xff
+        val startR = startInt shr 16 and 0xff
+        val startG = startInt shr 8 and 0xff
+        val startB = startInt and 0xff
+        val endInt = endValue as Int
+        val endA = endInt shr 24 and 0xff
+        val endR = endInt shr 16 and 0xff
+        val endG = endInt shr 8 and 0xff
+        val endB = endInt and 0xff
+        return startA + (fraction * (endA - startA)).toInt() shl 24 or (
+                startR + (fraction * (endR - startR)).toInt() shl 16) or (
+                startG + (fraction * (endG - startG)).toInt() shl 8) or
+                startB + (fraction * (endB - startB)).toInt()
+    }
+
+    companion object {
+        /**
+         * Returns an instance of `EvaluatorARGB` that may be used in
+         * [android.animation.ValueAnimator.setEvaluator]. The same instance may
+         * be used in multiple `Animator`s because it holds no state.
+         *
+         * @return An instance of `ArgbEvalutor`.
+         */
+        val instance = EvaluatorARGB()
+
     }
 }

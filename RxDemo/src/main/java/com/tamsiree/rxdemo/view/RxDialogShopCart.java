@@ -140,12 +140,12 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener, Sh
     }
 
     @Override
-    public void add(View view, int postion) {
+    public void add(View view, int position) {
         showTotalPrice();
     }
 
     @Override
-    public void remove(View view, int postion) {
+    public void remove(View view, int position) {
         showTotalPrice();
         if (mModelShopCart.getShoppingAccount() == 0) {
             this.dismiss();
@@ -161,7 +161,7 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener, Sh
     }
 
     public interface ShopCartDialogImp {
-        public void dialogDismiss();
+        void dialogDismiss();
     }
 
     public void clear() {

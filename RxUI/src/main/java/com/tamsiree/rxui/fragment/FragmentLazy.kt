@@ -1,13 +1,11 @@
-package com.tamsiree.rxui.fragment;
+package com.tamsiree.rxui.fragment
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 
 /**
  *
@@ -24,29 +22,26 @@ import androidx.fragment.app.FragmentActivity;
  * @author tamsiree
  * @date 2015/11/21.
  */
-public abstract class FragmentLazy extends Fragment {
-
+abstract class FragmentLazy : Fragment() {
     /**
      * 是否可见状态
      */
-    private boolean isVisible;
+    private var isFragmentVisible: Boolean = false
 
     /**
      * 标志位，View已经初始化完成。
      */
-    private boolean isPrepared;
+    private var isPrepared = false
 
     /**
      * 是否第一次加载
      */
-    private boolean isFirstLoad = true;
+    private var isFirstLoad = true
+    lateinit var mContext: FragmentActivity
+    var rootView: View? = null
+        private set
 
-    public FragmentActivity mContext;
-
-    private View rootView;
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstanceState) {
+    override fun onCreateView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View? {
         // 若 viewpager 不设置 setOffscreenPageLimit 或设置数量不够
         // 销毁的Fragment onCreateView 每次都会执行(但实体类没有从内存销毁)
         // 导致initData反复执行,所以这里注释掉
@@ -55,13 +50,16 @@ public abstract class FragmentLazy extends Fragment {
         // 取消 isFirstLoad = true的注释 , 因为上述的initData本身就是应该执行的
         // onCreateView执行 证明被移出过FragmentManager initData确实要执行.
         // 如果这里有数据累加的Bug 请在initViews方法里初始化您的数据 比如 list.clear();
-        mContext = getActivity();
+        mContext = this.activity!!
+        isFirstLoad = true
+        rootView = initViews(layoutInflater, viewGroup, savedInstanceState)
+        isPrepared = true
+        return rootView
+    }
 
-        isFirstLoad = true;
-        rootView = initViews(layoutInflater, viewGroup, savedInstanceState);
-        isPrepared = true;
-        lazyLoad();
-        return rootView;
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        lazyLoad()
     }
 
     /**
@@ -69,15 +67,14 @@ public abstract class FragmentLazy extends Fragment {
      *
      * @param isVisibleToUser 是否显示出来了
      */
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (getUserVisibleHint()) {
-            isVisible = true;
-            onVisible();
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if (userVisibleHint) {
+            isFragmentVisible = true
+            onVisible()
         } else {
-            isVisible = false;
-            onInvisible();
+            isFragmentVisible = false
+            onInvisible()
         }
     }
 
@@ -86,45 +83,37 @@ public abstract class FragmentLazy extends Fragment {
      * 若是初始就show的Fragment 为了触发该事件 需要先hide再show
      *
      * @param hidden hidden True if the fragment is now hidden, false if it is not
-     *               visible.
+     * visible.
      */
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
         if (!hidden) {
-            isVisible = true;
-            onVisible();
+            isFragmentVisible = true
+            onVisible()
         } else {
-            isVisible = false;
-            onInvisible();
+            isFragmentVisible = false
+            onInvisible()
         }
     }
 
-    protected void onVisible() {
-        lazyLoad();
+    protected fun onVisible() {
+        lazyLoad()
     }
 
-    protected void onInvisible() {
-    }
+    protected fun onInvisible() {}
 
     /**
      * 要实现延迟加载Fragment内容,需要在 onCreateView
      * isPrepared = true;
      */
-    protected void lazyLoad() {
-        if (!isPrepared || !isVisible || !isFirstLoad) {
-            return;
+    protected fun lazyLoad() {
+        if (!isPrepared || !isFragmentVisible || !isFirstLoad) {
+            return
         }
-        isFirstLoad = false;
-        initData();
+        isFirstLoad = false
+        initData()
     }
 
-    protected abstract View initViews(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstanceState);
-
-    protected abstract void initData();
-
-
-    public View getRootView() {
-        return rootView;
-    }
+    protected abstract fun initViews(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View
+    protected abstract fun initData()
 }

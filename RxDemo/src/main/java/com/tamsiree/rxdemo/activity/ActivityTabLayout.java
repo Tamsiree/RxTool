@@ -61,7 +61,7 @@ public class ActivityTabLayout extends ActivityBase {
         mRecyclerview.addItemDecoration(new RxRecyclerViewDividerTool(RxImageTool.dp2px(5f)));
         AdapterRecyclerViewMain recyclerViewMain = new AdapterRecyclerViewMain(mData, new AdapterRecyclerViewMain.ContentListener() {
             @Override
-            public void setListerer(int position) {
+            public void setListener(int position) {
                 RxActivityTool.skipActivity(mContext, mData.get(position).getActivity());
             }
         });
