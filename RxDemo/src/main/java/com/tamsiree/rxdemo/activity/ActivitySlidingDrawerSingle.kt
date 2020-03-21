@@ -1,5 +1,6 @@
 package com.tamsiree.rxdemo.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -94,6 +95,7 @@ class ActivitySlidingDrawerSingle : ActivityBase() {
         initData()
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun initData() {
         mSlidingdrawer!!.setOnDrawerOpenListener {
             flag = true
