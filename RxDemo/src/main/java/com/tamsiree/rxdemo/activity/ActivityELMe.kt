@@ -38,12 +38,12 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
 
     private var headMenu: ModelDishMenu? = null
     private var leftAdapter: AdapterLeftMenu? = null
-    private var rightAdapter: AdapterRightDish? = null
+    private lateinit var rightAdapter: AdapterRightDish
 
     //数据源
-    private var mModelDishMenuList: ArrayList<ModelDishMenu>? = null
+    private lateinit var mModelDishMenuList: ArrayList<ModelDishMenu>
     private var leftClickType = false //左侧菜单点击引发的右侧联动
-    private var mModelShopCart: ModelShopCart? = null
+    private lateinit var mModelShopCart: ModelShopCart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,22 +64,21 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
                     showHeadView()
                     return
                 }
-                var underView: View? = null
-                underView = if (dy > 0) {
+                var underView: View? = if (dy > 0) {
                     right_menu.findChildViewUnder(right_menu_item.x, right_menu_item.measuredHeight + 1.toFloat())
                 } else {
                     right_menu.findChildViewUnder(right_menu_item.x, 0f)
                 }
                 if (underView != null && underView.contentDescription != null) {
                     val position = underView.contentDescription.toString().toInt()
-                    val menu = rightAdapter!!.getMenuOfMenuByPosition(position)
-                    if (leftClickType || menu.menuName != headMenu!!.menuName) {
+                    val menu = rightAdapter.getMenuOfMenuByPosition(position)
+                    if (leftClickType || menu?.menuName != headMenu!!.menuName) {
                         if (dy > 0 && right_menu_item.translationY <= 1 && right_menu_item.translationY >= -1 * right_menu_item.measuredHeight * 4 / 5 && !leftClickType) { // underView.getTop()>9
                             val dealtY = underView.top - right_menu_item.measuredHeight
                             right_menu_item.translationY = dealtY.toFloat()
                             //                            Log.e(TAG, "onScrolled: "+headerLayout.getTranslationY()+"   "+headerLayout.getBottom()+"  -  "+headerLayout.getMeasuredHeight() );
                         } else if (dy < 0 && right_menu_item.translationY <= 0 && !leftClickType) {
-                            right_menu_tv.text = menu.menuName
+                            right_menu_tv.text = menu?.menuName
                             val dealtY = underView.bottom - right_menu_item.measuredHeight
                             right_menu_item.translationY = dealtY.toFloat()
                             //                            Log.e(TAG, "onScrolled: "+headerLayout.getTranslationY()+"   "+headerLayout.getBottom()+"  -  "+headerLayout.getMeasuredHeight() );
@@ -87,8 +86,8 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
                             right_menu_item.translationY = 0f
                             headMenu = menu
                             right_menu_tv.text = headMenu!!.menuName
-                            for (i in mModelDishMenuList!!.indices) {
-                                if (mModelDishMenuList!![i] == headMenu) {
+                            for (i in mModelDishMenuList.indices) {
+                                if (mModelDishMenuList[i] == headMenu) {
                                     leftAdapter!!.selectedNum = i
                                     break
                                 }
@@ -96,7 +95,7 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
                             if (leftClickType) {
                                 leftClickType = false
                             }
-                            Log.e(TAG, "onScrolled: " + menu.menuName)
+                            Log.e(TAG, "onScrolled: " + menu?.menuName)
                         }
                     }
                 }
@@ -150,10 +149,10 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
         dishs4.add(ModelDish("赣菜", 1.0, 10))
         dishs4.add(ModelDish("东北菜", 1.0, 10))
         val menu1 = ModelDishMenu("夜宵", dishs4)
-        mModelDishMenuList!!.add(breakfast)
-        mModelDishMenuList!!.add(launch)
-        mModelDishMenuList!!.add(evening)
-        mModelDishMenuList!!.add(menu1)
+        mModelDishMenuList.add(breakfast)
+        mModelDishMenuList.add(launch)
+        mModelDishMenuList.add(evening)
+        mModelDishMenuList.add(menu1)
 
         initAdapter()
 
@@ -165,12 +164,12 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
         right_menu.adapter = rightAdapter
         left_menu.adapter = leftAdapter
         leftAdapter!!.addItemSelectedListener(this)
-        rightAdapter!!.shopCartInterface = this
+        rightAdapter.shopCartInterface = this
         initHeadView()
     }
 
     private fun initHeadView() {
-        headMenu = rightAdapter!!.getMenuOfMenuByPosition(0)
+        headMenu = rightAdapter.getMenuOfMenuByPosition(0)
         right_menu_item.contentDescription = "0"
         right_menu_tv.text = headMenu?.menuName
     }
@@ -185,11 +184,11 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
         val underView = right_menu.findChildViewUnder(right_menu_tv.x, 0f)
         if (underView != null && underView.contentDescription != null) {
             val position = underView.contentDescription.toString().toInt()
-            val menu = rightAdapter!!.getMenuOfMenuByPosition(position + 1)
+            val menu = rightAdapter.getMenuOfMenuByPosition(position + 1)
             headMenu = menu
             right_menu_tv.text = headMenu!!.menuName
-            for (i in mModelDishMenuList!!.indices) {
-                if (mModelDishMenuList!![i] == headMenu) {
+            for (i in mModelDishMenuList.indices) {
+                if (mModelDishMenuList[i] == headMenu) {
                     leftAdapter!!.selectedNum = i
                     break
                 }
@@ -200,7 +199,7 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
     override fun onLeftItemSelected(position: Int, menu: ModelDishMenu) {
         var sum = 0
         for (i in 0 until position) {
-            sum += mModelDishMenuList!![i].modelDishList!!.size + 1
+            sum += mModelDishMenuList[i].modelDishList!!.size + 1
         }
         val layoutManager = right_menu.layoutManager as LinearLayoutManager?
         layoutManager!!.scrollToPositionWithOffset(sum, 0)
@@ -262,11 +261,11 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
     }
 
     private fun showTotalPrice() {
-        if (mModelShopCart != null && mModelShopCart!!.shoppingTotalPrice > 0) {
+        if (mModelShopCart != null && mModelShopCart.shoppingTotalPrice > 0) {
             shopping_cart_total_tv.visibility = View.VISIBLE
-            shopping_cart_total_tv.text = "¥ " + mModelShopCart!!.shoppingTotalPrice
+            shopping_cart_total_tv.text = "¥ " + mModelShopCart.shoppingTotalPrice
             shopping_cart_total_num.visibility = View.VISIBLE
-            shopping_cart_total_num.text = "" + mModelShopCart!!.shoppingAccount
+            shopping_cart_total_num.text = "" + mModelShopCart.shoppingAccount
         } else {
             shopping_cart_total_tv.visibility = View.GONE
             shopping_cart_total_num.visibility = View.GONE
@@ -274,7 +273,7 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
     }
 
     private fun showCart(view: View) {
-        if (mModelShopCart != null && mModelShopCart!!.shoppingAccount > 0) {
+        if (mModelShopCart != null && mModelShopCart.shoppingAccount > 0) {
             val dialog = RxDialogShopCart(this, mModelShopCart, R.style.cartdialog)
             val window = dialog.window
             dialog.shopCartDialogImp = this
@@ -292,7 +291,7 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
 
     override fun dialogDismiss() {
         showTotalPrice()
-        rightAdapter!!.notifyDataSetChanged()
+        rightAdapter.notifyDataSetChanged()
     }
 
 }

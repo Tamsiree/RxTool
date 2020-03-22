@@ -55,21 +55,18 @@ class FragmentLoadingWay : Fragment() {
     }
 
     internal inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var spinKitView: SpinKitView
+        var spinKitView: SpinKitView = itemView.findViewById(R.id.spin_kit)
         fun bind(position: Int) {
             var position = position
             itemView.setBackgroundColor(colors[position % colors.size])
             val finalPosition = position
             itemView.setOnClickListener { v -> ActivityLoadingDetail.start(v.context, finalPosition) }
-            position = position % 15
+            position %= 15
             val style = Style.values()[position]
             val drawable = SpriteFactory.create(style)
             spinKitView.setIndeterminateDrawable(drawable)
         }
 
-        init {
-            spinKitView = itemView.findViewById(R.id.spin_kit)
-        }
     }
 
     companion object {
