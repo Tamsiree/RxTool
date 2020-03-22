@@ -68,7 +68,7 @@ class ActivityRxScaleImageView : ActivityBase(), View.OnClickListener {
                 val minScale = imageView.minScale
                 val scale = random.nextFloat() * (maxScale - minScale) + minScale
                 val center = PointF(random.nextInt(imageView.sWidth).toFloat(), random.nextInt(imageView.sHeight).toFloat())
-                imageView.pin = center
+                imageView.setPin(center)
                 val animationBuilder = imageView.animateScaleAndCenter(scale, center)
                 if (position == 3) {
                     animationBuilder.withDuration(2000).withEasing(RxScaleImageView.EASE_OUT_QUAD).withInterruptible(false).start()
