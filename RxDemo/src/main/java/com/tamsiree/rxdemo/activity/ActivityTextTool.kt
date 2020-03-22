@@ -8,7 +8,6 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
-import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxBarTool.setTransparentStatusBar
 import com.tamsiree.rxkit.RxConstants.URL_RXTOOL
@@ -26,7 +25,6 @@ class ActivityTextTool : ActivityBase() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text_utils)
-        ButterKnife.bind(this)
         setPortrait(this)
         setTransparentStatusBar(this)
     }

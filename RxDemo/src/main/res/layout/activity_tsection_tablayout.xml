@@ -26,7 +26,7 @@
             android:orientation="vertical">
 
             <com.tamsiree.rxui.view.tablayout.TSectionTabLayout
-                android:id="@+id/tl_1"
+                android:id="@+id/tglidetablayout_1"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:layout_gravity="center_horizontal"
@@ -37,7 +37,7 @@
                 app:tab_padding="20dp" />
 
             <com.tamsiree.rxui.view.tablayout.TSectionTabLayout
-                android:id="@+id/tl_2"
+                android:id="@+id/tglidetablayout_2"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_gravity="center_horizontal"
@@ -50,7 +50,7 @@
                 app:tab_padding="20dp" />
 
             <com.tamsiree.rxui.view.tablayout.TSectionTabLayout
-                android:id="@+id/tl_3"
+                android:id="@+id/tglidetablayout_3"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_marginTop="10dp"
@@ -66,12 +66,12 @@
                 app:textBold="SELECT" />
 
             <androidx.viewpager.widget.ViewPager
-                android:id="@+id/vp_2"
+                android:id="@+id/viewpage_2"
                 android:layout_width="match_parent"
                 android:layout_height="84dp" />
 
             <com.tamsiree.rxui.view.tablayout.TSectionTabLayout
-                android:id="@+id/tl_4"
+                android:id="@+id/tglidetablayout_4"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_gravity="center_horizontal"
@@ -92,7 +92,7 @@
                 android:layout_height="84dp" />
 
             <com.tamsiree.rxui.view.tablayout.TSectionTabLayout
-                android:id="@+id/tl_5"
+                android:id="@+id/tglidetablayout_5"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_gravity="center_horizontal"

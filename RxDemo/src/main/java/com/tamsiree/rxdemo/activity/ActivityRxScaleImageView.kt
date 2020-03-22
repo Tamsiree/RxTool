@@ -4,34 +4,41 @@ import android.graphics.PointF
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
 import com.tamsiree.rxdemo.R
-import com.tamsiree.rxdemo.view.RxPinView
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxui.activity.ActivityBase
-import com.tamsiree.rxui.view.RxTitle
 import com.tamsiree.rxui.view.scaleimage.ImageSource
 import com.tamsiree.rxui.view.scaleimage.RxScaleImageView
+import kotlinx.android.synthetic.main.activity_rx_scale_image_view.*
 import java.util.*
 
 /**
  * @author tamsiree
  */
 class ActivityRxScaleImageView : ActivityBase(), View.OnClickListener {
+
     private var position = 0
     private var notes: List<Note>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rx_scale_image_view)
         setPortrait(this)
-        val rxTitle: RxTitle = findViewById(R.id.rx_title)
-        rxTitle.setLeftFinish(mContext)
-        findViewById<View>(R.id.next).setOnClickListener(this)
-        findViewById<View>(R.id.previous).setOnClickListener(this)
-        findViewById<View>(R.id.play).setOnClickListener(this)
         if (savedInstanceState != null && savedInstanceState.containsKey(BUNDLE_POSITION)) {
             position = savedInstanceState.getInt(BUNDLE_POSITION)
         }
+
+    }
+
+    override fun initView() {
+        rx_title.setLeftFinish(mContext)
+        next.setOnClickListener(this)
+        previous.setOnClickListener(this)
+        play.setOnClickListener(this)
+
+    }
+
+    override fun initData() {
         notes = Arrays.asList(
                 Note("A demo", "点击播放按钮,将在图像上生成随机点缩放并变焦,显示标记。"),
                 Note("Limited pan", "如果目标点附近的边缘图像,它将尽可能靠近中心。"),
@@ -40,14 +47,6 @@ class ActivityRxScaleImageView : ActivityBase(), View.OnClickListener {
         )
         initialiseImage()
         updateNotes()
-    }
-
-    override fun initView() {
-
-    }
-
-    override fun initData() {
-
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -63,15 +62,14 @@ class ActivityRxScaleImageView : ActivityBase(), View.OnClickListener {
             position--
             updateNotes()
         } else if (view.id == R.id.play) {
-            val rxPinView: RxPinView = findViewById(R.id.imageView)
             val random = Random()
-            if (rxPinView.isReady) {
-                val maxScale = rxPinView.maxScale
-                val minScale = rxPinView.minScale
+            if (imageView.isReady) {
+                val maxScale = imageView.maxScale
+                val minScale = imageView.minScale
                 val scale = random.nextFloat() * (maxScale - minScale) + minScale
-                val center = PointF(random.nextInt(rxPinView.sWidth).toFloat(), random.nextInt(rxPinView.sHeight).toFloat())
-                rxPinView.pin = center
-                val animationBuilder = rxPinView.animateScaleAndCenter(scale, center)
+                val center = PointF(random.nextInt(imageView.sWidth).toFloat(), random.nextInt(imageView.sHeight).toFloat())
+                imageView.pin = center
+                val animationBuilder = imageView.animateScaleAndCenter(scale, center)
                 if (position == 3) {
                     animationBuilder.withDuration(2000).withEasing(RxScaleImageView.EASE_OUT_QUAD).withInterruptible(false).start()
                 } else {
@@ -87,7 +85,6 @@ class ActivityRxScaleImageView : ActivityBase(), View.OnClickListener {
     }
 
     private fun initialiseImage() {
-        val imageView: RxScaleImageView = findViewById(R.id.imageView)
         imageView.setImage(ImageSource.asset("squirrel.jpg"))
     }
 
@@ -95,10 +92,9 @@ class ActivityRxScaleImageView : ActivityBase(), View.OnClickListener {
         if (position > notes!!.size - 1) {
             return
         }
-        (findViewById<View>(R.id.note) as TextView).text = notes!![position].text
-        findViewById<View>(R.id.next).visibility = if (position >= notes!!.size - 1) View.INVISIBLE else View.VISIBLE
-        findViewById<View>(R.id.previous).visibility = if (position <= 0) View.INVISIBLE else View.VISIBLE
-        val imageView: RxScaleImageView = findViewById(R.id.imageView)
+        note.text = notes!![position].text
+        next.visibility = if (position >= notes!!.size - 1) View.INVISIBLE else View.VISIBLE
+        previous.visibility = if (position <= 0) View.INVISIBLE else View.VISIBLE
         if (position == 2) {
             imageView.setPanLimit(RxScaleImageView.PAN_LIMIT_CENTER)
         } else {

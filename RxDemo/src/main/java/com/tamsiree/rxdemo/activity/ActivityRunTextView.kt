@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxkit.view.RxToast
@@ -23,9 +22,7 @@ class ActivityRunTextView : ActivityBase() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_run_text_view)
-        ButterKnife.bind(this)
         setPortrait(this)
-        initView()
     }
 
     override fun initView() {

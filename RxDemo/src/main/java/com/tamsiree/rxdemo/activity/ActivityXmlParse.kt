@@ -2,11 +2,6 @@ package com.tamsiree.rxdemo.activity
 
 import android.content.Context
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.model.CityModel
 import com.tamsiree.rxdemo.tools.RxPullXml.Companion.newInstance
@@ -23,31 +18,20 @@ import java.util.*
  * 注：Android中自带了Pull解析的jar包，故不需额外导入第三方jar包
  */
 class ActivityXmlParse : ActivityBase() {
-    @JvmField
-    @BindView(R.id.btn_parse_xml)
-    var mBtnParseXml: Button? = null
 
-    @JvmField
-    @BindView(R.id.ed_xml_data)
-    var mEdXmlData: EditText? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_xml_parse)
-        ButterKnife.bind(this)
         setPortrait(this)
     }
 
     override fun initView() {
         rx_title.setLeftFinish(mContext)
+        btn_parse_xml.setOnClickListener { getCities(mContext) }
     }
 
     override fun initData() {
 
-    }
-
-    @OnClick(R.id.btn_parse_xml)
-    fun onViewClicked() {
-        getCities(mContext)
     }
 
     fun getCities(mContext: Context): List<CityModel?> {
@@ -55,7 +39,7 @@ class ActivityXmlParse : ActivityBase() {
         var cityModels: List<CityModel?> = ArrayList()
         try {
             val inputStream = assetManager.open("city_data.xml")
-            cityModels = newInstance().parseXMLWithPull(inputStream, mEdXmlData!!)
+            cityModels = newInstance().parseXMLWithPull(inputStream, ed_xml_data)
             inputStream.close()
         } catch (e: IOException) {
             e.printStackTrace()

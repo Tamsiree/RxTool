@@ -31,7 +31,7 @@
                 android:orientation="vertical">
 
                 <com.tamsiree.rxui.view.tablayout.TGlideTabLayout
-                    android:id="@+id/tl_1"
+                    android:id="@+id/tglidetablayout_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#666666"
@@ -44,7 +44,7 @@
                     app:underline_height="1dp" />
 
                 <com.tamsiree.rxui.view.tablayout.TGlideTabLayout
-                    android:id="@+id/tl_2"
+                    android:id="@+id/tglidetablayout_2"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="#EEEEEE"
@@ -62,7 +62,7 @@
                     app:underline_height="1dp" />
 
                 <com.tamsiree.rxui.view.tablayout.TGlideTabLayout
-                    android:id="@+id/tl_3"
+                    android:id="@+id/tglidetablayout_3"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="#3F9FE0"
@@ -71,7 +71,7 @@
                     app:titlesize="14sp" />
 
                 <com.tamsiree.rxui.view.tablayout.TGlideTabLayout
-                    android:id="@+id/tl_4"
+                    android:id="@+id/tglidetablayout_4"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="#009688"
@@ -80,14 +80,14 @@
                     app:titlesize="15sp" />
 
                 <com.tamsiree.rxui.view.tablayout.TGlideTabLayout
-                    android:id="@+id/tl_5"
+                    android:id="@+id/tglidetablayout_5"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="#F6CE59"
                     app:indicator_width="10dp" />
 
                 <com.tamsiree.rxui.view.tablayout.TGlideTabLayout
-                    android:id="@+id/tl_6"
+                    android:id="@+id/tglidetablayout_6"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="#EC7263"
@@ -96,7 +96,7 @@
                     app:indicator_width="4dp" />
 
                 <com.tamsiree.rxui.view.tablayout.TGlideTabLayout
-                    android:id="@+id/tl_7"
+                    android:id="@+id/tglidetablayout_7"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="#57385C"
@@ -105,7 +105,7 @@
                     app:indicator_width="10dp" />
 
                 <com.tamsiree.rxui.view.tablayout.TGlideTabLayout
-                    android:id="@+id/tl_8"
+                    android:id="@+id/tglidetablayout_8"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="#E45171"
@@ -113,7 +113,7 @@
                     app:indicator_style="TRIANGLE" />
 
                 <com.tamsiree.rxui.view.tablayout.TGlideTabLayout
-                    android:id="@+id/tl_9"
+                    android:id="@+id/tglidetablayout_9"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="#6D8FB0"
@@ -124,7 +124,7 @@
                     app:indicator_style="BLOCK" />
 
                 <com.tamsiree.rxui.view.tablayout.TGlideTabLayout
-                    android:id="@+id/tl_10"
+                    android:id="@+id/tglidetablayout_10"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="#222831"
@@ -139,7 +139,7 @@
             </LinearLayout>
 
             <androidx.viewpager.widget.ViewPager
-                android:id="@+id/vp"
+                android:id="@+id/viewpage"
                 android:layout_width="match_parent"
                 android:layout_height="84dp" />
 

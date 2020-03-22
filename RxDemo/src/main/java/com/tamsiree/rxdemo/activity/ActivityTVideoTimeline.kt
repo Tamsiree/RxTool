@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
-import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxui.activity.ActivityBase
 import com.tamsiree.rxui.view.timeline.video.TRecordDataExistTimeSection
@@ -19,9 +17,7 @@ import java.util.*
 class ActivityTVideoTimeline : ActivityBase(), View.OnClickListener {
 
 
-    private var mDayBt: Button? = null
-    private var mHourBt: Button? = null
-    private var mMinuteBt: Button? = null
+
     private val recordDays = 7
     private val currentRealDateTime = System.currentTimeMillis()
     private var calendar: Calendar? = null
@@ -31,23 +27,16 @@ class ActivityTVideoTimeline : ActivityBase(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tvideo_timeline)
-        ButterKnife.bind(this)
-
     }
 
     override fun initView() {
         rx_title.setLeftFinish(this)
 
-
-
-        mDayBt = findViewById(R.id.day)
-        mHourBt = findViewById(R.id.hour)
-        mMinuteBt = findViewById(R.id.minute)
         timebar_zoom_in_btn.setOnClickListener(this)
         timebar_zoom_out_btn.setOnClickListener(this)
-        mDayBt?.setOnClickListener(this)
-        mHourBt?.setOnClickListener(this)
-        mMinuteBt?.setOnClickListener(this)
+        day.setOnClickListener(this)
+        hour.setOnClickListener(this)
+        minute.setOnClickListener(this)
         calendar = Calendar.getInstance()
         calendar?.set(Calendar.HOUR_OF_DAY, 0)
         calendar?.set(Calendar.MINUTE, 0)

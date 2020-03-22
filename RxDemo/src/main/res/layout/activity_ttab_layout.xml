@@ -26,7 +26,7 @@
             android:orientation="vertical">
 
             <com.tamsiree.rxui.view.tablayout.TTabLayout
-                android:id="@+id/tl_1"
+                android:id="@+id/ttablayout_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
@@ -39,12 +39,12 @@
                 app:underline_height="1dp" />
 
             <androidx.viewpager.widget.ViewPager
-                android:id="@+id/vp_2"
+                android:id="@+id/viewpage_2"
                 android:layout_width="match_parent"
                 android:layout_height="84dp" />
 
             <com.tamsiree.rxui.view.tablayout.TTabLayout
-                android:id="@+id/tl_2"
+                android:id="@+id/ttablayout_2"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:background="#ffffff"
@@ -64,7 +64,7 @@
                 android:layout_height="84dp" />
 
             <com.tamsiree.rxui.view.tablayout.TTabLayout
-                android:id="@+id/tl_3"
+                android:id="@+id/ttablayout_3"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="#ffffff"
@@ -83,7 +83,7 @@
                 app:underline_height="1dp" />
 
             <com.tamsiree.rxui.view.tablayout.TTabLayout
-                android:id="@+id/tl_4"
+                android:id="@+id/ttablayout_4"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="#F6CE59"
@@ -93,7 +93,7 @@
                 app:titlesize="14sp" />
 
             <com.tamsiree.rxui.view.tablayout.TTabLayout
-                android:id="@+id/tl_5"
+                android:id="@+id/ttablayout_5"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="#EC7263"
@@ -105,7 +105,7 @@
                 app:titlesize="14sp" />
 
             <com.tamsiree.rxui.view.tablayout.TTabLayout
-                android:id="@+id/tl_6"
+                android:id="@+id/ttablayout_6"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="#57385C"
@@ -116,7 +116,7 @@
                 app:titlesize="14sp" />
 
             <com.tamsiree.rxui.view.tablayout.TTabLayout
-                android:id="@+id/tl_7"
+                android:id="@+id/ttablayout_7"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="#E45171"
@@ -129,7 +129,7 @@
                 app:titlesize="14sp" />
 
             <com.tamsiree.rxui.view.tablayout.TTabLayout
-                android:id="@+id/tl_8"
+                android:id="@+id/ttablayout_8"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="#6D8FB0"

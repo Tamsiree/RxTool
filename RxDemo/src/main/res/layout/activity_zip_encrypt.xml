@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,7 +15,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="文件压缩与加密"/>
+        app:title="文件压缩与加密" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -43,7 +42,7 @@
                     android:text="点击生成临时文件"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/btn_zip"
@@ -55,7 +54,7 @@
                     android:text="点击压缩"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_create_folder"/>
+                    app:layout_constraintTop_toBottomOf="@+id/btn_create_folder" />
             </LinearLayout>
 
             <LinearLayout
@@ -68,26 +67,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginRight="8dp"
                     android:layout_weight="1"
                     android:text="点击删除压缩文件内的文件夹"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_zip"/>
+                    app:layout_constraintTop_toBottomOf="@+id/btn_zip" />
 
                 <Button
                     android:id="@+id/btn_upzip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginRight="8dp"
                     android:layout_weight="1"
                     android:text="点击解压缩"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_zip_delete_dir"/>
+                    app:layout_constraintTop_toBottomOf="@+id/btn_zip_delete_dir" />
 
 
             </LinearLayout>
@@ -98,19 +97,19 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp" />
 
             <TextView
                 android:id="@+id/tv_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginRight="8dp"
                 android:text="状态"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_upzip"/>
+                app:layout_constraintTop_toBottomOf="@+id/btn_upzip" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

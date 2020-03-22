@@ -2,7 +2,6 @@ package com.tamsiree.rxdemo.activity
 
 import android.os.Bundle
 import android.view.View
-import butterknife.ButterKnife
 import com.jaredrummler.android.widget.AnimatedSvgView
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.model.ModelSVG
@@ -26,7 +25,6 @@ class ActivitySVG : ActivityBase() {
     }
 
     override fun initView() {
-        ButterKnife.bind(this)
         RxDeviceTool.setPortrait(this)
     }
 

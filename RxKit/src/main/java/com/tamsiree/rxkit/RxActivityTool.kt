@@ -70,21 +70,6 @@ object RxActivityTool {
     }
 
     /**
-     * 结束指定的Activity
-     *
-     * @param activity Activity
-     */
-    @JvmStatic
-    fun finishActivity(activity: Activity?) {
-        var activity = activity
-        if (activity != null) {
-            activityStack!!.remove(activity)
-            activity.finish()
-            activity = null
-        }
-    }
-
-    /**
      * 结束指定类名的Activity
      */
     @JvmStatic
@@ -136,14 +121,7 @@ object RxActivityTool {
         intent.setClassName(packageName!!, className!!)
         return !(context.packageManager.resolveActivity(intent, 0) == null || intent.resolveActivity(context.packageManager) == null || context.packageManager.queryIntentActivities(intent, 0).size == 0)
     }
-    /**
-     * 打开指定的Activity
-     *
-     * @param context     上下文
-     * @param packageName 包名
-     * @param className   全类名
-     * @param bundle      bundle
-     */
+
     /**
      * 打开指定的Activity
      *
@@ -164,18 +142,6 @@ object RxActivityTool {
      * @param context Context
      * @param goal    Activity
      */
-    @JvmStatic
-    fun skipActivityAndFinishAll(context: Context, goal: Class<out Activity>?, isFade: Boolean) {
-        skipActivityAndFinishAll(context, goal, null, isFade)
-    }
-    /**
-     * 要求最低API为11
-     * Activity 跳转
-     * 跳转后Finish之前所有的Activity
-     *
-     * @param context Context
-     * @param goal    Activity
-     */
     /**
      * 要求最低API为11
      * Activity 跳转
@@ -185,6 +151,7 @@ object RxActivityTool {
      * @param goal    Activity
      */
     @JvmStatic
+    @JvmOverloads
     fun skipActivityAndFinishAll(context: Context, goal: Class<out Activity>?, bundle: Bundle? = null, isFade: Boolean = false) {
         val intent = Intent(context, goal)
         if (bundle != null) {
@@ -205,44 +172,8 @@ object RxActivityTool {
      * @param goal    Activity
      */
     @JvmStatic
-    fun skipActivityAndFinish(context: Context, goal: Class<out Activity>?) {
-        skipActivity(context, goal, null, false)
-        finishActivity(context, false)
-    }
-
-    /**
-     * Activity 跳转
-     *
-     * @param context Context
-     * @param goal    Activity
-     */
-    @JvmStatic
-    fun skipActivityAndFinish(context: Context, goal: Class<out Activity>?, isFade: Boolean) {
+    fun skipActivityAndFinish(context: Context, goal: Class<out Activity>?, isFade: Boolean = false, isTransition: Boolean = false) {
         skipActivity(context, goal, null, isFade)
-        finishActivity(context, false)
-    }
-
-    /**
-     * Activity 跳转
-     *
-     * @param context Context
-     * @param goal    Activity
-     */
-    @JvmStatic
-    fun skipActivityAndFinish(context: Context, goal: Class<out Activity>?, bundle: Bundle?) {
-        skipActivity(context, goal, bundle, false)
-        finishActivity(context, false)
-    }
-
-    /**
-     * Activity 跳转
-     *
-     * @param context Context
-     * @param goal    Activity
-     */
-    @JvmStatic
-    fun skipActivityAndFinish(context: Context, goal: Class<out Activity>?, isFade: Boolean, isTransition: Boolean) {
-        skipActivity(context, goal, isFade)
         finishActivity(context, isTransition)
     }
 
@@ -253,7 +184,8 @@ object RxActivityTool {
      * @param goal    Activity
      */
     @JvmStatic
-    fun skipActivityAndFinish(context: Context, goal: Class<out Activity>?, bundle: Bundle?, isFade: Boolean, isTransition: Boolean) {
+    @JvmOverloads
+    fun skipActivityAndFinish(context: Context, goal: Class<out Activity>?, bundle: Bundle? = null, isFade: Boolean = false, isTransition: Boolean = false) {
         skipActivity(context, goal, bundle, isFade)
         finishActivity(context, isTransition)
     }
@@ -265,51 +197,21 @@ object RxActivityTool {
      * @param goal    Activity
      */
     @JvmStatic
-    fun skipActivity(context: Context, goal: Class<out Activity>?, bundle: Bundle?) {
+    @JvmOverloads
+    fun skipActivity(context: Context, goal: Class<out Activity>?, bundle: Bundle? = null, isFade: Boolean = false) {
         val intent = Intent(context, goal)
         if (bundle != null) {
             intent.putExtras(bundle)
         }
         context.startActivity(intent)
-    }
-
-    /**
-     * Activity 跳转
-     *
-     * @param context Context
-     * @param goal    Activity
-     */
-    @JvmStatic
-    fun skipActivity(context: Context, goal: Class<out Activity>?, isFade: Boolean) {
-        skipActivity(context, goal, null, isFade)
-    }
-    /**
-     * Activity 跳转
-     *
-     * @param context Context
-     * @param goal    Activity
-     */
-    /**
-     * Activity 跳转
-     *
-     * @param context Context
-     * @param goal    Activity
-     */
-    @JvmStatic
-    fun skipActivity(context: Context, goal: Class<out Activity>?, bundle: Bundle? = null, isFade: Boolean = false) {
-        skipActivity(context, goal, bundle)
         if (isFade) {
             fadeTransition(context)
         }
     }
 
     @JvmStatic
-    fun skipActivityForResult(context: Activity, goal: Class<out Activity>?, requestCode: Int) {
-        skipActivityForResult(context, goal, null, requestCode)
-    }
-
-    @JvmStatic
-    fun skipActivityForResult(context: Activity, goal: Class<out Activity>?, bundle: Bundle?, requestCode: Int) {
+    @JvmOverloads
+    fun skipActivityForResult(context: Activity, goal: Class<out Activity>?, bundle: Bundle? = null, requestCode: Int) {
         val intent = Intent(context, goal)
         if (bundle != null) {
             intent.putExtras(bundle)
@@ -318,7 +220,8 @@ object RxActivityTool {
     }
 
     @JvmStatic
-    fun skipActivityOnTransitions(mContext: Context?, goal: Class<out Activity>?, bundle: Bundle?, vararg pairs: Pair<View?, String?>?) {
+    @JvmOverloads
+    fun skipActivityOnTransitions(mContext: Context?, goal: Class<out Activity>?, bundle: Bundle? = null, vararg pairs: Pair<View?, String?>?) {
         val intent = Intent(mContext, goal)
         val bundle1 = ActivityOptions.makeSceneTransitionAnimation(mContext as Activity?, *pairs).toBundle()
         if (bundle != null) {
@@ -328,10 +231,13 @@ object RxActivityTool {
     }
 
     @JvmStatic
-    fun skipActivityTransition(mContext: Context, goal: Class<out Activity>?, bundle: Bundle?, view: View?, elementName: String?) {
+    @JvmOverloads
+    fun skipActivityTransition(mContext: Context, goal: Class<out Activity>?, bundle: Bundle? = null, view: View?, elementName: String?) {
         val intent = Intent(mContext, goal)
         val bundle1 = ActivityOptionsCompat.makeSceneTransitionAnimation((mContext as Activity), view!!, elementName!!).toBundle()
-        intent.putExtras(bundle!!)
+        if (bundle != null) {
+            intent.putExtras(bundle)
+        }
         mContext.startActivity(intent, bundle1)
     }
 
@@ -357,11 +263,13 @@ object RxActivityTool {
     }
 
     @JvmStatic
-    fun finishActivity(mContext: Context, isTransition: Boolean) {
+    @JvmOverloads
+    fun finishActivity(mContext: Context, isTransition: Boolean = false) {
+        removeActivity((mContext as Activity))
         if (isTransition) {
-            (mContext as Activity).onBackPressed()
+            mContext.onBackPressed()
         } else {
-            (mContext as Activity).finish()
+            mContext.finish()
         }
     }
 

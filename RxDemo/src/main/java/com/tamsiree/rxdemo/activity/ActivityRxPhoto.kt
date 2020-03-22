@@ -19,7 +19,6 @@ import com.tamsiree.rxkit.RxPhotoTool.getImageAbsolutePath
 import com.tamsiree.rxkit.RxSPTool.putContent
 import com.tamsiree.rxui.activity.ActivityBase
 import com.tamsiree.rxui.view.dialog.RxDialogChooseImage
-import com.tamsiree.rxui.view.dialog.RxDialogChooseImage.LayoutType
 import com.tamsiree.rxui.view.dialog.RxDialogScaleView
 import com.tamsiree.rxui.view.dialog.RxDialogSureCancel
 import com.yalantis.ucrop.UCrop
@@ -69,7 +68,7 @@ class ActivityRxPhoto : ActivityBase() {
     }
 
     private fun initDialogChooseImage() {
-        val dialogChooseImage = RxDialogChooseImage(mContext, LayoutType.NO_TITLE)
+        val dialogChooseImage = RxDialogChooseImage(mContext)
         dialogChooseImage.show()
     }
 
