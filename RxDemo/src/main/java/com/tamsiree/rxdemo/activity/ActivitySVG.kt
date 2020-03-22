@@ -2,10 +2,6 @@ package com.tamsiree.rxdemo.activity
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
-import butterknife.BindView
 import butterknife.ButterKnife
 import com.jaredrummler.android.widget.AnimatedSvgView
 import com.tamsiree.rxdemo.R
@@ -16,55 +12,44 @@ import com.tamsiree.rxkit.RxDeviceTool
 import com.tamsiree.rxkit.RxTool
 import com.tamsiree.rxkit.interfaces.OnSimpleListener
 import com.tamsiree.rxui.activity.ActivityBase
+import kotlinx.android.synthetic.main.activity_svg.*
 
 /**
  * @author tamsiree
  */
 class ActivitySVG : ActivityBase() {
-    @JvmField
-    @BindView(R.id.animated_svg_view)
-    var mSvgView: AnimatedSvgView? = null
 
-    @JvmField
-    @BindView(R.id.app_name)
-    var mAppName: ImageView? = null
-
-    @JvmField
-    @BindView(R.id.tv_app_name)
-    var mTvAppName: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_version)
-    var mTvVersion: TextView? = null
-
-    @JvmField
-    @BindView(R.id.activity_svg)
-    var mActivitySvg: RelativeLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         RxBarTool.hideStatusBar(this)
         setContentView(R.layout.activity_svg)
+    }
+
+    override fun initView() {
         ButterKnife.bind(this)
         RxDeviceTool.setPortrait(this)
+    }
+
+    override fun initData() {
         setSvg(ModelSVG.values()[0])
-        mTvVersion!!.text = String.format("VERSION %s", RxDeviceTool.getAppVersionName(mContext))
+        tv_version.text = String.format("VERSION %s", RxDeviceTool.getAppVersionName(mContext))
     }
 
     private fun setSvg(modelSvg: ModelSVG) {
-        mSvgView!!.setGlyphStrings(*modelSvg.glyphs)
-        mSvgView!!.setFillColors(modelSvg.colors)
-        mSvgView!!.setViewportSize(modelSvg.width, modelSvg.height)
-        mSvgView!!.setTraceResidueColor(0x32000000)
-        mSvgView!!.setTraceColors(modelSvg.colors)
-        mSvgView!!.rebuildGlyphData()
-        mSvgView!!.setOnStateChangeListener { state: Int ->
+        animated_svg_view.setGlyphStrings(*modelSvg.glyphs)
+        animated_svg_view.setFillColors(modelSvg.colors)
+        animated_svg_view.setViewportSize(modelSvg.width, modelSvg.height)
+        animated_svg_view.setTraceResidueColor(0x32000000)
+        animated_svg_view.setTraceColors(modelSvg.colors)
+        animated_svg_view.rebuildGlyphData()
+        animated_svg_view.setOnStateChangeListener { state: Int ->
             when (state) {
                 AnimatedSvgView.STATE_FINISHED -> {
-                    mTvAppName!!.visibility = View.VISIBLE
-                    mTvVersion!!.visibility = View.VISIBLE
+                    tv_app_name.visibility = View.VISIBLE
+                    tv_version.visibility = View.VISIBLE
                     RxTool.delayToDo(2000, object : OnSimpleListener {
                         override fun doSomething() {
-                            mContext?.let { RxActivityTool.skipActivityAndFinish(it, ActivityMain::class.java, true) }
+                            mContext.let { RxActivityTool.skipActivityAndFinish(it, ActivityMain::class.java, true) }
                         }
                     })
                 }
@@ -72,6 +57,6 @@ class ActivitySVG : ActivityBase() {
                 }
             }
         }
-        mSvgView!!.start()
+        animated_svg_view.start()
     }
 }

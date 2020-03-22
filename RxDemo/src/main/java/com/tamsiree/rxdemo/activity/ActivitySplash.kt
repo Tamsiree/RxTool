@@ -74,17 +74,19 @@ class ActivitySplash : ActivityBase() {
         hideStatusBar(this) //隐藏状态栏 并 全屏
         setContentView(R.layout.activity_splash)
         setPortrait(this)
-        context = this
-        initView()
-        CheckUpdate()
     }
 
-    private fun initView() {
+    @SuppressLint("SetTextI18n")
+    override fun initView() {
         pg = findViewById(R.id.pg)
         tv_update_info = findViewById(R.id.tv_update_info)
         tv_splash_version = findViewById(R.id.tv_splash_version)
         appVersionName = getAppVersionName(context)
         tv_splash_version?.text = "版本号 $appVersionName"
+    }
+
+    override fun initData() {
+        CheckUpdate()
     }
 
     fun buttonClick(v: View?) {

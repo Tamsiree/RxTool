@@ -79,9 +79,6 @@ class ActivityWheelHorizontal : ActivityBase() {
         setContentView(R.layout.activity_wheel_horizontal)
         ButterKnife.bind(this)
         setPortrait(this)
-        initView()
-        initData()
-        initRulerView()
     }
 
     private fun initRulerView() {
@@ -152,11 +149,12 @@ class ActivityWheelHorizontal : ActivityBase() {
         mWheelview4?.postDelayed(Runnable { mWheelview4?.items = items }, 3000)
     }
 
-    private fun initView() {
+    override fun initView() {
         mRxTitle!!.setLeftFinish(mContext)
+        initRulerView()
     }
 
-    private fun initData() {
+    override fun initData() {
         // TODO Auto-generated method stub
         listYearMonth.clear()
         val calendar = Calendar.getInstance(Locale.CHINA)

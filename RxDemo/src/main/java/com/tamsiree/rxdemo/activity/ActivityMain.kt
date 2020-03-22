@@ -54,7 +54,7 @@ class ActivityMain : ActivityBase() {
                 .initPermission()
     }
 
-    private fun initView() {
+    override fun initView() {
         for (i in mTitles.indices) {
             mTabEntities.add(TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]))
         }
@@ -87,7 +87,7 @@ class ActivityMain : ActivityBase() {
         view_pager.currentItem = 1
     }
 
-    private fun initData() {
+    override fun initData() {
 
         //---------------------------------------TabLayout设置---------------------------------------
         if (mFragments.isEmpty()) {

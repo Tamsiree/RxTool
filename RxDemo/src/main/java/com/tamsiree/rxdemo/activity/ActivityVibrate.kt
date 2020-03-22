@@ -37,9 +37,16 @@ class ActivityVibrate : ActivityBase() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vibrate)
-        ButterKnife.bind(this)
         setPortrait(this)
-        mRxTitle!!.setLeftFinish(mContext)
+    }
+
+    override fun initView() {
+        ButterKnife.bind(this)
+        mRxTitle?.setLeftFinish(mContext)
+    }
+
+    override fun initData() {
+
     }
 
     @OnClick(R.id.btn_vibrate_once, R.id.btn_vibrate_Complicated, R.id.btn_vibrate_stop)

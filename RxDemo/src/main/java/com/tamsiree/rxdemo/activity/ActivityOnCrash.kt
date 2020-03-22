@@ -3,46 +3,30 @@ package com.tamsiree.rxdemo.activity
 import android.annotation.SuppressLint
 import android.os.AsyncTask
 import android.os.Bundle
-import android.widget.Button
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxui.activity.ActivityBase
-import com.tamsiree.rxui.view.RxTitle
+import kotlinx.android.synthetic.main.activity_on_crash.*
 
 class ActivityOnCrash : ActivityBase() {
-    @JvmField
-    @BindView(R.id.rx_title)
-    var mRxTitle: RxTitle? = null
 
-    @JvmField
-    @BindView(R.id.button_crash_main_thread)
-    var mButtonCrashMainThread: Button? = null
 
-    @JvmField
-    @BindView(R.id.button_crash_bg_thread)
-    var mButtonCrashBgThread: Button? = null
-
-    @JvmField
-    @BindView(R.id.button_crash_with_delay)
-    var mButtonCrashWithDelay: Button? = null
-
-    @SuppressLint("StaticFieldLeak")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_on_crash)
-        ButterKnife.bind(this)
-        mRxTitle!!.setLeftFinish(mContext)
-        mButtonCrashMainThread!!.setOnClickListener { throw RuntimeException("I'm a cool exception and I crashed the main thread!") }
-        mButtonCrashBgThread!!.setOnClickListener {
+    }
 
+    @SuppressLint("StaticFieldLeak")
+    override fun initView() {
+        rx_title.setLeftFinish(mContext)
+        button_crash_main_thread.setOnClickListener { throw RuntimeException("I'm a cool exception and I crashed the main thread!") }
+        button_crash_bg_thread.setOnClickListener {
             object : AsyncTask<Void?, Void?, Void>() {
                 override fun doInBackground(vararg voids: Void?): Void {
                     throw RuntimeException("I'm also cool, and I crashed the background thread!")
                 }
             }.execute()
         }
-        mButtonCrashWithDelay!!.setOnClickListener {
+        button_crash_with_delay.setOnClickListener {
             object : AsyncTask<Void?, Void?, Void>() {
                 override fun doInBackground(vararg voids: Void?): Void {
                     try {
@@ -54,5 +38,9 @@ class ActivityOnCrash : ActivityBase() {
                 }
             }.execute()
         }
+    }
+
+    override fun initData() {
+
     }
 }

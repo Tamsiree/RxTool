@@ -5,30 +5,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import butterknife.BindView
 import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxui.activity.ActivityBase
-import com.tamsiree.rxui.view.RxTitle
 import com.tamsiree.rxui.view.timeline.video.TRecordDataExistTimeSection
-import com.tamsiree.rxui.view.timeline.video.TVideoTimeline
 import com.tamsiree.rxui.view.timeline.video.TVideoTimeline.OnBarMoveListener
 import com.tamsiree.rxui.view.timeline.video.TVideoTimeline.OnBarScaledListener
+import kotlinx.android.synthetic.main.activity_tvideo_timeline.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ActivityTVideoTimeline : ActivityBase(), View.OnClickListener {
 
-    @JvmField
-    @BindView(R.id.rx_title)
-    var mRxTitle: RxTitle? = null
-    private val TAG = ActivityTVideoTimeline::class.java.simpleName
-    private var currentTimeTextView: TextView? = null
-    private var zoomInButton: Button? = null
-    private var zoomOutButton: Button? = null
-    private var mTimebarView: TVideoTimeline? = null
+
     private var mDayBt: Button? = null
     private var mHourBt: Button? = null
     private var mMinuteBt: Button? = null
@@ -42,16 +32,19 @@ class ActivityTVideoTimeline : ActivityBase(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tvideo_timeline)
         ButterKnife.bind(this)
-        mRxTitle!!.setLeftFinish(this)
-        mTimebarView = findViewById(R.id.my_timebar_view)
-        currentTimeTextView = findViewById(R.id.current_time_tv)
-        zoomInButton = findViewById(R.id.timebar_zoom_in_btn)
-        zoomOutButton = findViewById(R.id.timebar_zoom_out_btn)
+
+    }
+
+    override fun initView() {
+        rx_title.setLeftFinish(this)
+
+
+
         mDayBt = findViewById(R.id.day)
         mHourBt = findViewById(R.id.hour)
         mMinuteBt = findViewById(R.id.minute)
-        zoomInButton?.setOnClickListener(this)
-        zoomOutButton?.setOnClickListener(this)
+        timebar_zoom_in_btn.setOnClickListener(this)
+        timebar_zoom_out_btn.setOnClickListener(this)
         mDayBt?.setOnClickListener(this)
         mHourBt?.setOnClickListener(this)
         mMinuteBt?.setOnClickListener(this)
@@ -69,35 +62,35 @@ class ActivityTVideoTimeline : ActivityBase(), View.OnClickListener {
         calendar?.add(Calendar.DAY_OF_MONTH, 1)
         val timebarRightEndPointTime = calendar?.timeInMillis
         //long timebarRightEndPointTime = currentRealDateTime + 3 * 3600 * 1000;
-        mTimebarView?.initTimebarLengthAndPosition(timebarLeftEndPointTime!!,
+        my_timebar_view.initTimebarLengthAndPosition(timebarLeftEndPointTime!!,
                 timebarRightEndPointTime!! - 1000, currentRealDateTime)
         val recordDataList: MutableList<TRecordDataExistTimeSection> = ArrayList()
-        recordDataList.add(TRecordDataExistTimeSection(timebarLeftEndPointTime!! - ONE_HOUR_IN_MS * 1, timebarLeftEndPointTime + ONE_HOUR_IN_MS * 3))
+        recordDataList.add(TRecordDataExistTimeSection(timebarLeftEndPointTime - ONE_HOUR_IN_MS * 1, timebarLeftEndPointTime + ONE_HOUR_IN_MS * 3))
         recordDataList.add(TRecordDataExistTimeSection(timebarLeftEndPointTime + ONE_HOUR_IN_MS * 4, timebarLeftEndPointTime + ONE_HOUR_IN_MS * 8))
         recordDataList.add(TRecordDataExistTimeSection(timebarLeftEndPointTime + ONE_HOUR_IN_MS * 12, timebarLeftEndPointTime + ONE_HOUR_IN_MS * 19))
-        recordDataList.add(TRecordDataExistTimeSection(timebarLeftEndPointTime + ONE_HOUR_IN_MS * 20, timebarRightEndPointTime!!))
-        mTimebarView?.recordDataExistTimeClipsList = recordDataList
-        mTimebarView?.openMove()
-        mTimebarView?.checkVideo(true)
-        mTimebarView?.setOnBarMoveListener(object : OnBarMoveListener {
+        recordDataList.add(TRecordDataExistTimeSection(timebarLeftEndPointTime + ONE_HOUR_IN_MS * 20, timebarRightEndPointTime))
+        my_timebar_view.recordDataExistTimeClipsList = recordDataList
+        my_timebar_view.openMove()
+        my_timebar_view.checkVideo(true)
+        my_timebar_view.setOnBarMoveListener(object : OnBarMoveListener {
             override fun onBarMove(screenLeftTime: Long, screenRightTime: Long, currentTime: Long) {
                 if (currentTime == -1L) {
                     Toast.makeText(mContext, "当前时刻没有录像", Toast.LENGTH_SHORT).show()
                 }
-                currentTimeTextView?.text = zeroTimeFormat.format(currentTime)
+                current_time_tv.text = zeroTimeFormat.format(currentTime)
             }
 
             override fun OnBarMoveFinish(screenLeftTime: Long, screenRightTime: Long, currentTime: Long) {
-                currentTimeTextView?.text = zeroTimeFormat.format(currentTime)
+                current_time_tv.text = zeroTimeFormat.format(currentTime)
             }
         })
-        mTimebarView?.setOnBarScaledListener(object : OnBarScaledListener {
+        my_timebar_view.setOnBarScaledListener(object : OnBarScaledListener {
             override fun onOnBarScaledMode(mode: Int) {
                 Log.d(TAG, "onOnBarScaledMode()$mode")
             }
 
             override fun onBarScaled(screenLeftTime: Long, screenRightTime: Long, currentTime: Long) {
-                currentTimeTextView?.text = zeroTimeFormat.format(currentTime)
+                current_time_tv.text = zeroTimeFormat.format(currentTime)
                 Log.d(TAG, "onBarScaled()")
             }
 
@@ -107,13 +100,17 @@ class ActivityTVideoTimeline : ActivityBase(), View.OnClickListener {
         })
     }
 
+    override fun initData() {
+
+    }
+
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.timebar_zoom_in_btn -> mTimebarView!!.scaleByPressingButton(true)
-            R.id.timebar_zoom_out_btn -> mTimebarView!!.scaleByPressingButton(false)
-            R.id.day -> mTimebarView!!.setMode(3)
-            R.id.hour -> mTimebarView!!.setMode(2)
-            R.id.minute -> mTimebarView!!.setMode(1)
+            R.id.timebar_zoom_in_btn -> my_timebar_view.scaleByPressingButton(true)
+            R.id.timebar_zoom_out_btn -> my_timebar_view.scaleByPressingButton(false)
+            R.id.day -> my_timebar_view.setMode(3)
+            R.id.hour -> my_timebar_view.setMode(2)
+            R.id.minute -> my_timebar_view.setMode(1)
             else -> {
             }
         }
@@ -121,7 +118,7 @@ class ActivityTVideoTimeline : ActivityBase(), View.OnClickListener {
 
     override fun onDestroy() {
         super.onDestroy()
-        mTimebarView!!.recycle()
+        my_timebar_view.recycle()
     }
 
     companion object {

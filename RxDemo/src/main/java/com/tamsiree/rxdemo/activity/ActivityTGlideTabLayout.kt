@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import butterknife.BindView
-import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.fragment.FragmentSimpleCard.Companion.getInstance
 import com.tamsiree.rxdemo.tools.ViewFindTool.find
@@ -19,6 +18,7 @@ import com.tamsiree.rxui.view.tablayout.listener.OnTabSelectListener
 import java.util.*
 
 class ActivityTGlideTabLayout : ActivityBase(), OnTabSelectListener {
+
     private val mTitles = arrayOf(
             "热门", "iOS", "Android"
             , "前端", "后端", "设计", "工具资源"
@@ -32,7 +32,9 @@ class ActivityTGlideTabLayout : ActivityBase(), OnTabSelectListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tglide_tablayout)
-        ButterKnife.bind(this)
+    }
+
+    override fun initView() {
         mRxTitle!!.setLeftFinish(this)
         for (title in mTitles) {
             mFragments.add(getInstance(title))
@@ -107,6 +109,10 @@ class ActivityTGlideTabLayout : ActivityBase(), OnTabSelectListener {
 //                tabLayout_7.addNewTab("后端");
 //            }
 //        });
+    }
+
+    override fun initData() {
+
     }
 
     override fun onTabSelect(position: Int) {

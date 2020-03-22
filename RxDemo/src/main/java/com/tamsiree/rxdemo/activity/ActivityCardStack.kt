@@ -4,57 +4,46 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.adapter.AdapterStackTest
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxkit.RxTool
 import com.tamsiree.rxkit.interfaces.OnSimpleListener
 import com.tamsiree.rxui.activity.ActivityBase
-import com.tamsiree.rxui.view.RxTitle
-import com.tamsiree.rxui.view.cardstack.RxCardStackView
 import com.tamsiree.rxui.view.cardstack.RxCardStackView.ItemExpendListener
 import com.tamsiree.rxui.view.cardstack.tools.RxAdapterAllMoveDownAnimator
 import com.tamsiree.rxui.view.cardstack.tools.RxAdapterUpDownAnimator
 import com.tamsiree.rxui.view.cardstack.tools.RxAdapterUpDownStackAnimator
+import kotlinx.android.synthetic.main.activity_card_stack.*
 import java.util.*
 
 /**
  * @author tamsiree
  */
 class ActivityCardStack : ActivityBase(), ItemExpendListener {
-    @JvmField
-    @BindView(R.id.stackview_main)
-    var mStackView: RxCardStackView? = null
 
-    @JvmField
-    @BindView(R.id.button_container)
-    var mButtonContainer: LinearLayout? = null
-
-    @JvmField
-    @BindView(R.id.rx_title)
-    var mRxTitle: RxTitle? = null
-
-    @JvmField
-    @BindView(R.id.activity_card_stack)
-    var mActivityCardStack: LinearLayout? = null
     private var mTestStackAdapter: AdapterStackTest? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card_stack)
-        ButterKnife.bind(this)
         setPortrait(this)
-        mRxTitle!!.setLeftFinish(this)
-        mStackView!!.itemExpendListener = this
+    }
+
+    override fun initView() {
+        rx_title.setLeftFinish(this)
+        stackview_main.itemExpendListener = this
         mTestStackAdapter = AdapterStackTest(this)
-        mStackView!!.setAdapter(mTestStackAdapter)
+        stackview_main.setAdapter(mTestStackAdapter)
         RxTool.delayToDo(200, object : OnSimpleListener {
             override fun doSomething() {
                 mTestStackAdapter!!.updateData(Arrays.asList(*TEST_DATAS))
             }
         })
+    }
+
+    override fun initData() {
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -64,9 +53,9 @@ class ActivityCardStack : ActivityBase(), ItemExpendListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_all_down -> mStackView!!.setRxAdapterAnimator(RxAdapterAllMoveDownAnimator(mStackView))
-            R.id.menu_up_down -> mStackView!!.setRxAdapterAnimator(RxAdapterUpDownAnimator(mStackView))
-            R.id.menu_up_down_stack -> mStackView!!.setRxAdapterAnimator(RxAdapterUpDownStackAnimator(mStackView))
+            R.id.menu_all_down -> stackview_main.setRxAdapterAnimator(RxAdapterAllMoveDownAnimator(stackview_main))
+            R.id.menu_up_down -> stackview_main.setRxAdapterAnimator(RxAdapterUpDownAnimator(stackview_main))
+            R.id.menu_up_down_stack -> stackview_main.setRxAdapterAnimator(RxAdapterUpDownStackAnimator(stackview_main))
             else -> {
             }
         }
@@ -74,15 +63,15 @@ class ActivityCardStack : ActivityBase(), ItemExpendListener {
     }
 
     fun onPreClick(view: View?) {
-        mStackView!!.pre()
+        stackview_main.pre()
     }
 
     fun onNextClick(view: View?) {
-        mStackView!!.next()
+        stackview_main.next()
     }
 
     override fun onItemExpend(expend: Boolean) {
-        mButtonContainer!!.visibility = if (expend) View.VISIBLE else View.GONE
+        button_container.visibility = if (expend) View.VISIBLE else View.GONE
     }
 
     companion object {

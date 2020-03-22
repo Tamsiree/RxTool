@@ -47,7 +47,7 @@ class ActivityRxRotateBar : ActivityBase() {
         initView()
     }
 
-    private fun initView() {
+    override fun initView() {
         mRxTitle!!.setLeftFinish(mContext)
         bar1 = RxRotateBarBasic(5, "魅力")
         bar2 = RxRotateBarBasic(8, "财力")
@@ -67,6 +67,10 @@ class ActivityRxRotateBar : ActivityBase() {
         mRatingView!!.addRatingBar(bar3)
         mRatingView!!.addRatingBar(bar4)
         mRatingView!!.show()
+    }
+
+    override fun initData() {
+
     }
 
     @OnClick(R.id.btn_change)

@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.tamsiree.rxui">
+    package="com.tamsiree.rxui">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application>
         <activity
             android:name="com.tamsiree.rxui.activity.ActivityWebView"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

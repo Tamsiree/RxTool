@@ -8,8 +8,6 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
-import android.widget.TextView
-import butterknife.BindView
 import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxBarTool.setTransparentStatusBar
@@ -18,31 +16,23 @@ import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxkit.RxTextTool.getBuilder
 import com.tamsiree.rxkit.view.RxToast
 import com.tamsiree.rxui.activity.ActivityBase
-import com.tamsiree.rxui.view.RxTitle
+import kotlinx.android.synthetic.main.activity_text_utils.*
 
 /**
  * @author tamsiree
  */
 class ActivityTextTool : ActivityBase() {
-    @JvmField
-    @BindView(R.id.rx_title)
-    var mRxTitle: RxTitle? = null
 
-    @JvmField
-    @BindView(R.id.tv_about_spannable)
-    var mTvAboutSpannable: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text_utils)
         ButterKnife.bind(this)
         setPortrait(this)
         setTransparentStatusBar(this)
-        mContext = this
-        initView()
     }
 
-    private fun initView() {
-        mRxTitle!!.setLeftFinish(mContext)
+    override fun initView() {
+        rx_title.setLeftFinish(mContext)
         val clickableSpan: ClickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
                 RxToast.showToast(mContext, "事件触发了", 500)
@@ -55,7 +45,7 @@ class ActivityTextTool : ActivityBase() {
         }
 
         // 响应点击事件的话必须设置以下属性
-        mTvAboutSpannable!!.movementMethod = LinkMovementMethod.getInstance()
+        tv_about_spannable.movementMethod = LinkMovementMethod.getInstance()
         getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
                 .append("测试").append("Url\n").setUrl(URL_RXTOOL)
                 .append("列表项\n").setBullet(60, resources.getColor(R.color.blue_baby))
@@ -76,6 +66,10 @@ class ActivityTextTool : ActivityBase() {
                 .append("\n测试正常对齐\n").setAlign(Layout.Alignment.ALIGN_NORMAL)
                 .append("测试居中对齐\n").setAlign(Layout.Alignment.ALIGN_CENTER)
                 .append("测试相反对齐\n").setAlign(Layout.Alignment.ALIGN_OPPOSITE)
-                .into(mTvAboutSpannable)
+                .into(tv_about_spannable)
+    }
+
+    override fun initData() {
+
     }
 }

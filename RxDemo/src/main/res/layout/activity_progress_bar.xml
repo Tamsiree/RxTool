@@ -82,11 +82,11 @@
                     app:textSize="12sp" />
 
                 <Button
+                    android:id="@+id/button_reload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/shape_round_green_8dp"
-                    android:onClick="reLoad"
                     android:text="重新下载"
                     android:textColor="@color/white" />
 

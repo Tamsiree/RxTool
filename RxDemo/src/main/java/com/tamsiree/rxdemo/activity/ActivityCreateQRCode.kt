@@ -5,11 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxfeature.tool.RxBarCode
 import com.tamsiree.rxfeature.tool.RxQRCode
@@ -17,39 +13,12 @@ import com.tamsiree.rxkit.RxBarTool.noTitle
 import com.tamsiree.rxkit.RxBarTool.setTransparentStatusBar
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxui.activity.ActivityBase
-import com.tamsiree.rxui.view.RxTitle
+import kotlinx.android.synthetic.main.activity_create_qrcode.*
 
 /**
  * @author tamsiree
  */
 class ActivityCreateQRCode : ActivityBase(), View.OnClickListener {
-    @JvmField
-    @BindView(R.id.rx_title)
-    var mRxTitle: RxTitle? = null
-
-    @JvmField
-    @BindView(R.id.iv_linecode)
-    var mIvLinecode: ImageView? = null
-
-    @JvmField
-    @BindView(R.id.iv_code)
-    var mIvCode: ImageView? = null
-
-    @JvmField
-    @BindView(R.id.imageView1)
-    var mImageView1: ImageView? = null
-
-    @JvmField
-    @BindView(R.id.textView2)
-    var mTextView2: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_time_second)
-    var mTvTimeSecond: TextView? = null
-
-    @JvmField
-    @BindView(R.id.ll_refresh)
-    var mLlRefresh: LinearLayout? = null
 
     @SuppressLint("HandlerLeak")
     var mHandler: Handler = object : Handler() {
@@ -57,8 +26,6 @@ class ActivityCreateQRCode : ActivityBase(), View.OnClickListener {
             super.handleMessage(msg)
             when (msg.what) {
                 60000 -> initData()
-                else -> {
-                }
             }
         }
     }
@@ -66,14 +33,10 @@ class ActivityCreateQRCode : ActivityBase(), View.OnClickListener {
     private val second = 60
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        noTitle(mContext!!)
+        noTitle(mContext)
         setContentView(R.layout.activity_create_qrcode)
-        setTransparentStatusBar(mContext!!)
-        ButterKnife.bind(this)
+        setTransparentStatusBar(mContext)
         setPortrait(this)
-        initView()
-        initData()
-        AuthCode(mTvTimeSecond, second)
     }
 
     private fun AuthCode(view: TextView?, timeSecond: Int) {
@@ -92,23 +55,23 @@ class ActivityCreateQRCode : ActivityBase(), View.OnClickListener {
                     mHandler.sendMessage(message)
                     // 干掉这个定时器，下次减不会累加
                     Handler.removeCallbacks(mRunnable)
-                    AuthCode(mTvTimeSecond, second)
+                    AuthCode(tv_time_second, second)
                 }
             }
         }
         Handler.postDelayed(mRunnable, 1000)
     }
 
-    private fun initView() {
-        mRxTitle!!.setLeftFinish(mContext)
-        mRxTitle!!.title = "动态生成码"
-        mLlRefresh!!.setOnClickListener(this)
+    override fun initView() {
+        rx_title.setLeftFinish(mContext)
+        rx_title.title = "动态生成码"
+        ll_refresh.setOnClickListener(this)
     }
 
-    private fun initData() {
-        // TODO Auto-generated method stub
-        RxQRCode.createQRCode("时间戳:" + System.currentTimeMillis(), 800, 800, mIvCode)
-        mIvLinecode!!.setImageBitmap(RxBarCode.createBarCode("" + System.currentTimeMillis(), 1000, 300))
+    override fun initData() {
+        RxQRCode.createQRCode("时间戳:" + System.currentTimeMillis(), 800, 800, iv_code)
+        iv_linecode.setImageBitmap(RxBarCode.createBarCode("" + System.currentTimeMillis(), 1000, 300))
+        AuthCode(tv_time_second, second)
     }
 
     override fun onClick(arg0: View) {
@@ -116,8 +79,8 @@ class ActivityCreateQRCode : ActivityBase(), View.OnClickListener {
             R.id.ll_refresh -> {
                 Handler.removeCallbacks(mRunnable)
                 initData()
-                mTvTimeSecond!!.text = second.toString() + ""
-                AuthCode(mTvTimeSecond, second)
+                tv_time_second.text = second.toString() + ""
+                AuthCode(tv_time_second, second)
             }
             else -> {
             }

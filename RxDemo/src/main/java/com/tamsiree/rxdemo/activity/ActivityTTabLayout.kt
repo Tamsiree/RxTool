@@ -53,6 +53,10 @@ class ActivityTTabLayout : ActivityBase() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ttab_layout)
         ButterKnife.bind(this)
+
+    }
+
+    override fun initView() {
         mRxTitle!!.setLeftFinish(this)
         for (title in mTitles) {
             mFragments.add(getInstance("Switch ViewPager $title"))
@@ -131,6 +135,10 @@ class ActivityTTabLayout : ActivityBase() {
         if (rtv_2_3 != null) {
             rtv_2_3.backgroundColor = Color.parseColor("#6D8FB0")
         }
+    }
+
+    override fun initData() {
+
     }
 
     private fun tl_2() {

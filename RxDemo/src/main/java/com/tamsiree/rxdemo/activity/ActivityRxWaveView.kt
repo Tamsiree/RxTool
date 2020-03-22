@@ -115,6 +115,14 @@ class ActivityRxWaveView : ActivityBase() {
         }
     }
 
+    override fun initView() {
+
+    }
+
+    override fun initData() {
+
+    }
+
     override fun onPause() {
         super.onPause()
         if (mWave != null) {

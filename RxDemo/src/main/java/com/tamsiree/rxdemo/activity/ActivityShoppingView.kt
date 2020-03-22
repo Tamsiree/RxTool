@@ -41,13 +41,21 @@ class ActivityShoppingView : ActivityBase() {
         super.onCreate(savedInstanceState)
         RxBarTool.noTitle(this)
         setContentView(R.layout.activity_shopping_view)
+    }
+
+    override fun initView() {
+
         ButterKnife.bind(this)
         RxDeviceTool.setPortrait(this)
         mRxTitle!!.setLeftFinish(mContext)
     }
 
+    override fun initData() {
+
+    }
+
     @OnClick(R.id.btn_take_out)
     fun onClick() {
-        RxActivityTool.skipActivity(mContext!!, ActivityELMe::class.java)
+        RxActivityTool.skipActivity(mContext, ActivityELMe::class.java)
     }
 }

@@ -3,7 +3,6 @@ package com.tamsiree.rxdemo.activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
-import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxBarTool.noTitle
 import com.tamsiree.rxkit.RxBarTool.setTransparentStatusBar
@@ -23,12 +22,11 @@ class ActivityDialog : ActivityBase() {
         noTitle(this)
         setContentView(R.layout.activity_dialog)
         setTransparentStatusBar(this)
-        ButterKnife.bind(this)
         setPortrait(this)
-        initView()
     }
 
-    private fun initView() {
+
+    override fun initView() {
         rx_title.setLeftFinish(mContext)
 
         button_tran.setOnClickListener {
@@ -82,6 +80,10 @@ class ActivityDialog : ActivityBase() {
             rxDialogScaleView.setImage("squirrel.jpg", true)
             rxDialogScaleView.show()
         }
+    }
+
+    override fun initData() {
+
     }
 
     private fun initWheelYearMonthDayDialog() {

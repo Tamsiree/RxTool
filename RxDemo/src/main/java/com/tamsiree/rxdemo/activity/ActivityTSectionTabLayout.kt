@@ -7,21 +7,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.fragment.FragmentSimpleCard.Companion.getInstance
 import com.tamsiree.rxdemo.tools.ViewFindTool.find
 import com.tamsiree.rxui.activity.ActivityBase
-import com.tamsiree.rxui.view.RxTitle
 import com.tamsiree.rxui.view.tablayout.TSectionTabLayout
 import com.tamsiree.rxui.view.tablayout.listener.OnTabSelectListener
+import kotlinx.android.synthetic.main.activity_tsection_tablayout.*
 import java.util.*
 
 class ActivityTSectionTabLayout : ActivityBase() {
-    @JvmField
-    @BindView(R.id.rx_title)
-    var mRxTitle: RxTitle? = null
+
     private val mFragments = ArrayList<Fragment>()
     private val mFragments2 = ArrayList<Fragment>()
     private val mTitles = arrayOf("首页", "消息")
@@ -32,8 +28,10 @@ class ActivityTSectionTabLayout : ActivityBase() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tsection_tablayout)
-        ButterKnife.bind(this)
-        mRxTitle!!.setLeftFinish(this)
+    }
+
+    override fun initView() {
+        rx_title.setLeftFinish(this)
         for (title in mTitles_3) {
             mFragments.add(getInstance("Switch ViewPager $title"))
         }
@@ -64,6 +62,10 @@ class ActivityTSectionTabLayout : ActivityBase() {
         if (rtv_3_2 != null) {
             rtv_3_2.backgroundColor = Color.parseColor("#6D8FB0")
         }
+    }
+
+    override fun initData() {
+
     }
 
     private fun tl_3() {

@@ -41,8 +41,8 @@
 
             <ImageView
                 android:id="@+id/iv_avatar"
-                android:layout_width="@dimen/dp_80"
-                android:layout_height="@dimen/dp_80"
+                android:layout_width="@dimen/dp_110"
+                android:layout_height="@dimen/dp_110"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"

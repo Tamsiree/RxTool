@@ -6,41 +6,19 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import butterknife.BindView
 import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxkit.view.RxToast
 import com.tamsiree.rxui.activity.ActivityBase
-import com.tamsiree.rxui.view.RxRunTextView
-import com.tamsiree.rxui.view.RxTextViewVertical
-import com.tamsiree.rxui.view.RxTextViewVerticalMore
-import com.tamsiree.rxui.view.RxTitle
+import kotlinx.android.synthetic.main.activity_run_text_view.*
 import java.util.*
 
 /**
  * @author tamsiree
  */
 class ActivityRunTextView : ActivityBase() {
-    @JvmField
-    @BindView(R.id.rx_title)
-    var mRxTitle: RxTitle? = null
 
-    @JvmField
-    @BindView(R.id.tv_runtitle)
-    var mTvRuntitle: RxRunTextView? = null
-
-    @JvmField
-    @BindView(R.id.text)
-    var mRxVText: RxTextViewVertical? = null
-
-    @JvmField
-    @BindView(R.id.upview1)
-    var mUpview1: RxTextViewVerticalMore? = null
-
-    @JvmField
-    @BindView(R.id.activity_run_text_view)
-    var mActivityRunTextView: LinearLayout? = null
     private val titleList = ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +28,8 @@ class ActivityRunTextView : ActivityBase() {
         initView()
     }
 
-    protected fun initView() {
-        mRxTitle!!.setLeftFinish(mContext)
+    override fun initView() {
+        rx_title.setLeftFinish(mContext)
         titleList.add("你是天上最受宠的一架钢琴")
         titleList.add("我是丑人脸上的鼻涕")
         titleList.add("你发出完美的声音")
@@ -60,14 +38,18 @@ class ActivityRunTextView : ActivityBase() {
         titleList.add("我已经够胖还吃东西")
         titleList.add("你踏着七彩祥云离去")
         titleList.add("我被留在这里")
-        mRxVText!!.setTextList(titleList)
-        mRxVText!!.setText(26f, 5, -0x899eaa) //设置属性
-        mRxVText!!.setTextStillTime(3000) //设置停留时长间隔
-        mRxVText!!.setAnimTime(300) //设置进入和退出的时间间隔
-        mRxVText!!.setOnItemClickListener { position -> RxToast.success(mContext!!, "点击了 : " + titleList[position], Toast.LENGTH_SHORT, true).show() }
+        text.setTextList(titleList)
+        text.setText(26f, 5, -0x899eaa) //设置属性
+        text.setTextStillTime(3000) //设置停留时长间隔
+        text.setAnimTime(300) //设置进入和退出的时间间隔
+        text.setOnItemClickListener { position -> RxToast.success(mContext, "点击了 : " + titleList[position], Toast.LENGTH_SHORT, true).show() }
         val views: MutableList<View> = ArrayList()
         setUPMarqueeView(views, 11)
-        mUpview1!!.setViews(views)
+        upview1.setViews(views)
+    }
+
+    override fun initData() {
+
     }
 
     private fun setUPMarqueeView(views: MutableList<View>, size: Int) {
@@ -104,11 +86,11 @@ class ActivityRunTextView : ActivityBase() {
 
     override fun onResume() {
         super.onResume()
-        mRxVText!!.startAutoScroll()
+        text.startAutoScroll()
     }
 
     override fun onPause() {
         super.onPause()
-        mRxVText!!.stopAutoScroll()
+        text.stopAutoScroll()
     }
 }

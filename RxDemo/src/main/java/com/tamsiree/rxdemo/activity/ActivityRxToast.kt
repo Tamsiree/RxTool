@@ -57,21 +57,25 @@ class ActivityRxToast : ActivityBase() {
         initView()
     }
 
-    protected fun initView() {
+    override fun initView() {
         mRxTitle!!.setOnClickListener { finish() }
+    }
+
+    override fun initData() {
+
     }
 
     @OnClick(R.id.button_error_toast, R.id.button_success_toast, R.id.button_info_toast, R.id.button_warning_toast, R.id.button_normal_toast_wo_icon, R.id.button_normal_toast_w_icon)
     fun onClick(view: View) {
         when (view.id) {
-            R.id.button_error_toast -> RxToast.error(mContext!!, "这是一个提示错误的Toast！", Toast.LENGTH_SHORT, true).show()
-            R.id.button_success_toast -> RxToast.success(mContext!!, "这是一个提示成功的Toast!", Toast.LENGTH_SHORT, true).show()
-            R.id.button_info_toast -> RxToast.info(mContext!!, "这是一个提示信息的Toast.", Toast.LENGTH_SHORT, true).show()
-            R.id.button_warning_toast -> RxToast.warning(mContext!!, "这是一个提示警告的Toast.", Toast.LENGTH_SHORT, true).show()
-            R.id.button_normal_toast_wo_icon -> RxToast.normal(mContext!!, "这是一个普通的没有ICON的Toast").show()
+            R.id.button_error_toast -> RxToast.error(mContext, "这是一个提示错误的Toast！", Toast.LENGTH_SHORT, true).show()
+            R.id.button_success_toast -> RxToast.success(mContext, "这是一个提示成功的Toast!", Toast.LENGTH_SHORT, true).show()
+            R.id.button_info_toast -> RxToast.info(mContext, "这是一个提示信息的Toast.", Toast.LENGTH_SHORT, true).show()
+            R.id.button_warning_toast -> RxToast.warning(mContext, "这是一个提示警告的Toast.", Toast.LENGTH_SHORT, true).show()
+            R.id.button_normal_toast_wo_icon -> RxToast.normal(mContext, "这是一个普通的没有ICON的Toast").show()
             R.id.button_normal_toast_w_icon -> {
                 val icon = resources.getDrawable(R.drawable.clover)
-                RxToast.normal(mContext!!, "这是一个普通的包含ICON的Toast", icon).show()
+                RxToast.normal(mContext, "这是一个普通的包含ICON的Toast", icon).show()
             }
             else -> {
             }

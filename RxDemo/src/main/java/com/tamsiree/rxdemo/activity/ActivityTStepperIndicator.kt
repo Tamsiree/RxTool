@@ -13,6 +13,10 @@ class ActivityTStepperIndicator : ActivityBase() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tstepper_indicator)
 
+
+    }
+
+    override fun initView() {
         rx_title.setLeftFinish(this)
 
         pager.adapter = PagerAdapter(supportFragmentManager)
@@ -22,6 +26,10 @@ class ActivityTStepperIndicator : ActivityBase() {
         indicator.setViewPager(pager, true)
 
         indicator.addOnStepClickListener { step -> pager.setCurrentItem(step, true) }
+
+    }
+
+    override fun initData() {
 
     }
 

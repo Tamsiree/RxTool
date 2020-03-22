@@ -45,8 +45,7 @@ class ActivityCodeTool : ActivityBase() {
         RxBarTool.setTransparentStatusBar(this)
         setContentView(R.layout.activity_code_tool)
         RxDeviceTool.setPortrait(this)
-        initView()
-        initEvent()
+
     }
 
     override fun onResume() {
@@ -54,7 +53,7 @@ class ActivityCodeTool : ActivityBase() {
         updateScanCodeCount()
     }
 
-    protected fun initView() {
+    override fun initView() {
         mRxTitle = findViewById(R.id.rx_title)
         mEtQrCode = findViewById(R.id.et_qr_code)
         mIvCreateQrCode = findViewById(R.id.iv_create_qr_code)
@@ -78,12 +77,16 @@ class ActivityCodeTool : ActivityBase() {
         updateMadeCodeCount()
     }
 
+    override fun initData() {
+        initEvent()
+    }
+
     private fun updateScanCodeCount() {
-        mRxTickerViewScan!!.setText(RxDataTool.stringToInt(RxSPTool.getContent(mContext?.baseContext!!, RxConstants.SP_SCAN_CODE)).toString() + "", true)
+        mRxTickerViewScan!!.setText(RxDataTool.stringToInt(RxSPTool.getContent(mContext.baseContext!!, RxConstants.SP_SCAN_CODE)).toString() + "", true)
     }
 
     private fun updateMadeCodeCount() {
-        mRxTickerViewMade!!.setText(RxDataTool.stringToInt(RxSPTool.getContent(mContext?.baseContext!!, RxConstants.SP_MADE_CODE)).toString() + "", true)
+        mRxTickerViewMade!!.setText(RxDataTool.stringToInt(RxSPTool.getContent(mContext.baseContext!!, RxConstants.SP_MADE_CODE)).toString() + "", true)
     }
 
     private fun initEvent() {
@@ -106,7 +109,7 @@ class ActivityCodeTool : ActivityBase() {
                 // RxQRCode.createQRCode(str,mIvQrCode);
                 mIvQrCode!!.visibility = View.VISIBLE
                 RxToast.success("二维码已生成!")
-                RxSPTool.putContent(mContext?.baseContext!!, RxConstants.SP_MADE_CODE, (RxDataTool.stringToInt(RxSPTool.getContent(mContext?.baseContext!!, RxConstants.SP_MADE_CODE)) + 1).toString())
+                RxSPTool.putContent(mContext.baseContext!!, RxConstants.SP_MADE_CODE, (RxDataTool.stringToInt(RxSPTool.getContent(mContext.baseContext!!, RxConstants.SP_MADE_CODE)) + 1).toString())
                 updateMadeCodeCount()
                 nestedScrollView!!.computeScroll()
             }
@@ -125,11 +128,11 @@ class ActivityCodeTool : ActivityBase() {
                 //mIvBarCode.setImageBitmap(RxBarCode.createBarCode(str1, 1000, 300));
                 mIvBarCode!!.visibility = View.VISIBLE
                 RxToast.success("条形码已生成!")
-                RxSPTool.putContent(mContext?.baseContext!!, RxConstants.SP_MADE_CODE, (RxDataTool.stringToInt(RxSPTool.getContent(mContext?.baseContext!!, RxConstants.SP_MADE_CODE)) + 1).toString())
+                RxSPTool.putContent(mContext.baseContext!!, RxConstants.SP_MADE_CODE, (RxDataTool.stringToInt(RxSPTool.getContent(mContext.baseContext!!, RxConstants.SP_MADE_CODE)) + 1).toString())
                 updateMadeCodeCount()
             }
         }
-        mLlScaner!!.setOnClickListener { RxActivityTool.skipActivity(mContext!!, ActivityScanerCode::class.java) }
+        mLlScaner!!.setOnClickListener { RxActivityTool.skipActivity(mContext, ActivityScanerCode::class.java) }
         mLlQr!!.setOnClickListener {
             mLlQrRoot!!.visibility = View.VISIBLE
             mLlBarRoot!!.visibility = View.GONE

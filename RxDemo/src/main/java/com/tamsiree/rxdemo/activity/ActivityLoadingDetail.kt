@@ -9,12 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.tools.EvaluatorARGB.Companion.instance
-import com.tamsiree.rxkit.RxDeviceTool.setPortrait
+import com.tamsiree.rxkit.RxDeviceTool
+import com.tamsiree.rxui.activity.ActivityBase
 import com.tamsiree.rxui.view.progressing.SpinKitView
 import com.tamsiree.rxui.view.progressing.SpriteFactory
 import com.tamsiree.rxui.view.progressing.Style
@@ -22,7 +22,8 @@ import com.tamsiree.rxui.view.progressing.Style
 /**
  * @author tamsiree
  */
-class ActivityLoadingDetail : AppCompatActivity() {
+class ActivityLoadingDetail : ActivityBase() {
+
     var colors = intArrayOf(
             Color.parseColor("#D55400"),
             Color.parseColor("#2B3E51"),
@@ -36,7 +37,10 @@ class ActivityLoadingDetail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading_detail)
-        setPortrait(this)
+        RxDeviceTool.setPortrait(this)
+    }
+
+    override fun initView() {
         val viewPager = findViewById<ViewPager>(R.id.view_pager)
         viewPager.offscreenPageLimit = 0
         viewPager.adapter = object : PagerAdapter() {
@@ -79,6 +83,10 @@ class ActivityLoadingDetail : AppCompatActivity() {
             override fun onPageScrollStateChanged(state: Int) {}
         })
         viewPager.currentItem = intent.getIntExtra("position", 0)
+    }
+
+    override fun initData() {
+
     }
 
     companion object {

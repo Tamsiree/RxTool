@@ -42,6 +42,14 @@ class ActivityRxScaleImageView : ActivityBase(), View.OnClickListener {
         updateNotes()
     }
 
+    override fun initView() {
+
+    }
+
+    override fun initData() {
+
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(BUNDLE_POSITION, position)

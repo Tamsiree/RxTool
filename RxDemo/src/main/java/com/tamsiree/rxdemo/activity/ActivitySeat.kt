@@ -40,6 +40,14 @@ class ActivitySeat : ActivityBase() {
         mRxTitle!!.setLeftFinish(mContext)
     }
 
+    override fun initView() {
+
+    }
+
+    override fun initData() {
+
+    }
+
     @OnClick(R.id.btn_movie, R.id.btn_flight)
     fun onClick(view: View) {
         when (view.id) {

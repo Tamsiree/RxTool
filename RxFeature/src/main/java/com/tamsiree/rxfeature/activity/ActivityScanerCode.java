@@ -141,7 +141,7 @@ public class ActivityScanerCode extends ActivityBase {
         RxDeviceTool.setPortrait(this);
         //界面控件初始化
         initDecode();
-        initView();
+//        initView();
         //权限初始化
         initPermission();
         //扫描动画初始化
@@ -241,7 +241,8 @@ public class ActivityScanerCode extends ActivityBase {
         super.onDestroy();
     }
 
-    private void initView() {
+    @Override
+    public void initView() {
         mIvLight = findViewById(R.id.top_mask);
         mContainer = findViewById(R.id.capture_containter);
         mCropLayout = findViewById(R.id.capture_crop_layout);
@@ -415,6 +416,12 @@ public class ActivityScanerCode extends ActivityBase {
             mScanerListener.onSuccess("From to Camera", result);
         }
     }
+
+    @Override
+    public void initData() {
+
+    }
+
     //==============================================================================================解析结果 及 后续处理 end
 
     final class CaptureActivityHandler extends Handler {

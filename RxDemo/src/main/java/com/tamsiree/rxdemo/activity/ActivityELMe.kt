@@ -11,11 +11,8 @@ import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.AccelerateInterpolator
-import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.adapter.AdapterLeftMenu
 import com.tamsiree.rxdemo.adapter.AdapterLeftMenu.onItemSelectedListener
@@ -30,81 +27,36 @@ import com.tamsiree.rxdemo.view.RxFakeAddImageView
 import com.tamsiree.rxdemo.view.RxPointFTypeEvaluator
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxui.activity.ActivityBase
-import com.tamsiree.rxui.view.RxTitle
+import kotlinx.android.synthetic.main.activity_elme.*
+import kotlinx.android.synthetic.main.right_menu_item.*
 import java.util.*
 
 /**
  * @author tamsiree
  */
 class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, ShopCartDialogImp {
-    @JvmField
-    @BindView(R.id.rx_title)
-    var mRxTitle: RxTitle? = null
 
-    @JvmField
-    @BindView(R.id.shopping_cart_total_tv)
-    var totalPriceTextView: TextView? = null
-
-    @JvmField
-    @BindView(R.id.shopping_cart_bottom)
-    var mShoppingCartBottom: LinearLayout? = null
-
-    @JvmField
-    @BindView(R.id.left_menu)
-    var mLeftMenu //左侧菜单栏
-            : RecyclerView? = null
-
-    @JvmField
-    @BindView(R.id.right_menu)
-    var mRightMenu //右侧菜单栏
-            : RecyclerView? = null
-
-    @JvmField
-    @BindView(R.id.right_menu_tv)
-    var headerView: TextView? = null
-
-    @JvmField
-    @BindView(R.id.right_menu_item)
-    var headerLayout //右侧菜单栏最上面的菜单
-            : LinearLayout? = null
-
-    @JvmField
-    @BindView(R.id.shopping_cart)
-    var mShoppingCart: ImageView? = null
-
-    @JvmField
-    @BindView(R.id.shopping_cart_layout)
-    var mShoppingCartLayout: FrameLayout? = null
-
-    @JvmField
-    @BindView(R.id.shopping_cart_total_num)
-    var totalPriceNumTextView: TextView? = null
-
-    @JvmField
-    @BindView(R.id.main_layout)
-    var mMainLayout: RelativeLayout? = null
     private var headMenu: ModelDishMenu? = null
     private var leftAdapter: AdapterLeftMenu? = null
     private var rightAdapter: AdapterRightDish? = null
-    private var mModelDishMenuList //数据源
-            : ArrayList<ModelDishMenu>? = null
+
+    //数据源
+    private var mModelDishMenuList: ArrayList<ModelDishMenu>? = null
     private var leftClickType = false //左侧菜单点击引发的右侧联动
     private var mModelShopCart: ModelShopCart? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_elme)
-        ButterKnife.bind(this)
         setPortrait(this)
-        mRxTitle!!.setLeftFinish(mContext)
-        initData()
-        initView()
-        initAdapter()
     }
 
-    private fun initView() {
-        mLeftMenu!!.layoutManager = LinearLayoutManager(this)
-        mRightMenu!!.layoutManager = LinearLayoutManager(this)
-        mRightMenu!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+    override fun initView() {
+        rx_title.setLeftFinish(mContext)
+
+        left_menu.layoutManager = LinearLayoutManager(this)
+        right_menu.layoutManager = LinearLayoutManager(this)
+        right_menu.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -114,27 +66,27 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
                 }
                 var underView: View? = null
                 underView = if (dy > 0) {
-                    mRightMenu!!.findChildViewUnder(headerLayout!!.x, headerLayout!!.measuredHeight + 1.toFloat())
+                    right_menu.findChildViewUnder(right_menu_item.x, right_menu_item.measuredHeight + 1.toFloat())
                 } else {
-                    mRightMenu!!.findChildViewUnder(headerLayout!!.x, 0f)
+                    right_menu.findChildViewUnder(right_menu_item.x, 0f)
                 }
                 if (underView != null && underView.contentDescription != null) {
                     val position = underView.contentDescription.toString().toInt()
                     val menu = rightAdapter!!.getMenuOfMenuByPosition(position)
                     if (leftClickType || menu.menuName != headMenu!!.menuName) {
-                        if (dy > 0 && headerLayout!!.translationY <= 1 && headerLayout!!.translationY >= -1 * headerLayout!!.measuredHeight * 4 / 5 && !leftClickType) { // underView.getTop()>9
-                            val dealtY = underView.top - headerLayout!!.measuredHeight
-                            headerLayout!!.translationY = dealtY.toFloat()
+                        if (dy > 0 && right_menu_item.translationY <= 1 && right_menu_item.translationY >= -1 * right_menu_item.measuredHeight * 4 / 5 && !leftClickType) { // underView.getTop()>9
+                            val dealtY = underView.top - right_menu_item.measuredHeight
+                            right_menu_item.translationY = dealtY.toFloat()
                             //                            Log.e(TAG, "onScrolled: "+headerLayout.getTranslationY()+"   "+headerLayout.getBottom()+"  -  "+headerLayout.getMeasuredHeight() );
-                        } else if (dy < 0 && headerLayout!!.translationY <= 0 && !leftClickType) {
-                            headerView!!.text = menu.menuName
-                            val dealtY = underView.bottom - headerLayout!!.measuredHeight
-                            headerLayout!!.translationY = dealtY.toFloat()
+                        } else if (dy < 0 && right_menu_item.translationY <= 0 && !leftClickType) {
+                            right_menu_tv.text = menu.menuName
+                            val dealtY = underView.bottom - right_menu_item.measuredHeight
+                            right_menu_item.translationY = dealtY.toFloat()
                             //                            Log.e(TAG, "onScrolled: "+headerLayout.getTranslationY()+"   "+headerLayout.getBottom()+"  -  "+headerLayout.getMeasuredHeight() );
                         } else {
-                            headerLayout!!.translationY = 0f
+                            right_menu_item.translationY = 0f
                             headMenu = menu
-                            headerView!!.text = headMenu!!.menuName
+                            right_menu_tv.text = headMenu!!.menuName
                             for (i in mModelDishMenuList!!.indices) {
                                 if (mModelDishMenuList!![i] == headMenu) {
                                     leftAdapter!!.selectedNum = i
@@ -150,10 +102,10 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
                 }
             }
         })
-        mShoppingCartLayout!!.setOnClickListener { view -> showCart(view) }
+        shopping_cart_layout.setOnClickListener { view -> showCart(view) }
     }
 
-    private fun initData() {
+    override fun initData() {
         mModelShopCart = ModelShopCart()
         mModelDishMenuList = ArrayList()
         val dishs1 = ArrayList<ModelDish>()
@@ -202,13 +154,16 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
         mModelDishMenuList!!.add(launch)
         mModelDishMenuList!!.add(evening)
         mModelDishMenuList!!.add(menu1)
+
+        initAdapter()
+
     }
 
     private fun initAdapter() {
         leftAdapter = AdapterLeftMenu(this, mModelDishMenuList)
         rightAdapter = AdapterRightDish(this, mModelDishMenuList, mModelShopCart)
-        mRightMenu!!.adapter = rightAdapter
-        mLeftMenu!!.adapter = leftAdapter
+        right_menu.adapter = rightAdapter
+        left_menu.adapter = leftAdapter
         leftAdapter!!.addItemSelectedListener(this)
         rightAdapter!!.shopCartInterface = this
         initHeadView()
@@ -216,8 +171,8 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
 
     private fun initHeadView() {
         headMenu = rightAdapter!!.getMenuOfMenuByPosition(0)
-        headerLayout!!.contentDescription = "0"
-        headerView!!.text = headMenu?.menuName
+        right_menu_item.contentDescription = "0"
+        right_menu_tv.text = headMenu?.menuName
     }
 
     override fun onDestroy() {
@@ -226,13 +181,13 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
     }
 
     private fun showHeadView() {
-        headerLayout!!.translationY = 0f
-        val underView = mRightMenu!!.findChildViewUnder(headerView!!.x, 0f)
+        right_menu_item.translationY = 0f
+        val underView = right_menu.findChildViewUnder(right_menu_tv.x, 0f)
         if (underView != null && underView.contentDescription != null) {
             val position = underView.contentDescription.toString().toInt()
             val menu = rightAdapter!!.getMenuOfMenuByPosition(position + 1)
             headMenu = menu
-            headerView!!.text = headMenu!!.menuName
+            right_menu_tv.text = headMenu!!.menuName
             for (i in mModelDishMenuList!!.indices) {
                 if (mModelDishMenuList!![i] == headMenu) {
                     leftAdapter!!.selectedNum = i
@@ -247,7 +202,7 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
         for (i in 0 until position) {
             sum += mModelDishMenuList!![i].modelDishList!!.size + 1
         }
-        val layoutManager = mRightMenu!!.layoutManager as LinearLayoutManager?
+        val layoutManager = right_menu.layoutManager as LinearLayoutManager?
         layoutManager!!.scrollToPositionWithOffset(sum, 0)
         leftClickType = true
     }
@@ -258,8 +213,8 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
         val cartLocation = IntArray(2)
         val recycleLocation = IntArray(2)
         view!!.getLocationInWindow(addLocation)
-        mShoppingCart!!.getLocationInWindow(cartLocation)
-        mRightMenu!!.getLocationInWindow(recycleLocation)
+        shopping_cart.getLocationInWindow(cartLocation)
+        right_menu.getLocationInWindow(recycleLocation)
         val startP = PointF()
         val endP = PointF()
         val controlP = PointF()
@@ -270,7 +225,7 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
         controlP.x = endP.x
         controlP.y = startP.y
         val rxFakeAddImageView = RxFakeAddImageView(this)
-        mMainLayout!!.addView(rxFakeAddImageView)
+        main_layout.addView(rxFakeAddImageView)
         rxFakeAddImageView.setImageResource(R.drawable.ic_add_circle_blue_700_36dp)
         rxFakeAddImageView.layoutParams.width = resources.getDimensionPixelSize(R.dimen.item_dish_circle_size)
         rxFakeAddImageView.layoutParams.height = resources.getDimensionPixelSize(R.dimen.item_dish_circle_size)
@@ -285,14 +240,14 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
 
             override fun onAnimationEnd(animator: Animator) {
                 rxFakeAddImageView.visibility = View.GONE
-                mMainLayout!!.removeView(rxFakeAddImageView)
+                main_layout.removeView(rxFakeAddImageView)
             }
 
             override fun onAnimationCancel(animator: Animator) {}
             override fun onAnimationRepeat(animator: Animator) {}
         })
-        val scaleAnimatorX: ObjectAnimator = ObjectAnimator.ofFloat(mShoppingCart, "scaleX", 0.6f, 1.0f)
-        val scaleAnimatorY: ObjectAnimator = ObjectAnimator.ofFloat(mShoppingCart, "scaleY", 0.6f, 1.0f)
+        val scaleAnimatorX: ObjectAnimator = ObjectAnimator.ofFloat(shopping_cart, "scaleX", 0.6f, 1.0f)
+        val scaleAnimatorY: ObjectAnimator = ObjectAnimator.ofFloat(shopping_cart, "scaleY", 0.6f, 1.0f)
         scaleAnimatorX.interpolator = AccelerateInterpolator()
         scaleAnimatorY.interpolator = AccelerateInterpolator()
         val animatorSet = AnimatorSet()
@@ -308,13 +263,13 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
 
     private fun showTotalPrice() {
         if (mModelShopCart != null && mModelShopCart!!.shoppingTotalPrice > 0) {
-            totalPriceTextView!!.visibility = View.VISIBLE
-            totalPriceTextView!!.text = "¥ " + mModelShopCart!!.shoppingTotalPrice
-            totalPriceNumTextView!!.visibility = View.VISIBLE
-            totalPriceNumTextView!!.text = "" + mModelShopCart!!.shoppingAccount
+            shopping_cart_total_tv.visibility = View.VISIBLE
+            shopping_cart_total_tv.text = "¥ " + mModelShopCart!!.shoppingTotalPrice
+            shopping_cart_total_num.visibility = View.VISIBLE
+            shopping_cart_total_num.text = "" + mModelShopCart!!.shoppingAccount
         } else {
-            totalPriceTextView!!.visibility = View.GONE
-            totalPriceNumTextView!!.visibility = View.GONE
+            shopping_cart_total_tv.visibility = View.GONE
+            shopping_cart_total_num.visibility = View.GONE
         }
     }
 
@@ -340,7 +295,4 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
         rightAdapter!!.notifyDataSetChanged()
     }
 
-    companion object {
-        private const val TAG = "MainActivity"
-    }
 }

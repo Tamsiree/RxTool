@@ -34,13 +34,20 @@ class ActivityXmlParse : ActivityBase() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_xml_parse)
         ButterKnife.bind(this)
-        rx_title.setLeftFinish(mContext)
         setPortrait(this)
+    }
+
+    override fun initView() {
+        rx_title.setLeftFinish(mContext)
+    }
+
+    override fun initData() {
+
     }
 
     @OnClick(R.id.btn_parse_xml)
     fun onViewClicked() {
-        getCities(mContext!!)
+        getCities(mContext)
     }
 
     fun getCities(mContext: Context): List<CityModel?> {

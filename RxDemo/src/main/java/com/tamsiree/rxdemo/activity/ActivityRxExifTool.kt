@@ -45,8 +45,9 @@ class ActivityRxExifTool : ActivityBaseLocation() {
     @BindView(R.id.iv_pic)
     var mIvPic: ImageView? = null
     private var photo: File? = null
-    override fun setGpsInfo(location: Location) {
-        mTvGps!!.text = String.format("经度: %s  纬度: %s\n精度: %s  方位: %s", RxLocationTool.gpsToDegree(location.longitude), RxLocationTool.gpsToDegree(location.latitude), location.accuracy, location.bearing)
+
+    override fun setGpsInfo(location: Location?) {
+        mTvGps!!.text = String.format("经度: %s  纬度: %s\n精度: %s  方位: %s", RxLocationTool.gpsToDegree(location!!.longitude), RxLocationTool.gpsToDegree(location.latitude), location.accuracy, location.bearing)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +59,14 @@ class ActivityRxExifTool : ActivityBaseLocation() {
         RxDeviceTool.setPortrait(this)
         RxPermissionsTool.with(mContext).addPermission(Manifest.permission.ACCESS_FINE_LOCATION).addPermission(Manifest.permission.ACCESS_COARSE_LOCATION).addPermission(Manifest.permission.READ_EXTERNAL_STORAGE).addPermission(Manifest.permission.CAMERA).addPermission(Manifest.permission.READ_PHONE_STATE).initPermission()
         initCamera() //初始化相机
+    }
+
+    override fun initView() {
+
+    }
+
+    override fun initData() {
+
     }
 
     private fun initCamera() {

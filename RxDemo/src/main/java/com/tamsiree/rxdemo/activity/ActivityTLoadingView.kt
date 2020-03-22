@@ -14,15 +14,15 @@ class ActivityTLoadingView : ActivityBase() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tloading_view)
-
-        initView()
-
-        loadData()
     }
 
-    private fun initView() {
+    override fun initView() {
         rxTitle.setLeftFinish(this)
         btn_reset.setOnClickListener { resetLoader() }
+    }
+
+    override fun initData() {
+        loadData()
     }
 
     private fun loadData() {

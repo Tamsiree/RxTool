@@ -66,6 +66,10 @@ class ActivityZipEncrypt : ActivityBase() {
         setContentView(R.layout.activity_zip_encrypt)
         ButterKnife.bind(this)
         RxDeviceTool.setPortrait(this)
+
+    }
+
+    override fun initView() {
         mRxTitle!!.setLeftFinish(mContext)
         zipParentPath = RxFileTool.rootPath?.absolutePath + File.separator + "RxTool"
         zipTempDeletePath = RxFileTool.rootPath?.absolutePath + File.separator + "RxTool" + File.separator + "RxTempTool"
@@ -75,6 +79,10 @@ class ActivityZipEncrypt : ActivityBase() {
         if (!unZipDirFile!!.exists()) {
             unZipDirFile!!.mkdirs()
         }
+    }
+
+    override fun initData() {
+
     }
 
     @OnClick(R.id.btn_create_folder, R.id.btn_zip, R.id.btn_upzip, R.id.btn_zip_delete_dir)

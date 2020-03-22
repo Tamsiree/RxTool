@@ -32,12 +32,9 @@ class ActivityTCardGallery : ActivityBase() {
             window.statusBarColor = Color.TRANSPARENT
         }*/
         setContentView(R.layout.activity_tcard_grallery)
-
-        initData()
-        initView()
     }
 
-    private fun initView() {
+    override fun initView() {
         rx_title.setLeftFinish(this)
 
         linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -67,11 +64,12 @@ class ActivityTCardGallery : ActivityBase() {
         })
     }
 
-    private fun initData() {
+    override fun initData() {
         mList.add(R.drawable.bg_friend)
         mList.add(R.drawable.ova)
         mList.add(R.drawable.bg_family)
         mList.add(R.drawable.bg_splash)
+        recyclerView.adapter?.notifyDataSetChanged()
     }
 
     private fun notifyBackgroundChange() {

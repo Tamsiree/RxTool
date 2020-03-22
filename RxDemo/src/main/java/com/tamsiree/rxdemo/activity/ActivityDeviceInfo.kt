@@ -2,12 +2,6 @@ package com.tamsiree.rxdemo.activity
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxDeviceTool.buildBrand
 import com.tamsiree.rxkit.RxDeviceTool.buildBrandModel
@@ -38,183 +32,66 @@ import com.tamsiree.rxkit.RxDeviceTool.serialNumber
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxkit.RxDeviceTool.uniqueSerialNumber
 import com.tamsiree.rxui.activity.ActivityBase
-import com.tamsiree.rxui.view.RxTitle
+import kotlinx.android.synthetic.main.activity_device_info.*
 
 /**
  * @author tamsiree
  */
 class ActivityDeviceInfo : ActivityBase() {
-    @JvmField
-    @BindView(R.id.rx_title)
-    var mRxTitle: RxTitle? = null
 
-    @JvmField
-    @BindView(R.id.btn_get_phone_info)
-    var mBtnGetPhoneInfo: Button? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_is_phone)
-    var mTvDeviceIsPhone: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_software_phone_type)
-    var mTvDeviceSoftwarePhoneType: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_density)
-    var mTvDeviceDensity: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_manu_facturer)
-    var mTvDeviceManuFacturer: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_width)
-    var mTvDeviceWidth: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_height)
-    var mTvDeviceHeight: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_version_name)
-    var mTvDeviceVersionName: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_version_code)
-    var mTvDeviceVersionCode: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_imei)
-    var mTvDeviceImei: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_imsi)
-    var mTvDeviceImsi: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_software_version)
-    var mTvDeviceSoftwareVersion: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_mac)
-    var mTvDeviceMac: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_software_mcc_mnc)
-    var mTvDeviceSoftwareMccMnc: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_software_mcc_mnc_name)
-    var mTvDeviceSoftwareMccMncName: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_software_sim_country_iso)
-    var mTvDeviceSoftwareSimCountryIso: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_sim_operator)
-    var mTvDeviceSimOperator: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_sim_serial_number)
-    var mTvDeviceSimSerialNumber: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_sim_state)
-    var mTvDeviceSimState: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_sim_operator_name)
-    var mTvDeviceSimOperatorName: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_subscriber_id)
-    var mTvDeviceSubscriberId: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_voice_mail_number)
-    var mTvDeviceVoiceMailNumber: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_adnroid_id)
-    var mTvDeviceAdnroidId: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_build_brand_model)
-    var mTvDeviceBuildBrandModel: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_build_manu_facturer)
-    var mTvDeviceBuildManuFacturer: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_build_brand)
-    var mTvDeviceBuildBrand: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_serial_number)
-    var mTvDeviceSerialNumber: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_iso)
-    var mTvDeviceIso: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_device_phone)
-    var mTvDevicePhone: TextView? = null
-
-    @JvmField
-    @BindView(R.id.ll_info_root)
-    var mLlInfoRoot: LinearLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device_info)
-        ButterKnife.bind(this)
         setPortrait(this)
-        mRxTitle!!.setLeftFinish(mContext)
     }
 
     private val phoneInfo: Unit
         get() {
-            if (isPhone(mContext!!)) {
-                mTvDeviceIsPhone!!.text = "是"
+            if (isPhone(mContext)) {
+                tv_device_is_phone.text = "是"
             } else {
-                mTvDeviceIsPhone!!.text = "否"
+                tv_device_is_phone.text = "否"
             }
-            mTvDeviceSoftwarePhoneType!!.text = getPhoneType(mContext!!).toString() + ""
-            mTvDeviceDensity!!.text = getScreenDensity(mContext!!).toString() + ""
-            mTvDeviceManuFacturer!!.text = uniqueSerialNumber + ""
-            mTvDeviceWidth!!.text = getScreenWidth(mContext!!).toString() + " "
-            mTvDeviceHeight!!.text = getScreenHeight(mContext!!).toString() + " "
-            mTvDeviceVersionName!!.text = getAppVersionName(mContext) + ""
-            mTvDeviceVersionCode!!.text = getAppVersionNo(mContext!!).toString() + ""
-            mTvDeviceImei!!.text = getDeviceIdIMEI(mContext!!) + ""
-            mTvDeviceImsi!!.text = getIMSI(mContext!!) + ""
-            mTvDeviceSoftwareVersion!!.text = getDeviceSoftwareVersion(mContext!!) + ""
-            mTvDeviceMac!!.text = getMacAddress(mContext!!)
-            mTvDeviceSoftwareMccMnc!!.text = getNetworkOperator(mContext!!) + ""
-            mTvDeviceSoftwareMccMncName!!.text = getNetworkOperatorName(mContext!!) + ""
-            mTvDeviceSoftwareSimCountryIso!!.text = getNetworkCountryIso(mContext!!) + ""
-            mTvDeviceSimOperator!!.text = getSimOperator(mContext!!) + ""
-            mTvDeviceSimSerialNumber!!.text = getSimSerialNumber(mContext!!) + ""
-            mTvDeviceSimState!!.text = getSimState(mContext!!).toString() + ""
-            mTvDeviceSimOperatorName!!.text = getSimOperatorName(mContext!!) + ""
-            mTvDeviceSubscriberId!!.text = getSubscriberId(mContext!!) + ""
-            mTvDeviceVoiceMailNumber!!.text = getVoiceMailNumber(mContext!!) + ""
-            mTvDeviceAdnroidId!!.text = getAndroidId(mContext!!) + ""
-            mTvDeviceBuildBrandModel!!.text = buildBrandModel + ""
-            mTvDeviceBuildManuFacturer!!.text = buildMANUFACTURER + ""
-            mTvDeviceBuildBrand!!.text = buildBrand + ""
-            mTvDeviceSerialNumber!!.text = serialNumber + ""
-            mTvDeviceIso!!.text = getNetworkCountryIso(mContext!!) + ""
-            mTvDevicePhone!!.text = getLine1Number(mContext!!) + ""
+            tv_device_software_phone_type.text = getPhoneType(mContext).toString()
+            tv_device_density.text = getScreenDensity(mContext).toString()
+            tv_device_manu_facturer.text = uniqueSerialNumber
+            tv_device_width.text = getScreenWidth(mContext).toString()
+            tv_device_height.text = getScreenHeight(mContext).toString()
+            tv_device_version_name.text = getAppVersionName(mContext)
+            tv_device_version_code.text = getAppVersionNo(mContext).toString()
+            tv_device_imei.text = getDeviceIdIMEI(mContext)
+            tv_device_imsi.text = getIMSI(mContext)
+            tv_device_software_version.text = getDeviceSoftwareVersion(mContext)
+            tv_device_mac.text = getMacAddress(mContext)
+            tv_device_software_mcc_mnc.text = getNetworkOperator(mContext)
+            tv_device_software_mcc_mnc_name.text = getNetworkOperatorName(mContext)
+            tv_device_software_sim_country_iso.text = getNetworkCountryIso(mContext)
+            tv_device_sim_operator.text = getSimOperator(mContext)
+            tv_device_sim_serial_number.text = getSimSerialNumber(mContext)
+            tv_device_sim_state.text = getSimState(mContext).toString()
+            tv_device_sim_operator_name.text = getSimOperatorName(mContext)
+            tv_device_subscriber_id.text = getSubscriberId(mContext)
+            tv_device_voice_mail_number.text = getVoiceMailNumber(mContext)
+            tv_device_adnroid_id.text = getAndroidId(mContext)
+            tv_device_build_brand_model.text = buildBrandModel
+            tv_device_build_manu_facturer.text = buildMANUFACTURER
+            tv_device_build_brand.text = buildBrand
+            tv_device_serial_number.text = serialNumber
+            tv_device_iso.text = getNetworkCountryIso(mContext)
+            tv_device_phone.text = getLine1Number(mContext)
         }
 
-    @OnClick(R.id.btn_get_phone_info)
-    fun onViewClicked() {
-        mLlInfoRoot!!.visibility = View.VISIBLE
-        phoneInfo
-        mBtnGetPhoneInfo!!.visibility = View.GONE
+    override fun initView() {
+        rx_title.setLeftFinish(mContext)
+        btn_get_phone_info.setOnClickListener {
+            ll_info_root.visibility = View.VISIBLE
+            phoneInfo
+            btn_get_phone_info.visibility = View.GONE
+        }
     }
+
+    override fun initData() {
+
+    }
+
 }

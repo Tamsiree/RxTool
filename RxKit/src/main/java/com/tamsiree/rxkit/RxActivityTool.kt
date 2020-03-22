@@ -34,15 +34,30 @@ object RxActivityTool {
         if (activityStack == null) {
             activityStack = Stack()
         }
-        activityStack!!.add(activity)
+        activityStack?.add(activity)
     }
+
+    /**
+     * 从List中移除活动
+     *
+     * @param activity 活动
+     */
+    @JvmStatic
+    fun removeActivity(activity: Activity?) {
+        if (activity != null) {
+            if (activityStack!!.contains(activity)) {
+                activityStack?.remove(activity)
+            }
+        }
+    }
+
 
     /**
      * 获取当前的Activity（堆栈中最后一个压入的)
      */
     @JvmStatic
     fun currentActivity(): Activity? {
-        return activityStack!!.lastElement()
+        return activityStack?.lastElement()
     }
 
     /**
@@ -50,7 +65,7 @@ object RxActivityTool {
      */
     @JvmStatic
     fun finishActivity() {
-        val activity = activityStack!!.lastElement()
+        val activity = activityStack?.lastElement()
         activity!!.finish()
     }
 

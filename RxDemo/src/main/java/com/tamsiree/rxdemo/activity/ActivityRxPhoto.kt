@@ -5,11 +5,8 @@ import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.*
+import android.widget.ImageView
 import androidx.core.app.ActivityCompat
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -21,13 +18,13 @@ import com.tamsiree.rxkit.RxPhotoTool
 import com.tamsiree.rxkit.RxPhotoTool.getImageAbsolutePath
 import com.tamsiree.rxkit.RxSPTool.putContent
 import com.tamsiree.rxui.activity.ActivityBase
-import com.tamsiree.rxui.view.RxTitle
 import com.tamsiree.rxui.view.dialog.RxDialogChooseImage
 import com.tamsiree.rxui.view.dialog.RxDialogChooseImage.LayoutType
 import com.tamsiree.rxui.view.dialog.RxDialogScaleView
 import com.tamsiree.rxui.view.dialog.RxDialogSureCancel
 import com.yalantis.ucrop.UCrop
 import com.yalantis.ucrop.UCropActivity
+import kotlinx.android.synthetic.main.activity_rxphototool.*
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,85 +33,39 @@ import java.util.*
  * @author tamsiree
  */
 class ActivityRxPhoto : ActivityBase() {
-    @JvmField
-    @BindView(R.id.rx_title)
-    var mRxTitle: RxTitle? = null
 
-    @JvmField
-    @BindView(R.id.tv_bg)
-    var mTvBg: TextView? = null
-
-    @JvmField
-    @BindView(R.id.iv_avatar)
-    var mIvAvatar: ImageView? = null
-
-    @JvmField
-    @BindView(R.id.ll_anchor_left)
-    var mLlAnchorLeft: LinearLayout? = null
-
-    @JvmField
-    @BindView(R.id.rl_avatar)
-    var mRlAvatar: RelativeLayout? = null
-
-    @JvmField
-    @BindView(R.id.tv_name)
-    var mTvName: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_constellation)
-    var mTvConstellation: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_birthday)
-    var mTvBirthday: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_address)
-    var mTvAddress: TextView? = null
-
-    @JvmField
-    @BindView(R.id.tv_lables)
-    var mTvLables: TextView? = null
-
-    @JvmField
-    @BindView(R.id.textView2)
-    var mTextView2: TextView? = null
-
-    @JvmField
-    @BindView(R.id.editText2)
-    var mEditText2: TextView? = null
-
-    @JvmField
-    @BindView(R.id.btn_exit)
-    var mBtnExit: Button? = null
-
-    @JvmField
-    @BindView(R.id.activity_user)
-    var mActivityUser: LinearLayout? = null
     private var resultUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         noTitle(this)
         setContentView(R.layout.activity_rxphototool)
-        ButterKnife.bind(this)
         setPortrait(this)
-        initView()
     }
 
-    protected fun initView() {
-        val r = mContext!!.resources
+    override fun initView() {
+        val r = mContext.resources
         resultUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
                 + r.getResourcePackageName(R.drawable.circle_elves_ball) + "/"
                 + r.getResourceTypeName(R.drawable.circle_elves_ball) + "/"
                 + r.getResourceEntryName(R.drawable.circle_elves_ball))
-        mRxTitle!!.setLeftFinish(mContext)
-        mIvAvatar!!.setOnClickListener { initDialogChooseImage() }
-        mIvAvatar!!.setOnLongClickListener { //                RxImageTool.showBigImageView(mContext, resultUri);
+        rx_title.setLeftFinish(mContext)
+        iv_avatar.setOnClickListener { initDialogChooseImage() }
+        iv_avatar.setOnLongClickListener { //                RxImageTool.showBigImageView(mContext, resultUri);
             val rxDialogScaleView = RxDialogScaleView(mContext)
             rxDialogScaleView.setImage(resultUri)
             rxDialogScaleView.show()
             false
         }
+        btn_exit.setOnClickListener {
+            val rxDialogSureCancel = RxDialogSureCancel(this)
+            rxDialogSureCancel.cancelView.setOnClickListener { rxDialogSureCancel.cancel() }
+            rxDialogSureCancel.sureView.setOnClickListener { finish() }
+            rxDialogSureCancel.show()
+        }
+    }
+
+    override fun initData() {
+
     }
 
     private fun initDialogChooseImage() {
@@ -138,12 +89,12 @@ class ActivityRxPhoto : ActivityBase() {
                         .placeholder(R.drawable.circle_elves_ball) //异常占位图(当加载异常的时候出现的图片)
                         .error(R.drawable.circle_elves_ball) //禁止Glide硬盘缓存缓存
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                Glide.with(mContext!!).load(RxPhotoTool.cropImageUri).apply(options).thumbnail(0.5f).into(mIvAvatar!!)
+                Glide.with(mContext).load(RxPhotoTool.cropImageUri).apply(options).thumbnail(0.5f).into(iv_avatar)
             }
             UCrop.REQUEST_CROP -> if (resultCode == Activity.RESULT_OK) {
                 resultUri = UCrop.getOutput(data!!)
-                roadImageView(resultUri, mIvAvatar)
-                putContent(mContext!!, "AVATAR", resultUri.toString())
+                roadImageView(resultUri, iv_avatar)
+                putContent(mContext, "AVATAR", resultUri.toString())
             } else if (resultCode == UCrop.RESULT_ERROR) {
                 val cropError = UCrop.getError(data!!)
             }
@@ -158,7 +109,7 @@ class ActivityRxPhoto : ActivityBase() {
                 .error(R.drawable.circle_elves_ball)
                 .transform(CircleCrop()) //禁止Glide硬盘缓存缓存
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-        Glide.with(mContext!!).load(uri).apply(options).thumbnail(0.5f).into(imageView!!)
+        Glide.with(mContext).load(uri).apply(options).thumbnail(0.5f).into(imageView!!)
         return File(getImageAbsolutePath(this, uri))
     }
 
@@ -199,13 +150,5 @@ class ActivityRxPhoto : ActivityBase() {
                 .withMaxResultSize(1000, 1000)
                 .withOptions(options)
                 .start(this)
-    }
-
-    @OnClick(R.id.btn_exit)
-    fun onClick() {
-        val rxDialogSureCancel = RxDialogSureCancel(this)
-        rxDialogSureCancel.cancelView.setOnClickListener { rxDialogSureCancel.cancel() }
-        rxDialogSureCancel.sureView.setOnClickListener { finish() }
-        rxDialogSureCancel.show()
     }
 }

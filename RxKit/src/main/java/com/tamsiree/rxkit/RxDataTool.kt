@@ -289,15 +289,15 @@ class RxDataTool {
          */
         @JvmStatic
         fun stringToLong(str: String): Long {
-            return if (isNullString(str)) {
-                0
+            return (if (isNullString(str)) {
+                0L
             } else {
                 try {
                     str.toLong()
                 } catch (e: NumberFormatException) {
-                    0
+                    0L
                 }
-            }
+            })
         }
 
         /**
@@ -309,14 +309,14 @@ class RxDataTool {
         @JvmStatic
         fun stringToDouble(str: String): Double {
             return (if (isNullString(str)) {
-                0
+                0.00
             } else {
                 try {
                     str.toDouble()
                 } catch (e: NumberFormatException) {
-                    0
+                    0.00
                 }
-            }) as Double
+            })
         }
 
         /**

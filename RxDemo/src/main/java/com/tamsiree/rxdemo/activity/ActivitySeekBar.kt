@@ -47,6 +47,9 @@ class ActivitySeekBar : ActivityBase() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seek_bar)
+    }
+
+    override fun initView() {
         ButterKnife.bind(this)
         setPortrait(this)
         mRxTitle!!.setLeftFinish(mContext)
@@ -60,5 +63,9 @@ class ActivitySeekBar : ActivityBase() {
                 mSeekbar2!!.setRightProgressDescription(df.format(max.toDouble()))
             }
         }
+    }
+
+    override fun initData() {
+
     }
 }
