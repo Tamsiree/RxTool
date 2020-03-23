@@ -1,5 +1,6 @@
 package com.tamsiree.rxdemo.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxDeviceTool
@@ -19,6 +20,7 @@ class ActivitySeekBar : ActivityBase() {
         RxDeviceTool.setPortrait(this)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun initView() {
         rx_title.setLeftFinish(mContext)
         seekbar1.setValue(10f)

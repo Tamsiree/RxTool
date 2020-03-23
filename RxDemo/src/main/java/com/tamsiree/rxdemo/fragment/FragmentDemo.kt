@@ -4,15 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.activity.*
@@ -25,22 +20,12 @@ import com.tamsiree.rxkit.RxImageTool
 import com.tamsiree.rxkit.RxRecyclerViewDividerTool
 import com.tamsiree.rxui.activity.ActivityWebView
 import com.tamsiree.rxui.fragment.FragmentLazy
+import kotlinx.android.synthetic.main.fragment_demo.*
 import java.util.*
 
 class FragmentDemo : FragmentLazy, OnRefreshListener {
     var mDemoList: MutableList<ModelDemo>? = ArrayList()
 
-    @JvmField
-    @BindView(R.id.recyclerViewDemo)
-    var mRecyclerview: RecyclerView? = null
-
-    @JvmField
-    @BindView(R.id.swipeLayoutDemo)
-    var mSwipeLayout: SwipeRefreshLayout? = null
-
-    @JvmField
-    @BindView(R.id.tvHint)
-    var mTvHint: TextView? = null
     private var mAdapter: AdapterRecyclerViewMain? = null
     private var demo_type = 0
     private val mColumnCount = 2
@@ -52,7 +37,6 @@ class FragmentDemo : FragmentLazy, OnRefreshListener {
 
     override fun initViews(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = layoutInflater.inflate(R.layout.fragment_demo, viewGroup, false)
-        ButterKnife.bind(this, view)
         return view
     }
 
@@ -63,19 +47,19 @@ class FragmentDemo : FragmentLazy, OnRefreshListener {
 
     private fun init() {
         initRecyclerView()
-        mTvHint!!.visibility = View.VISIBLE
+        tvHint.visibility = View.VISIBLE
     }
 
     private fun initRecyclerView() {
         //加载列表
-        mSwipeLayout!!.setOnRefreshListener(this)
-        mSwipeLayout!!.setColorSchemeColors(ContextCompat.getColor(mContext, R.color.blue_baby))
+        swipeLayoutDemo.setOnRefreshListener(this)
+        swipeLayoutDemo.setColorSchemeColors(ContextCompat.getColor(mContext, R.color.blue_baby))
         if (mColumnCount <= 1) {
-            mRecyclerview!!.layoutManager = LinearLayoutManager(mContext)
+            recyclerViewDemo.layoutManager = LinearLayoutManager(mContext)
         } else {
-            mRecyclerview!!.layoutManager = GridLayoutManager(mContext, mColumnCount)
+            recyclerViewDemo.layoutManager = GridLayoutManager(mContext, mColumnCount)
         }
-        mRecyclerview!!.addItemDecoration(RxRecyclerViewDividerTool(RxImageTool.dp2px(5f)))
+        recyclerViewDemo.addItemDecoration(RxRecyclerViewDividerTool(RxImageTool.dp2px(5f)))
         mAdapter = AdapterRecyclerViewMain(mDemoList, object : ContentListener {
             override fun setListener(position: Int) {
                 RxActivityTool.skipActivity(mContext, mDemoList!![position].activity)
@@ -83,7 +67,7 @@ class FragmentDemo : FragmentLazy, OnRefreshListener {
         })
         mAdapter!!.openLoadAnimation(BaseQuickAdapter.SCALEIN)
         mAdapter!!.isFirstOnly(true)
-        mAdapter!!.bindToRecyclerView(mRecyclerview)
+        mAdapter!!.bindToRecyclerView(recyclerViewDemo)
     }
 
     override fun onRefresh() {
@@ -91,7 +75,7 @@ class FragmentDemo : FragmentLazy, OnRefreshListener {
     }
 
     private fun loadData() {
-        mSwipeLayout!!.isRefreshing = true
+        swipeLayoutDemo.isRefreshing = true
         if (demo_type == 0) {
             functionData
         } else if (demo_type == 1) {
@@ -100,7 +84,7 @@ class FragmentDemo : FragmentLazy, OnRefreshListener {
         if (mDemoList == null || mDemoList!!.size <= 0) {
             mAdapter!!.setEmptyView(R.layout.load_data_empty)
         }
-        mSwipeLayout!!.isRefreshing = false
+        swipeLayoutDemo.isRefreshing = false
     }
 
     /**
@@ -164,8 +148,8 @@ class FragmentDemo : FragmentLazy, OnRefreshListener {
         }
 
     companion object {
-        fun newInstance(friend_type: Int): FragmentDemo {
-            return FragmentDemo(friend_type)
+        fun newInstance(demo_type: Int): FragmentDemo {
+            return FragmentDemo(demo_type)
         }
     }
 }

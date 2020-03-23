@@ -22,55 +22,19 @@ class ActivityProgressBar : ActivityBase() {
     private var downLoadThread1: Thread? = null
     private var downLoadThread2: Thread? = null
     private var downLoadRxRoundPdThread: Thread? = null
-    private var handler: Handler = object : Handler() {
-        override fun handleMessage(msg: Message) {
-            super.handleMessage(msg)
-            flikerbar.progress = msg.arg1.toFloat()
-            round_flikerbar.progress = msg.arg1.toFloat()
-            if (msg.arg1 == 100) {
-                flikerbar.finishLoad()
-                round_flikerbar.finishLoad()
-            }
-        }
-    }
+
 
     private var progress = 0.0
     private var progress1 = 0
     private val money1 = 10000
     private var mRxRoundProgress = 0
-    private var mRxRoundPdHandler: Handler = object : Handler() {
-        override fun handleMessage(msg: Message) {
-            super.handleMessage(msg)
-            rx_round_pd1.progress = mRxRoundProgress.toFloat()
-            rx_round_pd2.progress = mRxRoundProgress.toFloat()
-            rx_round_pd3.progress = mRxRoundProgress.toFloat()
-            rx_round_pd4.progress = mRxRoundProgress.toFloat()
-            rx_round_pd5.progress = mRxRoundProgress.toFloat()
-            rx_round_pd6.progress = mRxRoundProgress.toFloat()
-            rx_round_pd7.progress = mRxRoundProgress.toFloat()
-            rx_round_pd8.progress = mRxRoundProgress.toFloat()
-            rx_round_pd9.progress = mRxRoundProgress.toFloat()
-            rx_round_pd10.progress = mRxRoundProgress.toFloat()
-            rx_round_pd11.progress = mRxRoundProgress.toFloat()
-            rx_round_pd12.progress = mRxRoundProgress.toFloat()
-            rx_round_pd13.progress = mRxRoundProgress.toFloat()
-            rx_round_pd14.progress = mRxRoundProgress.toFloat()
-            rx_round_pd15.progress = mRxRoundProgress.toFloat()
-            rx_round_pd16.progress = mRxRoundProgress.toFloat()
-            rx_round_pd17.progress = mRxRoundProgress.toFloat()
-            progress_one.progress = mRxRoundProgress.toFloat()
-            progress_two.progress = mRxRoundProgress.toFloat()
-            progress_three.progress = mRxRoundProgress.toFloat()
-        }
-    }
+
     private val mRxRoundPdMax = 100
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         noTitle(this)
         setContentView(R.layout.activity_progress_bar)
         setPortrait(this)
-
-
     }
 
     override fun initView() {
@@ -260,6 +224,45 @@ class ActivityProgressBar : ActivityBase() {
     }
 
     //==============================================================================================Flikerbar 加载事件处理 end
+
+    private var mRxRoundPdHandler: Handler = object : Handler() {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            rx_round_pd1.progress = mRxRoundProgress.toFloat()
+            rx_round_pd2.progress = mRxRoundProgress.toFloat()
+            rx_round_pd3.progress = mRxRoundProgress.toFloat()
+            rx_round_pd4.progress = mRxRoundProgress.toFloat()
+            rx_round_pd5.progress = mRxRoundProgress.toFloat()
+            rx_round_pd6.progress = mRxRoundProgress.toFloat()
+            rx_round_pd7.progress = mRxRoundProgress.toFloat()
+            rx_round_pd8.progress = mRxRoundProgress.toFloat()
+            rx_round_pd9.progress = mRxRoundProgress.toFloat()
+            rx_round_pd10.progress = mRxRoundProgress.toFloat()
+            rx_round_pd11.progress = mRxRoundProgress.toFloat()
+            rx_round_pd12.progress = mRxRoundProgress.toFloat()
+            rx_round_pd13.progress = mRxRoundProgress.toFloat()
+            rx_round_pd14.progress = mRxRoundProgress.toFloat()
+            rx_round_pd15.progress = mRxRoundProgress.toFloat()
+            rx_round_pd16.progress = mRxRoundProgress.toFloat()
+            rx_round_pd17.progress = mRxRoundProgress.toFloat()
+            progress_one.progress = mRxRoundProgress.toFloat()
+            progress_two.progress = mRxRoundProgress.toFloat()
+            progress_three.progress = mRxRoundProgress.toFloat()
+        }
+    }
+
+    private var handler: Handler = object : Handler() {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            flikerbar.progress = msg.arg1.toFloat()
+            round_flikerbar.progress = msg.arg1.toFloat()
+            if (msg.arg1 == 100) {
+                flikerbar.finishLoad()
+                round_flikerbar.finishLoad()
+            }
+        }
+    }
+
     private fun downLoad() {
         downLoadThread = Thread(Runnable {
             try {

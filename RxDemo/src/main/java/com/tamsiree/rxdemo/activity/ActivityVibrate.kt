@@ -24,7 +24,6 @@ class ActivityVibrate : ActivityBase() {
 
     override fun initView() {
         rx_title.setLeftFinish(mContext)
-
         btn_vibrate_once.setOnClickListener { vibrateOnce(this, 2000) }
         btn_vibrate_Complicated.setOnClickListener { vibrateComplicated(this, temp, 0) }
         btn_vibrate_stop.setOnClickListener { vibrateStop() }

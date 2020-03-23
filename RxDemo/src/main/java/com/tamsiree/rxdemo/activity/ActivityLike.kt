@@ -21,7 +21,6 @@ class ActivityLike : ActivityBase() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_like)
         setPortrait(this)
-
     }
 
     override fun initView() {

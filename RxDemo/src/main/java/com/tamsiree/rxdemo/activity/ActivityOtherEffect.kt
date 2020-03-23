@@ -24,7 +24,7 @@ class ActivityOtherEffect : ActivityBase() {
 
     private fun initTUnReadView() {
         tunreadview.setText("14") //设置未读信息数
-        //        mTunreadview.setNewText();     //设置有新的信息状态
+        //mTunreadview.setNewText();     //设置有新的信息状态
     }
 
     private fun initTCrossView() {

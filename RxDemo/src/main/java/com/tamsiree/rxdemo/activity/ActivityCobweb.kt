@@ -25,7 +25,7 @@ class ActivityCobweb : ActivityBase(), OnSeekBarChangeListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //        RxBarTool.setTransparentStatusBar(mContext);
+        //RxBarTool.setTransparentStatusBar(mContext);
         setContentView(R.layout.activity_cobweb)
         setPortrait(this)
 
@@ -35,7 +35,8 @@ class ActivityCobweb : ActivityBase(), OnSeekBarChangeListener {
         rx_title.setLeftFinish(mContext)
         seekbar_level.setOnSeekBarChangeListener(this)
         seekbar_spider_number.setOnSeekBarChangeListener(this)
-        color_picker_view.addOnColorChangedListener { selectedColor -> // Handle on color change
+        color_picker_view.addOnColorChangedListener { selectedColor ->
+            // Handle on color change
             cobweb_view.spiderColor = selectedColor
         }
         color_picker_view.addOnColorSelectedListener {

@@ -64,7 +64,7 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
                     showHeadView()
                     return
                 }
-                var underView: View? = if (dy > 0) {
+                val underView: View? = if (dy > 0) {
                     right_menu.findChildViewUnder(right_menu_item.x, right_menu_item.measuredHeight + 1.toFloat())
                 } else {
                     right_menu.findChildViewUnder(right_menu_item.x, 0f)
@@ -260,12 +260,13 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
         showTotalPrice()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showTotalPrice() {
-        if (mModelShopCart != null && mModelShopCart.shoppingTotalPrice > 0) {
+        if (mModelShopCart.shoppingTotalPrice > 0) {
             shopping_cart_total_tv.visibility = View.VISIBLE
-            shopping_cart_total_tv.text = "¥ " + mModelShopCart.shoppingTotalPrice
+            shopping_cart_total_tv.text = "¥ " + mModelShopCart.shoppingTotalPrice.toString()
             shopping_cart_total_num.visibility = View.VISIBLE
-            shopping_cart_total_num.text = "" + mModelShopCart.shoppingAccount
+            shopping_cart_total_num.text = mModelShopCart.shoppingAccount.toString()
         } else {
             shopping_cart_total_tv.visibility = View.GONE
             shopping_cart_total_num.visibility = View.GONE
@@ -273,7 +274,7 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
     }
 
     private fun showCart(view: View) {
-        if (mModelShopCart != null && mModelShopCart.shoppingAccount > 0) {
+        if (mModelShopCart.shoppingAccount > 0) {
             val dialog = RxDialogShopCart(this, mModelShopCart, R.style.cartdialog)
             val window = dialog.window
             dialog.shopCartDialogImp = this

@@ -24,7 +24,6 @@ class ActivityRxRotateBar : ActivityBase() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rx_rotate_bar)
         setPortrait(this)
-        initView()
     }
 
     override fun initView() {

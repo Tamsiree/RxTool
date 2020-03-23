@@ -53,28 +53,28 @@ class ActivityFlightSeat : ActivityBase() {
             var j = 0
             while (j < 9) {
                 fsv.setSeatSelected(j, i)
-                j = j + 2
+                j += 2
             }
         }
         for (i in 0..9) {
             var j = 0
             while (j < 8) {
                 fsv.setSeatSelected(i + 20, j)
-                j = j + 2
+                j += 2
             }
         }
         for (i in 0..9) {
             var j = 0
             while (j < 8) {
                 fsv.setSeatSelected(i + 35, j)
-                j = j + 3
+                j += 3
             }
         }
         for (i in 11..19) {
             var j = 0
             while (j < 8) {
                 fsv.setSeatSelected(i + 35, j)
-                j = j + 4
+                j += 4
             }
         }
         fsv.invalidate()

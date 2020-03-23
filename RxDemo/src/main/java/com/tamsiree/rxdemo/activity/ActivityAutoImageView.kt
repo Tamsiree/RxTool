@@ -18,11 +18,10 @@ class ActivityAutoImageView : ActivityBase() {
         noTitle(this)
         setTransparentStatusBar(this)
         setContentView(R.layout.activity_auto_image_view)
-
+        setPortrait(this)
     }
 
     override fun initView() {
-        setPortrait(this)
         rx_title.setLeftFinish(mContext)
     }
 

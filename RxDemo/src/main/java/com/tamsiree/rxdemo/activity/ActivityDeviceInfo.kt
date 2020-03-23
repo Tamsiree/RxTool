@@ -45,6 +45,19 @@ class ActivityDeviceInfo : ActivityBase() {
         setPortrait(this)
     }
 
+    override fun initView() {
+        rx_title.setLeftFinish(mContext)
+        btn_get_phone_info.setOnClickListener {
+            ll_info_root.visibility = View.VISIBLE
+            phoneInfo
+            btn_get_phone_info.visibility = View.GONE
+        }
+    }
+
+    override fun initData() {
+
+    }
+
     private val phoneInfo: Unit
         get() {
             if (isPhone(mContext)) {
@@ -80,18 +93,5 @@ class ActivityDeviceInfo : ActivityBase() {
             tv_device_iso.text = getNetworkCountryIso(mContext)
             tv_device_phone.text = getLine1Number(mContext)
         }
-
-    override fun initView() {
-        rx_title.setLeftFinish(mContext)
-        btn_get_phone_info.setOnClickListener {
-            ll_info_root.visibility = View.VISIBLE
-            phoneInfo
-            btn_get_phone_info.visibility = View.GONE
-        }
-    }
-
-    override fun initData() {
-
-    }
 
 }

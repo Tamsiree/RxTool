@@ -7,7 +7,6 @@ import android.view.View
 import android.webkit.WebView
 import android.widget.ProgressBar
 import android.widget.SlidingDrawer.OnDrawerScrollListener
-import butterknife.ButterKnife
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxBarTool
 import com.tamsiree.rxkit.RxConstants
@@ -32,6 +31,7 @@ class ActivitySlidingDrawerSingle : ActivityBase() {
         super.onCreate(savedInstanceState)
         RxBarTool.noTitle(this)
         setContentView(R.layout.activity_sliding_drawer_single)
+        RxBarTool.setTransparentStatusBar(this)
     }
 
     override fun initView() {
@@ -39,8 +39,6 @@ class ActivitySlidingDrawerSingle : ActivityBase() {
         pb_web_base = findViewById(R.id.pb_web_base)
         web_base = findViewById(R.id.web_base)
 
-        RxBarTool.setTransparentStatusBar(this)
-        ButterKnife.bind(this)
         setPortrait(this)
         rx_title.setLeftFinish(mContext)
 

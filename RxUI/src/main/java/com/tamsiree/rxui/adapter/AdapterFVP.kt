@@ -1,20 +1,21 @@
-package com.tamsiree.rxdemo.adapter
+package com.tamsiree.rxui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.tamsiree.rxui.model.ModelFVP
 
-class AdapterFragmentViewPager(fm: FragmentManager?, var mTitles: Array<String>, var mFragments: List<Fragment>) : FragmentPagerAdapter(fm!!) {
+class AdapterFVP(fm: FragmentManager?, var modelFVP: List<ModelFVP>) : FragmentPagerAdapter(fm!!) {
     override fun getCount(): Int {
-        return mFragments.size
+        return modelFVP.size
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return mTitles[position]
+        return modelFVP[position].name
     }
 
     override fun getItem(position: Int): Fragment {
-        return mFragments[position]
+        return modelFVP[position].fragment
     }
 
 }

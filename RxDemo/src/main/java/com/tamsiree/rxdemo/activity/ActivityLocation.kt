@@ -32,12 +32,10 @@ class ActivityLocation : ActivityBase(), LocationListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location)
         setPortrait(this)
-
     }
 
     override fun initView() {
         rx_title.setLeftFinish(mContext)
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -75,7 +73,7 @@ class ActivityLocation : ActivityBase(), LocationListener {
 
     //==============================================================================================检测GPS是否已打开 end
     private val location: Unit
-        private get() {
+        get() {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(mContext, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), 1)
                 return

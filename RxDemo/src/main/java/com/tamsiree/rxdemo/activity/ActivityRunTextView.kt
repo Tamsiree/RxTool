@@ -77,7 +77,7 @@ class ActivityRunTextView : ActivityBase() {
 
             //添加到循环滚动数组里面去
             views.add(moreView)
-            i = i + 2
+            i += 2
         }
     }
 

@@ -39,28 +39,6 @@ class ActivityCreateQRCode : ActivityBase(), View.OnClickListener {
         setPortrait(this)
     }
 
-    private fun AuthCode(view: TextView?, timeSecond: Int) {
-        mRunnable = object : Runnable {
-            var mSumNum = timeSecond
-            override fun run() {
-                Handler.postDelayed(mRunnable, 1000)
-                view!!.text = mSumNum.toString() + ""
-                view.isEnabled = false
-                mSumNum--
-                if (mSumNum < 0) {
-                    view.text = 0.toString() + ""
-                    view.isEnabled = true
-                    val message = Message()
-                    message.what = 60000
-                    mHandler.sendMessage(message)
-                    // 干掉这个定时器，下次减不会累加
-                    Handler.removeCallbacks(mRunnable)
-                    AuthCode(tv_time_second, second)
-                }
-            }
-        }
-        Handler.postDelayed(mRunnable, 1000)
-    }
 
     override fun initView() {
         rx_title.setLeftFinish(mContext)
@@ -79,12 +57,35 @@ class ActivityCreateQRCode : ActivityBase(), View.OnClickListener {
             R.id.ll_refresh -> {
                 Handler.removeCallbacks(mRunnable)
                 initData()
-                tv_time_second.text = second.toString() + ""
+                tv_time_second.text = second.toString()
                 AuthCode(tv_time_second, second)
             }
             else -> {
             }
         }
+    }
+
+    private fun AuthCode(view: TextView?, timeSecond: Int) {
+        mRunnable = object : Runnable {
+            var mSumNum = timeSecond
+            override fun run() {
+                Handler.postDelayed(mRunnable, 1000)
+                view!!.text = mSumNum.toString()
+                view.isEnabled = false
+                mSumNum--
+                if (mSumNum < 0) {
+                    view.text = 0.toString()
+                    view.isEnabled = true
+                    val message = Message()
+                    message.what = 60000
+                    mHandler.sendMessage(message)
+                    // 干掉这个定时器，下次减不会累加
+                    Handler.removeCallbacks(mRunnable)
+                    AuthCode(tv_time_second, second)
+                }
+            }
+        }
+        Handler.postDelayed(mRunnable, 1000)
     }
 
     companion object {

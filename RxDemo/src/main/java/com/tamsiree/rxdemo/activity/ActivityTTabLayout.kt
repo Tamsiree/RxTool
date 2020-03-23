@@ -8,9 +8,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.fragment.FragmentSimpleCard.Companion.getInstance
-import com.tamsiree.rxdemo.model.TabModel
 import com.tamsiree.rxkit.RxImageTool
 import com.tamsiree.rxui.activity.ActivityBase
+import com.tamsiree.rxui.model.ModelTab
 import com.tamsiree.rxui.view.tablayout.listener.OnTabSelectListener
 import com.tamsiree.rxui.view.tablayout.listener.TabLayoutModel
 import com.tamsiree.rxui.view.tablayout.tool.TLayoutMsgTool
@@ -43,7 +43,7 @@ class ActivityTTabLayout : ActivityBase() {
             mFragments2.add(getInstance("Switch Fragment $title"))
         }
         for (i in mTitles.indices) {
-            mTabEntities.add(TabModel(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]))
+            mTabEntities.add(ModelTab(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]))
         }
 
         viewpage_2.adapter = MyPagerAdapter(supportFragmentManager)

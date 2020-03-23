@@ -29,6 +29,66 @@ class ActivityWheelHorizontal : ActivityBase() {
         setPortrait(this)
     }
 
+
+    override fun initView() {
+        rx_title.setLeftFinish(mContext)
+        initRulerView()
+    }
+
+    override fun initData() {
+        listYearMonth.clear()
+        val calendar = Calendar.getInstance(Locale.CHINA)
+        for (i in calendar[Calendar.YEAR] - 3..calendar[Calendar.YEAR] + 2) {
+            for (j in 1..12) {
+                listYearMonth.add(i.toString() + "年" + j + "月")
+            }
+        }
+        val arr = listYearMonth.toTypedArray()
+        var CurrentIndex = 0
+        for (i in arr.indices) {
+            if (arr[i] == calendar[Calendar.YEAR].toString() + "年" + (calendar[Calendar.MONTH] + 1) + "月") {
+                CurrentIndex = i
+                break
+            }
+        }
+        val ampmAdapter = ArrayWheelAdapter(
+                this, arr)
+        ampmAdapter.itemResource = R.layout.item_wheel_year_month
+        ampmAdapter.itemTextResource = R.id.tv_year
+        wheelView_year_month.viewAdapter = ampmAdapter
+        // set current time
+        wheelView_year_month.currentItem = CurrentIndex
+        wheelView_year_month.addScrollingListener(object : OnWheelScrollListener {
+            var before: String? = null
+            var behind: String? = null
+            override fun onScrollingStarted(wheel: AbstractWheel) {
+                before = listYearMonth[wheel.currentItem]
+            }
+
+            override fun onScrollingFinished(wheel: AbstractWheel) {
+                behind = listYearMonth[wheel.currentItem]
+                Log.v("addScrollingListener", "listYearMonth:" + listYearMonth[wheel.currentItem])
+                if (before != behind) {
+                    val year = stringToInt(listYearMonth[wheel.currentItem].substring(0, 4))
+                    val month = stringToInt(listYearMonth[wheel.currentItem].substring(5, 6))
+                    //initBarChart(VonUtil.getDaysByYearMonth(year, month));
+                }
+            }
+        })
+        wheelView_year_month.addClickingListener { wheel, itemIndex ->
+            Log.v("addScrollingListener", "listYearMonth:" + listYearMonth[itemIndex])
+            wheelView_year_month.setCurrentItem(itemIndex, true)
+            /*
+                 * int year =
+				 * VonUtil.StringToInt(listYearMonth.get(itemIndex)
+				 * .substring(0, 4)); int month =
+				 * VonUtil.StringToInt(listYearMonth
+				 * .get(itemIndex).substring(5, 6));
+				 * initBarChart(VonUtil.getDaysByYearMonth(year, month));
+				 */
+        }
+    }
+
     private fun initRulerView() {
 
         val items: MutableList<String> = ArrayList()
@@ -91,63 +151,4 @@ class ActivityWheelHorizontal : ActivityBase() {
         wheelview4.postDelayed(Runnable { wheelview4.items = items }, 3000)
     }
 
-    override fun initView() {
-        rx_title.setLeftFinish(mContext)
-        initRulerView()
-    }
-
-    override fun initData() {
-        // TODO Auto-generated method stub
-        listYearMonth.clear()
-        val calendar = Calendar.getInstance(Locale.CHINA)
-        for (i in calendar[Calendar.YEAR] - 3..calendar[Calendar.YEAR] + 2) {
-            for (j in 1..12) {
-                listYearMonth.add(i.toString() + "年" + j + "月")
-            }
-        }
-        val arr = listYearMonth.toTypedArray()
-        var CurrentIndex = 0
-        for (i in arr.indices) {
-            if (arr[i] == calendar[Calendar.YEAR].toString() + "年" + (calendar[Calendar.MONTH] + 1) + "月") {
-                CurrentIndex = i
-                break
-            }
-        }
-        val ampmAdapter = ArrayWheelAdapter(
-                this, arr)
-        ampmAdapter.itemResource = R.layout.item_wheel_year_month
-        ampmAdapter.itemTextResource = R.id.tv_year
-        wheelView_year_month.viewAdapter = ampmAdapter
-        // set current time
-        wheelView_year_month.currentItem = CurrentIndex
-        wheelView_year_month.addScrollingListener(object : OnWheelScrollListener {
-            var before: String? = null
-            var behind: String? = null
-            override fun onScrollingStarted(wheel: AbstractWheel) {
-                before = listYearMonth[wheel.currentItem]
-            }
-
-            override fun onScrollingFinished(wheel: AbstractWheel) {
-                behind = listYearMonth[wheel.currentItem]
-                Log.v("addScrollingListener", "listYearMonth:" + listYearMonth[wheel.currentItem])
-                if (before != behind) {
-                    val year = stringToInt(listYearMonth[wheel.currentItem].substring(0, 4))
-                    val month = stringToInt(listYearMonth[wheel.currentItem].substring(5, 6))
-                    //initBarChart(VonUtil.getDaysByYearMonth(year, month));
-                }
-            }
-        })
-        wheelView_year_month.addClickingListener { wheel, itemIndex ->
-            Log.v("addScrollingListener", "listYearMonth:" + listYearMonth[itemIndex])
-            wheelView_year_month.setCurrentItem(itemIndex, true)
-            /*
-                 * int year =
-				 * VonUtil.StringToInt(listYearMonth.get(itemIndex)
-				 * .substring(0, 4)); int month =
-				 * VonUtil.StringToInt(listYearMonth
-				 * .get(itemIndex).substring(5, 6));
-				 * initBarChart(VonUtil.getDaysByYearMonth(year, month));
-				 */
-        }
-    }
 }
