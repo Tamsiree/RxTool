@@ -60,8 +60,8 @@ class ActivityWebView : ActivityBase() {
                 pb_web_base.visibility = View.VISIBLE
             }
 
-            override fun onReceivedTitle(title: String?) {
-                web_rx_title.title = title
+            override fun onReceivedTitle(title: String) {
+                web_rx_title.setTitle(title)
             }
 
             override fun onProgressChanged(newProgress: Int) {

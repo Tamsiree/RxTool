@@ -29,7 +29,7 @@
                 android:id="@+id/iv_left"
                 android:layout_width="@dimen/dp_55"
                 android:layout_height="match_parent"
-                android:padding="@dimen/dp_15"
+                android:padding="@dimen/dp_18"
                 android:src="@drawable/ic_back" />
 
         </LinearLayout>
@@ -97,7 +97,7 @@
                 android:id="@+id/iv_right"
                 android:layout_width="@dimen/dp_55"
                 android:layout_height="match_parent"
-                android:padding="@dimen/dp_15"
+                android:padding="@dimen/dp_18"
                 android:src="@drawable/icon_menu" />
 
         </LinearLayout>

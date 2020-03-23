@@ -61,7 +61,7 @@ class ActivitySlidingDrawerSingle : ActivityBase() {
                 pb_web_base?.visibility = View.VISIBLE
             }
 
-            override fun onReceivedTitle(title: String?) {
+            override fun onReceivedTitle(title: String) {
 //                rx_title.title = title
             }
 

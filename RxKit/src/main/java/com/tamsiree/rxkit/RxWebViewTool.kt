@@ -74,7 +74,7 @@ object RxWebViewTool {
         // 设置setWebChromeClient对象
         webBase.webChromeClient = object : WebChromeClient() {
 
-            override fun onReceivedTitle(view: WebView?, title: String?) {
+            override fun onReceivedTitle(view: WebView, title: String) {
                 super.onReceivedTitle(view, title)
                 onWebViewLoad.onReceivedTitle(title)
             }

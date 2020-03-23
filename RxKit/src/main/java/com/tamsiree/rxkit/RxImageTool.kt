@@ -6,12 +6,12 @@ import android.graphics.*
 import android.graphics.Bitmap.CompressFormat
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.media.ExifInterface
 import android.media.ThumbnailUtils
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
 import android.widget.ImageView
+import androidx.exifinterface.media.ExifInterface
 import com.tamsiree.rxkit.RxDataTool.Companion.isNullString
 import com.tamsiree.rxkit.RxFileTool.Companion.closeIO
 import com.tamsiree.rxkit.RxFileTool.Companion.createOrExistsFile
@@ -507,9 +507,6 @@ object RxImageTool {
      */
     @JvmStatic
     fun getBitmap(resId: Int): Bitmap? {
-        if (RxTool.getContext() == null) {
-            return null
-        }
         val `is` = RxTool.getContext().resources.openRawResource(resId)
         return BitmapFactory.decodeStream(`is`)
     }
@@ -524,9 +521,6 @@ object RxImageTool {
      */
     @JvmStatic
     fun getBitmap(resId: Int, maxWidth: Int, maxHeight: Int): Bitmap? {
-        if (RxTool.getContext() == null) {
-            return null
-        }
         val options = BitmapFactory.Options()
         options.inJustDecodeBounds = true
         val `is` = RxTool.getContext().resources.openRawResource(resId)
@@ -801,7 +795,7 @@ object RxImageTool {
      * @return 旋转角度
      */
     @JvmStatic
-    fun getRotateDegree(filePath: String?): Int {
+    fun getRotateDegree(filePath: String): Int {
         var degree = 0
         try {
             val exifInterface = ExifInterface(filePath)

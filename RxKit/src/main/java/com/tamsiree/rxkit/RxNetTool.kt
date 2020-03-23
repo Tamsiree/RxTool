@@ -118,7 +118,7 @@ object RxNetTool {
             }
         } else {
             netType = NETWORK_NO
-            RxToast.error(context, "当前无网络连接").show()
+            RxToast.error(context, "当前无网络连接")?.show()
         }
         return netType
     }

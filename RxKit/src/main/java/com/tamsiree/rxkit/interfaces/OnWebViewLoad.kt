@@ -5,7 +5,7 @@ package com.tamsiree.rxkit.interfaces
  */
 interface OnWebViewLoad {
     fun onPageStarted()
-    fun onReceivedTitle(title: String?)
+    fun onReceivedTitle(title: String)
     fun onProgressChanged(newProgress: Int)
     fun shouldOverrideUrlLoading()
     fun onPageFinished()

@@ -34,14 +34,14 @@ class ActivityRxCaptcha : ActivityBase() {
         rx_title.setLeftFinish(mContext)
         swipeCaptchaView.onCaptchaMatchCallback = object : OnCaptchaMatchCallback {
             override fun matchSuccess(rxSwipeCaptcha: RxSwipeCaptcha) {
-                RxToast.success(mContext, "验证通过！", Toast.LENGTH_SHORT).show()
+                RxToast.success(mContext, "验证通过！", Toast.LENGTH_SHORT)?.show()
                 //swipeCaptcha.createCaptcha();
                 dragBar.isEnabled = false
             }
 
             override fun matchFailed(rxSwipeCaptcha: RxSwipeCaptcha) {
                 Log.d("zxt", "matchFailed() called with: rxSwipeCaptcha = [$rxSwipeCaptcha]")
-                RxToast.error(mContext, "验证失败:拖动滑块将悬浮头像正确拼合", Toast.LENGTH_SHORT).show()
+                RxToast.error(mContext, "验证失败:拖动滑块将悬浮头像正确拼合", Toast.LENGTH_SHORT)?.show()
                 rxSwipeCaptcha.resetCaptcha()
                 dragBar.progress = 0
             }

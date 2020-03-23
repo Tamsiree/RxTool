@@ -86,8 +86,7 @@ object RxDeviceTool {
     @JvmStatic
     fun getScreenDensity(context: Context): Float {
         return context.resources.displayMetrics.density
-    }//品牌类型 例如： Galaxy nexus
-    //品牌 例如：samsung
+    }
 
     /**
      * 获取手机唯一标识序列号
@@ -117,13 +116,11 @@ object RxDeviceTool {
      */
     @JvmStatic
     fun getIMEI(context: Context): String? {
-        val deviceId: String?
-        deviceId = if (isPhone(context)) {
+        return if (isPhone(context)) {
             getDeviceIdIMEI(context)
         } else {
             getAndroidId(context)
         }
-        return deviceId
     }
 
     /**
@@ -184,6 +181,7 @@ object RxDeviceTool {
      * @param context
      * @return
      */
+    @SuppressLint("HardwareIds")
     @JvmStatic
     fun getLine1Number(context: Context): String? {
         val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
@@ -296,6 +294,7 @@ object RxDeviceTool {
      * @param context
      * @return
      */
+    @SuppressLint("HardwareIds")
     @JvmStatic
     fun getSimSerialNumber(context: Context): String? {
         val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
@@ -324,6 +323,7 @@ object RxDeviceTool {
      * @param context
      * @return
      */
+    @SuppressLint("HardwareIds")
     @JvmStatic
     fun getSubscriberId(context: Context): String? {
         val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
@@ -356,6 +356,7 @@ object RxDeviceTool {
      * @param context
      * @return
      */
+    @SuppressLint("HardwareIds")
     @JvmStatic
     fun getAndroidId(context: Context): String {
         return Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
@@ -392,6 +393,7 @@ object RxDeviceTool {
      */
     @JvmStatic
     val serialNumber: String?
+        @SuppressLint("PrivateApi", "HardwareIds")
         get() {
             var serial: String? = null
             try {
@@ -455,7 +457,7 @@ object RxDeviceTool {
      * @return
      */
     @JvmStatic
-    fun checkPermission(context: Context, permission: String?): Boolean {
+    fun checkPermission(context: Context, permission: String): Boolean {
         var result = false
         if (Build.VERSION.SDK_INT >= 23) {
             result = try {

@@ -42,7 +42,7 @@ class ActivityCreateQRCode : ActivityBase(), View.OnClickListener {
 
     override fun initView() {
         rx_title.setLeftFinish(mContext)
-        rx_title.title = "动态生成码"
+        rx_title.setTitle("动态生成码")
         ll_refresh.setOnClickListener(this)
     }
 

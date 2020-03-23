@@ -39,7 +39,7 @@ class ActivityRunTextView : ActivityBase() {
         text.setText(26f, 5, -0x899eaa) //设置属性
         text.setTextStillTime(3000) //设置停留时长间隔
         text.setAnimTime(300) //设置进入和退出的时间间隔
-        text.setOnItemClickListener { position -> RxToast.success(mContext, "点击了 : " + titleList[position], Toast.LENGTH_SHORT, true).show() }
+        text.setOnItemClickListener { position -> RxToast.success(mContext, "点击了 : " + titleList[position], Toast.LENGTH_SHORT, true)?.show() }
         val views: MutableList<View> = ArrayList()
         setUPMarqueeView(views, 11)
         upview1.setViews(views)
