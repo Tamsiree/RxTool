@@ -1,54 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
         android:background="@drawable/shape_round_white"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_original_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="查\t看\t原\t图"
+            android:textColor="#9FCDD3"
+            android:textSize="@dimen/sp_14" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/e" />
 
         <TextView
             android:id="@+id/tv_file"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="10dp"
+            android:padding="@dimen/dp_10"
             android:text="相\t册"
             android:textColor="#FBB02D"
-            android:textSize="16sp"/>
+            android:textSize="@dimen/sp_14" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/e"/>
+            android:background="@color/e" />
 
         <TextView
             android:id="@+id/tv_camera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="10dp"
+            android:padding="@dimen/dp_10"
             android:text="拍\t照"
             android:textColor="#A1A1A1"
-            android:textSize="16sp"/>
+            android:textSize="@dimen/sp_14" />
     </LinearLayout>
 
-    <TextView
+    <Button
         android:id="@+id/tv_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/dp_10"
         android:background="@drawable/shape_round_white"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="10dp"
+        android:padding="@dimen/dp_10"
         android:text="取\t消"
         android:textColor="#A1A1A1"
-        android:textSize="16sp"/>
+        android:textSize="@dimen/sp_14" />
 
 </LinearLayout>

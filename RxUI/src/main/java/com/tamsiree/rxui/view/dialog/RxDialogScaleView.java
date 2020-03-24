@@ -39,19 +39,19 @@ public class RxDialogScaleView extends RxDialog {
     }
 
 
-    public RxDialogScaleView(Context context,String filePath,boolean isAssets) {
+    public RxDialogScaleView(Context context, String filePath, boolean isAssets) {
         super(context);
         initView();
-        setImage(filePath,isAssets);
+        setImage(filePath, isAssets);
     }
 
-    public RxDialogScaleView(Context context,Uri uri) {
+    public RxDialogScaleView(Context context, Uri uri) {
         super(context);
         initView();
         setImage(uri);
     }
 
-    public RxDialogScaleView(Context context,int resId,boolean isResId) {
+    public RxDialogScaleView(Context context, int resId, boolean isResId) {
         super(context);
         initView();
         if (isResId) {
@@ -59,7 +59,7 @@ public class RxDialogScaleView extends RxDialog {
         }
     }
 
-    public RxDialogScaleView(Context context,Bitmap bitmap) {
+    public RxDialogScaleView(Context context, Bitmap bitmap) {
         super(context);
         initView();
         setImage(bitmap);
@@ -85,11 +85,11 @@ public class RxDialogScaleView extends RxDialog {
         return mRxScaleImageView;
     }
 
-    public void setImage(String filePath,boolean isAssets) {
+    public void setImage(String filePath, boolean isAssets) {
         if (isAssets) {
             this.fileAssetName = fileAssetName;
             mRxScaleImageView.setImage(ImageSource.asset(filePath));
-        }else {
+        } else {
             this.filePath = filePath;
             mRxScaleImageView.setImage(ImageSource.uri(filePath));
         }
@@ -114,7 +114,7 @@ public class RxDialogScaleView extends RxDialog {
         View dialogView = LayoutInflater.from(mContext).inflate(R.layout.dialog_scaleview, null);
         mRxScaleImageView = dialogView.findViewById(R.id.rx_scale_view);
         mRxScaleImageView.setMaxScale(maxScale);
-        ImageView ivClose =  dialogView.findViewById(R.id.iv_close);
+        ImageView ivClose = dialogView.findViewById(R.id.iv_close);
         ivClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

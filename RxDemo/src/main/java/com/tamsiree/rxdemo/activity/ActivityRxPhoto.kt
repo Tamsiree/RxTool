@@ -49,9 +49,9 @@ class ActivityRxPhoto : ActivityBase() {
                 + r.getResourceEntryName(R.drawable.circle_elves_ball))
         rx_title.setLeftFinish(mContext)
         iv_avatar.setOnClickListener { initDialogChooseImage() }
-        iv_avatar.setOnLongClickListener { //                RxImageTool.showBigImageView(mContext, resultUri);
-            val rxDialogScaleView = RxDialogScaleView(mContext)
-            rxDialogScaleView.setImage(resultUri)
+        iv_avatar.setOnLongClickListener {
+            //RxImageTool.showBigImageView(mContext, resultUri);
+            val rxDialogScaleView = RxDialogScaleView(mContext, resultUri)
             rxDialogScaleView.show()
             false
         }
@@ -68,7 +68,7 @@ class ActivityRxPhoto : ActivityBase() {
     }
 
     private fun initDialogChooseImage() {
-        val dialogChooseImage = RxDialogChooseImage(mContext)
+        val dialogChooseImage = RxDialogChooseImage(mContext, resultUri)
         dialogChooseImage.show()
     }
 

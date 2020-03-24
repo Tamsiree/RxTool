@@ -1,9 +1,11 @@
 package com.tamsiree.rxui.view.dialog;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -22,7 +24,9 @@ public class RxDialogChooseImage extends RxDialog {
     private LayoutType mLayoutType = LayoutType.TITLE;
     private TextView mTvCamera;
     private TextView mTvFile;
-    private TextView mTvCancel;
+    private Button btnCancel;
+    private TextView tvOriginalImage;
+    private Uri uriOriginalImage;
 
     public RxDialogChooseImage(Activity context) {
         super(context);
@@ -31,6 +35,18 @@ public class RxDialogChooseImage extends RxDialog {
 
     public RxDialogChooseImage(Fragment fragment) {
         super(fragment.getContext());
+        initView(fragment);
+    }
+
+    public RxDialogChooseImage(Activity context, Uri uri) {
+        super(context);
+        uriOriginalImage = uri;
+        initView(context);
+    }
+
+    public RxDialogChooseImage(Fragment fragment, Uri uri) {
+        super(fragment.getContext());
+        uriOriginalImage = uri;
         initView(fragment);
     }
 
@@ -91,23 +107,17 @@ public class RxDialogChooseImage extends RxDialog {
         initView(fragment);
     }
 
-    public TextView getFromCameraView() {
-        return mTvCamera;
-    }
-
-    public TextView getFromFileView() {
-        return mTvFile;
-    }
-
-    public TextView getCancelView() {
-        return mTvCancel;
-    }
-
-    public LayoutType getLayoutType() {
-        return mLayoutType;
-    }
-
     private void initView(final Activity activity) {
+        init();
+        setClickEvent(activity);
+    }
+
+    private void initView(final Fragment fragment) {
+        init();
+        setClickEvent(fragment);
+    }
+
+    private void init() {
         View dialogView = null;
         switch (mLayoutType) {
             case TITLE:
@@ -120,16 +130,35 @@ public class RxDialogChooseImage extends RxDialog {
                 break;
         }
 
-
+        tvOriginalImage = dialogView.findViewById(R.id.tv_original_image);
         mTvCamera = dialogView.findViewById(R.id.tv_camera);
         mTvFile = dialogView.findViewById(R.id.tv_file);
-        mTvCancel = dialogView.findViewById(R.id.tv_cancel);
-        mTvCancel.setOnClickListener(new View.OnClickListener() {
+        btnCancel = dialogView.findViewById(R.id.btnCancel);
+
+
+        tvOriginalImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (uriOriginalImage != null) {
+                    RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(mContext, uriOriginalImage);
+                    rxDialogScaleView.show();
+                }
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 cancel();
             }
         });
+
+        setContentView(dialogView);
+        mLayoutParams.gravity = Gravity.BOTTOM;
+        mLayoutParams.width = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+    }
+
+    private void setClickEvent(Activity activity) {
         mTvCamera.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -146,33 +175,10 @@ public class RxDialogChooseImage extends RxDialog {
                 cancel();
             }
         });
-        setContentView(dialogView);
-        mLayoutParams.gravity = Gravity.BOTTOM;
-        mLayoutParams.width = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
     }
 
-    private void initView(final Fragment fragment) {
-        View dialogView = null;
-        switch (mLayoutType) {
-            case TITLE:
-                dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_picker_pictrue, null);
-                break;
-            case NO_TITLE:
-                dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_camero_show, null);
-                break;
-            default:
-                break;
-        }
 
-        mTvCamera = dialogView.findViewById(R.id.tv_camera);
-        mTvFile = dialogView.findViewById(R.id.tv_file);
-        mTvCancel = dialogView.findViewById(R.id.tv_cancel);
-        mTvCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                cancel();
-            }
-        });
+    private void setClickEvent(Fragment fragment) {
         mTvCamera.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -190,10 +196,38 @@ public class RxDialogChooseImage extends RxDialog {
                 cancel();
             }
         });
+    }
 
-        setContentView(dialogView);
-        mLayoutParams.gravity = Gravity.BOTTOM;
-        mLayoutParams.width = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+    public TextView getCancelView() {
+        return btnCancel;
+    }
+
+    public TextView getFromCameraView() {
+        return mTvCamera;
+    }
+
+    public TextView getFromFileView() {
+        return mTvFile;
+    }
+
+    public TextView getTvOriginalImage() {
+        return tvOriginalImage;
+    }
+
+    public LayoutType getLayoutType() {
+        return mLayoutType;
+    }
+
+    public void setTvOriginalImage(TextView tvOriginalImage) {
+        this.tvOriginalImage = tvOriginalImage;
+    }
+
+    public Uri getUriOriginalImage() {
+        return uriOriginalImage;
+    }
+
+    public void setUriOriginalImage(Uri uriOriginalImage) {
+        this.uriOriginalImage = uriOriginalImage;
     }
 
     public enum LayoutType {

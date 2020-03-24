@@ -16,24 +16,40 @@
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="45dp"
+            android:layout_height="@dimen/dp_40"
             android:gravity="center"
             android:text="请选择图片来源"
             android:textColor="#b9b9b9" />
+
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="0.1dp"
             android:background="#b9b9b9" />
 
+
+        <TextView
+            android:id="@+id/tv_original_image"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp_50"
+            android:gravity="center"
+            android:text="查看原图"
+            android:textColor="#9FCDD3"
+            android:textSize="@dimen/sp_16" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.1dp"
+            android:background="#cccccc" />
+
         <TextView
             android:id="@+id/tv_camera"
             android:layout_width="fill_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/dp_50"
             android:gravity="center"
             android:text="照相机"
-            android:textColor="#FF4081"
-            android:textSize="20sp" />
+            android:textColor="#009EE7"
+            android:textSize="@dimen/sp_16" />
 
         <View
             android:layout_width="fill_parent"
@@ -43,32 +59,26 @@
         <TextView
             android:id="@+id/tv_file"
             android:layout_width="fill_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/dp_50"
             android:gravity="center"
             android:text="相册"
-            android:textColor="#009EE7"
-            android:textSize="20sp" />
-
+            android:textColor="#FF4081"
+            android:textSize="@dimen/sp_16" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_10"
         android:background="@drawable/shape_round_white"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="#cccccc"
+        android:textSize="@dimen/sp_16"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_cancel"
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:text="取消"
-            android:textColor="#cccccc"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
-    </LinearLayout>
 </LinearLayout>

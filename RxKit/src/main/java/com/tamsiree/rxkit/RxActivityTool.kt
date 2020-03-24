@@ -64,9 +64,14 @@ object RxActivityTool {
      * 结束当前Activity（堆栈中最后一个压入的）
      */
     @JvmStatic
-    fun finishActivity() {
+    @JvmOverloads
+    fun finishActivity(isTransition: Boolean = false) {
         val activity = activityStack?.lastElement()
-        activity!!.finish()
+        if (isTransition) {
+            activity?.onBackPressed()
+        } else {
+            activity?.finish()
+        }
     }
 
     /**
