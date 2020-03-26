@@ -226,7 +226,7 @@ object RxActivityTool {
 
     @JvmStatic
     @JvmOverloads
-    fun skipActivityOnTransitions(mContext: Context?, goal: Class<out Activity>?, bundle: Bundle? = null, vararg pairs: Pair<View?, String?>?) {
+    fun skipActivityOnTransitions(mContext: Context?, goal: Class<out Activity>?, bundle: Bundle? = null, vararg pairs: Pair<View, String>?) {
         val intent = Intent(mContext, goal)
         val bundle1 = ActivityOptions.makeSceneTransitionAnimation(mContext as Activity?, *pairs).toBundle()
         if (bundle != null) {

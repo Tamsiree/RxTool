@@ -47,7 +47,7 @@ class ActivityTCardGallery : ActivityBase() {
         // mRecyclerView绑定scale效果
         // mRecyclerView绑定scale效果
         mCardScaleHelper = CardScaleHelper()
-        mCardScaleHelper!!.currentItemPos = 2
+        mCardScaleHelper!!.currentItemPos = 0
         mCardScaleHelper!!.attachToRecyclerView(recyclerView, object : OnDoIntListener {
             override fun doSomething(intValue: Int) {
                 RxToast.normal("选中$intValue")
