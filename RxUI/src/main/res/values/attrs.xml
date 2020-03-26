@@ -636,4 +636,11 @@
         <attr name="TLoadingColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="TBlurView">
+        <attr name="blurSrc" format="reference" />
+        <!-- 设置显示器动画时间-->
+        <attr name="blurDelayTime" format="integer" />
+        <attr name="blurRadius" format="integer" />
+    </declare-styleable>
+
 </resources>

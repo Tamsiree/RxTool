@@ -1,12 +1,9 @@
 package com.tamsiree.rxdemo.activity
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.adapter.AdapterCardGallery
-import com.tamsiree.rxkit.RxAnimationTool
-import com.tamsiree.rxkit.TBlurTool
 import com.tamsiree.rxkit.interfaces.OnDoIntListener
 import com.tamsiree.rxkit.view.RxToast
 import com.tamsiree.rxui.activity.ActivityBase
@@ -53,13 +50,9 @@ class ActivityTCardGallery : ActivityBase() {
                 RxToast.normal("选中$intValue")
                 if (mLastPos == intValue) {
                     return
-                } else if (mLastPos > intValue) {
-//                            tIndicator.moveToLeft()
-                } else if (mLastPos < intValue) {
-//                            tIndicator.moveToRight()
                 }
                 mLastPos = intValue
-                notifyBackgroundChange()
+                blurView.notifyChange(mList[mLastPos])
             }
         })
     }
@@ -70,16 +63,6 @@ class ActivityTCardGallery : ActivityBase() {
         mList.add(R.drawable.bg_family)
         mList.add(R.drawable.bg_splash)
         recyclerView.adapter?.notifyDataSetChanged()
-    }
-
-    private fun notifyBackgroundChange() {
-        val resId = mList[mLastPos]
-        blurView?.removeCallbacks(mBlurRunnable)
-        mBlurRunnable = Runnable {
-            val bitmap = BitmapFactory.decodeResource(resources, resId)
-            RxAnimationTool.startSwitchBackgroundAnim(blurView, TBlurTool.getBlurBitmap(blurView?.context, bitmap, 15))
-        }
-        blurView?.postDelayed(mBlurRunnable, 300)
     }
 
 }

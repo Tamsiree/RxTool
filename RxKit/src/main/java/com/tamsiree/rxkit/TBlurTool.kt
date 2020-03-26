@@ -11,6 +11,9 @@ import android.renderscript.RenderScript.RSMessageHandler
 import android.renderscript.ScriptIntrinsicBlur
 import android.widget.ImageView
 import com.tamsiree.rxkit.RxImageTool.isEmptyBitmap
+import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * RenderScript图片高斯模糊
@@ -20,24 +23,23 @@ object TBlurTool {
     /**
      * 建议模糊度(在0.0到25.0之间)
      */
-    private const val BLUR_RADIUS = 20
+    private const val BLUR_RADIUS = 20f
     private const val SCALED_WIDTH = 100
     private const val SCALED_HEIGHT = 100
 
     @JvmOverloads
     @JvmStatic
-    fun blur(imageView: ImageView, bitmap: Bitmap?, radius: Int = BLUR_RADIUS) {
+    fun blur(imageView: ImageView, bitmap: Bitmap, radius: Float = BLUR_RADIUS) {
         imageView.setImageBitmap(getBlurBitmap(imageView.context, bitmap, radius))
     }
 
     @JvmStatic
-    fun getBlurBitmap(context: Context?, bitmap: Bitmap?): Bitmap {
+    fun getBlurBitmap(context: Context, bitmap: Bitmap): Bitmap {
         return getBlurBitmap(context, bitmap, BLUR_RADIUS)
     }
 
     /**
      * 得到模糊后的bitmap
-     * thanks http://wl9739.github.io/2016/07/14/教你一分钟实现模糊效果/
      *
      * @param context
      * @param bitmap
@@ -45,9 +47,9 @@ object TBlurTool {
      * @return
      */
     @JvmStatic
-    fun getBlurBitmap(context: Context?, bitmap: Bitmap?, radius: Int): Bitmap {
+    fun getBlurBitmap(context: Context, bitmap: Bitmap, radius: Float): Bitmap {
         // 将缩小后的图片做为预渲染的图片。
-        val inputBitmap = Bitmap.createScaledBitmap(bitmap!!, SCALED_WIDTH, SCALED_HEIGHT, false)
+        val inputBitmap = Bitmap.createScaledBitmap(bitmap, SCALED_WIDTH, SCALED_HEIGHT, false)
         // 创建一张渲染后的输出图片。
         val outputBitmap = Bitmap.createBitmap(inputBitmap)
 
@@ -62,7 +64,7 @@ object TBlurTool {
         val tmpOut = Allocation.createFromBitmap(rs, outputBitmap)
 
         // 设置渲染的模糊程度, 25f是最大模糊度
-        blurScript.setRadius(radius.toFloat())
+        blurScript.setRadius(radius)
         // 设置blurScript对象的输入内存
         blurScript.setInput(tmpIn)
         // 将输出数据保存到输出内存中
@@ -72,17 +74,7 @@ object TBlurTool {
         tmpOut.copyTo(outputBitmap)
         return outputBitmap
     }
-    /**
-     * 快速模糊
-     *
-     * 先缩小原图，对小图进行模糊，再放大回原先尺寸
-     *
-     * @param src     源图片
-     * @param scale   缩小倍数(0...1)
-     * @param radius  模糊半径
-     * @param recycle 是否回收
-     * @return 模糊后的图片
-     */
+
     /**
      * 快速模糊
      *
@@ -139,8 +131,8 @@ object TBlurTool {
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @JvmStatic
-    fun renderScriptBlur(src: Bitmap?, radius: Float): Bitmap? {
-        var radius = radius
+    fun renderScriptBlur(src: Bitmap, radius: Float): Bitmap? {
+        var mRadius = radius
         if (isEmptyBitmap(src)) return null
         var rs: RenderScript? = null
         try {
@@ -149,13 +141,13 @@ object TBlurTool {
             val input = Allocation.createFromBitmap(rs, src, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT)
             val output = Allocation.createTyped(rs, input.type)
             val blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs))
-            if (radius > 25) {
-                radius = 25.0f
-            } else if (radius <= 0) {
-                radius = 1.0f
+            if (mRadius > 25) {
+                mRadius = 25.0f
+            } else if (mRadius <= 0) {
+                mRadius = 1.0f
             }
             blurScript.setInput(input)
-            blurScript.setRadius(radius)
+            blurScript.setRadius(mRadius)
             blurScript.forEach(output)
             output.copyTo(src)
         } finally {
@@ -173,17 +165,16 @@ object TBlurTool {
      * @return stackBlur模糊图片
      */
     @JvmStatic
-    fun stackBlur(src: Bitmap?, radius: Int, recycle: Boolean): Bitmap? {
-        val ret: Bitmap?
-        ret = if (recycle) {
+    fun stackBlur(src: Bitmap, radius: Int, recycle: Boolean): Bitmap? {
+        val ret: Bitmap = if (recycle) {
             src
         } else {
-            src!!.copy(src.config, true)
+            src.copy(src.config, true)
         }
         if (radius < 1) {
             return null
         }
-        val w = ret!!.width
+        val w = ret.width
         val h = ret.height
         val pix = IntArray(w * h)
         ret.getPixels(pix, 0, w, 0, 0, w, h)
@@ -204,7 +195,7 @@ object TBlurTool {
         var yp: Int
         var yi: Int
         var yw: Int
-        val vmin = IntArray(Math.max(w, h))
+        val vmin = IntArray(max(w, h))
         var divsum = div + 1 shr 1
         divsum *= divsum
         val dv = IntArray(256 * divsum)
@@ -240,12 +231,12 @@ object TBlurTool {
             rinsum = ginsum
             i = -radius
             while (i <= radius) {
-                p = pix[yi + Math.min(wm, Math.max(i, 0))]
+                p = pix[yi + min(wm, max(i, 0))]
                 sir = stack[i + radius]
                 sir[0] = p and 0xff0000 shr 16
                 sir[1] = p and 0x00ff00 shr 8
                 sir[2] = p and 0x0000ff
-                rbs = r1 - Math.abs(i)
+                rbs = r1 - abs(i)
                 rsum += sir[0] * rbs
                 gsum += sir[1] * rbs
                 bsum += sir[2] * rbs
@@ -275,7 +266,7 @@ object TBlurTool {
                 goutsum -= sir[1]
                 boutsum -= sir[2]
                 if (y == 0) {
-                    vmin[x] = Math.min(x + radius + 1, wm)
+                    vmin[x] = min(x + radius + 1, wm)
                 }
                 p = pix[yw + vmin[x]]
                 sir[0] = p and 0xff0000 shr 16
@@ -315,12 +306,12 @@ object TBlurTool {
             yp = -radius * w
             i = -radius
             while (i <= radius) {
-                yi = Math.max(0, yp) + x
+                yi = max(0, yp) + x
                 sir = stack[i + radius]
                 sir[0] = r[yi]
                 sir[1] = g[yi]
                 sir[2] = b[yi]
-                rbs = r1 - Math.abs(i)
+                rbs = r1 - abs(i)
                 rsum += r[yi] * rbs
                 gsum += g[yi] * rbs
                 bsum += b[yi] * rbs
@@ -354,7 +345,7 @@ object TBlurTool {
                 goutsum -= sir[1]
                 boutsum -= sir[2]
                 if (x == 0) {
-                    vmin[y] = Math.min(y + r1, hm) * w
+                    vmin[y] = min(y + r1, hm) * w
                 }
                 p = x + vmin[y]
                 sir[0] = r[p]

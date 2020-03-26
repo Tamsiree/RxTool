@@ -20,12 +20,13 @@
         android:orientation="vertical"
         tools:context=".activity.ActivityTCardGallery">
 
-        <ImageView
+        <com.tamsiree.rxui.view.TBlurView
             android:id="@+id/blurView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#3f000000"
-            android:scaleType="centerCrop" />
+            app:blurDelayTime="100"
+            app:blurRadius="15"
+            app:blurSrc="@drawable/bg_friend" />
 
         <com.tamsiree.rxui.view.tcardgralleryview.TCardGalleryView
             android:id="@+id/recyclerView"
@@ -53,10 +54,10 @@
                 android:layout_height="wrap_content"
                 android:visibility="visible"
                 app:dotColor="@color/colorPrimaryDark"
-                app:selectedDotColor="@color/colorPrimary"
-                tools:background="@color/colorPrimary" />
+                app:selectedDotColor="@color/colorPrimary" />
 
         </LinearLayout>
+
 
     </RelativeLayout>
 
