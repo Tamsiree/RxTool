@@ -2,7 +2,6 @@ package com.tamsiree.rxdemo.activity
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
@@ -11,6 +10,7 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxkit.view.RxToast
 import com.tamsiree.rxui.activity.ActivityBase
 import com.tamsiree.rxui.view.RxCaptcha
@@ -40,7 +40,7 @@ class ActivityRxCaptcha : ActivityBase() {
             }
 
             override fun matchFailed(rxSwipeCaptcha: RxSwipeCaptcha) {
-                Log.d("zxt", "matchFailed() called with: rxSwipeCaptcha = [$rxSwipeCaptcha]")
+                TLog.d("zxt", "matchFailed() called with: rxSwipeCaptcha = [$rxSwipeCaptcha]")
                 RxToast.error(mContext, "验证失败:拖动滑块将悬浮头像正确拼合", Toast.LENGTH_SHORT)?.show()
                 rxSwipeCaptcha.resetCaptcha()
                 dragBar.progress = 0
@@ -57,7 +57,7 @@ class ActivityRxCaptcha : ActivityBase() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
-                Log.d("zxt", "onStopTrackingTouch() called with: seekBar = [$seekBar]")
+                TLog.d("zxt", "onStopTrackingTouch() called with: seekBar = [$seekBar]")
                 swipeCaptchaView.matchCaptcha()
             }
         })

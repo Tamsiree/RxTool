@@ -1,7 +1,6 @@
 package com.tamsiree.rxdemo.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,7 @@ import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.interfaces.ShopCartInterface
 import com.tamsiree.rxdemo.model.ModelDish
 import com.tamsiree.rxdemo.model.ModelShopCart
+import com.tamsiree.rxkit.TLog
 import java.util.*
 
 /**
@@ -91,6 +91,6 @@ class AdapterPopupDish(private val context: Context, private val mModelShopCart:
         itemCount = mModelShopCart.dishAccount
         mModelDishList = ArrayList()
         mModelDishList.addAll(mModelShopCart.shoppingSingleMap.keys)
-        Log.e(TAG, "PopupDishAdapter: " + itemCount)
+        TLog.e(TAG, "PopupDishAdapter: " + itemCount)
     }
 }

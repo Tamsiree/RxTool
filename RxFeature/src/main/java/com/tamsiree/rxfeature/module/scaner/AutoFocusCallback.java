@@ -19,7 +19,8 @@ package com.tamsiree.rxfeature.module.scaner;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
+
+import com.tamsiree.rxkit.TLog;
 
 /**
  * @author tamsiree
@@ -44,7 +45,7 @@ public final class AutoFocusCallback implements Camera.AutoFocusCallback {
             autoFocusHandler.sendMessageDelayed(message, AUTOFOCUS_INTERVAL_MS);
             autoFocusHandler = null;
         } else {
-            Log.d(TAG, "Got auto-focus callback, but no handler for it");
+            TLog.d(TAG, "Got auto-focus callback, but no handler for it");
         }
     }
 

@@ -3,12 +3,12 @@ package com.tamsiree.rxui.activity
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import com.tamsiree.rxkit.RxBarTool.setTransparentStatusBar
 import com.tamsiree.rxkit.RxConstants
 import com.tamsiree.rxkit.RxWebViewTool.initWebView
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxkit.interfaces.OnWebViewLoad
 import com.tamsiree.rxkit.view.RxToast
 import com.tamsiree.rxui.R
@@ -74,14 +74,14 @@ class ActivityWebView : ActivityBase() {
             }
         })
         web_base.loadUrl(webPath)
-        Log.v("帮助类完整连接", webPath)
+        TLog.v("帮助类完整连接", webPath)
         //        webBase.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,webBase.getHeight()));
     }
 
     fun setWebPath(url: String) {
         webPath = url
         web_base.loadUrl(webPath)
-        Log.v("设置新的URL：", webPath)
+        TLog.v("设置新的URL：", webPath)
     }
 
     override fun onSaveInstanceState(paramBundle: Bundle) {
@@ -93,9 +93,9 @@ class ActivityWebView : ActivityBase() {
         try {
             super.onConfigurationChanged(newConfig)
             if (mContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                Log.v("Himi", "onConfigurationChanged_ORIENTATION_LANDSCAPE")
+                TLog.v("Himi", "onConfigurationChanged_ORIENTATION_LANDSCAPE")
             } else if (mContext.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                Log.v("Himi", "onConfigurationChanged_ORIENTATION_PORTRAIT")
+                TLog.v("Himi", "onConfigurationChanged_ORIENTATION_PORTRAIT")
             }
         } catch (ex: Exception) {
             ex.printStackTrace()

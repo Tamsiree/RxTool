@@ -1,11 +1,11 @@
 package com.tamsiree.rxpay.wechat.pay;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
+import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxkit.interfaces.OnSuccessAndErrorListener;
 import com.tamsiree.rxkit.view.RxToast;
 
@@ -80,7 +80,7 @@ public class WechatPayTools {
                     @Override
                     public void onSuccess(com.lzy.okgo.model.Response<String> response) {
                         String s = response.body();
-                        Log.d("微信统一下单", s);
+                        TLog.d("微信统一下单", s);
                         jsonStr[0] = s;
 
                         Map<String, String> mapXml = null;

@@ -2,11 +2,11 @@ package com.tamsiree.rxdemo.activity
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxkit.model.ActionItem
 import com.tamsiree.rxkit.view.RxToast
 import com.tamsiree.rxui.activity.ActivityBase
@@ -120,7 +120,7 @@ class ActivityPopupView : ActivityBase(), TipListener {
     }
 
     override fun onTipDismissed(view: View, anchorViewId: Int, byUser: Boolean) {
-        Log.d(TAG, "tip near anchor view $anchorViewId dismissed")
+        TLog.d(TAG, "tip near anchor view $anchorViewId dismissed")
         if (anchorViewId == R.id.text_view) {
             // Do something when a tip near view with id "R.id.text_view" has been dismissed
         }

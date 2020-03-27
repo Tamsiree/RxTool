@@ -22,7 +22,6 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -35,6 +34,7 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxui.R;
 
 import java.util.ArrayList;
@@ -458,7 +458,7 @@ public class TStepperIndicator extends View implements ViewPager.OnPageChangeLis
                     .getDimension(R.styleable.TStepperIndicator_stpi_bottomIndicatorHeight, defaultHeight);
 
             if (bottomIndicatorHeight <= 0) {
-                Log.d(TAG, "init: Invalid indicator height, disabling bottom indicator feature! Please provide " +
+                TLog.d(TAG, "init: Invalid indicator height, disabling bottom indicator feature! Please provide " +
                         "a value greater than 0.");
                 useBottomIndicator = false;
             }
@@ -864,7 +864,7 @@ public class TStepperIndicator extends View implements ViewPager.OnPageChangeLis
                 paint = sourceList.get(stepPosition);
             } catch (IndexOutOfBoundsException e) {
                 // We use an random color as this usually should not happen, maybe in edit mode
-                Log.d(TAG, "getPaint: could not find the specific step paint to use! Try to use default instead!");
+                TLog.d(TAG, "getPaint: could not find the specific step paint to use! Try to use default instead!");
             }
         }
 
@@ -874,7 +874,7 @@ public class TStepperIndicator extends View implements ViewPager.OnPageChangeLis
         }
 
         if (null == paint) {
-            Log.d(TAG, "getPaint: could not use default paint for the specific step! Using random Paint instead!");
+            TLog.d(TAG, "getPaint: could not use default paint for the specific step! Using random Paint instead!");
             // If we reached this point, not even the default is setup, rely on some random color
             paint = getRandomPaint();
         }

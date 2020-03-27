@@ -18,5 +18,7 @@ class ApplicationRxTool : Application() {
     override fun onCreate() {
         super.onCreate()
         RxTool.init(this)
+                .debugLog(true)
+                .debugLogFile(false)
     }
 }

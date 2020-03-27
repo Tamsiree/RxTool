@@ -1,7 +1,6 @@
 package com.tamsiree.rxui.view.wavesidebar.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxui.R;
 
 import java.util.ArrayList;
@@ -163,7 +163,7 @@ abstract class AbsWaveSideAdapter<T, VH extends BaseViewHolder> extends Recycler
 
     public void addHeaderView(View header) {
         if (header == null) {
-            Log.e(TAG, "header is null!!!");
+            TLog.e(TAG, "header is null!!!");
             return;
         }
         this.mHeaderView = header;
@@ -179,7 +179,7 @@ abstract class AbsWaveSideAdapter<T, VH extends BaseViewHolder> extends Recycler
 
     public void addFooterView(View footer) {
         if (footer == null) {
-            Log.e(TAG, "footer is null!!!");
+            TLog.e(TAG, "footer is null!!!");
             return;
         }
         this.mFooterView = footer;

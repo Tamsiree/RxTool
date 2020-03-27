@@ -11,7 +11,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +18,7 @@ import androidx.annotation.RestrictTo;
 
 import com.tamsiree.rxkit.RxAppTool;
 import com.tamsiree.rxkit.RxDataTool;
+import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxkit.activity.ActivityCrash;
 
 import java.io.BufferedReader;
@@ -83,16 +83,16 @@ public class RxCrashTool {
     public static void install(@Nullable final Context context) {
         try {
             if (context == null) {
-                Log.e(TAG, "Install failed: context is null!");
+                TLog.e(TAG, "Install failed: context is null!");
             } else {
                 //INSTALL!
                 final Thread.UncaughtExceptionHandler oldHandler = Thread.getDefaultUncaughtExceptionHandler();
 
                 if (oldHandler != null && oldHandler.getClass().getName().startsWith(CAOC_HANDLER_PACKAGE_NAME)) {
-                    Log.e(TAG, "RxCrashTool was already installed, doing nothing!");
+                    TLog.e(TAG, "RxCrashTool was already installed, doing nothing!");
                 } else {
                     if (oldHandler != null && !oldHandler.getClass().getName().startsWith(DEFAULT_HANDLER_PACKAGE_NAME)) {
-                        Log.e(TAG, "IMPORTANT WARNING! You already have an UncaughtExceptionHandler, are you sure this is correct? If you use a custom UncaughtExceptionHandler, you must initialize it AFTER RxCrashTool! Installing anyway, but your original handler will not be called.");
+                        TLog.e(TAG, "IMPORTANT WARNING! You already have an UncaughtExceptionHandler, are you sure this is correct? If you use a custom UncaughtExceptionHandler, you must initialize it AFTER RxCrashTool! Installing anyway, but your original handler will not be called.");
                     }
 
                     application = (Application) context.getApplicationContext();
@@ -100,10 +100,10 @@ public class RxCrashTool {
                     //We define a default exception handler that does what we want so it can be called from Crashlytics/ACRA
                     Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
                         if (config.isEnabled()) {
-                            Log.e(TAG, "App has crashed, executing RxCrashTool's UncaughtExceptionHandler", throwable);
+                            TLog.e(TAG, "App has crashed, executing RxCrashTool's UncaughtExceptionHandler", throwable);
 
                             if (hasCrashedInTheLastSeconds(application)) {
-                                Log.e(TAG, "App already crashed recently, not starting custom error activity because we could enter a restart loop. Are you sure that your app does not crash directly on init?", throwable);
+                                TLog.e(TAG, "App already crashed recently, not starting custom error activity because we could enter a restart loop. Are you sure that your app does not crash directly on init?", throwable);
                                 if (oldHandler != null) {
                                     oldHandler.uncaughtException(thread, throwable);
                                     return;
@@ -118,7 +118,7 @@ public class RxCrashTool {
                                 }
 
                                 if (isStackTraceLikelyConflictive(throwable, errorActivityClass)) {
-                                    Log.e(TAG, "Your application class or your error activity have crashed, the custom activity will not be launched!");
+                                    TLog.e(TAG, "Your application class or your error activity have crashed, the custom activity will not be launched!");
                                     if (oldHandler != null) {
                                         oldHandler.uncaughtException(thread, throwable);
                                         return;
@@ -244,10 +244,10 @@ public class RxCrashTool {
                     });
                 }
 
-                Log.i(TAG, "RxCrashTool has been installed.");
+                TLog.i(TAG, "RxCrashTool has been installed.");
             }
         } catch (Throwable t) {
-            Log.e(TAG, "An unknown error occurred while installing RxCrashTool, it may not have been properly initialized. Please report this as a bug if needed.", t);
+            TLog.e(TAG, "An unknown error occurred while installing RxCrashTool, it may not have been properly initialized. Please report this as a bug if needed.", t);
         }
     }
 
@@ -274,7 +274,7 @@ public class RxCrashTool {
         if (config != null && config.isLogErrorOnRestart()) {
             String stackTrace = getStackTraceFromIntent(intent);
             if (stackTrace != null) {
-                Log.e(TAG, "The previous app process crashed. This is the stack trace of the crash:\n" + getStackTraceFromIntent(intent));
+                TLog.e(TAG, "The previous app process crashed. This is the stack trace of the crash:\n" + getStackTraceFromIntent(intent));
             }
         }
 
@@ -597,7 +597,7 @@ public class RxCrashTool {
                 return (Class<? extends Activity>) Class.forName(resolveInfo.activityInfo.name);
             } catch (ClassNotFoundException e) {
                 //Should not happen, print it to the log!
-                Log.e(TAG, "Failed when resolving the restart activity class via intent filter, stack trace follows!", e);
+                TLog.e(TAG, "Failed when resolving the restart activity class via intent filter, stack trace follows!", e);
             }
         }
 
@@ -620,7 +620,7 @@ public class RxCrashTool {
                 return (Class<? extends Activity>) Class.forName(intent.getComponent().getClassName());
             } catch (ClassNotFoundException e) {
                 //Should not happen, print it to the log!
-                Log.e(TAG, "Failed when resolving the restart activity class via getLaunchIntentForPackage, stack trace follows!", e);
+                TLog.e(TAG, "Failed when resolving the restart activity class via getLaunchIntentForPackage, stack trace follows!", e);
             }
         }
 
@@ -670,7 +670,7 @@ public class RxCrashTool {
                 return (Class<? extends Activity>) Class.forName(resolveInfo.activityInfo.name);
             } catch (ClassNotFoundException e) {
                 //Should not happen, print it to the log!
-                Log.e(TAG, "Failed when resolving the error activity class via intent filter, stack trace follows!", e);
+                TLog.e(TAG, "Failed when resolving the error activity class via intent filter, stack trace follows!", e);
             }
         }
 

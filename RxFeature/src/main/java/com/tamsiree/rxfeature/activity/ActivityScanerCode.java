@@ -14,7 +14,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -46,6 +45,7 @@ import com.tamsiree.rxkit.RxDataTool;
 import com.tamsiree.rxkit.RxDeviceTool;
 import com.tamsiree.rxkit.RxPhotoTool;
 import com.tamsiree.rxkit.RxSPTool;
+import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxkit.view.RxToast;
 import com.tamsiree.rxui.activity.ActivityBase;
 import com.tamsiree.rxui.view.dialog.RxDialogSure;
@@ -408,7 +408,7 @@ public class ActivityScanerCode extends ActivityBase {
         RxBeepTool.playBeep(mContext, vibrate);
 
         String result1 = result.getText();
-        Log.v("二维码/条形码 扫描结果", result1);
+        TLog.v("二维码/条形码 扫描结果", result1);
         if (mScanerListener == null) {
             RxToast.success(result1);
             initDialogResult(result);
@@ -553,12 +553,12 @@ public class ActivityScanerCode extends ActivityBase {
 
         if (rawResult != null) {
             long end = System.currentTimeMillis();
-            Log.d(TAG, "Found barcode (" + (end - start) + " ms):\n" + rawResult.toString());
+            TLog.d(TAG, "Found barcode (" + (end - start) + " ms):\n" + rawResult.toString());
             Message message = Message.obtain(handler, R.id.decode_succeeded, rawResult);
             Bundle bundle = new Bundle();
             bundle.putParcelable("barcode_bitmap", source.renderCroppedGreyscaleBitmap());
             message.setData(bundle);
-            //Log.d(TAG, "Sending decode succeeded message...");
+            //TLog.d(TAG, "Sending decode succeeded message...");
             message.sendToTarget();
         } else {
             Message message = Message.obtain(handler, R.id.decode_failed);

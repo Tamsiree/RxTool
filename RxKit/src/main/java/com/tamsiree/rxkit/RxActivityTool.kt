@@ -12,6 +12,7 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import java.util.*
+import kotlin.system.exitProcess
 
 /**
  * @author tamsiree
@@ -100,13 +101,14 @@ object RxActivityTool {
         activityStack!!.clear()
     }
 
+    @Suppress("DEPRECATION")
     @JvmStatic
     fun AppExit(context: Context) {
         try {
             finishAllActivity()
             val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
             activityManager.restartPackage(context.packageName)
-            System.exit(0)
+            exitProcess(0)
         } catch (e: Exception) {
             e.printStackTrace()
         }

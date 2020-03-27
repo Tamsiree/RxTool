@@ -215,7 +215,7 @@ object RxNetTool {
             while (`in`.readLine().also { content = it } != null) {
                 stringBuffer.append(content)
             }
-            //            Log.d("------ping-----", "result content : " + stringBuffer.toString());
+            //            TLogd("------ping-----", "result content : " + stringBuffer.toString());
             // ping的状态
             val status = p.waitFor()
             if (status == 0) {
@@ -229,7 +229,7 @@ object RxNetTool {
         } catch (e: InterruptedException) {
             result = "InterruptedException"
         } finally {
-//            Log.d("----result---", "result = " + result);
+//            TLogd("----result---", "result = " + result);
         }
         return false
     }
@@ -252,7 +252,7 @@ object RxNetTool {
             while (`in`.readLine().also { content = it } != null) {
                 stringBuffer.append(content)
             }
-            //Log.d("------ping-----", "result content : " + stringBuffer.toString());
+            //TLogd("------ping-----", "result content : " + stringBuffer.toString());
             // ping的状态
             val status = p.waitFor()
             if (status == 0) {
@@ -266,7 +266,7 @@ object RxNetTool {
         } catch (e: InterruptedException) {
             result = "InterruptedException"
         } finally {
-            //Log.d("----result---", "result = " + result);
+            //TLogd("----result---", "result = " + result);
         }
         return false
     }

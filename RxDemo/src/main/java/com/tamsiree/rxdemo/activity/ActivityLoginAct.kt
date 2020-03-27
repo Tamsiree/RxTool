@@ -8,7 +8,6 @@ import android.text.Editable
 import android.text.InputType
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.LinearInterpolator
@@ -20,6 +19,7 @@ import com.tamsiree.rxkit.RxBarTool.StatusBarLightMode
 import com.tamsiree.rxkit.RxBarTool.setTransparentStatusBar
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxkit.RxKeyboardTool.hideSoftInput
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxui.activity.ActivityBase
 import com.tamsiree.rxui.activity.AndroidBug5497Workaround
 import kotlinx.android.synthetic.main.activity_login_act.*
@@ -96,7 +96,7 @@ class ActivityLoginAct : ActivityBase() {
             /* old是改变前的左上右下坐标点值，没有old的是改变后的左上右下坐标点值
               现在认为只要控件将Activity向上推的高度超过了1/3屏幕高，就认为软键盘弹起*/
             if (oldBottom != 0 && bottom != 0 && oldBottom - bottom > keyHeight) {
-                Log.e("wenzhihao", "up------>" + (oldBottom - bottom))
+                TLog.e("wenzhihao", "up------>" + (oldBottom - bottom))
                 val dist = content.bottom - bottom
                 if (dist > 0) {
                     val mAnimatorTranslateY = ObjectAnimator.ofFloat(content, "translationY", 0.0f, -dist.toFloat())
@@ -107,7 +107,7 @@ class ActivityLoginAct : ActivityBase() {
                 }
                 service.visibility = View.INVISIBLE
             } else if (oldBottom != 0 && bottom != 0 && bottom - oldBottom > keyHeight) {
-                Log.e("wenzhihao", "down------>" + (bottom - oldBottom))
+                TLog.e("wenzhihao", "down------>" + (bottom - oldBottom))
                 if (content.bottom - oldBottom > 0) {
                     val mAnimatorTranslateY = ObjectAnimator.ofFloat(content, "translationY", content.translationY, 0f)
                     mAnimatorTranslateY.duration = 300

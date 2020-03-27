@@ -2,12 +2,12 @@ package com.tamsiree.rxdemo.activity
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxkit.RxImageTool.changeColorAlpha
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxui.activity.ActivityBase
 import com.tamsiree.rxui.view.waveview.RxWaveView
 import kotlinx.android.synthetic.main.activity_rx_wave_view.*
@@ -51,7 +51,7 @@ class ActivityRxWaveView : ActivityBase() {
         })
         color_picker_view.addOnColorChangedListener { selectedColor ->
             // Handle on color change
-            Log.d("selectedColor", "selectedColor: $selectedColor")
+            TLog.d("selectedColor", "selectedColor: $selectedColor")
             wave.setWaveColor(changeColorAlpha(selectedColor, 40),
                     changeColorAlpha(selectedColor, 60))
             mBorderColor = changeColorAlpha(selectedColor, 68)

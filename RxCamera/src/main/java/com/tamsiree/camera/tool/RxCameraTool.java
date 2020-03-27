@@ -3,13 +3,13 @@ package com.tamsiree.camera.tool;
 import android.content.Context;
 import android.hardware.Camera;
 import android.os.SystemClock;
-import android.util.Log;
 
 import com.tamsiree.camera.RxCameraView;
 import com.tamsiree.rxkit.RxConstants;
 import com.tamsiree.rxkit.RxExifTool;
 import com.tamsiree.rxkit.RxFileTool;
 import com.tamsiree.rxkit.RxVibrateTool;
+import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxkit.interfaces.OnRxCamera;
 import com.tamsiree.rxkit.photomagic.OnCompressListener;
 import com.tamsiree.rxkit.photomagic.RxMagic;
@@ -176,13 +176,13 @@ public class RxCameraTool {
                             setCompressListener(new OnCompressListener() {
                                 @Override
                                 public void onStart() {
-                                    Log.d("图片压缩", "开始压缩");
+                                    TLog.d("图片压缩", "开始压缩");
                                 }
 
                                 @Override
                                 public void onSuccess(File file) {
                                     if (RxFileTool.copyOrMoveFile(file, compressFile, true)) {
-                                        Log.d("图片压缩", "压缩完成");
+                                        TLog.d("图片压缩", "压缩完成");
                                         onRxCamera.onSuccessCompress(compressFile);
                                         if (mLongitude != 0 || mLatitude != 0) {
                                             RxExifTool.writeLatLonIntoJpeg(compressFile.getAbsolutePath(), mLatitude, mLongitude);
@@ -196,13 +196,13 @@ public class RxCameraTool {
 
                                 @Override
                                 public void onError(Throwable e) {
-                                    Log.d("图片压缩", "压缩异常");
+                                    TLog.d("图片压缩", "压缩异常");
 //                                    Logger.d(e);
                                 }
                             }).launch();
 
                 } catch (IOException e1) {
-                    Log.w("onPictureTaken", "Cannot write to " + compressFile, e1);
+                    TLog.w("onPictureTaken", "Cannot write to " + compressFile, e1);
                 } finally {
                     if (os != null) {
                         try {

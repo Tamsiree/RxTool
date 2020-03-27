@@ -2,7 +2,6 @@ package com.tamsiree.rxkit
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -68,7 +67,7 @@ object RxKeyboardTool {
      */
     @JvmStatic
     fun clickBlankArea2HideSoftInput0() {
-        Log.i("tips", "U should copy the following code.")
+        TLog.i("tips", "U should copy the following code.")
         /*
         @Override
         public boolean onTouchEvent (MotionEvent event){
@@ -92,7 +91,7 @@ object RxKeyboardTool {
      */
     @JvmStatic
     fun clickBlankArea2HideSoftInput1() {
-        Log.i("tips", "U should copy the following code.")
+        TLog.i("tips", "U should copy the following code.")
         /*
         @Override
         public boolean dispatchTouchEvent(MotionEvent ev) {

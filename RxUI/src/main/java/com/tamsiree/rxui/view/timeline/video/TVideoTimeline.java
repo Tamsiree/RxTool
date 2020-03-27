@@ -12,13 +12,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.tamsiree.rxkit.RxImageTool;
+import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxui.R;
 
 import java.text.ParseException;
@@ -116,7 +116,7 @@ public class TVideoTimeline extends View {
                 case ACTION_UP:
                     if (checkVideo) {
                         if (!checkHasVideo()) {
-                            Log.d("ACTION_UP", "NO VIDEO currentTimeInMillisecond:" + currentTimeInMillisecond + " lastcurrentTimeInMillisecond:" + lastcurrentTimeInMillisecond);
+                            TLog.d("ACTION_UP", "NO VIDEO currentTimeInMillisecond:" + currentTimeInMillisecond + " lastcurrentTimeInMillisecond:" + lastcurrentTimeInMillisecond);
                             currentTimeInMillisecond = lastcurrentTimeInMillisecond;
                             invalidate();
                             checkVideo = lastCheckState;
@@ -551,12 +551,12 @@ public class TVideoTimeline extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Log.d("onSizeChanged", " w:" + w + " h:" + h + " oldw:" + oldh + " w:" + oldh);
+        TLog.d("onSizeChanged", " w:" + w + " h:" + h + " oldw:" + oldh + " w:" + oldh);
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        Log.d("onLayout", "changed:" + changed + " left:" + left + " top:" + top + " right:" + right + " bottom:" + bottom);
+        TLog.d("onLayout", "changed:" + changed + " left:" + left + " top:" + top + " right:" + right + " bottom:" + bottom);
 
        /* if (currentTimeInMillisecond != System.currentTimeMillis() && left == 0)
             layout((int) (0 - (currentTimeInMillisecond - mostLeftTimeInMillisecond) / 1000 * pixelsPerSecond),
@@ -583,7 +583,7 @@ public class TVideoTimeline extends View {
             default:
                 break;
         }
-        Log.d("measureWidth", "measureMode:" + measureMode + "measureSize:" + measureSize + " result" + result);
+        TLog.d("measureWidth", "measureMode:" + measureMode + "measureSize:" + measureSize + " result" + result);
         return result;
     }
 
@@ -608,7 +608,7 @@ public class TVideoTimeline extends View {
             return;
         }*/
 
-        Log.d("onDraw", "onDraw");
+        TLog.d("onDraw", "onDraw");
 
         pixelsPerSecond = (float) (getWidth() - screenWidth) / (float) WHOLE_TIMEBAR_TOTAL_SECONDS;
 
@@ -753,7 +753,7 @@ public class TVideoTimeline extends View {
             timebarPaint.setColor(middleCursorColor);
             int currentCursor = (int) ((currentTimeInMillisecond / 1000L - mostLeftTimeInMillisecond / 1000L) * pixelsPerSecond + screenWidth / 2f - TRIANGLE_LENGTH / 2);
             lastMmiddlecursor = currentCursor;
-            // Log.d("TIMEBARVIEW", "currentCursor" + currentCursor + " viewWidth:" + getWidth());
+            // TLog.d("TIMEBARVIEW", "currentCursor" + currentCursor + " viewWidth:" + getWidth());
             //path.rMoveTo(currentCursor, 0);
             // 画三角形
             path = new Path();
@@ -803,7 +803,7 @@ public class TVideoTimeline extends View {
                         return false;
                     }
                     int top = getTop();
-                    Log.d("*****onTouchEvent", "  dx" + dx + " left" + getLeft() + " right" + getLeft() + getWidth());
+                    TLog.d("*****onTouchEvent", "  dx" + dx + " left" + getLeft() + " right" + getLeft() + getWidth());
                     int left = getLeft() + dx;
                     int right = left + getWidth();
 
@@ -893,7 +893,7 @@ public class TVideoTimeline extends View {
                 }
             } else {
                 int newCriteriaIndex = getCurrentTVideoTimelineTickCriterionIndex() + 1;
-                // Log.d("newCriteriaIndex", newCriteriaIndex + "");
+                // TLog.d("newCriteriaIndex", newCriteriaIndex + "");
                 if (newCriteriaIndex > ZOOMMAX || newCriteriaIndex >= timebarTickCriterionCount) {
                     return;
                 } else {
@@ -1081,12 +1081,12 @@ public class TVideoTimeline extends View {
     private class MoveThread extends Thread {
         @Override
         public void run() {
-            Log.d("MOVETHREAD", "thread is start");
+            TLog.d("MOVETHREAD", "thread is start");
             moveIng = true;
             while (moveFlag) {
                 try {
                     Thread.sleep(1000);
-                    Log.d("MOVETHREAD", "thread is running");
+                    TLog.d("MOVETHREAD", "thread is running");
                     currentTimeInMillisecond += 1000;
                     if (checkVideo) {
                         if (!checkHasVideo()) {
@@ -1116,7 +1116,7 @@ public class TVideoTimeline extends View {
                 }
             }
             moveIng = false;
-            Log.d("MOVETHREAD", "thread is stop");
+            TLog.d("MOVETHREAD", "thread is stop");
         }
     }
 }

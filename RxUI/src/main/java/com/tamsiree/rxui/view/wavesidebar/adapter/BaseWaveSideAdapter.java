@@ -1,7 +1,8 @@
 package com.tamsiree.rxui.view.wavesidebar.adapter;
 
 import android.content.Context;
-import android.util.Log;
+
+import com.tamsiree.rxkit.TLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public abstract class BaseWaveSideAdapter<T, VH extends BaseViewHolder> extends 
 
     public void add(int position, T item) {
         if (position < 0 || position > mData.size()) {
-            Log.e(TAG, "add position = " + position + ", IndexOutOfBounds, please check your code!");
+            TLog.e(TAG, "add position = " + position + ", IndexOutOfBounds, please check your code!");
             return;
         }
         mData.add(position, item);
@@ -54,7 +55,7 @@ public abstract class BaseWaveSideAdapter<T, VH extends BaseViewHolder> extends 
 
     public void remove(int position) {
         if (position < 0 || position >= mData.size()) {
-            Log.e(TAG, "remove position = " + position + ", IndexOutOfBounds, please check your code!");
+            TLog.e(TAG, "remove position = " + position + ", IndexOutOfBounds, please check your code!");
             return;
         }
         mData.remove(position);
@@ -101,7 +102,7 @@ public abstract class BaseWaveSideAdapter<T, VH extends BaseViewHolder> extends 
     @Override
     public T getItem(int position) {
         if (position < 0 || position >= mData.size()) {
-            Log.e(TAG, "getItem position = " + position + ", IndexOutOfBounds, please check your code!");
+            TLog.e(TAG, "getItem position = " + position + ", IndexOutOfBounds, please check your code!");
             return null;
         }
         return mData.get(position);

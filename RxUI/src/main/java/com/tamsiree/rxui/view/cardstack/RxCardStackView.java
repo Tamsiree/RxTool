@@ -6,7 +6,6 @@ import android.content.res.TypedArray;
 import android.database.Observable;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -15,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.OverScroller;
 
+import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxui.R;
 import com.tamsiree.rxui.view.cardstack.tools.RxAdapterAllMoveDownAnimator;
 import com.tamsiree.rxui.view.cardstack.tools.RxAdapterAnimator;
@@ -363,7 +363,7 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
 
                 final int pointerIndex = ev.findPointerIndex(activePointerId);
                 if (pointerIndex == -1) {
-                    Log.e(TAG, "Invalid pointerId=" + activePointerId
+                    TLog.e(TAG, "Invalid pointerId=" + activePointerId
                             + " in onInterceptTouchEvent");
                     break;
                 }
@@ -455,7 +455,7 @@ public class RxCardStackView extends ViewGroup implements RxScrollDelegate {
             case MotionEvent.ACTION_MOVE:
                 final int activePointerIndex = ev.findPointerIndex(mActivePointerId);
                 if (activePointerIndex == -1) {
-                    Log.e(TAG, "Invalid pointerId=" + mActivePointerId + " in onTouchEvent");
+                    TLog.e(TAG, "Invalid pointerId=" + mActivePointerId + " in onTouchEvent");
                     break;
                 }
 

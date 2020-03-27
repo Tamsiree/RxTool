@@ -3,7 +3,6 @@ package com.tamsiree.rxkit
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.text.TextUtils
-import android.util.Log
 import org.greenrobot.greendao.AbstractDao
 import org.greenrobot.greendao.database.Database
 import org.greenrobot.greendao.database.StandardDatabase
@@ -138,7 +137,7 @@ object RxMigrationHelper {
     //----------------------------------------------------------------------------------------------
     private fun printLog(info: String) {
         if (DEBUG) {
-            Log.d(TAG, info)
+            TLog.d(TAG, info)
         }
     }
 }

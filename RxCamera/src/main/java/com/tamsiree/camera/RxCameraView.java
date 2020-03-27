@@ -1,6 +1,5 @@
 package com.tamsiree.camera;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
@@ -10,7 +9,6 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
@@ -20,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.core.os.ParcelableCompat;
 import androidx.core.os.ParcelableCompatCreatorCallbacks;
 import androidx.core.view.ViewCompat;
+
+import com.tamsiree.rxkit.TLog;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -127,7 +127,7 @@ public class RxCameraView extends FrameLayout {
 //            camera1 = new Camera1(mCallbacks, preview);
         }*/
         // TODO: 2018/7/3  
-       
+
         // Attributes
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RxCameraView, defStyleAttr,
                 R.style.Widget_CameraView);
@@ -264,7 +264,6 @@ public class RxCameraView extends FrameLayout {
 
     /**
      * Open a camera device and start showing camera preview. This is typically called from
-     * {@link Activity#onResume()}.
      */
     public void start() {
         if (!mImpl.start()) {
@@ -280,7 +279,6 @@ public class RxCameraView extends FrameLayout {
 
     /**
      * Stop camera preview and close the device. This is typically called from
-     * {@link Activity#onPause()}.
      */
     public void stop() {
         mImpl.stop();
@@ -530,6 +528,103 @@ public class RxCameraView extends FrameLayout {
 
     }
 
+    private static void handleFocusMetering(MotionEvent event, Camera camera) {
+        TLog.e("Camera", "进入handleFocusMetering");
+        Camera.Parameters params = camera.getParameters();
+        Camera.Size previewSize = params.getPreviewSize();
+        Rect focusRect = calculateTapArea(event.getX(), event.getY(), 1f, previewSize);
+        Rect meteringRect = calculateTapArea(event.getX(), event.getY(), 1.5f, previewSize);
+
+        camera.cancelAutoFocus();
+
+        if (params.getMaxNumFocusAreas() > 0) {
+            List<Camera.Area> focusAreas = new ArrayList<>();
+            focusAreas.add(new Camera.Area(focusRect, 800));
+            params.setFocusAreas(focusAreas);
+        } else {
+            TLog.i(TAG, "focus areas not supported");
+        }
+        if (params.getMaxNumMeteringAreas() > 0) {
+            List<Camera.Area> meteringAreas = new ArrayList<>();
+            meteringAreas.add(new Camera.Area(meteringRect, 800));
+            params.setMeteringAreas(meteringAreas);
+        } else {
+            TLog.i(TAG, "metering areas not supported");
+        }
+        final String currentFocusMode = params.getFocusMode();
+        params.setFocusMode(Camera.Parameters.FOCUS_MODE_MACRO);
+        camera.setParameters(params);
+
+        camera.autoFocus(new Camera.AutoFocusCallback() {
+            @Override
+            public void onAutoFocus(boolean success, Camera camera) {
+                Camera.Parameters params = camera.getParameters();
+                params.setFocusMode(currentFocusMode);
+                camera.setParameters(params);
+            }
+        });
+    }
+
+
+    private float oldDist = 1f;
+
+    private static float getFingerSpacing(MotionEvent event) {
+        float x = event.getX(0) - event.getX(1);
+        float y = event.getY(0) - event.getY(1);
+        TLog.e("Camera", "getFingerSpacing ，计算距离 = " + (float) Math.sqrt(x * x + y * y));
+        return (float) Math.sqrt(x * x + y * y);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getPointerCount() == 1) {
+            if (camera != null) {
+                /*camera.startPreview();
+                handleFocusMetering(event, camera);*/
+            }
+        } else {
+            switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_POINTER_DOWN:
+                    oldDist = getFingerSpacing(event);
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    float newDist = getFingerSpacing(event);
+                    if (newDist > oldDist) {
+                        TLog.e("Camera", "进入放大手势");
+                        handleZoom(true, camera);
+                    } else if (newDist < oldDist) {
+                        TLog.e("Camera", "进入缩小手势");
+                        handleZoom(false, camera);
+                    }
+                    oldDist = newDist;
+                    break;
+                default:
+                    break;
+            }
+        }
+        return true;
+    }
+
+    private void handleZoom(boolean isZoomIn, Camera camera) {
+        TLog.e("Camera", "进入缩小放大方法");
+        Camera.Parameters params = camera.getParameters();
+        if (params.isZoomSupported()) {
+            int maxZoom = params.getMaxZoom();
+            int zoom = params.getZoom();
+            if (isZoomIn && zoom < maxZoom) {
+                TLog.e("Camera", "进入放大方法zoom=" + zoom);
+                zoom++;
+            } else if (zoom > 0) {
+                TLog.e("Camera", "进入缩小方法zoom=" + zoom);
+                zoom--;
+            }
+            params.setZoom(zoom);
+            camera.setParameters(params);
+        } else {
+            TLog.i(TAG, "zoom not supported");
+        }
+    }
+
     /**
      * Callback for monitoring events about {@link RxCameraView}.
      */
@@ -556,108 +651,10 @@ public class RxCameraView extends FrameLayout {
          * Called when a picture is taken.
          *
          * @param rxCameraView The associated {@link RxCameraView}.
-         * @param data       JPEG data.
+         * @param data         JPEG data.
          */
         public void onPictureTaken(RxCameraView rxCameraView, byte[] data) {
         }
-    }
-
-
-    private float oldDist = 1f;
-
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (event.getPointerCount() == 1) {
-            if (camera != null) {
-                /*camera.startPreview();
-                handleFocusMetering(event, camera);*/
-            }
-        } else {
-            switch (event.getAction() & MotionEvent.ACTION_MASK) {
-                case MotionEvent.ACTION_POINTER_DOWN:
-                    oldDist = getFingerSpacing(event);
-                    break;
-                case MotionEvent.ACTION_MOVE:
-                    float newDist = getFingerSpacing(event);
-                    if (newDist > oldDist) {
-                        Log.e("Camera", "进入放大手势");
-                        handleZoom(true, camera);
-                    } else if (newDist < oldDist) {
-                        Log.e("Camera", "进入缩小手势");
-                        handleZoom(false, camera);
-                    }
-                    oldDist = newDist;
-                    break;
-                default:
-                    break;
-            }
-        }
-        return true;
-    }
-
-    private void handleZoom(boolean isZoomIn, Camera camera) {
-        Log.e("Camera", "进入缩小放大方法");
-        Camera.Parameters params = camera.getParameters();
-        if (params.isZoomSupported()) {
-            int maxZoom = params.getMaxZoom();
-            int zoom = params.getZoom();
-            if (isZoomIn && zoom < maxZoom) {
-                Log.e("Camera", "进入放大方法zoom=" + zoom);
-                zoom++;
-            } else if (zoom > 0) {
-                Log.e("Camera", "进入缩小方法zoom=" + zoom);
-                zoom--;
-            }
-            params.setZoom(zoom);
-            camera.setParameters(params);
-        } else {
-            Log.i(TAG, "zoom not supported");
-        }
-    }
-
-    private static void handleFocusMetering(MotionEvent event, Camera camera) {
-        Log.e("Camera", "进入handleFocusMetering");
-        Camera.Parameters params = camera.getParameters();
-        Camera.Size previewSize = params.getPreviewSize();
-        Rect focusRect = calculateTapArea(event.getX(), event.getY(), 1f, previewSize);
-        Rect meteringRect = calculateTapArea(event.getX(), event.getY(), 1.5f, previewSize);
-
-        camera.cancelAutoFocus();
-
-        if (params.getMaxNumFocusAreas() > 0) {
-            List<Camera.Area> focusAreas = new ArrayList<>();
-            focusAreas.add(new Camera.Area(focusRect, 800));
-            params.setFocusAreas(focusAreas);
-        } else {
-            Log.i(TAG, "focus areas not supported");
-        }
-        if (params.getMaxNumMeteringAreas() > 0) {
-            List<Camera.Area> meteringAreas = new ArrayList<>();
-            meteringAreas.add(new Camera.Area(meteringRect, 800));
-            params.setMeteringAreas(meteringAreas);
-        } else {
-            Log.i(TAG, "metering areas not supported");
-        }
-        final String currentFocusMode = params.getFocusMode();
-        params.setFocusMode(Camera.Parameters.FOCUS_MODE_MACRO);
-        camera.setParameters(params);
-
-        camera.autoFocus(new Camera.AutoFocusCallback() {
-            @Override
-            public void onAutoFocus(boolean success, Camera camera) {
-                Camera.Parameters params = camera.getParameters();
-                params.setFocusMode(currentFocusMode);
-                camera.setParameters(params);
-            }
-        });
-    }
-
-    private static float getFingerSpacing(MotionEvent event) {
-        float x = event.getX(0) - event.getX(1);
-        float y = event.getY(0) - event.getY(1);
-        Log.e("Camera", "getFingerSpacing ，计算距离 = " + (float) Math.sqrt(x * x + y * y));
-        return (float) Math.sqrt(x * x + y * y);
     }
 
     private static Rect calculateTapArea(float x, float y, float coefficient, Camera.Size previewSize) {

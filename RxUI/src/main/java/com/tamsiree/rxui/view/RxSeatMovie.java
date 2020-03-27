@@ -19,7 +19,6 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -31,6 +30,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.tamsiree.rxkit.RxImageTool;
+import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxui.R;
 
 import java.util.ArrayList;
@@ -455,12 +455,12 @@ public class RxSeatMovie extends View {
             }
             canvas.drawBitmap(overviewBitmap, 0, 0, null);
             drawOverview(canvas);
-            Log.d("drawTime", "OverviewDrawTime:" + (System.currentTimeMillis() - s));
+            TLog.d("drawTime", "OverviewDrawTime:" + (System.currentTimeMillis() - s));
         }
 
         if (deBug) {
             long drawTime = System.currentTimeMillis() - startTime;
-            Log.d("drawTime", "totalDrawTime:" + drawTime);
+            TLog.d("drawTime", "totalDrawTime:" + drawTime);
         }
     }
 
@@ -652,7 +652,7 @@ public class RxSeatMovie extends View {
 
         if (deBug) {
             long drawTime = System.currentTimeMillis() - startTime;
-            Log.d("drawTime", "seatDrawTime:" + drawTime);
+            TLog.d("drawTime", "seatDrawTime:" + drawTime);
         }
     }
 
@@ -722,7 +722,7 @@ public class RxSeatMovie extends View {
         }
 
         if (deBug) {
-            Log.d("drawTest:", "top:" + top);
+            TLog.d("drawTest:", "top:" + top);
         }
     }
 
@@ -756,7 +756,7 @@ public class RxSeatMovie extends View {
 
         if (deBug) {
             long drawTime = System.currentTimeMillis() - startTime;
-            Log.d("drawTime", "drawNumberTime:" + drawTime);
+            TLog.d("drawTime", "drawNumberTime:" + drawTime);
         }
     }
 
@@ -1053,7 +1053,7 @@ public class RxSeatMovie extends View {
             zoom(zoom);
 
             if (deBug) {
-                Log.d("zoomTest", "zoom:" + zoom);
+                TLog.d("zoomTest", "zoom:" + zoom);
             }
         }
 

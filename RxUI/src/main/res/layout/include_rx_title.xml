@@ -22,7 +22,7 @@
             android:id="@+id/ll_icon_left_bg"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:gravity="start|center_vertical"
             android:orientation="horizontal">
 
             <ImageView
@@ -39,7 +39,8 @@
             android:id="@+id/tv_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingEnd="0dp"
             android:text="left"
             android:textColor="@color/white" />
 
@@ -56,7 +57,6 @@
             android:id="@+id/tv_rx_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:gravity="center"
             android:hint="标题"
             android:inputType="textMultiLine|textNoSuggestions"
@@ -65,7 +65,7 @@
             android:text="个人资料"
             android:textColor="@color/white"
             android:textColorHint="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="@dimen/sp_18" />
 
     </LinearLayout>
 
@@ -82,7 +82,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:paddingRight="10dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/dp_10"
             android:text="right"
             android:textColor="@color/white" />
 
@@ -90,7 +91,7 @@
             android:id="@+id/ll_icon_right_bg"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:gravity="end|center_vertical"
             android:orientation="horizontal">
 
             <ImageView

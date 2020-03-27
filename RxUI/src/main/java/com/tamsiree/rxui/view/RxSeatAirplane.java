@@ -1449,7 +1449,7 @@ public class RxSeatAirplane extends View {
         private void endGesture() {
             isScorllStart = false;
             isUpAndDown = false;
-//        Log.e("a", "AA:over");
+//        RxLogTool.e("a", "AA:over");
             moveOver();
         }
 
@@ -1520,7 +1520,7 @@ public class RxSeatAirplane extends View {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                                float velocityY) {
-//        Log.e("a", "AA:A" + velocityX + ":" + velocityY);
+//        RxLogTool.e("a", "AA:A" + velocityX + ":" + velocityY);
             if (isUpAndDown)
                 return false;
             if (e1.getX() - e2.getX() > FLING_MIN_DISTANCE

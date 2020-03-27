@@ -1,7 +1,6 @@
 package com.tamsiree.rxkit
 
 import android.annotation.SuppressLint
-import android.util.Log
 import com.tamsiree.rxkit.RxConstTool.DAY
 import com.tamsiree.rxkit.RxConstTool.HOUR
 import com.tamsiree.rxkit.RxConstTool.MIN
@@ -632,7 +631,7 @@ object RxTimeTool {
             date = sdf.parse(time)
             val l = date.time
             times = l
-            Log.d("时间戳", times.toString() + "")
+            TLog.d("时间戳", times.toString() + "")
         } catch (e: ParseException) {
             e.printStackTrace()
         }

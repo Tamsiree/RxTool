@@ -7,12 +7,12 @@ import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 
+import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxui.R;
 
 
@@ -189,14 +189,14 @@ public class WheelHorizontalView extends AbstractWheelView {
         super.onScrollTouchedUp();
         int cnt = mItemsLayout.getChildCount();
         View itm;
-        Log.e(LOG_TAG, " ----- layout: " + mItemsLayout.getMeasuredWidth() + mItemsLayout.getMeasuredHeight());
-        Log.e(LOG_TAG, " -------- dumping " + cnt + " items");
+        TLog.e(LOG_TAG, " ----- layout: " + mItemsLayout.getMeasuredWidth() + mItemsLayout.getMeasuredHeight());
+        TLog.e(LOG_TAG, " -------- dumping " + cnt + " items");
         for (int i = 0; i < cnt; i++) {
             itm = mItemsLayout.getChildAt(i);
-            Log.e(LOG_TAG, " item #" + i + ": " + itm.getWidth() + "x" + itm.getHeight());
+            TLog.e(LOG_TAG, " item #" + i + ": " + itm.getWidth() + "x" + itm.getHeight());
             itm.forceLayout(); // forcing layout without re-rendering parent
         }
-        Log.e(LOG_TAG, " ---------- dumping finished ");
+        TLog.e(LOG_TAG, " ---------- dumping finished ");
     }
 
 

@@ -19,7 +19,6 @@ import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.text.TextUtils
 import android.util.DisplayMetrics
-import android.util.Log
 import android.util.Xml
 import android.view.Surface
 import android.view.WindowManager
@@ -100,7 +99,7 @@ object RxDeviceTool {
             val phoneName = Build.MODEL
             //品牌 例如：samsung
             val manuFacturer = Build.MANUFACTURER
-            Log.d("详细序列号", "$manuFacturer-$phoneName-$serialNumber")
+            TLog.d("详细序列号", "$manuFacturer-$phoneName-$serialNumber")
             return "$manuFacturer-$phoneName-$serialNumber"
         }
 
@@ -551,7 +550,7 @@ object RxDeviceTool {
             val entry = ite.next() as Map.Entry<*, *>
             val key = entry.key!!
             val value = entry.value!!
-            Log.d("MSG_AUTH_COMPLETE", "$key： $value")
+            TLog.d("MSG_AUTH_COMPLETE", "$key： $value")
         }
     }
 
@@ -610,7 +609,7 @@ object RxDeviceTool {
                 buf.append(String.format("%02X", b))
             }
             macAddress = buf.toString()
-            Log.d("mac", "interfaceName=" + networkInterface.name + ", mac=" + macAddress)
+            TLog.d("mac", "interfaceName=" + networkInterface.name + ", mac=" + macAddress)
             macAddress = macAddress.replace(":", "")
             return macAddress
         }
@@ -842,7 +841,7 @@ object RxDeviceTool {
      */
     @JvmStatic
     fun getContantNum(context: Activity) {
-        Log.i("tips", "U should copy the following code.")
+        TLog.i("tips", "U should copy the following code.")
         val intent = Intent()
         intent.action = "android.intent.action.PICK"
         intent.type = "vnd.android.cursor.dir/phone_v2"

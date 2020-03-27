@@ -10,7 +10,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.provider.Settings
-import android.util.Log
 import com.tamsiree.rxkit.RxDataTool.Companion.isNullString
 import java.util.*
 
@@ -51,7 +50,7 @@ object RxProcessTool {
                         context.startActivity(intent)
                     }
                     if (aom.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, info.uid, info.packageName) != AppOpsManager.MODE_ALLOWED) {
-                        Log.d("getForegroundApp", "没有打开\"有权查看使用权限的应用\"选项")
+                        TLog.d("getForegroundApp", "没有打开\"有权查看使用权限的应用\"选项")
                         return null
                     }
                     val usageStatsManager = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
@@ -70,7 +69,7 @@ object RxProcessTool {
                     e.printStackTrace()
                 }
             } else {
-                Log.d("getForegroundApp", "无\"有权查看使用权限的应用\"选项")
+                TLog.d("getForegroundApp", "无\"有权查看使用权限的应用\"选项")
             }
         }
         return null

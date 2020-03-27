@@ -6,7 +6,6 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.graphics.PointF
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
@@ -26,6 +25,7 @@ import com.tamsiree.rxdemo.view.RxDialogShopCart.ShopCartDialogImp
 import com.tamsiree.rxdemo.view.RxFakeAddImageView
 import com.tamsiree.rxdemo.view.RxPointFTypeEvaluator
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxui.activity.ActivityBase
 import kotlinx.android.synthetic.main.activity_elme.*
 import kotlinx.android.synthetic.main.right_menu_item.*
@@ -76,12 +76,12 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
                         if (dy > 0 && right_menu_item.translationY <= 1 && right_menu_item.translationY >= -1 * right_menu_item.measuredHeight * 4 / 5 && !leftClickType) { // underView.getTop()>9
                             val dealtY = underView.top - right_menu_item.measuredHeight
                             right_menu_item.translationY = dealtY.toFloat()
-                            //                            Log.e(TAG, "onScrolled: "+headerLayout.getTranslationY()+"   "+headerLayout.getBottom()+"  -  "+headerLayout.getMeasuredHeight() );
+                            //                            RxLogTool.e(TAG, "onScrolled: "+headerLayout.getTranslationY()+"   "+headerLayout.getBottom()+"  -  "+headerLayout.getMeasuredHeight() );
                         } else if (dy < 0 && right_menu_item.translationY <= 0 && !leftClickType) {
                             right_menu_tv.text = menu?.menuName
                             val dealtY = underView.bottom - right_menu_item.measuredHeight
                             right_menu_item.translationY = dealtY.toFloat()
-                            //                            Log.e(TAG, "onScrolled: "+headerLayout.getTranslationY()+"   "+headerLayout.getBottom()+"  -  "+headerLayout.getMeasuredHeight() );
+                            //                            RxLogTool.e(TAG, "onScrolled: "+headerLayout.getTranslationY()+"   "+headerLayout.getBottom()+"  -  "+headerLayout.getMeasuredHeight() );
                         } else {
                             right_menu_item.translationY = 0f
                             headMenu = menu
@@ -95,7 +95,7 @@ class ActivityELMe : ActivityBase(), onItemSelectedListener, ShopCartInterface, 
                             if (leftClickType) {
                                 leftClickType = false
                             }
-                            Log.e(TAG, "onScrolled: " + menu?.menuName)
+                            TLog.e(TAG, "onScrolled: " + menu?.menuName)
                         }
                     }
                 }

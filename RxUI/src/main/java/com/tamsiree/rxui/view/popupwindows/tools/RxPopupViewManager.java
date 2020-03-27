@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.graphics.Outline;
 import android.graphics.Point;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.TextView;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.tamsiree.rxkit.RxAnimationTool;
+import com.tamsiree.rxkit.TLog;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,12 +57,12 @@ public class RxPopupViewManager {
     private View create(RxPopupView rxPopupView) {
 
         if (rxPopupView.getAnchorView() == null) {
-            Log.e(TAG, "Unable to create a tip, anchor view is null");
+            TLog.e(TAG, "Unable to create a tip, anchor view is null");
             return null;
         }
 
         if (rxPopupView.getRootView() == null) {
-            Log.e(TAG, "Unable to create a tip, root layout is null");
+            TLog.e(TAG, "Unable to create a tip, root layout is null");
             return null;
         }
 

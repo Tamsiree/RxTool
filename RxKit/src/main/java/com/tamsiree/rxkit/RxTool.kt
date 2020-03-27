@@ -42,6 +42,7 @@ import java.util.regex.PatternSyntaxException
  * 永远不要哭啼，永远不要说再见，永远不要说谎来伤害自己。
  */
 object RxTool {
+
     @SuppressLint("StaticFieldLeak")
     private var context: Context? = null
     private var lastClickTime: Long = 0
@@ -52,10 +53,11 @@ object RxTool {
      * @param context 上下文
      */
     @JvmStatic
-    fun init(context: Context) {
+    fun init(context: Context): RxTool {
         RxTool.context = context.applicationContext
         //        RxCrashTool.init(context);
-        RxLogTool.init(context)
+        TLog.init(context)
+        return RxTool
     }
 
     /**
@@ -74,6 +76,14 @@ object RxTool {
         throw NullPointerException("请先调用init()方法")
     }
 
+    fun debugLog(switch: Boolean): RxTool {
+        TLog.switchLog(switch)
+        return RxTool
+    }
+
+    fun debugLogFile(switch: Boolean) {
+        TLog.switch2File(switch)
+    }
 
     //----------------------------------------------------------------------------------------------延时任务封装 start
     @JvmStatic

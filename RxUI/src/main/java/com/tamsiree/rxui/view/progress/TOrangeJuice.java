@@ -137,7 +137,7 @@ public class TOrangeJuice extends View {
         mCurrentProgressPosition = mProgressWidth * mProgress / TOTAL_PROGRESS;
         // 即当前位置在图中所示1范围内
         if (mCurrentProgressPosition < mArcRadius) {
-//            Log.i(TAG, "mProgress = " + mProgress + "---mCurrentProgressPosition = " + mCurrentProgressPosition + "--mArcProgressWidth" + mArcRadius);
+//            RxLogTool.i(TAG, "mProgress = " + mProgress + "---mCurrentProgressPosition = " + mCurrentProgressPosition + "--mArcProgressWidth" + mArcRadius);
             // 1.绘制白色ARC，绘制orange ARC
             // 2.绘制白色矩形
 
@@ -159,10 +159,10 @@ public class TOrangeJuice extends View {
             int startAngle = 180 - angle;
             // 扫过的角度
             int sweepAngle = 2 * angle;
-//            Log.i(TAG, "startAngle = " + startAngle);
+//            RxLogTool.i(TAG, "startAngle = " + startAngle);
             canvas.drawArc(mArcRectF, startAngle, sweepAngle, false, mOrangePaint);
         } else {
-//            Log.i(TAG, "mProgress = " + mProgress + "---transfer-----mCurrentProgressPosition = " + mCurrentProgressPosition + "--mArcProgressWidth" + mArcRadius);
+//            RxLogTool.i(TAG, "mProgress = " + mProgress + "---transfer-----mCurrentProgressPosition = " + mCurrentProgressPosition + "--mArcProgressWidth" + mArcRadius);
             // 1.绘制white RECT
             // 2.绘制Orange ARC
             // 3.绘制orange RECT
@@ -203,7 +203,7 @@ public class TOrangeJuice extends View {
                 Matrix matrix = new Matrix();
                 float transX = mLeftMargin + orange_pulp.x;
                 float transY = mLeftMargin + orange_pulp.y;
-//                Log.i(TAG, "left.x = " + orange_pulp.x + "--orange_pulp.y=" + orange_pulp.y);
+//                RxLogTool.i(TAG, "left.x = " + orange_pulp.x + "--orange_pulp.y=" + orange_pulp.y);
                 matrix.postTranslate(transX, transY);
                 // 通过时间关联旋转角度，则可以直接通过修改LEAF_ROTATE_TIME调节叶子旋转快慢
                 float rotateFraction = ((currentTime - orange_pulp.startTime) % mLeafRotateTime)
@@ -257,7 +257,7 @@ public class TOrangeJuice extends View {
             default:
                 break;
         }
-//        Log.i(TAG, "---a = " + a + "---w = " + w + "--orange_pulp.x = " + orange_pulp.x);
+//        RxLogTool.i(TAG, "---a = " + a + "---w = " + w + "--orange_pulp.x = " + orange_pulp.x);
         return (int) (a * Math.sin(w * orange_pulp.x)) + mArcRadius * 2 / 3;
     }
 

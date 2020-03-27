@@ -1,7 +1,6 @@
 package com.tamsiree.rxkit
 
 import android.content.Context
-import android.util.Log
 import java.io.*
 
 /**
@@ -35,9 +34,9 @@ object RxDBTool {
             output.flush()
             output.close()
             input.close()
-            Log.i(TAG, "mv success!")
+            TLog.i(TAG, "mv success!")
         } catch (e: IOException) {
-            Log.e(TAG, e.toString())
+            TLog.e(TAG, e.toString())
         }
     }
 }

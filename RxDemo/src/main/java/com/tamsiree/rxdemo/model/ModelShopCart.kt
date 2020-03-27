@@ -1,6 +1,6 @@
 package com.tamsiree.rxdemo.model
 
-import android.util.Log
+import com.tamsiree.rxkit.TLog
 import java.util.*
 
 /**
@@ -28,7 +28,7 @@ class ModelShopCart {
         }
         num += 1
         shoppingSingle[modelDish] = num
-        Log.e("TAG", "addShoppingSingle: " + shoppingSingle[modelDish])
+        TLog.e("TAG", "addShoppingSingle: " + shoppingSingle[modelDish])
         shoppingTotalPrice += modelDish.dishPrice
         shoppingAccount++
         return true

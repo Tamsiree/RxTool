@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.location.*
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.tamsiree.rxkit.model.Gps
@@ -502,9 +501,9 @@ object RxLocationTool {
                 mListener!!.onStatusChanged(provider, status, extras)
             }
             when (status) {
-                LocationProvider.AVAILABLE -> Log.d("onStatusChanged", "当前GPS状态为可见状态")
-                LocationProvider.OUT_OF_SERVICE -> Log.d("onStatusChanged", "当前GPS状态为服务区外状态")
-                LocationProvider.TEMPORARILY_UNAVAILABLE -> Log.d("onStatusChanged", "当前GPS状态为暂停服务状态")
+                LocationProvider.AVAILABLE -> TLog.d("onStatusChanged", "当前GPS状态为可见状态")
+                LocationProvider.OUT_OF_SERVICE -> TLog.d("onStatusChanged", "当前GPS状态为服务区外状态")
+                LocationProvider.TEMPORARILY_UNAVAILABLE -> TLog.d("onStatusChanged", "当前GPS状态为暂停服务状态")
                 else -> {
                 }
             }

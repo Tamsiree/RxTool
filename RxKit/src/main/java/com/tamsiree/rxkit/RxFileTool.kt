@@ -30,7 +30,6 @@ import android.os.StatFs
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Base64
-import android.util.Log
 import androidx.core.content.FileProvider
 import com.tamsiree.rxkit.RxConstTool.KB
 import com.tamsiree.rxkit.RxDataTool.Companion.byte2FitSize
@@ -718,7 +717,7 @@ class RxFileTool {
                     }
                     fc.close()
                 }
-                Log.d(TAG, "拼接完成")
+                TLog.d(TAG, "拼接完成")
             } catch (ioe: IOException) {
                 ioe.printStackTrace()
             } finally {
@@ -752,7 +751,7 @@ class RxFileTool {
                 while (reader.readLine().also { line = it } != null) {
                     if (line.length > 0 && line.startsWith("http://")) {
                         //replce 这行的内容
-//                    Log.d("ts替换", line + "  replce  " + pathList.get(num).getAbsolutePath());
+//                    RxLogTool.d("ts替换", line + "  replce  " + pathList.get(num).getAbsolutePath());
                         buf.append("""
     file:${pathList[num].absolutePath}
 
@@ -767,7 +766,7 @@ class RxFileTool {
                 }
                 `in`!!.close()
                 write(file!!.absolutePath, buf.toString())
-                Log.d("ts替换", "ts替换完成")
+                TLog.d("ts替换", "ts替换完成")
             } catch (e1: FileNotFoundException) {
                 e1.printStackTrace()
             } catch (e1: IOException) {
@@ -790,7 +789,7 @@ class RxFileTool {
                 bw = BufferedWriter(FileWriter(filePath))
                 // 将内容写入文件中
                 bw.write(content)
-                //            Log.d("M3U8替换", "替换完成");
+                //            RxLogTool.d("M3U8替换", "替换完成");
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {
@@ -2255,9 +2254,9 @@ class RxFileTool {
                 output.flush()
                 output.close()
                 input.close()
-                Log.i("TAG", "mv success!")
+                TLog.i("TAG", "mv success!")
             } catch (var8: IOException) {
-                Log.e("TAG", var8.toString())
+                TLog.e("TAG", var8.toString())
             }
         }
     }

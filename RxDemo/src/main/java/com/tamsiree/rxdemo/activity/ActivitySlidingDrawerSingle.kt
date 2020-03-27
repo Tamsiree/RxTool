@@ -2,7 +2,6 @@ package com.tamsiree.rxdemo.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.widget.ProgressBar
@@ -12,6 +11,7 @@ import com.tamsiree.rxkit.RxBarTool
 import com.tamsiree.rxkit.RxConstants
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxkit.RxWebViewTool
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxkit.interfaces.OnWebViewLoad
 import com.tamsiree.rxui.activity.ActivityBase
 import kotlinx.android.synthetic.main.activity_sliding_drawer_single.*
@@ -89,6 +89,6 @@ class ActivitySlidingDrawerSingle : ActivityBase() {
         }
 
         web_base?.loadUrl(webPath)
-        Log.v("帮助类完整连接", webPath)
+        TLog.v("帮助类完整连接", webPath)
     }
 }

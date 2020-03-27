@@ -10,12 +10,12 @@ import android.graphics.Color;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.LinearInterpolator;
 
+import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxui.R;
 import com.tamsiree.rxui.view.likeview.tools.RxPorterShapeImageView;
 import com.tamsiree.rxui.view.likeview.tools.RxShineView;
@@ -218,21 +218,21 @@ public class RxShineButton extends RxPorterShapeImageView {
 
     public void showAnim() {
         if (activity != null) {
-            final ViewGroup rootView = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
+            final ViewGroup rootView = activity.findViewById(Window.ID_ANDROID_CONTENT);
             mRxShineView = new RxShineView(activity, this, shineParams);
             rootView.addView(mRxShineView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             doShareAnim();
         } else {
-            Log.e(TAG, "Please init.");
+            TLog.e(TAG, "Please init.");
         }
     }
 
     public void removeView(View view) {
         if (activity != null) {
-            final ViewGroup rootView = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
+            final ViewGroup rootView = activity.findViewById(Window.ID_ANDROID_CONTENT);
             rootView.removeView(view);
         } else {
-            Log.e(TAG, "Please init.");
+            TLog.e(TAG, "Please init.");
         }
     }
 

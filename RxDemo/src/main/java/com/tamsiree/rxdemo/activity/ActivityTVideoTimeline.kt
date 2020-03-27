@@ -2,10 +2,10 @@ package com.tamsiree.rxdemo.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.tamsiree.rxdemo.R
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxui.activity.ActivityBase
 import com.tamsiree.rxui.view.timeline.video.TRecordDataExistTimeSection
 import com.tamsiree.rxui.view.timeline.video.TVideoTimeline.OnBarMoveListener
@@ -75,16 +75,16 @@ class ActivityTVideoTimeline : ActivityBase(), View.OnClickListener {
         })
         my_timebar_view.setOnBarScaledListener(object : OnBarScaledListener {
             override fun onOnBarScaledMode(mode: Int) {
-                Log.d(TAG, "onOnBarScaledMode()$mode")
+                TLog.d(TAG, "onOnBarScaledMode()$mode")
             }
 
             override fun onBarScaled(screenLeftTime: Long, screenRightTime: Long, currentTime: Long) {
                 current_time_tv.text = zeroTimeFormat.format(currentTime)
-                Log.d(TAG, "onBarScaled()")
+                TLog.d(TAG, "onBarScaled()")
             }
 
             override fun onBarScaleFinish(screenLeftTime: Long, screenRightTime: Long, currentTime: Long) {
-                Log.d(TAG, "onBarScaleFinish()")
+                TLog.d(TAG, "onBarScaleFinish()")
             }
         })
     }

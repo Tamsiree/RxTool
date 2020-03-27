@@ -12,13 +12,13 @@ import java.util.*
  * @author tamsiree
  * @date 2016/1/24
  */
-object RxLogTool {
+object TLog {
     private val LOG_FORMAT = SimpleDateFormat("yyyy年MM月dd日_HH点mm分ss秒") // 日志的输出格式
     private val FILE_SUFFIX = SimpleDateFormat("HH点mm分ss秒") // 日志文件格式
     private val FILE_DIR = SimpleDateFormat("yyyy年MM月dd日") // 日志文件格式
-    private const val LOG_SWITCH = true // 日志文件总开关
-    private const val LOG_TO_FILE = true // 日志写入文件开关
-    private const val LOG_TAG = "RxLogTool" // 默认的tag
+    private var LOG_SWITCH = true // 日志文件总开关
+    private var LOG_TO_FILE = true // 日志写入文件开关
+    private const val LOG_TAG = "TLog" // 默认的tag
     private const val LOG_TYPE = 'v' // 输入日志类型，v代表输出所有信息,w则只输出警告...
     private const val LOG_SAVE_DAYS = 7 // sd卡中日志文件的最多保存天数
     private var LOG_FILE_PATH // 日志文件保存路径
@@ -30,6 +30,14 @@ object RxLogTool {
     fun init(context: Context) { // 在Application中初始化
         LOG_FILE_PATH = rootPath!!.path + File.separator + context.packageName + File.separator + "Log"
         LOG_FILE_NAME = "RxLogTool_"
+    }
+
+    fun switchLog(switch: Boolean) {
+        this.LOG_SWITCH = switch
+    }
+
+    fun switch2File(switch: Boolean) {
+        this.LOG_TO_FILE = switch
     }
 
     /****************************
@@ -70,7 +78,7 @@ object RxLogTool {
 
     @JvmOverloads
     @JvmStatic
-    fun d(tag: String, msg: Any, tr: Throwable? = null): File {
+    fun d(tag: String, msg: Any?, tr: Throwable? = null): File {
         return log(tag, msg.toString(), tr, 'd')
     }
 

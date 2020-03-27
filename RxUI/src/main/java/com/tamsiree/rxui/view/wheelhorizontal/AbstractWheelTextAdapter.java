@@ -2,12 +2,13 @@ package com.tamsiree.rxui.view.wheelhorizontal;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.tamsiree.rxkit.TLog;
 
 /**
  * @author tamsiree
@@ -264,10 +265,10 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
             if (textResource == NO_RESOURCE && view instanceof TextView) {
                 text = (TextView) view;
             } else if (textResource != NO_RESOURCE) {
-                text = (TextView) view.findViewById(textResource);
+                text = view.findViewById(textResource);
             }
         } catch (ClassCastException e) {
-            Log.e("AbstractWheelAdapter", "You must supply a resource ID for a TextView");
+            TLog.e("AbstractWheelAdapter", "You must supply a resource ID for a TextView");
             throw new IllegalStateException(
                     "AbstractWheelAdapter requires the resource ID to be a TextView", e);
         }

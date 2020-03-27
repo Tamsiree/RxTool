@@ -19,12 +19,12 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 
+import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxui.R;
 
 import java.util.Random;
@@ -171,7 +171,7 @@ public class RxSwipeCaptcha extends AppCompatImageView {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float animatedValue = (float) animation.getAnimatedValue();
-                Log.d(TAG, "onAnimationUpdate: " + animatedValue);
+                TLog.d(TAG, "onAnimationUpdate: " + animatedValue);
                 isDrawMask = !(animatedValue < 0.5f);
                 invalidate();
             }
@@ -244,7 +244,7 @@ public class RxSwipeCaptcha extends AppCompatImageView {
         //随机生成验证码阴影左上角 x y 点，
         mCaptchaX = mRandom.nextInt(Math.abs(mWidth - mCaptchaWidth - gap));
         mCaptchaY = mRandom.nextInt(Math.abs(mHeight - mCaptchaHeight - gap));
-        Log.d(TAG, "createCaptchaPath() called mWidth:" + mWidth + ", mHeight:" + mHeight + ", mCaptchaX:" + mCaptchaX + ", mCaptchaY:" + mCaptchaY);
+        TLog.d(TAG, "createCaptchaPath() called mWidth:" + mWidth + ", mHeight:" + mHeight + ", mCaptchaX:" + mCaptchaX + ", mCaptchaY:" + mCaptchaY);
 
         mCaptchaPath.reset();
         mCaptchaPath.lineTo(0, 0);
@@ -321,8 +321,8 @@ public class RxSwipeCaptcha extends AppCompatImageView {
     private Bitmap getMaskBitmap(Bitmap mBitmap, Path mask) {
         //以控件宽高 create一块bitmap
         Bitmap tempBitmap = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
-        Log.e(TAG, " getMaskBitmap: width:" + mBitmap.getWidth() + ",  height:" + mBitmap.getHeight());
-        Log.e(TAG, " View: width:" + mWidth + ",  height:" + mHeight);
+        TLog.e(TAG, " getMaskBitmap: width:" + mBitmap.getWidth() + ",  height:" + mBitmap.getHeight());
+        TLog.e(TAG, " View: width:" + mWidth + ",  height:" + mHeight);
         //把创建的bitmap作为画板
         Canvas mCanvas = new Canvas(tempBitmap);
         //有锯齿 且无法解决,所以换成XFermode的方法做
@@ -390,12 +390,12 @@ public class RxSwipeCaptcha extends AppCompatImageView {
         if (null != onCaptchaMatchCallback && isMatchMode) {
             //这里验证逻辑，是通过比较，拖拽的距离 和 验证码起点x坐标。 默认3dp以内算是验证成功。
             if (Math.abs(mDragerOffset - mCaptchaX) < mMatchDeviation) {
-                Log.d(TAG, "matchCaptcha() true: mDragerOffset:" + mDragerOffset + ", mCaptchaX:" + mCaptchaX);
+                TLog.d(TAG, "matchCaptcha() true: mDragerOffset:" + mDragerOffset + ", mCaptchaX:" + mCaptchaX);
                 //matchSuccess();
                 //成功的动画
                 mSuccessAnim.start();
             } else {
-                Log.e(TAG, "matchCaptcha() false: mDragerOffset:" + mDragerOffset + ", mCaptchaX:" + mCaptchaX);
+                TLog.e(TAG, "matchCaptcha() false: mDragerOffset:" + mDragerOffset + ", mCaptchaX:" + mCaptchaX);
                 mFailAnim.start();
                 //matchFailed();
             }

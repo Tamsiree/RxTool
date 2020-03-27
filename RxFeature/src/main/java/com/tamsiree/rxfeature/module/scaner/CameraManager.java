@@ -195,7 +195,7 @@ public final class CameraManager {
     public void requestAutoFocus(Handler handler, int message) {
         if (camera != null && previewing) {
             autoFocusCallback.setHandler(handler, message);
-            //Log.d(TAG, "Requesting auto-focus callback");
+            //TLogd(TAG, "Requesting auto-focus callback");
             camera.autoFocus(autoFocusCallback);
         }
     }

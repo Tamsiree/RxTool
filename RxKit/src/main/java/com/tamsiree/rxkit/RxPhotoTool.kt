@@ -10,7 +10,6 @@ import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
-import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -172,7 +171,7 @@ object RxPhotoTool {
                 imageFilePath[0] = context.contentResolver.insert(MediaStore.Images.Media.INTERNAL_CONTENT_URI, values)
             }
         }
-        Log.i("", "生成的照片输出路径：" + imageFilePath[0].toString())
+        TLog.i("", "生成的照片输出路径：" + imageFilePath[0].toString())
         return imageFilePath[0]
     }
 

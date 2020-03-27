@@ -2,7 +2,6 @@ package com.tamsiree.rxarcgiskit.tool
 
 import android.content.Context
 import android.location.Location
-import android.util.Log
 import android.widget.TextView
 import com.esri.arcgisruntime.ArcGISRuntimeEnvironment
 import com.esri.arcgisruntime.concurrent.ListenableFuture
@@ -32,6 +31,7 @@ import com.tamsiree.rxkit.RxImageTool.dp2px
 import com.tamsiree.rxkit.RxLocationTool.GPS84ToGCJ02
 import com.tamsiree.rxkit.RxMapTool.screenPixelToMetre
 import com.tamsiree.rxkit.RxSPTool.getContent
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxkit.model.Gps
 import com.tamsiree.rxkit.view.RxToast
 import java.io.File
@@ -278,7 +278,7 @@ object RxArcGisMapTool {
                 }
             } else {
                 //log an issue if the mobile map package fails to load
-                Log.e("TAG", mMobileMapPackage.loadError.message)
+                TLog.e(mMobileMapPackage.loadError.message!!)
             }
         }
     }

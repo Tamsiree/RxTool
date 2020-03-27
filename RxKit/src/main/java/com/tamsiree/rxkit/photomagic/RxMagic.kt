@@ -9,6 +9,7 @@ import android.text.TextUtils
 import android.util.Log
 import androidx.annotation.UiThread
 import androidx.annotation.WorkerThread
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxkit.photomagic.Checker.checkSuffix
 import com.tamsiree.rxkit.photomagic.Checker.isImage
 import com.tamsiree.rxkit.photomagic.Checker.isNeedCompress
@@ -68,7 +69,7 @@ class RxMagic private constructor(builder: Builder) : Handler.Callback {
             } else result
         }
         if (Log.isLoggable(TAG, Log.ERROR)) {
-            Log.e(TAG, "default disk cache dir is null")
+            TLog.e(TAG, "default disk cache dir is null")
         }
         return null
     }

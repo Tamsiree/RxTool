@@ -8,7 +8,6 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.media.ThumbnailUtils
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.WindowManager
 import android.widget.ImageView
 import androidx.exifinterface.media.ExifInterface
@@ -1538,7 +1537,7 @@ object RxImageTool {
         matrix.postScale(scaleWidth, scaleHeight)
         val bitmap = Bitmap.createBitmap(bgimage, 0, 0, width.toInt(),
                 height.toInt(), matrix, true)
-        Log.e("tag", (bitmap.height + bitmap.width).toString() + "d")
+        TLog.e("tag", (bitmap.height + bitmap.width).toString() + "d")
         return bitmap
     }
 
@@ -1617,7 +1616,7 @@ object RxImageTool {
                 val bu = outputStream.toByteArray()
                 return BitmapFactory.decodeByteArray(bu, 0, bu.size)
             } else {
-                RxLogTool.d("网络连接失败----" + httpURLConnection.responseCode)
+                TLog.d("网络连接失败----" + httpURLConnection.responseCode)
             }
         } catch (e: Exception) {
 

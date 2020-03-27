@@ -14,11 +14,12 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
-import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.Surface;
 
 import androidx.annotation.NonNull;
+
+import com.tamsiree.rxkit.TLog;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
@@ -50,6 +51,62 @@ class Camera2 extends CameraViewImpl {
 
     private final CameraManager mCameraManager;
 
+    PictureCaptureCallback mCaptureCallback = new PictureCaptureCallback() {
+
+        @Override
+        public void onPrecaptureRequired() {
+            mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER,
+                    CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER_START);
+            setState(STATE_PRECAPTURE);
+            try {
+                mCaptureSession.capture(mPreviewRequestBuilder.build(), this, null);
+                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER,
+                        CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER_IDLE);
+            } catch (CameraAccessException e) {
+                TLog.e(TAG, "Failed to run precapture sequence.", e);
+            }
+        }
+
+        @Override
+        public void onReady() {
+            captureStillPicture();
+        }
+
+    };
+    private final CameraCaptureSession.StateCallback mSessionCallback
+            = new CameraCaptureSession.StateCallback() {
+
+        @Override
+        public void onConfigured(@NonNull CameraCaptureSession session) {
+            if (mCamera == null) {
+                return;
+            }
+            mCaptureSession = session;
+            updateAutoFocus();
+            updateFlash();
+            try {
+                mCaptureSession.setRepeatingRequest(mPreviewRequestBuilder.build(),
+                        mCaptureCallback, null);
+            } catch (CameraAccessException e) {
+                TLog.e(TAG, "Failed to start camera preview because it couldn't access camera", e);
+            } catch (IllegalStateException e) {
+                TLog.e(TAG, "Failed to start camera preview.", e);
+            }
+        }
+
+        @Override
+        public void onConfigureFailed(@NonNull CameraCaptureSession session) {
+            TLog.e(TAG, "Failed to configure capture session.");
+        }
+
+        @Override
+        public void onClosed(@NonNull CameraCaptureSession session) {
+            if (mCaptureSession != null && mCaptureSession.equals(session)) {
+                mCaptureSession = null;
+            }
+        }
+
+    };
     private final CameraDevice.StateCallback mCameraDeviceCallback
             = new CameraDevice.StateCallback() {
 
@@ -72,66 +129,8 @@ class Camera2 extends CameraViewImpl {
 
         @Override
         public void onError(@NonNull CameraDevice camera, int error) {
-            Log.e(TAG, "onError: " + camera.getId() + " (" + error + ")");
+            TLog.e(TAG, "onError: " + camera.getId() + " (" + error + ")");
             mCamera = null;
-        }
-
-    };
-
-    private final CameraCaptureSession.StateCallback mSessionCallback
-            = new CameraCaptureSession.StateCallback() {
-
-        @Override
-        public void onConfigured(@NonNull CameraCaptureSession session) {
-            if (mCamera == null) {
-                return;
-            }
-            mCaptureSession = session;
-            updateAutoFocus();
-            updateFlash();
-            try {
-                mCaptureSession.setRepeatingRequest(mPreviewRequestBuilder.build(),
-                        mCaptureCallback, null);
-            } catch (CameraAccessException e) {
-                Log.e(TAG, "Failed to start camera preview because it couldn't access camera", e);
-            } catch (IllegalStateException e) {
-                Log.e(TAG, "Failed to start camera preview.", e);
-            }
-        }
-
-        @Override
-        public void onConfigureFailed(@NonNull CameraCaptureSession session) {
-            Log.e(TAG, "Failed to configure capture session.");
-        }
-
-        @Override
-        public void onClosed(@NonNull CameraCaptureSession session) {
-            if (mCaptureSession != null && mCaptureSession.equals(session)) {
-                mCaptureSession = null;
-            }
-        }
-
-    };
-
-    PictureCaptureCallback mCaptureCallback = new PictureCaptureCallback() {
-
-        @Override
-        public void onPrecaptureRequired() {
-            mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER,
-                    CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER_START);
-            setState(STATE_PRECAPTURE);
-            try {
-                mCaptureSession.capture(mPreviewRequestBuilder.build(), this, null);
-                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER,
-                        CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER_IDLE);
-            } catch (CameraAccessException e) {
-                Log.e(TAG, "Failed to run precapture sequence.", e);
-            }
-        }
-
-        @Override
-        public void onReady() {
-            captureStillPicture();
         }
 
     };
@@ -571,7 +570,7 @@ class Camera2 extends CameraViewImpl {
             mCaptureCallback.setState(PictureCaptureCallback.STATE_LOCKING);
             mCaptureSession.capture(mPreviewRequestBuilder.build(), mCaptureCallback, null);
         } catch (CameraAccessException e) {
-            Log.e(TAG, "Failed to lock focus.", e);
+            TLog.e(TAG, "Failed to lock focus.", e);
         }
     }
 
@@ -631,7 +630,7 @@ class Camera2 extends CameraViewImpl {
                         }
                     }, null);
         } catch (CameraAccessException e) {
-            Log.e(TAG, "Cannot capture a still picture.", e);
+            TLog.e(TAG, "Cannot capture a still picture.", e);
         }
     }
 
@@ -652,7 +651,7 @@ class Camera2 extends CameraViewImpl {
                     null);
             mCaptureCallback.setState(PictureCaptureCallback.STATE_PREVIEW);
         } catch (CameraAccessException e) {
-            Log.e(TAG, "Failed to restart camera preview.", e);
+            TLog.e(TAG, "Failed to restart camera preview.", e);
         }
     }
 

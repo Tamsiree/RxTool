@@ -16,7 +16,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentActivity
 import com.tamsiree.rxkit.R
 import com.tamsiree.rxkit.RxAppTool
-import com.tamsiree.rxkit.RxLogTool
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxkit.crash.RxCrashTool
 
 class ActivityCrash : FragmentActivity() {
@@ -54,7 +54,7 @@ class ActivityCrash : FragmentActivity() {
             closeButton.visibility = View.GONE
         }
         val message = RxCrashTool.getAllErrorDetailsFromIntent(this@ActivityCrash, intent)
-        val file = RxLogTool.e(message)
+        val file = TLog.e(message)
         val appName = RxAppTool.getAppName(this)
         tvCrashTool.text = appName
         val locateButton = findViewById<TextView>(R.id.crash_error_locate_more_info_button)

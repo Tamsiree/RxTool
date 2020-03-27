@@ -38,6 +38,7 @@ class TBlurView : AppCompatImageView {
      * 单位是 ms 毫秒
      */
     var delayTime: Long = 200
+
     private lateinit var mContext: Context
 
     constructor(context: Context) : super(context) {

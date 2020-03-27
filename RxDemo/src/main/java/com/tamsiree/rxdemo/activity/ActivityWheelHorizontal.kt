@@ -1,11 +1,11 @@
 package com.tamsiree.rxdemo.activity
 
 import android.os.Bundle
-import android.util.Log
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxBarTool.noTitle
 import com.tamsiree.rxkit.RxDataTool.Companion.stringToInt
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxui.activity.ActivityBase
 import com.tamsiree.rxui.view.RxRulerWheelView
 import com.tamsiree.rxui.view.RxRulerWheelView.OnWheelItemSelectedListener
@@ -67,7 +67,7 @@ class ActivityWheelHorizontal : ActivityBase() {
 
             override fun onScrollingFinished(wheel: AbstractWheel) {
                 behind = listYearMonth[wheel.currentItem]
-                Log.v("addScrollingListener", "listYearMonth:" + listYearMonth[wheel.currentItem])
+                TLog.v("addScrollingListener", "listYearMonth:" + listYearMonth[wheel.currentItem])
                 if (before != behind) {
                     val year = stringToInt(listYearMonth[wheel.currentItem].substring(0, 4))
                     val month = stringToInt(listYearMonth[wheel.currentItem].substring(5, 6))
@@ -76,7 +76,7 @@ class ActivityWheelHorizontal : ActivityBase() {
             }
         })
         wheelView_year_month.addClickingListener { wheel, itemIndex ->
-            Log.v("addScrollingListener", "listYearMonth:" + listYearMonth[itemIndex])
+            TLog.v("addScrollingListener", "listYearMonth:" + listYearMonth[itemIndex])
             wheelView_year_month.setCurrentItem(itemIndex, true)
             /*
                  * int year =
