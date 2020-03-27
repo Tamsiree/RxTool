@@ -81,8 +81,14 @@ object RxTool {
         return RxTool
     }
 
-    fun debugLogFile(switch: Boolean) {
+    fun debugLogFile(switch: Boolean): RxTool {
         TLog.switch2File(switch)
+        return RxTool
+    }
+
+    fun crashLogFile(switch: Boolean): RxTool {
+        TLog.switchCrashFile(switch)
+        return RxTool
     }
 
     //----------------------------------------------------------------------------------------------延时任务封装 start

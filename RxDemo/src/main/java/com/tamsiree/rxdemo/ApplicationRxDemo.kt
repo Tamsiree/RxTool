@@ -9,7 +9,7 @@ import com.tamsiree.rxkit.RxTool
  * @author vonde
  * @date 2016/12/23
  */
-class ApplicationRxTool : Application() {
+class ApplicationRxDemo : Application() {
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         MultiDex.install(this)
@@ -20,5 +20,6 @@ class ApplicationRxTool : Application() {
         RxTool.init(this)
                 .debugLog(true)
                 .debugLogFile(false)
+                .crashLogFile(true)
     }
 }
