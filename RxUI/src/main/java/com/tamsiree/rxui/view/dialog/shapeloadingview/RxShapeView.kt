@@ -54,7 +54,7 @@ class RxShapeView : View {
         setBackgroundColor(resources.getColor(R.color.transparent))
         mTriangleColor = resources.getColor(R.color.triangle)
         mCircleColor = resources.getColor(R.color.circle)
-        mRectColor = resources.getColor(R.color.triangle)
+        mRectColor = resources.getColor(R.color.pink_acfun)
     }
 
     var mIsLoading = false

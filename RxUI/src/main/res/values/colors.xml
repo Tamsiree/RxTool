@@ -75,14 +75,14 @@
     <color name="blue_light_steel">#B0C4DE</color><!--亮钢兰色-->
     <color name="blue_baby">#89CFF0</color>
     <color name="blue_2196F3">#2196F3</color>
-    <color name="circle">#aa738ffe</color>
+    <color name="circle">#aa2196F3</color>
     <color name="blue">#3F51B5</color>
     <color name="blue_shadow_80">#803F51B5</color>
     <color name="blue_shadow_50">#503F51B5</color>
     <color name="blue_dark_03">#000333</color>
 
     <color name="green_xiaomi">#52BA97</color>
-    <color name="triangle">#aa72d572</color>
+    <color name="triangle">#aa52BA97</color>
     <color name="green_388e3c">#388E3C</color>
     <color name="green">#008000</color>
 

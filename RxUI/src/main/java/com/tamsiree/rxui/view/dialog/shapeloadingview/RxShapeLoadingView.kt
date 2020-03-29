@@ -155,6 +155,7 @@ class RxShapeLoadingView : FrameLayout {
     /**
      * 下落
      */
+    @SuppressLint("ObjectAnimatorBinding")
     fun freeFall() {
         val objectAnimator = ObjectAnimator.ofFloat(mRxShapeView, "translationY", 0f, mDistance)
         val scaleIndication = ObjectAnimator.ofFloat(mIndicationIm, "scaleX", 1f, 0.2f)
