@@ -126,7 +126,7 @@ public class RxCameraView extends FrameLayout {
             mImpl = new Camera2Api23(mCallbacks, preview, context);
 //            camera1 = new Camera1(mCallbacks, preview);
         }*/
-        // TODO: 2018/7/3  
+        // TODO: 2018/7/3
 
         // Attributes
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RxCameraView, defStyleAttr,

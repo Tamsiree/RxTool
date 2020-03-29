@@ -3,7 +3,8 @@ package com.tamsiree.rxkit.photomagic
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import androidx.exifinterface.media.ExifInterface
+import android.media.ExifInterface
+
 import com.tamsiree.rxkit.photomagic.Checker.isJPG
 import java.io.ByteArrayOutputStream
 import java.io.File
