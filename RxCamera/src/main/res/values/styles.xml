@@ -6,7 +6,7 @@
         <item name="facing">back</item>
         <item name="aspectRatio">4:3</item>
         <item name="autoFocus">true</item>
-        <item name="flash">auto</item>
+        <item name="flashSwitch">auto</item>
     </style>
 
 </resources>

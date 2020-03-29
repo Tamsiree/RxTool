@@ -140,7 +140,7 @@ public class RxCameraView extends FrameLayout {
             setAspectRatio(Constants.DEFAULT_ASPECT_RATIO);
         }
         setAutoFocus(a.getBoolean(R.styleable.RxCameraView_autoFocus, true));
-        setFlash(a.getInt(R.styleable.RxCameraView_flash, Constants.FLASH_AUTO));
+        setFlash(a.getInt(R.styleable.RxCameraView_flashSwitch, Constants.FLASH_AUTO));
         a.recycle();
         // Display orientation detector
         mDisplayOrientationDetector = new DisplayOrientationDetector(context) {

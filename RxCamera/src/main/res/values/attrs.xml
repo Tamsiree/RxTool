@@ -18,7 +18,7 @@
         <!-- Continuous auto focus mode. -->
         <attr name="autoFocus" format="boolean"/>
         <!-- The flash mode. -->
-        <attr name="flash" format="enum">
+        <attr name="flashSwitch" format="enum">
             <!-- Flash will not be fired. -->
             <enum name="off" value="0"/>
             <!--

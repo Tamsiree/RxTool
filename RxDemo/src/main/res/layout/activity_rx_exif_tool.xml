@@ -15,7 +15,7 @@
         app:aspectRatio="16:9"
         app:autoFocus="true"
         app:facing="back"
-        app:flash="auto"
+        app:flashSwitch="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
