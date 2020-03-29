@@ -7,7 +7,6 @@ import android.util.Property;
 import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 
-
 import com.tamsiree.rxui.view.progressing.animation.interpolator.KeyFrameInterpolator;
 import com.tamsiree.rxui.view.progressing.sprite.Sprite;
 
@@ -29,57 +28,57 @@ public class SpriteAnimatorBuilder {
         this.sprite = sprite;
     }
 
-    public SpriteAnimatorBuilder scale(float fractions[], float... scale) {
+    public SpriteAnimatorBuilder scale(float[] fractions, float... scale) {
         holder(fractions, Sprite.SCALE, scale);
         return this;
     }
 
-    public SpriteAnimatorBuilder alpha(float fractions[], int... alpha) {
+    public SpriteAnimatorBuilder alpha(float[] fractions, int... alpha) {
         holder(fractions, Sprite.ALPHA, alpha);
         return this;
     }
 
     @SuppressWarnings("unused")
-    public SpriteAnimatorBuilder scaleX(float fractions[], float... scaleX) {
+    public SpriteAnimatorBuilder scaleX(float[] fractions, float... scaleX) {
         holder(fractions, Sprite.SCALE, scaleX);
         return this;
     }
 
-    public SpriteAnimatorBuilder scaleY(float fractions[], float... scaleY) {
+    public SpriteAnimatorBuilder scaleY(float[] fractions, float... scaleY) {
         holder(fractions, Sprite.SCALE_Y, scaleY);
         return this;
     }
 
-    public SpriteAnimatorBuilder rotateX(float fractions[], int... rotateX) {
+    public SpriteAnimatorBuilder rotateX(float[] fractions, int... rotateX) {
         holder(fractions, Sprite.ROTATE_X, rotateX);
         return this;
     }
 
-    public SpriteAnimatorBuilder rotateY(float fractions[], int... rotateY) {
+    public SpriteAnimatorBuilder rotateY(float[] fractions, int... rotateY) {
         holder(fractions, Sprite.ROTATE_Y, rotateY);
         return this;
     }
 
     @SuppressWarnings("unused")
-    public SpriteAnimatorBuilder translateX(float fractions[], int... translateX) {
+    public SpriteAnimatorBuilder translateX(float[] fractions, int... translateX) {
         holder(fractions, Sprite.TRANSLATE_X, translateX);
         return this;
     }
 
 
     @SuppressWarnings("unused")
-    public SpriteAnimatorBuilder translateY(float fractions[], int... translateY) {
+    public SpriteAnimatorBuilder translateY(float[] fractions, int... translateY) {
         holder(fractions, Sprite.TRANSLATE_Y, translateY);
         return this;
     }
 
 
-    public SpriteAnimatorBuilder rotate(float fractions[], int... rotate) {
+    public SpriteAnimatorBuilder rotate(float[] fractions, int... rotate) {
         holder(fractions, Sprite.ROTATE, rotate);
         return this;
     }
 
-    public SpriteAnimatorBuilder translateXPercentage(float fractions[], float... translateXPercentage) {
+    public SpriteAnimatorBuilder translateXPercentage(float[] fractions, float... translateXPercentage) {
         holder(fractions, Sprite.TRANSLATE_X_PERCENTAGE, translateXPercentage);
         return this;
     }
@@ -119,12 +118,12 @@ public class SpriteAnimatorBuilder {
 
     private void ensurePair(int fractionsLength, int valuesLength) {
         if (fractionsLength != valuesLength) {
-            throw new IllegalStateException(String.format(
-                    Locale.getDefault(),
-                    "The fractions.length must equal values.length, " +
-                            "fraction.length[%d], values.length[%d]",
-                    fractionsLength,
-                    valuesLength));
+            throw new IllegalStateException(
+                    String.format(
+                            Locale.getDefault(),
+                            "The fractions.length must equal values.length, " + "fraction.length[%d], values.length[%d]",
+                            fractionsLength,
+                            valuesLength));
         }
     }
 
@@ -156,8 +155,7 @@ public class SpriteAnimatorBuilder {
 
     public ObjectAnimator build() {
         PropertyValuesHolder[] holders = new PropertyValuesHolder[propertyValuesHolders.size()];
-        ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(sprite,
-                propertyValuesHolders.toArray(holders));
+        ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(sprite, propertyValuesHolders.toArray(holders));
         animator.setDuration(duration);
         animator.setRepeatCount(repeatCount);
         animator.setInterpolator(interpolator);
