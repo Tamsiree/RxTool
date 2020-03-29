@@ -13,9 +13,9 @@ import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.activity.ActivityLoadingDetail
 import com.tamsiree.rxkit.RxImageTool
 import com.tamsiree.rxkit.RxRecyclerViewDividerTool
-import com.tamsiree.rxui.view.progressing.SpinKitView
-import com.tamsiree.rxui.view.progressing.SpriteFactory
-import com.tamsiree.rxui.view.progressing.Style
+import com.tamsiree.rxui.view.loadingview.SpinKitView
+import com.tamsiree.rxui.view.loadingview.SpriteFactory
+import com.tamsiree.rxui.view.loadingview.Style
 
 /**
  * Created by Tamsiree.

@@ -11,7 +11,7 @@ import com.tamsiree.rxkit.view.RxToast.info
 import com.tamsiree.rxkit.view.RxToast.normal
 import com.tamsiree.rxkit.view.RxToast.success
 import com.tamsiree.rxui.R
-import com.tamsiree.rxui.view.progressing.SpinKitView
+import com.tamsiree.rxui.view.loadingview.SpinKitView
 
 /**
  * @author Tamsiree

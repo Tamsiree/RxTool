@@ -15,9 +15,9 @@ import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.tools.EvaluatorARGB.Companion.instance
 import com.tamsiree.rxkit.RxDeviceTool
 import com.tamsiree.rxui.activity.ActivityBase
-import com.tamsiree.rxui.view.progressing.SpinKitView
-import com.tamsiree.rxui.view.progressing.SpriteFactory
-import com.tamsiree.rxui.view.progressing.Style
+import com.tamsiree.rxui.view.loadingview.SpinKitView
+import com.tamsiree.rxui.view.loadingview.SpriteFactory
+import com.tamsiree.rxui.view.loadingview.Style
 
 /**
  * @author tamsiree

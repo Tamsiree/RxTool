@@ -11,10 +11,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.tamsiree.rxdemo.R
-import com.tamsiree.rxui.view.progressing.style.Circle
-import com.tamsiree.rxui.view.progressing.style.CubeGrid
-import com.tamsiree.rxui.view.progressing.style.DoubleBounce
-import com.tamsiree.rxui.view.progressing.style.Wave
+import com.tamsiree.rxui.view.loadingview.style.Circle
+import com.tamsiree.rxui.view.loadingview.style.CubeGrid
+import com.tamsiree.rxui.view.loadingview.style.DoubleBounce
+import com.tamsiree.rxui.view.loadingview.style.Wave
 
 /**
  * Created by Tamsiree.
