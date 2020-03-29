@@ -3,7 +3,7 @@ package com.tamsiree.rxfeature.tool
 import android.graphics.Bitmap
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
-import com.tamsiree.rxfeature.module.scaner.BitmapLuminanceSource
+import com.tamsiree.rxfeature.scaner.BitmapLuminanceSource
 import com.tamsiree.rxkit.RxImageTool.zoomBitmap
 import java.util.*
 

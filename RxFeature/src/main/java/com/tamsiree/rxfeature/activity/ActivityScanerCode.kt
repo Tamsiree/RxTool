@@ -22,15 +22,16 @@ import androidx.core.content.ContextCompat
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
 import com.tamsiree.rxfeature.R
-import com.tamsiree.rxfeature.module.scaner.CameraManager
-import com.tamsiree.rxfeature.module.scaner.OnRxScanerListener
-import com.tamsiree.rxfeature.module.scaner.decoding.InactivityTimer
+import com.tamsiree.rxfeature.scaner.CameraManager
+import com.tamsiree.rxfeature.scaner.OnRxScanerListener
+import com.tamsiree.rxfeature.scaner.decoding.InactivityTimer
 import com.tamsiree.rxfeature.tool.RxQrBarTool.decodeFromPhoto
 import com.tamsiree.rxkit.RxAnimationTool.ScaleUpDowm
 import com.tamsiree.rxkit.RxBarTool.setNoTitle
 import com.tamsiree.rxkit.RxBarTool.setTransparentStatusBar
 import com.tamsiree.rxkit.RxBeepTool.playBeep
 import com.tamsiree.rxkit.RxConstants
+import com.tamsiree.rxkit.RxDataTool
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxkit.RxPhotoTool.openLocalImage
 import com.tamsiree.rxkit.RxSPTool.getContent
@@ -336,10 +337,10 @@ class ActivityScanerCode : ActivityBase() {
                 handler!!.sendEmptyMessage(R.id.restart_preview)
             }
         }
-        if (!rxDialogSure!!.isShowing) {
-            rxDialogSure!!.show()
+        if (!(rxDialogSure?.isShowing)!!) {
+            rxDialogSure?.show()
         }
-        putContent(mContext, RxConstants.SP_SCAN_CODE, (getContent(mContext, RxConstants.SP_SCAN_CODE)) + 1)
+        putContent(mContext, RxConstants.SP_SCAN_CODE, (RxDataTool.stringToInt(getContent(mContext, RxConstants.SP_SCAN_CODE)) + 1).toString())
     }
 
     fun handleDecode(result: Result) {

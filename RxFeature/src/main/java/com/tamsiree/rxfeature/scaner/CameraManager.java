@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tamsiree.rxfeature.module.scaner;
+package com.tamsiree.rxfeature.scaner;
 
 import android.content.Context;
 import android.graphics.PixelFormat;

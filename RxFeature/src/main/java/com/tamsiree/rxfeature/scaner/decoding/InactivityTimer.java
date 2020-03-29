@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tamsiree.rxfeature.module.scaner.decoding;
+package com.tamsiree.rxfeature.scaner.decoding;
 
 import android.app.Activity;
 
@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Finishes an activity after a period of inactivity.
+ *
  * @author tamsiree
  */
 public final class InactivityTimer {

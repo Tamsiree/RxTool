@@ -13,35 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.tamsiree.rxfeature.scaner.decoding
 
-package com.tamsiree.rxfeature.module.scaner.decoding;
-
-import android.app.Activity;
-import android.content.DialogInterface;
+import android.app.Activity
+import android.content.DialogInterface
 
 /**
  * Simple listener used to exit the app in a few cases.
  * @author tamsiree
  */
-public final class FinishListener
-        implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener, Runnable {
-
-    private final Activity activityToFinish;
-
-    public FinishListener(Activity activityToFinish) {
-        this.activityToFinish = activityToFinish;
+class FinishListener(private val activityToFinish: Activity) : DialogInterface.OnClickListener, DialogInterface.OnCancelListener, Runnable {
+    override fun onCancel(dialogInterface: DialogInterface) {
+        run()
     }
 
-    public void onCancel(DialogInterface dialogInterface) {
-        run();
+    override fun onClick(dialogInterface: DialogInterface, i: Int) {
+        run()
     }
 
-    public void onClick(DialogInterface dialogInterface, int i) {
-        run();
-    }
-
-    public void run() {
-        activityToFinish.finish();
+    override fun run() {
+        activityToFinish.finish()
     }
 
 }
