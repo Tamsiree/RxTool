@@ -2,6 +2,7 @@ package com.tamsiree.rxdemo.activity
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.LinearLayout
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
@@ -41,7 +42,12 @@ class ActivityLike : ActivityBase() {
             wrapper.addView(rxShineButtonJava)
         }
         po_image0.setOnClickListener { }
-        po_image0.setOnCheckStateChangeListener { view, checked -> }
+        po_image0.setOnCheckStateChangeListener(object : RxShineButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(view: View?, checked: Boolean) {
+
+            }
+        })
+
         po_image2.setOnClickListener { }
         po_image3.setOnClickListener { }
 

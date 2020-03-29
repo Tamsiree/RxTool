@@ -1,6 +1,6 @@
-package com.tamsiree.rxui.view.loading;
+package com.tamsiree.rxui.view.loading
 
-import android.graphics.Color;
+import android.graphics.Paint
 
 /*
  * Copyright 2016 Elye Project
@@ -17,11 +17,8 @@ import android.graphics.Color;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-class TLoadingProfile {
-    public final static int COLOR_DEFAULT_GRADIENT = Color.rgb(245, 245, 245);
-    public final static float MIN_WEIGHT = 0.0f;
-    public final static float MAX_WEIGHT = 1.0f;
-    public final static int CORNER_DEFAULT = 0;
-    public final static boolean USE_GRADIENT_DEFAULT = false;
+internal interface TLoadingView {
+    fun setRectColor(rectPaint: Paint)
+    fun invalidate()
+    fun valueSet(): Boolean
 }

@@ -51,40 +51,40 @@ class ActivityPopupView : ActivityBase(), TipListener {
             if (popupImply == null) {
                 popupImply = RxPopupImply(mContext)
             }
-            popupImply!!.show(tv_imply)
+            popupImply?.show(tv_imply)
         }
         tv_definition.setOnClickListener {
             initPopupView()
-            titlePopup!!.show(tv_definition, 0)
+            titlePopup?.show(tv_definition, 0)
         }
         button_above.setOnClickListener {
-            mRxPopupViewManager!!.findAndDismiss(text_view)
+            mRxPopupViewManager?.findAndDismiss(text_view)
             builder = RxPopupView.Builder(this, text_view, parent_layout, text, RxPopupView.POSITION_ABOVE)
             builder.setAlign(mAlign)
-            tipvView = mRxPopupViewManager!!.show(builder.build())
+            tipvView = mRxPopupViewManager?.show(builder.build())!!
         }
         button_below.setOnClickListener {
-            mRxPopupViewManager!!.findAndDismiss(text_view)
+            mRxPopupViewManager?.findAndDismiss(text_view)
             builder = RxPopupView.Builder(this, text_view, parent_layout, text, RxPopupView.POSITION_BELOW)
             builder.setAlign(mAlign)
             builder.setBackgroundColor(resources.getColor(R.color.orange))
-            tipvView = mRxPopupViewManager!!.show(builder.build())
+            tipvView = mRxPopupViewManager?.show(builder.build())!!
         }
         button_left_to.setOnClickListener {
-            mRxPopupViewManager!!.findAndDismiss(text_view)
+            mRxPopupViewManager?.findAndDismiss(text_view)
             builder = RxPopupView.Builder(this, text_view, parent_layout, text, RxPopupView.POSITION_LEFT_TO)
             builder.setBackgroundColor(resources.getColor(R.color.greenyellow))
             builder.setTextColor(resources.getColor(R.color.black))
             builder.setGravity(RxPopupView.GRAVITY_CENTER)
             builder.setTextSize(12)
-            tipvView = mRxPopupViewManager!!.show(builder.build())
+            tipvView = mRxPopupViewManager?.show(builder.build())!!
         }
         button_right_to.setOnClickListener {
-            mRxPopupViewManager!!.findAndDismiss(text_view)
+            mRxPopupViewManager?.findAndDismiss(text_view)
             builder = RxPopupView.Builder(this, text_view, parent_layout, text, RxPopupView.POSITION_RIGHT_TO)
             builder.setBackgroundColor(resources.getColor(R.color.paleturquoise))
             builder.setTextColor(resources.getColor(android.R.color.black))
-            tipvView = mRxPopupViewManager!!.show(builder.build())
+            tipvView = mRxPopupViewManager?.show(builder.build())!!
         }
         button_align_center.setOnClickListener { mAlign = RxPopupView.ALIGN_CENTER }
         button_align_left.setOnClickListener { mAlign = RxPopupView.ALIGN_LEFT }
@@ -98,25 +98,30 @@ class ActivityPopupView : ActivityBase(), TipListener {
     private fun initPopupView() {
         titlePopup = RxPopupSingleView(mContext, ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT, R.layout.popupwindow_definition_layout)
-        titlePopup!!.addAction(ActionItem("标清"))
-        titlePopup!!.addAction(ActionItem("高清"))
-        titlePopup!!.addAction(ActionItem("超清"))
-        titlePopup!!.setItemOnClickListener { item, position ->
-            if (titlePopup!!.getAction(position).mTitle == tv_definition.text) {
-                RxToast.showToast(mContext, "当前已经为" + tv_definition.text, 500)
-            } else {
-                if (position in 0..2) {
-                    tv_definition.text = titlePopup!!.getAction(position).mTitle
+        titlePopup?.addAction(ActionItem("标清"))
+        titlePopup?.addAction(ActionItem("高清"))
+        titlePopup?.addAction(ActionItem("超清"))
+
+        titlePopup?.setItemOnClickListener(object : RxPopupSingleView.OnItemOnClickListener {
+            override fun onItemClick(item: ActionItem?, position: Int) {
+                if (titlePopup!!.getAction(position)?.mTitle == tv_definition.text) {
+                    RxToast.showToast(mContext, "当前已经为" + tv_definition.text, 500)
+                } else {
+                    if (position in 0..2) {
+                        tv_definition.text = titlePopup!!.getAction(position)?.mTitle
+                    }
                 }
             }
-        }
+
+        })
+
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         val builder = RxPopupView.Builder(this, text_view, root_layout_s, TIP_TEXT, RxPopupView.POSITION_ABOVE)
         builder.setAlign(mAlign)
-        mRxPopupViewManager!!.show(builder.build())
+        mRxPopupViewManager?.show(builder.build())
     }
 
     override fun onTipDismissed(view: View, anchorViewId: Int, byUser: Boolean) {

@@ -25,7 +25,12 @@ class ActivityTStepperIndicator : ActivityBase() {
         // We keep last page for a "finishing" page
         indicator.setViewPager(pager, true)
 
-        indicator.addOnStepClickListener { step -> pager.setCurrentItem(step, true) }
+        indicator.addOnStepClickListener(object : TStepperIndicator.OnStepClickListener {
+            override fun onStepClicked(step: Int) {
+                pager.setCurrentItem(step, true)
+            }
+
+        })
 
     }
 
