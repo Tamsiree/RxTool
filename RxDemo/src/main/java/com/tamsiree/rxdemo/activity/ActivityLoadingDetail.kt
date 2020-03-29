@@ -59,7 +59,7 @@ class ActivityLoadingDetail : ActivityBase() {
                 val style = Style.values()[position]
                 name.text = style.name
                 val drawable = SpriteFactory.create(style)
-                spinKitView.setIndeterminateDrawable(drawable)
+                spinKitView.setIndeterminateDrawable(drawable!!)
                 container.addView(view)
                 return view
             }

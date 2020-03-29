@@ -1,10 +1,9 @@
-package com.tamsiree.rxui.view.progressing;
+package com.tamsiree.rxui.view.progressing
 
 /**
  * @author tamsiree
  */
-public enum Style {
-
+enum class Style(private val value: Int) {
     ROTATING_PLANE(0),
     DOUBLE_BOUNCE(1),
     WAVE(2),
@@ -21,10 +20,4 @@ public enum Style {
     PULSE_RING(13),
     MULTIPLE_PULSE_RING(14);
 
-    @SuppressWarnings({"FieldCanBeLocal", "unused"})
-    private int value;
-
-    Style(int value) {
-        this.value = value;
-    }
 }

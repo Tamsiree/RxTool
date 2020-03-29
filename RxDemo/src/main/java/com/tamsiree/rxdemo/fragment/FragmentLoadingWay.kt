@@ -64,7 +64,7 @@ class FragmentLoadingWay : Fragment() {
             position %= 15
             val style = Style.values()[position]
             val drawable = SpriteFactory.create(style)
-            spinKitView.setIndeterminateDrawable(drawable)
+            spinKitView.setIndeterminateDrawable(drawable!!)
         }
 
     }
