@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
 import com.tamsiree.rxui.R
-import java.util.*
 
 /**
  * @author tamsiree
@@ -67,7 +66,7 @@ open class RxDialog : Dialog {
      * 隐藏头部导航栏状态栏
      */
     fun skipTools() {
-        Objects.requireNonNull(window).setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window?.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     /**
