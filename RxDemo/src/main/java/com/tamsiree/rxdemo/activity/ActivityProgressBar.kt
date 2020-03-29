@@ -72,39 +72,39 @@ class ActivityProgressBar : ActivityBase() {
 
     private fun initRoundProgress() {
         progress = 0.0 // 进度初始化
-        roundProgressBar1.progress = progress
-        roundProgressBar1.max = getMax(money).toDouble()
+        roundProgressBar1.setProgress(progress)
+        roundProgressBar1.setMax(getMax(money).toDouble())
         downLoadThread2 = Thread(Runnable {
             try {
-                while (!downLoadThread2!!.isInterrupted) {
-                    while (progress < roundProgressBar1.max) {
-                        progress += roundProgressBar1.max * 0.01f
-                        if (progress < roundProgressBar1.max) {
-                            roundProgressBar1.progress = progress
+                while (!(downLoadThread2?.isInterrupted)!!) {
+                    while (progress < roundProgressBar1.getMax()) {
+                        progress += roundProgressBar1.getMax() * 0.01f
+                        if (progress < roundProgressBar1.getMax()) {
+                            roundProgressBar1.setProgress(progress)
                         }
                         Thread.sleep(8)
                     }
                     while (progress > 0) {
-                        progress -= roundProgressBar1.max * 0.01f
+                        progress -= roundProgressBar1.getMax() * 0.01f
                         if (progress > 0) {
-                            roundProgressBar1.progress = progress
+                            roundProgressBar1.setProgress(progress)
                         }
                         Thread.sleep(8)
                     }
                     if (money != 0.0) {
                         while (progress < money) {
                             progress += money * 0.01f
-                            roundProgressBar1.progress = progress
+                            roundProgressBar1.setProgress(progress)
                             Thread.sleep(10)
                         }
                     }
-                    roundProgressBar1.progress = money
+                    roundProgressBar1.setProgress(money)
                 }
             } catch (e: InterruptedException) {
                 e.printStackTrace()
             }
         })
-        downLoadThread2!!.start()
+        downLoadThread2?.start()
     }
 
     private fun initLineProgress() {
@@ -113,7 +113,7 @@ class ActivityProgressBar : ActivityBase() {
         pb_line_of_credit.max = getMax(money1.toDouble())
         downLoadThread1 = Thread(Runnable {
             try {
-                while (!downLoadThread1!!.isInterrupted) {
+                while (!(downLoadThread1?.isInterrupted)!!) {
                     while (progress1 < pb_line_of_credit.max) {
                         progress1 += (pb_line_of_credit.max * 0.01f).toInt()
                         if (progress1 < pb_line_of_credit.max) {
@@ -141,37 +141,37 @@ class ActivityProgressBar : ActivityBase() {
                 e.printStackTrace()
             }
         })
-        downLoadThread1!!.start()
+        downLoadThread1?.start()
     }
 
     private fun initRxRoundPd() {
         mRxRoundProgress = 0 // 进度初始化
-        rx_round_pd1.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd2.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd3.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd4.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd5.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd6.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd7.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd8.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd9.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd10.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd11.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd12.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd13.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd14.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd15.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd16.setMax0(mRxRoundPdMax.toFloat())
-        rx_round_pd17.setMax0(mRxRoundPdMax.toFloat())
-        progress_one.setMax0(mRxRoundPdMax.toFloat())
-        progress_two.setMax0(mRxRoundPdMax.toFloat())
-        progress_three.setMax0(mRxRoundPdMax.toFloat())
+        rx_round_pd1.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd2.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd3.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd4.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd5.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd6.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd7.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd8.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd9.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd10.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd11.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd12.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd13.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd14.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd15.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd16.setMax(mRxRoundPdMax.toFloat())
+        rx_round_pd17.setMax(mRxRoundPdMax.toFloat())
+        progress_one.setMax(mRxRoundPdMax.toFloat())
+        progress_two.setMax(mRxRoundPdMax.toFloat())
+        progress_three.setMax(mRxRoundPdMax.toFloat())
         downLoadRxRoundPdThread = Thread(Runnable {
             try {
                 while (!downLoadRxRoundPdThread?.isInterrupted!!) {
-                    while (mRxRoundProgress < rx_round_pd1.max) {
-                        mRxRoundProgress += (rx_round_pd1.max * 0.01f).toInt()
-                        if (mRxRoundProgress < rx_round_pd1.max) {
+                    while (mRxRoundProgress < rx_round_pd1.getMax()) {
+                        mRxRoundProgress += (rx_round_pd1.getMax() * 0.01f).toInt()
+                        if (mRxRoundProgress < rx_round_pd1.getMax()) {
                             val message = Message()
                             message.what = 101
                             mRxRoundPdHandler.sendMessage(message)
@@ -179,7 +179,7 @@ class ActivityProgressBar : ActivityBase() {
                         Thread.sleep(8)
                     }
                     while (mRxRoundProgress > 0) {
-                        mRxRoundProgress -= (rx_round_pd1.max * 0.01f).toInt()
+                        mRxRoundProgress -= (rx_round_pd1.getMax() * 0.01f).toInt()
                         if (mRxRoundProgress > 0) {
                             val message = Message()
                             message.what = 101
@@ -204,11 +204,11 @@ class ActivityProgressBar : ActivityBase() {
 
     //----------------------------------------------------------------------------------------------Flikerbar 加载事件处理 start
     private fun initFlikerProgressBar() {
-        if (!flikerbar.isFinish) {
+        if (!flikerbar.isFinish()) {
             flikerbar.toggle()
             round_flikerbar.toggle()
-            if (flikerbar.isStop) {
-                downLoadThread!!.interrupt()
+            if (flikerbar.isStop()) {
+                downLoadThread?.interrupt()
             } else {
                 downLoad()
             }
@@ -216,7 +216,7 @@ class ActivityProgressBar : ActivityBase() {
     }
 
     fun reLoad() {
-        downLoadThread!!.interrupt()
+        downLoadThread?.interrupt()
         // 重新加载
         flikerbar.reset()
         round_flikerbar.reset()
@@ -228,34 +228,34 @@ class ActivityProgressBar : ActivityBase() {
     private var mRxRoundPdHandler: Handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
-            rx_round_pd1.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd2.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd3.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd4.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd5.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd6.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd7.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd8.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd9.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd10.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd11.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd12.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd13.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd14.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd15.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd16.setProgress0(mRxRoundProgress.toFloat())
-            rx_round_pd17.setProgress0(mRxRoundProgress.toFloat())
-            progress_one.setProgress0(mRxRoundProgress.toFloat())
-            progress_two.setProgress0(mRxRoundProgress.toFloat())
-            progress_three.setProgress0(mRxRoundProgress.toFloat())
+            rx_round_pd1.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd2.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd3.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd4.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd5.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd6.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd7.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd8.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd9.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd10.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd11.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd12.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd13.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd14.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd15.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd16.setProgress(mRxRoundProgress.toFloat())
+            rx_round_pd17.setProgress(mRxRoundProgress.toFloat())
+            progress_one.setProgress(mRxRoundProgress.toFloat())
+            progress_two.setProgress(mRxRoundProgress.toFloat())
+            progress_three.setProgress(mRxRoundProgress.toFloat())
         }
     }
 
     private var handler: Handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
-            flikerbar.progress = msg.arg1.toFloat()
-            round_flikerbar.progress = msg.arg1.toFloat()
+            flikerbar.setProgress(msg.arg1.toFloat())
+            round_flikerbar.setProgress(msg.arg1.toFloat())
             if (msg.arg1 == 100) {
                 flikerbar.finishLoad()
                 round_flikerbar.finishLoad()
@@ -266,8 +266,8 @@ class ActivityProgressBar : ActivityBase() {
     private fun downLoad() {
         downLoadThread = Thread(Runnable {
             try {
-                while (!downLoadThread!!.isInterrupted) {
-                    var progress = flikerbar.progress
+                while (!(downLoadThread?.isInterrupted)!!) {
+                    var progress = flikerbar.getProgress()
                     progress += 2f
                     Thread.sleep(200)
                     val message = handler.obtainMessage()
@@ -281,14 +281,14 @@ class ActivityProgressBar : ActivityBase() {
                 e.printStackTrace()
             }
         })
-        downLoadThread!!.start()
+        downLoadThread?.start()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        downLoadThread!!.interrupt()
-        downLoadThread1!!.interrupt()
-        downLoadThread2!!.interrupt()
-        downLoadRxRoundPdThread!!.interrupt()
+        downLoadThread?.interrupt()
+        downLoadThread1?.interrupt()
+        downLoadThread2?.interrupt()
+        downLoadRxRoundPdThread?.interrupt()
     }
 }

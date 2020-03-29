@@ -30,12 +30,10 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Handler;
-import android.os.Message;
 import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -47,6 +45,7 @@ import android.view.ViewParent;
 
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
+import androidx.exifinterface.media.ExifInterface;
 
 import com.tamsiree.rxkit.TLog;
 import com.tamsiree.rxui.R;
@@ -287,17 +286,14 @@ public class RxScaleImageView extends View {
         setMinimumDpi(160);
         setDoubleTapZoomDpi(160);
         setGestureDetector(context);
-        this.handler = new Handler(new Handler.Callback() {
-            @Override
-            public boolean handleMessage(Message message) {
-                if (message.what == MESSAGE_LONG_CLICK && onLongClickListener != null) {
-                    maxTouchCount = 0;
-                    RxScaleImageView.super.setOnLongClickListener(onLongClickListener);
-                    performLongClick();
-                    RxScaleImageView.super.setOnLongClickListener(null);
-                }
-                return true;
+        this.handler = new Handler(message -> {
+            if (message.what == MESSAGE_LONG_CLICK && onLongClickListener != null) {
+                maxTouchCount = 0;
+                RxScaleImageView.super.setOnLongClickListener(onLongClickListener);
+                performLongClick();
+                RxScaleImageView.super.setOnLongClickListener(null);
             }
+            return true;
         });
         // Handle XML attributes
         if (attr != null) {
@@ -517,8 +513,8 @@ public class RxScaleImageView extends View {
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
                 if (panEnabled && readySent && vTranslate != null && e1 != null && e2 != null && (Math.abs(e1.getX() - e2.getX()) > 50 || Math.abs(e1.getY() - e2.getY()) > 50) && (Math.abs(velocityX) > 500 || Math.abs(velocityY) > 500) && !isZooming) {
                     PointF vTranslateEnd = new PointF(vTranslate.x + (velocityX * 0.25f), vTranslate.y + (velocityY * 0.25f));
-                    float sCenterXEnd = ((getWidth() / 2) - vTranslateEnd.x) / scale;
-                    float sCenterYEnd = ((getHeight() / 2) - vTranslateEnd.y) / scale;
+                    float sCenterXEnd = ((getWidth() / 2f) - vTranslateEnd.x) / scale;
+                    float sCenterYEnd = ((getHeight() / 2f) - vTranslateEnd.y) / scale;
                     new AnimationBuilder(new PointF(sCenterXEnd, sCenterYEnd)).withEasing(EASE_OUT_QUAD).withPanLimited(false).withOrigin(ORIGIN_FLING).start();
                     return true;
                 }

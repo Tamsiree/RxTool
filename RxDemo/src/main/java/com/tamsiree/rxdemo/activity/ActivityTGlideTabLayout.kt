@@ -56,7 +56,7 @@ class ActivityTGlideTabLayout : ActivityBase(), OnTabSelectListener {
         tglidetablayout_2.setMsgMargin(3, 0f, 10f)
         val rtv_2_3 = tglidetablayout_2.getTMsgView(3)
         if (rtv_2_3 != null) {
-            rtv_2_3.backgroundColor = Color.parseColor("#6D8FB0")
+            rtv_2_3.setBackgroundColor(Color.parseColor("#6D8FB0"))
         }
         tglidetablayout_2.showMsg(5, 5)
         tglidetablayout_2.setMsgMargin(5, 0f, 10f)

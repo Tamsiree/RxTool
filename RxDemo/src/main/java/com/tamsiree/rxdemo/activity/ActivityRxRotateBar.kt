@@ -41,10 +41,10 @@ class ActivityRxRotateBar : ActivityBase() {
             override fun onRatingStart() {}
             override fun onRatingEnd() {}
         }
-        rating_view.addRatingBar(bar1)
-        rating_view.addRatingBar(bar2)
-        rating_view.addRatingBar(bar3)
-        rating_view.addRatingBar(bar4)
+        rating_view.addRatingBar(bar1!!)
+        rating_view.addRatingBar(bar2!!)
+        rating_view.addRatingBar(bar3!!)
+        rating_view.addRatingBar(bar4!!)
         rating_view.show()
 
         btn_change.setOnClickListener {

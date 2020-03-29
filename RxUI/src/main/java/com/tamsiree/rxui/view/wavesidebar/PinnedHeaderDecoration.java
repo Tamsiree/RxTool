@@ -42,7 +42,7 @@ public class PinnedHeaderDecoration extends RecyclerView.ItemDecoration {
 
         if (mPinnedHeaderView != null) {
             int headerEndAt = mPinnedHeaderView.getTop() + mPinnedHeaderView.getHeight();
-            View v = parent.findChildViewUnder(c.getWidth() / 2, headerEndAt + 1);
+            View v = parent.findChildViewUnder(c.getWidth() / 2f, headerEndAt + 1);
 
             if (isPinnedView(parent, v)) {
                 mPinnedHeaderTop = v.getTop() - mPinnedHeaderView.getHeight();

@@ -98,7 +98,7 @@ class ActivityTTabLayout : ActivityBase() {
         ttablayout_2.setMsgMargin(3, 0f, 5f)
         val rtv_2_3 = ttablayout_2.getMsgView(3)
         if (rtv_2_3 != null) {
-            rtv_2_3.backgroundColor = Color.parseColor("#6D8FB0")
+            rtv_2_3.setBackgroundColor(Color.parseColor("#6D8FB0"))
         }
     }
 

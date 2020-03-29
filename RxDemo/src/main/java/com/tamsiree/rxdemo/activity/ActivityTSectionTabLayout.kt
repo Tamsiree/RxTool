@@ -52,7 +52,7 @@ class ActivityTSectionTabLayout : ActivityBase() {
         tglidetablayout_3!!.showDot(2)
         val rtv_3_2 = tglidetablayout_3!!.getMsgView(2)
         if (rtv_3_2 != null) {
-            rtv_3_2.backgroundColor = Color.parseColor("#6D8FB0")
+            rtv_3_2.setBackgroundColor(Color.parseColor("#6D8FB0"))
         }
     }
 

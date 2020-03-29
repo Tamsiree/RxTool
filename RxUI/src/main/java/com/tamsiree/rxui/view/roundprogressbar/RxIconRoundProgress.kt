@@ -122,7 +122,7 @@ class RxIconRoundProgress : RxBaseRoundProgress, View.OnClickListener {
 
     private fun drawIconBackgroundColor() {
         val iconBackgroundDrawable = createGradientDrawable(colorIconBackground)
-        val radius = radius - padding / 2
+        val radius = getRadius() - getPadding() / 2
         iconBackgroundDrawable.cornerRadii = floatArrayOf(radius.toFloat(), radius.toFloat(), 0f, 0f, 0f, 0f, radius.toFloat(), radius.toFloat())
         llIcon!!.background = iconBackgroundDrawable
     }

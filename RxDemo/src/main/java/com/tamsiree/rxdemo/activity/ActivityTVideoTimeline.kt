@@ -17,7 +17,6 @@ import java.util.*
 class ActivityTVideoTimeline : ActivityBase(), View.OnClickListener {
 
 
-
     private val recordDays = 7
     private val currentRealDateTime = System.currentTimeMillis()
     private var calendar: Calendar? = null
@@ -58,7 +57,7 @@ class ActivityTVideoTimeline : ActivityBase(), View.OnClickListener {
         recordDataList.add(TRecordDataExistTimeSection(timebarLeftEndPointTime + ONE_HOUR_IN_MS * 4, timebarLeftEndPointTime + ONE_HOUR_IN_MS * 8))
         recordDataList.add(TRecordDataExistTimeSection(timebarLeftEndPointTime + ONE_HOUR_IN_MS * 12, timebarLeftEndPointTime + ONE_HOUR_IN_MS * 19))
         recordDataList.add(TRecordDataExistTimeSection(timebarLeftEndPointTime + ONE_HOUR_IN_MS * 20, timebarRightEndPointTime))
-        my_timebar_view.recordDataExistTimeClipsList = recordDataList
+        my_timebar_view.setRecordDataExistTimeClipsList(recordDataList)
         my_timebar_view.openMove()
         my_timebar_view.checkVideo(true)
         my_timebar_view.setOnBarMoveListener(object : OnBarMoveListener {

@@ -9,7 +9,7 @@ class TFragmentManager(private val mFragmentManager: FragmentManager, private va
                        /**
                         * Fragment切换数组
                         */
-                       private val mFragments: List<Fragment>) {
+                       private val mFragments: MutableList<Fragment>) {
 
     /**
      * 当前选中的Tab

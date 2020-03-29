@@ -228,9 +228,9 @@ class RxTitle : FrameLayout {
         // can be added after layout inflation;
         mTvTitle?.maxHeight = dp2px(context, 55f)
         //don't forget to add min text size programmatically
-        mTvTitle?.minTextSize = 37f
+        mTvTitle?.setMinTextSize(37f)
         try {
-            RxTextAutoZoom.setNormalization(getContext() as Activity, mRootLayout, mTvTitle)
+            RxTextAutoZoom.setNormalization(getContext() as Activity, mRootLayout!!, mTvTitle!!)
             hideSoftInput((getContext() as Activity))
         } catch (e: Exception) {
             e.printStackTrace()

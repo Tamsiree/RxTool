@@ -75,7 +75,7 @@ class ActivityCobweb : ActivityBase(), OnSeekBarChangeListener {
                     modelSpiders.add(ModelSpider(nameStrs[i], (1 + Random().nextInt(cobweb_view.spiderMaxLevel)).toFloat()))
                     i++
                 }
-                cobweb_view.spiderList = modelSpiders
+                cobweb_view.setSpiderList(modelSpiders)
             }
             else -> {
             }

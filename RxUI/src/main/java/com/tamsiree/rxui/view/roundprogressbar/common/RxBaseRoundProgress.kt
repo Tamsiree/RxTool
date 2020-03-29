@@ -20,16 +20,16 @@ abstract class RxBaseRoundProgress : LinearLayout {
     private var layoutBackground: LinearLayout? = null
     private var layoutProgress: LinearLayout? = null
     private var layoutSecondaryProgress: LinearLayout? = null
-    var radius = 0
-    var padding = 0
+    private var radius = 0
+    private var padding = 0
     private var totalWidth = 0
-    var max = 0f
-    var progress = 0f
+    private var max = 0f
+    private var progress = 0f
     private var secondaryProgress = 0f
     private var colorBackground = 0
     private var colorProgress = 0
     private var colorSecondaryProgress = 0
-    var isReverse = false
+    private var isReverse = false
     private var progressChangedListener: OnProgressChangedListener? = null
 
     constructor(context: Context) : super(context) {
@@ -182,15 +182,23 @@ abstract class RxBaseRoundProgress : LinearLayout {
         return Math.round(dp * (displayMetrics.densityDpi / (DisplayMetrics.DENSITY_DEFAULT * 1.0f)));
     }*/
 
+    fun getReverse(): Boolean {
+        return isReverse
+    }
 
-    fun setReverse0(isReverse: Boolean) {
+
+    fun setReverse(isReverse: Boolean) {
         this.isReverse = isReverse
         drawProgressReverse()
         drawPrimaryProgress()
         drawSecondaryProgress()
     }
 
-    fun setRadius0(radius: Int) {
+    fun getRadius(): Int {
+        return radius
+    }
+
+    fun setRadius(radius: Int) {
         if (radius >= 0) {
             this.radius = radius
         }
@@ -199,7 +207,11 @@ abstract class RxBaseRoundProgress : LinearLayout {
         drawSecondaryProgress()
     }
 
-    fun setPadding0(padding: Int) {
+    fun getPadding(): Int {
+        return padding
+    }
+
+    fun setPadding(padding: Int) {
         if (padding >= 0) {
             this.padding = padding
         }
@@ -208,7 +220,11 @@ abstract class RxBaseRoundProgress : LinearLayout {
         drawSecondaryProgress()
     }
 
-    fun setMax0(max: Float) {
+    fun getMax(): Float {
+        return max
+    }
+
+    fun setMax(max: Float) {
         if (max >= 0) {
             this.max = max
         }
@@ -222,7 +238,13 @@ abstract class RxBaseRoundProgress : LinearLayout {
     val layoutWidth: Float
         get() = totalWidth.toFloat()
 
-    open fun setProgress0(progress: Float) {
+
+    fun getProgress(): Float {
+        return progress
+    }
+
+
+    open fun setProgress(progress: Float) {
         if (progress < 0) {
             this.progress = 0f
         } else this.progress = Math.min(progress, max)

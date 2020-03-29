@@ -103,6 +103,6 @@ class ActivityCodeTool : ActivityBase() {
     }
 
     companion object {
-        private val NUMBER_LIST = RxTickerUtils.getDefaultNumberList()
+        private val NUMBER_LIST = RxTickerUtils.defaultNumberList
     }
 }

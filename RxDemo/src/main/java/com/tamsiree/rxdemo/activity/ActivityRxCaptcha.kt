@@ -74,15 +74,15 @@ class ActivityRxCaptcha : ActivityBase() {
                 .into(simpleTarget)
 
         btn_get_code.setOnClickListener {
-            RxCaptcha.build()
-                    .backColor(0xffffff)
-                    .codeLength(6)
-                    .fontSize(60)
-                    .lineNumber(0)
-                    .size(200, 70)
-                    .type(RxCaptcha.TYPE.CHARS)
+            RxCaptcha.build()!!
+                    .backColor(0xffffff)!!
+                    .codeLength(6)!!
+                    .fontSize(60)!!
+                    .lineNumber(0)!!
+                    .size(200, 70)!!
+                    .type(RxCaptcha.TYPE.CHARS)!!
                     .into(iv_code)
-            tv_code.text = RxCaptcha.build().code
+            tv_code.text = RxCaptcha.build()?.getCode()
         }
         btnChange.setOnClickListener {
             swipeCaptchaView.createCaptcha()

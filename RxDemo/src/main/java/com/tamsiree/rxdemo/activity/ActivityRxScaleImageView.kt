@@ -71,9 +71,9 @@ class ActivityRxScaleImageView : ActivityBase(), View.OnClickListener {
                 imageView.setPin(center)
                 val animationBuilder = imageView.animateScaleAndCenter(scale, center)
                 if (position == 3) {
-                    animationBuilder.withDuration(2000).withEasing(RxScaleImageView.EASE_OUT_QUAD).withInterruptible(false).start()
+                    animationBuilder!!.withDuration(2000).withEasing(RxScaleImageView.EASE_OUT_QUAD).withInterruptible(false).start()
                 } else {
-                    animationBuilder.withDuration(750).start()
+                    animationBuilder!!.withDuration(750).start()
                 }
             }
         }

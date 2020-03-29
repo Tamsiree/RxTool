@@ -100,8 +100,8 @@ class RxTextRoundProgress : RxBaseRoundProgress, OnGlobalLayoutListener {
         clearTextProgressAlign()
         // TODO Temporary
         val textProgressWidth = tvProgress!!.measuredWidth + getTextProgressMargin() * 2
-        val ratio = max / progress
-        val progressWidth = ((layoutWidth - padding * 2) / ratio).toInt()
+        val ratio = getMax() / getProgress()
+        val progressWidth = ((layoutWidth - getPadding() * 2) / ratio).toInt()
         if (textProgressWidth + textProgressMargin < progressWidth) {
             alignTextProgressInsideProgress()
         } else {
@@ -145,7 +145,7 @@ class RxTextRoundProgress : RxBaseRoundProgress, OnGlobalLayoutListener {
 
     private fun alignTextProgressInsideProgress() {
         val params = tvProgress!!.layoutParams as RelativeLayout.LayoutParams
-        if (isReverse) {
+        if (getReverse()) {
             params.addRule(RelativeLayout.ALIGN_LEFT, R.id.layout_progress)
             params.addRule(RelativeLayout.ALIGN_START, R.id.layout_progress)
         } else {
@@ -157,7 +157,7 @@ class RxTextRoundProgress : RxBaseRoundProgress, OnGlobalLayoutListener {
 
     private fun alignTextProgressOutsideProgress() {
         val params = tvProgress!!.layoutParams as RelativeLayout.LayoutParams
-        if (isReverse) {
+        if (getReverse()) {
             params.addRule(RelativeLayout.LEFT_OF, R.id.layout_progress)
             params.addRule(RelativeLayout.START_OF, R.id.layout_progress)
         } else {
@@ -175,8 +175,8 @@ class RxTextRoundProgress : RxBaseRoundProgress, OnGlobalLayoutListener {
             drawTextProgressPosition()
         }
 
-    override fun setProgress0(progress: Float) {
-        super.setProgress0(progress)
+    override fun setProgress(progress: Float) {
+        super.setProgress(progress)
         drawTextProgressPosition()
     }
 

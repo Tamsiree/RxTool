@@ -19,8 +19,8 @@ class ActivityNetSpeed : ActivityBase() {
     }
 
     override fun initView() {
-        button2.setOnClickListener { rx_net_speed_view.isMulti = false }
-        button3.setOnClickListener { rx_net_speed_view.isMulti = true }
+        button2.setOnClickListener { rx_net_speed_view.setMulti(false) }
+        button3.setOnClickListener { rx_net_speed_view.setMulti(true) }
     }
 
     override fun initData() {
