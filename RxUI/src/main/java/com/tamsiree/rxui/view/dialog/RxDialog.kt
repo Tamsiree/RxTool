@@ -32,7 +32,7 @@ open class RxDialog : Dialog {
 
     private fun initView(context: Context) {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        Objects.requireNonNull(this.window).setBackgroundDrawableResource(R.drawable.transparent_bg)
+        window?.setBackgroundDrawableResource(R.drawable.transparent_bg)
         mContext = context
         val window = this.window
         layoutParams = window!!.attributes
@@ -50,9 +50,8 @@ open class RxDialog : Dialog {
      * @param gravity 方向(Gravity.BOTTOM,Gravity.TOP,Gravity.LEFT,Gravity.RIGHT)
      */
     constructor(context: Context?, alpha: Float, gravity: Int) : super(context!!) {
-        // TODO Auto-generated constructor stub
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        Objects.requireNonNull(this.window).setBackgroundDrawableResource(R.drawable.transparent_bg)
+        window?.setBackgroundDrawableResource(R.drawable.transparent_bg)
         mContext = context
         val window = this.window
         layoutParams = window!!.attributes
@@ -108,6 +107,6 @@ open class RxDialog : Dialog {
     }
 
     fun setOnWhole() {
-        Objects.requireNonNull(window).setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT)
+        window?.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT)
     }
 }
