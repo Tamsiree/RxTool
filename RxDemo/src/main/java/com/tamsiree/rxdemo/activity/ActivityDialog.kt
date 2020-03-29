@@ -88,19 +88,19 @@ class ActivityDialog : ActivityBase() {
 
     private fun initWheelYearMonthDayDialog() {
         // ------------------------------------------------------------------选择日期开始
-        mRxDialogDate = RxDialogDate(this, 1994, 2018)
-        mRxDialogDate!!.sureView.setOnClickListener {
-            if (mRxDialogDate!!.checkBoxDay.isChecked) {
-                button_DialogWheelYearMonthDay!!.text = (mRxDialogDate!!.selectorYear.toString() + "年"
-                        + mRxDialogDate!!.selectorMonth + "月"
-                        + mRxDialogDate!!.selectorDay + "日")
+        mRxDialogDate = RxDialogDate(this, 1994)
+        mRxDialogDate?.sureView?.setOnClickListener {
+            if (mRxDialogDate?.checkBoxDay?.isChecked!!) {
+                button_DialogWheelYearMonthDay.text = (mRxDialogDate?.selectorYear.toString() + "年"
+                        + mRxDialogDate?.selectorMonth + "月"
+                        + mRxDialogDate?.selectorDay + "日")
             } else {
-                button_DialogWheelYearMonthDay!!.text = (mRxDialogDate!!.selectorYear.toString() + "年"
-                        + mRxDialogDate!!.selectorMonth + "月")
+                button_DialogWheelYearMonthDay.text = (mRxDialogDate?.selectorYear.toString() + "年"
+                        + mRxDialogDate?.selectorMonth + "月")
             }
             mRxDialogDate!!.cancel()
         }
-        mRxDialogDate!!.cancleView.setOnClickListener { mRxDialogDate!!.cancel() }
+        mRxDialogDate?.cancleView?.setOnClickListener { mRxDialogDate?.cancel() }
         // ------------------------------------------------------------------选择日期结束
     }
 

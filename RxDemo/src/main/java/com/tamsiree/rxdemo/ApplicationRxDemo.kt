@@ -6,7 +6,7 @@ import androidx.multidex.MultiDex
 import com.tamsiree.rxkit.RxTool
 
 /**
- * @author vonde
+ * @author Tamsiree
  * @date 2016/12/23
  */
 class ApplicationRxDemo : Application() {

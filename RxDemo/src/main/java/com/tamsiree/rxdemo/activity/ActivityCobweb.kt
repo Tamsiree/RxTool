@@ -7,6 +7,8 @@ import com.tamsiree.rxdemo.R
 import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxkit.model.ModelSpider
 import com.tamsiree.rxui.activity.ActivityBase
+import com.tamsiree.rxui.view.colorpicker.OnColorChangedListener
+import com.tamsiree.rxui.view.colorpicker.OnColorSelectedListener
 import kotlinx.android.synthetic.main.activity_cobweb.*
 import java.util.*
 
@@ -35,14 +37,27 @@ class ActivityCobweb : ActivityBase(), OnSeekBarChangeListener {
         rx_title.setLeftFinish(mContext)
         seekbar_level.setOnSeekBarChangeListener(this)
         seekbar_spider_number.setOnSeekBarChangeListener(this)
-        color_picker_view.addOnColorChangedListener { selectedColor ->
-            // Handle on color change
-            cobweb_view.spiderColor = selectedColor
-        }
-        color_picker_view.addOnColorSelectedListener {
-            //mCobwebView.setSpiderColor(selectedColor);
-        }
-        color_picker_view_level.addOnColorChangedListener { selectedColor -> cobweb_view.spiderLevelColor = selectedColor }
+        color_picker_view.addOnColorChangedListener(object : OnColorChangedListener {
+            override fun onColorChanged(selectedColor: Int) {
+                cobweb_view.spiderColor = selectedColor
+            }
+
+        })
+
+        color_picker_view.addOnColorSelectedListener(object : OnColorSelectedListener {
+            override fun onColorSelected(selectedColor: Int) {
+
+            }
+
+        })
+
+        color_picker_view_level.addOnColorChangedListener(object : OnColorChangedListener {
+            override fun onColorChanged(selectedColor: Int) {
+                cobweb_view.spiderLevelColor = selectedColor
+            }
+
+        })
+
     }
 
     override fun initData() {

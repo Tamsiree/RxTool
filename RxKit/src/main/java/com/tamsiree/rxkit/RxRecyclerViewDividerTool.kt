@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 
 /**
- * @author vonde
+ * @author Tamsiree
  * @date 2016/11/13
  */
 class RxRecyclerViewDividerTool : ItemDecoration {

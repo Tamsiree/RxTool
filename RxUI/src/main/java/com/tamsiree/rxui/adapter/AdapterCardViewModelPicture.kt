@@ -13,7 +13,7 @@ import com.tamsiree.rxui.view.cardstack.RxCardStackView
 import com.tamsiree.rxui.view.cardstack.tools.RxAdapterStack
 import java.io.File
 
-class AdapterCardViewModelPicture(context: Context?) : RxAdapterStack<ModelPicture>(context) {
+class AdapterCardViewModelPicture(context: Context) : RxAdapterStack<ModelPicture>(context) {
     override fun bindView(data: ModelPicture, position: Int, holder: RxCardStackView.ViewHolder) {
         if (holder is ColorItemViewHolder) {
             val h = holder
@@ -63,4 +63,5 @@ class AdapterCardViewModelPicture(context: Context?) : RxAdapterStack<ModelPictu
             mRxTextAutoZoom = view.findViewById(R.id.tv_number)
         }
     }
+
 }

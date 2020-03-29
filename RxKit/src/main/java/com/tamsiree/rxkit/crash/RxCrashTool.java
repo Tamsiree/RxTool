@@ -184,7 +184,7 @@ public class RxCrashTool {
                         }
                     });
                     application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
-                        final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+                        final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
                         int currentlyStartedActivities = 0;
 
                         @Override
@@ -259,7 +259,7 @@ public class RxCrashTool {
      */
     @Nullable
     public static String getStackTraceFromIntent(@NonNull Intent intent) {
-        return intent.getStringExtra(RxCrashTool.EXTRA_STACK_TRACE);
+        return intent.getStringExtra(com.tamsiree.rxkit.crash.RxCrashTool.EXTRA_STACK_TRACE);
     }
 
     /**
@@ -270,7 +270,7 @@ public class RxCrashTool {
      */
     @Nullable
     public static RxCrashConfig getConfigFromIntent(@NonNull Intent intent) {
-        RxCrashConfig config = (RxCrashConfig) intent.getSerializableExtra(RxCrashTool.EXTRA_CONFIG);
+        RxCrashConfig config = (RxCrashConfig) intent.getSerializableExtra(com.tamsiree.rxkit.crash.RxCrashTool.EXTRA_CONFIG);
         if (config != null && config.isLogErrorOnRestart()) {
             String stackTrace = getStackTraceFromIntent(intent);
             if (stackTrace != null) {
@@ -289,7 +289,7 @@ public class RxCrashTool {
      */
     @Nullable
     public static String getActivityLogFromIntent(@NonNull Intent intent) {
-        return intent.getStringExtra(RxCrashTool.EXTRA_ACTIVITY_LOG);
+        return intent.getStringExtra(com.tamsiree.rxkit.crash.RxCrashTool.EXTRA_ACTIVITY_LOG);
     }
 
     /**
@@ -413,7 +413,7 @@ public class RxCrashTool {
      */
     @RestrictTo(RestrictTo.Scope.LIBRARY)
     public static void setConfig(@NonNull RxCrashConfig config) {
-        RxCrashTool.config = config;
+        com.tamsiree.rxkit.crash.RxCrashTool.config = config;
     }
 
     /**

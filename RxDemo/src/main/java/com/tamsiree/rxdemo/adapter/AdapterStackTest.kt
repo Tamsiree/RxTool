@@ -14,8 +14,8 @@ import com.tamsiree.rxui.view.cardstack.tools.RxAdapterStack
 /**
  * @author tamsiree
  */
-class AdapterStackTest(context: Context?) : RxAdapterStack<Int?>(context) {
-    override fun bindView(data: Int?, position: Int, holder: RxCardStackView.ViewHolder?) {
+class AdapterStackTest(context: Context) : RxAdapterStack<Int>(context) {
+    override fun bindView(data: Int, position: Int, holder: RxCardStackView.ViewHolder) {
         if (holder is ColorItemLargeHeaderViewHolder) {
             holder.onBind(data, position)
         }

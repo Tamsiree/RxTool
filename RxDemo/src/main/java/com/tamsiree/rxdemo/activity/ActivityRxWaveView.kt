@@ -9,6 +9,7 @@ import com.tamsiree.rxkit.RxDeviceTool.setPortrait
 import com.tamsiree.rxkit.RxImageTool.changeColorAlpha
 import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxui.activity.ActivityBase
+import com.tamsiree.rxui.view.colorpicker.OnColorChangedListener
 import com.tamsiree.rxui.view.waveview.RxWaveView
 import kotlinx.android.synthetic.main.activity_rx_wave_view.*
 
@@ -49,19 +50,20 @@ class ActivityRxWaveView : ActivityBase() {
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
         })
-        color_picker_view.addOnColorChangedListener { selectedColor ->
-            // Handle on color change
-            TLog.d("selectedColor", "selectedColor: $selectedColor")
-            wave.setWaveColor(changeColorAlpha(selectedColor, 40),
-                    changeColorAlpha(selectedColor, 60))
-            mBorderColor = changeColorAlpha(selectedColor, 68)
-            wave.setBorder(wave.borderWidth, mBorderColor)
+        color_picker_view.addOnColorChangedListener(object : OnColorChangedListener {
+            override fun onColorChanged(selectedColor: Int) {
+                // Handle on color change
+                TLog.d("selectedColor", "selectedColor: $selectedColor")
+                wave.setWaveColor(changeColorAlpha(selectedColor, 40),
+                        changeColorAlpha(selectedColor, 60))
+                mBorderColor = changeColorAlpha(selectedColor, 68)
+                wave.setBorder(wave.borderWidth, mBorderColor)
 
 //                mCobwebView.setSpiderColor(selectedColor);
-        }
-        color_picker_view.addOnColorSelectedListener {
-            //mCobwebView.setSpiderColor(selectedColor);
-        }
+            }
+
+        })
+
     }
 
     override fun initData() {

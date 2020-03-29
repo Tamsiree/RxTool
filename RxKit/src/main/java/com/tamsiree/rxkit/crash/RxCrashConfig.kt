@@ -30,8 +30,8 @@ class RxCrashConfig : Serializable {
     private var trackActivities = false
     private var minTimeBetweenCrashesMs = 3000
     internal var errorDrawable: Int? = null
-    private var errorActivityClass: Class<out Activity?>? = null
-    internal var restartActivityClass: Class<out Activity?>? = null
+    private var errorActivityClass: Class<out Activity>? = null
+    internal var restartActivityClass: Class<out Activity>? = null
     private var eventListener: RxCrashTool.EventListener? = null
 
     @BackgroundMode
@@ -100,19 +100,19 @@ class RxCrashConfig : Serializable {
         this.errorDrawable = errorDrawable
     }
 
-    fun getErrorActivityClass(): Class<out Activity?>? {
+    fun getErrorActivityClass(): Class<out Activity>? {
         return errorActivityClass
     }
 
-    fun setErrorActivityClass(errorActivityClass: Class<out Activity?>?) {
+    fun setErrorActivityClass(errorActivityClass: Class<out Activity>?) {
         this.errorActivityClass = errorActivityClass
     }
 
-    fun getRestartActivityClass(): Class<out Activity?>? {
+    fun getRestartActivityClass(): Class<out Activity>? {
         return restartActivityClass
     }
 
-    fun setRestartActivityClass(restartActivityClass: Class<out Activity?>?) {
+    fun setRestartActivityClass(restartActivityClass: Class<out Activity>?) {
         this.restartActivityClass = restartActivityClass
     }
 
@@ -229,7 +229,7 @@ class RxCrashConfig : Serializable {
          * Sets the error activity class to launch when a crash occurs.
          * If null, the default error activity will be used.
          */
-        fun errorActivity(errorActivityClass: Class<out Activity?>?): Builder {
+        fun errorActivity(errorActivityClass: Class<out Activity>?): Builder {
             config!!.errorActivityClass = errorActivityClass
             return this
         }
@@ -239,7 +239,7 @@ class RxCrashConfig : Serializable {
          * If not set or set to null, the default launch activity will be used.
          * If your app has no launch activities and this is not set, the default error activity will close instead.
          */
-        fun restartActivity(restartActivityClass: Class<out Activity?>?): Builder {
+        fun restartActivity(restartActivityClass: Class<out Activity>?): Builder {
             config!!.restartActivityClass = restartActivityClass
             return this
         }

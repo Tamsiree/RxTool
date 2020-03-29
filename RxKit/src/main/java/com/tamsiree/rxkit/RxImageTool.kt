@@ -18,6 +18,7 @@ import com.tamsiree.rxkit.RxFileTool.Companion.getFileByPath
 import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.*
 
 /**
  * @author tamsiree
@@ -209,7 +210,7 @@ object RxImageTool {
     fun getHexString(color: Int, showAlpha: Boolean): String {
         val base = if (showAlpha) -0x1 else 0xFFFFFF
         val format = if (showAlpha) "#%08X" else "#%06X"
-        return String.format(format, base and color).toUpperCase()
+        return String.format(format, base and color).toUpperCase(Locale.ROOT)
     }
 
     /**
