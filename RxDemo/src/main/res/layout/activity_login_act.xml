@@ -3,7 +3,7 @@
                 android:id="@+id/root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
+    android:background="@color/White"
                 android:clipToPadding="true"
                 android:fitsSystemWindows="true"
                 android:orientation="vertical">
@@ -63,8 +63,8 @@
                     android:maxLength="11"
                     android:singleLine="true"
                     android:text=""
-                    android:textColor="@color/_9"
-                    android:textColorHint="@color/_9"
+                    android:textColor="@color/Gray9"
+                    android:textColorHint="@color/Gray9"
                     android:textSize="14dp"/>
 
                 <ImageView
@@ -80,7 +80,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/e"/>
+                android:background="@color/E" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -106,8 +106,8 @@
                     android:maxLength="30"
                     android:singleLine="true"
                     android:text=""
-                    android:textColor="@color/_9"
-                    android:textColorHint="@color/_9"
+                    android:textColor="@color/Gray9"
+                    android:textColorHint="@color/Gray9"
                     android:textSize="14dp"/>
 
                 <ImageView
@@ -130,7 +130,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/e"/>
+                android:background="@color/E" />
 
             <Button
                 android:id="@+id/btn_login"
@@ -140,7 +140,7 @@
                 android:layout_marginTop="21dp"
                 android:background="@drawable/bg_btn_login_selected"
                 android:text="@string/login"
-                android:textColor="@color/white"
+                android:textColor="@color/White"
                 android:textSize="18dp"/>
 
             <LinearLayout
@@ -199,7 +199,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@color/e"/>
+            android:background="@color/E" />
 
         <TextView
             android:layout_width="wrap_content"

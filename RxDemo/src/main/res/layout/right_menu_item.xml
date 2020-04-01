@@ -3,7 +3,7 @@
               android:id="@+id/right_menu_item"
               android:layout_width="match_parent"
               android:layout_height="30dp"
-              android:background="@color/ef"
+    android:background="@color/EF"
               android:gravity="center_vertical"
               android:orientation="horizontal">
 
@@ -18,10 +18,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@color/f6"
+        android:background="@color/F6"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:text="菜单"
-        android:textColor="@color/_6"
+        android:textColor="@color/Gray6"
         android:textSize="16sp"/>
 </LinearLayout>

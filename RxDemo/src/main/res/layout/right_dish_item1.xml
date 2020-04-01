@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/item_dish_horizontal_margin"
             android:text="@string/dish_name"
-            android:textColor="@color/black"
+            android:textColor="@color/Black"
             android:textSize="@dimen/item_dish_word_size"/>
     </LinearLayout>
 
@@ -67,7 +67,7 @@
                 android:gravity="center_horizontal"
                 android:text="1"
                 android:textSize="@dimen/item_dish_small_word_size"
-                android:textColor="@color/black" />
+                android:textColor="@color/Black" />
             <ImageView
                 android:id="@+id/right_dish_add"
                 android:layout_width="@dimen/item_dish_circle_size"

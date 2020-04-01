@@ -9,6 +9,6 @@
         android:width="@dimen/shopping_cart_circle_size"
         android:height="@dimen/shopping_cart_circle_size"/>
     <stroke
-        android:color="@color/light_black"
+        android:color="@color/Gray38"
         android:width="5dp"/>
 </shape>

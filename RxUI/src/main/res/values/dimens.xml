@@ -1163,4 +1163,7 @@
     <dimen name="stpi_two_dp">2dp</dimen>
     <dimen name="stpi_done_icon_size">18dp</dimen>
 
+    <dimen name="triangle_cornerflag_width">16dp</dimen>
+    <dimen name="circular_cornerflag_width">24dp</dimen>
+
 </resources>

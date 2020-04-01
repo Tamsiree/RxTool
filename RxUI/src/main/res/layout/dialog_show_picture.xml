@@ -32,7 +32,7 @@
             android:background="@drawable/shape_round_blue_tr_3dp"
             android:onClick="onPreClick"
             android:text="上一张"
-            android:textColor="@color/white"/>
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/btn_next"
@@ -43,6 +43,6 @@
             android:background="@drawable/shape_round_blue_tr_3dp"
             android:onClick="onNextClick"
             android:text="下一张"
-            android:textColor="@color/white"/>
+            android:textColor="@color/White" />
     </LinearLayout>
 </LinearLayout>

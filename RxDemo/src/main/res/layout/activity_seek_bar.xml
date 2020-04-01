@@ -4,7 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/e"
+    android:background="@color/E"
     android:orientation="vertical">
 
     <com.tamsiree.rxui.view.RxTitle

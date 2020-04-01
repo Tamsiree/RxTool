@@ -17,17 +17,17 @@
         android:layout_height="@dimen/dp_55"
         android:background="@color/colorPrimary"
         app:title="仙剑奇侠传：电影版"
-        app:titleColor="@color/white" />
+        app:titleColor="@color/White" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray1" />
+        android:background="@color/GrayE7" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/White"
         android:orientation="vertical"
         android:padding="15dp">
 
@@ -51,12 +51,12 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="50dp"
-        android:background="@color/gray1" />
+        android:background="@color/GrayE7" />
 
     <com.tamsiree.rxui.view.RxSeatMovie
         android:id="@+id/seatView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/e" />
+        android:background="@color/E" />
 
 </LinearLayout>

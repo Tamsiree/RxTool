@@ -16,13 +16,13 @@
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
         app:title="飞机票选座\n上海 - 长沙"
-        app:titleColor="@color/white"
+        app:titleColor="@color/White"
         app:titleSize="12sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/a9"
+        android:background="@color/A9"
         android:orientation="vertical">
 
         <com.tamsiree.rxui.view.RxSeatAirplane

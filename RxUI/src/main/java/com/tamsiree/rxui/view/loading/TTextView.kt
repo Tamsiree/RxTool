@@ -35,8 +35,8 @@ class TTextView : AppCompatTextView, TLoadingView {
         loaderController?.setHeightWeight(typedArray.getFloat(R.styleable.TLoadingView_height_weight, TLoadingProfile.MAX_WEIGHT))
         loaderController?.setUseGradient(typedArray.getBoolean(R.styleable.TLoadingView_gradient, TLoadingProfile.USE_GRADIENT_DEFAULT))
         loaderController?.setCorners(typedArray.getInt(R.styleable.TLoadingView_corners, TLoadingProfile.CORNER_DEFAULT))
-        defaultColorResource = typedArray.getColor(R.styleable.TLoadingView_TLoadingColor, ContextCompat.getColor(context, R.color.tloading_default_color))
-        darkerColorResource = typedArray.getColor(R.styleable.TLoadingView_TLoadingColor, ContextCompat.getColor(context, R.color.tloading_darker_color))
+        defaultColorResource = typedArray.getColor(R.styleable.TLoadingView_TLoadingColor, ContextCompat.getColor(context, R.color.D7))
+        darkerColorResource = typedArray.getColor(R.styleable.TLoadingView_TLoadingColor, ContextCompat.getColor(context, R.color.B4))
         typedArray.recycle()
     }
 

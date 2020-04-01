@@ -24,7 +24,7 @@
             android:id="@+id/activity_round_progress_bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray1"
+            android:background="@color/GrayE7"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -51,7 +51,7 @@
                     android:layout_centerHorizontal="true"
                     android:paddingBottom="@dimen/dp_30"
                     android:text="弧形进度条"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/White" />
 
             </RelativeLayout>
 
@@ -88,7 +88,7 @@
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/shape_round_green_8dp"
                     android:text="重新下载"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/White" />
 
             </LinearLayout>
 
@@ -329,7 +329,7 @@
                 app:rcSecondaryProgress="60"
                 app:rcSecondaryProgressColor="@color/custom_progress_green_progress_half"
                 app:rcTextProgress="RxTool"
-                app:rcTextProgressColor="@color/white"
+                app:rcTextProgressColor="@color/White"
                 app:rcTextProgressMargin="10dp"
                 app:rcTextProgressSize="14sp" />
 
@@ -345,7 +345,7 @@
                 app:rcProgressColor="@color/custom_progress_purple_progress"
                 app:rcRadius="10dp"
                 app:rcTextProgress="Von"
-                app:rcTextProgressColor="@color/white"
+                app:rcTextProgressColor="@color/White"
                 app:rcTextProgressMargin="10dp"
                 app:rcTextProgressSize="12sp" />
 
@@ -362,7 +362,7 @@
                 app:rcRadius="2dp"
                 app:rcReverse="true"
                 app:rcTextProgress="o"
-                app:rcTextProgressColor="@color/white"
+                app:rcTextProgressColor="@color/White"
                 app:rcTextProgressMargin="5dp"
                 app:rcTextProgressSize="20sp" />
 
@@ -394,7 +394,7 @@
                 app:rcProgress="5"
                 app:rcProgressColor="@color/custom_progress_red_progress"
                 app:rcReverse="true"
-                app:rcTextProgressColor="@color/white"
+                app:rcTextProgressColor="@color/White"
                 app:rcTextProgressMargin="10dp" />
 
 

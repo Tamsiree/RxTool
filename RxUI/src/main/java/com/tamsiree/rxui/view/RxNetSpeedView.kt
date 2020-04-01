@@ -62,7 +62,7 @@ class RxNetSpeedView : FrameLayout {
         val a = getContext().obtainStyledAttributes(attrs, R.styleable.RxNetSpeedView)
         try {
             //获得属性值
-            mTextColor = a.getColor(R.styleable.RxNetSpeedView_RxTextColor, resources.getColor(R.color.white))
+            mTextColor = a.getColor(R.styleable.RxNetSpeedView_RxTextColor, resources.getColor(R.color.White))
             //TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
             mTextSize = a.getDimensionPixelSize(R.styleable.RxNetSpeedView_RxTextSize, 12)
             isMulti = a.getBoolean(R.styleable.RxNetSpeedView_isMulti, false)

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/White"
     android:orientation="vertical"
     tools:context="com.tamsiree.rxdemo.activity.ActivityRxWaveView">
 
@@ -14,12 +14,12 @@
         android:layout_height="@dimen/dp_55"
         android:background="@color/colorPrimary"
         app:title="RxWaveView"
-        app:titleColor="@color/white" />
+        app:titleColor="@color/White" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/White"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingBottom="@dimen/dp_10">
@@ -118,7 +118,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="填充颜色"
-            android:textColor="@color/white"
+            android:textColor="@color/White"
             android:textStyle="bold" />
 
         <com.tamsiree.rxui.view.colorpicker.ColorPickerView

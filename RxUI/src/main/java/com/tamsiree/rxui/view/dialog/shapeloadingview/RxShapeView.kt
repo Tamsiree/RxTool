@@ -51,7 +51,7 @@ class RxShapeView : View {
         mPaint!!.color = resources.getColor(R.color.triangle)
         mPaint!!.isAntiAlias = true
         mPaint!!.style = Paint.Style.FILL_AND_STROKE
-        setBackgroundColor(resources.getColor(R.color.transparent))
+        setBackgroundColor(resources.getColor(R.color.TransColor))
         mTriangleColor = resources.getColor(R.color.triangle)
         mCircleColor = resources.getColor(R.color.circle)
         mRectColor = resources.getColor(R.color.pink_acfun)

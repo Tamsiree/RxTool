@@ -20,7 +20,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="个人资料"
-        android:textColor="@color/white"
+        android:textColor="@color/White"
         android:textSize="18dp"/>
 
     <ImageView

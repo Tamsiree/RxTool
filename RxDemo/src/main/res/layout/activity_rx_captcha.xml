@@ -5,7 +5,7 @@
     android:id="@+id/activity_rx_captcha"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/e"
+    android:background="@color/E"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="com.tamsiree.rxdemo.activity.ActivityRxCaptcha">
@@ -17,13 +17,13 @@
         android:background="@color/colorPrimary"
         app:rightIconVisibility="false"
         app:title="验证码工具的使用"
-        app:titleColor="@color/white" />
+        app:titleColor="@color/White" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/White"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="30dp">
@@ -77,7 +77,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/shape_round_orange"
             android:text="重置"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
 
     </LinearLayout>
 
@@ -102,7 +102,7 @@
             android:id="@+id/iv_code"
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:background="@color/_6"
+            android:background="@color/Gray6"
             android:src="@drawable/ic_check_white_48dp" />
 
     </LinearLayout>

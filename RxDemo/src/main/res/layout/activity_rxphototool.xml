@@ -15,7 +15,7 @@
         android:layout_height="@dimen/dp_55"
         android:background="@color/colorPrimary"
         app:title="个人资料"
-        app:titleColor="@color/white"
+        app:titleColor="@color/White"
         app:titleSize="20sp" />
 
     <RelativeLayout
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40"
             android:layout_alignBottom="@+id/ll_anchor_left"
-            android:background="@color/white" />
+            android:background="@color/White" />
 
         <LinearLayout
             android:id="@+id/ll_anchor_left"
@@ -56,14 +56,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/white"
+        android:background="@color/White"
         android:gravity="center"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/White"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -89,7 +89,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/white"
+        android:background="@color/White"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp">
@@ -116,7 +116,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/white"
+        android:background="@color/White"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp">
@@ -142,7 +142,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/white"
+        android:background="@color/White"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp">
@@ -168,7 +168,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/white"
+        android:background="@color/White"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp">
@@ -195,7 +195,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginTop="2dp"
-        android:background="@color/white"
+        android:background="@color/White"
         android:orientation="vertical"
         android:padding="5dp">
 
@@ -234,7 +234,7 @@
             android:layout_margin="5dp"
             android:background="@drawable/shape_round_hot_pink"
             android:text="退出登录"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
 
     </LinearLayout>
 

@@ -23,7 +23,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/shape_round_blue_tr_3dp"
         android:text="获取手机信息"
-        android:textColor="@color/white"/>
+        android:textColor="@color/White" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

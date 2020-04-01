@@ -1,58 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="transparent">#00000000</color><!-- 透明 黑色 -->
-    <color name="transparent_blank_5">#55000000</color><!-- 半透明 黑色 -->
-    <color name="black">#FF000000</color><!-- 全黑 -->
+    <color name="White">#FFFFFFFF</color><!-- 全白 -->
+    <color name="White66">#66FFFFFF</color><!-- 透明白 66 -->
+    <color name="whiteIvory">#FFFFF0</color><!-- 象牙色 -->
+    <color name="F6">#F6F6F6</color>
+    <color name="F0">#F0F0F0</color>
+    <color name="EF">#EFEFEF</color>
+    <color name="E">#EEEEEE</color>
+    <color name="E8">#E8E8E8</color>
+    <color name="GrayE7">#E7E4E4</color>
+    <color name="D7">#D7D7D7</color>
+    <color name="C">#CCCCCC</color>
+    <color name="BD">#BDBDBD</color>
+    <color name="B4">#B4B4B4</color>
+    <color name="A5">#A5A5A5</color>
+    <color name="A9">#A9A9A9</color>
+    <color name="GrayDeep">#AFAEAE</color>
+    <color name="Gray8C">#8C8C8C</color>
+    <color name="Gray80_25">#25808080</color>
+    <color name="Gray80_80">#80808080</color>
+    <color name="GrayDeep1">#636262</color>
+    <color name="Gray38">#fd383838</color>
 
-    <color name="gray_80_25">#25808080</color>
-    <color name="gray_80_80">#80808080</color>
+    <!-- system dark -->
+    <color name="Gray30">#303030</color>
 
-    <color name="round_corner_progress_bar_background_default">#5f5f5f</color>
-    <color name="round_corner_progress_bar_progress_default">#7f7f7f</color>
-    <color name="round_corner_progress_bar_secondary_progress_default">@android:color/transparent
-    </color>
+    <color name="Gray4">#444</color>
+    <color name="Gray6">#666</color>
+    <color name="Gray8">#888</color>
+    <color name="Gray9">#999</color>
+
+    <color name="TransColor">#00000000</color><!-- 透明 黑色 -->
+    <color name="TransBlank_5">#55000000</color><!-- 半透明 黑色 -->
+    <color name="TransBlank_9">#99000000</color><!-- 半透明 黑色 -->
+    <color name="Black">#FF000000</color><!-- 全黑 -->
+
+
+    <color name="Gray5F">#5f5f5f</color>
+    <color name="Gray7F">#7f7f7f</color>
+
 
     <color name="background_dark">#ff363636</color>
     <color name="background_content">#ff454344</color>
 
     <color name="custom_progress_background">#DACFD4</color>
 
-    <color name="white">#FFFFFFFF</color><!-- 全白 -->
-    <color name="white_66">#66FFFFFF</color><!-- 透明白 66 -->
-    <color name="ivory">#FFFFF0</color><!-- 象牙色 -->
-    <color name="f6">#f6f6f6</color>
-    <color name="f0">#f0f0f0</color>
-    <color name="ef">#efefef</color>
-    <color name="e">#EEEEEE</color>
-    <color name="gray1">#e7e4e4</color>
-    <color name="c">#CCCCCC</color>
-    <color name="bd">#BDBDBD</color>
-    <color name="a5">#A5A5A5</color>
-    <color name="a9">#A9A9A9</color>
-    <color name="deep_gray">#afaeae</color>
-    <color name="_9">#999999</color>
-    <color name="_8c">#8c8c8c</color>
-    <color name="deep_gray_2">#636262</color>
-    <color name="_6">#666666</color>
-    <color name="light_black">#fd383838</color>
-    <color name="_30">#303030</color><!-- system dark -->
-
-    <color name="snow">#FFFAFA</color><!--雪白色 -->
-    <color name="floralwhite">#FFFAF0</color><!--花白色 -->
-    <color name="lemonchiffon">#FFFACD</color><!--柠檬绸色 -->
-    <color name="cornsilk">#FFF8DC</color><!--米绸色 -->
-    <color name="seashell">#FFF5EE</color><!--海贝色 -->
-    <color name="lavenderblush">#FFF0F5</color><!--淡紫红 -->
-    <color name="papayawhip">#FFEFD5</color><!--番木色 -->
-    <color name="blanchedalmond">#FFEBCD</color><!--白杏色 -->
-    <color name="mistyrose">#FFE4E1</color><!--浅玫瑰色 -->
-    <color name="bisque">#FFE4C4</color><!--桔黄色 -->
-    <color name="moccasin">#FFE4B5</color><!--鹿皮色 -->
-
-    <color name="lightyellow">#FFFFE0</color><!--亮黄色 -->
+    <!--雪白色 -->
+    <color name="snow">#FFFAFA</color>
+    <!--花白色 -->
+    <color name="floralwhite">#FFFAF0</color>
+    <!--柠檬绸色 -->
+    <color name="lemonchiffon">#FFFACD</color>
+    <!--米绸色 -->
+    <color name="cornsilk">#FFF8DC</color>
+    <!--海贝色 -->
+    <color name="seashell">#FFF5EE</color>
+    <color name="lavenderblush">#FFF0F5</color>
+    <!--番木色 -->
+    <color name="papayawhip">#FFEFD5</color>
+    <!--白杏色 -->
+    <color name="blanchedalmond">#FFEBCD</color>
+    <!--浅玫瑰色 -->
+    <color name="mistyrose">#FFE4E1</color>
+    <!--桔黄色 -->
+    <color name="bisque">#FFE4C4</color>
+    <!--鹿皮色 -->
+    <color name="moccasin">#FFE4B5</color>
+    <!--亮黄色 -->
+    <color name="lightyellow">#FFFFE0</color>
     <color name="yellow">#e6ff00</color>
-    <color name="yellow1">#FFFF00</color><!--黄色 -->
+    <!--黄色 -->
+    <color name="yellow1">#FFFF00</color>
     <color name="orange">#f8b62d</color>
     <color name="WARNING_COLOR">#FFA900</color>
 
@@ -217,7 +236,6 @@
     <color name="navy">#000080</color><!--海军色 -->
 
 
-
     <color name="custom_progress_green_header">#ff99cc00</color>
     <color name="custom_progress_green_progress">#ff669900</color>
     <color name="custom_progress_green_progress_half">#7f669900</color>
@@ -238,15 +256,11 @@
     <color name="largeCircleColor">#FFAF3854</color>
     <color name="outerCircleColor">#FF533456</color>
 
-    <color name="default_selected_dot_color">#ffffff</color>
-    <color name="default_dot_color">#e8e8e8</color>
 
     <color name="stpi_default_circle_color">#b3bdc2</color>
     <color name="stpi_default_primary_color">#00b47c</color>
     <color name="stpi_default_line_color">#b3bdc2</color>
     <color name="stpi_default_text_color">#000</color>
 
-    <color name="tloading_default_color">#D7D7D7</color>
-    <color name="tloading_darker_color">#B4B4B4</color>
 
 </resources>

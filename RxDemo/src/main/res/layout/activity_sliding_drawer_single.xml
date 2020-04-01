@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="详情介绍"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/White" />
             </LinearLayout>
 
             <TextView

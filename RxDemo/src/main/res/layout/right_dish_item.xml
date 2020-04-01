@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@color/white"
+    android:background="@color/White"
               android:orientation="vertical">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:background="@color/white"
+        android:background="@color/White"
                   android:orientation="horizontal">
 
         <ImageView
@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dish_name"
-                    android:textColor="@color/black"
+                    android:textColor="@color/Black"
                     android:textSize="@dimen/item_dish_word_size"/>
             </LinearLayout>
 
@@ -46,7 +46,7 @@
                 android:layout_marginTop="5dp"
                 android:textSize="12sp"
                 android:text="新鲜番茄加洋葱，五香牛肉，五香猪肉慢火精炖，调制成汁稠味浓的意大利肉酱面。（350g）"
-                android:textColor="@color/_9"/>
+                android:textColor="@color/Gray9" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                 android:textSize="12sp"
                 android:layout_marginBottom="10dp"
                 android:text="月售86份    好评率100%"
-                android:textColor="@color/_6"/>
+                android:textColor="@color/Gray6" />
 
 
             <FrameLayout
@@ -108,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="1"
-                        android:textColor="@color/black"
+                        android:textColor="@color/Black"
                         android:textSize="@dimen/item_dish_small_word_size"/>
 
                     <ImageView
@@ -129,5 +129,5 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/f6"/>
+        android:background="@color/F6" />
 </LinearLayout>

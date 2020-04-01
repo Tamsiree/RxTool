@@ -55,7 +55,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
         android:text="@string/app_name"
-        android:textColor="@color/white"
+        android:textColor="@color/White"
         android:textSize="20sp"
         android:visibility="gone" />
 
@@ -67,7 +67,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:text="VERSION 2.0"
-        android:textColor="@color/white"
+        android:textColor="@color/White"
         android:textSize="10sp"
         android:visibility="gone" />
 

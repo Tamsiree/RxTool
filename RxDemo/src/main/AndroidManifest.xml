@@ -22,6 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activity.ActivityTMarker"></activity>
         <activity android:name=".activity.ActivityTLoadingView" />
         <activity android:name=".activity.ActivityTStepperIndicator" />
         <activity android:name=".activity.ActivityTCardGallery" />

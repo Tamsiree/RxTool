@@ -14,7 +14,7 @@
         android:background="@color/colorPrimary"
         app:leftIconVisibility="true"
         app:title="RxToast的展示使用"
-        app:titleColor="@color/white" />
+        app:titleColor="@color/White" />
 
     <RelativeLayout
         android:id="@+id/activity_main"
@@ -38,7 +38,7 @@
             android:layout_margin="5dp"
             android:background="#ddFD4C5B"
             android:text="错误的提示"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button_success_toast"
@@ -52,7 +52,7 @@
             android:layout_margin="5dp"
             android:background="#dd52BA97"
             android:text="成功的提示"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button_info_toast"
@@ -66,7 +66,7 @@
             android:layout_margin="5dp"
             android:background="#dd2196F3"
             android:text="信息的提示"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button_warning_toast"
@@ -80,7 +80,7 @@
             android:layout_margin="5dp"
             android:background="#ddFFA900"
             android:text="警告的提示"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button_normal_toast_wo_icon"
@@ -94,7 +94,7 @@
             android:layout_margin="5dp"
             android:background="#dd666666"
             android:text="普通的提示（没有ICON）"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button_normal_toast_w_icon"
@@ -108,7 +108,7 @@
             android:layout_margin="5dp"
             android:background="#dd666666"
             android:text="普通的提示（有ICON）"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
 
     </RelativeLayout>
 </LinearLayout>

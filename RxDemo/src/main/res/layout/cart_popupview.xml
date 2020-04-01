@@ -10,11 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/deep_gray">
+        android:background="@color/GrayDeep">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gray1">
+            android:background="@color/GrayE7">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
                 android:layout_marginBottom="@dimen/shopping_cart_right_margin"
                 android:layout_alignParentLeft="true"
                 android:text="@string/shopcart"
-                android:textColor="@color/black"
+                android:textColor="@color/Black"
                 android:textSize="@dimen/shopping_cart_small_size"/>
 
             <LinearLayout
@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/clear"
-                    android:textColor="@color/deep_gray_2"
+                    android:textColor="@color/GrayDeep1"
                     android:textSize="@dimen/shopping_cart_small_size"/>
             </LinearLayout>
         </RelativeLayout>
@@ -54,7 +54,7 @@
             android:id="@+id/recycleview"
             android:layout_width="match_parent"
             android:layout_height="@dimen/shopping_cart_bottom_recycle_height"
-            android:background="@color/white">
+            android:background="@color/White">
         </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
@@ -63,7 +63,7 @@
         android:id="@+id/shopping_cart_bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/shopping_cart_height"
-        android:background="@color/light_black"
+        android:background="@color/Gray38"
         android:orientation="horizontal"
         android:clickable="true"
         android:layout_alignParentBottom="true">
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="120"
-            android:textColor="@color/white"
+            android:textColor="@color/White"
             android:textAlignment="center"
             android:textSize="@dimen/shopping_cart_total_price_word_size"
             android:textStyle="bold"
@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/small_red_circle"
         android:text="1"
-        android:textColor="@color/white"
+        android:textColor="@color/White"
         android:textSize="10sp"
         android:textStyle="bold"
         android:layout_above="@id/shopping_cart_bottom"

@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/shopping_cart_height"
             android:layout_alignParentBottom="true"
-            android:background="@color/light_black"
+            android:background="@color/Gray38"
             android:orientation="horizontal">
 
             <TextView
@@ -36,7 +36,7 @@
                 android:layout_marginLeft="@dimen/shopping_cart_total_price_left_magrin"
                 android:text="120"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/White"
                 android:textSize="@dimen/shopping_cart_total_price_word_size"
                 android:textStyle="bold"
                 android:visibility="gone"/>
@@ -53,7 +53,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/gray1">
+                android:background="@color/GrayE7">
             </androidx.recyclerview.widget.RecyclerView>
 
             <RelativeLayout
@@ -101,7 +101,7 @@
             android:layout_alignRight="@id/shopping_cart_layout"
             android:background="@drawable/small_red_circle"
             android:text="1"
-            android:textColor="@color/white"
+            android:textColor="@color/White"
             android:textSize="10sp"
             android:textStyle="bold"
             android:visibility="gone"/>

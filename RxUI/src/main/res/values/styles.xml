@@ -30,7 +30,7 @@
     </style>
 
     <style name="TickerTextAppearance">
-        <item name="android:textColor">@color/f0</item>
+        <item name="android:textColor">@color/F0</item>
         <item name="android:textSize">50sp</item>
     </style>
 
@@ -242,8 +242,8 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:background">@color/transparent</item>
-        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:background">@color/TransColor</item>
+        <item name="android:windowBackground">@color/TransColor</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowAnimationStyle">@style/push_up_in</item>
     </style>

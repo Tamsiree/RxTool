@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="显示日期"
-                android:textColor="@color/_8c"
+                android:textColor="@color/Gray8C"
                 android:textSize="8dp"/>
         </LinearLayout>
     </RelativeLayout>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 默认时的背景图片-->
-    <item android:drawable="@color/transparent" />
+    <item android:drawable="@color/TransColor" />
 
     <!--按下时的背景-->
-    <item android:drawable="@color/white" android:state_pressed="true" />
-    <item android:drawable="@color/white" android:state_selected="true" />
-    <item android:drawable="@color/white" android:state_enabled="true" />
+    <item android:drawable="@color/White" android:state_pressed="true" />
+    <item android:drawable="@color/White" android:state_selected="true" />
+    <item android:drawable="@color/White" android:state_enabled="true" />
 
     <!-- 没有焦点时的背景图片 -->
     <!-- <item android:state_window_focused="false"

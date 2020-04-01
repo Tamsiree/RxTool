@@ -42,7 +42,7 @@
             android:paddingStart="@dimen/dp_10"
             android:paddingEnd="0dp"
             android:text="left"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
 
     </LinearLayout>
 
@@ -63,7 +63,7 @@
             android:isScrollContainer="false"
             android:maxLength="240"
             android:text="个人资料"
-            android:textColor="@color/white"
+            android:textColor="@color/White"
             android:textColorHint="@android:color/white"
             android:textSize="@dimen/sp_18" />
 
@@ -85,7 +85,7 @@
             android:paddingStart="0dp"
             android:paddingEnd="@dimen/dp_10"
             android:text="right"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
 
         <LinearLayout
             android:id="@+id/ll_icon_right_bg"

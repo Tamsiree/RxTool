@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/e"
+    android:background="@color/E"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="com.tamsiree.rxdemo.activity.ActivityMain">

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="@dimen/circular_cornerflag_width"
+    android:height="@dimen/circular_cornerflag_width"
+    android:viewportWidth="24.0"
+    android:viewportHeight="24.0">
+    <path
+        android:fillColor="@android:color/black"
+        android:pathData="
+        M 0,0
+        A 24,24,0,0,1,24,24
+        L 24,0" />
+</vector>

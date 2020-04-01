@@ -46,7 +46,7 @@
                 android:maxLines="1"
                 android:padding="5dp"
                 android:text="第 1 张"
-                android:textColor="@color/white"
+                android:textColor="@color/White"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -85,14 +85,14 @@
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:text="经度: "
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_point_lo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="未知"
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:textSize="12sp" />
 
                     </LinearLayout>
@@ -111,14 +111,14 @@
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:text="纬度: "
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_point_la"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="未知"
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:textSize="12sp" />
 
                     </LinearLayout>
@@ -139,7 +139,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="拍照时间："
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:textSize="14sp" />
 
                         <TextView
@@ -148,7 +148,7 @@
                             android:layout_height="wrap_content"
                             android:background="@null"
                             android:maxLines="1"
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:textSize="13sp" />
                     </LinearLayout>
 

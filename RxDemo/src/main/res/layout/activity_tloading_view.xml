@@ -89,6 +89,6 @@
         android:layout_margin="@dimen/activity_vertical_margin"
         android:background="@drawable/shape_round_theme"
         android:text="重新加载"
-        android:textColor="@color/white" />
+        android:textColor="@color/White" />
 
 </LinearLayout>

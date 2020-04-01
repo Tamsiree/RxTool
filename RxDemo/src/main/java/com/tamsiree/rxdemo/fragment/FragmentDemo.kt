@@ -62,7 +62,7 @@ class FragmentDemo : FragmentLazy, OnRefreshListener {
         recyclerViewDemo.addItemDecoration(RxRecyclerViewDividerTool(RxImageTool.dp2px(5f)))
         mAdapter = AdapterRecyclerViewMain(mDemoList, object : ContentListener {
             override fun setListener(position: Int) {
-                RxActivityTool.skipActivity(mContext, mDemoList!![position].activity)
+                RxActivityTool.skipActivity(mContext, mDemoList!![position].activity, null, true)
             }
         })
         mAdapter!!.openLoadAnimation(BaseQuickAdapter.SCALEIN)
@@ -144,6 +144,7 @@ class FragmentDemo : FragmentLazy, OnRefreshListener {
             mDemoList!!.add(ModelDemo("卡片画廊效果", R.drawable.circle_outlook, ActivityTCardGallery::class.java))
             mDemoList!!.add(ModelDemo("步骤指示器", R.drawable.circle_indicator, ActivityTStepperIndicator::class.java))
             mDemoList!!.add(ModelDemo("加载中视图", R.drawable.circle_indicator, ActivityTLoadingView::class.java))
+            mDemoList!!.add(ModelDemo("左滑标记", R.drawable.circle_indicator, ActivityTMarker::class.java))
             mDemoList!!.add(ModelDemo("其他界面效果", R.drawable.circle_icecandy, ActivityOtherEffect::class.java))
         }
 

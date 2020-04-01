@@ -21,7 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray1"
+            android:background="@color/GrayE7"
             android:orientation="vertical">
 
 
@@ -50,7 +50,7 @@
                         android:paddingTop="@dimen/dp_10"
                         android:paddingRight="20dp"
                         android:paddingBottom="@dimen/dp_10"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/White" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="判断字符串是否非空"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_null"
@@ -74,7 +74,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="true"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -91,7 +91,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="判断Object对象是否非空"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_null_obj"
@@ -100,7 +100,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="true"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -117,7 +117,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="判断字符串是否是整数"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_is_integer"
@@ -126,7 +126,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="false"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -143,7 +143,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="判断字符串是否是双精度浮点数"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_is_double"
@@ -152,7 +152,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="false"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -169,7 +169,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="判断字符串是否是数字"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_is_number"
@@ -178,7 +178,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="false"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -217,7 +217,7 @@
                             android:paddingTop="@dimen/dp_10"
                             android:paddingRight="20dp"
                             android:paddingBottom="@dimen/dp_10"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <EditText
                             android:id="@+id/ed_day"
@@ -229,7 +229,7 @@
                             android:paddingTop="@dimen/dp_10"
                             android:paddingRight="20dp"
                             android:paddingBottom="@dimen/dp_10"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
 
                     </LinearLayout>
@@ -247,7 +247,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="根据日期获取星座"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_astro"
@@ -256,7 +256,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="太阳座"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -289,7 +289,7 @@
                         android:paddingTop="@dimen/dp_10"
                         android:paddingRight="20dp"
                         android:paddingBottom="@dimen/dp_10"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/White" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -304,7 +304,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="隐藏手机号码中间四位"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_hind_mobile"
@@ -313,7 +313,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="152****1314"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -347,7 +347,7 @@
                         android:paddingTop="@dimen/dp_10"
                         android:paddingRight="20dp"
                         android:paddingBottom="@dimen/dp_10"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/White" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -362,7 +362,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="格式化银行卡"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_format_bank_card"
@@ -371,7 +371,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="6217 **** **** 1314"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -388,7 +388,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="显示银行卡后四位"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_format_bank_card_4"
@@ -397,7 +397,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="1314"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -426,7 +426,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp_5"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/White" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -441,7 +441,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="金额格式化"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_getAmountValue"
@@ -450,7 +450,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="1314"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -467,7 +467,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="四舍五入"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_getRoundUp"
@@ -476,7 +476,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="1314"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -509,7 +509,7 @@
                         android:paddingTop="@dimen/dp_10"
                         android:paddingRight="20dp"
                         android:paddingBottom="@dimen/dp_10"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/White" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -524,7 +524,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="字符串转换成整型"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_string_to_int"
@@ -533,7 +533,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="12"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -550,7 +550,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="字符串转换成long"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_string_to_long"
@@ -559,7 +559,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="12"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -577,7 +577,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="字符串转换成double"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_string_to_double"
@@ -586,7 +586,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="12.0"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -603,7 +603,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="字符串转换成float"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_string_to_float"
@@ -612,7 +612,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="12.0"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -629,7 +629,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="字符串转换成带两位小数"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_string_to_two_number"
@@ -638,7 +638,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="12.0"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -671,7 +671,7 @@
                         android:paddingTop="@dimen/dp_10"
                         android:paddingRight="20dp"
                         android:paddingBottom="@dimen/dp_10"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/White" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -686,7 +686,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="首字母大写"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_upperFirstLetter"
@@ -695,7 +695,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="Abc"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -712,7 +712,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="首字母小写"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_lowerFirstLetter"
@@ -721,7 +721,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="aBC"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -738,7 +738,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="翻转字符串"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_reverse"
@@ -747,7 +747,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="aB12"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -764,7 +764,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="转化为半角字符"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_toDBC"
@@ -773,7 +773,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="1234"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -790,7 +790,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="转化为全角字符"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_toSBC"
@@ -799,7 +799,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="1234"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -816,7 +816,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="单个汉字转成ASCII码"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_oneCn2ASCII"
@@ -825,7 +825,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="96"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -842,7 +842,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="单个汉字转成拼音"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_oneCn2PY"
@@ -851,7 +851,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="Ping"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -868,7 +868,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="获得第一个汉字首字母"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_getPYFirstLetter"
@@ -877,7 +877,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="Ping"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -894,7 +894,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="获得所有汉字首字母"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_getPYAllFirstLetter"
@@ -903,7 +903,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="Ping"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
 
@@ -920,7 +920,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/shape_round_white_3dp"
                             android:text="中文转拼音"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                         <TextView
                             android:id="@+id/tv_cn2PY"
@@ -929,7 +929,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="Ping"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
                 </LinearLayout>

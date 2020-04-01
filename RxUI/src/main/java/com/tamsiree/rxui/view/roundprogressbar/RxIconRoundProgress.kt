@@ -53,7 +53,7 @@ class RxIconRoundProgress : RxBaseRoundProgress, View.OnClickListener {
         iconPaddingRight = typedArray.getDimension(R.styleable.RxIconRoundProgress_rcIconPaddingRight, dp2px(context, DEFAULT_ICON_PADDING_RIGHT.toFloat()).toFloat()).toInt()
         iconPaddingTop = typedArray.getDimension(R.styleable.RxIconRoundProgress_rcIconPaddingTop, dp2px(context, DEFAULT_ICON_PADDING_TOP.toFloat()).toFloat()).toInt()
         iconPaddingBottom = typedArray.getDimension(R.styleable.RxIconRoundProgress_rcIconPaddingBottom, dp2px(context, DEFAULT_ICON_PADDING_BOTTOM.toFloat()).toFloat()).toInt()
-        val colorIconBackgroundDefault = context.resources.getColor(R.color.round_corner_progress_bar_background_default)
+        val colorIconBackgroundDefault = context.resources.getColor(R.color.Gray5F)
         colorIconBackground = typedArray.getColor(R.styleable.RxIconRoundProgress_rcIconBackgroundColor, colorIconBackgroundDefault)
         typedArray.recycle()
     }

@@ -31,8 +31,8 @@
         android:inputType="textPersonName"
         android:padding="5dp"
         android:text=""
-        android:textColor="@color/black"
-        android:textColorHint="@color/a5"/>
+        android:textColor="@color/Black"
+        android:textColorHint="@color/A5" />
 
     <TextView
         android:id="@+id/textView12"

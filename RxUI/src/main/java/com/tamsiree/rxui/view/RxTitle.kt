@@ -154,7 +154,7 @@ class RxTitle : FrameLayout {
             //标题
             mTitle = a.getString(R.styleable.RxTitle_title)
             //标题颜色
-            mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, resources.getColor(R.color.white))
+            mTitleColor = a.getColor(R.styleable.RxTitle_titleColor, resources.getColor(R.color.White))
 
             //标题字体大小
             mTitleSize = a.getDimensionPixelSize(R.styleable.RxTitle_titleSize, dp2px(context, 20f))
@@ -171,13 +171,13 @@ class RxTitle : FrameLayout {
             mRightIconVisibility = a.getBoolean(R.styleable.RxTitle_rightIconVisibility, false)
             mLeftText = a.getString(R.styleable.RxTitle_leftText)
             //左边字体颜色
-            mLeftTextColor = a.getColor(R.styleable.RxTitle_leftTextColor, resources.getColor(R.color.white))
+            mLeftTextColor = a.getColor(R.styleable.RxTitle_leftTextColor, resources.getColor(R.color.White))
             //左侧标题字体大小
             mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, dp2px(context, 8f))
             mLeftTextVisibility = a.getBoolean(R.styleable.RxTitle_leftTextVisibility, false)
             mRightText = a.getString(R.styleable.RxTitle_rightText)
             //右边字体颜色
-            mRightTextColor = a.getColor(R.styleable.RxTitle_rightTextColor, resources.getColor(R.color.white))
+            mRightTextColor = a.getColor(R.styleable.RxTitle_rightTextColor, resources.getColor(R.color.White))
             //标题字体大小
             mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, dp2px(context, 8f))
             mRightTextVisibility = a.getBoolean(R.styleable.RxTitle_rightTextVisibility, false)

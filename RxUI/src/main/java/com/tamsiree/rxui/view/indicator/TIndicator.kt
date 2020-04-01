@@ -48,12 +48,12 @@ class TIndicator @JvmOverloads constructor(
     private var verticalSupport = false
 
     @ColorInt
-    private var dotColor: Int = ContextCompat.getColor(this.context, R.color.default_dot_color)
+    private var dotColor: Int = ContextCompat.getColor(this.context, R.color.E8)
 
     @ColorInt
     private var selectedDotColor: Int = ContextCompat.getColor(
             this.context,
-            R.color.default_selected_dot_color
+            R.color.White
     )
     private val selectedDotPaint = Paint()
     private val dotPaint = Paint()

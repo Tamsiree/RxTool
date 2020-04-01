@@ -74,7 +74,7 @@ class ActivityPopupView : ActivityBase(), TipListener {
             mRxPopupViewManager?.findAndDismiss(text_view)
             builder = RxPopupView.Builder(this, text_view, parent_layout, text, RxPopupView.POSITION_LEFT_TO)
             builder.setBackgroundColor(resources.getColor(R.color.greenyellow))
-            builder.setTextColor(resources.getColor(R.color.black))
+            builder.setTextColor(resources.getColor(R.color.Black))
             builder.setGravity(RxPopupView.GRAVITY_CENTER)
             builder.setTextSize(12)
             tipvView = mRxPopupViewManager?.show(builder.build())!!

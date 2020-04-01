@@ -133,7 +133,7 @@ class RxPopupView(builder: Builder) {
             mOffsetY = 0
             mArrow = true
             mBackgroundColor = context.resources.getColor(R.color.colorBackground)
-            mTextColor = context.resources.getColor(R.color.white)
+            mTextColor = context.resources.getColor(R.color.White)
             mTextGravity = GRAVITY_LEFT
             mTextSize = 14
         }
@@ -157,7 +157,7 @@ class RxPopupView(builder: Builder) {
             mOffsetY = 0
             mArrow = true
             mBackgroundColor = context.resources.getColor(R.color.colorBackground)
-            mTextColor = context.resources.getColor(R.color.white)
+            mTextColor = context.resources.getColor(R.color.White)
             mTextGravity = GRAVITY_LEFT
             mTextSize = 14
         }

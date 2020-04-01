@@ -25,7 +25,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/e" />
+            android:background="@color/E" />
 
         <TextView
             android:id="@+id/tv_file"
@@ -40,7 +40,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/e" />
+            android:background="@color/E" />
 
         <TextView
             android:id="@+id/tv_camera"

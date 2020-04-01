@@ -20,7 +20,7 @@
             android:layout_height="@dimen/dp_55"
             android:background="@color/colorPrimary"
             app:title="动态生成码"
-            app:titleColor="@color/white" />
+            app:titleColor="@color/White" />
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -50,7 +50,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:gravity="center"
                 android:orientation="vertical">
 

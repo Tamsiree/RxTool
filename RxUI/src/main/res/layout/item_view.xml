@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/tv1"
-            android:textColor="@color/black"
+            android:textColor="@color/Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/title_tv1"
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/title_tv2"
-            android:textColor="@color/black"
+            android:textColor="@color/Black"
             android:ellipsize="end"
             android:textSize="14sp"
             android:maxLines="1" />

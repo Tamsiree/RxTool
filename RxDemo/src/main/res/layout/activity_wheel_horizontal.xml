@@ -17,7 +17,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray1"
+        android:background="@color/GrayE7"
         tools:context=".activity.ActivityWheelHorizontal">
 
         <LinearLayout

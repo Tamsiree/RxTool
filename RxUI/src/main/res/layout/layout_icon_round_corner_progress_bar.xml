@@ -3,7 +3,7 @@
     android:id="@+id/layout_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/round_corner_progress_bar_background_default"
+    android:background="@color/Gray5F"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -35,14 +35,14 @@
             android:id="@+id/layout_secondary_progress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/round_corner_progress_bar_progress_default"
+            android:background="@color/Gray7F"
             android:orientation="horizontal" />
 
         <LinearLayout
             android:id="@+id/layout_progress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/round_corner_progress_bar_secondary_progress_default"
+            android:background="@color/TransColor"
             android:orientation="horizontal" />
 
     </RelativeLayout>

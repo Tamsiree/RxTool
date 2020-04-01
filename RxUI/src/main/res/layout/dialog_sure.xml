@@ -39,7 +39,7 @@
             android:gravity="center"
             android:maxHeight="200dp"
             android:text="@string/android_origin"
-            android:textColor="@color/black"/>
+            android:textColor="@color/Black" />
 
         <TextView
             android:id="@+id/textView12"
@@ -62,7 +62,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="确认"
-                android:textColor="@color/_8c"
+                android:textColor="@color/Gray8C"
                 android:textSize="16dp"/>
 
         </LinearLayout>

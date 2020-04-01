@@ -26,7 +26,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/_30"
+        android:background="@color/Gray30"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp"
@@ -43,7 +43,7 @@
             android:layout_marginBottom="5dp"
             android:gravity="center"
             android:text="状态"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
 
         <TextView
             android:id="@+id/tv_gps"
@@ -55,7 +55,7 @@
             android:layout_marginBottom="22dp"
             android:gravity="center"
             android:text="GPS"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/btn_take_camera"
@@ -67,7 +67,7 @@
             android:paddingLeft="@dimen/dp_20"
             android:paddingRight="@dimen/dp_20"
             android:text="拍照并记录当前经纬度信息"
-            android:textColor="@color/white" />
+            android:textColor="@color/White" />
     </LinearLayout>
 
 
