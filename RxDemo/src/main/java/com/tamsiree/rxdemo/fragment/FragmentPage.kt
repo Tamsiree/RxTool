@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import com.tamsiree.rxdemo.R
+import com.tamsiree.rxui.fragment.FragmentLazy
+import kotlinx.android.synthetic.main.fragment_page.*
 
 /**
  * @ClassName PageFragment
@@ -17,16 +18,20 @@ import com.tamsiree.rxdemo.R
  * @Version 1.0
  */
 
-class PageFragment : Fragment() {
+class FragmentPage : FragmentLazy() {
     private var lblPage: TextView? = null
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view: View = inflater.inflate(R.layout.fragment_page, container, false)
-        lblPage = view.findViewById<View>(R.id.lbl_page) as TextView
+
+    override fun inflateView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View {
+        val view = layoutInflater.inflate(R.layout.fragment_page, viewGroup, false)
         return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun initView() {
+
+    }
+
+    override fun initData() {
+        lblPage = lbl_page
         val page = arguments!!.getInt("page", 0)
         if (arguments!!.containsKey("isLast")) {
             lblPage!!.setTextColor(Color.parseColor("#52BA97"))
@@ -37,11 +42,11 @@ class PageFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(page: Int, isLast: Boolean): PageFragment {
+        fun newInstance(page: Int, isLast: Boolean): FragmentPage {
             val args = Bundle()
             args.putInt("page", page)
             if (isLast) args.putBoolean("isLast", true)
-            val fragment = PageFragment()
+            val fragment = FragmentPage()
             fragment.arguments = args
             return fragment
         }

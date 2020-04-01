@@ -6,34 +6,38 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.activity.ActivityLoadingDetail
 import com.tamsiree.rxkit.RxImageTool
 import com.tamsiree.rxkit.RxRecyclerViewDividerTool
+import com.tamsiree.rxui.fragment.FragmentLazy
 import com.tamsiree.rxui.view.loadingview.SpinKitView
 import com.tamsiree.rxui.view.loadingview.SpriteFactory
 import com.tamsiree.rxui.view.loadingview.Style
+import kotlinx.android.synthetic.main.fragment_page1.*
 
 /**
  * Created by Tamsiree.
  * @author tamsiree
  */
-class FragmentLoadingWay : Fragment() {
+class FragmentLoadingWay : FragmentLazy() {
     var colors = intArrayOf(
             Color.parseColor("#99CCFF"),
             Color.parseColor("#34A853"))
 
-    @SuppressLint("InflateParams")
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_page1, null)
+    override fun inflateView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View {
+        val view = layoutInflater.inflate(R.layout.fragment_page1, viewGroup, false)
+        return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val recyclerView: RecyclerView = view.findViewById(R.id.list)
+    override fun initView() {
+
+    }
+
+    override fun initData() {
+        val recyclerView: RecyclerView = list
         val layoutManager = GridLayoutManager(context, 3)
         layoutManager.orientation = GridLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager

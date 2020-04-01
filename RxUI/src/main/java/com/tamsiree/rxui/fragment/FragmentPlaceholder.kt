@@ -7,8 +7,12 @@ import android.view.ViewGroup
 import com.tamsiree.rxui.R
 
 class FragmentPlaceholder : FragmentLazy() {
-    override fun initViews(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun inflateView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View {
         return layoutInflater.inflate(R.layout.fragment_placeholder, viewGroup, false)
+    }
+
+    override fun initView() {
+
     }
 
     override fun initData() {}

@@ -35,9 +35,13 @@ class FragmentDemo : FragmentLazy, OnRefreshListener {
         this.demo_type = demo_type
     }
 
-    override fun initViews(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun inflateView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = layoutInflater.inflate(R.layout.fragment_demo, viewGroup, false)
         return view
+    }
+
+    override fun initView() {
+
     }
 
     override fun initData() {
@@ -114,6 +118,7 @@ class FragmentDemo : FragmentLazy, OnRefreshListener {
             mDemoList!!.add(ModelDemo("PULL解析XML", R.drawable.circle_swap_vert, ActivityXmlParse::class.java))
             mDemoList!!.add(ModelDemo("支付宝支付Demo", R.drawable.circle_alipay, ActivityAliPay::class.java))
             mDemoList!!.add(ModelDemo("Hold住崩溃界面", R.drawable.crash_logo, ActivityOnCrash::class.java))
+            mDemoList!!.add(ModelDemo("随机生成测试数据", R.drawable.crash_logo, ActivityDemoData::class.java))
             mDemoList!!.add(ModelDemo("app检测更新与安装", R.mipmap.ic_launcher, ActivitySplash::class.java))
         }
 

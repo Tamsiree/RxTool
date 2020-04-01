@@ -55,6 +55,10 @@ class ActivitySVG : ActivityBase() {
                 }
             }
         }
-        animated_svg_view.start()
+        try {
+            animated_svg_view.start()
+        } catch (e: Exception) {
+
+        }
     }
 }

@@ -3,7 +3,7 @@ package com.tamsiree.rxdemo.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.tamsiree.rxdemo.fragment.PageFragment
+import com.tamsiree.rxdemo.fragment.FragmentPage
 
 /**
  * @ClassName PagerAdapter
@@ -13,13 +13,13 @@ import com.tamsiree.rxdemo.fragment.PageFragment
  * @Version 1.0
  */
 
-internal class PagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
+internal class AdapterFP(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
     override fun getCount(): Int {
         return 5
     }
 
     override fun getItem(position: Int): Fragment {
-        return PageFragment.newInstance(position + 1, position == count - 1)
+        return FragmentPage.newInstance(position + 1, position == count - 1)
     }
 
     override fun getPageTitle(position: Int): CharSequence {

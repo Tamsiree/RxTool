@@ -5,7 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.view.animation.LinearInterpolator
 import androidx.core.animation.doOnEnd
-import com.tamsiree.rxui.view.mark.canvas.CanvasUtils.drawBackdropRectangle
+import com.tamsiree.rxui.view.mark.canvas.CanvasKit.drawBackdropRectangle
 import com.tamsiree.rxui.view.mark.model.AnimationData
 import com.tamsiree.rxui.view.mark.model.CanvasAnimation
 import com.tamsiree.rxui.view.mark.model.ParentMetrics

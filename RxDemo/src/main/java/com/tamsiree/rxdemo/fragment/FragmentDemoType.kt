@@ -15,9 +15,13 @@ class FragmentDemoType : FragmentLazy() {
 
     private val modelFVPList: MutableList<ModelFVP> = ArrayList()
 
-    override fun initViews(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun inflateView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = layoutInflater.inflate(R.layout.fragment_demo_type, viewGroup, false)
         return view
+    }
+
+    override fun initView() {
+
     }
 
     override fun initData() {

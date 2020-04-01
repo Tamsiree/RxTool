@@ -52,13 +52,14 @@ abstract class FragmentLazy : Fragment() {
         // 如果这里有数据累加的Bug 请在initViews方法里初始化您的数据 比如 list.clear();
         mContext = this.activity!!
         isFirstLoad = true
-        rootView = initViews(layoutInflater, viewGroup, savedInstanceState)
-        isPrepared = true
+        rootView = inflateView(layoutInflater, viewGroup, savedInstanceState)
         return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
+        isPrepared = true
         lazyLoad()
     }
 
@@ -114,6 +115,8 @@ abstract class FragmentLazy : Fragment() {
         initData()
     }
 
-    protected abstract fun initViews(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View
+
+    protected abstract fun inflateView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstanceState: Bundle?): View
+    protected abstract fun initView()
     protected abstract fun initData()
 }

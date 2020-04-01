@@ -454,11 +454,8 @@ class RxTitle : FrameLayout {
         }
     }
 
-    fun setLeftFinish(activity: Activity) {
-        mLlLeft?.setOnClickListener { v: View? -> activity.finish() }
-    }
-
-    fun setLeftFinish(activity: Activity, isFade: Boolean, isTransition: Boolean) {
+    @JvmOverloads
+    fun setLeftFinish(activity: Activity, isFade: Boolean = true, isTransition: Boolean = false) {
         mLlLeft?.setOnClickListener { v: View? ->
             RxActivityTool.finishActivity(activity, isTransition)
             if (isFade) {

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/D7"
+    android:orientation="vertical"
+    tools:context=".activity.ActivityDemoData">
+
+    <com.tamsiree.rxui.view.RxTitle
+        android:id="@+id/rxTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        android:background="?colorPrimary"
+        app:title="生成随机Demo测试数据" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.tamsiree.rxui.view.tablayout.TGlideTabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            app:indicator_color="@color/colorPrimaryDark"
+            app:indicator_corner_radius="5dp"
+            app:indicator_margin_left="2dp"
+            app:indicator_margin_right="2dp"
+            app:indicator_style="BLOCK" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha=".8"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_splash" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+</LinearLayout>

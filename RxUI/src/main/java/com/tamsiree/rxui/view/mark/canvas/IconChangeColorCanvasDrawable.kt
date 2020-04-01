@@ -9,7 +9,7 @@ import android.view.animation.LinearInterpolator
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
 import androidx.core.animation.doOnEnd
-import com.tamsiree.rxui.view.mark.canvas.CanvasUtils.drawDrawable
+import com.tamsiree.rxui.view.mark.canvas.CanvasKit.drawDrawable
 import com.tamsiree.rxui.view.mark.model.*
 
 

@@ -181,6 +181,9 @@ object TLog {
         }
         val file = File(path, "$LOG_FILE_NAME$date.txt")
         try {
+            if (!file.exists()) {
+                file.createNewFile()
+            }
             val filerWriter = FileWriter(file, true)
             val bufWriter = BufferedWriter(filerWriter)
             bufWriter.write(dateLogContent)

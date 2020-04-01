@@ -9,6 +9,7 @@ import com.tamsiree.rxkit.RxConstTool.GB
 import com.tamsiree.rxkit.RxConstTool.KB
 import com.tamsiree.rxkit.RxConstTool.MB
 import com.tamsiree.rxkit.RxConstTool.MemoryUnit
+import com.tamsiree.rxkit.RxConstants.SPACE
 import java.io.*
 import java.lang.reflect.Array
 import java.math.BigDecimal
@@ -83,7 +84,7 @@ class RxDataTool {
             if (obj == null) {
                 return true
             }
-            if (obj is String && obj.toString().length == 0) {
+            if (obj is String && obj.toString().isEmpty()) {
                 return true
             }
             if (obj.javaClass.isArray && Array.getLength(obj) == 0) {
@@ -105,6 +106,16 @@ class RxDataTool {
                 return true
             }
             return obj is SparseLongArray && obj.size() == 0
+        }
+
+        @JvmStatic
+        fun cleanSpace(value: String): String {
+            return value.filter { !it.isWhitespace() }
+        }
+
+        @JvmStatic
+        fun isContainSpace(value: String): Boolean {
+            return value.contains(SPACE)
         }
 
         /**
@@ -200,12 +211,30 @@ class RxDataTool {
          * @return 3749 **** **** 330
          */
         @JvmStatic
-        fun formatCard(cardNo: String): String {
+        fun formatCardx(cardNo: String): String {
             if (cardNo.length < 8) {
                 return "银行卡号有误"
             }
             var card = ""
             card = cardNo.substring(0, 4) + " **** **** "
+            card += cardNo.substring(cardNo.length - 4)
+            return card
+        }
+
+        /**
+         * 格式化银行卡
+         * 3749 **** **** 330
+         *
+         * @param cardNo 银行卡
+         * @return 3749 **** **** 330
+         */
+        @JvmStatic
+        fun formatCard(cardNo: String): String {
+            if (cardNo.length < 8) {
+                return "银行卡号有误"
+            }
+            var card = ""
+            card = cardNo.substring(0, 4) + SPACE + cardNo.substring(4, 8) + SPACE + cardNo.substring(8, 12) + SPACE
             card += cardNo.substring(cardNo.length - 4)
             return card
         }

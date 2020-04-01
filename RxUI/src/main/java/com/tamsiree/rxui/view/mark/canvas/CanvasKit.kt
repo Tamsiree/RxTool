@@ -8,7 +8,7 @@ import com.tamsiree.rxui.view.mark.model.Coordinate
 import com.tamsiree.rxui.view.mark.model.ParentMetrics
 
 
-object CanvasUtils {
+object CanvasKit {
     /**
      * Draws a backdrop rectangle with a given paint on the receiving canvas
      */
