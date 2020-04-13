@@ -132,7 +132,7 @@ class TSectionTabLayout @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
     fun setTabData(titles: Array<String>?) {
-        check(!(titles == null || titles.size == 0)) { "Titles can not be NULL or EMPTY !" }
+        check(!(titles == null || titles.isEmpty())) { "Titles can not be NULL or EMPTY !" }
         mTitles = titles
         notifyDataSetChanged()
     }

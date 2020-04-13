@@ -18,7 +18,7 @@ buildscript {
         maven { url 'https://esri.bintray.com/arcgis' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath 'com.android.tools.build:gradle:3.6.2'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"

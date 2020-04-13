@@ -1,7 +1,6 @@
 package com.tamsiree.rxkit.demodata;
 
 import com.google.common.base.CaseFormat;
-import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 
@@ -44,21 +43,13 @@ public class InsertSQLGenerator {
     }
 
     public String generateParams() {
-        return COMMA_JOINER
-                .join(transform(getColumns(), new Function<String, String>() {
-
-                    @Override
-                    public String apply(String input) {
-                        return "abc.get" + CaseFormat.LOWER_UNDERSCORE
-                                .to(CaseFormat.UPPER_CAMEL, input) + "()";
-                    }
-                }));
+        return COMMA_JOINER.join(transform(getColumns(), input -> "abc.get" + CaseFormat.LOWER_UNDERSCORE
+                .to(CaseFormat.UPPER_CAMEL, input) + "()"));
     }
 
     private List<String> getColumns() {
         List<String> columns = Lists.newArrayList();
-        try (PreparedStatement ps = this.con
-                .prepareStatement("select * from " + this.tableName);
+        try (PreparedStatement ps = this.con.prepareStatement("select * from " + this.tableName);
              ResultSet rs = ps.executeQuery()) {
 
             ResultSetMetaData rsm = rs.getMetaData();
