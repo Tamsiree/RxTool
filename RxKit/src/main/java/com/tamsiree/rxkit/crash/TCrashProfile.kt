@@ -21,7 +21,7 @@ import androidx.annotation.IntDef
 import java.io.Serializable
 import java.lang.reflect.Modifier
 
-class RxCrashConfig : Serializable {
+class TCrashProfile : Serializable {
     private var backgroundMode = BACKGROUND_MODE_SHOW_CUSTOM
     private var enabled = true
     private var showErrorDetails = true
@@ -32,7 +32,7 @@ class RxCrashConfig : Serializable {
     internal var errorDrawable: Int? = null
     private var errorActivityClass: Class<out Activity>? = null
     internal var restartActivityClass: Class<out Activity>? = null
-    private var eventListener: RxCrashTool.EventListener? = null
+    private var mEventListener: TCrashTool.EventListener? = null
 
     @BackgroundMode
     fun getBackgroundMode(): Int {
@@ -116,12 +116,12 @@ class RxCrashConfig : Serializable {
         this.restartActivityClass = restartActivityClass
     }
 
-    fun getEventListener(): RxCrashTool.EventListener? {
-        return eventListener
+    fun getEventListener(): TCrashTool.EventListener? {
+        return mEventListener
     }
 
-    fun setEventListener(eventListener: RxCrashTool.EventListener?) {
-        this.eventListener = eventListener
+    fun setEventListener(eventListener: TCrashTool.EventListener?) {
+        this.mEventListener = eventListener
     }
 
     @IntDef(BACKGROUND_MODE_CRASH, BACKGROUND_MODE_SHOW_CUSTOM, BACKGROUND_MODE_SILENT)
@@ -130,7 +130,7 @@ class RxCrashConfig : Serializable {
     }
 
     class Builder {
-        private var config: RxCrashConfig? = null
+        private var mProfile: TCrashProfile? = null
 
         /**
          * Defines if the error activity must be launched when the app is on background.
@@ -140,7 +140,7 @@ class RxCrashConfig : Serializable {
          * The default is BackgroundMode.BACKGROUND_MODE_SHOW_CUSTOM (the app will be brought to front when a crash occurs).
          */
         fun backgroundMode(@BackgroundMode backgroundMode: Int): Builder {
-            config!!.backgroundMode = backgroundMode
+            mProfile!!.backgroundMode = backgroundMode
             return this
         }
 
@@ -151,7 +151,7 @@ class RxCrashConfig : Serializable {
          * The default is true.
          */
         fun enabled(enabled: Boolean): Builder {
-            config!!.enabled = enabled
+            mProfile!!.enabled = enabled
             return this
         }
 
@@ -162,7 +162,7 @@ class RxCrashConfig : Serializable {
          * The default is true.
          */
         fun showErrorDetails(showErrorDetails: Boolean): Builder {
-            config!!.showErrorDetails = showErrorDetails
+            mProfile!!.showErrorDetails = showErrorDetails
             return this
         }
 
@@ -175,7 +175,7 @@ class RxCrashConfig : Serializable {
          * The default is true.
          */
         fun showRestartButton(showRestartButton: Boolean): Builder {
-            config!!.showRestartButton = showRestartButton
+            mProfile!!.showRestartButton = showRestartButton
             return this
         }
 
@@ -190,7 +190,7 @@ class RxCrashConfig : Serializable {
          * The default is true.
          */
         fun logErrorOnRestart(logErrorOnRestart: Boolean): Builder {
-            config!!.logErrorOnRestart = logErrorOnRestart
+            mProfile!!.logErrorOnRestart = logErrorOnRestart
             return this
         }
 
@@ -200,7 +200,7 @@ class RxCrashConfig : Serializable {
          * The default is false.
          */
         fun trackActivities(trackActivities: Boolean): Builder {
-            config!!.trackActivities = trackActivities
+            mProfile!!.trackActivities = trackActivities
             return this
         }
 
@@ -211,7 +211,7 @@ class RxCrashConfig : Serializable {
          * The default is 3000.
          */
         fun minTimeBetweenCrashesMs(minTimeBetweenCrashesMs: Int): Builder {
-            config!!.minTimeBetweenCrashesMs = minTimeBetweenCrashesMs
+            mProfile!!.minTimeBetweenCrashesMs = minTimeBetweenCrashesMs
             return this
         }
 
@@ -221,7 +221,7 @@ class RxCrashConfig : Serializable {
          * The default is R.drawable.customactivityoncrash_error_image (a cute upside-down bug).
          */
         fun errorDrawable(@DrawableRes errorDrawable: Int?): Builder {
-            config!!.errorDrawable = errorDrawable
+            mProfile!!.errorDrawable = errorDrawable
             return this
         }
 
@@ -230,7 +230,7 @@ class RxCrashConfig : Serializable {
          * If null, the default error activity will be used.
          */
         fun errorActivity(errorActivityClass: Class<out Activity>?): Builder {
-            config!!.errorActivityClass = errorActivityClass
+            mProfile!!.errorActivityClass = errorActivityClass
             return this
         }
 
@@ -240,7 +240,7 @@ class RxCrashConfig : Serializable {
          * If your app has no launch activities and this is not set, the default error activity will close instead.
          */
         fun restartActivity(restartActivityClass: Class<out Activity>?): Builder {
-            config!!.restartActivityClass = restartActivityClass
+            mProfile!!.restartActivityClass = restartActivityClass
             return this
         }
 
@@ -250,27 +250,27 @@ class RxCrashConfig : Serializable {
          * If not set or set to null, no events will be reported.
          *
          * @param eventListener The event listener.
-         * @throws IllegalArgumentException if the eventListener is an inner or anonymous class
+         * @throws IllegalArgumentException if the mEventListener is an inner or anonymous class
          */
-        fun eventListener(eventListener: RxCrashTool.EventListener?): Builder {
+        fun eventListener(eventListener: TCrashTool.EventListener?): Builder {
             require(!(eventListener != null && eventListener.javaClass.enclosingClass != null && !Modifier.isStatic(eventListener.javaClass.modifiers))) { "The event listener cannot be an inner or anonymous class, because it will need to be serialized. Change it to a class of its own, or make it a static inner class." }
-            config!!.eventListener = eventListener
+            mProfile!!.mEventListener = eventListener
             return this
         }
 
-        fun get(): RxCrashConfig {
-            return config!!
+        fun get(): TCrashProfile {
+            return mProfile!!
         }
 
         fun apply() {
-            RxCrashTool.setConfig(config!!)
+            TCrashTool.setConfig(mProfile!!)
         }
 
         companion object {
             fun create(): Builder {
                 val builder = Builder()
-                val currentConfig = RxCrashTool.getConfig()
-                val config = RxCrashConfig()
+                val currentConfig = TCrashTool.getConfig()
+                val config = TCrashProfile()
                 config.backgroundMode = currentConfig.backgroundMode
                 config.enabled = currentConfig.enabled
                 config.showErrorDetails = currentConfig.showErrorDetails
@@ -281,8 +281,8 @@ class RxCrashConfig : Serializable {
                 config.errorDrawable = currentConfig.errorDrawable
                 config.errorActivityClass = currentConfig.errorActivityClass
                 config.restartActivityClass = currentConfig.restartActivityClass
-                config.eventListener = currentConfig.eventListener
-                builder.config = config
+                config.mEventListener = currentConfig.mEventListener
+                builder.mProfile = config
                 return builder
             }
         }

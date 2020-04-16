@@ -17,7 +17,7 @@ import androidx.fragment.app.FragmentActivity
 import com.tamsiree.rxkit.R
 import com.tamsiree.rxkit.RxAppTool
 import com.tamsiree.rxkit.TLog
-import com.tamsiree.rxkit.crash.RxCrashTool
+import com.tamsiree.rxkit.crash.TCrashTool
 
 class ActivityCrash : FragmentActivity() {
     @SuppressLint("PrivateResource", "SetTextI18n")
@@ -40,7 +40,7 @@ class ActivityCrash : FragmentActivity() {
         val restartButton = findViewById<Button>(R.id.crash_error_activity_restart_button)
         val closeButton = findViewById<Button>(R.id.crash_error_activity_close_button)
         val tvCrashTool = findViewById<TextView>(R.id.rx_crash_tool)
-        val config = RxCrashTool.getConfigFromIntent(intent)
+        val config = TCrashTool.getConfigFromIntent(intent)
         if (config == null) {
             //This should never happen - Just finish the activity to avoid a recursive crash.
             finish()
@@ -48,12 +48,12 @@ class ActivityCrash : FragmentActivity() {
         }
         if (config.isShowRestartButton() && config.restartActivityClass != null) {
             restartButton.setText(R.string.crash_error_restart_app)
-            restartButton.setOnClickListener { RxCrashTool.restartApplication(this@ActivityCrash, config) }
-            closeButton.setOnClickListener { RxCrashTool.closeApplication(this@ActivityCrash, config) }
+            restartButton.setOnClickListener { TCrashTool.restartApplication(this@ActivityCrash, config) }
+            closeButton.setOnClickListener { TCrashTool.closeApplication(this@ActivityCrash, config) }
         } else {
             closeButton.visibility = View.GONE
         }
-        val message = RxCrashTool.getAllErrorDetailsFromIntent(this@ActivityCrash, intent)
+        val message = TCrashTool.getAllErrorDetailsFromIntent(this@ActivityCrash, intent)
         val file = TLog.e(message)
         val appName = RxAppTool.getAppName(this)
         tvCrashTool.text = appName
@@ -83,7 +83,7 @@ class ActivityCrash : FragmentActivity() {
     }
 
     private fun copyErrorToClipboard() {
-        val errorInformation = RxCrashTool.getAllErrorDetailsFromIntent(this@ActivityCrash, intent)
+        val errorInformation = TCrashTool.getAllErrorDetailsFromIntent(this@ActivityCrash, intent)
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
         //Are there any devices without clipboard...?

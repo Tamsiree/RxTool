@@ -43,32 +43,32 @@ import java.util.zip.ZipFile;
  * @date 2016/12/21
  */
 
-public class RxCrashTool {
+public class TCrashTool {
 
-    private final static String TAG = "RxCrashTool";
+    private final static String TAG = "TCrashTool";
 
     //Extras passed to the error activity
-    private static final String EXTRA_CONFIG = "com.tamsiree.rxkit.crash.rxcrashtool.EXTRA_CONFIG";
-    private static final String EXTRA_STACK_TRACE = "com.tamsiree.rxkit.crash.rxcrashtool.EXTRA_STACK_TRACE";
-    private static final String EXTRA_ACTIVITY_LOG = "com.tamsiree.rxkit.crash.rxcrashtool.EXTRA_ACTIVITY_LOG";
+    private static final String EXTRA_CONFIG = "com.tamsiree.rxkit.crash.tcrashtool.EXTRA_CONFIG";
+    private static final String EXTRA_STACK_TRACE = "com.tamsiree.rxkit.crash.tcrashtool.EXTRA_STACK_TRACE";
+    private static final String EXTRA_ACTIVITY_LOG = "com.tamsiree.rxkit.crash.tcrashtool.EXTRA_ACTIVITY_LOG";
 
     //General constants
-    private static final String INTENT_ACTION_ERROR_ACTIVITY = "com.tamsiree.rxkit.crash.rxcrashtool.ERROR";
-    private static final String INTENT_ACTION_RESTART_ACTIVITY = "com.tamsiree.rxkit.crash.rxcrashtool.RESTART";
-    private static final String CAOC_HANDLER_PACKAGE_NAME = "com.tamsiree.rxkit.crash.rxcrashtool";
+    private static final String INTENT_ACTION_ERROR_ACTIVITY = "com.tamsiree.rxkit.crash.tcrashtool.ERROR";
+    private static final String INTENT_ACTION_RESTART_ACTIVITY = "com.tamsiree.rxkit.crash.tcrashtool.RESTART";
+    private static final String TAM_HANDLER_PACKAGE_NAME = "com.tamsiree.rxkit.crash.tcrashtool";
     private static final String DEFAULT_HANDLER_PACKAGE_NAME = "com.android.internal.os";
     private static final int TIME_TO_CONSIDER_FOREGROUND_MS = 500;
     private static final int MAX_STACK_TRACE_SIZE = 131071; //128 KB - 1
     private static final int MAX_ACTIVITIES_IN_LOG = 50;
 
     //Shared preferences
-    private static final String SHARED_PREFERENCES_FILE = "RxCrashTool";
+    private static final String SHARED_PREFERENCES_FILE = "TCrashTool";
     private static final String SHARED_PREFERENCES_FIELD_TIMESTAMP = "last_crash_timestamp";
     private static final Deque<String> activityLog = new ArrayDeque<>(MAX_ACTIVITIES_IN_LOG);
     //Internal variables
     @SuppressLint("StaticFieldLeak") //This is an application-wide component
     private static Application application;
-    private static RxCrashConfig config = new RxCrashConfig();
+    private static TCrashProfile config = new TCrashProfile();
     private static WeakReference<Activity> lastActivityCreated = new WeakReference<>(null);
     private static long lastActivityCreatedTimestamp = 0L;
     private static boolean isInBackground = true;
@@ -88,11 +88,11 @@ public class RxCrashTool {
                 //INSTALL!
                 final Thread.UncaughtExceptionHandler oldHandler = Thread.getDefaultUncaughtExceptionHandler();
 
-                if (oldHandler != null && oldHandler.getClass().getName().startsWith(CAOC_HANDLER_PACKAGE_NAME)) {
-                    TLog.e(TAG, "RxCrashTool was already installed, doing nothing!");
+                if (oldHandler != null && oldHandler.getClass().getName().startsWith(TAM_HANDLER_PACKAGE_NAME)) {
+                    TLog.e(TAG, "TCrashTool was already installed, doing nothing!");
                 } else {
                     if (oldHandler != null && !oldHandler.getClass().getName().startsWith(DEFAULT_HANDLER_PACKAGE_NAME)) {
-                        TLog.e(TAG, "IMPORTANT WARNING! You already have an UncaughtExceptionHandler, are you sure this is correct? If you use a custom UncaughtExceptionHandler, you must initialize it AFTER RxCrashTool! Installing anyway, but your original handler will not be called.");
+                        TLog.e(TAG, "IMPORTANT WARNING! You already have an UncaughtExceptionHandler, are you sure this is correct? If you use a custom UncaughtExceptionHandler, you must initialize it AFTER TCrashTool! Installing anyway, but your original handler will not be called.");
                     }
 
                     application = (Application) context.getApplicationContext();
@@ -100,7 +100,7 @@ public class RxCrashTool {
                     //We define a default exception handler that does what we want so it can be called from Crashlytics/ACRA
                     Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
                         if (config.isEnabled()) {
-                            TLog.e(TAG, "App has crashed, executing RxCrashTool's UncaughtExceptionHandler", throwable);
+                            TLog.e(TAG, "App has crashed, executing TCrashTool's UncaughtExceptionHandler", throwable);
 
                             if (hasCrashedInTheLastSeconds(application)) {
                                 TLog.e(TAG, "App already crashed recently, not starting custom error activity because we could enter a restart loop. Are you sure that your app does not crash directly on init?", throwable);
@@ -123,7 +123,7 @@ public class RxCrashTool {
                                         oldHandler.uncaughtException(thread, throwable);
                                         return;
                                     }
-                                } else if (config.getBackgroundMode() == RxCrashConfig.BACKGROUND_MODE_SHOW_CUSTOM || !isInBackground
+                                } else if (config.getBackgroundMode() == TCrashProfile.BACKGROUND_MODE_SHOW_CUSTOM || !isInBackground
                                         || (lastActivityCreatedTimestamp >= new Date().getTime() - TIME_TO_CONSIDER_FOREGROUND_MS)) {
 
                                     final Intent intent = new Intent(application, errorActivityClass);
@@ -162,7 +162,7 @@ public class RxCrashTool {
                                         config.getEventListener().onLaunchErrorActivity();
                                     }
                                     application.startActivity(intent);
-                                } else if (config.getBackgroundMode() == RxCrashConfig.BACKGROUND_MODE_CRASH) {
+                                } else if (config.getBackgroundMode() == TCrashProfile.BACKGROUND_MODE_CRASH) {
                                     if (oldHandler != null) {
                                         oldHandler.uncaughtException(thread, throwable);
                                         return;
@@ -244,10 +244,10 @@ public class RxCrashTool {
                     });
                 }
 
-                TLog.i(TAG, "RxCrashTool has been installed.");
+                TLog.i(TAG, "TCrashTool has been installed.");
             }
         } catch (Throwable t) {
-            TLog.e(TAG, "An unknown error occurred while installing RxCrashTool, it may not have been properly initialized. Please report this as a bug if needed.", t);
+            TLog.e(TAG, "An unknown error occurred while installing TCrashTool, it may not have been properly initialized. Please report this as a bug if needed.", t);
         }
     }
 
@@ -259,7 +259,7 @@ public class RxCrashTool {
      */
     @Nullable
     public static String getStackTraceFromIntent(@NonNull Intent intent) {
-        return intent.getStringExtra(com.tamsiree.rxkit.crash.RxCrashTool.EXTRA_STACK_TRACE);
+        return intent.getStringExtra(TCrashTool.EXTRA_STACK_TRACE);
     }
 
     /**
@@ -269,8 +269,8 @@ public class RxCrashTool {
      * @return The config, or null if not provided.
      */
     @Nullable
-    public static RxCrashConfig getConfigFromIntent(@NonNull Intent intent) {
-        RxCrashConfig config = (RxCrashConfig) intent.getSerializableExtra(com.tamsiree.rxkit.crash.RxCrashTool.EXTRA_CONFIG);
+    public static TCrashProfile getConfigFromIntent(@NonNull Intent intent) {
+        TCrashProfile config = (TCrashProfile) intent.getSerializableExtra(TCrashTool.EXTRA_CONFIG);
         if (config != null && config.isLogErrorOnRestart()) {
             String stackTrace = getStackTraceFromIntent(intent);
             if (stackTrace != null) {
@@ -289,7 +289,7 @@ public class RxCrashTool {
      */
     @Nullable
     public static String getActivityLogFromIntent(@NonNull Intent intent) {
-        return intent.getStringExtra(com.tamsiree.rxkit.crash.RxCrashTool.EXTRA_ACTIVITY_LOG);
+        return intent.getStringExtra(TCrashTool.EXTRA_ACTIVITY_LOG);
     }
 
     /**
@@ -350,7 +350,7 @@ public class RxCrashTool {
      * @param intent   The Intent. Must not be null.
      * @param config   The config object as obtained by calling getConfigFromIntent.
      */
-    public static void restartApplicationWithIntent(@NonNull Activity activity, @NonNull Intent intent, @NonNull RxCrashConfig config) {
+    public static void restartApplicationWithIntent(@NonNull Activity activity, @NonNull Intent intent, @NonNull TCrashProfile config) {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         if (intent.getComponent() != null) {
             //If the class name has been set, we force it to simulate a Launcher launch.
@@ -370,7 +370,7 @@ public class RxCrashTool {
         killCurrentProcess();
     }
 
-    public static void restartApplication(@NonNull Activity activity, @NonNull RxCrashConfig config) {
+    public static void restartApplication(@NonNull Activity activity, @NonNull TCrashProfile config) {
         Intent intent = new Intent(activity, config.getRestartActivityClass());
         restartApplicationWithIntent(activity, intent, config);
     }
@@ -383,7 +383,7 @@ public class RxCrashTool {
      * @param activity The current error activity. Must not be null.
      * @param config   The config object as obtained by calling getConfigFromIntent.
      */
-    public static void closeApplication(@NonNull Activity activity, @NonNull RxCrashConfig config) {
+    public static void closeApplication(@NonNull Activity activity, @NonNull TCrashProfile config) {
         if (config.getEventListener() != null) {
             config.getEventListener().onCloseAppFromErrorActivity();
         }
@@ -401,7 +401,7 @@ public class RxCrashTool {
      */
     @RestrictTo(RestrictTo.Scope.LIBRARY)
     @NonNull
-    public static RxCrashConfig getConfig() {
+    public static TCrashProfile getConfig() {
         return config;
     }
 
@@ -412,8 +412,8 @@ public class RxCrashTool {
      * @param config the configuration to use
      */
     @RestrictTo(RestrictTo.Scope.LIBRARY)
-    public static void setConfig(@NonNull RxCrashConfig config) {
-        com.tamsiree.rxkit.crash.RxCrashTool.config = config;
+    public static void setConfig(@NonNull TCrashProfile config) {
+        TCrashTool.config = config;
     }
 
     /**
@@ -555,7 +555,7 @@ public class RxCrashTool {
 
     /**
      * INTERNAL method used to guess which activity must be called from the error activity to restart the app.
-     * It will first get activities from the AndroidManifest with intent filter <action android:name="com.tamsiree.rxkit.crash.rxcrashtool.RESTART" />,
+     * It will first get activities from the AndroidManifest with intent filter <action android:name="com.tamsiree.rxkit.crash.tcrashtool.RESTART" />,
      * if it cannot find them, then it will get the default launcher.
      * If there is no default launcher, this returns null.
      *
@@ -578,7 +578,7 @@ public class RxCrashTool {
     }
 
     /**
-     * INTERNAL method used to get the first activity with an intent-filter <action android:name="com.tamsiree.rxkit.crash.rxcrashtool.RESTART" />,
+     * INTERNAL method used to get the first activity with an intent-filter <action android:name="com.tamsiree.rxkit.crash.tcrashtool.RESTART" />,
      * If there is no activity with that intent filter, this returns null.
      *
      * @param context A valid context. Must not be null.
@@ -629,7 +629,7 @@ public class RxCrashTool {
 
     /**
      * INTERNAL method used to guess which error activity must be called when the app crashes.
-     * It will first get activities from the AndroidManifest with intent filter <action android:name="com.tamsiree.rxkit.crash.rxcrashtool.ERROR" />,
+     * It will first get activities from the AndroidManifest with intent filter <action android:name="com.tamsiree.rxkit.crash.tcrashtool.ERROR" />,
      * if it cannot find them, then it will use the default error activity.
      *
      * @param context A valid context. Must not be null.
@@ -651,7 +651,7 @@ public class RxCrashTool {
     }
 
     /**
-     * INTERNAL method used to get the first activity with an intent-filter <action android:name="com.tamsiree.rxkit.crash.rxcrashtool.ERROR" />,
+     * INTERNAL method used to get the first activity with an intent-filter <action android:name="com.tamsiree.rxkit.crash.tcrashtool.ERROR" />,
      * If there is no activity with that intent filter, this returns null.
      *
      * @param context A valid context. Must not be null.

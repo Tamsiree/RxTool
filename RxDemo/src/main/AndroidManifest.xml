@@ -22,7 +22,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.ActivityDemoDataBankCard"></activity>
         <activity android:name=".activity.ActivityDemoData" />
         <activity android:name=".activity.ActivityTMarker" />
         <activity android:name=".activity.ActivityTLoadingView" />
