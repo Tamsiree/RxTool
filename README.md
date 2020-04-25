@@ -53,17 +53,17 @@ allprojects {
 ```gradle
 dependencies {
   //基础工具库
-  implementation 'com.github.tamsiree.RxTool:RxKit:2.6.1'
+  implementation 'com.github.tamsiree.RxTool:RxKit:2.6.2'
   //UI库
-  implementation 'com.github.tamsiree.RxTool:RxUI:2.6.1'
+  implementation 'com.github.tamsiree.RxTool:RxUI:2.6.2'
   //相机库
-  implementation 'com.github.tamsiree.RxTool:RxCamera:2.6.1'
+  implementation 'com.github.tamsiree.RxTool:RxCamera:2.6.2'
   //功能库（Zxing扫描与生成二维码条形码）
-  implementation 'com.github.tamsiree.RxTool:RxFeature:2.6.1'
+  implementation 'com.github.tamsiree.RxTool:RxFeature:2.6.2'
   //ArcGis For Android工具库（API：100.1以上版本）
-  implementation 'com.github.tamsiree.RxTool:RxArcGisKit:2.6.1'
+  implementation 'com.github.tamsiree.RxTool:RxArcGisKit:2.6.2'
   //支付模块(支付宝 微信)[暂为待优化模块，谨慎]
-  implementation 'com.github.tamsiree.RxTool:RxPay:2.6.1'
+  implementation 'com.github.tamsiree.RxTool:RxPay:2.6.2'
 }
 ```
 
