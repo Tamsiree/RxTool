@@ -90,7 +90,7 @@ public class AliPayOrderTool {
 
         keyValues.put("sign_type", rsa2 ? "RSA2" : "RSA");
 
-        keyValues.put("timestamp", RxTimeTool.getCurrentDateTime("yyyy-MM-dd- HH:mm:ss"));
+        keyValues.put("timestamp", RxTimeTool.getCurrentDateTime("yyyy-MM-dd HH:mm:ss"));
 
         keyValues.put("version", "1.0");
 
