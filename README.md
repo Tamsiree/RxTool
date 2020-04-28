@@ -92,6 +92,15 @@ RxTool.init(this);
 
 |  VERSION  |  Description  |
 | :-------: | ------------- |
+|   2.6.2   | 更新 RxUI、RxKit、RxPay 模块 |
+|   2.6.1   | 更新 RxUI、RxKit 模块，新增 测试数据生成工具 |
+|   **2.6.0**   | 整体转换为kotlin |
+|   2.5.9   | 更新 RxUI 模块，新增 TBlurVIew，更新了 RxActivityTool、RxDialogChooseImage |
+|   2.5.8   | 更新 RxUI 模块，更新了 RxDialogChooseImage |
+|   2.5.7   | 模块转换为kotlin |
+|   2.5.6   | 更新项目配置 |
+|   2.5.5   | 更新 RxUI 模块，更新了 RxActivityTool 工具类 |
+|   2.5.4   | 更新 RxUI 模块，更新了 RxTitle、RxDialogDate |
 |   2.5.3   | 更新 RxUI 模块，新增TStepperIndicator步骤指示器，删除 CardView 依赖 |
 |   2.5.2   | 更新 RxUI 模块，新增TIndicator指示器 |
 |   2.5.1   | 更新 RxUI 模块，新增若干自定义View |
