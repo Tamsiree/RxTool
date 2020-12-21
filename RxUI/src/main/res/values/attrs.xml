@@ -14,7 +14,7 @@
         <attr name="textSize1" format="dimension" />
         <attr name="max" format="integer" />
         <attr name="textIsDisplayable" format="boolean" />
-        <attr name="style">
+        <attr name="style_ui">
             <enum name="STROKE" value="0" />
             <enum name="FILL" value="1" />
         </attr>
