@@ -1676,7 +1676,7 @@ class RxFileTool {
             }
             var reader: BufferedReader? = null
             return try {
-                var line: String
+                var line: String?
                 var curLine = 1
                 val list: MutableList<String> = ArrayList()
                 reader = if (isNullString(charsetName)) {
@@ -1689,7 +1689,7 @@ class RxFileTool {
                         break
                     }
                     if (st <= curLine && curLine <= end) {
-                        list.add(line)
+                        list.add(line!!)
                     }
                     ++curLine
                 }
