@@ -2,7 +2,7 @@
 buildscript {
 
     ext {
-        kotlin_version = '1.4.10'
+        kotlin_version = "1.5.0"
     }
     repositories {
         // 添加阿里云 maven 地址
@@ -18,7 +18,7 @@ buildscript {
         maven { url 'https://esri.bintray.com/arcgis' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.android.tools.build:gradle:4.2.1'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -46,10 +46,10 @@ allprojects {
 //        maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
 
         google()
-        jcenter()
+        jcenter() // Warning: this repository is going to shut down soon
         maven { url "https://jitpack.io" }
         mavenCentral()
-        maven { url 'https://esri.bintray.com/arcgis' }
+        maven { url 'https://esri.jfrog.io/artifactory/arcgis' }
     }
 }
 
