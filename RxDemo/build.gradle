@@ -9,12 +9,12 @@ android {
     buildToolsVersion = '29.0.3'
 
     signingConfigs {
-        debug {
-            storeFile file('/home/tamsiree/Documents/TamDocuments/WorkSpace/Android/TamKey.jks')
-            storePassword 'Ls547817'
-            keyAlias = 'TamKey'
-            keyPassword 'Ls547817'
-        }
+//        debug {
+//            storeFile file('TamKey.jks')
+//            storePassword 'Ls547817'
+//            keyAlias = 'TamKey'
+//            keyPassword 'Ls547817'
+//        }
     }
 
 

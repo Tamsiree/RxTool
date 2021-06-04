@@ -19,7 +19,7 @@ object RxExifTool {
      * @param dLon    经度
      */
     @JvmStatic
-    fun writeLatLonIntoJpeg(picPath: String?, dLat: Double, dLon: Double) {
+    fun writeLatLonIntoJpeg(picPath: String, dLat: Double, dLon: Double) {
         val file = File(picPath)
         if (file.exists()) {
             try {

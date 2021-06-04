@@ -106,7 +106,7 @@ object RxLocationTool {
             return false
         }
         val provider = mLocationManager!!.getBestProvider(criteria, true)
-        val location = mLocationManager!!.getLastKnownLocation(provider)
+        val location = mLocationManager!!.getLastKnownLocation(provider!!)
         if (location != null) {
             listener.getLastKnownLocation(location)
         }

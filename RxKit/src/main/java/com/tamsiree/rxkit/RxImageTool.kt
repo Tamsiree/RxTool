@@ -19,6 +19,7 @@ import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.*
+import kotlin.jvm.Throws
 
 /**
  * @author tamsiree
@@ -1516,7 +1517,7 @@ object RxImageTool {
      * @return
      */
     @JvmStatic
-    fun getThumb(filePath: String?, kind: Int): Bitmap {
+    fun getThumb(filePath: String, kind: Int): Bitmap? {
         return ThumbnailUtils.createVideoThumbnail(filePath, kind)
     }
 

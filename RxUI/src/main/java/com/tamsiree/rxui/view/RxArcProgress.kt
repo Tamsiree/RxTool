@@ -218,7 +218,7 @@ class RxArcProgress @JvmOverloads constructor(context: Context, attrs: Attribute
         roundWidth = mTypedArray.getDimension(R.styleable.RxArcProgress_roundWidth, 20f)
         max = mTypedArray.getInteger(R.styleable.RxArcProgress_max, 100).toDouble()
         textIsDisplayable = mTypedArray.getBoolean(R.styleable.RxArcProgress_textIsDisplayable, true)
-        style = mTypedArray.getInt(R.styleable.RxArcProgress_style, 0)
+        style = mTypedArray.getInt(R.styleable.RxArcProgress_style_ui, 0)
         mTypedArray.recycle()
     }
 }
