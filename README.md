@@ -17,21 +17,32 @@
 
 # 我的运行环境
 
-> Android Studio 3.6
->
-> Build #AI-192.7142.36.36.6200805, built on February 12, 2020
->
-> Runtime version: 1.8.0_212-release-1586-b4-5784211 amd64
->
-> VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
->
-> Linux 5.4.23-1-MANJARO
+> Android Studio 4.2.1
+> 
+> Build #AI-202.7660.26.42.7351085, built on May 11, 2021
+> 
+> Runtime version: 11.0.8+10-b944.6842174 amd64
+> 
+> VM: OpenJDK 64-Bit Server VM by N/A
+> 
+> Windows 10 10.0
+> 
+> GC: G1 Young Generation, G1 Old Generation
+>  
+> Memory: 1280M
+> 
+> Cores: 20
+> 
+> Registry: external.system.auto.import.disabled=true
+> 
+> Non-Bundled Plugins: com.intellij.marketplace, com.thoughtworks.gauge, dev.polek.adbwifi, net.vektah.codeglance2, org.jetbrains.kotlin, org.intellij.plugins.markdown
 >
 > targetSdkVersion 29
 >
-> [gradle-wrapper.properties文件内] distributionUrl 5.6.4
+> [gradle-wrapper.properties文件内] distributionUrl 6.7.1
 >
-> [build.gradle文件内] gradle 3.6.1
+> [build.gradle文件内] gradle 4.2.1
+
 
 ---
 
@@ -197,6 +208,10 @@ RxTool.init(this);
 | ![RxTool](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Function/qrcode_apk.png) |  ![微信](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Function/qrcode_wechat.jpg) |   ![支付宝](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Function/qrcode_alipay.jpg) |
 |扫描二维码 <br> 或者 <br> [点击下载](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Apk/RxTool.apk) |[捐赠名单](https://tamsiree.com/TechnicalResearch/Android/RxTool/Contributor)<br>备选[捐赠名单](https://tamsiree.com/RxTool/Contributors) | 闲聊群 <br><br>  ![技术的深度探索与论证](https://img.shields.io/badge/QQ%E7%BE%A4-435644020-brightgreen.svg) <br>[点击入群](https://shang.qq.com/wpa/qunwpa?idkey=a14a650c50413f43d5bb0399f5b6617a2cd09866ae09c5a1d7f3e0ba33962bae)<br>
 
+
+---
+
+> 欢迎大家共同参与维护这个仓库，有什么好的想法或者代码优化可以提交 `pull request`
 
 ---
 
