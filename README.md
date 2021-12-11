@@ -94,8 +94,8 @@ RxTool.init(this);
 # API使用文档
 
 ## 可以参考文档来调用相对应的API，欢迎指教
-- [**[点我看文档]**](https://tamsiree.com/TechnicalResearch/Android/RxTool/Wiki/RxTool-Wiki)
-- [**[点我看文档]**](https://tamsiree.github.io/TechnicalResearch/Android/RxTool/Wiki/RxTool-Wiki)
+- [**[点我看文档]**](https://www.tamsiree.com/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Android/RxTool/RxTool/)
+- [**[点我看文档]**](https://tamsiree.github.io/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Android/RxTool/RxTool/)
 - 备选 [点我看文档](https://github.com/tamsiree/RxTool/wiki/RxTool-Wiki)
 
 # 更新日志
