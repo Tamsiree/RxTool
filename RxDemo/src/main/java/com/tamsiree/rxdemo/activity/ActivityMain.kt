@@ -27,8 +27,10 @@ class ActivityMain : ActivityBase() {
 
     private val mTabEntities = ArrayList<TabLayoutModel>()
     private val mIconUnselectIds = intArrayOf(
-            R.drawable.ic_contact_gray, R.drawable.ic_home_unselect, R.drawable.ic_colleague_unselect)
-    private val mIconSelectIds = intArrayOf(R.drawable.ic_contact_blue, R.drawable.ic_home, R.drawable.ic_colleague_select)
+        R.drawable.ic_contact_gray, R.drawable.ic_home_unselect, R.drawable.ic_colleague_unselect
+    )
+    private val mIconSelectIds =
+        intArrayOf(R.drawable.ic_contact_blue, R.drawable.ic_home, R.drawable.ic_colleague_select)
 
     private val modelFVPList: MutableList<ModelFVP> = ArrayList()
 
@@ -38,14 +40,14 @@ class ActivityMain : ActivityBase() {
         RxDeviceTool.setPortrait(this)
 
         RxPermissionsTool
-                .with(mContext)
-                .addPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                .addPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                .addPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                .addPermission(Manifest.permission.CAMERA)
-                .addPermission(Manifest.permission.CALL_PHONE)
-                .addPermission(Manifest.permission.READ_PHONE_STATE)
-                .initPermission()
+            .with(mContext)
+            .addPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+            .addPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+            .addPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+            .addPermission(Manifest.permission.CAMERA)
+            .addPermission(Manifest.permission.CALL_PHONE)
+            .addPermission(Manifest.permission.READ_PHONE_STATE)
+            .initPermission()
     }
 
     override fun initView() {
@@ -79,12 +81,18 @@ class ActivityMain : ActivityBase() {
             override fun onTabReselect(position: Int) {
                 if (position == 0) {
                     //mTabLayout1.showMsg(0, mRandom.nextInt(100) + 1);
-//                    UnreadMsgUtils.show(mTabLayout_2.getMsgView(0), mRandom.nextInt(100) + 1);
+                    //UnreadMsgUtils.show(mTabLayout_2.getMsgView(0), mRandom.nextInt(100) + 1);
                 }
             }
         })
         view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
             override fun onPageSelected(position: Int) {
                 tab_layout1!!.currentTab = position
             }
@@ -112,6 +120,7 @@ class ActivityMain : ActivityBase() {
     companion object {
         //双击返回键 退出
         //----------------------------------------------------------------------------------------------
-        private const val TIME_INTERVAL = 2000 // # milliseconds, desired time passed between two back presses.
+        private const val TIME_INTERVAL =
+            2000 // # milliseconds, desired time passed between two back presses.
     }
 }

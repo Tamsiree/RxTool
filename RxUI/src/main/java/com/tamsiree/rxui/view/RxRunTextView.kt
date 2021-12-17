@@ -10,9 +10,9 @@ import androidx.appcompat.widget.AppCompatTextView
  * @date 2016/6/28
  */
 class RxRunTextView : AppCompatTextView {
-    constructor(context: Context?, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?) : super(context)
+    constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context) : super(context)
 
     /**
      * 当前并没有焦点，我只是欺骗了Android系统

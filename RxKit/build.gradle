@@ -43,17 +43,17 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //design包
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    compileOnly 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    compileOnly 'com.google.android.material:material:1.2.1'
 
     //appcompat包
-    compileOnly 'androidx.appcompat:appcompat:1.1.0'
+    compileOnly 'androidx.appcompat:appcompat:1.2.0'
 
     //recyclerview包
     compileOnly 'androidx.recyclerview:recyclerview:1.1.0'
     compileOnly 'androidx.annotation:annotation:1.1.0'
-    compileOnly 'androidx.constraintlayout:constraintlayout:1.1.3'
+    compileOnly 'androidx.constraintlayout:constraintlayout:2.0.1'
     //流式布局
     compileOnly 'com.google.android:flexbox:0.3.2'
     //沉浸式
@@ -66,7 +66,7 @@ dependencies {
     implementation 'net.lingala.zip4j:zip4j:1.3.2'
 
     compileOnly 'org.greenrobot:greendao:3.2.2'
-    compileOnly 'androidx.exifinterface:exifinterface:1.3.0-alpha01'
+    compileOnly 'androidx.exifinterface:exifinterface:1.3.0'
     compileOnly 'com.google.guava:guava:27.1-jre'
 
 

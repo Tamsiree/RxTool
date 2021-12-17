@@ -17,21 +17,32 @@
 
 # 我的运行环境
 
-> Android Studio 3.6
->
-> Build #AI-192.7142.36.36.6200805, built on February 12, 2020
->
-> Runtime version: 1.8.0_212-release-1586-b4-5784211 amd64
->
-> VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
->
-> Linux 5.4.23-1-MANJARO
+> Android Studio 4.2.1
+> 
+> Build #AI-202.7660.26.42.7351085, built on May 11, 2021
+> 
+> Runtime version: 11.0.8+10-b944.6842174 amd64
+> 
+> VM: OpenJDK 64-Bit Server VM by N/A
+> 
+> Windows 10 10.0
+> 
+> GC: G1 Young Generation, G1 Old Generation
+>  
+> Memory: 1280M
+> 
+> Cores: 20
+> 
+> Registry: external.system.auto.import.disabled=true
+> 
+> Non-Bundled Plugins: com.intellij.marketplace, com.thoughtworks.gauge, dev.polek.adbwifi, net.vektah.codeglance2, org.jetbrains.kotlin, org.intellij.plugins.markdown
 >
 > targetSdkVersion 29
 >
-> [gradle-wrapper.properties文件内] distributionUrl 5.6.4
+> [gradle-wrapper.properties文件内] distributionUrl 6.7.1
 >
-> [build.gradle文件内] gradle 3.6.1
+> [build.gradle文件内] gradle 4.2.1
+
 
 ---
 
@@ -53,17 +64,17 @@ allprojects {
 ```gradle
 dependencies {
   //基础工具库
-  implementation 'com.github.tamsiree.RxTool:RxKit:2.6.2'
+  implementation 'com.github.tamsiree.RxTool:RxKit:2.6.3'
   //UI库
-  implementation 'com.github.tamsiree.RxTool:RxUI:2.6.2'
+  implementation 'com.github.tamsiree.RxTool:RxUI:2.6.3'
   //相机库
-  implementation 'com.github.tamsiree.RxTool:RxCamera:2.6.2'
+  implementation 'com.github.tamsiree.RxTool:RxCamera:2.6.3'
   //功能库（Zxing扫描与生成二维码条形码）
-  implementation 'com.github.tamsiree.RxTool:RxFeature:2.6.2'
+  implementation 'com.github.tamsiree.RxTool:RxFeature:2.6.3'
   //ArcGis For Android工具库（API：100.1以上版本）
-  implementation 'com.github.tamsiree.RxTool:RxArcGisKit:2.6.2'
+  implementation 'com.github.tamsiree.RxTool:RxArcGisKit:2.6.3'
   //支付模块(支付宝 微信)[暂为待优化模块，谨慎]
-  implementation 'com.github.tamsiree.RxTool:RxPay:2.6.2'
+  implementation 'com.github.tamsiree.RxTool:RxPay:2.6.3'
 }
 ```
 
@@ -83,8 +94,8 @@ RxTool.init(this);
 # API使用文档
 
 ## 可以参考文档来调用相对应的API，欢迎指教
-- [**[点我看文档]**](https://tamsiree.com/TechnicalResearch/Android/RxTool/Wiki/RxTool-Wiki)
-- [**[点我看文档]**](https://tamsiree.github.io/TechnicalResearch/Android/RxTool/Wiki/RxTool-Wiki)
+- [**[点我看文档]**](https://www.tamsiree.com/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Android/RxTool/RxTool/)
+- [**[点我看文档]**](https://tamsiree.github.io/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Android/RxTool/RxTool/)
 - 备选 [点我看文档](https://github.com/tamsiree/RxTool/wiki/RxTool-Wiki)
 
 # 更新日志
@@ -92,6 +103,7 @@ RxTool.init(this);
 
 |  VERSION  |  Description  |
 | :-------: | ------------- |
+|   2.6.3   | 修复自定义View的引用异常 |
 |   2.6.2   | 更新 RxUI、RxKit、RxPay 模块 |
 |   2.6.1   | 更新 RxUI、RxKit 模块，新增 测试数据生成工具 |
 |   **2.6.0**   | 整体转换为kotlin |
@@ -197,6 +209,10 @@ RxTool.init(this);
 | ![RxTool](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Function/qrcode_apk.png) |  ![微信](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Function/qrcode_wechat.jpg) |   ![支付宝](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Function/qrcode_alipay.jpg) |
 |扫描二维码 <br> 或者 <br> [点击下载](https://cdn.jsdelivr.net/gh/Tamsiree/Assets@master/Apk/RxTool.apk) |[捐赠名单](https://tamsiree.com/TechnicalResearch/Android/RxTool/Contributor)<br>备选[捐赠名单](https://tamsiree.com/RxTool/Contributors) | 闲聊群 <br><br>  ![技术的深度探索与论证](https://img.shields.io/badge/QQ%E7%BE%A4-435644020-brightgreen.svg) <br>[点击入群](https://shang.qq.com/wpa/qunwpa?idkey=a14a650c50413f43d5bb0399f5b6617a2cd09866ae09c5a1d7f3e0ba33962bae)<br>
 
+
+---
+
+> 欢迎大家共同参与维护这个仓库，有什么好的想法或者代码优化可以提交 `pull request`
 
 ---
 

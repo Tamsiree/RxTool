@@ -105,7 +105,7 @@ object RxAppTool {
      * @return `true`: 是<br></br>`false`: 否
      */
     @JvmStatic
-    fun isSystemApp(context: Context, packageName: String?): Boolean {
+    fun isSystemApp(context: Context, packageName: String): Boolean {
         return if (RxDataTool.isNullString(packageName)) false else try {
             val pm = context.packageManager
             val ai = pm.getApplicationInfo(packageName, 0)
@@ -254,7 +254,7 @@ object RxAppTool {
      * @return App名称
      */
     @JvmStatic
-    fun getAppName(context: Context, packageName: String?): String? {
+    fun getAppName(context: Context, packageName: String): String? {
         return if (RxDataTool.isNullString(packageName)) null else try {
             val pm = context.packageManager
             val pi = pm.getPackageInfo(packageName, 0)
@@ -284,7 +284,7 @@ object RxAppTool {
      * @return App图标
      */
     @JvmStatic
-    fun getAppIcon(context: Context, packageName: String?): Drawable? {
+    fun getAppIcon(context: Context, packageName: String): Drawable? {
         return if (RxDataTool.isNullString(packageName)) null else try {
             val pm = context.packageManager
             val pi = pm.getPackageInfo(packageName, 0)
@@ -314,7 +314,7 @@ object RxAppTool {
      * @return App路径
      */
     @JvmStatic
-    fun getAppPath(context: Context, packageName: String?): String? {
+    fun getAppPath(context: Context, packageName: String): String? {
         return if (RxDataTool.isNullString(packageName)) null else try {
             val pm = context.packageManager
             val pi = pm.getPackageInfo(packageName, 0)
@@ -344,7 +344,7 @@ object RxAppTool {
      * @return App版本号
      */
     @JvmStatic
-    fun getAppVersionName(context: Context, packageName: String?): String? {
+    fun getAppVersionName(context: Context, packageName: String): String? {
         return if (RxDataTool.isNullString(packageName)) null else try {
             val pm = context.packageManager
             val pi = pm.getPackageInfo(packageName, 0)
@@ -374,7 +374,7 @@ object RxAppTool {
      * @return App版本码
      */
     @JvmStatic
-    fun getAppVersionCode(context: Context, packageName: String?): Int {
+    fun getAppVersionCode(context: Context, packageName: String): Int {
         return if (RxDataTool.isNullString(packageName)) -1 else try {
             val pm = context.packageManager
             val pi = pm.getPackageInfo(packageName, 0)
@@ -404,7 +404,7 @@ object RxAppTool {
      * @return `true`: 是<br></br>`false`: 否
      */
     @JvmStatic
-    fun isAppDebug(context: Context, packageName: String?): Boolean {
+    fun isAppDebug(context: Context, packageName: String): Boolean {
         return if (RxDataTool.isNullString(packageName)) false else try {
             val pm = context.packageManager
             val ai = pm.getApplicationInfo(packageName, 0)
@@ -435,7 +435,7 @@ object RxAppTool {
      */
     @JvmStatic
     @SuppressLint("PackageManagerGetSignatures")
-    fun getAppSignature(context: Context, packageName: String?): Array<Signature>? {
+    fun getAppSignature(context: Context, packageName: String): Array<Signature>? {
         return if (RxDataTool.isNullString(packageName)) null else try {
             val pm = context.packageManager
             val pi = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
@@ -469,7 +469,7 @@ object RxAppTool {
      * @return 应用签名的SHA1字符串, 比如：53:FD:54:DC:19:0F:11:AC:B5:22:9E:F1:1A:68:88:1B:8B:E8:54:42
      */
     @JvmStatic
-    fun getAppSignatureSHA1(context: Context, packageName: String?): String? {
+    fun getAppSignatureSHA1(context: Context, packageName: String): String? {
         val signature = getAppSignature(context, packageName) ?: return null
         return RxEncryptTool.encryptSHA1ToString(signature[0].toByteArray()).replace("(?<=[0-9A-F]{2})[0-9A-F]{2}".toRegex(), ":$0")
     }
