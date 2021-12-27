@@ -19,10 +19,12 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
+import com.tamsiree.rxkit.TLog
 import com.tamsiree.rxkit.crash.TCrashTool.install
 
 class TCrashProvider : ContentProvider() {
     override fun onCreate(): Boolean {
+        context?.let { TLog.init(it) }
         install(context)
         return false
     }
