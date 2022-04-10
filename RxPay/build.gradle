@@ -4,14 +4,11 @@ apply plugin: 'kotlin-kapt' //kapt3插件
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 31
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 24
+        targetSdkVersion 31
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -27,23 +24,24 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.?ar'], dir: 'libs')
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     //支付宝 支付包
-    compileOnly (name: 'alipaySdk-15.7.3-20200217092932', ext: 'aar')
+    implementation files('libs/alipaySdk-15.7.3-20200217092932.aar')
+
 //    compileOnly 'com.alipay.sdk:alipay-sdk-java:4.9.28.ALL'
     //微信登录，支付，分享包
-    compileOnly 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.4.0'
+    compileOnly 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.3.1'
 
     //okgo 网络请求框架包
     compileOnly 'com.lzy.net:okgo:3.0.4'
     //gson json工具类 google解析Json的库
-    compileOnly 'com.google.code.gson:gson:2.8.6'
+    compileOnly 'com.google.code.gson:gson:2.9.0'
 
     compileOnly project(':RxKit')
     compileOnly project(':RxUI')

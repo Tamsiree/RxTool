@@ -131,6 +131,8 @@ object RxWebViewTool {
 
     @JvmStatic
     fun loadData(webView: WebView, content: String?) {
-        webView.loadDataWithBaseURL(null, content, "text/html", "UTF-8", null) //这种写法可以正确解码
+        if (content != null) {
+            webView.loadDataWithBaseURL(null, content, "text/html", "UTF-8", null)
+        } //这种写法可以正确解码
     }
 }

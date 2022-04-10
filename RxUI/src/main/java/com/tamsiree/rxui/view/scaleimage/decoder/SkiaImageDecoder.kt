@@ -24,20 +24,24 @@ class SkiaImageDecoder : ImageDecoder {
         val bitmap: Bitmap?
         options.inPreferredConfig = Bitmap.Config.RGB_565
         if (uriString.startsWith(RESOURCE_PREFIX)) {
-            val res: Resources
+            val res: Resources?
             val packageName = uri!!.authority
             res = if (context!!.packageName == packageName) {
                 context.resources
             } else {
                 val pm = context.packageManager
-                pm.getResourcesForApplication(packageName)
+                if (packageName != null) {
+                    pm.getResourcesForApplication(packageName)
+                } else {
+                    null
+                }
             }
             var id = 0
             val segments = uri.pathSegments
             val size = segments.size
             if (size == 2 && segments[0] == "drawable") {
                 val resName = segments[1]
-                id = res.getIdentifier(resName, "drawable", packageName)
+                id = res?.getIdentifier(resName, "drawable", packageName) ?: 0
             } else if (size == 1 && TextUtils.isDigitsOnly(segments[0])) {
                 try {
                     id = segments[0].toInt()

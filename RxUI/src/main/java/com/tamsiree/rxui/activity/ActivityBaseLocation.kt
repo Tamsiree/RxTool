@@ -98,13 +98,15 @@ abstract class ActivityBaseLocation : ActivityBase() {
                     gpsCheck()
                 }
             }
-            mLocationManager!!.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0f, mLocationListener)
+            mLocationManager!!.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0f,
+                mLocationListener as LocationListener
+            )
         }
 
     override fun onDestroy() {
         super.onDestroy()
         if (mLocationListener != null) {
-            mLocationManager!!.removeUpdates(mLocationListener)
+            mLocationManager?.removeUpdates(mLocationListener!!)
         }
     }
 }

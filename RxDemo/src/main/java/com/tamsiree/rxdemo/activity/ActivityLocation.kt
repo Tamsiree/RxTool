@@ -92,14 +92,14 @@ class ActivityLocation : ActivityBase(), LocationListener {
                             return@Listener
                         }
                         val gpsStatus = locationManager!!.getGpsStatus(null)
-                        val gpsSatellites = gpsStatus.satellites
+                        val gpsSatellites = gpsStatus!!.satellites
                         var count = 0
                         val iterator: Iterator<*> = gpsSatellites.iterator()
                         while (iterator.hasNext()) {
                             count++
                             iterator.next()
                         }
-                        gps_count.text = count.toString() + ""
+                        gps_count.text = "$count"
                     }
                     GpsStatus.GPS_EVENT_STOPPED -> println("GPS_EVENT_STOPPED")
                 }

@@ -7,14 +7,11 @@ apply plugin: 'org.greenrobot.greendao'
 //apply plugin: 'com.jfrog.bintray'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion = '29.0.3'
+    compileSdkVersion 31
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.2.3"
+        minSdkVersion 24
+        targetSdkVersion 31
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -43,19 +40,19 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //design包
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    compileOnly 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    compileOnly 'com.google.android.material:material:1.4.0'
 
     //appcompat包
-    compileOnly 'androidx.appcompat:appcompat:1.2.0'
+    compileOnly 'androidx.appcompat:appcompat:1.4.1'
 
     //recyclerview包
-    compileOnly 'androidx.recyclerview:recyclerview:1.1.0'
-    compileOnly 'androidx.annotation:annotation:1.1.0'
-    compileOnly 'androidx.constraintlayout:constraintlayout:2.0.1'
+    compileOnly 'androidx.recyclerview:recyclerview:1.2.1'
+    compileOnly 'androidx.annotation:annotation:1.3.0'
+    compileOnly 'androidx.constraintlayout:constraintlayout:2.1.3'
     //流式布局
-    compileOnly 'com.google.android:flexbox:0.3.2'
+    compileOnly 'com.google.android:flexbox:2.0.1'
     //沉浸式
     compileOnly 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 
@@ -66,7 +63,7 @@ dependencies {
     implementation 'net.lingala.zip4j:zip4j:1.3.2'
 
     compileOnly 'org.greenrobot:greendao:3.2.2'
-    compileOnly 'androidx.exifinterface:exifinterface:1.3.0'
+    compileOnly 'androidx.exifinterface:exifinterface:1.3.3'
     compileOnly 'com.google.guava:guava:27.1-jre'
 
 

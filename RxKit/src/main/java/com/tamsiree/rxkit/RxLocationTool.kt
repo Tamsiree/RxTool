@@ -113,7 +113,9 @@ object RxLocationTool {
         if (myLocationListener == null) {
             myLocationListener = MyLocationListener()
         }
-        mLocationManager!!.requestLocationUpdates(provider, minTime, minDistance.toFloat(), myLocationListener)
+        mLocationManager!!.requestLocationUpdates(provider, minTime, minDistance.toFloat(),
+            myLocationListener!!
+        )
         return true
     }
 
@@ -124,7 +126,7 @@ object RxLocationTool {
     fun unRegisterLocation() {
         if (mLocationManager != null) {
             if (myLocationListener != null) {
-                mLocationManager!!.removeUpdates(myLocationListener)
+                mLocationManager?.removeUpdates(myLocationListener!!)
                 myLocationListener = null
             }
             mLocationManager = null

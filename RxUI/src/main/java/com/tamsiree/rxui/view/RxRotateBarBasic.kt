@@ -137,9 +137,9 @@ class RxRotateBarBasic(var rate: Int, var title: String) {
             val startAngle = mStartAngle + mSweepAngle / 2 - textAngle / 2
             if (isSingle) {
                 // when single, draw 360 the path will be a circle
-                path.addArc(outlineOval, startAngle - mSweepAngle / 2, mSweepAngle / 2)
+                path.addArc(outlineOval!!, startAngle - mSweepAngle / 2, mSweepAngle / 2)
             } else {
-                path.addArc(outlineOval, startAngle, mSweepAngle)
+                path.addArc(outlineOval!!, startAngle, mSweepAngle)
             }
             titlePaint.alpha = alpha
             canvas.drawTextOnPath(title, path, 0f, textWidth / 3.toFloat(), titlePaint)

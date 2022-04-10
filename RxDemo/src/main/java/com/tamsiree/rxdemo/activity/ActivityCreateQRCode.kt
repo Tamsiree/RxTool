@@ -55,7 +55,7 @@ class ActivityCreateQRCode : ActivityBase(), View.OnClickListener {
     override fun onClick(arg0: View) {
         when (arg0.id) {
             R.id.ll_refresh -> {
-                Handler.removeCallbacks(mRunnable)
+                mRunnable?.let { Handler.removeCallbacks(it) }
                 initData()
                 tv_time_second.text = second.toString()
                 AuthCode(tv_time_second, second)
@@ -69,7 +69,7 @@ class ActivityCreateQRCode : ActivityBase(), View.OnClickListener {
         mRunnable = object : Runnable {
             var mSumNum = timeSecond
             override fun run() {
-                Handler.postDelayed(mRunnable, 1000)
+                mRunnable?.let { Handler.postDelayed(it, 1000) }
                 view!!.text = mSumNum.toString()
                 view.isEnabled = false
                 mSumNum--
@@ -80,12 +80,12 @@ class ActivityCreateQRCode : ActivityBase(), View.OnClickListener {
                     message.what = 60000
                     mHandler.sendMessage(message)
                     // 干掉这个定时器，下次减不会累加
-                    Handler.removeCallbacks(mRunnable)
+                    mRunnable?.let { Handler.removeCallbacks(it) }
                     AuthCode(tv_time_second, second)
                 }
             }
         }
-        Handler.postDelayed(mRunnable, 1000)
+        Handler.postDelayed(mRunnable as Runnable, 1000)
     }
 
     companion object {

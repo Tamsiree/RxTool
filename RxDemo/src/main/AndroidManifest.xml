@@ -66,6 +66,7 @@
         <activity android:name=".activity.ActivityLike" />
         <activity
             android:name=".activity.ActivitySVG"
+            android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

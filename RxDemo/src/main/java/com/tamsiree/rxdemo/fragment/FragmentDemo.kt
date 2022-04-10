@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.tamsiree.rxdemo.R
 import com.tamsiree.rxdemo.activity.*
@@ -23,7 +23,7 @@ import com.tamsiree.rxui.fragment.FragmentLazy
 import kotlinx.android.synthetic.main.fragment_demo.*
 import java.util.*
 
-class FragmentDemo : FragmentLazy, OnRefreshListener {
+class FragmentDemo : FragmentLazy, SwipeRefreshLayout.OnRefreshListener {
     var mDemoList: MutableList<ModelDemo>? = ArrayList()
 
     private var mAdapter: AdapterRecyclerViewMain? = null

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.location.LocationManager
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.NetworkInfo
 import android.os.Build
 import android.provider.Settings
@@ -271,17 +272,19 @@ object RxNetTool {
         return false
     }
 
+
     /**
-     * 判断WIFI是否打开
+     * android10版本
+     * 判断网络是否连接
      */
     @JvmStatic
     fun isWifiEnabled(context: Context): Boolean {
-        val mgrConn = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val mgrTel = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-        return ((mgrConn.activeNetworkInfo != null
-                && mgrConn.activeNetworkInfo.state == NetworkInfo.State.CONNECTED)
-                || mgrTel.networkType == TelephonyManager.NETWORK_TYPE_UMTS)
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = cm.activeNetwork ?: return false
+        val capabilities = cm.getNetworkCapabilities(network) ?: return false
+        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
+
 
     /**
      * 判断网络连接方式是否为WIFI
@@ -304,7 +307,7 @@ object RxNetTool {
     fun isWifiConnected(context: Context): Boolean {
         val cm = context
                 .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        return cm != null && cm.activeNetworkInfo != null && cm.activeNetworkInfo.type == ConnectivityManager.TYPE_WIFI
+        return cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.type == ConnectivityManager.TYPE_WIFI
     }
 
     /**
@@ -375,7 +378,7 @@ object RxNetTool {
      * @param context 上下文
      * @return NetworkInfo
      */
-    private fun getActiveNetworkInfo(context: Context): NetworkInfo {
+    private fun getActiveNetworkInfo(context: Context): NetworkInfo? {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         return cm.activeNetworkInfo
     }
