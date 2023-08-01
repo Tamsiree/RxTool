@@ -4,14 +4,11 @@ apply plugin: 'kotlin-kapt' //kapt3插件
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion = '29.0.3'
+    compileSdkVersion 31
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 24
+        targetSdkVersion 31
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -33,15 +30,15 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compileOnly 'androidx.appcompat:appcompat:1.2.0'
-    compileOnly 'androidx.constraintlayout:constraintlayout:2.0.1'
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    compileOnly 'androidx.appcompat:appcompat:1.4.1'
+    compileOnly 'androidx.constraintlayout:constraintlayout:2.1.3'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
 
     //Zxing核心包
-    implementation 'com.google.zxing:core:3.3.0'
+    implementation 'com.google.zxing:core:3.4.1'
     compileOnly project(':RxKit')
     compileOnly project(':RxUI')
 

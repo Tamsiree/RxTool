@@ -198,19 +198,19 @@ class TCrossView : View {
         mRect!!.bottom = height - paddingBottom.toFloat()
         mPathMeasure = PathMeasure()
         mArcTop = Path()
-        mArcTop!!.addArc(mRect, ARC_TOP_START, ARC_TOP_ANGLE)
+        mArcTop!!.addArc(mRect!!, ARC_TOP_START, ARC_TOP_ANGLE)
         mPathMeasure!!.setPath(mArcTop, false)
         mArcLengthTop = mPathMeasure!!.length
         mArcBottom = Path()
-        mArcBottom!!.addArc(mRect, ARC_BOTTOM_START, ARC_BOTTOM_ANGLE)
+        mArcBottom!!.addArc(mRect!!, ARC_BOTTOM_START, ARC_BOTTOM_ANGLE)
         mPathMeasure!!.setPath(mArcBottom, false)
         mArcLengthBottom = mPathMeasure!!.length
         mArcLeft = Path()
-        mArcLeft!!.addArc(mRect, ARC_LEFT_START, ARC_LEFT_ANGLE)
+        mArcLeft!!.addArc(mRect!!, ARC_LEFT_START, ARC_LEFT_ANGLE)
         mPathMeasure!!.setPath(mArcLeft, false)
         mArcLengthLeft = mPathMeasure!!.length
         mArcRight = Path()
-        mArcRight!!.addArc(mRect, ARC_RIGHT_START, ARC_RIGHT_ANGLE)
+        mArcRight!!.addArc(mRect!!, ARC_RIGHT_START, ARC_RIGHT_ANGLE)
         mPathMeasure!!.setPath(mArcRight, false)
         mArcLengthRight = mPathMeasure!!.length
         mPaint!!.isAntiAlias = true
